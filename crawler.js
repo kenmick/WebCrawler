@@ -31,5 +31,7 @@ page.onResourceRequested = function(requestData, networkRequest) {
 };
 
 page.open(url,function(){
-	slimer.exit();
+	window.setTimeout(function () {
+		slimer.exit(1);
+	}, 10000);
 });

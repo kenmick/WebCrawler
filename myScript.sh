@@ -17,7 +17,7 @@ getArray "url.txt"
 
 for e in "${array[@]}"
 do
-    slimerjs crawler.js "$e"
+    slimerjs --ssl-protocol=any crawler.js "$e"
 done
 
 #move all the directories 
