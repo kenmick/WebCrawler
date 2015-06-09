@@ -1,9 +1,10 @@
-var url="http://www.amazon.fr/";
-
 var fs=require('fs');
 var page = require('webpage').create();
 
-fs.makeTree('contents');
+//read top100 urls 
+var url = phantom.args[0];
+var cname = url.split(".")[1];
+fs.makeTree(cname);
 
 page.captureContent = [ /.*/ ];
 
@@ -16,8 +17,9 @@ page.onResourceReceived = function(response) {
 		// var matches = response.url.match(/[/]([^/]+)$/);
 		var matches = response.url.match(/[^/]+[/]*$/);
 		// var fname = "contents/"+matches[1];
-		var fname = "contents/"+matches[0].split("/")[0];
-	    console.log('Response (#' + response.id + ', stage "' + response.stage + '"): ' + JSON.stringify(response));
+            
+		var fname = cname+'/'+matches[0].split("/")[0];
+	    // console.log('Response (#' + response.id + ', stage "' + response.stage + '"): ' + JSON.stringify(response));
 
 		fs.write(fname, response.body);		
 	}
