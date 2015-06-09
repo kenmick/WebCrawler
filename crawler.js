@@ -4,7 +4,7 @@ var page = require('webpage').create();
 //read top100 urls 
 var url = phantom.args[0];
 //var date = phantom.args[1];
-var cname = url.split(".")[1];
+var cname = url.split("//")[1];
 fs.makeTree(cname);
 
 page.captureContent = [ /.*/ ];
