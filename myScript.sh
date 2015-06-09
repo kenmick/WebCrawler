@@ -1,6 +1,7 @@
 #! /bin/bash          
 array=()
 
+
 # Read the file in parameter and fill the array named "array"
 getArray() {
     i=0
@@ -19,4 +20,12 @@ do
     slimerjs crawler.js "$e"
 done
 
+#move all the directories 
+mkdir $1
 
+#var directories=echo ls -d *
+i=`ls -d */`
+
+#echo $i
+
+mv $i $1
