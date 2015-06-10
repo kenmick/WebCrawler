@@ -30,6 +30,11 @@ page.onResourceRequested = function(requestData, networkRequest) {
 	//console.log('Request (#' + requestData.id + '): ' + JSON.stringify(requestData));
 };
 
+page.onResourceError = function(resourceError) {
+	console.log('Unable to load resource (#' + resourceError.id + 'URL:' + resourceError.url + ')');
+	console.log('Error code: ' + resourceError.errorCode + '. Description: ' + resourceError.errorString);
+};
+
 page.open(url,function(){
 	window.setTimeout(function () {
 		slimer.exit(1);
