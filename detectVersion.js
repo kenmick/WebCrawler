@@ -1012,6 +1012,18 @@ var libs = {
             }
             return false;
         }
+    },
+
+    'SWFObject': {
+        name: 'swfobject',
+        url: 'https://code.google.com/p/swfobject/',
+        test: function() {
+            //var sAvailable = window.swfobject;
+            if(window.swfobject) {
+                return { version: 'unknown' };
+            }
+            return false;
+        }
     }
 
 };
