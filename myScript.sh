@@ -24,7 +24,7 @@ getArray "url.txt"
 for e in "${array[@]}"
 do
     slimerjs --ssl-protocol=any crawler.js "$e"
-    phantomjs --ssl-protocol=any detectVersion.js "$e"
+    #phantomjs --ssl-protocol=any detectVersion.js "$e"
 done
 
 
