@@ -1,0 +1,56 @@
+/*
+(c) Copyright Weborama SA - France. All rights reserved.
+It is illegal to modify, disassemble, sell, copy or publish this software
+or any part thereof. The use of this software is only permitted with the
+prior and express written permission of Weborama SA - France.
+More information: http://www.weborama.com/contacts/
+*/
+function x17() {
+    var x1cl, x1ey = x1bb.x1cj();
+    x1ey.x1ie = x1bb.x1nn(x1ey.x1ie,'wuid=&retargeting=&');
+    x1ey.x1fN = 'http://cstatic.weborama.fr/advertiser/1401/3/11/13/';
+    x1ey.x1lp = '26';
+
+    
+    
+    x1ey.conf_oba = false;
+    adperfobj.zindex = adperfobj.zindex || 0 || 214748360;
+
+    adperfobj.clicks = new Array();
+    adperfobj.clicks[0] = 'http://adclick.g.doubleclick.net/aclk?sa=L&ai=CUwCNXGp-VZbPB4G78QPt7YH4Do2Oi_sF5Zr-x8gBwI23ARABIABg-6HrgugJggEXY2EtcHViLTU2NzczMTgwNjE2NzE3MzDIAQmoAwGYBACqBH1P0B3a8bUISUY5pxFg45Y_GYJgqNIcbKqWHtXWVkHbFITpcgcEaSqbWvFBu4rGWgyfvKmbh_Zun5hq4m4Zk2PFnifGjp0BUszCR3qp4QTtBcsgjqVWMviOc7zyOS0O-5GULS-fhL0K4u34t_MG7HqLm6QBWH1P1Yv5nKGzUYAGsI3m_8WgpoVnoAYh2AcA&num=1&sig=AOD64_2mYsB6rjBHjBvu7VEgIeFAO20QsA&client=ca-pub-5677318061671730&adurl=http://bid.g.doubleclick.net/xbbe/creative/click%3Fd%3DAPEucNWS_ZjIOCIBLvhv0hv5rKZGfrRRpDX2GCvYZ_eoM_tHkqE-LMvSdwP5YgxE6mzXZUDJAaCkvFkpmtELqK_ICWWtGyrNi8ScE_WLcoAp_xas09L031zEVnURdmC1CO8VL87JHNqF%26r1%3Dhttp://sncffr.solution.weborama.fr/fcgi-bin/dispatch.fcgi?a.A=cl&a.si=1401&a.te=55&a.aap=26&a.agi=165&g.lu=' + (adperfobj.landing_urls[0] || 'http%3A%2F%2Fwww.idtgv.com%2F%3Fopen%3Dtrue%26depdate%3D%26arrdate%3D%26depstation%3D%26arrstation%3D%26trip%3Droundtrip');
+    
+
+    try{
+        adperfobj.imptrackers = new Array(
+                
+        );
+
+        adperfobj.clicktrackers = (new Array(
+                
+        ).concat(adperfobj.clicktrackers));
+
+        adperfobj.eventtrackers = (new Array(
+                
+        ).concat(adperfobj.eventtrackers));
+    }catch(scr_e){}
+
+    
+
+    x1ey.addTrackers(adperfobj);
+    x1ey.addClicks(adperfobj);
+
+    x1cl = new x1bb.x1h2();
+x1cl.x1c(x1ey, 18, 'SNCF_IDTGV_300x600.swf', adperfobj.width, adperfobj.height, '', 9, 'opaque', 'LT', 'exactfit', ["clicktag"], '', '');
+x1ey.x1gG(x1cl, '', 2, '');
+x1cl = new x1bb.x1hW();
+x1cl.x1c(x1ey, 17, 'SNCF_IDTGV_300x600.gif', adperfobj.width, adperfobj.height, '', '', '');
+x1ey.x1gG(x1cl, '', 2, '');
+
+
+    
+
+    x1ey.x1gQ();
+
+    
+}
+x1L('adperf_core_' + adperf_version + '_scrambled.js');

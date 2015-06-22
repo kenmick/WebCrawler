@@ -1,0 +1,2 @@
+/* jdf-1.0.0/ insertStyles.js Date:2015-03-25 20:21:59 */
+define("jdf/1.0.0/unit/insertStyles/1.0.0/insertStyles.js",[],function(){var c=function(a){var b=document,c=b.getElementsByTagName("head"),d=b.createElement("style"),e=b.createElement("link");if(/\.css$/.test(a))e.rel="stylesheet",e.type="text/css",e.href=a,c.length?c[0].appendChild(e):b.documentElement.appendChild(e);else{if(d.setAttribute("type","text/css"),d.styleSheet)d.styleSheet.cssText=a;else{var f=b.createTextNode(a);d.appendChild(f)}c.length&&c[0].appendChild(d)}};return c});

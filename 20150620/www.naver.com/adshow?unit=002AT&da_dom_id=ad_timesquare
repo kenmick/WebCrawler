@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=euc-kr" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta name="viewport" content="width=device-width, minimum-scale=0.1">
+<title>NAVER</title>
+<style type="text/css">
+/* DA Alternative - Contents Style */
+#addiv{position:relative}
+#addiv embed,#addiv object{z-index:20}
+#addiv #da_alt{position:absolute;top:0;left:0;width:100%;height:100%;z-index:-1}
+#addiv #da_alt.on{z-index:30}
+#addiv #da_alt a{display:block;overflow:hidden;position:absolute;bottom:0;left:0;width:100%;height:100%}
+#addiv #da_alt .guide{visibility:hidden;position:absolute;top:50%;left:50%;width:154px;height:58px;margin:-29px 0 0 -77px;background:url(http://img.naver.net/static/common/da/da_access.png)}
+#addiv #da_alt.on .guide{visibility:visible}
+#addiv #da_alt .blind{visibility:hidden;overflow:hidden;position:absolute;top:0;left:0;width:0;height:0;font-size:0;line-height:0}
+
+/* AD - Contents Style */
+html,body{height:100%}
+body{margin:0;padding:0;line-height:0;font-size:0}
+.ad{position:relative;width:100%;height:100%;vertical-align:top}
+.ad .banner{position:relative;z-index:10;width:100%;height:100%}
+.ad .banner img{vertical-align:top}
+.ad .close{display:block;overflow:hidden;position:absolute;top:8px;right:8px;z-index:20;width:24px;height:29px;background:red;line-height:999px;-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";filter:alpha(opacity=0);opacity:0}
+</style>
+</head>
+<body onload="lazyLoading()">
+	<div id="addiv" class="ad">
+		<div class="banner">
+			<a id="ac_banner_a" target="_blank">
+				<img src="http://adcreative.naver.com/ad3/1092/1092336/20150619101918-aEy8Ca7h.jpg" width="300" height="159" title="" alt="í¬ë¡ë¸ë¸ë ì´ë ì ê²© ì¤í! ì§ê¸ ë¤ì´ë°ê¸°" border="0" align="ê´ê³ "/>
+			</a>
+		</div>
+		<a id="close_btn" class="close">ê´ê³  ë«ê¸°</a>
+	</div>
+	<a id="link" name="link" href="javascript:void(0)"></a>
+	<script type="text/javascript">
+	//<![CDATA[
+	document.domain = "naver.com";
+
+	var adDiv = parent["ad_timesquare"];
+	var adBanner = document.getElementById("ac_banner_a");
+	var adCloseBtn = document.getElementById("close_btn");
+	var oNimp;
+	var clickUrl;
+
+	function lazyLoading() {
+		setTimeout(function() {
+			loadScript("http://adcreative.naver.com/ad3/js/min/da.min.js?141226", function(){
+				loadScript("http://adcreative.naver.com/ad3/js/min/da.picnic.min.js?141208", initAd);
+			});
+					
+			function loadScript(url, callback) {
+				var script = document.createElement("script");
+				script.type = "text/javascript";
+				script.src = url;
+				if(script.readyState) { // IE
+					(function(script){
+						script.onreadystatechange = function() {
+							if(script.readyState == "loaded" || script.readyState == "complete") {
+								script.onreadystatechange = null;	
+								callback();
+							}
+						};
+					})(script);
+				} else { // IE ì¸
+					(function(script){
+						script.onload = function() {
+							callback();
+						};
+					})(script);
+				}
+				document.getElementsByTagName("head")[0].appendChild(script);
+		    }
+		}, 50);
+	}
+
+	function initAd() {
+		oNimp = new Nimp(["http://nv.ad.naver.com/adshow?unit=002AT&ac=6404253&src=2563495&rk=VYT96wpizTUAAA3nSpMAAAAC&eltts=x2ilYDz85wB4XeXVkkL15g%3D%3D&t=i"]);
+		clickUrl = "http://nv.ad.naver.com/adclick?unit=002AT&ac=6404253&src=2563494&br=2055542&rk=VYT96wpizTUAAA3nSpMAAAAC&eltts=x2ilYDz85wB4XeXVkkL15g%3D%3D&";
+		var iFreq = Cookie.get("f1467933");
+
+		if(iFreq !== null) return;
+
+		if(adDiv){
+			adDiv.style.display = "block";
+			adBanner.style.cursor = adCloseBtn.style.cursor = "pointer";
+			oNimp.log(1);
+		}
+
+		if(document.addEventListener){
+			adBanner.addEventListener("click", clickAd, false);
+			adCloseBtn.addEventListener("click", clickCloseBtn, false);
+		}else{
+			adBanner.attachEvent("onclick", clickAd);
+			adCloseBtn.attachEvent("onclick", clickCloseBtn);
+		}
+
+		initAltForImage();
+	}
+
+	function clickAd(){
+		setCookie();
+		window.open(clickUrl, "_blank");
+	}
+
+	function clickCloseBtn(){
+		setCookie();
+		if(adDiv) adDiv.parentNode.removeChild(adDiv);
+	}
+
+	function setCookie(){
+		getFreq("f1467933");
+	}
+
+	function initAltForImage() {
+		// DA Alternative - Create Access Layer
+		var accessLayer = document.createElement('div');
+		accessLayer.setAttribute('id','da_access');
+		accessLayer.style.cssText = 'position:absolute;top:50%;left:50%;width:154px;height:58px;margin:-29px 0 0 -77px;background:url(http://img.naver.net/static/common/da/da_access.png)';
+		accessLayer.style.display = "none";
+		var oAdDiv = document.getElementById("ac_banner_a");
+		oAdDiv.appendChild(accessLayer);
+		
+		// DA Alternative - Focus Action
+		var altLink = document.getElementById("ac_banner_a");
+		var bMousedown = false;
+		altLink.onmousedown = function() {
+			bMousedown = true;
+		};
+		altLink.onfocus = function() {
+			if(!bMousedown){accessLayer.style.display = "block";}
+		};
+		altLink.onblur = function() {
+			accessLayer.style.display = "none";
+		};
+	}
+	//]]>
+	</script>
+
+</body>
+</html>

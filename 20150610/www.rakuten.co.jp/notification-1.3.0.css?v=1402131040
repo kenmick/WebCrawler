@@ -1,0 +1,227 @@
+@charset "euc-jp";
+
+/*
+createdate: 20131010
+update: 20131010
+var: 1.0.0
+*/
+
+/* header
+----------------------------*/
+#ritTopHeader .ritCmtRetMenu #ritNotificationButton {
+  margin-left: 0;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+#ritBasketArea .iconNotSprite {
+  margin: 0 0 0 4px;
+  text-indent:100%;
+  white-space:nowrap;
+  overflow:hidden;
+}
+
+#ritBasketArea .iconNotSprite a {
+  width: 101px;
+  height: 24px;
+  display: block;
+  background: url(http://a.ichiba.jp.rakuten-static.com/com/img/home/opt/css/btn_ret_menu_sprite_03.gif) no-repeat 0 0;
+}
+
+#ritBasketArea .iconNotCaution a {
+  background-position: 0px -24px;
+}
+
+#ritBasketArea .iconNotAshiato a{
+  background-position: 0px -24px;
+}
+
+#ritBasketArea .iconNotbookMark a{
+  background-position: 0px -48px;
+}
+
+#ritBasketArea .iconNotOrder a{
+  background-position: 0px -72px;
+}
+
+#ritBasketArea .iconNotCoupon a {
+  background-position: 0px -96px;
+}
+
+#ritBasketArea .notNumber {
+  border-radius: 10px; 
+  padding: 1px 2px;
+  border: solid 1px #ffffff;
+  -webkit-border-radius: 10px;  
+  -moz-border-radius: 10px;
+  background: #bf0000;
+  position: absolute;
+  top:-7px;
+  left: 15px;
+  color: #ffffff;
+  font-size: 10px;
+}
+
+#ritNotificationBadge {
+  display: none;
+  border-radius: 10px;
+  padding: 3px 5px 2px 5px;
+  border: solid 2px #ffffff;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  background: #bf0000;
+  position: absolute;
+  top: -7px;
+  left: 24px;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 10px;
+  text-align: center;
+  font-family: "MS PGothic","Osaka",Arial,sans-serif;
+  line-height: 1.1em;
+  z-index: 1;
+}
+
+/* notification popup [#ritNotification]
+----------------------------*/
+#ritNotification {
+  display: none;
+  position: absolute;
+  border: solid 1px #686868;
+  box-shadow: 3px 3px #cecece;
+  -moz-box-shadow: 3px 3px #cecece;
+  -webkit-box-shadow: 3px 3px #cecece;
+  -o-box-shadow: 3px 3px #cecece;
+  -ms-box-shadow: 3px 3px #cecece;
+  z-index: 555;
+  background: #ffffff;
+  padding-right: 4px;
+  width: 634px;
+}
+
+.ntfTopTail {
+  position: absolute;
+  left: 312px;
+  top: -16px;
+  *top: -14px;
+  width: 6px;
+  z-index: 7777;
+}
+
+.ntfTtlCnt {
+  overflow: hidden;
+  zoom: 1;
+  font-weight: bold;
+}
+
+.ntfTtlCnt .ntfTtl {
+  width: 210px;
+  padding: 5px 11px;
+  float: left;
+}
+
+.ntfTtlCnt .ntfClose {
+  width: 15px;
+  margin: 4px 0px 2px;
+  float: right;
+  background: url(http://a.ichiba.jp.rakuten-static.com/com/img/home/opt/css/icn_close_gray.gif) no-repeat 0 0;
+  cursor: pointer;
+}
+
+/* Error */
+.ritNotificError {
+  display: none;
+  background: #ffffff;
+  z-index: 6666;
+  overflow: hidden;
+  margin: 8px 19px 30px 23px;
+  text-align: center;
+}
+
+/* add1217 */
+/*.rihCmnUserRetBtn {
+min-width:950px;
+position:relative;
+text-align:left;
+display:block;
+*z-index:101;
+}*/
+.rihCmnUserRetBtn a,.rihCmnUserRetBtn a:visited {
+text-decoration:none;
+color:#1d54a7!important;
+outline:0;
+}
+.rihCmnUserRetBtn a:hover {
+text-decoration:underline;
+color:#c00000!important;
+}
+.rihCmnUserRetBtn li {
+vertical-align: bottom;
+display:inline-block;
+*display:inline;
+zoom:1;
+}
+.rihCmnUserRetBtn {
+height:24px;
+}
+.rihCmnUserRetBtn > li:first-child {
+margin-left:0;
+}
+.rihCmnUserRetBtn > li {
+margin-left:4px;
+}
+.rihCmnUserRetBtn > li > a {
+width:101px;
+height:24px;
+display:block;
+line-height:2;
+}
+.rihCmnUserRetBtn .notification .notificationBtn {
+display:block;
+background:url(http://a.ichiba.jp.rakuten-static.com/com/img/home/opt/css/btn_ret_menu_sprite_03.gif) 0 0;
+}
+.rihCmnUserRetBtn .ashiato a {
+background:url(http://a.ichiba.jp.rakuten-static.com/com/img/home/opt/css/btn_ret_menu_sprite_03.gif) 0 -24px;
+}
+.rihCmnUserRetBtn .bookmark a {
+background:url(http://a.ichiba.jp.rakuten-static.com/com/img/home/opt/css/btn_ret_menu_sprite_03.gif) 0 -48px;
+}
+.rihCmnUserRetBtn .order a {
+background:url(http://a.ichiba.jp.rakuten-static.com/com/img/home/opt/css/btn_ret_menu_sprite_03.gif) 0 -72px;
+}
+.rihCmnUserRetBtn .mycoupon a {
+background:url(http://a.ichiba.jp.rakuten-static.com/com/img/home/opt/css/btn_ret_menu_sprite_03.gif) 0 -96px;
+}
+#ritNotificationButton {
+position:relative;
+}
+#ritNotification li {
+display:block;
+}
+#ritNotification .ntfTopTail {
+width:0;
+height:0;
+border-left:9px solid transparent;
+border-right:9px solid transparent;
+border-bottom:9px solid #686868;
+position:absolute;
+top:-9px;
+}
+#ritNotification .ntfTopTailFill {
+width:0;
+height:0;
+border-left:8px solid transparent;
+border-right:8px solid transparent;
+border-bottom:8px solid #fff;
+position:absolute;
+right:-8px;
+top:1px;
+}
+.rihCmnUserRetBtn .notification .notificationBtn {
+display: block;
+background: url(http://a.ichiba.jp.rakuten-static.com/com/img/home/opt/css/btn_ret_menu_sprite_03.gif) 0 0!important;
+height: 24px;
+line-height: 2px;
+}
+

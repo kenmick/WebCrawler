@@ -1,0 +1,1 @@
+define(function(){function a(d){var c;for(c=0;c<d.length;c++){var b=document.createElement("img");b.src=d[c]}}return{preload:a}});

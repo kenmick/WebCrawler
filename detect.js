@@ -11,16 +11,16 @@ var libs = {
             var doc = document,
                 hasHistFrame = doc.getElementById('__gwt_historyFrame'),
                 hasGwtUid = doc.gwt_uid,
-                hasBodyListener = doc.body.__listener,
-                hasBodyEventBits = doc.body.__eventBits,
+                //hasBodyListener = doc.body.__listener,
+                //hasBodyEventBits = doc.body.__eventBits,
                 hasModules = window.__gwt_activeModules;
                 hasJsonP = window.__gwt_jsonp__,
                 hasRootWindowApp = window.__gwt_scriptsLoaded || window.__gwt_stylesLoaded || window.__gwt_activeModules;
 
             // use the many possible indicators
-            if(hasHistFrame || hasGwtUid || hasBodyListener || hasBodyEventBits || hasModules || hasJsonP || hasRootWindowApp) {
-            //if(hasHistFrame|| hasGwtUid || hasBodyListener || hasBodyEventBits|| hasModules) {
-                
+            //if(hasHistFrame || hasGwtUid || hasBodyListener || hasBodyEventBits || hasModules || hasJsonP || hasRootWindowApp) {
+            if(hasHistFrame || hasGwtUid || hasModules || hasJsonP || hasRootWindowApp) {
+
                 // carefully look at frames, but only if certain is GWT frame
                 var frames = doc.getElementsByTagName('iframe'),
                     gwtVersion = 'unknown';
@@ -692,6 +692,9 @@ var libs = {
             if ((window.require && window.require.load) || (window.requirejs && window.requirejs.load)) {
                 return {version: window.require.version || window.requirejs.version};
             }
+            // if ((window.require && window.require.load)) {
+            //     return {version: window.require.version};
+            // }
             return false;
         }
     },
@@ -1045,7 +1048,7 @@ page.open(url,function(){
                 var str = i+': '+versionObject.version+'\n';
                 fs.write(lname, str, 'a');
             }
-          console.log(i+': '+versionObject.version);
+         console.log(i+': '+versionObject.version);
         }
 
 		slimer.exit(1);

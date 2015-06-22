@@ -1,0 +1,2 @@
+__d("widget.specialicon.showtmall",["common.js.jquery"],function(f,b,c,e){var d=e("common.js.jquery");b.exports=function(b,c){var a=d(b);0<a.length&&(a=d('.js_text[data-title="\u5929\u732b618"]',a).parent(),0<a.length&&a.css("position","relative").prepend('<a target="_blank" hidefocus=true data-title="\u5929\u732b618" href="'+c+'" style="position: absolute;display: inline-block;width: 30px;height: 22px;padding-left: 0px;top: -5px;left: -2px;"><img src="http://s0.hao123img.com/res/img/tmall618-icon.gif" ></a>'))};
+return c});window.js_kWdIINkoMp&&window.js_kWdIINkoMp(!0);

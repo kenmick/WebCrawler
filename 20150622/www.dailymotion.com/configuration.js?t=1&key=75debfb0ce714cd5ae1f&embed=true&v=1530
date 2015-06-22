@@ -1,0 +1,196 @@
+define(function() {
+return {
+  "analytics": {
+    "bigquery": {
+      "api_key": "593ea2fc799b78acb28ed7d5d544efb0e9400991706f72ed0ce25eb09951229f"
+    },
+    "exclude": {
+      "Player Action": {
+        "Action": "Progress",
+        "Type": "Video"
+      }
+    },
+    "internal": {
+      "exclude": {
+        "Player Action": {
+          "Action": "Progress",
+          "Type": "Video"
+        }
+      }
+    },
+    "modules": [
+      "analytics.bigquery"
+    ]
+  },
+  "build": {
+    "embed": "dailymotion.embed.built",
+    "player": "entry",
+    "quickedit": "dailymotion.embed.built",
+    "viewer": "dailymotion.viewer.built"
+  },
+  "facebook": {
+    "appId": "192763717523135"
+  },
+  "group": {
+    "id": 101,
+    "name": "Dailymotion Trial-BASIC",
+    "parent": 70
+  },
+  "integrations": {
+    "dailymotion": {
+      "host": "www.dailymotion.com",
+      "production": {
+        "host": "www.dailymotion.com",
+        "userfollow": "http://www.dailymotion.com/card/user/"
+      },
+      "staging": {
+        "host": "stage-11.dailymotion.com",
+        "userfollow": "http://stage-11.dailymotion.com/card/user/"
+      },
+      "userfollow": "http://www.dailymotion.com/card/user/"
+    }
+  },
+  "maintenance": {
+    "message": "We are experiencing issues connecting to the service. Please wait a moment and try again."
+  },
+  "mixpanel": {
+    "hapyak": {
+      "exclude": {
+        "Annotation Ended": true,
+        "Annotation View": true,
+        "Load": true,
+        "Player Action": {
+          "Action": "Progress",
+          "Type": "Video"
+        },
+        "Player View": {
+          "Type": "Load"
+        }
+      },
+      "token": "29f33e43e248a06b4a72a8ee6ff83c68"
+    }
+  },
+  "modified": 1434012814369,
+  "player": {
+    "autoEditDialog": false,
+    "autoResize": true,
+    "css": "//hapyak.dmcdn.net/partners/dailymotion/dailymotion-annotations-20140827.css",
+    "defaults": {
+      "bookmark": {
+        "mode": "minimal"
+      },
+      "contents": {
+        "mode": "column1",
+        "title": "Chapters"
+      },
+      "image": {
+        "transitionClass": "hapyak-transition-fade"
+      },
+      "pearsonLearningStudioQuizSubmit": {
+        "gate": true
+      },
+      "pop": {
+        "mode": "pop",
+        "transitionClass": "hapyak-transition-fade"
+      },
+      "quiz": {
+        "pause": true
+      }
+    },
+    "disableInlineTextEdit": true,
+    "duration": 5,
+    "fullScreenPopOut": true,
+    "gates": true,
+    "hideEndAnnotations": true,
+    "iframeTimeout": 30000,
+    "integrations": {
+      "dailymotion": {
+        "host": "www.dailymotion.com"
+      }
+    },
+    "linkBlacklist": null,
+    "linkWhitelist": [
+      "^(?:https?\\:\\/|\\/)?\\/?((?:[a-z]\\.|[a-z][a-z0-9-]{0,61}[a-z0-9]\\.)*?2emotion\\.com|(?:[a-z]\\.|[a-z][a-z0-9-]{0,61}[a-z0-9]\\.)*?arbmusic\\.com|(?:[a-z]\\.|[a-z][a-z0-9-]{0,61}[a-z0-9]\\.)*?avneretvous\\.fr|(?:[a-z]\\.|[a-z][a-z0-9-]{0,61}[a-z0-9]\\.)*?babbel\\.com|(?:[a-z]\\.|[a-z][a-z0-9-]{0,61}[a-z0-9]\\.)*?barbaradurso\\.com|(?:[a-z]\\.|[a-z][a-z0-9-]{0,61}[a-z0-9]\\.)*?beinsports\\.fr|(?:[a-z]\\.|[a-z][a-z0-9-]{0,61}[a-z0-9]\\.)*?billetterie-basketeuro2015\\.com|(?:[a-z]\\.|[a-z][a-z0-9-]{0,61}[a-z0-9]\\.)*?bit\\.ly|(?:[a-z]\\.|[a-z][a-z0-9-]{0,61}[a-z0-9]\\.)*?contra\\.gr|(?:[a-z]\\.|[a-z][a-z0-9-]{0,61}[a-z0-9]\\.)*?dai\\.ly|(?:[a-z]\\.|[a-z][a-z0-9-]{0,61}[a-z0-9]\\.)*?dailymotion\\.com|(?:[a-z]\\.|[a-z][a-z0-9-]{0,61}[a-z0-9]\\.)*?dolycam\\.com|(?:[a-z]\\.|[a-z][a-z0-9-]{0,61}[a-z0-9]\\.)*?drnozman\\.com|(?:[a-z]\\.|[a-z][a-z0-9-]{0,61}[a-z0-9]\\.)*?etr\\.im|(?:[a-z]\\.|[a-z][a-z0-9-]{0,61}[a-z0-9]\\.)*?eurobasket2015\\.org|(?:[a-z]\\.|[a-z][a-z0-9-]{0,61}[a-z0-9]\\.)*?facebook\\.com|(?:[a-z]\\.|[a-z][a-z0-9-]{0,61}[a-z0-9]\\.)*?fandebarbecue-lidl\\.fr|(?:[a-z]\\.|[a-z][a-z0-9-]{0,61}[a-z0-9]\\.)*?fb\\.me|(?:[a-z]\\.|[a-z][a-z0-9-]{0,61}[a-z0-9]\\.)*?fcbarcelona\\.cat|(?:[a-z]\\.|[a-z][a-z0-9-]{0,61}[a-z0-9]\\.)*?fcbarcelona\\.cn|(?:[a-z]\\.|[a-z][a-z0-9-]{0,61}[a-z0-9]\\.)*?fcbarcelona\\.co\\.id|(?:[a-z]\\.|[a-z][a-z0-9-]{0,61}[a-z0-9]\\.)*?fcbarcelona\\.com|(?:[a-z]\\.|[a-z][a-z0-9-]{0,61}[a-z0-9]\\.)*?fcbarcelona\\.com\\.br|(?:[a-z]\\.|[a-z][a-z0-9-]{0,61}[a-z0-9]\\.)*?fcbarcelona\\.es|(?:[a-z]\\.|[a-z][a-z0-9-]{0,61}[a-z0-9]\\.)*?fcbarcelona\\.jp|(?:[a-z]\\.|[a-z][a-z0-9-]{0,61}[a-z0-9]\\.)*?ffbb\\.com|(?:[a-z]\\.|[a-z][a-z0-9-]{0,61}[a-z0-9]\\.)*?fff\\.fr|(?:[a-z]\\.|[a-z][a-z0-9-]{0,61}[a-z0-9]\\.)*?footmercato\\.net|(?:[a-z]\\.|[a-z][a-z0-9-]{0,61}[a-z0-9]\\.)*?france4\\.fr|(?:[a-z]\\.|[a-z][a-z0-9-]{0,61}[a-z0-9]\\.)*?francetvsport\\.fr|(?:[a-z]\\.|[a-z][a-z0-9-]{0,61}[a-z0-9]\\.)*?gv\\.com\\.sg|(?:[a-z]\\.|[a-z][a-z0-9-]{0,61}[a-z0-9]\\.)*?indacolab\\.com|(?:[a-z]\\.|[a-z][a-z0-9-]{0,61}[a-z0-9]\\.)*?instagram\\.com|(?:[a-z]\\.|[a-z][a-z0-9-]{0,61}[a-z0-9]\\.)*?itunes\\.apple\\.com|(?:[a-z]\\.|[a-z][a-z0-9-]{0,61}[a-z0-9]\\.)*?itunes\\.com|(?:[a-z]\\.|[a-z][a-z0-9-]{0,61}[a-z0-9]\\.)*?lemonde\\.fr|(?:[a-z]\\.|[a-z][a-z0-9-]{0,61}[a-z0-9]\\.)*?lfp\\.fr|(?:[a-z]\\.|[a-z][a-z0-9-]{0,61}[a-z0-9]\\.)*?loccitane\\.com|(?:[a-z]\\.|[a-z][a-z0-9-]{0,61}[a-z0-9]\\.)*?nasa\\.gov|(?:[a-z]\\.|[a-z][a-z0-9-]{0,61}[a-z0-9]\\.)*?news247\\.gr|(?:[a-z]\\.|[a-z][a-z0-9-]{0,61}[a-z0-9]\\.)*?olapaok\\.gr|(?:[a-z]\\.|[a-z][a-z0-9-]{0,61}[a-z0-9]\\.)*?om\\.net|(?:[a-z]\\.|[a-z][a-z0-9-]{0,61}[a-z0-9]\\.)*?oneman\\.gr|(?:[a-z]\\.|[a-z][a-z0-9-]{0,61}[a-z0-9]\\.)*?pokerstarslive\\.fr|(?:[a-z]\\.|[a-z][a-z0-9-]{0,61}[a-z0-9]\\.)*?prasinanea\\.gr|(?:[a-z]\\.|[a-z][a-z0-9-]{0,61}[a-z0-9]\\.)*?psg\\.fr|(?:[a-z]\\.|[a-z][a-z0-9-]{0,61}[a-z0-9]\\.)*?redplanet\\.gr|(?:[a-z]\\.|[a-z][a-z0-9-]{0,61}[a-z0-9]\\.)*?sarenza\\.com|(?:[a-z]\\.|[a-z][a-z0-9-]{0,61}[a-z0-9]\\.)*?savethechildren\\.org\\.uk|(?:[a-z]\\.|[a-z][a-z0-9-]{0,61}[a-z0-9]\\.)*?sport24\\.gr|(?:[a-z]\\.|[a-z][a-z0-9-]{0,61}[a-z0-9]\\.)*?t\\.co|(?:[a-z]\\.|[a-z][a-z0-9-]{0,61}[a-z0-9]\\.)*?telerama\\.fr|(?:[a-z]\\.|[a-z][a-z0-9-]{0,61}[a-z0-9]\\.)*?twitter\\.com|(?:[a-z]\\.|[a-z][a-z0-9-]{0,61}[a-z0-9]\\.)*?vodkaster\\.com|(?:[a-z]\\.|[a-z][a-z0-9-]{0,61}[a-z0-9]\\.)*?wikipedia\\.com|(?:[a-z]\\.|[a-z][a-z0-9-]{0,61}[a-z0-9]\\.)*?wikipedia\\.org|(?:[a-z]\\.|[a-z][a-z0-9-]{0,61}[a-z0-9]\\.)*?wordpress\\.com|(?:[a-z]\\.|[a-z][a-z0-9-]{0,61}[a-z0-9]\\.)*?zegive\\.com)"
+    ],
+    "localLinks": true,
+    "pluginDependencies": {
+      "hotlink": [
+        "popcorn.close"
+      ],
+      "pop": [
+        "popcorn.close"
+      ],
+      "userfollow": [
+        "popcorn.close"
+      ],
+      "videopreview": [
+        "popcorn.close"
+      ]
+    },
+    "plugins": {},
+    "profiles": {
+      "pop": {
+        "enableAltControls": false,
+        "icon": "&#x1F4AC;"
+      }
+    },
+    "sharing": false,
+    "shortenUrls": false,
+    "styles": {
+      "annotationContainer": {
+        "z-index": 1001
+      }
+    },
+    "tocExpanded": true,
+    "viewer": {
+      "controlStyle": "//hapyak.dmcdn.net/partners/dailymotion/dailymotion-controls-20140827_0.css"
+    },
+    "webcam": true
+  },
+  "portal": {
+    "exampleProjectId": 13011,
+    "newTemplateModal": {
+      "embedType": "dailymotion",
+      "helpBody": "<p>Templates are projects whose annotation data can be loaded into other HapYak projects.</p><p>They are perfect for managing annotations you want to appear in many videos (e.g. logos, banners, video end cards, etc.)!</p>",
+      "helpTitle": "What is a HapYak template?",
+      "input": "http://www.dailymotion.com/video/x127mnx_hapyak-inspirational-small_tech"
+    }
+  },
+  "provisioning": {
+    "annotationTypes": {
+      "audio": false,
+      "bookmark": false,
+      "drawing": false,
+      "hotlink": true,
+      "iframe": false,
+      "image": false,
+      "pop": true,
+      "quiz": false,
+      "toc": false,
+      "userfollow": true,
+      "videopreview": true
+    },
+    "blockModifyExistingDimensions": true,
+    "multitrack": false,
+    "portal": {
+      "config": {
+        "rules": true
+      }
+    },
+    "sharing": false,
+    "transitions": true,
+    "waitForCanplay": true
+  },
+  "sentry": {
+    "hapyak": "https://4c0b5aeca83b4b2a826467ba89595130:d896cd4859364c30b167fa30ee71c2c1@app.getsentry.com/2286",
+    "whitelistUrls": [
+      "hapyak-staging.dmcdn.net",
+      "hapyak.dmcdn.net"
+    ]
+  },
+  "uploads": {
+    "host": "hapyak_uploads.s3.amazonaws.com"
+  },
+  "watch": {}
+};
+}); 

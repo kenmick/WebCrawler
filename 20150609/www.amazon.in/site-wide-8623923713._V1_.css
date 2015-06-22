@@ -1,0 +1,163 @@
+/* begin popover/amzPopoverCss.css */
+.ap_popover{position:absolute;outline:0}
+.ap_body{height:100%;min-height:36px;position:relative;background-color:#fff;margin:0 17px}
+.ap_popover_sprited .ap_body .ap_left-arrow,.ap_body .ap_left{width:17px;height:100%;position:absolute;top:0;left:-17px;background-attachment:scroll;background-repeat:repeat-y}
+.ap_popover_sprited .ap_body .ap_left{background-position:0 top}
+.ap_popover_sprited .ap_body .ap_right-arrow,.ap_body .ap_right{width:17px;height:100%;position:absolute;top:0;right:-17px;background-attachment:scroll;background-repeat:repeat-y}
+.ap_popover_sprited .ap_body .ap_right{background-position:-51px top}
+.ap_header,.ap_footer{position:relative;width:100%}
+.ap_header *,.ap_footer *{height:26px}
+.ap_header .ap_left{position:absolute;top:0;left:0;width:34px;background-attachment:scroll;background-repeat:no-repeat}
+.ap_popover_sprited .ap_header .ap_left{background-position:left -2px}
+.ap_header .ap_right{width:34px;position:absolute;top:0;right:0;background-attachment:scroll;background-repeat:no-repeat}
+.ap_popover_sprited .ap_header .ap_right{background-position:right -2px}
+.ap_header .ap_middle{margin:0 34px;background-attachment:scroll;background-repeat:repeat-x}
+.ap_popover_sprited .ap_header .ap_middle{background-position:0 -70px}
+.ap_footer .ap_left{position:absolute;top:0;left:0;width:34px;background-attachment:scroll;background-repeat:no-repeat}
+.ap_popover_sprited .ap_footer .ap_left{background-position:left -40px}
+.ap_footer .ap_right{width:34px;position:absolute;top:0;right:0;background-attachment:scroll;background-repeat:no-repeat}
+.ap_popover_sprited .ap_footer .ap_right{background-position:right -40px}
+.ap_footer .ap_middle{margin:0 34px;background-attachment:scroll;background-repeat:repeat-x}
+.ap_popover_sprited .ap_footer .ap_middle{background-position:0 -108px}
+.ap_popover .ap_titlebar{display:none;position:absolute;left:0;top:0;background-color:#eaf3fe;border-bottom:1px solid #c2ddf2;font-size:14px;font-weight:bold;margin:8px 18px;white-space:nowrap;overflow:hidden}
+.ap_popover .ap_titlebar.multiline{white-space:normal;overflow:visible}
+.ap_popover .ap_titlebar .ap_title{padding:4px 0;margin-left:10px;overflow:hidden}
+#ap_overlay,#ap_overlay div{background-color:#3f4c58;width:100%;position:absolute;top:0;left:0;z-index:99}
+.ap_popover .ap_close{position:absolute;right:18px;top:13px}
+.ap_popover .ap_close a{padding:5px;text-decoration:none;outline:0}
+.ap_popover .ap_close .ap_closetext{display:none;margin-right:5px;line-height:1em}
+.ap_popover .ap_closebutton{display:-moz-inline-box;display:inline-block;width:15px;height:15px;background-repeat:no-repeat;background-position:0 -136px;position:relative;overflow:hidden;vertical-align:top}
+.ap_popover .ap_closebutton span{position:absolute;top:-9999px}
+.ap_popover .ap_close img{vertical-align:top}
+.ap_classic{border-top:1px solid #ccc;border-left:1px solid #ccc;border-bottom:1px solid #2f2f1d;border-right:1px solid #2f2f1d;background-color:#efedd4;padding:3px}
+.ap_classic .ap_titlebar{color:#86875d;font-size:12px;padding:0 0 3px 0;line-height:1em}
+.ap_classic .ap_close{float:right}
+.ap_classic .ap_content{clear:both;background-color:white;border:1px solid #aca976;padding:8px;font-size:11px}
+/* end popover/amzPopoverCss.css */
+
+/* begin amazonShoveler/amazonShovelerCss.css */
+.shoveler{position:relative;width:100%;}
+.shoveler .shoveler-content{margin:0 45px;}
+.shoveler ul{height:150px;padding:0;overflow:hidden;outline:none;}
+* html .shoveler li{display:inline;}
+.shoveler li{float:left;margin:0;padding:10px 0 0 0;width:180px;height:100%;list-style:none;}
+.shoveler li.shoveler-progress{background:no-repeat center url(http://g-ecx.images-amazon.com/images/G/01/ui/loadIndicators/loading-small._V192238939_.gif);}
+.shoveler div.button{position:absolute;height:50px;width:25px;top:55px;cursor:pointer;}
+.shoveler div.button.disabled{opacity:.5;-moz-opacity:.5;filter:alpha(opacity=50);cursor:default;}
+.shoveler div.button.depressed{background-position:0 -50px;}
+.shoveler div.button.disabled.depressed{background-position:0 0;}
+.shoveler div.prev-button{background:no-repeat url(http://g-ecx.images-amazon.com/images/G/01/x-locale/personalization/shoveler/left-arrow-semi-rd._V17361814_.gif);left:10px;}
+.shoveler div.next-button{background:no-repeat url(http://g-ecx.images-amazon.com/images/G/01/x-locale/personalization/shoveler/right-arrow-semi-rd._V17361809_.gif);right:10px;}
+.shoveler a.back-button,.shoveler a.next-button{position:absolute;height:50px;width:25px;top:75px;}
+.shoveler a.back-button{left:1px;}
+.shoveler a.next-button{right:1px;}
+.shoveler .depressed .s_shvlBack{background-position:-30px -130px;}
+.shoveler .depressed .s_shvlNext{background-position:-60px -130px;}
+.shoveler .shoveler-pagination{position:absolute;right:0;top:0;padding:10px;}
+.shoveler .start-over{font-size:80%;}
+.shoveler .start-over a.start-over-link{text-decoration:none;color:#004B91;}
+.shoveler.default-style .shoveler-header{border:1px solid #9DC4D8;border-width:1px 1px 0 1px;background:bottom left repeat-x #eff5f9 url(http://g-ecx.images-amazon.com/images/G/01/x-locale/personalization/yourstore/box/sliced_box_fill/sliced-box-tbevel._V47082452_.gif);}
+.shoveler.default-style .shoveler-title{padding:5px 7px;}
+.shoveler.default-style .shoveler-main{border:1px solid #9DC4D8;border-width:1px 1px 0 1px;position:relative;}
+.shoveler.default-style .shoveler-footer{border:1px solid #9DC4D8;border-width:0 1px 1px 1px;}
+.shoveler.default-style .shoveler-footer-content{height:16px;line-height:16px;}
+.shoveler.default-style .shoveler-upper-left,.shoveler.default-style .shoveler-upper-right,.shoveler.default-style .shoveler-bottom-left,.shoveler.default-style .shoveler-bottom-right{width:17px;height:17px;position:absolute;}
+.shoveler.default-style .shoveler-upper-right{position:relative;float:right;}
+.shoveler.default-style .shoveler-bottom-right{position:relative;float:right;}
+.shoveler.default-style div.shoveler-upper-left{background:no-repeat top left url(http://g-ecx.images-amazon.com/images/G/01/x-locale/personalization/yourstore/box/sliced_box_fill/sliced-box-tl._V6007502_.gif);}
+.shoveler.default-style div.shoveler-upper-right{background:no-repeat top right url(http://g-ecx.images-amazon.com/images/G/01/x-locale/personalization/yourstore/box/sliced_box_fill/sliced-box-tr._V6007499_.gif);}
+.shoveler.default-style div.shoveler-bottom-left{background:no-repeat bottom left url(http://g-ecx.images-amazon.com/images/G/01/x-locale/personalization/yourstore/box/sliced-box-bl._V47082482_.gif);}
+.shoveler.default-style div.shoveler-bottom-right{background:no-repeat bottom right url(http://g-ecx.images-amazon.com/images/G/01/x-locale/personalization/yourstore/box/sliced-box-br._V47062575_.gif);}
+/* end amazonShoveler/amazonShovelerCss.css */
+
+/* begin currency-rupee/currency-rupee.css */
+.currencyINR{display:inline-block;background:url("/images/G/31/common/sprites/sprite-site-wide-2._V1_.png");background-repeat:no-repeat;background-position:-16px -333px;background-size:320 455px;width:6px;height:10px;line-height:10px;margin-right:1px;margin-bottom:0;*margin-bottom:-2px;_margin-bottom:-2px;vertical-align:middle;font-size:8px;text-decoration:inherit;}
+strong .currencyINR,b .currencyINR{background-position:-18px -348px;width:7px;height:10px;line-height:10px;margin-bottom:2px;*margin-bottom:-1px;_margin-bottom:-1px;margin-right:0;}
+#actualPriceContent b.priceLarge .currencyINR{background-position:0 -408px;width:9px;height:14px;line-height:14px;margin-bottom:2px;*margin-bottom:-1px;_margin-bottom:-1px;margin-right:0;font-size:12px;}
+#actualPriceContent .currencyINR{background-position:-16px -333px;width:6px;height:10px;line-height:10px;margin-bottom:1px;*margin-bottom:-1px;_margin-bottom:-1px;margin-right:1px;font-size:8px;}
+#actualpricecontent .pricePerUnit .currencyinr{background-position:-0px -303px;width:5px;height:9px;line-height:9px;margin-bottom:0;font-size:7px;}
+.olpCondLink .price .currencyINR{background-position:0 -318px;width:6px;height:9px;line-height:9px;margin-bottom:1px;margin-right:0;*margin-bottom:-2px;_margin-bottom:-2px;}
+#pricePlusShippingQty b.price .currencyINR{*margin-bottom:-2px;_margin-bottom:-2px;}
+.entry .currencyINR{background-position:0 -333px;margin-bottom:1px;*margin-bottom:-2px;_margin-bottom:-2px;}
+.twisterMediaMatrix .tmm_olpLinks .currencyINR{background-position:-32px -318px;}
+.twisterMediaMatrix .price .currencyINR{background-position:0 -318px;*margin-bottom:-2px;_margin-bottom:-2px;}
+.txtsmall .ourprice .currencyINR{background-position:0 -318px;width:6px;height:9px;line-height:9px;margin-bottom:1px;*margin-bottom:-1px;_margin-bottom:-1px;margin-right:0;}
+#more-buying-choice-content-div .currencyINR{background-position:0 -333px;width:6px;height:10px;line-height:10px;margin-bottom:1px;margin-right:0;}
+#more-buying-choice-content-div .plusShippingText .currencyINR{background-position:-24px -318px;*margin-bottom:-1px;_margin-top:-1px;}
+#secondaryUsedAndNew .currencyINR{background-position:0 -318px;width:6px;height:9px;line-height:9px;margin-bottom:1px;margin-right:0;*margin-bottom:-2px;_margin-bottom:-2px;}
+.txtlarge .ourprice .currencyINR{background-position:0 -363px;width:7px;height:11px;line-height:11px;margin-bottom:1px;*margin-bottom:-1px;_margin-bottom:-1px;margin-right:1px;font-size:10px;}
+.txtlarge .txtctr .ourprice .currencyINR{*margin-bottom:1px;_margin-bottom:1px;}
+.txtnormal .savings .currencyINR{background-position:-24px -318px;width:6px;height:9px;line-height:9px;margin-bottom:0;}
+.price .currencyINR{background-position:0 -333px;width:6px;height:10px;line-height:10px;font-size:9px;*margin-bottom:1px;_margin-bottom:1px;}
+b.price .currencyINR{background-position:0 -333px;width:6px;height:10px;line-height:11px;*margin-bottom:3px;_margin-bottom:3px;font-size:9px;}
+.order-details .price .currencyINR{background-position:0 -333px;width:6px;height:9px;line-height:9px;margin-top:3px;margin-bottom:5px;*margin-bottom:2px;_margin-bottom:2px;font-size:8px;}
+.ourprice .currencyINR{background-position:0 -333px;width:6px;height:9px;line-height:9px;font-size:8px;margin-bottom:3px;}
+.cart-item-list .currencyINR{background-position:0 -333px;width:6px;height:9px;line-height:9px;margin-bottom:2px;font-size:8px;}
+.cart-item-list * .ourprice .currencyINR{background-position:0 -393px;width:8px;height:14px;line-height:11px;margin-right:1px;margin-bottom:1px;*margin-bottom:0;_margin-bottom:0;font-size:10px;}
+.hlb-price .currencyINR{background-position:0 -318px;width:6px;height:9px;line-height:9px;margin-right:0;margin-bottom:1px;*margin-bottom:0;_margin-bottom:0;font-size:8px;}
+.hlb-upsell-items .hlb-used-block .hlb-price .currencyINR{background-position:0 -303px;height:8px;width:6px;line-height:6px;margin-bottom:2px;*margin-bottom:0;_margin-bottom:0;font-size:7px;}
+.hlb-upsell-items .hlb-price .currencyINR{background-position:0 -348px;width:7px;height:13px;line-height:13px;margin-bottom:1px;*margin-bottom:-3px;_margin-bottom:-3px;font-size:12px;}
+.hlb-listprice .currencyINR{background-position:-21px -303px;width:5px;height:9px;line-height:9px;margin-bottom:2px;*margin-bottom:-2px;_margin-bottom:-2px;font-size:8px;}
+#hl-ship-message .currencyINR{background-position:-14px -303px;width:5px;height:8px;line-height:8px;margin-right:1px;margin-bottom:2px;*margin-bottom:-2px;_margin-bottom:-2px;font-size:8px;}
+#hl-cod-message .currencyINR{background-position:-16px -333px;width:6px;height:8px;line-height:8px;margin-top:0;margin-right:0;font-size:7px;}
+#hl-ship-message #hl-cod-message .currencyINR{background-position:-18px -332px;width:5px;height:10px;line-height:10px;margin-right:0;font-size:9px;}
+div#orders .price .currencyINR{margin-bottom:3px;}
+li.shoveler-cell * .price .currencyINR{background-position:0 -333px;width:7px;height:11px;line-height:11px;margin-bottom:0;*margin-bottom:-1px;_margin-bottom:-1px;margin-right:0;}
+#spcpagecontent table.subtotals .currencyINR{background-position:-14px -302px;width:5px;height:9px;line-height:9px;margin-right:1px;margin-bottom:3px;font-size:8px;}
+#spcpagecontent table.subtotals td.total .currencyINR,#vatBreakdown table.subtotals td.total .currencyINR{background-position:0 -363px;width:7px;height:11px;line-height:11px;margin-right:1px;margin-bottom:3px;font-size:10px;}
+.t11 .s9Currency.currencyINR{width:5px;height:9px;line-height:9px;margin-bottom:1px;*margin-bottom:1px;_margin-bottom:1px;}
+.t11.red .s9Currency.currencyINR{background-position:0 -318px;}
+.t11.gry .s9Currency.currencyINR{background-position:-24px -318px;}
+.t12 .s9Currency.currencyINR{width:6px;height:10px;line-height:10px;*margin-bottom:2px;_margin-bottom:2px;}
+.t12.red .s9Currency.currencyINR{background-position:0 -333px;}
+.t12.gry .s9Currency.currencyINR{background-position:-24px -333px;}
+.t13 .s9Currency.currencyINR,.t14 .s9Currency.currencyINR{width:7px;height:11px;line-height:11px;margin-bottom:2px;}
+.t13.red .s9Currency.currencyINR{background-position:0 -348px;}
+.t13.gry .s9Currency.currencyINR{background-position:-27px -348px;}
+.t14.red .s9Currency.currencyINR{background-position:0 -363px;}
+.t14.gry .s9Currency.currencyINR{background-position:-27px -363px;}
+table.offerlistings .price .currencyINR{background-position:0 -408px;width:9px;height:14px;line-height:14px;margin-bottom:2px;*margin-bottom:1px;_margin-bottom:1px;margin-right:0;}
+table.offerlistings .price_shipping .currencyINR{background-position:-24px -318px;width:6px;height:9px;line-height:9px;*margin-bottom:-1px;_margin-bottom:-1px;}
+table.lowpricewinners td.lowprice .price .currencyINR{background-position:0 -348px;width:8px;height:11px;line-height:11px;text-decoration:inherit;*margin-bottom:-1px;_margin-bottom:-1px;margin-right:-1px;}
+table.lowpricewinners td.lowprice a.price:hover .currencyINR{bottom-border:1px;}
+.bld.lrg.red .currencyINR{background-position:0 -408px;width:9px;height:14px;line-height:14px;margin-bottom:2px;margin-right:0;font-size:14px;}
+.grey .currencyINR{background-position:-24px -333px;margin-bottom:1px;width:6px;height:10px;line-height:10px;font-size:9px;}
+.toelistprice .currencyINR{background-position:-16px -317px;width:6px;height:11px;line-height:11px;font-size:11px;}
+.toeourprice .currencyINR{background-position:-1px -378px;width:8px;height:12px;line-height:12px;margin-right:0;font-size:12px;}
+.toeourprice a:hover .currencyINR{background-position:-11px -378px;}
+.toeprice .currencyINR{background-position:-110 -534px;width:9px;height:11px;line-height:11px;}
+.tp .toeprice .currencyINR{background-position:-1px -378px;width:8px;height:12px;line-height:12px;margin-right:1px;text-decoration:none;font-size:12px;}
+#buyprice .currencyINR{background-position:0 -331px;width:7px;height:13px;line-height:13px;margin-right:0;text-decoration:none;font-size:13px;}
+div.newprice strike .currencyINR{background-position:-25px -333px;margin-right:0;}
+.searchTemplate .price .currencyINR{background-position:0 -348px;width:7px;height:11px;line-height:11px;margin-bottom:2px;*margin-bottom:0;_margin-bottom:0;}
+.price .addon .currencyINR{background-position:-1px -348px;height:11px;line-height:11px;font-size:11px;}
+.priceBlock .listprice .currencyINR{background-position:-21px -303px;width:5px;height:9px;line-height:9px;*margin-bottom:1px;_margin-bottom:1px;}
+.priceBlock strong .currencyINR{*margin-bottom:1px;_margin-bottom:1px;}
+.customPriceV2 label .rangeRefinement.currencyINR{text-indent:-9999px;overflow:hidden;margin-bottom:1px;margin-right:1px;}
+.refinementLink .currencyINR{background-position:-32px -333px;margin-bottom:2px;*margin-bottom:0;_margin-bottom:0;}
+a:hover .refinementLink .currencyINR{background-position:-8px -333px;text-decoration:none;}
+#breadCrumb .currencyINR{background-position:-9px -348px;}
+.product .newPrice .currencyINR{background-position:0 -333px;width:6px;height:10px;line-height:10px;margin-right:0;}
+.wlPriceBold strong .currencyINR{background-position:0 -318px;width:6px;height:8px;line-height:8px;margin-right:0;margin-bottom:2px;*margin-bottom:-2px;_margin-bottom:-2px;}
+.wlPrice .currencyINR{margin-bottom:1px;*margin-bottom:-3px;_margin-bottom:-3px;}
+.sitbReaderPrice .currencyINR,#sitbReaderSB .currencyINR{background-position:0 -303px;width:5px;height:9px;line-height:9px;margin-right:0;margin-bottom:1px;*margin-bottom:-1px;_margin-bottom:-1px;}
+.ourprice{white-space:nowrap;}
+table.lowpricewinners .lowprice{white-space:nowrap;}
+.currencyINRPrintable img{margin-bottom:-1px;*margin-bottom:-1px;_margin-bottom:-1px;margin-right:1px;*margin-right:1px;_margin-right:1px;}
+b .currencyINRPrintable img,strong .currencyINRPrintable img{margin-bottom:-2px;*margin-bottom:-2px;_margin-bottom:-2px;}
+.product .newPrice strike .currencyINR{background-position:-16px -333px;}
+.strikeprice .currencyINR,.yousave .currencyINR{background-position:-24px -333px;}
+.plusShippingText .currencyINR{background-position:-24px -318px;}
+.superSaver .currencyINR{background-position:-24px -333px;}
+.AAG_itemDetails .AAG_ProductPrice .currencyINR{background-position:0 -333px;}
+.currencyINR{margin-bottom:3px;_margin-bottom:0;}
+.product .newPrice strike .currencyINR{margin-bottom:3px;_margin-bottom:0;}
+.grey .currencyINR{margin-bottom:2px;_margin-bottom:0;}
+.priceBlock .listprice .currencyINR{background-position:-18px -348px;height:13px;width:8px;line-height:10px;margin-bottom:0;}
+.supersaver .currencyINR{background-position:-21px -303px;}
+table.offerlistings .price_shipping .currencyINR{margin-bottom:2px;}
+.shoveler-content .pricetext .price .currencyINR{margin-bottom:3px;}
+.t12 .green.currencyINR{background-position:-40px -333px;}
+.t13 .green.currencyINR{background-position:-45px -348px;}
+.t14 .green.currencyINR{background-position:-45px -363px;}
+/* end currency-rupee/currency-rupee.css */

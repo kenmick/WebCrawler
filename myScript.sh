@@ -27,6 +27,10 @@ do
     #phantomjs --ssl-protocol=any detectVersion.js "$e"
 done
 
+#for e in "${array[@]}"
+#do
+#    slimerjs --ssl-protocol=any detect.js "$e"
+#done
 
 myDate=$(date +%Y%m%d)
 

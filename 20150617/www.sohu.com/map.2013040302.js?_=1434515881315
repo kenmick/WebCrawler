@@ -1,0 +1,41 @@
+(function(){
+
+    var GetCookie=function(sMainName){var re = new RegExp((sMainName + "=([^;$]*)"),"i");return re.test(unescape(document.cookie)) ? RegExp["$1"] : "";}
+    var GetDomain=function(){var re = new RegExp("http:\/\/.*?([^\.]+\.(com\.cn|org\.cn|net\.cn|[^\.]+))\/.+", "i");  
+    if(re.test(window.location.host)){
+		return window.location.host.match(re)[1];
+	}
+	else{
+		return 'sohu.com';
+	}
+    }
+    var vd1=new Cookie(document,"networkmp_del",240,"/",GetDomain());vd1.load();
+    if(vd1.check==null){
+        var vd=new Cookie(document,"networkmp",24,"/",'sohu.com');
+        vd.remove(); 
+        vd1.check =1 ;
+        vd1.store();   
+    };  
+
+//    var _vd=new Cookie(document,"COOKIEMAPPING1",24*7,"/",GetDomain());_vd.load();
+//    _vd.check = 1;_vd.store();
+    var vd=new Cookie(document,"COOKIEMAPPING1",24,"/",GetDomain());vd.load();
+//    if(vd.check==null){return};    
+	var yyid = GetCookie('YYID');
+    var suv  = GetCookie('SUV');
+    var arg  = '';
+    if(yyid !='' && (vd.yyid==null || vd.yyid != yyid)){
+        arg = '&yyid='+yyid;
+        vd.yyid=yyid;
+    }
+    if(suv !='' && (vd.suv==null || vd.suv != suv)){
+        arg += '&suv='+suv;
+        vd.suv=suv;
+    }
+    if(arg !=''){
+        if(typeof(document.pv)=='undefined')document.pv = new Array();var _a=new Image();var _b=new Image();
+        _a.src='http://sohu.ad-plus.cn/mapping/?from=sohu'+arg;document.pv.push(_a);
+        _b.src='http://cm.optaim.com/m?sid=sohu&ver=1&suid='+escape(arg);document.pv.push(_b);
+        vd.store();
+    }
+})();

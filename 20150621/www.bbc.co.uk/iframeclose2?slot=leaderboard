@@ -1,0 +1,24 @@
+
+<html>
+    <head>
+        <!-- iframe close (part 2).  Called by /wwscripts/iframeclose -->
+        <script type="text/javascript">
+            var slot = window.location.search.substring(1).split('slot=')[1];
+            if(typeof(parent.parent.window) != 'undefined' && typeof(parent.parent.parent.window.BBC) != 'undefined' && typeof(parent.parent.parent.window.BBC.adverts) != 'undefined'){
+                // Companion has an additional iframe
+                parent.parent.parent.window.BBC.adverts.close(slot);
+            } else if (typeof(parent.window) != 'undefined' && typeof(parent.parent.window.BBC) != 'undefined' && typeof(parent.parent.window.BBC.adverts) != 'undefined'){
+                parent.parent.window.BBC.adverts.close(slot);
+            }
+
+            if(typeof(parent.parent.window) != 'undefined' && typeof(parent.parent.parent.window.bbcdotcom) != 'undefined' && typeof(parent.parent.parent.window.bbcdotcom.adverts) != 'undefined'){
+                // Companion has an additional iframe
+                parent.parent.parent.window.bbcdotcom.adverts.adRegister.getAd(slot).shut();
+            } else if (typeof(parent.window) != 'undefined' && typeof(parent.parent.window.bbcdotcom) != 'undefined' && typeof(parent.parent.window.bbcdotcom.adverts) != 'undefined'){
+                parent.parent.window.bbcdotcom.adverts.adRegister.getAd(slot).shut();
+            }
+        </script>
+    </head>
+    <body style="background-color:transparent">
+    </body>
+</html>

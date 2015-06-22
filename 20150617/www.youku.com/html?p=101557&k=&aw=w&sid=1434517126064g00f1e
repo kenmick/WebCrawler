@@ -1,0 +1,131 @@
+
+(function(){
+
+var random ={
+	current: -1,
+	groups:[
+		{
+			first:	10,
+			other:	8,
+			type:	'ad',
+			id:		22
+		},
+		{
+			first:	5,
+			other:	3,
+			type:	'ad',
+			id:		101555
+		},{
+			first:	5,
+			other:	3,
+			type:	'ad',
+			id:		101554
+		},{
+			first:	5,
+			other:	3,
+			type:	'ad',
+			id:		101627
+		}
+	],
+	//åå§å
+	init:function(el){
+		//è®¡ç®é¦æ¬¡
+		this.initGroups('first');
+		this.bind(el);
+		this.next();
+		this.deal();
+		//éæ°åå¤åæ¥
+		this.initGroups('other');
+	},
+	//åå§åéæºæ°æ¯è¾å¼ï¼æ´æ°æ¯éæ»å¼
+	//param type 'first'é¦è½®æ¯é|'other'æ¬¡è½®æ¦ç
+	
+	initGroups:function(type){
+		var sum = min = 0;
+		for (var i = 0; i < this.groups.length; i++) {
+			var group = this.groups[i];
+				group.min = sum;
+				sum       += +group[type];
+				group.count = 0;
+		};
+		this.sum = sum;
+	},
+	//å¤çDOMç¸å³ç»å®
+	bind:function(el){
+		var self= this;
+		this.el = el;
+		el.className+=" yk-AD-random";
+        el.style.cssText+=";position:relative;width:310px;height:110px;";
+        this.$wrap = document.getElementById("yk-AD-random-wrap");
+        this.$next = document.getElementById("yk-AD-random-next");
+        this.$next.onclick = function(){self.next();self.deal();};
+	},
+	//éè®¾æä¸æ¬¡æ½åä¸èèthis.current
+	reset:function(){
+		this.current = -1; 
+	},
+	//ææ¯éç®åºä¸ä¸ªä¸this.currentä¸åçä¸ä¸ä¸ªå¼
+	next:function(){
+		var rand, id;
+		do{
+			rand = Math.random() * this.sum;
+			for( var i = this.groups.length - 1 ; i >= 0 ; --i ){
+				if(this.groups[i].min <= rand){
+                	id = i;
+                	break;
+        	    }
+        	}
+		}while(id === this.current);
+		//save current
+		this.current = id;
+	},
+	//æthis.currentå¯¹åºåå®¹å±ç°åå®¹
+	deal:function(){
+		var group = this.groups[this.current],
+			func  = this[group.type],
+			html  = false;
+		func && ( html = this[group.type](group) );
+		html && ( this.$wrap.innerHTML = html );
+	},
+	//ä»¥ä¸ä¸ºå¤çå½æ°
+	//-----------
+	//å¾ç@params link, url, title
+	image: function(item){
+        var str='<a href="' + item.link + '" title="' +item.title+'">';
+           str+='<img src="' + item.url + '" alt="' + item.title  +'"/>';
+           str+='</a>';
+        return str;
+    },
+    //FLASH
+    //params data width height movie
+    flash: function(item){
+        return '<object type="application/x-shockwave-flash" data="' +item.data+'" width="'+item.width+'" height="'+item.height+'"><param name="allowscriptaccess" value="always"><param name="wmode" value="opaque"><param name="movie" value="'+item.movie+'" width="'+item.width+'" height="'+item.height+'"><embed src="'+item.movie+'" width="'+item.width+'" height="'+item.height+'" border="0" align="center" allowscriptaccess="always" wmode="opaque"></object>';
+
+    },
+    //ç´æ¥æ¾ç¤ºæ½ä¸­ID@params id
+    text: function(item){
+        //console.log(item.text);
+        return item.id;
+    },
+    //å¦ä¸ä¸ªå¹¿åä½@params id
+    ad: function(item){
+    	//debugger;
+        this.$wrap.innerHTML = '<div id="ab_'+ item.id+'"></div>';
+        this.js = document.getElementById("randomJS");
+        this.js && this.js.parentNode.removeChild(this.js);
+        var js="http://html.atm.youku.com/html?p="+item.id+"&k=&seed"+ +(new Date());
+        var g=document.createElement("script");
+            g.type="text/javascript";
+            g.id="randomJS";
+            g.src=js;
+            document.getElementsByTagName('head')[0].appendChild(g)
+    }
+};
+setTimeout(function(){
+        random.init(document.getElementById("ab_101557"));
+},200);
+
+})();
+function ad_div_101557(){var adcontent = "";adcontent = adcontent + "<div class=\"yk-AD-310x110 b20\">	<div class=\"ad-wrap\">		<div class=\"ad-con\">			<div class=\"ad-inner\" id=\"ab_101557\">				<div id=\"yk-AD-random-wrap\">";
+adcontent = adcontent + "<\/div>				<a id=\"yk-AD-random-next\" href=\"javascript:void(0);\" style=\"position:absolute;right:0;bottom:0;color:#fff;background:#666;opacity:0.8;filter:alpha(opacity=80);font-weight:600;font-size:16px;padding:0 7px;width:20px;text-align:center;\" onmouseover=\"this.style.filter=\'\';this.style.opacity=\'\'\" onmouseout=\"this.style.filter=\'alpha(opacity=80);\';this.style.opacity=\'0.8\'\">>><\/a>			<\/div>		<\/div>	<\/div><\/div>";
+	var obj = document.getElementById('ab_101557');	if( !obj || typeof(obj) != 'object' || typeof(adcontent) != 'string') return;	if( null != adcontent && 0 == adcontent.length ){		obj.style.display = 'none';	}else{		obj.style.display = 'block';		if( null != adcontent ){			obj.innerHTML = adcontent;		}	}}ad_div_101557();

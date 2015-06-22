@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  body { margin:0; }
+</style>
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script type="text/javascript" src="//secure.adzerk.net/ados.js?q=43"></script>
+</head>
+<body>
+<script>
+  window.onload = function() {
+    var adContent = window.parent.frames['ad_main'].ados_results,
+        frameName = "sponsorship"
+    window.name = 'ad-'+frameName;
+    eval(adContent[frameName]);
+  }
+</script>
+<div id="sponsorship">
+<script type="text/javascript">
+ados_loadDiv("sponsorship");
+</script>
+</div>
+<div id="redditthis" style="width:300px;text-align:center;"></div>
+<script type="text/javascript">
+  var addFooter = function() {
+    ados_ads = window.parent.frames['ad_main'].ados_ads;
+    $('#redditthis').append("<a style=\"font: small verdana,arial,sans-serif;color: #369;text-decoration: none;\" target=\"top\" href=\"http://ads.reddit.com/submit?url=" + escape("http:////preview.adzerk.net/preview/" + ados_ads["sponsorship"].id) + "\">discuss this ad on reddit</a>"
+        );
+  };
+  $(window).load(addFooter);
+</script>
+</body>
+</html>

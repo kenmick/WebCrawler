@@ -1,0 +1,2 @@
+/* Deployed On: 2015-01-11 11:52:10 */
+AMPTManager.renderSingleSlot("ad_mod_85a882a72", [[200,60],[175,31]], [["transId", cnnad_transactionID],["kuid", Krux.user],["ksg", Krux.segments],["guid", AMPTManager.readCookie("ug")], ["pos",["mod"]]], [], "8663477/CNNi", 0);

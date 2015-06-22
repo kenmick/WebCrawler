@@ -1,0 +1,4 @@
+/*! sjs - v0.1.0 - 2015-01-07
+* http://github.adrd.sohuno.com/?p=js/sjs.git
+* Copyright (c) 2015 ; Licensed MIT */
+define("sjs/data/cookie",function(){function a(a){return decodeURIComponent(a.replace(b," "))}var b=/\+/g,c=function(b,c,d){if(void 0!==c){if(d=d||{},null===c&&(d.expires=-1),"number"==typeof d.expires){var e=d.expires,f=d.expires=new Date;f.setDate(f.getDate()+e)}return c+="",document.cookie=[encodeURIComponent(b),"=",encodeURIComponent(c),d.expires?"; expires="+d.expires.toUTCString():"",d.path?"; path="+d.path:"",d.domain?"; domain="+d.domain:"",d.secure?"; secure":""].join("")}for(var g=document.cookie.split("; "),h=0,i=g.length;i>h;h++){var j=g[h].split("=");if(a(j.shift())===b){var k=a(j.join("="));return k}}return null};return c});

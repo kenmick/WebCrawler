@@ -1,0 +1,1 @@
+define(["jquery-1.4"],function(a){return{registerTabs:function(b){a(b+" .tab").click(function(c){tabs=a(b+" .tab");tabs.removeClass("selected");panels=a(b+" .panel");panels.removeClass("selected");eventElement=a(c.currentTarget);eventElement.addClass("selected");panelElement=eventElement.next();panelElement.addClass("selected");return false})}}});

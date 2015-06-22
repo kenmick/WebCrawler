@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>22æ°ç-å®åï¼760x100ï¼</title>
+        <style> body,div,form,h1,h2,h3,h4,h5,h6,img,input,li,ol,p,pre,textarea,ul{margin:0;padding:0}body{font:12px/1.75 Tahoma,Arial;color:#000;background-color:#fff}li,ul{list-style-type:none}img{border:0}.jdAdFs14{font-size:14px}.yh{font-family:"Microsoft Yahei"}.yh18{font:18px "Microsoft Yahei"}.jdAdCred{color:#c91521}a{color:#006a92;text-decoration:none}a:hover{text-decoration:underline}a:focus{outline:0}.jdAdW644{width:760px}.jdAdPn{position:relative;*zoom:1;height:100px}.jdAdPn .jdContInner{height:100px;overflow:hidden;background:#fff}.jdAdPn .jdAdInner{padding-left:100px}.jdAdPn .jdAdLogo{position:absolute;top:0;left:0;width:100px;height:100px;overflow:hidden;background-color:#c91521}.jdAdPn .jdAdLogo a{display:block;text-align:center}.jdAdPn .jdAdLogo img{position:absolute;top:50%;left:50%;margin:-60px 0 0 -95px}.jdAdPn .jdAdCol{width:50%;position:relative;float:left;height:100px}.jdAdPn .jdAdCont{overflow:hidden;padding-right:70px;font-family:"Microsoft Yahei";height:100px}.jdAdPn .jdAdCont .jdAdPrice{word-wrap:break-word;word-break:normal;overflow:hidden}.jdAdPn .jdAdCont .jdAdName{height:34px;line-height:17px;overflow:hidden}.jdAdPn .jdAdCont ul{margin:6px 0 0 10px;float:left;display:inline;overflow:hidden;width:149px}.jdAdPn .jdAdCont li{height:24px;word-wrap:break-word;word-break:normal;_line-height:18px}.jdAdPn .jdAdCont li .tag_title{color:#fff;background:#e4393c;padding:2px 2px 1px;_margin-bottom:7px;line-height:12px;margin-right:5px;display:inline-block;*display:inline;font-weight:100;*zoom:1}.jdAdPn .jdAdCont .font-wei{padding-top:4px;font-weight:700}.jdAdPn .jdAdCont .hei_20{height:20px}.jdAdPn .jdAdCont .jdAdImg{float:left;display:inline;width:100px;height:100px;margin-left:1px;overflow:hidden;text-align:center}.jdAdPn .jdAdCont .jdAdImg img{display:inline-block;width:100px;height:100px}.jdAdPn .jdAdCont .jdAdCover{position:absolute;left:0;top:0}.jdAdPn .jdAdCont .jdAdCover img{width:262px;height:100px}.jdAdPn .jdAdList{position:absolute;top:0;right:0;width:68px;z-index:3}.jdAdPn .jdAdList li{height:32.33px;line-height:32.33px;overflow:hidden;background-color:#e4e3e3;border-bottom:1px solid #fff;text-align:center;cursor:pointer;vertical-align:text-top}.jdAdPn .jdAdList li a{color:#000}.jdAdPn .jdAdList .select{background-color:#c91521}.jdAdPn .jdAdList .select a{color:#fff}.jdAdPn .jdAbLogoBot{display:inline-block;position:absolute;bottom:1px;right:0;width:18px;height:18px;overflow:hidden;line-height:999px;background:url(http://img11.360buyimg.com/da/g15/M05/0E/1C/rBEhWlJYrAEIAAAAAAACetYAYQwAAECuwP__W4AAAKS951.png) top right no-repeat;z-index:11}.jdAdPn .jdAbLogoBot:hover{width:75px;background:url(http://img12.360buyimg.com/da/g13/M09/10/03/rBEhVFJYrDAIAAAAAAAHoRFcOGsAAECrwP_uYQAAAe5174.png)}</style>
+  <script type="text/template" id="skuTpl">
+        <% var cut = 3 %>
+        <div class="jdAdCol" id="jdAdCol1">
+            <div class="jdAdCont" id="jdAdList1">
+                <% for(var i = 0; i < cut; i++) { %>
+
+                <% var item = datas[i] %>
+                <div class="jdContInner clear">
+                    <a href="<%= item.data_skuurl%>"   id="clk<%= i %>"  data-skuid="<%= item.data_skuid%>" target='_blank' title="<%= item.data_skuname%>" class="jdAdCover" ><img src="http://img11.360buyimg.com/da/jfs/t181/152/1710372957/137/fc862484/53ba3868Nea2f6c42.png" alt="<%= item.data_skuname%>" /></a>
+                    <div class="jdAdImg">
+                        <img src='
+                        http://img11.360buyimg.com/n4/<%= item.data_skuimg %>' alt="<%= item.data_skuname%>å¾ç" />
+                    </div>
+                    <ul>
+                        <li class="yh18 jdAdCred font-wei">
+                        <span>ï¿¥</span><span class='jdAdPrice' id="price_<%= item.data_skuid %>"><%= item.data_skuprice %></span>
+                        <span id='rprice_<%= item.data_skuid %>' style='display:none'><%= item.data_skuprice %></span>
+                        </li>
+                        <li class="jdAdCred hei_20"><span id="promInfo_<%= item.data_skuid %>" style='display:none'></span></li>
+                        <li class="jdAdName"><%= item.data_skuname %></li>
+                    </ul>
+                </div>
+                <% } %>
+            </div>
+            <ul class="jdAdList" id="jdAdTags">
+            <% for(var i = 0; i < cut; i++) { %>
+                <% var item = datas[i] %>
+                <li><a href="<%= item.data_skuurl%>" target='_blank'><%= item.data_skusantags %></a></li>
+            <% } %>
+            </ul>
+        </div>
+        <div class="jdAdCol" id="jdAdCol2">
+            <div class="jdAdCont" id="jdAdList2">
+                <% for(var i = cut; i < datas.length; i++) { %>
+
+                <% var item = datas[i] %>
+                <div class="jdContInner clear">
+                    <a href="<%= item.data_skuurl%>"  id="clk<%= i %>"  data-skuid="<%= item.data_skuid%>" target='_blank' title="<%= item.data_skuname%>" class="jdAdCover" ><img src="http://img11.360buyimg.com/da/jfs/t181/152/1710372957/137/fc862484/53ba3868Nea2f6c42.png" alt="<%= item.data_skuname%>" /></a>
+                    <div class="jdAdImg">
+                       <img src='
+                        http://img11.360buyimg.com/n4/<%= item.data_skuimg %>' alt="<%= item.data_skuname%>å¾ç" />
+                    </div>
+                    <ul>
+                        <li class="yh18 jdAdCred font-wei">
+                        <span>ï¿¥</span><span class='jdAdPrice' id="price_<%= item.data_skuid %>"><%= item.data_skuprice %></span>
+                        <span id='rprice_<%= item.data_skuid %>' style='display:none'><%= item.data_skuprice %></span>
+                        </li>
+                        <li class="jdAdCred hei_20"><span id="promInfo_<%= item.data_skuid %>" style='display:none'></span></li>
+                        <li class="jdAdName"><%= item.data_skuname %></li>
+                    </ul>
+                </div>
+                <% } %>
+            </div>
+            <ul class="jdAdList" id="jdAdTags2">
+            <% for(var i = cut; i < datas.length; i++) { %>
+                <% var item = datas[i] %>
+                <li><a href="<%= item.data_skuurl%>" target='_blank'><%= item.data_skusantags %></a></li>
+            <% } %>
+            </ul>
+        </div>
+        </script>
+        <script type="text/javascript" src="http://static.360buyimg.com/ad/temp/jdAd201501261419.min.js" ></script>
+<script type="text/javascript" src="http://static.360buyimg.com/ad/temp/cookieAds20140829130924.min.js" ></script>
+</head>
+<body>
+  <div class="jdAdPn jdAdW644 clear" id="jdAdBox" >          
+                <a class="jdAbLogoBot" href="http://ccc.x.jd.com/dsp/nc?ext=Y2xpY2sudW5pb24uamQuY29tL0pkQ2xpY2svP3VuaW9uSWQ9NTIwMDYmc2l0ZWlkPTUwNzQ0M18yMiZ0bz1odHRwOi8vd3d3LmpkLmNvbQ==&log=5Dij3opL7MYhFC+P5L8I7AiDudN/A+XBDTtwueSVSuDLU4tsj6dkOH9uYHOFa39FKgx44IyY6ANoII5JnLzOmBgN/rsAO7ku5EmQoHNo9N15kfHun9xTe8eZXHttFWDJbJaot6fOvuGFBs3WtYXnSqzpVPJVzziUmv/f+y0l0S32psyXbTuGMO3uwZOIDnOII+D6AgguqgTkRHqKQp13QEI3H2eTMzM/PEotq5jjPLKnud10wADcr4100U6dpwnfdWj0oGLe0sZTvitXEvKOVwMWbm65Jd2U7veNmNV6M3M15ObGPiKlZwxlpsSpReCP&v=404" target="_blank">äº¬ä¸æ¨å¹¿</a>
+      <div class="jdAdInner">
+        <div class="jdAdLogo">
+                    <a href="http://ccc.x.jd.com/dsp/nc?ext=Y2xpY2sudW5pb24uamQuY29tL0pkQ2xpY2svP3VuaW9uSWQ9NTIwMDYmc2l0ZWlkPTUwNzQ0M18yMiZ0bz1odHRwOi8vd3d3LmpkLmNvbQ==&log=5Dij3opL7MYhFC+P5L8I7AiDudN/A+XBDTtwueSVSuDLU4tsj6dkOH9uYHOFa39FKgx44IyY6ANoII5JnLzOmBgN/rsAO7ku5EmQoHNo9N15kfHun9xTe8eZXHttFWDJbJaot6fOvuGFBs3WtYXnSqzpVPJVzziUmv/f+y0l0S32psyXbTuGMO3uwZOIDnOII+D6AgguqgTkRHqKQp13QEI3H2eTMzM/PEotq5jjPLKnud10wADcr4100U6dpwnfdWj0oGLe0sZTvitXEvKOVwMWbm65Jd2U7veNmNV6M3M15ObGPiKlZwxlpsSpReCP&v=404" target="_blank"><img src="http://x.jd.com/file/images/logoSsmall.jpg" alt="äº¬ä¸logo"></a>
+        </div>
+        <div class="jdAdRow clear" id="jdAdRow">
+        </div>
+      </div>
+    </div>
+    <div id="list2" style="display<:none"></div>
+  
+  <script type="text/javascript">
+    var _global_dsp_data = {"Query":{"22":[{"width":"0","exposal_url":"http:\/\/x.jd.com\/dsp\/np?log=5Dij3opL7MYhFC+P5L8I7AiDudN\/A+XBDTtwueSVSuBCx0\/CL1LZMQQPdSbZnhAbDtLd1UPk6vAnH0VmhH9vCvXP3UDBI3PsUZjws\/IlDSynU+YpjOeNCqTawCjywb68Oc4jvUaZAfZUyBVCeA3EP\/2sJ1LVyNqpCSRPLwaS8AlJx9BWspmM+FhV0uVfv21mY9YvBiCrbP6jhVrMmnBB5tQATUiugC3WjXf+cZpoakCLv\/Wvoi4AbTQUlnOEnm70u8\/7Fmtz8pUBZvN+oxg3eEyD5jJwE2tvcmRHi9xxazONh37fSjD68EJbfqpCjEfUbI3bO0URSktlb7WUnupRmYSE+lBRvU5ff\/I3zc632zLwRkHFOJ6h+SYOgnJtd5lC4VbJwgg4iAo1tueuPqDqKlJfUXFvGkEvK25oWX6NzbYu23ZSkb704RsFxckxtbyzXPr4BolKIR3P4k5mc3mQxfh2KNWuJUbcPFsg7eis40DBJlv\/qjJShRHW69WEPUfUaKvxFyy6Ofy\/KDqBL2jZBrHIKKFJ6K3TcsoGLUtqYOp7UWnFRXKNDCia9Vf01J\/t\/kWTRgoU4fys5sGmA6fY0SN6CEVrhdcLsNOgogKe2XthF31ozlbR8kSRTbUPPf\/o&v=404","cid3":"-1","ious_sku":"0","ad_type":"3","sku_price":0,"comment_num":"1870","ad_send_type":"0","ad_sku_type":"2","material_id":"657954","good_comments":"1870","monitor_url":"35958ef4fb7b09d3^v2.8^SWC^22^^85667^^657954^http:\/\/re.jd.com\/list\/item\/1484-1299571169.html?re_dcp=46hd91M7VokuHmSWk1wZsX2err7zL7i5j8bDLRdvE-pmWidP8er6Ki0I2Q%3D%3D^761d765c-1609-47bd-a227-305f1977b4ec^^0^45613^","click_url":"http:\/\/ccc.x.jd.com\/dsp\/nc?ext=Y2xpY2sudW5pb24uamQuY29tL0pkQ2xpY2svP3VuaW9uSWQ9NTIwMDYmc2l0ZWlkPTY1Nzk1NF8yMiZ1dG10ZXJtX2V4dD1wXzIyJnRvPWh0dHA6Ly9yZS5qZC5jb20vbGlzdC9pdGVtLzE0ODQtMTI5OTU3MTE2OS5odG1sP3JlX2RjcD00NmhkOTFNN1Zva3VIbVNXazF3WnNYMmVycjd6TDdpNWo4YkRMUmR2RS1wbVdpZFA4ZXI2S2kwSTJRJTNEJTNE&log=5Dij3opL7MYhFC+P5L8I7AiDudN\/A+XBDTtwueSVSuBCx0\/CL1LZMQQPdSbZnhAbDtLd1UPk6vAnH0VmhH9vCvXP3UDBI3PsUZjws\/IlDSynU+YpjOeNCqTawCjywb68Oc4jvUaZAfZUyBVCeA3EP\/2sJ1LVyNqpCSRPLwaS8AmZpVIJ5rQi18h5XgC0PMJMEwMys6gboNH2hVr9NFL1JkQFWuuRyob6lphg7vOdSYNkzFooAj3eCaVSloH8\/wtd2NBgLKNoqB+cU6ymg9U2d9y5j2fNyFcygpMJsf1sQdFKg2epTRJFK9JzZOQQVDEaU8u5L3VzYB4aFfo6S4C1k0X3J\/m85Nn++P+l\/fibhYc=&v=404","sanjifenlei_txt":"è·æ­¥æº","image_url":"jfs\/t1477\/189\/278101977\/106154\/6a7e4967\/556fa01dNa2e63bbd.jpg","ad_title":"èååºåBanConå®¶ç¨æºè½å¤åè½è·æ­¥æº å¥èº«å¨æä¸­å½æºé  å®¶åº­ç 480mmè·å®½ä»¿çèºæåé\/å¨å½èä¿","ad_billtype":"0","sku_id":"1299571169","height":"0","worldwide":"1"},{"width":"0","exposal_url":"http:\/\/x.jd.com\/dsp\/np?log=5Dij3opL7MYhFC+P5L8I7AiDudN\/A+XBDTtwueSVSuBCx0\/CL1LZMQQPdSbZnhAbcLHfpsQEN9\/n49b4w5V4h6uWUSlXXEQFS5rhC\/DjstMtnZaqlwYVz2Oc9YWI7imZmYznkihWTuxAV3ww1QwUq6NVLc3Ste1+PRnzXpQ9XxIX4kV9MkJDjcsLA+QdP6\/g+QliD0lcAZxQ+3ELnrO0F\/GkLX4aqMD0TbKMmzdg3RgstLSJhQ7mRuIKinMnVaWXRb2GZVHMwOZ4gWQnDU\/DXrxO517QlYIQ3K8i+II1ES2P7kfl0IzvUGiRieRcT0iJqwQUjmnZE5eD5A1+gT9osxdVCNJ\/49uv4CED6oGg8SUwO04ZT9G1raVjAG+nk3aiWP36tyiYm97A40biXUR7DBXUtY0112VuMGAgzVDh0IEXjQmqUpJ5\/BptDK9DBck2EnD4+wwJYdYQLw4Z3rcWtaLiACcizG6yYN2jXv5B0BR+AVIQIL7L+k8d9iN40EnvmwdUUZ8YfqmCAPzqLySAanvEwKKyIAmgXmcq1euw94ksOvEDyPN7WF2WXrjIh0EwKEhfI5IjOG2Jy2I72l8CD3T2neMbLXvViO9Jyriob\/ZpkC7eiV8d+i+8+eIl04di&v=404","cid3":"-1","ious_sku":"0","ad_type":"3","sku_price":0,"comment_num":"19134","ad_send_type":"0","ad_sku_type":"2","material_id":"657954","good_comments":"18366","monitor_url":"7d5cbeb8e81a135d^v2.8^SWC^22^^85667^^657954^http:\/\/re.jd.com\/list\/item\/1484-518630.html?re_dcp=469NP6g_XxOuHWSWk3y_KFSUu-CRa-mKh2NtiMtnLYAiF2cX4K63b3s%3D^761d765c-1609-47bd-a227-305f1977b4ec^^kangti^1000000947^","click_url":"http:\/\/ccc.x.jd.com\/dsp\/nc?ext=Y2xpY2sudW5pb24uamQuY29tL0pkQ2xpY2svP3VuaW9uSWQ9NTIwMDYmc2l0ZWlkPTY1Nzk1NF8yMiZ1dG10ZXJtX2V4dD1wXzIyJnRvPWh0dHA6Ly9yZS5qZC5jb20vbGlzdC9pdGVtLzE0ODQtNTE4NjMwLmh0bWw\/cmVfZGNwPTQ2OU5QNmdfWHhPdUhXU1drM3lfS0ZTVXUtQ1JhLW1LaDJOdGlNdG5MWUFpRjJjWDRLNjNiM3MlM0Q=&log=5Dij3opL7MYhFC+P5L8I7AiDudN\/A+XBDTtwueSVSuBCx0\/CL1LZMQQPdSbZnhAbcLHfpsQEN9\/n49b4w5V4h6uWUSlXXEQFS5rhC\/DjstMtnZaqlwYVz2Oc9YWI7imZmYznkihWTuxAV3ww1QwUq6NVLc3Ste1+PRnzXpQ9XxIX4kV9MkJDjcsLA+QdP6\/gRTRVCVO1nklBwHjol+LuV+lqRByRHOZTWUbum\/taYN50vtS7n3OvW4XLC51ywFaE5TalL8dVL4bhM5oGomxgHu9Ix9Wet43e4S5KlnksOuS4uIM2exgMbLwveGQukIpZumG8pl+EBJL3Nk\/2FH0ZRw157gPfUCDfNpXRXCSLf6OpSsOSixZ7EoQDTXrfpuwy&v=404","sanjifenlei_txt":"è·æ­¥æº","image_url":"jfs\/t145\/239\/1298015448\/60488\/b5f79f5d\/53a9683fNc8027a55.jpg","ad_title":"éå²å¯æ¯T110å®¶ç¨éé³å¯æå çµå¨è·æ­¥æº","ad_billtype":"0","sku_id":"518630","height":"0","worldwide":"1"},{"width":"0","exposal_url":"http:\/\/x.jd.com\/dsp\/np?log=5Dij3opL7MYhFC+P5L8I7AiDudN\/A+XBDTtwueSVSuBCx0\/CL1LZMQQPdSbZnhAbaWrdT8Vrxb6Dsr5uVfpL2efxB+DO2bCEda\/\/0D5T3UkyC3e\/LkFXBksFSIUj6syWdFtXemncTjmP6DqYIwVoJsIdvX6btPYDOUQQipq30Z0I5Qlyh0SGBMvwu+66qVu4kdZ1T4VeIIclmjTiMofkHi5ppMnFTQLFJ1U1\/1zyYq5gIXo3\/83dY6QHuhGGQeUPNoKXpLCkaznI9VApKzaqZ12Gq+T2HHTZQPaekxdB\/JrWDAkVRmyM2mafkyU4TCOI5DaDMvCkVdL6flU2sC1bLISNbfjcQDMJ7pHiQ38x\/19Jhiq0fzkczIEgLJ\/l5\/\/ZkHCDf1k2FTQtEjtP+oSX5WDspr44D\/bBaC5zjbfs5G1uOn2YJtS2E5au9OTzjUh7KhKQJRaUExy\/hLojaibpNuchvde4DQJSIrV+6UjNDgceTqpotmzxJNTtpdE6nLetQEG7pX\/lHefxbVM+5R03QZAtR+1PtBD1vzAznqtBkdIYyJpPpIEvBSu3T3VL3H2Pb+UU2eu8Ry\/fCxIS75K3eJA3cxTJmNzdYLcabtHMDicWQzcK6+qlHKXPPBX21Nkk&v=404","cid3":"-1","ious_sku":"0","ad_type":"3","sku_price":0,"comment_num":"8731","ad_send_type":"0","ad_sku_type":"2","material_id":"657954","good_comments":"8731","monitor_url":"b44bbc695b72695d^v2.8^SWC^22^^85667^^657954^http:\/\/re.jd.com\/list\/item\/1484-1010626351.html?re_dcp=4-ZA01k8VokuHmSWk1wZsX2err7zL7i5j8bDLRdvE-pmWidP8er6Ki0I2Q%3D%3D^761d765c-1609-47bd-a227-305f1977b4ec^^0^24944^","click_url":"http:\/\/ccc.x.jd.com\/dsp\/nc?ext=Y2xpY2sudW5pb24uamQuY29tL0pkQ2xpY2svP3VuaW9uSWQ9NTIwMDYmc2l0ZWlkPTY1Nzk1NF8yMiZ1dG10ZXJtX2V4dD1wXzIyJnRvPWh0dHA6Ly9yZS5qZC5jb20vbGlzdC9pdGVtLzE0ODQtMTAxMDYyNjM1MS5odG1sP3JlX2RjcD00LVpBMDFrOFZva3VIbVNXazF3WnNYMmVycjd6TDdpNWo4YkRMUmR2RS1wbVdpZFA4ZXI2S2kwSTJRJTNEJTNE&log=5Dij3opL7MYhFC+P5L8I7AiDudN\/A+XBDTtwueSVSuBCx0\/CL1LZMQQPdSbZnhAbaWrdT8Vrxb6Dsr5uVfpL2efxB+DO2bCEda\/\/0D5T3UkyC3e\/LkFXBksFSIUj6syWdFtXemncTjmP6DqYIwVoJsIdvX6btPYDOUQQipq30Z2EdEkYNvKeGKSY3\/2bbV8QLbeVZ8CPMWjT0z9QsrKdfMuBV4tVKmbL0gnyp5H097HdTioERSiv8LkTi0ILMaz+sgyf4M3Vt7GjeREgCGls3HCTYCDwM8jOAat1sOqWRszwciJhwB8LeGQYyIHE21VCNLjLyDtX6W8o\/FLUT8BomAhsfLJSCm+wwtL+x54ddc8=&v=404","sanjifenlei_txt":"è·æ­¥æº","image_url":"jfs\/t502\/362\/350605398\/305706\/d438eb4e\/54602fa6N7ead4ff2.jpg","ad_title":"äº¿å¥å®¶ç¨è·æ­¥æº805AS éé³å¤åè½48è·å°","ad_billtype":"0","sku_id":"1010626351","height":"0","worldwide":"1"},{"width":"0","exposal_url":"http:\/\/x.jd.com\/dsp\/np?log=5Dij3opL7MYhFC+P5L8I7AiDudN\/A+XBDTtwueSVSuBCx0\/CL1LZMQQPdSbZnhAbhtDZldSYHW0UmLJsiXYow68CPj79gH2ur1GSGJ3XVCfTs4OuXafvDg2BG08MLz4yiPXyrjxjmXZfby3RlInDUJiufP+\/5\/opStf+Fcdj6yW9Mph6srksqsT5EjGjHittegkiiY5b\/rEWIKa74MuHKrcVcvK2ncSYtqyZGAGuKOQVYsdGUVqCnGOK646ZpqbkIUEDZ70pdJD3mdK\/uCShaz+xDXRNC1GK5S+eyiDqE4WWhCbyaYZIBtDRBbI+AiJAlJIJuoJoJy8hTg0BJrQzXt7X6PpOFL3OUbHS4TRTUgKNthxgKYQwErhOI1Fg\/UhBUsqokCXDAa47NN8tUub9GxeW5+cZeSZI4FunXOi401G90f4h5eSRI8Vx+eAjXwpgqT1SE1H\/FX3xe9SndV8V0gPbdPOXAyT6XB0Csa5HeP4JQ1u\/UUKexudg5vSxE9WzKrDlN06AwU1o0zN3OYfnOENIdAnblnhcPAQSRVDDrnCq19gZNZruj+sWdfCO\/pQYU6gjKb4KCf9hBlLH\/RuUxhBxfy6ta1EgNeyLFiGzHT+hE3RAPJF0i07uaYU0Vd1T&v=404","cid3":"-1","ious_sku":"0","ad_type":"3","sku_price":0,"comment_num":"45357","ad_send_type":"0","ad_sku_type":"2","material_id":"657954","good_comments":"41681","monitor_url":"d19310ad476d8148^v2.8^SWC^22^^85667^^657954^http:\/\/re.jd.com\/list\/item\/1484-1282118.html?re_dcp=448-bqg_XxOuHWSWk3y_KFSUu-CRa-mKh2NtiMtnLYAiF2cX4K63b3s%3D^761d765c-1609-47bd-a227-305f1977b4ec^^dgsyjk^1000000998^","click_url":"http:\/\/ccc.x.jd.com\/dsp\/nc?ext=Y2xpY2sudW5pb24uamQuY29tL0pkQ2xpY2svP3VuaW9uSWQ9NTIwMDYmc2l0ZWlkPTY1Nzk1NF8yMiZ1dG10ZXJtX2V4dD1wXzIyJnRvPWh0dHA6Ly9yZS5qZC5jb20vbGlzdC9pdGVtLzE0ODQtMTI4MjExOC5odG1sP3JlX2RjcD00NDgtYnFnX1h4T3VIV1NXazN5X0tGU1V1LUNSYS1tS2gyTnRpTXRuTFlBaUYyY1g0SzYzYjNzJTNE&log=5Dij3opL7MYhFC+P5L8I7AiDudN\/A+XBDTtwueSVSuBCx0\/CL1LZMQQPdSbZnhAbhtDZldSYHW0UmLJsiXYow68CPj79gH2ur1GSGJ3XVCfTs4OuXafvDg2BG08MLz4yiPXyrjxjmXZfby3RlInDUJiufP+\/5\/opStf+Fcdj6yW9Mph6srksqsT5EjGjHittyQeQtfvOFpz3LpwvsF00ufL7RbMVWIzODF\/DajJEj\/30vn1mZP+JoUGo2FCpar9P\/l35f7X2W+v9otc6iAPLQLGA4b\/DU9uMWLHlYp3cm+yRoTTJHkrdXUDox0DqhgDNgv2Xx2+uq1HUyhNU2fRC\/hHxS0vcJ6hj2vxkAkOv8wyJnCfl1Z9CiGT8kiyiLN1h&v=404","sanjifenlei_txt":"è·æ­¥æº","image_url":"jfs\/t1588\/152\/165440695\/102625\/ccec06cd\/555edc33N86cda809.jpg","ad_title":"ä¼ååº·E350å¤åè½å®¶ç¨éé³æå è·æ­¥æº","ad_billtype":"0","sku_id":"1282118","height":"0","worldwide":"1"},{"width":"0","exposal_url":"http:\/\/x.jd.com\/dsp\/np?log=5Dij3opL7MYhFC+P5L8I7AiDudN\/A+XBDTtwueSVSuBCx0\/CL1LZMQQPdSbZnhAb9hnY94gqR9wB71R8qpQJ+cykbfS0I3oTqQPSvLVeEBkxFW5LwHCDHdMn43KxHiWRfAo1Xc\/nwhLNDETrcaah5\/kUWEodkNk32pNm\/4O5Y+aYUBkDXgqc779vZUeSrBIXz7SuBw4ZcfX+72o+d6SYNEdMWj6C1K3NDiig6Dm6k3FzBfDRYMrOajZrS1SERMnlXtIkD2WlKSh2oE3AWyO94hB+PN+mhBX\/w5HPuHT1PtZjF2HgLBQ7qNyKw5ehEgCfbIDkL2yYFVs4CkFXm4aq9xlIegSzpRcwsRibAEH6773NBYT+xBZvq9+XPEjzfWXVtcJlyijPV\/5m34JGN8rWGIomZIZTps8TV327ItYrXffBfIid16unOudQtVXNAxwKv\/PfRr1zWq5Rf\/lzIqLEtLPE2YOAjaTJppJet+Nlco1xwoOdAFS2vGa71EcEDLIUGYlY26pfye0RQHV0P78orAzOjcEgxNxYehexMukta72MksRZDi16+M+i78TpKe4m5AHCmBTHB\/bTftPpEiACeoFZHuKDk5sOCJTl4CO+vhzgEDQM\/FHAZEb2F7HNESHr&v=404","cid3":"-1","ious_sku":"0","ad_type":"3","sku_price":0,"comment_num":"3911","ad_send_type":"0","ad_sku_type":"2","material_id":"657954","good_comments":"3861","monitor_url":"63abda45bdfb0ac7^v2.8^SWC^22^^85667^^657954^http:\/\/re.jd.com\/list\/item\/1484-1077968113.html?re_dcp=47hnoTo7VokuHmSWk1wZsX2err7zL7i5j8bDLRdvE-pmWidP8er6Ki0I2Q%3D%3D^761d765c-1609-47bd-a227-305f1977b4ec^^0^58735^","click_url":"http:\/\/ccc.x.jd.com\/dsp\/nc?ext=Y2xpY2sudW5pb24uamQuY29tL0pkQ2xpY2svP3VuaW9uSWQ9NTIwMDYmc2l0ZWlkPTY1Nzk1NF8yMiZ1dG10ZXJtX2V4dD1wXzIyJnRvPWh0dHA6Ly9yZS5qZC5jb20vbGlzdC9pdGVtLzE0ODQtMTA3Nzk2ODExMy5odG1sP3JlX2RjcD00N2hub1RvN1Zva3VIbVNXazF3WnNYMmVycjd6TDdpNWo4YkRMUmR2RS1wbVdpZFA4ZXI2S2kwSTJRJTNEJTNE&log=5Dij3opL7MYhFC+P5L8I7AiDudN\/A+XBDTtwueSVSuBCx0\/CL1LZMQQPdSbZnhAb9hnY94gqR9wB71R8qpQJ+cykbfS0I3oTqQPSvLVeEBkxFW5LwHCDHdMn43KxHiWRfAo1Xc\/nwhLNDETrcaah5\/kUWEodkNk32pNm\/4O5Y+Zr6ucRBQK+lONZCRUYrP41H6RVZ49slPKmS7ZVajGo+ptSCvi9Tp5CUzO7W9Te3lrFkxkDYF8iCocOZbUithgwQ85m2k75rE1oF4zISu6h3veX6O8ZaMrj292n4wjZLOXDRu09+RzelRbffqbl4p+dSu2fpBpdYZoLMg+1RvwjJWesqCRAP6m1KObxuHAifzc=&v=404","sanjifenlei_txt":"è·æ­¥æº","image_url":"jfs\/t547\/80\/1202995241\/263895\/dadec7fa\/54bcdb3aN7fa75431.jpg","ad_title":"äº¿å¥6006Då®¶ç¨å¤åè½éé³å¯æå è·æ­¥æº","ad_billtype":"0","sku_id":"1077968113","height":"0","worldwide":"1"},{"width":"0","exposal_url":"http:\/\/x.jd.com\/dsp\/np?log=5Dij3opL7MYhFC+P5L8I7AiDudN\/A+XBDTtwueSVSuBCx0\/CL1LZMQQPdSbZnhAbcNQorhG8xg1z6Kr2POh8Msn8KShrnUb2kyNAhLZzaHWmicEEvlqUpbqMVvlkLbXlD6agvHPc+lnRTDA6SfdqJBloS0pzF39floeRy7VusMP6ozWpQhbVQH\/GuIjFU1Qv4v81RYlUXaJSu7gTVOK+QeDCnnA4+wj9UxC\/YgMzdfuSrJUSH7e2qCyUCjojtQzUv5h3vDV+pYv0ifh+jOWDM82W2dZm6b2Nnfue\/Dj9eONq\/MYHQuzKgxqrXE+9b0VV0gxEvt7RyKyhC6z32oAvLxvtbYiImCRLgTbZ9IokC+2O8uH7Um\/bOIu0w\/441JcZq57hLXqdut8mCOFM7nCWURdZBgQ6hvB7kFk1eCkQxpKxaQFDuSI0kzfMmbXgGtJm6FYqh1IdN\/L7u+ihKGY4kUPCg46Id+qBwU\/glCLixDrHgghzNKIAg3BZr82z\/1bHBcAOt3XGJg6LeBtxU9xEOUAo5jGLH6r+MhBmiopG9yGQh\/ImeG4m6e0ADy+q\/XbzgwfWh1uQ40FIuflgrIy6yas3W5YkfbBhir5p7GYogB28IOwfh1YmzMH6r5vEnBN3&v=404","cid3":"-1","ious_sku":"0","ad_type":"3","sku_price":0,"comment_num":"18219","ad_send_type":"0","ad_sku_type":"2","material_id":"657954","good_comments":"18219","monitor_url":"0ffdc6d67e6cf910^v2.8^SWC^22^^85667^^657954^http:\/\/re.jd.com\/list\/item\/1484-518644.html?re_dcp=471NP6g_X6BrCz_6Inm_KFSUu-CRa-mKh2NtiMtnLYAiF2cX4K63b3s%3D^761d765c-1609-47bd-a227-305f1977b4ec^^kangti^1000000947^","click_url":"http:\/\/ccc.x.jd.com\/dsp\/nc?ext=Y2xpY2sudW5pb24uamQuY29tL0pkQ2xpY2svP3VuaW9uSWQ9NTIwMDYmc2l0ZWlkPTY1Nzk1NF8yMiZ1dG10ZXJtX2V4dD1wXzIyJnRvPWh0dHA6Ly9yZS5qZC5jb20vbGlzdC9pdGVtLzE0ODQtNTE4NjQ0Lmh0bWw\/cmVfZGNwPTQ3MU5QNmdfWDZCckN6XzZJbm1fS0ZTVXUtQ1JhLW1LaDJOdGlNdG5MWUFpRjJjWDRLNjNiM3MlM0Q=&log=5Dij3opL7MYhFC+P5L8I7AiDudN\/A+XBDTtwueSVSuBCx0\/CL1LZMQQPdSbZnhAbcNQorhG8xg1z6Kr2POh8Msn8KShrnUb2kyNAhLZzaHWmicEEvlqUpbqMVvlkLbXlD6agvHPc+lnRTDA6SfdqJBloS0pzF39floeRy7VusMP6ozWpQhbVQH\/GuIjFU1QvZfHEs5QdsiFO+lhWbw\/05+kEFzXmW8SfBj6XgbRlhAsh7rP7RZwJwS6ovK0khwhSE431rjwpf7FBllYsyxKegJOfKpogTs2wtwbeDqz7tjRkKM6+qarAf18Z79Qgpo+7PM+fEZ9Yg\/\/KMTt7staGC0D+s0E2IrDjJT2XkgujTFFATzJq0PA3Q+lFwKQGVrGX&v=404","sanjifenlei_txt":"è·æ­¥æº","image_url":"jfs\/t949\/47\/522132887\/95153\/d62c5191\/552b3d37Nbfbf3a97.jpg","ad_title":"éå²å¯æ¯T221å®¶ç¨å¤åè½éé³å¯æå è·æ­¥æº","ad_billtype":"0","sku_id":"518644","height":"0","worldwide":"1"}]}};
+    var _global_dsp_adid = '22';
+    var dxSkuList = formatDXData(_global_dsp_data);
+    var renderData = map4render(dxSkuList);
+    var tpl = document.getElementById("skuTpl").innerHTML;
+    var html = _.template(tpl, {datas: renderData});
+    document.getElementById('jdAdRow').innerHTML=html;
+    exposalAD(dxSkuList);
+    loadAllPrice(dxSkuList);
+    loadAllPromo(dxSkuList);
+    function clkSetCookie(envent) {
+        var dataid = this.getAttribute('data-skuid') ? this.getAttribute('data-skuid') : '';
+    if (dataid != '') {
+        CookieAds.setClickCookie(dataid);
+    }
+}
+function clkBind(){
+    var i=0;
+    while(document.getElementById('clk'+i)){
+        EventUtil.on(document.getElementById('clk'+i),'click',clkSetCookie);
+        i++
+    }   
+}
+    window.onload = function() {
+        var runTags1 = new runTags();
+        runTags1.info('#jdAdTags','#jdAdList1',4000,"auto",3,'#jdAdCol1');
+        var runTags2 = new runTags();
+        runTags2.info('#jdAdTags2','#jdAdList2',4000,"auto",3,'#jdAdCol2');
+         CookieAds.initadsInfo("ads_info");
+         CookieAds.initjda();
+         clkBind();
+    }
+</script>
+<script type="text/javascript" src="http://images.sohu.com/bill/default/mi.js"></script>
+<script type="text/javascript">AdIframeLoad("22")</script>
+</body>
+</html>

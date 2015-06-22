@@ -1,0 +1,1 @@
+define(["jquery-1"],function(a){return{$:a,request:a.ajax}});

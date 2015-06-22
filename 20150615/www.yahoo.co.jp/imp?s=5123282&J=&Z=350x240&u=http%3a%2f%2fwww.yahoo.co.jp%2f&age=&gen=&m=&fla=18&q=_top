@@ -1,0 +1,1 @@
+gAdController.passback();

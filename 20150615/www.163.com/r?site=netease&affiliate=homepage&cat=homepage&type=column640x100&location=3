@@ -1,0 +1,24 @@
+<SCRIPT LANGUAGE=JavaScript>
+var ShockMode = 0;
+var plugin = (navigator.mimeTypes && navigator.mimeTypes["application/x-shockwave-flash"]) ? navigator.mimeTypes["application/x-shockwave-flash"].enabledPlugin : 0;
+if (plugin && parseInt(plugin.description.substring(plugin.description.indexOf(".")-2)) >= 8) { ShockMode = 1;}
+else if (navigator.userAgent && navigator.userAgent.indexOf("MSIE")>=0 
+&& navigator.userAgent.indexOf("Opera")<0) {
+document.write('<SCRIPT LANGUAGE=VBScript\> \n'+'on error resume next \n'+'ShockMode = (IsObject(CreateObject("ShockwaveFlash.ShockwaveFlash.8")))\n'+'<\/SCRIPT\> \n');
+}
+if ( ShockMode ) {
+document.write('<a href="http://g.163.com/c?AID=197388&FlightID=1466&Values=2462560590&Redirect=http://as.kejet.net/QzQ2QTYyNzc5Njc1Qjg1QTE5REMxMDNEMDk0NThD?u/MDQ4NTY5RTI1MDQ5NTBE/o/QzQ2QTYyNzc5Njc1Qjg1/m/QTE5REMxMDNEMDk0NThD/q/afaclick?http://a.irs01.com/hat?_t=r&_htsinfo=QyY1MSY1NDAmMTA3MCY4MzkxJoe-&_z=_&l=aHR0cDovL2V2ZW50Lmtscy1jaGluYS5jb20_X2h0c2luZm89VENZMU1TWTFOREFtTVRBM01DWTRNemt4Sm9lbA==" target="_blank"><img src="http://img1.126.net/channel7/cover.gif" style="position:absolute; width:640px; height:100px; margin:0px; padding:0px; border:0px;" />');
+document.write('<OBJECT ');
+document.write(' codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0"');
+document.write(' ID=flashad WIDTH=640 HEIGHT=100>');
+document.write(' <PARAM NAME=movie VALUE="http://img1.126.net/channel4/019686/kls640100_0512.swf"> '); 
+document.write(' <PARAM NAME=quality VALUE=autohigh> ');
+document.write(' <PARAM NAME=wmode VALUE=opaque> ');
+document.write(' <EMBED SRC="http://img1.126.net/channel4/019686/kls640100_0512.swf" QUALITY=autohigh  wmode=opaque'); 
+document.write(' NAME=flashad swLiveConnect=TRUE WIDTH=640 HEIGHT=100');
+document.write(' TYPE="application/x-shockwave-flash" PLUGINSPAGE="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash">');
+document.write('</EMBED>');
+document.write('</OBJECT>');
+document.write('</a>');
+} 
+</SCRIPT>

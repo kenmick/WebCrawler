@@ -1,0 +1,30 @@
+			
+// Copyright 2006-2015 ClickTale Ltd., US Patent Pending
+// PID: 83
+// Generated on: 6/15/2015 3:59:06 AM (UTC 6/15/2015 8:59:06 AM)
+
+/*browsers exclusion start*/function doOnlyWhen(toDoHandler, toCheckHandler, interval, times, failHandler) {
+    if ((!toDoHandler) || (!toCheckHandler)) return;
+    if (typeof interval == "undefined") interval = 1000;
+    if (typeof times == "undefined") times = 20;
+
+    if (--times < 0 && typeof failHandler === 'function') {
+        failHandler();
+        return;
+    }
+    if (toCheckHandler()) {
+        toDoHandler();
+        return;
+    }
+
+    setTimeout(function () { doOnlyWhen(toDoHandler, toCheckHandler, interval, times); }, interval);
+}
+doOnlyWhen(function () { var ct_UA = ClickTaleDetectAgent(); if (!(((ct_UA.t == ct_UA.IE && ct_UA.v <= 8)))) { (function(){var g=!0,h=!1,i=this;var k,l,n,o;function p(){return i.navigator?i.navigator.userAgent:null}o=n=l=k=h;var q;if(q=p()){var r=i.navigator;k=0==q.indexOf("Opera");l=!k&&-1!=q.indexOf("MSIE");n=!k&&-1!=q.indexOf("WebKit");o=!k&&!n&&"Gecko"==r.product}var t=k,u=l,v=o,w=n,x;
+a:{var y="",z;if(t&&i.opera)var A=i.opera.version,y="function"==typeof A?A():A;else if(v?z=/rv\:([^\);]+)(\)|;)/:u?z=/MSIE\s+([^\);]+)(\)|;)/:w&&(z=/WebKit\/(\S+)/),z)var B=z.exec(p()),y=B?B[1]:"";if(u){var C,D=i.document;C=D?D.documentMode:void 0;if(C>parseFloat(y)){x=""+C;break a}}x=y}var E={};
+function F(b){var a;if(!(a=E[b])){a=0;for(var c=(""+x).replace(/^[\s\xa0]+|[\s\xa0]+$/g,"").split("."),d=(""+b).replace(/^[\s\xa0]+|[\s\xa0]+$/g,"").split("."),m=Math.max(c.length,d.length),j=0;0==a&&j<m;j++){var s=c[j]||"",M=d[j]||"",N=RegExp("(\\d*)(\\D*)","g"),O=RegExp("(\\d*)(\\D*)","g");do{var e=N.exec(s)||["","",""],f=O.exec(M)||["","",""];if(0==e[0].length&&0==f[0].length)break;a=((0==e[1].length?0:parseInt(e[1],10))<(0==f[1].length?0:parseInt(f[1],10))?-1:(0==e[1].length?0:parseInt(e[1],10))>
+(0==f[1].length?0:parseInt(f[1],10))?1:0)||((0==e[2].length)<(0==f[2].length)?-1:(0==e[2].length)>(0==f[2].length)?1:0)||(e[2]<f[2]?-1:e[2]>f[2]?1:0)}while(0==a)}a=E[b]=0<=a}return a}var G={};function H(){G[9]||(G[9]=u&&!!document.documentMode&&9<=document.documentMode)};!u||H();!u||H();u&&F("8");!w||F("528");v&&F("1.9b")||u&&F("8")||t&&F("9.5")||w&&F("528");!v||F("8");function I(b,a,c,d,m){b&&a&&("undefined"==typeof c&&(c=1E3),"undefined"==typeof d&&(d=20),0>--d?"function"===typeof m&&m():a()?b():setTimeout(function(){I(b,a,c,d,m)},c))};function J(b){function a(){c||(c=g,b())}var c=h;if("complete"===document.readyState||"interactive"===document.readyState)a();else{if(document.addEventListener)document.addEventListener("DOMContentLoaded",a,h);else if(document.attachEvent){try{var d=null!=window.frameElement}catch(m){}if(document.documentElement.doScroll&&!d){var j=function(){if(!c)try{document.documentElement.doScroll("left"),a()}catch(b){setTimeout(j,10)}};j()}document.attachEvent("onreadystatechange",function(){"complete"===document.readyState&&
+a()})}if(window.addEventListener)window.addEventListener("load",a,h);else if(window.attachEvent)window.attachEvent("onload",a);else{var s=window.onload;window.onload=function(){s&&s();a()}}}};function K(b,a){"function"===typeof ClickTaleEvent&&(a?K.b[b]!==g&&(K.b[b]=g,ClickTaleEvent(b)):ClickTaleEvent(b))}K.b={};function L(b,a){var c={},d;for(d in b)c[d]=b[d];c.target=a;c.srcElement=a;"function"===typeof window.ClickTaleRegisterElementAction&&(ClickTaleRegisterElementAction("mouseover",c),ClickTaleRegisterElementAction("click",c))}window.ClickTaleDetectAgent&&window.ClickTaleDetectAgent()&&window.ClickTaleDetectAgent();var P=K;function Q(){window.ClickTaleFirstPCCGo||(window.ClickTaleFirstPCCGo=g,767>=window.innerWidth&&P("Mobile View"),jQuery(document).on("click","li.anchornav-button",function(){-1<jQuery(this).find("a").text().toLowerCase().indexOf("choose a plan")&&P("Creative Cloud : Choose a Plan",g)}),jQuery(document).on("mousedown",function(b){var a=jQuery(b.target);if(a.closest(".individual_plans a.primary").length){var c=jQuery(".individual_plans a.primary").index(a.closest(".individual_plans a.primary"));(0==
+c||2==c)&&L(b,a.closest(".individual_plans a.primary")[0]);P("Plans page: Individuals - Buy Now")}a.closest(".globalnav__menu-bar__item").length&&(a=a.closest(".globalnav__menu-bar__item").find("button"))&&L(b,jQuery(a)[0])}))}
+(function(b){function a(){2==++window.okToStartOn2&&b()}window.okToStartOn2=0;J(function(){a()});if("undefined"!==typeof window.ClickTaleIsRecording&&window.ClickTaleIsRecording()===g)a();else{var c=window.ClickTaleOnRecording||function(){};window.ClickTaleOnRecording=function(){a();return c.apply(this,arguments)}}})(function(){I(Q,function(){return window.jQuery&&"function"===typeof jQuery.fn.on?g:h},250,40)});})(); } }, function () { return (typeof ClickTaleDetectAgent === 'function'); }, 500, 20);
+
+

@@ -1,0 +1,1 @@
+require(["h4base","h4clock/clock","h4clock/locationprompt"],function(d,c,a){if(!d.isJavascriptEnabled()){return}var b=function(){c.init()};require(["domReady"],function(e){e(b)})});

@@ -1,0 +1,1 @@
+var ph_bar=new PornhubNetworkBar("PornhubNetworkBar","pornhub",networkSegement,false,"body { background-position: 0 24px;} div#starbust-header { background-position: center -4px; }div.bar_body div.bar_items { width:960px;} "+networkQuery,false);

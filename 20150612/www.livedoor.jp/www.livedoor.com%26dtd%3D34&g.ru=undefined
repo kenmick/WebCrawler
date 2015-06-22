@@ -1,0 +1,56 @@
+/*
+(c) Copyright Weborama SA - France. All rights reserved.
+It is illegal to modify, disassemble, sell, copy or publish this software
+or any part thereof. The use of this software is only permitted with the
+prior and express written permission of Weborama SA - France.
+More information: http://www.weborama.com/contacts/
+*/
+function x17() {
+    var x1cl, x1ey = x1bb.x1cj();
+    x1ey.x1ie = x1bb.x1nn(x1ey.x1ie,'wuid=&retargeting=&');
+    x1ey.x1fN = 'http://cstatic.weborama.fr/advertiser/82/17/214/312/';
+    x1ey.x1lp = '566';
+
+
+
+    x1ey.conf_oba = false;
+    adperfobj.zindex = adperfobj.zindex || 0 || 214748360;
+
+    adperfobj.clicks = new Array();
+    adperfobj.clicks[0] = 'http://adclick.g.doubleclick.net/aclk?sa=L&ai=CTH86h-F6VdrcFceR7gbYpoHoBo2Oi_sF5Zr-x8gBwI23ARABIABg-6HrgugJggEXY2EtcHViLTY5ODg2NzY0MzExNTY4MjXIAQmoAwGYBACqBHdP0Cbhdch3AsCgJhlluBI7Wrs5lQ0EvFI7SVYsN81fwjQ8ZyCIT95ftYBQ_ZBxNWOy1LOweXnhZ6SzcpWkax0KSmongUoKr5B0dUUSRoqaHWVnKxkSHu7JZYZHSd511ngvsZmH5_TsboSMhMJNk67_ea5CN2FMC4AGsd2t9L7BmtrWAaAGIdgHAA&num=1&sig=AOD64_0rtraG0UzvYc4oWm9FHw8_tcGO1A&client=ca-pub-6988676431156825&adurl=http://bid.g.doubleclick.net/xbbe/creative/click%3Fd%3DAPEucNVQawsNkwYZO6Q2zlqKKJsgXEeFz3YFCP9SWOni7IfSjSrMMfg6lYZTPrfuvkwu9EXwMivnu0Ful1kP6sXKCMyCQcamQoNMPcBucVK34BwBuqwXiJe0fQH_nMLOvUp3ZHXrApss%26r1%3Dhttp%3A%2F%2Fintermarchedrive.solution.weborama.fr%2Ffcgi-bin%2Fdispatch.fcgi%3Fa.A%3Dcl%26a.si%3D82%26a.te%3D887%26a.aap%3D566%26a.agi%3D189%26g.lu%3D' + (adperfobj.landing_urls[0] || 'http%253A%252F%252Fdrive.intermarche.com%253Fxtor%253DAD-1009');
+
+
+    try{
+        adperfobj.imptrackers = new Array(
+                
+        );
+
+        adperfobj.clicktrackers = (new Array(
+                
+        ).concat(adperfobj.clicktrackers));
+
+        adperfobj.eventtrackers = (new Array(
+                
+        ).concat(adperfobj.eventtrackers));
+    }catch(scr_e){}
+
+
+
+    x1ey.addTrackers(adperfobj);
+    x1ey.addClicks(adperfobj);
+
+    x1cl = new x1bb.x1h2();
+x1cl.x1c(x1ey, 670, '300x250_ITM_Monopoly.swf', adperfobj.width, adperfobj.height, '', 11, 'opaque', 'LT', 'exactfit', ["clicktag"], '', '');
+x1ey.x1gG(x1cl, '', 2, '');
+x1cl = new x1bb.x1hW();
+x1cl.x1c(x1ey, 669, '300x250.gif', adperfobj.width, adperfobj.height, '', '', '');
+x1ey.x1gG(x1cl, '', 2, '');
+
+
+
+
+    x1ey.x1gQ();
+
+
+}
+x1L('adperf_core_' + adperf_version + '_scrambled.js');
