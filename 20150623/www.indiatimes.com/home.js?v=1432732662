@@ -1,0 +1,409 @@
+googletag.cmd.push(function() { 
+    <!-- Audience Segment Targeting --> 
+    var _auds = new Array(); 
+    if(typeof(_ccaud)!='undefined') { 
+        for(var i=0;i<_ccaud.Profile.Audiences.Audience.length;i++) 
+            if(i<200) 
+                _auds.push(_ccaud.Profile.Audiences.Audience[i].abbr); 
+    } 
+    <!-- End Audience Segment Targeting --> 
+    <!-- Contextual Targeting --> 
+    var _HDL = ''; 
+    var _ARC1 = ''; 
+    var _Hyp1 = ''; 
+    var _article = ''; 
+    var _tval = function(v) { 
+        if(typeof(v)=='undefined') return ''; 
+        if(v.length>100) return v.substr(0,100); 
+        return v; 
+    }
+    var mappingBad = googletag.sizeMapping().
+    addSize([1, 1],[728, 90]).
+    addSize([768, 200],[728, 90]).
+    addSize([1025, 200], [970, 90]).
+    addSize([1260, 200], [1024, 400]).
+    build();
+
+        var mappingBig1 = googletag.sizeMapping().
+        addSize([1, 1],[728, 90]).
+        addSize([768, 200],[728, 90]).
+        addSize([1025, 200], [970, 90]).
+        addSize([1260, 200], [1024, 400]).
+        build();
+
+    var mappingBig2 = googletag.sizeMapping().
+    addSize([1, 1],[728, 90]).
+    addSize([768, 200],[728, 90]).
+    addSize([1025, 200], [970, 90]).
+    addSize([1260, 200], [1024, 400]).
+    build();
+
+    var mappingBig3 = googletag.sizeMapping().
+    addSize([1, 1],[728, 90]).
+    addSize([768, 200],[728, 90]).
+    addSize([1025, 200], [970, 90]).
+    addSize([1260, 200], [1024, 400]).
+    build();
+
+    var mappingPagepushdown = googletag.sizeMapping().
+    addSize([1, 1],[728,90]).
+    addSize([768, 200],[728, 90]).
+    addSize([1025, 200],[970, 90]).
+    addSize([1260, 200], [1024, 180]).
+    build();
+
+    //googletag.defineSlot('/7176/Indiatimes/Indiatimes_Home/Indiatimes_Home_Home/IT_HP_Bad', [[728, 90], [970, 90], [1024, 400]], 'div-gpt-ad-1420536943346-0').defineSizeMapping(mappingBad).addService(googletag.pubads());
+    //googletag.defineSlot('/7176/Indiatimes/Indiatimes_Home/Indiatimes_Home_Home/IT_HP_Big1', [[728, 90], [970, 90], [1024, 400]], 'div-gpt-ad-1420536943346-1').defineSizeMapping(mappingBig1).addService(googletag.pubads());
+    //googletag.defineSlot('/7176/Indiatimes/Indiatimes_Home/Indiatimes_Home_Home/IT_HP_Big2', [[728, 90], [970, 90], [1024, 400]], 'div-gpt-ad-1420536943346-2').defineSizeMapping(mappingBig2).addService(googletag.pubads());
+    //googletag.defineSlot('/7176/Indiatimes/Indiatimes_Home/Indiatimes_Home_Home/IT_HP_Big3', [[728, 90], [970, 90], [1024, 400]], 'div-gpt-ad-1420536943346-3').defineSizeMapping(mappingBig3).addService(googletag.pubads());
+    googletag.defineOutOfPageSlot('/7176/Indiatimes/Indiatimes_Home/Indiatimes_Home_Home/IT_HP_OOP_Innov','div-gpt-ad-1420536943346-4').addService(googletag.pubads());
+    googletag.defineOutOfPageSlot('/7176/Indiatimes/Indiatimes_Home/Indiatimes_Home_Home/IT_HP_OOP_Inter','div-gpt-ad-1420536943346-5').addService(googletag.pubads());
+    googletag.defineOutOfPageSlot('/7176/Indiatimes/Indiatimes_Home/Indiatimes_Home_Home/IT_HP_OOP_Pop','div-gpt-ad-1420536943346-6').addService(googletag.pubads());
+    googletag.defineOutOfPageSlot('/7176/Indiatimes/Indiatimes_Home/Indiatimes_Home_Home/IT_HP_OOP_Shosh','div-gpt-ad-1420536943346-7').addService(googletag.pubads());
+    googletag.defineSlot('/7176/Indiatimes/Indiatimes_Home/Indiatimes_Home_Home/IT_HP_PPD', [[728, 90], [970, 90], [1024, 180]], 'div-gpt-ad-1420536943346-8').defineSizeMapping(mappingPagepushdown).addService(googletag.pubads());
+    googletag.pubads().setTargeting('sg', _auds).setTargeting('HDL', _tval(_HDL)).setTargeting('ARC1', _tval(_ARC1)).setTargeting('Hyp1', _tval(_Hyp1)).setTargeting('article', _tval(_article));
+    googletag.pubads().enableSingleRequest();
+    googletag.pubads().collapseEmptyDivs();
+    googletag.enableServices();
+
+});
+
+function showHeaderCode() {	
+    /* Indiatimes/Indiatimes_Home/Indiatimes_Home_Home/IT_HP_OOP_Inter */
+    document.write("<div id='div-gpt-ad-1420536943346-5'><script type='text/javascript'>googletag.cmd.push(function() { googletag.display('div-gpt-ad-1420536943346-5'); });</script></div>");
+    /* Indiatimes/Indiatimes_Home/Indiatimes_Home_Home/IT_HP_PPD */
+    document.write("<div id='div-gpt-ad-1420536943346-8'><script>googletag.cmd.push(function() { googletag.display('div-gpt-ad-1420536943346-8'); });</script></div>");
+	
+}
+ 
+function BAD_ROS_atLoad(){
+    /* Indiatimes/Indiatimes_Home/Indiatimes_Home_Home/IT_HP_Bad */
+    //document.write("<div id='div-gpt-ad-1420536943346-0'><script>googletag.cmd.push(function() { googletag.display('div-gpt-ad-1420536943346-0'); });</script></div>");
+           
+            divid = 'div-gpt-ad-1420536943346-0';
+            document.write("<div id='"+divid+"'></div>");            
+            googletag.cmd.push(function() {
+                var mappingBad = googletag.sizeMapping().
+                addSize([1, 1],[728, 90]).
+                addSize([768, 200],[728, 90]).
+                addSize([1025, 200], [970, 90]).
+                addSize([1260, 200], [1024, 400]).
+                build();                
+                //googletag.defineSlot('/7176/Indiatimes/Indiatimes_Home/Indiatimes_Home_Home/IT_HP_Big2', [[728, 90], [970, 90], [1024, 400]], 'div-gpt-ad-1420536943346-2').defineSizeMapping(mappingBig2).addService(googletag.pubads());
+                var slot = googletag.defineSlot('/7176/Indiatimes/Indiatimes_Home/Indiatimes_Home_Home/IT_HP_Bad', [[728, 90], [970, 90], [1024, 400]], divid).defineSizeMapping(mappingBad).addService(googletag.pubads());
+                // Display has to be called before
+                // refresh and after the slot div is in the page.
+                googletag.display(divid);
+            //googletag.pubads().refresh([slot]);
+            });     
+}
+
+
+/* Indiatimes/Indiatimes_Home/Indiatimes_Home_Home/IT_HP_Big1-2-3 */
+
+function showBigAD(id)
+{
+    //alert(id);
+    var divid = '';
+    switch(id) {
+        case 1:
+           
+            divid = 'div-gpt-ad-1420536943346-1';
+            document.write("<div id='"+divid+"'></div>");            
+            googletag.cmd.push(function() {
+                var mappingBig1 = googletag.sizeMapping().
+                addSize([1, 1],[728, 90]).
+                addSize([768, 200],[728, 90]).
+                addSize([1025, 200], [970, 90]).
+                addSize([1260, 200], [1024, 400]).
+                build();                 
+                //googletag.defineSlot('/7176/Indiatimes/Indiatimes_Home/Indiatimes_Home_Home/IT_HP_Big2', [[728, 90], [970, 90], [1024, 400]], 'div-gpt-ad-1420536943346-2').defineSizeMapping(mappingBig2).addService(googletag.pubads());
+                var slot = googletag.defineSlot('/7176/Indiatimes/Indiatimes_Home/Indiatimes_Home_Home/IT_HP_Big1', [[728, 90], [970, 90], [1024, 400]], divid).defineSizeMapping(mappingBig1).addService(googletag.pubads());
+                // Display has to be called before
+                // refresh and after the slot div is in the page.
+                googletag.display(divid);
+            //googletag.pubads().refresh([slot]);
+            }); 
+            break;
+        case 2:
+            divid = 'div-gpt-ad-1420536943346-2';
+            document.write("<div id='"+divid+"'></div>");            
+            googletag.cmd.push(function() {
+                var mappingBig2 = googletag.sizeMapping().
+                addSize([1, 1],[728, 90]).
+                addSize([768, 200],[728, 90]).
+                addSize([1025, 200], [970, 90]).
+                addSize([1260, 200], [1024, 400]).
+                build();                
+                //googletag.defineSlot('/7176/Indiatimes/Indiatimes_Home/Indiatimes_Home_Home/IT_HP_Big2', [[728, 90], [970, 90], [1024, 400]], 'div-gpt-ad-1420536943346-2').defineSizeMapping(mappingBig2).addService(googletag.pubads());
+                var slot = googletag.defineSlot('/7176/Indiatimes/Indiatimes_Home/Indiatimes_Home_Home/IT_HP_Big2', [[728, 90], [970, 90], [1024, 400]], divid).defineSizeMapping(mappingBig2).addService(googletag.pubads());
+                // Display has to be called before
+                // refresh and after the slot div is in the page.
+                googletag.display(divid);
+            //googletag.pubads().refresh([slot]);
+            });             
+            break;
+        case 3:
+            divid = 'div-gpt-ad-1420536943346-3';
+            document.write("<div id='"+divid+"'></div>");            
+            googletag.cmd.push(function() {
+            var mappingBig3 = googletag.sizeMapping().
+            addSize([1, 1],[728, 90]).
+            addSize([768, 200],[728, 90]).
+            addSize([1025, 200], [970, 90]).
+            addSize([1260, 200], [1024, 400]).
+            build();                
+                //googletag.defineSlot('/7176/Indiatimes/Indiatimes_Home/Indiatimes_Home_Home/IT_HP_Big2', [[728, 90], [970, 90], [1024, 400]], 'div-gpt-ad-1420536943346-2').defineSizeMapping(mappingBig2).addService(googletag.pubads());
+                var slot = googletag.defineSlot('/7176/Indiatimes/Indiatimes_Home/Indiatimes_Home_Home/IT_HP_Big3', [[728, 90], [970, 90], [1024, 400]], divid).defineSizeMapping(mappingBig3).addService(googletag.pubads());
+                // Display has to be called before
+                // refresh and after the slot div is in the page.
+                googletag.display(divid);
+            //googletag.pubads().refresh([slot]);
+            });             
+            break;
+
+    
+    }
+//document.write("<div id='"+divid+"'><script>googletag.cmd.push(function() { googletag.display('"+divid+"'); });</script></div>");
+
+}
+
+//function showBigAD(id)
+//{
+//    //alert(id);
+//    var divid = '';
+//    switch(id) {
+//        case 1:
+//            divid = 'div-gpt-ad-1420536943346-1';
+//            break;
+//        case 2:
+//            divid = 'div-gpt-ad-1420536943346-2';
+//            break;
+//        case 3:
+//            divid = 'div-gpt-ad-1420536943346-3';
+//            break;
+//
+//    
+//    }
+//document.write("<div id='"+divid+"'><script>googletag.cmd.push(function() { googletag.display('"+divid+"'); });</script></div>");
+//
+//}
+function showFooterCode(){
+    /* Indiatimes/Indiatimes_Home/Indiatimes_Home_Home/IT_HP_OOP_Innov */
+    document.write("<div id='div-gpt-ad-1420536943346-4'><script type='text/javascript'>googletag.cmd.push(function() { googletag.display('div-gpt-ad-1420536943346-4'); });</script></div>");
+    /* Indiatimes/Indiatimes_Home/Indiatimes_Home_Home/IT_HP_OOP_Pop */
+    document.write("<div id='div-gpt-ad-1420536943346-6'><script type='text/javascript'>googletag.cmd.push(function() { googletag.display('div-gpt-ad-1420536943346-6'); });</script></div>");
+    /* Indiatimes/Indiatimes_Home/Indiatimes_Home_Home/IT_HP_OOP_Shosh */
+    document.write("<div id='div-gpt-ad-1420536943346-7'><script type='text/javascript'>googletag.cmd.push(function() { googletag.display('div-gpt-ad-1420536943346-7'); });</script></div>");
+}
+
+function showBigAD1(SlotId){
+    googletag.cmd.push(function() {
+        var mappingBig1 = googletag.sizeMapping().
+        addSize([1, 1],[728, 90]).
+        addSize([768, 200],[728, 90]).
+        addSize([1025, 200], [970, 90]).
+        addSize([1260, 200], [1024, 400]).
+        build();        
+        var slot = googletag.defineSlot('/7176/Indiatimes/Indiatimes_Home/Indiatimes_Home_Home/IT_HP_Big1', [[728, 90], [970, 90], [1024, 400]], SlotId).defineSizeMapping(mappingBig1).addService(googletag.pubads());
+        // Display has to be called before
+        // refresh and after the slot div is in the page.
+        googletag.display(SlotId);
+    //googletag.pubads().refresh([slot]);
+    });     
+    
+}
+
+function showBigAD2(SlotId){
+    googletag.cmd.push(function() {
+        var mappingBig2 = googletag.sizeMapping().
+        addSize([1, 1],[728, 90]).
+        addSize([768, 200],[728, 90]).
+        addSize([1025, 200], [970, 90]).
+        addSize([1260, 200], [1024, 400]).
+        build();        
+        //googletag.defineSlot('/7176/Indiatimes/Indiatimes_Home/Indiatimes_Home_Home/IT_HP_Big2', [[728, 90], [970, 90], [1024, 400]], 'div-gpt-ad-1420536943346-2').defineSizeMapping(mappingBig2).addService(googletag.pubads());
+        var slot = googletag.defineSlot('/7176/Indiatimes/Indiatimes_Home/Indiatimes_Home_Home/IT_HP_Big2', [[728, 90], [970, 90], [1024, 400]], SlotId).defineSizeMapping(mappingBig2).addService(googletag.pubads());
+        // Display has to be called before
+        // refresh and after the slot div is in the page.
+        googletag.display(SlotId);
+    //googletag.pubads().refresh([slot]);
+    });     
+    
+}
+function showBigAD3(SlotId){
+
+    googletag.cmd.push(function() {
+        var mappingBig3 = googletag.sizeMapping().
+        addSize([1, 1],[728, 90]).
+        addSize([768, 200],[728, 90]).
+        addSize([1025, 200], [970, 90]).
+        addSize([1260, 200], [1024, 400]).
+        build();        
+        //googletag.defineSlot('/7176/Indiatimes/Indiatimes_Home/Indiatimes_Home_Home/IT_HP_Big2', [[728, 90], [970, 90], [1024, 400]], 'div-gpt-ad-1420536943346-2').defineSizeMapping(mappingBig2).addService(googletag.pubads());
+        var slot = googletag.defineSlot('/7176/Indiatimes/Indiatimes_Home/Indiatimes_Home_Home/IT_HP_Big3', [[728, 90], [970, 90], [1024, 400]], SlotId).defineSizeMapping(mappingBig3).addService(googletag.pubads());
+        // Display has to be called before
+        // refresh and after the slot div is in the page.
+        googletag.display(SlotId);
+    //googletag.pubads().refresh([slot]);
+    });     
+    
+}
+
+function BADros(SlotId){
+    googletag.cmd.push(function() {
+        var mappingBad = googletag.sizeMapping().
+        addSize([1, 1],[728, 90]).
+        addSize([768, 200],[728, 90]).
+        addSize([1025, 200], [970, 90]).
+        addSize([1260, 200], [1024, 400]).
+        build();        
+        //googletag.defineSlot('/7176/Indiatimes/Indiatimes_Home/Indiatimes_Home_Home/IT_HP_Big2', [[728, 90], [970, 90], [1024, 400]], 'div-gpt-ad-1420536943346-2').defineSizeMapping(mappingBig2).addService(googletag.pubads());
+        var slot = googletag.defineSlot('/7176/Indiatimes/Indiatimes_Home/Indiatimes_Home_Home/IT_HP_Bad', [[728, 90], [970, 90], [1024, 400]], SlotId).defineSizeMapping(mappingBad).addService(googletag.pubads());
+        // Display has to be called before
+        // refresh and after the slot div is in the page.
+        googletag.display(SlotId);
+    //googletag.pubads().refresh([slot]);
+    });     
+    
+}
+
+//############################## Navive Ads ################################################
+
+var colombia = colombia || {};
+colombia.fns = colombia.fns || [];
+(function() {
+    var cads = document.createElement("script");
+    cads.async = true;
+    cads.type = "text/javascript";
+    cads.src = "http://static.columbia.timesinternet.in/ad/commons/js/colombia.js";
+    var node = document.getElementsByTagName("script")[0];
+    node.parentNode.insertBefore(cads, node);
+})();
+
+function showLhsNativeAd(divId,position){
+    var t1 = (new Date()).getTime();
+    colombia.fns.push(function()
+    {
+    // colombia.registerSlot(adunitid,divid,position,section,callback);
+    // IT_HP_LHS_CTN_NAT  ,position=1
+    colombia.registerSlot('129061',divId,position,0,lhswidget);
+    colombia.load();
+    //alert(position);
+    });
+    colombia.fns.push(function(){colombia.display(divId);});
+    
+    var t2 = (new Date()).getTime();
+    var responseTime = (t2 - t1);
+    //ga('send', 'event', 'category', 'action', 'label', value);
+    ga('send', 'event', 'LHS_HP_ResponseTime',responseTime+' ms',divId);
+    console.log(divId +' '+ (t2 - t1) + 'ms');
+
+}
+
+showLhsNativeAd('column1_1',1);
+showLhsNativeAd('column1_6',2);
+
+function showRhsNativeAd(divId,position){
+    var t1 = (new Date()).getTime();
+    colombia.fns.push(function()
+    {
+    // colombia.registerSlot(adunitid,divid,position,section,callback);
+    // IT_HP_LHS_CTN_NAT  ,position=1
+    colombia.registerSlot('129062',divId,position,0,rhswidget);
+    colombia.load();
+    });
+    colombia.fns.push(function(){colombia.display(divId);});
+
+    var t2 = (new Date()).getTime();
+    var responseTime = (t2 - t1);
+    //ga('send', 'event', 'RHS_HP_ResponseTime',responseTime+' ms',divId);
+    
+    console.log(divId +' '+ (t2 - t1) + 'ms');
+}
+showRhsNativeAd('column3_1',1);
+
+function lhswidget(data,container)
+{
+    console.log(container,data);
+    if(data==null){
+        ga('send', 'event', 'LHS_HP_Data', 'Fail', container);
+    }else{
+        ga('send', 'event', 'LHS_HP_Data', 'Success', container);
+    }
+    var mainImage = data. paidAds[0]. mainimage;
+    if(mainImage==null){
+        ga('send', 'event', 'LHS_HP_image', 'Fail', container);
+    }else{
+        ga('send', 'event', 'LHS_HP_image', 'Success', container);
+    }
+    
+    varTpl = '<figure><a target="_blank" title="'+data. paidAds[0].title+'" href='+data. paidAds[0].clk+'><img border="0" alt=""  src='+data. paidAds[0]. mainimage+' class="greyBg23" style="display: inline;"></a></figure><figcaption><a target="_blank" title="'+data. paidAds[0].title+'" href='+data. paidAds[0].clk+'>'+data. paidAds[0].title+'</a></figcaption><div class"clr"></div><div style="display:block;width: 100%;float: left;"><span style="color:#aaa; font-size:9px; display: inline-block; padding:0 2px;">Sponsored by '+data. paidAds[0].brandtext+'</span><span style="float:right; width:10px; height:10px; margin:0 5px 5px 0"><img src="'+data. paidAds[0].colombiaLogo+'" /></span></div>';
+    if(data!=null && 'column1_1'==container)
+    {
+        $('#column1_1').html(varTpl);
+    }
+    if(data!=null && 'column1_6'==container)
+    {
+        $('#column1_6').html(varTpl);
+    }
+    if(data!=null && 'column1_11'==container)
+    {
+        $('#column1_11').html(varTpl);
+    }
+    if(data!=null && 'column1_16'==container)
+    {
+        $('#column1_16').html(varTpl);
+    }
+    if(data!=null && 'column1_21'==container)
+    {
+        $('#column1_21').html(varTpl);
+    }
+    if(data!=null && 'column1_26'==container)
+    {
+        $('#column1_26').html(varTpl);
+    } 
+    if(data!=null && 'column1_31'==container)
+    {
+        $('#column1_31').html(varTpl);
+    }
+    if(data!=null && 'column1_36'==container)
+    {
+        $('#column1_36').html(varTpl);
+    }    
+    
+}
+
+			
+function rhswidget(data,container)
+{
+    console.log(container,data);
+    if(data==null){
+        ga('send', 'event', 'RHS_HP_Data', 'Fail', container);
+    }else{
+        ga('send', 'event', 'RHS_HP_Data', 'Success', container);
+    }
+    var mainImage = data. paidAds[0]. mainimage;
+    if(mainImage==null){
+        ga('send', 'event', 'RHS_HP_image', 'Fail', container);
+    }else{
+        ga('send', 'event', 'RHS_HP_image', 'Success', container);
+    }
+    varTpl = '<figure><a target="_blank" title="'+data. paidAds[0].title+'" class="tint" href='+data. paidAds[0].clk+'><img border="0" alt=""  src='+data. paidAds[0]. extraImages+' class="greyBg23" style="display: inline;"></a></figure><figcaption><a target="_blank" title="" href='+data. paidAds[0].clk+'>'+data. paidAds[0].title+'</a><div class"clr"></div><span style="color:#aaa; font-size:9px; display: inline-block; padding:3px 6px;">Sponsored by '+data. paidAds[0].brandtext+'</span><span style="float:right; width:10px;height:10px; margin:0 5px 5px 0"><img src="'+data. paidAds[0].colombiaLogo+'" /></span></figcaption>';    
+    if(data!=null && 'column3_1'==container)
+    {
+        $('#column3_1').html(varTpl);
+    }
+    if(data!=null && 'column3_6'==container)
+    {
+        $('#column3_6').html(varTpl);
+    }                            
+    if(data!=null && 'column3_11'==container)
+    {
+        $('#column3_11').html(varTpl);
+    }  
+    if(data!=null && 'column3_16'==container)
+    {
+        $('#column3_16').html(varTpl);
+    }                             
+}

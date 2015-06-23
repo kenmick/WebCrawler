@@ -1,0 +1,164 @@
+var bShowAdvancedSearch = true;
+var auto = function( iClass ) {
+	var cacheArray = new Array();
+	var suggestItemClass = '';
+	$rt.hooks.addIfNotExists('showAdvancedSearch', 'messageLoad', function(data) {
+		if (data.hash === 'conversation' || data.hash == 'list' || data.hash == 'message') {
+			bShowAdvancedSearch = false;
+			hideAdvancedSearch();
+		} else {
+			bShowAdvancedSearch = true;
+		}
+
+		var requestTerm = $('#searchField').val();
+		cacheArray[requestTerm] = null;
+		if (requestTerm != lang.get('Search')) {
+			$("#searchField").autocomplete('search', requestTerm);
+		}
+	});
+
+	$("#searchField").autocomplete({
+		minLength: 0,
+		source: function( request, response ) {
+			var limit = 10;
+			var alphaNumRegex		= /[^'"~`\!@#\$%\^&\*\(\)_\-\+\=\\\/\\\|ââ¬Â§,\. \{\}]{1,}/g;
+			var requestTerm			= jQuery.trim(request.term);
+			//if search string doesn't include at least one aplha-numeric char...
+			//show default "Advanced search"
+			if(!alphaNumRegex.test(requestTerm) && bShowAdvancedSearch) {
+				response([{"id":"9999","label":"advanced_search","value":""}]);	
+				return;
+			}
+			//check for cached item
+			if(cacheArray[requestTerm]) {
+				response(cacheArray[requestTerm]);
+				return;
+			}
+			
+			if ( ( typeof iVideoID !== 'undefined' ) && ( iVideoID > 0 ) )
+				limit = 3;
+
+			$rt.ajax({
+				id:			"searchsuggest",
+				url:		"/searchsuggest?class="+ iClass +"&limit="+ limit,
+				parameters:	{term: requestTerm},
+				success:	function( data ) {
+					var resultSet = jQuery.map( data.suggestions, function( item ) {
+						if (item.label == 'advanced_search' && !bShowAdvancedSearch) {
+							return;
+						} else {
+							return  {
+								id:		item.id,
+								label:	request.term.length > 0 ? __highlight( item.label, requestTerm ) : item.label,
+								value:	item.value,
+								type:	item.type,
+								videos:	item.videos,
+								link:	item.link
+							};
+						}
+					});
+					if(!cacheArray[requestTerm]) {
+						cacheArray[requestTerm] = resultSet;
+					}
+					response(resultSet);
+				}
+			});
+		},
+		open: function ( event, ui ) {
+			$( ".ui-autocomplete .aSearchLink a" ).unbind( "mouseover" );
+			$( ".ui-autocomplete .aSearchLink a" ).unbind( "mouseout" );
+		},
+		select: function ( event, ui ) {
+			if (ui.item.label == 'advanced_search') {
+				openAdvancedSearchWindow();
+				return;
+			}
+
+			trackByCookie(sSuggestionTrackKey);
+			$( "#searchField" ).val( ui.item.value );
+			$( "form[name=searchform]" ).submit();
+		}
+	}).data( "ui-autocomplete" )._renderItem = function( ul, item ) {
+		$(ul).addClass("search-autocomplete-list");
+		
+		if (item.label == 'advanced_search') {
+			return $( '<li></li>' ).data( "item.autocomplete", item )
+			.addClass('aSearchLink')
+			.append( $( '<a></a>' ).html( lang.get('AdvancedSearch') ).click(function() {openAdvancedSearchWindow();return false;} ) )
+			.appendTo( ul );
+		}
+
+		if (suggestItemClass != item.type) {
+			suggestItemClass = item.type;
+			var cssClass = 'suggest-type-'+item.type+' first-in-the-group';
+		} else {
+			var cssClass = 'suggest-type-'+item.type;
+		}
+
+		var sVideoCount = '';
+
+		if (item.videos > 0) {
+			sVideoCount = ' - ' + item.videos;
+		}
+
+		return $( "<li></li>").addClass(cssClass).data( "item.autocomplete", item )
+			.append( '<a'+(item.link ? ' href="'+item.link+'"' : '')+'>'+ item.label +'<span class="autocomplete-videos-number">' + sVideoCount + (sVideoCount != '' ? ' '+lang.get('suggestions.videos') : '') + '</span><span class="autocomplete-type">'+item.type+'</span></a>')
+			.appendTo( ul );
+	};
+
+	$("#searchField").on('focus click', function() {
+		if (this.value == '')
+			$( "#searchField" ).autocomplete('search', '');
+		else
+			$( "#searchField" ).autocomplete('search');
+	});
+};
+
+function __highlight(str, term) {
+	if ( str == "advanced_search" )
+		return str;
+
+	var matcher = new RegExp( "("+ jQuery.ui.autocomplete.escapeRegex( term ) +")", "ig" );
+	return str.replace( matcher, "<b>$1</b>" );
+}
+
+$(document).ready(function(){
+	// @note: don't load autocomplete functionality on IE7 + WinXP - somehow it crashes the browser
+	// Somehow php browser detection functionality does not detect correctly selected compatibility modes in IE
+	if(navigator.appVersion.indexOf("MSIE 7.") != -1) {
+		var auto = function(iClass) {};
+		var oSearchField = document.getElementById('searchField');
+		var sSearchFieldId = 'ie7-advanced-search';
+
+		$('body').addClass(sSearchFieldId);
+		
+		if (!oSearchField) return;
+
+		oSearchField.onfocus = function(){
+			// Hint
+			if (this.value == lang.get('Search'))
+				this.value = '';
+
+			if (bShowAdvancedSearch) {
+				$('#contentHolder').append('<a href="javascript:;" id="'+sSearchFieldId+'">' + lang.get('AdvancedSearch') + '</a>');
+
+				$('#' + sSearchFieldId).click(function(){
+					openAdvancedSearchWindow();
+					return false;
+				});
+			}
+		};
+
+		oSearchField.onblur = function(){
+			// Hint
+			if (this.value == '')
+				this.value = lang.get('Search');
+
+			if (bShowAdvancedSearch) {
+				setTimeout(function(){$('#'+sSearchFieldId).remove();}, 150);
+			}
+
+		};
+	}
+});
+
