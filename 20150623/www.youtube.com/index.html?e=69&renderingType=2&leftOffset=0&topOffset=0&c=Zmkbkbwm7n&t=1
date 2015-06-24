@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Expanding Masthead 970x250 &gt; 970x500 + YouTube Video Player</title>
+
+    <!-- CSS -->
+     <link rel="stylesheet" href="css/main.css">
+    
+    <!-- Enabler should always come first. -->
+    <script src="/879366/Enabler_01_69.js"></script>
+    
+    <!-- JS -->
+    <script src="js/lib/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="https://www.youtube.com/player_api"></script>
+    <script src="js/common/pow.js"></script>
+    <script src="js/common/masthead.js"></script>
+    <script src="js/common/video.js"></script>
+    <script src="js/batman_ak.js"></script>
+
+    
+
+    <!-- Polymer should come before custom elements, like the close button. -->
+    <script src="https://www.gstatic.com/external_hosted/polymer/custom.elements.min.js"></script>
+
+    <!-- YouTube close button -->
+    <script src="https://www.gstatic.com/ads/ci/ytclosebutton/1/ytclosebutton_min.js"></script>
+    
+  </head>
+
+  <body>
+    <div id="main-panel">
+      <div id="collapsed-panel" class="loading init">  
+          <div id="ctaExpand" class="transition-cta-expand">
+              <div class="ctaExpand-inner"></div>
+              <!--<div class="ctaExpand_glow"></div>
+              <div class="ctaExpand_arrow_left"></div>
+              <div class="ctaExpand_arrow_right"></div>-->
+          </div>
+        <!-- Add collapsed content here. -->
+        <div id="collapsed-loader-panel" class="loader-panel expand-handler">
+            <div class="logo loader-logo"></div>
+            <div class="loading-puces">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div class="active"></div>
+            </div>
+        </div>
+        <div id="ytTVC" class="transition-short"></div>
+        <div id="ctaOrder" class="bt-red"><div class="ctaOrder-inner bt-inner"></div></div>
+        <div id="collapse-ps4-mini-wave" class="expand-handler"></div>
+        <div id="collapse-ps4-pack" class="bg-handler"></div>
+        <div id="logo-collapse" class="logo transition-shorter expand-handler"></div>
+        <div id="collapse-legals" class="expand-handler"></div>
+        <div id="batman-collapsed" class="transition-short expand-handler">
+            <div class="batman-top"></div>
+            <div class="batman-bottom"></div>
+        </div>
+        <div id="ak-collapsed" class="transition-short expand-handler">
+            <div class="ak-top"></div>
+            <div class="ak-bottom"></div>
+        </div>
+      </div>
+      <div id="expanded-panel">
+          <div id="ctaClose"><img width="25" height="25" alt="Close Ad" src="https://www.gstatic.com/ads/ci/ytclosebutton/1/close_black.png"> <span class="ctaClose_text">Fermer l&#39;expand</span></div>
+        
+        <!-- Add expanded content here. -->
+        <div id="fadeOverlay"></div>
+        
+        <div id="expanded-loader-panel" class="loader-panel bg-handler">
+            <div class="loader-glow"></div>
+            <div class="logo loader-logo"></div>
+            <div class="loading-puces">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div class="active"></div>
+            </div>
+        </div>
+        
+        
+        
+        <!-- Add Video Phase content here. -->
+        <div class="video-step-panel init">
+            <div id="logo-expand" class="logo transition-shorter bg-handler"></div>
+            <div id="expand-ps4-mini-wave" class="bg-handler"></div>
+            <div id="expand-legals" class="bg-handler"></div>
+            <div id="batman-video" class="transition-short bg-handler"></div>
+            <div id="ak-video" class="transition-short bg-handler"></div>
+            <div id="video-copyright" class="bg-handler"></div>
+            
+
+            <div class="background-video-wrapper">
+                <div id="video-action">
+                    <div id="video-action-cta"><div class="video-action-cta-inner transition-shorter"></div></div>
+                </div>
+                <video id="background-video" class="background-video" muted="muted"></video>
+                <div class="background-video-controls">
+                    <div id="bt-play" class="bt-grey"><div class="bt-play-inner bt-inner"></div></div>
+                    <div id="bt-mute" class="bt-grey"><div class="bt-mute-inner bt-inner"></div></div>
+                    <div id="bt-videos" class="bt-grey"><div class="bt-videos-inner bt-inner"></div></div>
+                    <div id="progress-bar-fill"></div>
+                    <div class="progress-bar-bg"></div>
+                </div>
+            </div>
+        </div>
+        <!-- Add Endshot content here. -->
+        <div class="endshot-panel init">
+            <div class="bg-endshot transition-long bg-handler"></div>
+            <div id="bethebatman" class="bg-handler"></div>
+            <div id="endshot-logo" class="bg-handler"></div>
+            <div id="endshot-batman-ak" class="transition-long bg-handler"></div>
+            <!--<div id="endshot-batman" class="bg-handler" ></div>
+            <div id="endshot-ak" class="bg-handler" ></div>-->
+            <div id="endshot-legals" class="bg-handler"></div>
+            <div id="endshot-copyright" class="bg-handler"></div>
+            <div id="endshot-soyerlebatman" class="bg-handler">*Incarnez Batman</div>
+            <div id="endshot-bottom-gradient" class="bg-handler"></div>
+            <div id="ps4-wave" class="bg-handler"></div>
+            <div id="endshot-ps4-pack" class="bg-handler"></div>
+            
+            <div class="endshot-video-panel">
+                <div id="bt-prevVideo">
+                    <div class="video-arrow"></div>
+                    <div class="bt-glow"></div>    
+                </div>
+                <div id="ytEndshot"></div>
+                <div id="bt-nextVideo">
+                    <div class="video-arrow"></div>
+                    <div class="bt-glow"></div>        
+                </div>
+                <div id="bt-endshot-more-videos" class="bt-red"><div class="bt-inner"><div class="bt-puce"></div></div></div>
+                <div id="bt-endshot-order" class="bt-red"><div class="bt-inner"><div class="bt-puce"></div></div></div>
+            </div>
+        </div>
+      </div>
+      <ci-ytclosebutton lang="fr" theme="black" shadow="true" id="ytClose" />
+    </div>
+      
+    <img id="conversion_img" height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/969262036/?value=1.00&amp;currency_code=EUR&amp;label=kIiwCNXy8lwQ1IeXzgM&amp;guid=ON&amp;script=0" />
+
+  </body>
+</html>
+
+
+
+ 
