@@ -1,0 +1,2 @@
+document.writeln("<p>Copyright Â© 2000 - 2015 XINHUANET.comãAll Rights Reserved.</p>");
+document.writeln("<p>å¶ä½åä½ï¼æ°åç½è¡ä»½æéå¬å¸ããçæææ æ°åç½è¡ä»½æéå¬å¸</p>");
