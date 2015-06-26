@@ -8,6 +8,14 @@ fs.makeTree(cname);
 
 page.captureContent = [ /.*/ ];
 
+page.settings.resourceTimeout = 5000; // 5 seconds
+page.onResourceTimeout = function(e) {
+  console.log(e.errorCode);   // it'll probably be 408 
+  console.log(e.errorString); // it'll probably be 'Network timeout on resource'
+  console.log(e.url);         // the url whose request timed out
+  slimer.exit(1);
+};
+
 page.onResourceReceived = function(response) {
     //console.log('Response (#' + response.id + ', stage "' + response.stage + '"): ' + JSON.stringify(response));
 	if (response.stage!="end" || !response.bodySize) return;
@@ -37,5 +45,5 @@ page.onResourceRequested = function(requestData, networkRequest) {
 page.open(url,function(){
 	window.setTimeout(function () {
 		slimer.exit(1);
-	}, 5000);
+	}, 30000);
 });
