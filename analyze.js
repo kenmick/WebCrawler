@@ -11,6 +11,7 @@ var libs = JSON.parse(fs.readFileSync('libsHash.txt', 'utf-8'));
 // traverse whole directory to get name of each folder
 for (var i = 0; i < dir.length; i++) {
 	var folder = fs.readdirSync('./test/'+dir[i]);
+	console.log(dir[i]);
 	// traverse folder to get name of each file
 	for (var j = 0; j < folder.length; j++) {
 

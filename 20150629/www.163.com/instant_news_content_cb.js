@@ -1,0 +1,1 @@
+instantNewsContent('<iframe width=\"300\" height=\"210\" frameborder=\"0\" scrolling=\"no\" src=\"http://temp.163.com/special/hot_pop_content/\"></iframe>');

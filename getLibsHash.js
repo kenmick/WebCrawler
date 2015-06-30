@@ -22,16 +22,3 @@ for (var i = 1; i < dir.length; i++) {
 
 };
 fs.writeFileSync('libsHash.txt', '}', {flag: 'a'});
-
-// var str1 = fs.readFileSync('./jQuery/jquery-1.2.1.min.js', 'utf-8');
-// var str2 = fs.readFileSync('./jQuery/jquery-1.2.min.js', 'utf-8');
-
-
-
-
-
-
-
-// console.log('========');
-// console.log(distance);
-// console.log(similarity(str1, str2));

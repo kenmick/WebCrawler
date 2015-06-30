@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>æµè§å¨å¤é_æä»¶IFRAME</title>
+	</head>
+	<body onload="load();">
+		<h1>æµè§å¨å¤é_æä»¶IFRAME</h1>
+		<object id="plugin0" type="application/x-signassist" width="300" height="300">
+			<param name="onload" value="pluginLoaded" />
+		</object>
+		<!-- <script type="text/javascript" src="js/getPlugin.js"></script> -->
+		<script type="text/javascript">
+			var Json = {
+				/**
+				 * å°Jsonè½¬æ¢æä¸ºjavascriptçä¸ä¸ªå¯¹è±¡ï¼å¹¶è¿å
+				 * @param {String} str Jsonæ ¼å¼çä¸ä¸ªå­ç¬¦ä¸²
+				 * @return {Object} è§£æçæçå¯¹è±¡
+				 */
+				eval:function(str){
+					return eval('('+str+')');
+				},
+				/**
+				 * å°ä¸ä¸ªå¯¹è±¡åºååæä¸ä¸ª Jsonä¸²
+				 * @param {Object} x javascriptä¸­é¤äºFunctionå¤ææçåºæ¬ç±»åé½å¯ä»¥ï¼ä¸è¿è¿éæå¤çè¿æ¯objectåarray
+				 */
+				flatten:function (x) {
+					var self = Json;
+					if(x == null) return null;
+					else if (x.constructor.toString() == String) return self.str2json(x);
+					else if (x.constructor.toString() == Array) return self.arr2json(x);
+					else if (x.constructor.toString() == Object) return self.obj2json(x);
+					else if (x.constructor.toString() == Boolean) return self.bool2json(x);
+					else if (x.constructor.toString() == Number) return self.num2json(x);
+					else if (x.constructor.toString() == Date) return self.date2json(x);
+					else return null;
+				},
+				arr2json:function (x) {
+					var self = Json;
+					var p = [];
+					var l = x.length;
+					var t;
+					for (var i = 0; i < l; ++i) {
+						t = self.flatten(x[i]);
+						if (t) p.push(t);
+					}
+					return '[' + p.join(',') + ']';
+				},
+				obj2json : function (x) {
+					var self = Json;
+					var p = [];
+					var t;
+					for (var i in x) {
+						t = self.flatten(x[i]);
+						if (t) p.push(self.flatten(i) + ':' + t);
+					}
+					return '{' + p.join(',') + '}';
+				},
+				date2json:function (x) {
+						function f(n) {return n < 10 ? '0' + n : n;};
+						return '"' + x.getFullYear() + '-' +
+							f(x.getMonth() + 1) + '-' +
+							f(x.getDate()) + 'T' +
+							f(x.getHours()) + ':' +
+							f(x.getMinutes()) + ':' +
+							f(x.getSeconds()) + '"';
+				},
+				num2json:function (x) {
+					return x ? String(x) : "0";
+				},
+				bool2json:function (x) {
+					return String(x);
+				},
+				str2json: function(x){
+					var m = {
+						'\b': '\\b',
+						'\t': '\\t',
+						'\n': '\\n',
+						'\f': '\\f',
+						'\r': '\\r',
+						'"': '\\"',
+						'\\': '\\\\'
+					};
+					if (/["\\\x00-\x1f]/.test(x)) {
+						return '"' +
+						x.replace(/([\x00-\x1f\\"])/g, function(a, b){
+							var c = m[b];
+							if (c) 
+								return c;
+							c = b.charCodeAt();
+							return '\\u00' + Math.floor(c / 16).toString(16) + (c % 16).toString(16);
+						}) +
+						'"';
+					}
+					return '"' + x + '"';
+				}
+			};
+			
+			//console.log(location);
+			var time = new Date();
+			var obj = {};
+			var plugin;
+			var canPostMessage = !isIE() || (isIE() && (isIE() > 8));
+			
+			if (!canPostMessage){
+				window.JSON = {};
+				JSON.stringify = function(obj){
+					var str = Json.flatten(obj);
+					return str;
+				};
+				JSON.parse = function(str){
+					if (str.constructor.toString() != String){return str;}
+					var o = window.eval("(" + str + ")");
+					return o;
+				};
+			}
+			
+			function pluginLoaded(){
+				// console.log("pluginLoaded");
+				plugin = document.getElementById('plugin0');
+			};
+			
+			function load(){
+				plugin = document.getElementById('plugin0');
+				if (!canPostMessage){// ä¸è½ä½¿ç¨postæ¹æ³ï¼æ°å»ºä¸ä¸ªä»£çé¡µé¢
+					// var src = decodeURIComponent(location.search)
+					var params = location.search.replace("?","").split("&");
+					obj.data = {};
+					for(var i=0; i<params.length; i++){
+						var arr = params[i].split("=");
+						obj.data[arr[0]] = arr[1];
+					}
+				}
+				if (typeof plugin['requestUserInfos'] == "undefined"){
+					postMessage(JSON.stringify({
+						code: "-3",
+						msg: "getinfo_error"
+					}));
+					return;
+				}
+				if (canPostMessage){
+					addEvent(window, "message", onMessage);
+				}else{
+					onMessage(obj);
+				}
+				addEvent(plugin, "requestuserinfos", onRequestUserInfo);
+				addEvent(plugin, "requestticket", onRequestTicket);
+			}
+			
+			function onRequestUserInfo(data){
+				// console.log("request:",data);
+				var arr = [], result, code = "-1", len;
+				len = data && data.length;
+				if (len !== 0){
+					for (var i=0; i<data.length; i++){
+						arr.push({
+							uid: data[i].uid,
+							avator: data[i].avator,
+							name: data[i].name,
+							avator_small: data[i].avator_small,
+							avator_middle: data[i].avator_middle
+						});
+					}
+					code = "0"; // è¿åæ°æ®æå
+				}
+				result = {
+					code: code,
+					msg: "getuserinfo_ready",
+					type: "userinfo",
+					data: arr
+				};
+				result = JSON.stringify(result);
+				postMessage(result);
+			};
+			
+			function onRequestTicket(ticket){
+				//console.log("ticket:"+ticket)
+				var ticket = JSON.parse(ticket),
+						result, code = "-1";
+				if (ticket){
+					code = "0";	// è¿åæ°æ®æå
+				}
+				result = {
+					code: code,
+					msg: "getuserticket_ready",
+					type: "userticket",
+					data: ticket
+				};	
+				result = JSON.stringify(result);
+				postMessage(result);
+			};
+			
+			function onMessage(ev){
+				// console.log(ev.data.type);
+				//if (ev.origin != "http://demolei.sinaapp.com"){
+				//	return;
+				//}
+				try{
+					plugin = document.getElementById("plugin0");
+					var data = JSON.parse(ev.data);
+					var type = data.type;
+					if (type == "userinfo"){
+						plugin.requestUserInfos();
+					}else if (type == "userticket"){
+						var uid = data.uid;
+						plugin.requestTicket(uid);
+					}				
+				}catch(e){};
+			};
+
+			function postMessage(result){
+				if (canPostMessage){
+					parent.postMessage(result, "*");
+				}else{				
+					result = {
+						data: encodeURIComponent(result),
+						callback: obj['data']['callback']
+					}
+					// console.log('postMessage:',result);
+					var form = document.createElement("form");
+					var id = "form_"+new Date().getTime();
+					form.id = id;
+					form.style.display = "none";
+					form.method = "post";
+					form.action = obj['data']['proxy'];
+					for (var index in result){
+						name = index;
+						value = result[index];
+						form.innerHTML += '<input type="hidden" name="'+name+'" value='+ value +'>';
+						// form.innerHTML += '<input type="hidden" name="data" value='+ result +'>';
+					}
+					// console.log(form.innerHTML);
+					document.body.appendChild(form);
+					form.submit();
+				}
+			};
+			
+			function addEvent(obj, name, func){
+				if (obj.attachEvent) {
+					obj.attachEvent("on"+name, func);
+				} else {
+					obj.addEventListener(name, func, false); 
+				}
+			};
+			
+			function isIE(){
+				var ua = navigator.userAgent.toLowerCase();
+				if (/msie/.test(ua)){
+					var uaVersionArray = ua.match(/msie (\d+)/);
+					var version = parseInt(uaVersionArray[1]);
+					return version;
+				}else{
+					return false;
+				}
+			};
+			
+		</script>
+	</body>
+</html>

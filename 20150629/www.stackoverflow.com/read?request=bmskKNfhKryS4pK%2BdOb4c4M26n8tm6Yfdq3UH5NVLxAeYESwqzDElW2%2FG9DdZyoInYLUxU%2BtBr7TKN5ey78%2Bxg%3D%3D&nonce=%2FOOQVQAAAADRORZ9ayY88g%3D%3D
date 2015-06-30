@@ -1,0 +1,22 @@
+<html><head>
+                  <script>
+                  var data = {"ReadSession":"https://stackauth.com/auth/global/read-session","Request":"bmskKNfhKryS4pK+dOb4c4M26n8tm6Yfdq3UH5NVLxAeYESwqzDElW2/G9DdZyoInYLUxU+tBr7TKN5ey78+xg==","Nonce":"/OOQVQAAAADRORZ9ayY88g==","Referrer":"http://stackoverflow.com/","StorageName":"GlobalLogin"};
+
+                  var toMsg = window.parent;
+
+                  var obj = localStorage ? localStorage.getItem(data.StorageName) : null;
+                  if(obj != null) {
+                  var req = new XMLHttpRequest();
+                  req.open('POST', data.ReadSession+'?request='+encodeURIComponent(data.Request)+'&nonce='+encodeURIComponent(data.Nonce)+'&seriesAndToken='+encodeURIComponent(obj), false);
+                  req.send(null);
+                  
+                    if(req.status == 200){
+                      toMsg.postMessage(req.responseText, data.Referrer);
+                    }else{
+                      toMsg.postMessage('No Session', data.Referrer);
+                    }
+                  }else{
+                    toMsg.postMessage('No Local Storage', data.Referrer);
+                  }
+                  </script>
+                  </head><body></body></html>
