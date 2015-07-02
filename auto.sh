@@ -40,6 +40,6 @@ myDate=$(date +%Y%m%d)
 #move all the directories 
 mkdir $myDate
 
-i=`ls -d */`
+i=`find . -maxdepth 1 -type d -name "www.*" -print`
 
 mv $i $myDate

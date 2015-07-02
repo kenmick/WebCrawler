@@ -3,7 +3,9 @@ var page = require('webpage').create();
 
 //read top100 urls 
 var url = phantom.args[0];
+console.log(url);
 var cname = url.split("//")[1].split("/")[3];
+// var cname = url.split("//")[0];
 fs.makeTree(cname);
 
 page.captureContent = [ /.*/ ];
@@ -11,7 +13,7 @@ page.captureContent = [ /.*/ ];
 page.onResourceReceived = function(response) {
     //console.log('Response (#' + response.id + ', stage "' + response.stage + '"): ' + JSON.stringify(response));
 	if (response.stage!="end" || !response.bodySize) return;
-	if (response.contentType.indexOf("javascript") != -1 || response.contentType.indexOf("css") != -1 || response.contentType.indexOf("json") != -1 || response.contentType.indexOf("html") != -1){
+	if (response.contentType.indexOf("javascript") != -1 || response.contentType.indexOf("css") != -1 ){
 		// var matches = response.url.match(/[/]([^/]+)$/);
 		// var fname = "contents/"+matches[1];
             

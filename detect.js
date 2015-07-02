@@ -1045,10 +1045,10 @@ page.open(url,function(){
         for(var i in libs) {
             var versionObject = page.evaluate(libs[i].test);
             if (versionObject != false){
-                var str = i+': '+versionObject.version+'\n';
+                var str = i+'-'+versionObject.version+'|Runtime\n';
                 fs.write(lname, str, 'a');
             }
-         console.log(i+': '+versionObject.version);
+         console.log(i+'-'+versionObject.version);
         }
 
 		slimer.exit(1);
