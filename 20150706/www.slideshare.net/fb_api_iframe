@@ -1,0 +1,42 @@
+<!DOCTYPE>
+<html>
+<head>
+    <script>
+      // Slideshare object
+      var slideshare_object = {
+        user: {"loggedin":false,"name":null,"is_pro":"false","show_li_connect_cta":false,"userGroup":"non-member","is_li_connected":false,"id":null,"has_fb_access_token":false,"has_uploads":null,"login":"guest","opengraph_permissions":{},"li_tracking_url":"https://www.linkedin.com/li/track","su":false,"is_opengraph_user":false,"is_fbuser":null,"fb_userid":null,"has_privacy_enabled":null},
+        timer: { start: (new Date()).getTime(), end: '', execTime: '' },
+        dev: false,
+        fb_app_name: 'slideshare',
+        fb_permissions: 'email,user_friends',
+        fb_sdk_url: '//connect.facebook.net/en_US/sdk.js',
+        fb_init_params : {
+          appId : '2490221586',
+          version : 'v2.3',
+          oauth : true,
+          channelUrl : '//public.slidesharecdn.com/b/channel.html',
+          status : true, // check login status
+          cookie : true, // enable cookies to allow the server to access th e session
+          xfbml : true // parse XFBML
+        },
+        init: [],
+        feature_flag: [],
+        is_mobile: '',
+        deploy_environment: 'production',
+        fb_api_iframe: true,
+        is_ssl: true
+      };
+
+    </script>
+</head>
+<body>
+  <input id="target_url" name="target_url" type="hidden" value="http://www.slideshare.net/" />
+  <input id="target_url_without_path" name="target_url_without_path" type="hidden" />
+  <script src="https://public.slidesharecdn.com/b/ss_foundation/combined_fb_api_iframe.js?cffc055690" type="text/javascript"></script>
+
+  <script type="text/javascript">
+    slideshare_object.loadGA();
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,59 @@
+var adloox_impression=1;
+						try{
+							document.getElementById("ads_visibility_aod29784386327").alt="fw";
+						}
+						catch(err) {}
+					
+					
+							try{
+                                if( typeof adFPix !== "undefined" ){
+                                    adFPix.set_fw();
+                                }else{
+                                    adl_F_Visi_aod2.set_fw();
+                                }
+							}catch(err){
+							   try{
+								  adl_J_Visi_aod2.set_fw();
+							   }catch(err){ }
+							}
+							var adloox_found=false;
+							timeoutFW= window.setTimeout(set_fw,100);
+							timeoutFW= window.setTimeout(set_fw,300);
+							timeoutFW= window.setTimeout(set_fw,500);
+							timeoutFW= window.setTimeout(set_fw,800);
+							timeoutFW= window.setTimeout(set_fw,1000);
+							timeoutFW= window.setTimeout(set_fw,3000);
+
+							function set_fw(){
+							
+														document.write('<style type="text/css">.simple_overlay {display:none;z-index:1000000000;background-color:#000;width:7000px;height:7000px;border:1px solid #666;position:absolute;top:0px;left : 0px;}</style>');
+
+														document.write('<div style="simple_overlay" class="simple_overlay" id="simple_overlay">&nbsp;</div>');
+														document.getElementsByTagName("body" )[0].innerHTML='';
+														document.getElementsByTagName("head" )[0].innerHTML='';
+														function overlay()
+														{
+														try{
+														document.getElementById('simple_overlay').style.display='inline';
+														}
+														catch(err)
+														{
+														var firii = document.createElement('div');	
+														firii.id ='simple_overlay';
+														firii.style='display:none;z-index:2147483647;background-color:#000;width:7000px;height:7000px;border:1px solid #666;position:absolute;top:0px;left : 0px;';				
+														document.body.appendChild(firii);
+
+														for ( var b=0; b<document.body.children.length; b++ )
+														{
+														var id_enfant=document.body.children[b].id;
+														document.getElementById(id_enfant).style='display:none;z-index:2147483647;background-color:#000;width:7000px;height:7000px;border:1px solid #666;position:absolute;top:0px;left : 0px;';				
+														document.getElementById(id_enfant).src='';
+														}
+														}
+														}
+
+
+												overlay();
+												
+													}
+													

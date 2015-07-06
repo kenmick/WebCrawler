@@ -1,0 +1,127 @@
+ï»¿/*
+Copyright (c) 2014, comScore Inc. All rights reserved.
+version: 5.0.3
+*/
+COMSCORE.SiteRecruit.Builder.config = {
+	version: "5.0.3",
+
+	// invitations' settings
+	invitation: [
+		{
+			methodology: 2,
+			projectId: 'p151121257',
+			weight: 25,
+			isRapidCookie: false,
+			acceptUrl: 'https://survey2.securestudies.com/wix/p151121257.aspx',
+			secureUrl: 'https://survey2.securestudies.com/wix/p151121257.aspx',
+			acceptParams: {
+				raw: 'hsite=1255',
+				siteCode: '1255',
+				cookie: [],
+				otherVariables: []
+			},
+			viewUrl: 'http://b.scorecardresearch.com/b',
+			viewParams: 'log=comscore/view/p151121257-view.log',
+			content: '<table width="360" cellpadding="2" cellspacing="0" border="0" style="background:#FFFFFF; margin:0; display:table; border: 1px solid #CCCCCC;"><tr valign="top"> 	<td style="border:none; padding:2; margin:0" > 		<img src="logo-stripe.gif" style="display:inline; margin-top:1px;"></td> 	<td style="border:none; padding:0; margin:0; text-align:right;" > 		<img border="0" onclick="@declineHandler" src="close.gif" style="display:inline; cursor:pointer;" /> 	</td></tr> 	<tr valign="top"> 	<td style="border:none; padding:0; margin:0" colspan="2"> 		<img src="top-stripe.gif" style="display:inline" /> 		<table width="360" cellpadding="5" style="margin:0; display:table"><tr><td style="width:340px;padding:6px;"> 			<div style="font-family: Verdana, Arial, Helvetica, sans-serif;	font-size: 11px; color: #000000; margin: 0 0 15px 0; line-height:14px;">Microsoft is conducting an online survey to understand your opinions of the Microsoft.com Home Page. If you choose to participate, the online survey will be presented to you when you leave the Microsoft.com Home Page.  <br /><br /> Would you like to participate? </div> 			<div align="center" style="margin: 0; padding: 0"> 				<input style="margin:0; padding:0; cursor:pointer;" type="button" value="  Yes  " onclick="@acceptHandler" />&nbsp;&nbsp; 				<input style="margin:0; padding:0; cursor:pointer;"  type="button" value=" No " onclick="@declineHandler" /> 			</div> 			<div style="font-family: Verdana, Arial, Helvetica, sans-serif;	font-size: 11px; color: #000000; margin: 15px 0 2px 0;"><a href="http://privacy.microsoft.com/en-us/default.mspx" target="_blank">Privacy Statement</a></div> 		</td></tr></table> 	</td></tr> 	<tr> <td style="border:none; padding:0; margin:0" colspan="2"> 		<img src="bottom-stripe.gif" style="display:inline" /> 	</td></tr> </table>  ',
+			height: 210,
+			width: 390,
+			revealDelay: 1000,
+			horizontalAlignment: 1,
+			verticalAlignment: 1,
+			horizontalMargin: 80,
+			verticalMargin: 200,
+			isHideBlockingElements: false,
+			isAutoCentering: true,
+			url: 'SiteRecruit_Tracker.htm',
+			trackerGracePeriod: 5
+			,usesSilverlight: false
+			//silverlight config
+			,trackerWindow: {
+				width: 400,
+				height: 270,
+				orientation: 1,
+				offsetX: 0,
+				offsetY: 0,
+				hideToolBars: true,
+				trackerPageConfigUrl: 'trackerConfig_p151121257.js'
+				// future feature: 
+				//features: "location=0,menubar=0,resizable=1,scrollbars=1,toolbar=0"
+			},
+			
+			Events: {
+				beforeRender: function() {
+														document.onkeyup = function(evt) {
+    evt = evt || window.event;
+    if (evt.keyCode == 27) {
+        COMSCORE.SiteRecruit.Builder.invitation.decline(this);
+    }
+};					
+					},
+				beforeDestroy: function() {},
+				beforeAccept: function() {},
+				beforeDecline: function() {},
+				beforeRenderUpdate: function() {},
+				afterRender: function() {}
+			}
+		},
+		{
+			methodology: 2,
+			projectId: 'p246609455',
+			weight: 75,
+			isRapidCookie: false,
+			acceptUrl: 'https://survey2.securestudies.com/wix/p246609455.aspx',
+			secureUrl: 'https://survey2.securestudies.com/wix/p246609455.aspx',
+			acceptParams: {
+				raw: 'hsite=1255',
+				siteCode: '1255',
+				cookie: [],
+				otherVariables: []
+			},
+			viewUrl: 'http://b.scorecardresearch.com/b',
+			viewParams: '',
+			content: '<table width="360" cellpadding="2" cellspacing="0" border="0" style="background:#FFFFFF; margin:0; display:table; border: 1px solid #CCCCCC;"><tr valign="top"> 	<td style="border:none; padding:2; margin:0" > 		<img src="logo-stripe.gif" style="display:inline; margin-top:1px;"></td> 	<td style="border:none; padding:0; margin:0; text-align:right;" > 		<img border="0" onclick="@declineHandler" src="close.gif" style="display:inline; cursor:pointer;" /> 	</td></tr> 	<tr valign="top"> 	<td style="border:none; padding:0; margin:0" colspan="2"> 		<img src="top-stripe.gif" style="display:inline" /> 		<table width="360" cellpadding="5" style="margin:0; display:table"><tr><td style="width:340px;padding:6px;"> 			<div style="font-family: Verdana, Arial, Helvetica, sans-serif;	font-size: 11px; color: #000000; margin: 0 0 15px 0; line-height:14px;">Microsoft is conducting an online survey to understand your opinions of the Microsoft Web site. We\'d like to see which pages you visit today and then have you complete a survey when you leave the Microsoft Web site. <br /><br /> Would you like to participate? </div> 			<div align="center" style="margin: 0; padding: 0"> 				<input style="margin:0; padding:0; cursor:pointer;" type="button" value="  Yes  " onclick="@acceptHandler" />&nbsp;&nbsp; 				<input style="margin:0; padding:0; cursor:pointer;"  type="button" value=" No " onclick="@declineHandler" /> 			</div> 			<div style="font-family: Verdana, Arial, Helvetica, sans-serif;	font-size: 11px; color: #000000; margin: 15px 0 2px 0;"><a href="http://privacy.microsoft.com/en-us/default.mspx" target="_blank">Privacy Statement</a></div> 		</td></tr></table> 	</td></tr> 	<tr> <td style="border:none; padding:0; margin:0" colspan="2"> 		<img src="bottom-stripe.gif" style="display:inline" /> 	</td></tr> </table>  ',
+			height: 210,
+			width: 390,
+			revealDelay: 1000,
+			horizontalAlignment: 1,
+			verticalAlignment: 1,
+			horizontalMargin: 80,
+			verticalMargin: 200,
+			isHideBlockingElements: false,
+			isAutoCentering: true,
+			url: 'SiteRecruit_Tracker.htm',
+			trackerGracePeriod: 5
+			,usesSilverlight: false
+			//silverlight config
+			,trackerWindow: {
+				width: 400,
+				height: 270,
+				orientation: 1,
+				offsetY: 0,
+				hideToolBars: true,
+				trackerPageConfigUrl: 'trackerConfig_p246609455.js'
+			},
+			
+			Events: {
+				beforeRender: function() {
+														document.onkeyup = function(evt) {
+    evt = evt || window.event;
+    if (evt.keyCode == 27) {
+        COMSCORE.SiteRecruit.Builder.invitation.decline(this);
+    }
+};					
+					if(/((microsoftstore|xbox|windowsphone|microsoft|microsoftbusinesshub|virtualacademy|windows|office|skype|live|volumelicensing|onenote|visualstudio).com|windowsmediaplayer)/i.test(document.referrer) ) {
+						COMSCORE.SiteRecruit.Builder.invitation.config = COMSCORE.SiteRecruit.Builder.config.invitation[0];
+					}
+					
+				},
+				beforeDestroy: function() {},
+				beforeAccept: function() {},
+				beforeDecline: function() {},
+				beforeRenderUpdate: function() {},
+				afterRender: function() {}
+			}
+		}
+	]
+};
+COMSCORE.SiteRecruit.Builder.run();
