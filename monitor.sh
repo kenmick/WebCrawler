@@ -10,6 +10,7 @@ do
 	echo $run_time
 	if [ "$run_min"x = "08"x ]; then
 		kill -9 $pid
+		ps -ef | grep slimerjs | awk '{print $2}' | xargs kill -9
 	fi
 done
 
