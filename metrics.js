@@ -24,7 +24,8 @@ for (var i = 0; i < url.length; i++) {
 
 		// remove repetitve data
 		for (var m = 0; m < arr_repetitive.length-1; m++) {
-			arr_repetitive[m] = arr_repetitive[m].split('-')[0] +'-'+ arr_repetitive[m].split('-')[1];
+			// version 'unknown' -> '0', '1.7.1.rc3' -> '1.7.1'
+			arr_repetitive[m] = arr_repetitive[m].split('-')[0] +'-'+ arr_repetitive[m].split('-')[1].replace('unknown','0').split(/\.?[a-zA-Z]/)[0].replace(/[a-zA-Z]/g,"");
 			if (!obj[arr_repetitive[m]]){
 				obj[arr_repetitive[m]] = true;
 				arr_clean.push(arr_repetitive[m]);
@@ -34,10 +35,12 @@ for (var i = 0; i < url.length; i++) {
         for (var j = 0; j < arr_clean.length; j++) {
 			for (var k = 1; k < header.length; k++) {
 				if (arr_clean[j].split('-')[0].toLowerCase() == header[k].toLowerCase()){
-					if (arr[k] == undefined){
-						arr[k] = arr_clean[j].split('-')[1].replace('unknown','0').split(/\.?[a-zA-Z]/)[0].replace(/[a-zA-Z]/g,"");
-					} else {
-						arr[k] = arr[k]+'&'+arr_clean[j].split('-')[1].replace('unknown','0').split(/\.?[a-zA-Z]/)[0].replace(/[a-zA-Z]/g,"");
+					// if version is empty or unknown, replace it
+					if (arr[k] == undefined || arr[k] == '0'){
+						arr[k] = arr_clean[j].split('-')[1];
+					// else if added version is not unknown, replace it 
+					} else if(arr_clean[j].split('-')[1] != '0') {
+						arr[k] = arr[k]+'&'+arr_clean[j].split('-')[1];
 					}
 				}
 			}
