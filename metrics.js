@@ -7,14 +7,15 @@ var header = ['website', 'jQuery', 'jQueryTools', 'jQueryUI', 'jQueryMobile',
 			'Requirejs', 'React', 'Prototype', 'Modernizr', 'YUI', 
 			'Yepnope', 'Isotope', 'Underscore', 'Lodash', 
 			'Fastclick', 'Backbone', 'Flotcharts', 'Webfont', 
-			'LABjs', 'Hammerjs', 'Headjs', 'Leaflet', 'Zurb', 'Velocity', 'Mustache', 'Zepto'];
+			'LABjs', 'Hammerjs', 'Headjs', 'Leaflet', 'Zurb', 'Velocity',
+			 'Mustache', 'Zepto', 'Extjs', "Scriptaculousjs"];
 
-fs.writeFile('result'+date+'.csv', header.toString()+'\n', {flag:'a'});
+fs.writeFile('result.csv', header.toString()+'\n', {flag:'a'});
 
 
 for (var i = 0; i < url.length; i++) {
-	if (fs.existsSync( './'+date + '/'+url[i].split('//')[1]+'/libs.txt')){
-		var file = fs.readFileSync( './'+date + '/'+url[i].split('//')[1]+'/libs.txt', 'utf-8');
+	if (fs.existsSync( './test/'+url[i].split('//')[1]+'/libs.txt')){
+		var file = fs.readFileSync( './test/'+url[i].split('//')[1]+'/libs.txt', 'utf-8');
 		var arr_repetitive = file.split('\n');
 		var arr_clean = [];
 		var obj = {};
@@ -32,22 +33,21 @@ for (var i = 0; i < url.length; i++) {
 
         for (var j = 0; j < arr_clean.length; j++) {
 			for (var k = 1; k < header.length; k++) {
-				// if (arr_temp[j].indexOf(header[k]) != -1){
-				if (arr_clean[j].split('-')[0] == header[k]){
+				if (arr_clean[j].split('-')[0].toLowerCase() == header[k].toLowerCase()){
 					if (arr[k] == undefined){
-						arr[k] = arr_clean[j].split('-')[1];
+						arr[k] = arr_clean[j].split('-')[1].replace('unknown','0').split(/\.?[a-zA-Z]/)[0].replace(/[a-zA-Z]/g,"");
 					} else {
-						arr[k] = arr[k]+'&'+arr_clean[j].split('-')[1];
+						arr[k] = arr[k]+'&'+arr_clean[j].split('-')[1].replace('unknown','0').split(/\.?[a-zA-Z]/)[0].replace(/[a-zA-Z]/g,"");
 					}
 				}
 			}
 
 		}
 		
-		fs.writeFile('result'+date+'.csv', arr.toString()+'\n', {flag:'a'});
+		fs.writeFile('result.csv', arr.toString()+'\n', {flag:'a'});
 		
 	} else {
-		fs.writeFile('result'+date+'.csv', url[i].split('//')[1]+'\n', {flag:'a'});
+		fs.writeFile('result.csv', url[i].split('//')[1]+'\n', {flag:'a'});
 	}
 }
 
