@@ -1,1 +1,0 @@
-KISSY.use("dom,ua",function(d,f,e){var c=f.viewportWidth(),g=e.ie||9,a=document.body;if(g>=9){return}if(c<1200){f.addClass(a,"width990")}else{f.addClass(a,"width1190")}d.ready(function(){d.all(window).on("resize",function(){c=f.viewportWidth();if(c<1200){f.removeClass(a,"width1190");f.addClass(a,"width990")}else{f.removeClass(a,"width990");f.addClass(a,"width1190")}})})});

@@ -1,23 +1,0 @@
-var mainpage = mainpage || {};
-mainpage.ie9processData = function(data) {
-    /* åæåæ¬å®ç¾©çæ¸æ */
-    window.external.msSiteModeClearJumpList();
-    window.external.msSiteModeCreateJumplist(data.title);
-    for (var i = 0; i < data.items.length; i++) {
-        window.external.msSiteModeAddJumpListItem(data.items[i][0], data.items[i][1], data.items[i][2]);
-    }
-    window.external.msSiteModeShowJumpList();
-}
-
-mainpage.initie9 = function() {
-    /* åç¢ºèªæ¯ IE9 ä¸æç¸å°æç method, ä¸ç¨ 'MSIE 9.0' æ¯å çºé¦é æ MSIE 7.0 Compatiable */
-    if (/MSIE/ig.test(navigator.appVersion) && !/Trident/ig.test(navigator.appVersion) && typeof window.external.msIsSiteMode != 'undefined') {
-        /* å¨ç¢ºèªæ¯å¦çº siteMode */
-        if (window.external.msIsSiteMode()) {
-            jQuery.getJSON('/?block=index_ie9_jumplist',
-            function (ret) {
-                mainpage.ie9processData(ret);
-            });
-        }
-    }
-}

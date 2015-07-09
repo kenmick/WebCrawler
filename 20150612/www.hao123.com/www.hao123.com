@@ -1,1 +1,0 @@
-<meta http-equiv="Refresh" content="0; url=http://www.hao123.com/?1434111595"/><meta property="shurufa:url-navigate" content="985" />

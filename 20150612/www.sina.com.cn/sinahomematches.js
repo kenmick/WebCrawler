@@ -1,1 +1,0 @@
-window.SINAHOME_SPORTS_FOCUS_WEEKLY={"result":{"status":{"code":0,"msg":""},"data":[]}}
