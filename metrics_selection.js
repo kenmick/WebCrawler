@@ -38,6 +38,8 @@ for (var i = 0; i < url.length; i++) {
 					} else {
 						if (arr[j] == undefined){
 							arr[j] = version;
+						} else if (libs[k-1].split('|')[1] == "Download"){
+							continue;
 						} else {
 							arr[j] = compareVersion(arr[j], version);
 						}
