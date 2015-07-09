@@ -25,7 +25,7 @@ for (var i = 0; i < url.length; i++) {
 		// remove repetitve data
 		for (var m = 0; m < arr_repetitive.length-1; m++) {
 			// version 'unknown' -> '0', '1.7.1.rc3' -> '1.7.1'
-			arr_repetitive[m] = arr_repetitive[m].split('-')[0] +'-'+ arr_repetitive[m].split('-')[1].replace('unknown','0').split(/\.?[a-zA-Z]/)[0].replace(/[a-zA-Z]/g,"");
+			arr_repetitive[m] = arr_repetitive[m].split('-')[0] +'-'+ arr_repetitive[m].split('-')[1].replace(/unknown|@VERSION/,'0').split(/\.?[a-zA-Z]/)[0].replace(/[a-zA-Z]/g,"");
 			if (!obj[arr_repetitive[m]]){
 				obj[arr_repetitive[m]] = true;
 				arr_clean.push(arr_repetitive[m]);
