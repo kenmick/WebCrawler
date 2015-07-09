@@ -45,7 +45,7 @@ var libs = {
             return false;
         }
     },
-    'Ink Interface': {
+    'Ink': {
 
         name: 'Ink Interface',
         url: 'http://ink.sapo.pt/',
@@ -109,11 +109,13 @@ var libs = {
                             return true;
                         // Bootstrap >= 2.0.0 and <= 3.1.0 detection
                         } else if(new RegExp(RE_PREFIX_V3 + component).test($.fn[component].toString())) {
-                            bootstrapVersion = '>= 3.0.0 & <= 3.1.1';
+                            // bootstrapVersion = '>= 3.0.0 & <= 3.1.1';
+                            bootstrapVersion = 'unknown';
                             return true;
                         // Bootstrap < 3.1.0 detection
                         } else if(new RegExp(RE_PREFIX_V2 + component).test($.fn[component].toString())) {
-                            bootstrapVersion = '>= 2.0.0 & <= 2.3.2';
+                            // bootstrapVersion = '>= 2.0.0 & <= 2.3.2';
+                            bootstrapVersion = 'unknown';
                             return true;
                         }
                     }
@@ -176,7 +178,7 @@ var libs = {
     //     }
     // },
 
-    'FlotCharts': {
+    'Flotcharts': {
         name: 'FlotCharts',
         url: 'http://www.flotcharts.org/',
         test: function() {
@@ -224,7 +226,7 @@ var libs = {
 
     
 
-    'jQuery UI': {
+    'jQueryUI': {
         name: 'jquery_ui',
         url: 'http://jqueryui.com',
         test: function() {
@@ -293,7 +295,7 @@ var libs = {
         }
     },
 
-    'YUI 2': {
+    'YUI': {
         name: 'yui',
         url: 'http://developer.yahoo.com/yui/2/',
         test: function() {
@@ -304,7 +306,7 @@ var libs = {
         }
     },
 
-    'YUI 3': {
+    'YUI': {
         name: 'yui3',
         url: 'http://yuilibrary.com/',
         test: function() {
@@ -327,7 +329,7 @@ var libs = {
     //     }
     // },
 
-    'Ext JS': {
+    'ExtJS': {
         name: 'extjs',
         url: 'http://www.sencha.com/products/extjs',
         test: function() {
@@ -440,7 +442,7 @@ var libs = {
         }
     },
 
-    'Lo-Dash': {
+    'Lodash': {
         name: 'lodash',
         url: 'http://lodash.com/',
         test: function() {
@@ -594,7 +596,7 @@ var libs = {
     //    }
     // },
 
-    'Zepto.js': {
+    'Zepto': {
        name: 'zepto',
        url: 'http://zeptojs.com',
        test: function() {
@@ -641,7 +643,7 @@ var libs = {
         }
     },
 
-    'yepnope': {
+    'Yepnope': {
         name: 'yepnope',
         url: 'http://yepnopejs.com/',
         test: function() {
@@ -663,7 +665,7 @@ var libs = {
         }
     },
 
-    'Head JS': {
+    'Headjs': {
         name: 'headjs',
         url: 'http://headjs.com/',
         test: function() {
@@ -685,21 +687,21 @@ var libs = {
     //     }
     // },
 
-    'RequireJS': {
+    'Requirejs': {
         name: 'requirejs',
         url: 'http://requirejs.org/',
         test: function() {
-            if ((window.require && window.require.load) || (window.requirejs && window.requirejs.load)) {
-                return {version: window.require.version || window.requirejs.version};
-            }
-            // if ((window.require && window.require.load)) {
-            //     return {version: window.require.version};
+            // if ((window.require && window.require.load) || (window.requirejs && window.requirejs.load)) {
+            //     return {version: window.require.version || window.requirejs.version};
             // }
+            if ((window.require && window.require.load)) {
+                return {version: window.require.version};
+            }
             return false;
         }
     },
 
-    'RightJS': {
+    'Rightjs': {
         name: 'rightjs',
         url: 'http://rightjs.org/',
         test: function() {
@@ -710,7 +712,7 @@ var libs = {
         }
     },
 
-    'jQuery Tools': {
+    'jQueryTools': {
        name: 'jquerytools',
        url: 'http://flowplayer.org/tools/',
        test: function() {
@@ -832,7 +834,7 @@ var libs = {
         }
     },
 
-    'jQuery Mobile': {
+    'jQueryMobile': {
         name: 'jquery_mobile',
         url: 'http://jquerymobile.com/',
         test: function() {
@@ -844,7 +846,7 @@ var libs = {
         }
     },
 
-    'WebFont Loader': {
+    'Webfont': {
         name: 'icon_48',
         url: 'https://github.com/typekit/webfontloader',
         test: function() {
@@ -855,7 +857,7 @@ var libs = {
         }
     },
 
-    'AngularJS': {
+    'Angular': {
         name: 'angularjs',
         url: 'http://angularjs.org',
         test: function() {
@@ -879,7 +881,7 @@ var libs = {
         }
     },
 
-    'Hammer.js': {
+    'Hammerjs': {
         name: 'hammerjs',
         url: 'http://eightmedia.github.io/hammer.js/',
         test: function() {
@@ -904,7 +906,7 @@ var libs = {
     //     }
     // },
     
-    'Velocity.js': {
+    'Velocity': {
         name: 'icon_48',
         url: 'http://velocityjs.org/',
         test: function() {
@@ -971,7 +973,7 @@ var libs = {
     //     }
     // },
 
-    'FastClick': {
+    'Fastclick': {
         name: 'fastclick',
         url: 'https://github.com/ftlabs/fastclick',
         test: function() {
@@ -1021,7 +1023,6 @@ var libs = {
         name: 'swfobject',
         url: 'https://code.google.com/p/swfobject/',
         test: function() {
-            //var sAvailable = window.swfobject;
             if(window.swfobject) {
                 return { version: 'unknown' };
             }
@@ -1033,24 +1034,38 @@ var libs = {
 
 //read top100 urls 
 var url = phantom.args[0];
-var cname = url.split("//")[1];
+var date = phantom.args[1];
+var folderName = url.split("//")[1];
 // fs.makeTree(cname);
 
+page.onError = function(msg, trace) {
+
+    var msgStack = ['ERROR: ' + msg];
+
+    if (trace && trace.length) {
+        msgStack.push('TRACE:');
+        trace.forEach(function(t) {
+          msgStack.push(' -> ' + t.file + ': ' + t.line + (t.function ? ' (in function "' + t.function +'")' : ''));
+      });
+    }
+
+    console.error(msgStack.join('\n'));
+
+};
 page.captureContent = [ /.*/ ];
 
-lname = cname+'/libs.txt';
+name = date+'/'+folderName+'/libs.txt';
 
-page.open(url,function(){
-	window.setTimeout(function () {
+page.open(url, function(){
+    console.log(url);
+    window.setTimeout(function() {
         for(var i in libs) {
             var versionObject = page.evaluate(libs[i].test);
             if (versionObject != false){
-                var str = i+'-'+versionObject.version+'|Runtime\n';
-                fs.write(lname, str, 'a');
+                var str = i+'-'+versionObject.version+'-|Runtime\n';
+                fs.write(name, str, 'a');
             }
-         console.log(i+'-'+versionObject.version);
         }
-
-		slimer.exit(1);
-	}, 5000);
+        slimer.exit(1);
+    }, 5000);
 });
