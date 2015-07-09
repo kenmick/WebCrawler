@@ -2,6 +2,8 @@ var fs = require('fs');
 
 var url = fs.readFileSync('./url.txt', 'utf-8').split('\n');
 
+var date = process.argv[2];
+
 var header = ['website', 'jQuery', 'jQueryTools', 'jQueryUI', 'jQueryMobile', 
 			'Angular', 'Bootstrap', 'Handlebars', 'SWFObject', 'Spine', 
 			'Requirejs', 'React', 'Prototype', 'Modernizr', 'YUI', 
@@ -10,12 +12,12 @@ var header = ['website', 'jQuery', 'jQueryTools', 'jQueryUI', 'jQueryMobile',
 			'LABjs', 'Hammerjs', 'Headjs', 'Leaflet', 'Zurb', 'Velocity',
 			 'Mustache', 'Zepto', 'Extjs', "Scriptaculousjs"];
 
-fs.writeFile('result.csv', header.toString()+'\n', {flag:'a'});
+fs.writeFile('result'+date + '.csv', header.toString()+'\n', {flag:'a'});
 
 
 for (var i = 0; i < url.length; i++) {
-	if (fs.existsSync( './test/'+url[i].split('//')[1]+'/libs.txt')){
-		var file = fs.readFileSync( './test/'+url[i].split('//')[1]+'/libs.txt', 'utf-8');
+	if (fs.existsSync( './'+date + '/'+url[i].split('//')[1]+'/libs.txt')){
+		var file = fs.readFileSync( './'+date + '/'+url[i].split('//')[1]+'/libs.txt', 'utf-8');
 		var arr_repetitive = file.split('\n');
 		var arr_clean = [];
 		var obj = {};
@@ -47,9 +49,9 @@ for (var i = 0; i < url.length; i++) {
 
 		}
 		
-		fs.writeFile('result.csv', arr.toString()+'\n', {flag:'a'});
+		fs.writeFile('result'+date + '.csv', arr.toString()+'\n', {flag:'a'});
 		
 	} else {
-		fs.writeFile('result.csv', url[i].split('//')[1]+'\n', {flag:'a'});
+		fs.writeFile('result'+date + '.csv', url[i].split('//')[1]+'\n', {flag:'a'});
 	}
 }

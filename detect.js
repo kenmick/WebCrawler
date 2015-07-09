@@ -840,7 +840,7 @@ var libs = {
         test: function() {
             var jq = window.jQuery || window.$ || window.$jq || window.$j;
             if(jq && jq.fn && jq.fn.jquery && jq.mobile) {
-                return { version: jq.mobile.version || '' };
+                return { version: jq.mobile.version || 'unknown' };
             }
             return false;
         }
