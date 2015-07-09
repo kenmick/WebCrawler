@@ -1,2 +1,0 @@
-define(["require","jpmc/has/detect/string","mout/string/ltrim"],function(e){var t,n=e("jpmc/has/detect/string");return t=n("string-trimleft")?function(e){return String.prototype.trimLeft.call(e)}:e("mout/string/ltrim")});
-//@ sourceMappingURL=trimLeft.js.map

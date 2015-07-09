@@ -1,4 +1,0 @@
-/*! sjs - v0.1.0 - 2015-01-07
-* http://github.adrd.sohuno.com/?p=js/sjs.git
-* Copyright (c) 2015 ; Licensed MIT */
-define("sjs/util/url",function(){var a={query:function(a,b){var c=new RegExp("(^|&)"+a+"=([^&]*)(&|$)");b=b?b.substr(b.indexOf("?")+1):window.location.search.substr(1);var d=b.match(c);return null!=d?unescape(d[2]):null},getQueryJson:function(){var a,b={};if(!window.location.search)return{};a=window.location.search.substr(1).split("&");for(var c=0;c<a.length;c++){var d=a[c].split("=")||[];b[d[0]]=d[1]}return b},param:function(a){var b="",c="";for(var d in a)b+=c+d+"="+a[d],c="&";return b}};return a});

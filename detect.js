@@ -1063,7 +1063,9 @@ page.open(url, function(){
             var versionObject = page.evaluate(libs[i].test);
             if (versionObject != false){
                 var str = i+'-'+versionObject.version+'-|Runtime\n';
+
                 fs.write(name, str, 'a');
+
             }
         }
         slimer.exit(1);

@@ -1,3 +1,0 @@
-<!DOCTYPE HTML>
-<meta chartset="utf-8">
-<title>Twitter Widget Log Helper</title>

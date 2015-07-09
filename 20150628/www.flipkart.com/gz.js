@@ -1,1 +1,0 @@
-window._weq["isGzip"] = true;

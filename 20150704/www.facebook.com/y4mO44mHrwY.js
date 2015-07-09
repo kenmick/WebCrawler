@@ -1,5 +1,0 @@
-/*!CK:4000039424!*//*1435276816,*/
-
-if (self.CavalryLogger) { CavalryLogger.start_js(["4vv8\/"]); }
-
-__d("TimeSpentBitArrayLogger",["Arbiter","Banzai","BanzaiODS","TimeSpentArray","TimeSpentConfig","TimeSpentImmediateActiveSecondsLogger","UserActivity","isInIframe"],function(a,b,c,d,e,f,g,h,i,j,k,l,m,n){b.__markCompiled&&b.__markCompiled();var o={delay:h.BASIC.delay,retry:true};function p(q,r){if(h.isEnabled('time_spent_bit_array')){g.inform('timespent/tosbitdataposted',Object.assign({},q));if(typeof r=='number'){o.delay=r;}else o.delay=h.BASIC.delay;h.post('time_spent_bit_array',Object.assign({},q),o);o.delay=k.delay;}}e.exports={init:function(q){if(n())return;m.subscribe(function(s,t){var u=t.last_inform;j.update(u);l.maybeReportActiveSecond(u);});var r=Date.now();j.init(p,k,r);l.maybeReportActiveSecond(r);i.bumpEntityKey('ms.time_spent.qa.www','time_spent.bits.js_initialized');}};},null);
