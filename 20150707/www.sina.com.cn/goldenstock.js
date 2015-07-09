@@ -1,2 +1,0 @@
-window.gOldEn_stock({"goldenstock":[{"stock":"sh600015","stockName":"åå¤é¶è¡","priceChangeRatio":"10.81","pushed_datetime":"06-29 09:07"},{"stock":"sz000002","stockName":"ä¸  ç§ï¼¡","priceChangeRatio":"10.80","pushed_datetime":"06-29 08:55"},{"stock":"sz000002","stockName":"ä¸  ç§ï¼¡","priceChangeRatio":"8.61","pushed_datetime":"07-06 09:07"}]})
-/* f0BHDZcAHfd4CAk0WlN3BE00LW+hQ4akypHoxvhzsFVAG+YyolYTCtmy3yI+sRHbYG67SHFykm07JUjamuYGdIERejoKS51jcoARG42Le2LJSVuyaT9msEaqpzZitasFUNeq6SSf1grm21a+eBvS6xO07jFI0CddIXPg0vGJFWbei3d9TUZ7leW2o/M= */

@@ -1,2 +1,0 @@
-
-NoLoginTip.TipCallback([{"access_time":1435908600,"appid":1,"content":{"btnname":"ç«å³é¢å","ifo":"å¨çæä¾¿å®çè§é¢vipââä¼é·è½»ä¼åä¸çº¿å¦ï¼éè¯·å¥½åå¯ä»¥åè´¹æ¿ï¼å¿«æ¥é¢åï¼","link":"http://cps.youku.com/redirect.html?id=00014677","title":"å¨æ°å æ¶é¿ï¼ä¼ååè´¹æ¿"},"desc":"éè¯·å¥½åå¯ä»¥åè´¹æ¿ä¼é·è½»ä¼å","display":2,"expire_time":1436241600,"fade":60,"fromuid":1001,"msgid":7,"status":0,"term":1,"toid":0,"tplid":1,"type":2,"u_insert_time":0,"u_update_time":0}])
