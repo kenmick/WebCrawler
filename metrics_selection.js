@@ -2,6 +2,8 @@ var fs = require('fs');
 
 var url = fs.readFileSync('./url.txt', 'utf-8').split('\n');
 
+var date = process.argv[2];
+
 var header = ['website', 'jQuery', 'jQueryTools', 'jQueryUI', 'jQueryMobile', 'jQueryCookie', 
 			'Angular', 'Bootstrap', 'Handlebars', 'SWFObject', 'Spine', 
 			'Requirejs', 'React', 'Prototype', 'Modernizr', 'YUI', 'Facebook', 'Twitter', 
@@ -10,12 +12,12 @@ var header = ['website', 'jQuery', 'jQueryTools', 'jQueryUI', 'jQueryMobile', 'j
 			'LABjs', 'Hammerjs', 'Headjs', 'Leaflet', 'Zurb', 'Velocity',
 			 'Mustache', 'Zepto', 'Extjs', "Scriptaculousjs"];
 
-fs.writeFile('metrics_selection.csv', header.toString()+'\n', {flag:'a'});
+fs.writeFile('result_selection'+date +'.csv', header.toString()+'\n', {flag:'a'});
 
 
 for (var i = 0; i < url.length; i++) {
-	if (fs.existsSync( './test/'+url[i].split('//')[1]+'/libs.txt')){
-		var file = fs.readFileSync( './test/'+url[i].split('//')[1]+'/libs.txt', 'utf-8').trim();
+	if (fs.existsSync( './'+date+'/'+url[i].split('//')[1]+'/libs.txt')){
+		var file = fs.readFileSync( './'+date+'/'+url[i].split('//')[1]+'/libs.txt', 'utf-8').trim();
 		var libs = file.split('\n');
 		var arr = [];
 		arr[0] = url[i].split('//')[1];
@@ -49,9 +51,9 @@ for (var i = 0; i < url.length; i++) {
 				}
 			}
 		}
-		fs.writeFile('metrics_selection.csv', arr.toString()+'\n', {flag:'a'});
+		fs.writeFile('result_selection'+date +'.csv', arr.toString()+'\n', {flag:'a'});
 	} else {
-		fs.writeFile('metrics_selection.csv', url[i].split('//')[1]+'\n', {flag:'a'});
+		fs.writeFile('result_selection'+date +'.csv', url[i].split('//')[1]+'\n', {flag:'a'});
 	}
 }
 

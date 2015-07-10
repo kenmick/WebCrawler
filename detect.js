@@ -1046,10 +1046,11 @@ var libs = {
 
 //read top100 urls 
 var url = phantom.args[0];
-var date = phantom.args[1];
+// var date = phantom.args[1];
 var folderName = url.split("//")[1];
-
-name = date+'/'+folderName+'/libs.txt';
+fs.makeTree(folderName);
+// name = date+'/'+folderName+'/libs.txt';
+name = folderName+'/libs.txt';
 
 page.captureContent = [ /.*/ ];
 
@@ -1060,7 +1061,6 @@ page.onResourceReceived = function(response) {
     for (var i = 0; i < arr.length; i=i+2) {
         if (response.url.indexOf(arr[i+1]) != -1){
             var str = arr[i]+'-unknown-|Runtime\n';
-            console.log(str);
             fs.write(name, str, 'a');       
         }
     }
