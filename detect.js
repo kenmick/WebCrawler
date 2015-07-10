@@ -846,6 +846,18 @@ var libs = {
         }
     },
 
+    'jQueryCookie': {
+        name: 'jquery_cookie',
+        url: 'http://plugins.jquery.com/cookie/',
+        test: function() {
+            var jq = window.jQuery || window.$ || window.$jq || window.$j;
+            if(jq && jq.fn && jq.fn.jquery && jq.cookie) {
+                return { version: jq.cookie.version || 'unknown' };
+            }
+            return false;
+        }
+    },
+
     'Webfont': {
         name: 'icon_48',
         url: 'https://github.com/typekit/webfontloader',
@@ -1055,6 +1067,7 @@ page.onError = function(msg, trace) {
 page.captureContent = [ /.*/ ];
 
 name = date+'/'+folderName+'/libs.txt';
+// name = folderName+'/libs.txt';
 
 page.open(url, function(){
     console.log(url);
