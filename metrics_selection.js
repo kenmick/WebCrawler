@@ -21,15 +21,17 @@ for (var i = 0; i < url.length; i++) {
 		arr[0] = url[i].split('//')[1];
 
 		for (var j = 1; j < header.length; j++) {
+			var downExist = false;
 			for (var k = 0; k < libs.length; k++) {
 				var name = libs[k].split('-')[0];
-				var version = libs[k].split('-')[1].replace(/unknown|@VERSION/,'0').split(/\.?[a-zA-Z]/)[0].replace(/[a-zA-Z]/g,"");
+				var version = libs[k].split('-')[1].replace(/unknown|@VERSION|undefined/,'0').split(/\.?[a-zA-Z+]/)[0].replace(/[a-zA-Z]/g,"");
 				var method = libs[k].split('|')[1];
 				if (name.toLowerCase() == header[j].toLowerCase()){
 					if (method == "Runtime"){
 						arr[j] = version;
-						if (version != "0") continue;
+						if (version != "0") break;
 					} else if (method == "Download"){
+						downExist = true;
 						if (arr[j] == undefined){
 							arr[j] = version;
 						} else {
@@ -38,8 +40,8 @@ for (var i = 0; i < url.length; i++) {
 					} else {
 						if (arr[j] == undefined){
 							arr[j] = version;
-						} else if (libs[k-1].split('|')[1] == "Download"){
-							continue;
+						} else if (downExist){
+							break;
 						} else {
 							arr[j] = compareVersion(arr[j], version);
 						}

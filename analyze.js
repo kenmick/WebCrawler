@@ -1,7 +1,7 @@
-var similarity = require('similarity');
 var simhash = require('simhash')('md5');
 var fs = require('fs');
 var compare = require('hamming-distance');
+var stringSimilarity = require('string-similarity');
 
 var date = process.argv[2];
 
@@ -41,15 +41,15 @@ for (var i = 0; i < dir.length; i++) {
 				//get the size of the file
                 var libSize = fs.statSync('./Libs/'+k, 'utf-8')["size"];
                 var fileSize = fs.statSync('./'+date + '/'+dir[i]+'/'+folder[j], 'utf-8')["size"];
-                console.log("The lib is : " + libSize);
-                console.log("The file is : " + fileSize);
-                console.log("The libName is : " + k);
-                console.log("The fileName is : " + folder[j]);
+                // console.log("The lib is : " + libSize);
+                // console.log("The file is : " + fileSize);
+                // console.log("The libName is : " + k);
+                // console.log("The fileName is : " + folder[j]);
 
                 //remove some files
                 if(fileSize > (libSize + 1024) || fileSize < (libSize - 1024)) continue;
 
-				var simi = similarity(lib, file);
+				var simi = stringSimilarity.compareTwoStrings(lib, file);
 				console.log("The ratio is : " + simi);
 				console.log("==================================");
 				if (simi > ratio){

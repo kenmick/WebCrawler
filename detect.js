@@ -888,7 +888,7 @@ var libs = {
             var hammer = window.Hammer;
             if(hammer) {
                 // Hammer.VERSION available in 1.0.10+
-                return { version: hammer.VERSION || "&lt; 1.0.10" };
+                return { version: hammer.VERSION || "unknown" };
             }
             return false;
         }
