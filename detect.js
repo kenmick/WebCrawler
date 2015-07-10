@@ -1048,7 +1048,23 @@ var libs = {
 var url = phantom.args[0];
 var date = phantom.args[1];
 var folderName = url.split("//")[1];
-// fs.makeTree(cname);
+
+name = date+'/'+folderName+'/libs.txt';
+
+page.captureContent = [ /.*/ ];
+
+page.onResourceReceived = function(response) {
+    if (response.stage!="end" || !response.bodySize) return;
+    arr = ['GoogleAPI', 'apis.google.com', 'Facebook', 'connect.facebook.net', 
+            'GoogleAnalytics', 'www.google-analytics.com', 'Twitter', 'platform.twitter.com'];
+    for (var i = 0; i < arr.length; i=i+2) {
+        if (response.url.indexOf(arr[i+1]) != -1){
+            var str = arr[i]+'-unknown-|Runtime\n';
+            console.log(str);
+            fs.write(name, str, 'a');       
+        }
+    }
+};
 
 page.onError = function(msg, trace) {
 
@@ -1064,10 +1080,6 @@ page.onError = function(msg, trace) {
     console.error(msgStack.join('\n'));
 
 };
-page.captureContent = [ /.*/ ];
-
-name = date+'/'+folderName+'/libs.txt';
-// name = folderName+'/libs.txt';
 
 page.open(url, function(){
     console.log(url);
