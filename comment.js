@@ -3,13 +3,13 @@ var fs = require("fs");
 var date = process.argv[2];
 
 
-var comments = ["jQuery", "jQuery JavaScript Library", "jQuery UI", "jQuery Tools", 
+var comments = ["jQuery", "jQuery JavaScript Library", "jQuery UI", "jQuery Tools", "jQuery Cookie Plugin" 
 				"jQuery Mobile", "AngularJS", "Bootstrap", "Backbone.js", "Ext Core Library", 
 				"FastClick", "handlebars", "Spine", "Hammer.JS -", "Dojo", "head.core -", "Highcharts JS", 
 				"Isotope", "Isotope PACKAGED", "LABjs", "Leaflet", "Lo-Dash", "Modernizr", "Mootools",
 				"Mustache", "React", "Prototype JavaScript framework, version", "RequireJS", "scriptaculous.js",
 				 "SWFObject", "Underscore.js", "Web Font Loader", "yepnope.js", "Zepto"];
-var libs_name = ["jQuery", "jQuery", "jQueryUI", "jQueryTools", 
+var libs_name = ["jQuery", "jQuery", "jQueryUI", "jQueryTools", "jQueryCookie"
 				"jQueryMobile", "Angular", "Bootstrap", "Backbone", "Extjs", 
 				"FastClick", "handlebars", "Spine", "Hammerjs", "Dojo", "Headjs", "Highcharts", 
 				"Isotope", "Isotope", "LABjs", "Leaflet", "Lodash", "Modernizr", "Mootools",

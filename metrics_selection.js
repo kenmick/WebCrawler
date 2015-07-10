@@ -2,11 +2,11 @@ var fs = require('fs');
 
 var url = fs.readFileSync('./url.txt', 'utf-8').split('\n');
 
-var header = ['website', 'jQuery', 'jQueryTools', 'jQueryUI', 'jQueryMobile', 
+var header = ['website', 'jQuery', 'jQueryTools', 'jQueryUI', 'jQueryMobile', 'jQueryCookie', 
 			'Angular', 'Bootstrap', 'Handlebars', 'SWFObject', 'Spine', 
-			'Requirejs', 'React', 'Prototype', 'Modernizr', 'YUI', 
-			'Yepnope', 'Isotope', 'Underscore', 'Lodash', 
-			'Fastclick', 'Backbone', 'Flotcharts', 'Webfont', 
+			'Requirejs', 'React', 'Prototype', 'Modernizr', 'YUI', 'Facebook', 'Twitter', 
+			'Yepnope', 'Isotope', 'Underscore', 'Lodash', 'GoogleAPI', 
+			'Fastclick', 'Backbone', 'Flotcharts', 'Webfont', 'GoogleAnalytics', 
 			'LABjs', 'Hammerjs', 'Headjs', 'Leaflet', 'Zurb', 'Velocity',
 			 'Mustache', 'Zepto', 'Extjs', "Scriptaculousjs"];
 
