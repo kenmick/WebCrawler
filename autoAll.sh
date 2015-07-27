@@ -9,18 +9,20 @@ array=()
 
 cd /home/caohanyang/2015Second/WebCrawler/
 # Read the file in parameter and fill the array named "array"
-getArray() {
-    i=0
-    while read line # Read a line
-    do
-    	#echo $line
-        array[i]=$line # Put it into the array
-        i=$(($i + 1))
-    done < $1
-}
+# getArray() {
+#     i=0
+#     while read line # Read a line
+#     do
+#     	#echo $line
+#         array[i]=$line # Put it into the array
+#         i=$(($i + 1))
+#     done < $1
+# }
 
-getArray "url.txt"
+# getArray "url.txt"
 
+array=(`awk '{print $1}' url.txt`)
+echo ${#array[@]}
 #start to download
 ps -ef| grep ./monitor.sh |grep -v grep | awk '{print $2}' | xargs kill -9
 # start the monitor
@@ -99,6 +101,7 @@ echo "$e" $time >> levenTime.txt
 node comment.js $myDate
 
 #generate the csv
-node metrics.js $myDate
+node metrics_origin.js $myDate
+node metrics_selection.js $myDate
 
 #generate the graph

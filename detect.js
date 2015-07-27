@@ -1022,9 +1022,9 @@ var libs = {
     //start to add new library
     'Lightbox': {
         name: 'lightbox',
-        url: 'http://huddletogether.com/projects/lightbox/',
+        url: 'http://lokeshdhakar.com/projects/lightbox2/',
         test: function() {
-            if(window.showLightbox) {
+            if(window.Lightbox) {
                 return { version: 'unknown' };
             }
             return false;
@@ -1040,17 +1040,50 @@ var libs = {
             }
             return false;
         }
+    },
+
+    'SizzleJS': {
+        name: 'sizzlejs',
+        url: 'http://sizzlejs.com/',
+        test: function() {
+            if(window.Sizzle) {
+                return { version: 'unknown' };
+            }
+            return false;
+        }
+    },
+
+    'Fancybox': {
+        name: 'fancybox',
+        url: 'http://fancybox.net/',
+        test: function() {
+            if(window.$.fancybox) {
+                return { version: 'unknown' };
+            }
+            return false;
+        }
+    },
+
+    'Html5shiv': {
+        name: 'html5shiv',
+        url: 'https://github.com/afarkas/html5shiv',
+        test: function() {
+            if(window.html5) {
+                return { version: 'unknown' };
+            }
+            return false;
+        }
     }
 
 };
 
 //read top100 urls 
 var url = phantom.args[0];
-// var date = phantom.args[1];
+var date = phantom.args[1];
 var folderName = url.split("//")[1];
-fs.makeTree(folderName);
-// name = date+'/'+folderName+'/libs.txt';
-name = folderName+'/libs.txt';
+// fs.makeTree(folderName);
+name = date+'/'+folderName+'/libs.txt';
+// name = folderName+'/libs.txt';
 
 page.captureContent = [ /.*/ ];
 

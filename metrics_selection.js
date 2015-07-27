@@ -1,16 +1,16 @@
 var fs = require('fs');
 
-var url = fs.readFileSync('./url.txt', 'utf-8').split('\n');
+var url = fs.readFileSync('./url.txt', 'utf-8').trim().split('\n');
 
 var date = process.argv[2];
 
 var header = ['website', 'jQuery', 'jQueryTools', 'jQueryUI', 'jQueryMobile', 'jQueryCookie', 
-			'Angular', 'Bootstrap', 'Handlebars', 'SWFObject', 'Spine', 
+			'Angular', 'Bootstrap', 'Handlebars', 'SWFObject', 'Spine', 'SPF',
 			'Requirejs', 'React', 'Prototype', 'Modernizr', 'YUI', 'Facebook', 'Twitter', 
 			'Yepnope', 'Isotope', 'Underscore', 'Lodash', 'GoogleAPI', 
 			'Fastclick', 'Backbone', 'Flotcharts', 'Webfont', 'GoogleAnalytics', 
 			'LABjs', 'Hammerjs', 'Headjs', 'Leaflet', 'Zurb', 'Velocity',
-			 'Mustache', 'Zepto', 'Extjs', "Scriptaculousjs"];
+			 'Mustache', 'Zepto', 'Extjs', "Scriptaculousjs", "Sizzle", "Fancybox", "Lightbox", "Html5shiv"];
 
 fs.writeFile('result_selection'+date +'.csv', header.toString()+'\n', {flag:'a'});
 

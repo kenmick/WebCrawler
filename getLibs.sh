@@ -43,53 +43,61 @@ Fastclick=('fastclick 0.1.0 0.2.0 0.3.0 0.3.2 0.3.3 0.3.5 0.4.1 0.4.2 0.4.5 0.4.
 Hammerjs=('hammer.js 0.6.4 1.0.0 1.0.1 1.0.2 1.0.3 1.0.4 1.0.5 1.0.6 1.0.7 1.0.8 1.0.9 1.0.10 1.0.11 1.1.0 1.1.1 1.1.2 1.1.3 2.0.0 2.0.1 2.0.2 2.0.3 2.0.4')
 Isotope=('jquery.isotope 1.5.25 2.0.0 2.1.0 2.1.0-beta.1 2.1.1 2.2.0')
 Flotcharts=('flot 0.1.0 0.2.0 0.3.0 0.4.0 0.5.0 0.6.0 0.7 0.7.0 0.8 0.8.0 0.8.0-beta 0.8.1 0.8.2 0.8.3')
-Zurb=('zurb 3.2.2 3.2.5 4.0.4 4.0.5 4.0.8 4.0.9 4.1.2 4.1.6 4.2.3 4.3.1 4.3.2 5.0.0 5.0.1 5.0.2 5.0.3 5.1.0 5.1.1 5.2.0 5.2.1 5.2.2 5.2.3 5.3.0 5.3.1 5.3.2 5.3.3 5.4.0 5.4.1 5.4.5 5.4.6 5.4.7 5.5.0 5.5.1 5.5.2')
+Zurb=('foundation 3.2.2 3.2.5 4.0.4 4.0.5 4.0.8 4.0.9 4.1.2 4.1.6 4.2.3 4.3.1 4.3.2 5.0.0 5.0.1 5.0.2 5.0.3 5.1.0 5.1.1 5.2.0 5.2.1 5.2.2 5.2.3 5.3.0 5.3.1 5.3.2 5.3.3 5.4.0 5.4.1 5.4.5 5.4.6 5.4.7 5.5.0 5.5.1 5.5.2')
 Zepto=('zepto 0.6 0.7 0.8 1.0 1.1.1 1.1.2 1.1.3 1.1.4 1.1.5 1.1.6')
 Ink=('ink 2.2.1 2.3.0 2.3.1 2.3.2 2.3.3 3.0.0 3.0.1 3.0.2 3.0.3 3.0.4 3.0.5 3.1.0 3.1.1 3.1.2 3.1.3 3.1.4 3.1.5 3.1.6 3.1.7 3.1.8 3.1.9')
 jQueryTools=('jquery-tools 1.2.6 1.2.7')
 Mustache=('mustache.js 0.1 0.2 0.2.1 0.2.2 0.2.3 0.3.0 0.4.0 0.4.1 0.4.2 0.5.0-dev 0.5.0-vsc 0.5.2 0.5.2-vsc 0.6.0 0.7.0 0.7.1 0.7.2 0.7.3 0.8.0 0.8.1 0.8.2 1.0.0 1.1.0 1.2.0 2.0.0 2.1.0 2.1.1 2.1.2')
 Leaflet=('leaflet 0.3.1 0.4.5 0.5 0.5.1 0.6 0.6.1 0.6.2 0.6.3 0.6.4 0.7.0 0.7.1 0.7.2 0.7.3')
+Sizzle=('sizzle 1.4.4 1.9.1 1.9.2 1.9.3 1.10.0 1.10.1 1.10.2 1.10.3 1.10.4 1.10.5 1.10.6 1.10.7 1.10.8 1.10.9 1.10.10 1.10.11 1.10.12 1.10.13 1.10.14 1.10.15 1.10.16 1.10.17 1.10.18 1.10.19 1.11.1 2.0.0 2.1.0 2.1.1 2.2.0')
+Fancybox=('fancybox 1.3.4 2.0.4 2.0.5 2.0.6 2.1.1 2.1.3 2.1.4 2.1.5')
+Lightbox=('lightbox 2.7.1 2.7.2 2.7.3 2.7.4 2.8.0 2.8.1') 
+Html5shiv=('html5shiv 3.6 3.6.1 3.6.2 3.7 3.7.1 3.7.2')
 
 array=(
-	"${AngularVer[@]}" 
-	"${AngularMaterialVer[@]}"
-	"${Dojo[@]}"
-	"${ExtCore[@]}"
-	"${jQuery[@]}"
-	"${jQueryMobile[@]}"
-	"${jQueryMobileCss[@]}"
-	"${jQueryUI[@]}"
-	"${jQueryUICss[@]}"
-	"${MooTools[@]}"
-	"${Prototype[@]}"
-	"${Scriptaculous[@]}"
-	"${SPF[@]}"
-	"${SWFObject[@]}"
-	"${ThreeJS[@]}"
-	"${WebFontLoader[@]}"
-  "${Headjs[@]}"
-  "${Velocity[@]}"
-  "${Modernizr[@]}" 
-  "${Underscore[@]}" 
-  "${Backbone[@]}" 
-  "${Polymer[@]}" 
-  "${YUI[@]}" 
-  "${Yepnope[@]}" 
-  "${LABjs[@]}"
-  "${React[@]}"
-  "${Highcharts[@]}"
-  "${Webfont[@]}"
-  "${Handlebars[@]}"
-  "${Requirejs[@]}"
-  "${Fastclick[@]}"
-  "${Hammerjs[@]}"
-  "${Isotope[@]}"
-  "${Flotcharts[@]}"
-  "${Zurb[@]}"
-  "${Zepto[@]}"
-  "${Ink[@]}"
-  "${Mustache[@]}"
-  "${Leaflet[@]}"
+	# "${AngularVer[@]}" 
+	# "${AngularMaterialVer[@]}"
+	# "${Dojo[@]}"
+	# "${ExtCore[@]}"
+	# "${jQuery[@]}"
+	# "${jQueryMobile[@]}"
+	# "${jQueryMobileCss[@]}"
+	# "${jQueryUI[@]}"
+	# "${jQueryUICss[@]}"
+	# "${MooTools[@]}"
+	# "${Prototype[@]}"
+	# "${Scriptaculous[@]}"
+	# "${SPF[@]}"
+	# "${SWFObject[@]}"
+	# "${ThreeJS[@]}"
+	# "${WebFontLoader[@]}"
+ #  "${Headjs[@]}"
+ #  "${Velocity[@]}"
+ #  "${Modernizr[@]}" 
+ #  "${Underscore[@]}" 
+ #  "${Backbone[@]}" 
+ #  "${Polymer[@]}" 
+ #  "${YUI[@]}" 
+ #  "${Yepnope[@]}" 
+ #  "${LABjs[@]}"
+ #  "${React[@]}"
+ #  "${Highcharts[@]}"
+ #  "${Webfont[@]}"
+ #  "${Handlebars[@]}"
+ #  "${Requirejs[@]}"
+ #  "${Fastclick[@]}"
+ #  "${Hammerjs[@]}"
+ #  "${Isotope[@]}"
+ #  "${Flotcharts[@]}"
+ #  "${Zurb[@]}"
+ #  "${Zepto[@]}"
+ #  "${Ink[@]}"
+ #  "${Mustache[@]}"
+ #  "${Leaflet[@]}"
+ # "${Sizzle[@]}"
+ # "${Fancybox[@]}"
+ # "${Lightbox[@]}"
+ "${Html5shiv[@]}"
 )
 
 n_array=${#array[*]}     #获取一维的数组长度  
@@ -263,9 +271,9 @@ do
        then  
          label="jquery.flot.js"
        fi  
-       if [ $libName = "zurb" ]  
+       if [ $libName = "foundation" ]  
        then  
-         label="zurb.flot.js"
+         label="foundation.min.js"
        fi 
        if [ $libName = "zepto" ]  
        then  
@@ -288,10 +296,27 @@ do
        then  
          label="leaflet.css"
        fi 
+       if [ $libName = "sizzle" ]  
+       then  
+         label="sizzle.js"
+       fi 
+       if [ $libName = "fancybox" ]  
+       then  
+         label="jquery.fancybox.min.js"
+       fi 
+       if [ $libName = "lightbox" ]  
+       then  
+         label="lightbox.js"
+       fi
+       if [ $libName = "html5shiv" ]  
+       then  
+         label="html5shiv.js"
+       fi 
        
     else
       echo ${inner_array[$i,$j]} 
       #do something  
+      # url=$prefix2$libName'/'${inner_array[$i,$j]}'/'$label
       url=$prefix2$libName'/'${inner_array[$i,$j]}'/'$label
       echo "$url"
       slimerjs --ssl-protocol=any getLibrary.js "$url"

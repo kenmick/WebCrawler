@@ -24,7 +24,7 @@ page.onResourceReceived = function(response) {
 		    else
 		      var fname = cname+'/'+ url.split("//")[1].split("/")[5].split(".")[0]+ "-" + url.split("//")[1].split("/")[4]+".css";
 	    else 
-	      var fname = cname+'/'+ url.split("//")[1].split("/")[5].split(".")[0]+ "-" + url.split("//")[1].split("/")[4]+".js";
+	      var fname = cname+'/'+ url.split("//")[1].split("/")[5].split(".")[0]+ "-" + url.split("//")[1].split("/")[4]+"-.js";
 	    // console.log('Response (#' + response.id + ', stage "' + response.stage + '"): ' + JSON.stringify(response));
 
 		fs.write(fname, response.body);		

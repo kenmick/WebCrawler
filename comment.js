@@ -5,16 +5,17 @@ var date = process.argv[2];
 
 var comments = ["jQuery", "jQuery JavaScript Library", "jQuery UI", "jQuery Tools", "jQuery Cookie Plugin", 
 				"jQuery Mobile", "AngularJS", "Bootstrap", "Backbone.js", "Ext Core Library", 
-				"FastClick", "handlebars", "Spine", "Hammer.JS -", "Dojo", "head.core -", "Highcharts JS", 
-				"Isotope", "Isotope PACKAGED", "LABjs", "Leaflet", "Lo-Dash", "Modernizr", "Mootools",
+				"FastClick", "handlebars", "Spine", 'SPF', "Hammer.JS -", "Dojo", "head.core -", "Highcharts JS", 
+				"Isotope", "Isotope PACKAGED", "LABjs", "Leaflet", "Lo-Dash", "Modernizr", "Yahoo", "Mootools",
 				"Mustache", "React", "Prototype JavaScript framework, version", "RequireJS", "scriptaculous.js",
-				 "SWFObject", "Underscore.js", "Web Font Loader", "yepnope.js", "Zepto"];
+				 "SWFObject", "Underscore.js", "Web Font Loader", "yepnope.js", "Zepto", "Sizzle", "FancyBox", "Lightbox", "HTML5 Shiv", "Javascript plotting library for jQuery, ",
+				 "Foundation", "Velocity.js"];
 var libs_name = ["jQuery", "jQuery", "jQueryUI", "jQueryTools", "jQueryCookie",
 				"jQueryMobile", "Angular", "Bootstrap", "Backbone", "Extjs", 
-				"FastClick", "handlebars", "Spine", "Hammerjs", "Dojo", "Headjs", "Highcharts", 
-				"Isotope", "Isotope", "LABjs", "Leaflet", "Lodash", "Modernizr", "Mootools",
+				"FastClick", "handlebars", "Spine", 'SPF', "Hammerjs", "Dojo", "Headjs", "Highcharts", 
+				"Isotope", "Isotope", "LABjs", "Leaflet", "Lodash", "Modernizr", "YUI", "Mootools",
 				"Mustache", "React", "Prototype", "Requirejs", "scriptaculousjs",
-				 "SWFObject", "Underscore", "Webfont", "Yepnope", "Zepto"];
+				 "SWFObject", "Underscore", "Webfont", "Yepnope", "Zepto", "Sizzle", "Fancybox", "Lightbox", "Html5shiv", "Flotcharts", 'Zurb', 'Velocity'];
 
 var dir = fs.readFileSync('./url.txt', 'utf-8').trim().split('\n');
 // var dir = fs.readFileSync('./url.txt', 'utf-8').split('\n');
@@ -41,7 +42,7 @@ for (var i = 0; i < dir.length; i++) {
 
 
 		for (var m = 0; m < comments.length; m++) {
-			var reg =new RegExp(comments[m] + " [v]?\\d+.\\d+(.\\d)?\\d?", "g");
+			var reg =new RegExp(comments[m] + " [v]?\\d+.\\d+(.\\d)?\\d?", "ig");
 			// console.log(reg);
 			var result = file.match(reg);
 
