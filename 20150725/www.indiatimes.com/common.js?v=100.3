@@ -1,0 +1,358 @@
+ 
+ ModalBoxNew =
+{
+    open: function(url, w, h, o, c, oOpen) {
+	var src = url;
+	var scrollshow ="no";
+	var frame ="0";
+	var overlayClose = (typeof(o)=="undefined") ? true : o;
+	var onClose = (typeof(c)=="undefined") ? '' : c;
+	var onOpenW = (typeof(oOpen)=="undefined") ? '' : oOpen;
+	var windowHeight = (typeof(h)=="undefined") ? ($(window).height() - 100) : h;
+	var windowWidth = (typeof(w)=="undefined") ? ($(window).width() - 100) : w;
+
+	$.modal('<iframe src="' + src + '" height="'+windowHeight+'" scrolling="'+scrollshow+'" frameborder="'+frame+'"  allowTransparency="'+'true'+'"  width="'+windowWidth+'" style="border:0;">', {
+		containerCss:{
+
+			height:(windowHeight),
+			padding:0,
+			width:(windowWidth)
+		},
+	  	position: ["20%","25%"],
+		overlayClose:overlayClose,
+		onClose: function() {
+			$.modal.close();
+			if(onClose!='') {
+				onClose.apply(this, arguments);
+			}
+		},
+
+		onShow: function(dialog){ dialog.wrap.css('overflow','hidden'); dialog.overlay.css('background','#000');  dialog.container.css('top','5%');  },
+		escClose:false
+    	});
+    },
+    close: function() {
+    	$.modal.close();
+    }
+	};
+ 
+ 
+   	$("#UserEmail").val('Please Enter Email Address');
+	
+	$('#UserEmail').focus(function() {
+		if ($(this).val() == $(this).attr('defaultValue')) {
+			if ($(this).attr('readonly') == true) {
+				return false;
+			} else {
+				$(this).val('');
+			}
+		}
+	})
+	.blur(function() {
+		if ($(this).val().length == 0) {
+			$(this).val($(this).attr('defaultValue'));
+		}
+	});
+
+$('#btn-submit').click(function() {
+		$(".error").hide();
+		$(".response").hide();
+		var hasError = false;
+		var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+
+		var emailaddressVal = $("#UserEmail")
+				.val();
+		if (emailaddressVal == '' || emailaddressVal == 'Please Enter Email Address') {
+			$("#subsEmal").html('Please enter your email address.');
+			$("#UserEmail").focus();
+			$("#UserEmail").val('');
+			hasError = true;
+		}
+
+		else if (!emailReg.test(emailaddressVal)) {
+			$("#subsEmal").html('Enter a valid email address.');
+			$("#UserEmail").focus();
+			$("#UserEmail").val('');
+			hasError = true;
+		}
+
+		if (hasError == true) {
+			return false;
+		} else {
+			$(".response").hide();
+			$.post('/saveNewsletter.php',
+				{
+					email : emailaddressVal
+				},
+				function(data) {
+					// $('#subsEmal').html(data);
+					var res = eval("("
+							+ data
+							+ ")");
+							
+							
+					if (res.result == 'success') {
+					
+						$('#subsEmal').css('color','green');
+						$('#subsEmal').html('Subscription successful');
+					} else if (res.result == 'before') {
+						$('#subsEmal').css('color','red');
+						$('#subsEmal').html('Already subscribed');
+					} else {
+						$('#subsEmal').css('color','red');
+						$('#subsEmal').html('Subscription failed');
+					}
+					$("#UserEmail").val('Please Enter Email Address');
+				});
+		}
+
+	});
+
+	$("#UserEmail").keyup(function(event) {
+		if (event.keyCode == 13) {
+			$('#btn-submit').trigger('click');
+		}
+	});
+	
+	
+	
+	$(document).ready(function() {
+
+	// for photo gallery esc functionality
+      var KEYCODE_ESC = 27;
+		$(document).keyup(function(e) {
+		  if (e.keyCode == KEYCODE_ESC) { if ($('#full-screen').length){ $('#full-screen').hide(); } }
+		});
+
+
+
+    if ($('#facebook_comment').length) {
+      var url = $(location).attr('href');
+      //url = 'http://indiatimes.com/';
+      var html = '<div class="fb-comments" data-href="' + url + '" data-numposts="5" data-colorscheme="light" data-width="100%"></div>';
+      $(html).appendTo("#facebook_comment");
+    }
+	if ($('#facebook_comment_video').length) {
+      var url = $(location).attr('href');
+      //url = 'http://indiatimes.com/';
+
+      var html = '<div class="fb-comments" data-href="' + url + '" data-numposts="5" data-colorscheme="dark" data-width="100%"></div>';
+      $(html).appendTo("#facebook_comment_video");
+    }
+    $(document).jqSocialSharer();
+  });
+      (function($){
+  $.fn.jqSocialSharer = function(options){
+
+
+    //settings
+    var settings = $.extend({
+      "popUpWidth" : 550,               /*Width of the Pop-Up Window*/
+      "popUpHeight": 450,               /*Height of the Pop-Up Window*/
+      "popUpTop"   : 100,               /*Top value for Pop-Up Window*/
+      "useCurrentLocation" : false      /*Whether or not use current location for sharing*/
+    }, options);
+
+    /*Attach this plugin to each element in the DOM selected by jQuery Selector and retain statement chaining*/
+    return this.each(function(index, value){
+
+      /*Respond to click event*/
+      $(this).on("click", '.share a',function(evt){
+
+        evt.preventDefault();
+
+        /*Define*/
+		
+        var social = $(this).data('social'),
+		
+            width=settings.popUpWidth,
+            height=settings.popUpHeight,
+            sHeight=screen.height,
+            sWidth=screen.width,
+            left=Math.round((sWidth/2)-(width/2)),
+            top=settings.popUpTop,
+            url,
+            useCurrentLoc = settings.useCurrentLocation,
+            socialURL = (useCurrentLoc) ? window.location : encodeURIComponent(social.url),
+			socialFb = (useCurrentLoc) ? window.location : encodeURIComponent(social.url),
+			emailURL = social.url,
+            socialText = social.text,
+            socialImage = encodeURIComponent(social.image);
+
+        switch(social.type){
+    
+			case 'facebook':
+                FB.ui(
+          {
+            method: 'feed',
+            name: social.text,
+            link: social.url,
+            picture: social.image,
+            caption: social.caption,
+            description: social.desc
+          },
+          function(response) {
+			 ga('send', {
+              'hitType': 'social',
+              'socialNetwork': 'Facebook',
+              'socialAction': 'send',
+              'socialTarget': social.url
+            });
+			return false;		
+          }
+        );
+	
+	
+                break;
+	
+/*
+ case 'facebook':
+			 ga('send', {
+              'hitType': 'social',
+              'socialNetwork': 'Facebook',
+              'socialAction': 'send',
+              'socialTarget': social.url
+            });			
+                //url = 'https://www.facebook.com/sharer/sharer.php?p[url]='+socialURL+'&p[images][0]='+socialImage+'&p[title]='+socialText+'&p[summary]';
+				url = 'https://www.facebook.com/sharer/sharer.php?p[url]='+socialFb;
+				
+				window.open(url, '', 'left='+left+' , top='+top+', width='+width+', height='+height+', personalbar=0, toolbar=0, scrollbars=1, resizable=1');
+                break;	
+*/				
+            case 'twitter':
+//     ga('send', {
+//              'hitType': 'social',
+//              'socialNetwork': 'Twitter',
+//              'socialAction': 'Tweet',
+//           });			
+                url = 'https://twitter.com/intent/tweet?url='+ socialURL + '&text=' + socialText;
+			    window.open(url, '', 'left='+left+' , top='+top+', width='+width+', height='+height+', personalbar=0, toolbar=0, scrollbars=1, resizable=1');
+				break;
+            case 'plusone':
+                url = 'https://plusone.google.com/_/+1/confirm?hl=en&url=' + socialURL;
+			    window.open(url, '', 'left='+left+' , top='+top+', width='+width+', height='+height+', personalbar=0, toolbar=0, scrollbars=1, resizable=1');
+                break;
+			case 'email':
+				//shareEmail(socialURL);
+				ModalBoxNew.open(emailURL, 460, 580);
+				//window.open(emailURL, '', 'left='+left+' , top='+top+', width='+width+', height='+height+', personalbar=0, toolbar=0, scrollbars=1, resizable=1');
+				break;
+                                
+           case 'pinterest':
+               //window.location = social.url;
+			   window.open(social.url,'_blank');
+               break;
+        }
+        /*Finally fire the Pop-up*/
+
+      });
+    });
+  };
+}(jQuery));  
+/************************ Search page *****************************************/
+var track_click = 0;
+function search_data(){
+  var len = $('#q').val().length;
+  var search_val = $('#q').val();
+  if(len >= 3 && search_val != 'Search'){
+	  $("#results").html('');
+	  track_click  =0;
+	  
+	  $.ajax({
+        type: "GET",
+        url: "/ajax/contentsearch.php",
+        data: {'q' : search_val, 'page': track_click},
+        success: function(data) {
+         var data = jQuery.parseJSON(data);
+		  if(data.load_more == '-1'){
+               $("#res-msg").html(data.html);
+			    $("#load_more_button").hide();
+          } else{
+			  $("#res-msg").html('');
+			  $("#results").html(data.html);
+			  if(data.load_more == 1){
+                                track_click++;
+				$("#load_more_button").show();
+			  }else{
+				 $("#load_more_button").hide();
+			  }
+		  }
+		  
+	     }
+
+    });
+  }else {
+	  $("#results").html('Loding');
+	  $("#load_more_button").hide();
+  }
+}
+//alert(track_click);
+function load_search_data(){
+  var len = $('#q').val().length;
+  var search_val = $('#q').val();
+  if(len >= 3 && search_val != 'Search'){
+      $('#progressBar').show();
+	  $.ajax({
+        type: "GET",
+        url: "/ajax/contentsearch.php",
+        data: {'q' : search_val, 'page': track_click},
+        success: function(data) {
+          var data = jQuery.parseJSON(data);
+		  //alert(data.load_more);
+  	      $("#results").append(data.html);
+		  //$('.scroll-panes').jScrollPane();
+		  if(data.load_more == 1){
+            $("#load_more_button").show();
+            $('#progressBar').hide();
+		  }else{
+             $("#load_more_button").hide();
+		  }
+		  track_click++;
+                  $('#scroll-panes').scrollTop(1000000);
+	     }
+
+    });
+  }else {
+	  $("#load_more_button").hide();
+  }
+
+}
+//------------------------------------------------------------------------------
+function shareEmail(url) {
+
+  ModalBoxNew.open(url, 460, 580);
+}   
+
+$(function(){
+$('#comment_tag').click(function(){
+var cm_pos = $('#facebook_comment').offset().top;
+$('html, body').animate({
+scrollTop: cm_pos-50
+}, 1000);
+});
+$('#comment_tag').show();
+});
+$("document").ready(function() {
+			$("img.lazy").lazyload({
+				effect: "fadeIn",
+				placeholder:null,
+				threshold : 100,
+				failurelimit: 1000
+			}).removeClass("lazy"); 
+   $("img.photolazy").lazyload({
+				effect: "fadeIn",
+				threshold : 100, 	
+				failurelimit: 1000
+			}).removeClass("photolazy");   
+});
+
+twttr.events.bind('tweet', function (event) {
+      // Do something there
+     ga('send', {
+              'hitType': 'social',
+              'socialNetwork': 'Twitter',
+              'socialAction': 'Tweet'
+           });
+
+    });	
+	

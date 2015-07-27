@@ -1,0 +1,612 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+        <title>Pourquoi l&#039;accord sur le nuclÃ©aire iranien est plus sexy que vous l&#039;imaginez</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+    <meta name="viewport" content="user-scalable=no,initial-scale=1,maximum-scale=1">
+    <style>
+    html,
+body {
+    margin:0;
+    padding:0;
+    height: 100%;
+    width: 100%;
+}
+body
+{
+    background-color: #000;
+    color: #fff;
+    font-family: sans-serif;
+    overflow: hidden;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0); /* Disable hugly Android highlight */
+}
+
+/* Load error CSS */
+.load-error-container {
+    display: table;
+    height: 100%;
+    text-align: center;
+    width: 100%;
+}
+.load-error-content {
+    display: table-cell;
+    vertical-align: middle;
+}
+.load-error-content > h2 {
+    margin: 20px 10px;
+}
+.load-error-content > p {
+    margin: 0 30px;
+}
+/* END load error CSS */
+
+/* Loader related CSS*/
+
+/* both loaders */
+.loader
+{
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  top: 50%;
+  left: 50%;
+  margin-left: -25px;
+  margin-top: -25px;
+}
+
+/* animations boost : forces hardware acceleration by apply identity 3d transform */
+.force-transform {
+    -moz-transform: translate3d(0,0,0);
+    -ms-transform: translate3d(0,0,0);
+    -o-transform: translate3d(0,0,0);
+    -webkit-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
+}
+
+/* iOS Loader */
+.ios-loader .ios-loader-bar
+{
+  width: 10%;
+  height: 26%;
+  background: #fff;
+  position: absolute;
+  left: 44.5%;
+  top: 37%;
+
+  border-radius: 50px;
+  box-shadow: 0 0 3px rgba(0,0,0,0.2);
+  opacity: 0;
+}
+@-webkit-keyframes fade { from {opacity: 1;} to {opacity: 0;} }
+@-moz-keyframes    fade { from {opacity: 1;} to {opacity: 0;} }
+@-ms-keyframes     fade { from {opacity: 1;} to {opacity: 0;} }
+@-o-keyframes      fade { from {opacity: 1;} to {opacity: 0;} }
+@keyframes         fade { from {opacity: 1;} to {opacity: 0;} }
+
+.ff {background-position: center center; background-repeat: no-repeat; width: 100%; height: 100%; position: absolute; top: 0; left: 0; overflow: hidden}
+.loading-css {background-image:url(http://static1.dmcdn.net/images/black-loading.gif.vc368ccf53bb3dedd9); background-color: #000}
+
+/* Android Loader */
+.android-loader-outer, .android-loader-inner, .android-loader:after {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+}
+/* Mask */
+ .android-loader:after {
+    content:" ";
+    margin: 10%;    /* stroke width */
+    border-radius: 100%;
+    background: none;    /* container background */
+}
+/* Spinning gradients */
+ .android-loader-outer, .android-loader-inner {
+    -webkit-animation-duration: 2s;
+    -moz-animation-duration: 2s;
+    -ms-animation-duration: 2s;
+    -o-animation-duration: 2s;
+    animation-duration: 2s;
+
+    -webkit-animation-iteration-count: infinite;
+    -moz-animation-iteration-count: infinite;
+    -ms-animation-iteration-count: infinite;
+    -o-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+
+    -webkit-animation-timing-function: linear;
+    -moz-animation-timing-function: linear;
+    -ms-animation-timing-function: linear;
+    -o-animation-timing-function: linear;
+    animation-timing-function: linear;
+
+    -webkit-mask-box-image: url(http://static1.dmcdn.net/images/black-circle.svg.ve2f6fca4abd085f99);
+    -moz-mask-box-image: url(http://static1.dmcdn.net/images/black-circle.svg.ve2f6fca4abd085f99);
+    -ms-mask-box-image: url(http://static1.dmcdn.net/images/black-circle.svg.ve2f6fca4abd085f99);
+    -o-mask-box-image: url(http://static1.dmcdn.net/images/black-circle.svg.ve2f6fca4abd085f99);
+    mask-box-image: url(http://static1.dmcdn.net/images/black-circle.svg.ve2f6fca4abd085f99);
+}
+.android-loader-outer {
+    -webkit-animation-name: rotate-outer;
+    -moz-animation-name: rotate-outer;
+    -ms-animation-name: rotate-outer;
+    -o-animation-name: rotate-outer;
+    animation-name: rotate-outer;
+}
+.android-loader-inner {
+    -webkit-animation-name: rotate-inner;
+    -moz-animation-name: rotate-inner;
+    -ms-animation-name: rotate-inner;
+    -o-animation-name: rotate-inner;
+    animation-name: rotate-inner;
+}
+/* Halfs */
+ .android-loader-outer:before, .android-loader-inner:before, .android-loader-outer:after, .android-loader-inner:after {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    content:" ";
+}
+/* Left half */
+ .android-loader-outer:before, .android-loader-inner:before {
+    left: 0;
+    right: 50%;
+    border-radius: 72px 0 0 72px;    /* diameter */
+}
+/* Right half */
+ .android-loader-outer:after, .android-loader-inner:after {
+    left: 50%;
+    right: 0;
+    border-radius: 0 72px 72px 0;    /* diameter */
+}
+/* Half gradients */
+ .android-loader-outer:before {
+    background-image: -webkit-linear-gradient(top, hsla(0, 0%, 100%, 0.0), hsla(0, 0%, 100%, 0.5));
+    background-image: -moz-linear-gradient(top, hsla(0, 0%, 100%, 0.0), hsla(0, 0%, 100%, 0.5));
+    background-image: -ms-linear-gradient(top, hsla(0, 0%, 100%, 0.0), hsla(0, 0%, 100%, 0.5));
+    background-image: -o-linear-gradient(top, hsla(0, 0%, 100%, 0.0), hsla(0, 0%, 100%, 0.5));
+    background-image: linear-gradient(to bottom, hsla(0, 0%, 100%, 0.0), hsla(0, 0%, 100%, 0.5));
+}
+.android-loader-outer:after {
+    background-image: -webkit-linear-gradient(top, hsla(0, 0%, 100%, 1.0), hsla(0, 0%, 100%, 0.5));
+    background-image: -moz-linear-gradient(top, hsla(0, 0%, 100%, 1.0), hsla(0, 0%, 100%, 0.5));
+    background-image: -ms-linear-gradient(top, hsla(0, 0%, 100%, 1.0), hsla(0, 0%, 100%, 0.5));
+    background-image: -o-linear-gradient(top, hsla(0, 0%, 100%, 1.0), hsla(0, 0%, 100%, 0.5));
+    background-image: linear-gradient(to bottom, hsla(0, 0%, 100%, 1.0), hsla(0, 0%, 100%, 0.5));
+}
+.android-loader-inner:before {
+    background-image: -webkit-linear-gradient(top, hsla(0, 0%, 100%, 0.5), hsla(0, 0%, 75%, 0.5));
+    background-image: -moz-linear-gradient(top, hsla(0, 0%, 100%, 0.5), hsla(0, 0%, 75%, 0.5));
+    background-image: -ms-linear-gradient(top, hsla(0, 0%, 100%, 0.5), hsla(0, 0%, 75%, 0.5));
+    background-image: -o-linear-gradient(top, hsla(0, 0%, 100%, 0.5), hsla(0, 0%, 75%, 0.5));
+    background-image: linear-gradient(to bottom, hsla(0, 0%, 100%, 0.5), hsla(0, 0%, 75%, 0.5));
+}
+.android-loader-inner:after {
+    background-image: -webkit-linear-gradient(top, hsla(0, 0%, 50%, 0.5), hsla(0, 0%, 75%, 0.5));
+    background-image: -moz-linear-gradient(top, hsla(0, 0%, 50%, 0.5), hsla(0, 0%, 75%, 0.5));
+    background-image: -ms-linear-gradient(top, hsla(0, 0%, 50%, 0.5), hsla(0, 0%, 75%, 0.5));
+    background-image: -o-linear-gradient(top, hsla(0, 0%, 50%, 0.5), hsla(0, 0%, 75%, 0.5));
+    background-image: linear-gradient(to bottom, hsla(0, 0%, 50%, 0.5), hsla(0, 0%, 75%, 0.5));
+}
+/* Spinning animations */
+ @keyframes rotate-outer {
+    0% {
+        -webkit-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(1080deg);
+        -moz-transform: rotate(1080deg);
+        transform: rotate(1080deg);
+    }
+}
+@-webkit-keyframes rotate-outer {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(1080deg);
+    }
+}
+@keyframes rotate-inner {
+    0% {
+        -webkit-transform: rotate(720deg);
+        -moz-transform: rotate(720deg);
+        transform: rotate(720deg);
+    }
+    100% {
+        -webkit-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+}
+@-webkit-keyframes rotate-inner {
+    0% {
+        -webkit-transform: rotate(720deg);
+    }
+    100% {
+        -webkit-transform: rotate(0deg);
+    }
+}
+/* End Loader related CSS */
+    
+#startscreen .bar .background
+{
+    background-color: rgba(23,29,27,.25);
+}
+#controls .bar .background,
+#startscreen .bar.hover .background,
+#startscreen .bar:hover .background
+{
+    background-color: rgba(23,29,27,.6);
+}
+
+.bar .play .inner
+{
+    background-color: #171d1b;
+}
+.bar .play .inner .play-icon
+{
+    color: #f7fffd;
+}
+.bar .play:hover .inner .play-icon
+{
+    color: #ffcc33;
+}
+#player.started #controls .bar .play .inner .icon,
+#player.started #controls .bar .play .inner .icon2
+{
+    background-color: #f7fffd;
+}
+#player.started #controls .bar .play:hover .inner .icon,
+#player.started #controls .bar .play:hover .inner .icon2
+{
+    background-color: #ffcc33;
+}
+
+#startscreen .info div,
+#startscreen .info a
+{
+    color: #f7fffd;
+}
+#startscreen .info a:hover
+{
+    color: #ffcc33;
+}
+
+.bar .progress-bar .progress
+{
+    background-color: #ffcc33;
+    border-color: #ffcc33
+}
+.bar .progress-bar .buffer
+{
+    background-color: rgba(247,255,253, 0.3);
+}
+.bar .progress-bar .handle .inner
+{
+    border-color: #f7fffd;
+    border-top-color: #f7fffd;
+    border-left-color: #c5cdcb;
+    border-right-color: #c5cdcb;
+    border-bottom-color: #939b99;
+    background-color: #f7fffd;
+    background: -webkit-gradient(radial, 10 12, 6, 10 12, 12, from(rgba(0,0,0,0)), to(rgba(0,0,0,0.2))) #f7fffd; /* old webkit syntax */
+    background: -webkit-radial-gradient(10px 12px, circle, rgba(0,0,0,0) 6px, rgba(0,0,0,0.2) 12px) #f7fffd; /* standard compliant webkit */
+    background: -moz-radial-gradient(10px 12px, circle, rgba(0,0,0,0) 6px, rgba(0,0,0,0.2) 12px) #f7fffd; /* standard compliant moz */
+    background: radial-gradient(10px 12px, circle, rgba(0,0,0,0) 6px, rgba(0,0,0,0.2) 12px) #f7fffd; /* standard */
+}
+
+#controls .bar .progress-bar .handle-hole
+{
+    background-color: #ffcc33;
+}
+
+#controls .bar .progress-bar .indicator .inner
+{
+    background-color: #171d1b;
+    color: #f7fffd;
+}
+#controls .bar .progress-bar .indicator .inner .arrow
+{
+    border-top-color: #171d1b !important;
+}
+
+/* Geo-locked error message override */
+#error .error-DM007 a
+{
+    color: #ffcc33;
+}
+
+.bar .duration
+{
+    color: #f7fffd;
+}
+
+.btn
+{
+  color: #f7fffd;
+  background: rgba(23,29,27, 0.4);
+}
+.btn-selected,
+.no-touch .btn:hover, .no-touch .btn:focus, .no-touch .btn:active
+{
+  color: #ffcc33;
+  background: rgba(23,29,27, 0.7);
+}
+    /* Custom Font Definition */
+@font-face {
+    font-family: 'Dailymotion';
+    src: url('http://static1.dmcdn.net/css/component/player/fonts/Dailymotion.eot');
+    src: url('http://static1.dmcdn.net/css/component/player/fonts/Dailymotion.eot?#iefix') format('embedded-opentype'),
+         url('http://static1.dmcdn.net/css/component/player/fonts/Dailymotion.woff') format('woff'),
+         url('http://static1.dmcdn.net/css/component/player/fonts/Dailymotion.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Fullscreen Button */
+.bar .fullscreen
+{
+   background-image: url(http://static1.dmcdn.net/images/playerhtml5/fullscreen_on.png.vfc0d917c8e6366f79);
+}
+.bar .fullscreen:hover
+{
+   background-image: url(http://static1.dmcdn.net/images/playerhtml5/fullscreen_off.png.vb360d3f0f5fa70ec9);
+}
+    </style>
+        <link rel="stylesheet" href="http://static1.dmcdn.net/css/component/player/player-87b36a9a.css">
+            <link rel="canonical" href="http://www.dailymotion.com/video/x2uk3q6_pourquoi-l-accord-sur-le-nucleaire-iranien-est-plus-sexy-que-vous-l-imaginez_news">
+    </head>
+<body>
+    <script>
+    
+// requestAnimationFrame polyfill
+// see:
+// * http://my.opera.com/emoller/blog/2011/12/20/requestanimationframe-for-smart-er-animating
+// * http://paulirish.com/2011/requestanimationframe-for-smart-animating/
+(function() {
+    var lastTime = 0;
+    var vendors = ['ms', 'moz', 'webkit', 'o'];
+    for(var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
+        window.requestAnimationFrame = window[vendors[x]+'RequestAnimationFrame'];
+        window.cancelAnimationFrame = window[vendors[x]+
+          'CancelAnimationFrame'] || window[vendors[x]+
+          'CancelRequestAnimationFrame'];
+    }
+
+    if (!window.requestAnimationFrame)
+        window.requestAnimationFrame = function(callback, element) {
+            var currTime = new Date().getTime();
+            var timeToCall = Math.max(0, 16 - (currTime - lastTime));
+            var id = window.setTimeout(function() { callback(currTime + timeToCall); },
+              timeToCall);
+            lastTime = currTime + timeToCall;
+            return id;
+        };
+
+    if (!window.cancelAnimationFrame)
+        window.cancelAnimationFrame = function(id) {
+            clearTimeout(id);
+        };
+}());
+
+(function loaderClosure(global, forcedFallback){
+
+    // jshint eqnull:true
+    if (forcedFallback == null) forcedFallback = false;
+
+    var LOADER_ID = 'loader',
+        NB_BARS = 8,
+        ANGLE = 360 / NB_BARS,
+        STEPS = 1000 / NB_BARS, // 1sec animation
+        loader = document.getElementById(LOADER_ID);
+
+    // The loader needs to start as fast as possible
+    // => we don't want to wait for Modernizr to only check 2 properties
+    var m = (function modernizrLight()
+    {
+        var cssomPrefixes = ['Webkit','Moz', 'O', 'ms'];
+        var st = document.createElement('div').style;
+        var ua = navigator.userAgent;
+
+        function checkProp(property, prefixed)
+        {
+            var ucProp  = property.charAt(0).toUpperCase() + property.slice(1),
+                props   = (property + ' ' + cssomPrefixes.join(ucProp + ' ') + ucProp).split(' ');
+
+            for ( var i in props )
+            {
+                var prop = props[i];
+                if ( st[prop] !== undefined ) return prefixed === true ? prop : true;
+            }
+            return false;
+        }
+        return {
+            csstransforms: checkProp('transform'),
+            cssanimations: checkProp('animationName'),
+            cssmask: checkProp('mask'),
+            android: ua.indexOf('Android') !== -1,
+            chrome: ua.indexOf('Chrome') !== -1,
+            prefixed: function(prop)
+            {
+                return checkProp(prop, true);
+            }
+        };
+    })();
+
+    function getLoader()
+    {
+        if (!loader)
+        {
+            loader = document.createElement('div');
+            loader.id = LOADER_ID;
+            loader.className = 'loader';
+
+            // force fallback via query parameter
+            // see : DAILY-30716
+            if (forcedFallback)
+            {
+                loader.className = "loading-css ff";
+            }
+            // The following should be tested with (m.android && m.cssmask && m.cssanimations && m.csstransforms)
+            // but Android stock browser pass the test without handling css masks correctly (false positive)
+            // see : DAILY-30299
+            else if (m.chrome && m.android)
+            {
+                loader.className = loader.className + ' android-loader';
+
+                var outer = document.createElement('div');
+                outer.className = 'android-loader-outer';
+
+                var inner = document.createElement('div');
+                inner.className = 'android-loader-inner';
+
+                outer = loader.appendChild(outer);
+                inner = loader.appendChild(inner);
+            }
+            // fallback on iOS style loader
+            else if (m.csstransforms)
+            {
+                // Disabling CSS animation if not supported
+                // android stock browser support animation but doesn't renders correctly
+                // for now (Android 4.1.2)
+                var cssanimations = m.cssanimations && !m.android;
+
+                loader.className = loader.className + ' ios-loader';
+                var bars = [];
+                for (var i = NB_BARS - 1; i >= 0; i--)
+                {
+                    var bar = document.createElement('div'),
+                        s = bar.style;
+                    bar.className = 'ios-loader-bar';
+
+                    s[m.prefixed('transform')] = 'rotate(-' + (i * ANGLE) + 'deg) translate(0, -142%)';
+                    if (m.cssanimations)
+                    {
+                        s[m.prefixed('animation')] = (cssanimations ? 'fade ' : '') +
+                            '1s linear -'+Math.floor(i*1000/NB_BARS)/1000+'s infinite';
+                    }
+                    // console.log('building bar animation :', i, m.prefixed('animation'), s[m.prefixed('animation')]);
+                    loader.appendChild(bar);
+                    bars.unshift(bar);
+                }
+
+                // CSS animations support: nothing to do
+                // otherwise run requestAnimationFrame animation
+                if (!cssanimations)
+                {
+                    var lastStep = 0;
+                    loader.start = function()
+                    {
+                        loader.startTime = (window.performance && window.performance.now) ? performance.now() : // FF | Chrome
+                                           window.mozAnimationStartTime ? window.mozAnimationStartTime :        // old FF
+                                           Date.now();                                                          // Default
+
+                        return requestAnimationFrame(loader.update);
+                    };
+                    loader.stop = function()
+                    {
+                        cancelAnimationFrame(loader.animationId);
+                        delete loader.animationId;
+                    };
+                    loader.update = function(timestamp)
+                    {
+                        var progress = timestamp - loader.startTime;
+                        var step = Math.round(progress/STEPS)%NB_BARS;
+
+                        if (step != lastStep)
+                        {
+                            for (var i = 0; i < NB_BARS; i++) bars[i].style.opacity = (1 / ((i + step)%NB_BARS));
+                            lastStep = step;
+                        }
+                        loader.animationId = requestAnimationFrame(loader.update);
+                    };
+                }
+            }
+            else
+            {
+                loader.className = "loading-css ff";
+            }
+            document.body.appendChild(loader);
+        }
+        return loader;
+    }
+
+    global.startLoader = function()
+    {
+        loader = getLoader();
+        if (loader.start && !loader.animationId) loader.start();
+        loader.style.display = 'block';
+        loader.style['z-index'] = '500';
+    };
+    global.stopLoader = function()
+    {
+        if (!loader) return;
+
+        if (loader.stop && loader.animationId) loader.stop();
+        loader.style.display = 'none';
+        loader.style['z-index'] = '-1';
+    };
+})(window/* jshint ignore:start */
+,  false /* jshint ignore:end */);
+    startLoader();
+    ENV = 'prod';
+    </script>
+    <!--[if IE]>
+    <script src="http://static1.dmcdn.net/js/component/player/vendor/polyfill-c77bcd6a.js"></script>
+    <![endif]-->
+        <script src="http://static1.dmcdn.net/js/component/player/player-36e940cc.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <div id="player"></div>
+    <div id="out"></div>
+    <div class="ad_box">&nbsp;</div>
+    <script>
+    try
+    {
+        
+        var info = {"access_error":null,"ads":true,"advertising":{"status":"ok","type":"sdk\/liverail","ac_token":1436920896,"params":{"LR_PUBLISHER_ID":"31746","LR_TITLE":"Pourquoi l'accord sur le nucl\u00e9aire iranien est plus sexy que vous l'imaginez","LR_VIDEO_ID":172258782,"LR_VIDEO_URL":"http:\/\/www.dailymotion.com\/video\/x2uk3q6","LR_DM_TAGS":"Syrie,\u00c9tats-Unis,Moyen-Orient,\u00c9nergie nucl\u00e9aire,Arme nucl\u00e9aire,iran,accord,sexy","LR_VERTICALS":"news","LR_VIDEO_AMID":42760531,"LR_VIDEO_DURATION":129,"LR_TAGS":"VTYPE_official,SMODE_vod,LANG_fr,PAGE_external,PTYPE_web,VDUR_short,pid_55a5ac40e4fed","LR_DM_VTYPE":"official","LR_DM_SMODE":"vod","LR_DM_LANG":"fr","LR_DM_VDUR":"short","LR_DM_PAGE":"external","LR_DM_PTYPE":"web","LR_ALLOWDUPLICATES":1,"LR_DESCRIPTION":"news.dailymotion.com","LR_URL":"http:\/\/www.huffingtonpost.fr\/?country=FR","LR_LAYOUT_SKIN_ID":0,"LR_DM_ADTV_CATEGORIES":"News","LR_DM_IAB":"IAB12","LR_DM_NEXTPERF_OVERLAY_ZID":"28906","LR_DM_SMARTCLIP_CATEGORIES":"News"},"error_logger_url":"http:\/\/logger-02.vty.dailymotion.com\/dm\/desktop-linux\/embed_player\/u\/ad?country=FR&pid=55a5ac40e4fed&vl=en-fr&sv=fr&channel_id=6&class=official&mode=vod&video_id=172258782&r=http%3A%2F%2Fwww.huffingtonpost.fr%2F%3Fcountry%3DFR&visitor_embedder=&src_ref=&visitor_referer=&client_embedder=&owner_id=42760531&pos=preroll&err=_ERRORCODE_&publisher_id=31746&tags=VTYPE_official%2CSMODE_vod%2CLANG_fr%2CPAGE_external%2CPTYPE_web%2CVDUR_short%2Cpid_55a5ac40e4fed&w=_WIDTH_&h=_HEIGHT_&secure=0&autoplay=0&embedder=&external=0&referer=&i=150k02l&cn=Talence&rn=Aquitaine&visitor_ip=2480046429","timeouts":{"load":3000,"global":10000},"debug":{"DM_DMX_SERVICE":"bridge-0.1.4","DM_DMX_SERVICE_BRIDGE_RESPONSE_NS":560656,"DM_DMX_SERVICE_RESPONSE_NS":1222.8488922119}},"advertising_content":false,"audience_url":null,"available_formats":["l1","l2","ld","sd","hq","hd720","hd1080"],"channel":"news","claimer":null,"created_time":1434702097,"duration":129,"embed_url":"http:\/\/www.dailymotion.com\/embed\/video\/x2uk3q6","explicit":false,"id":"x2uk3q6","isrc":null,"language":"fr","mode":"vod","muyap":null,"onair":false,"owner.analytics_services":[],"owner.id":"xpgi8j","owner.parent":null,"owner.partner":true,"owner.screenname":"LeHuffPost","owner.url":"http:\/\/www.dailymotion.com\/LeHuffPost","owner.username":"LeHuffPost","owner.verified":true,"partner":true,"partner_player_url":null,"paywall":false,"private":false,"sharing_urls":{"permalinkURL":"http:\/\/www.dailymotion.com\/video\/x2uk3q6_pourquoi-l-accord-sur-le-nucleaire-iranien-est-plus-sexy-que-vous-l-imaginez_news","embedCode":"<iframe frameborder=\"0\" width=\"480\" height=\"270\" src=\"\/\/www.dailymotion.com\/embed\/video\/x2uk3q6\" allowfullscreen><\/iframe>","facebookURL":"http:\/\/www.dailymotion.com\/sharer?vid=x2uk3q6&uid=&service=facebook&redirect=https%3A%2F%2Fwww.facebook.com%2Fsharer%2Fsharer.php%3Fu%3Dhttp%253A%252F%252Fwww.dailymotion.com%252Fvideo%252Fx2uk3q6_pourquoi-l-accord-sur-le-nucleaire-iranien-est-plus-sexy-que-vous-l-imaginez_news","twitterURL":"http:\/\/www.dailymotion.com\/sharer?vid=x2uk3q6&uid=&service=twitter&redirect=https%3A%2F%2Ftwitter.com%2Fintent%2Ftweet%3Ftext%3DPourquoi%2Bl%2527accord%2Bsur%2Ble%2Bnucl%25C3%25A9aire%2Biranien%2Best%2Bplus%2Bsexy%2Bque%2Bvous%2Bl%2527imaginez%2Bpar%2B%2540lehuffpost%2B-%26url%3Dhttp%253A%252F%252Fwww.dailymotion.com%252Fvideo%252Fx2uk3q6_pourquoi-l-accord-sur-le-nucleaire-iranien-est-plus-sexy-que-vous-l-imaginez_news%26via%3DDailymotion%26hashtags%3D"},"stream_audio_url":null,"stream_h264_hd1080_url":"http:\/\/www.dailymotion.com\/cdn\/H264-1920x1080\/video\/x2uk3q6.mp4?auth=1437093696-2562-0sr72fez-11e5ca7a09485e040984472fa6e57970","stream_h264_hd_url":"http:\/\/www.dailymotion.com\/cdn\/H264-1280x720\/video\/x2uk3q6.mp4?auth=1437093696-2562-gg0nwsnq-b18ef037fa1c6074d20bb2b28c6052df","stream_h264_hq_url":"http:\/\/www.dailymotion.com\/cdn\/H264-848x480\/video\/x2uk3q6.mp4?auth=1437093696-2562-ko71engw-e812cad0a92e688e73994c5834a09356","stream_h264_ld_url":"http:\/\/www.dailymotion.com\/cdn\/H264-320x240\/video\/x2uk3q6.mp4?auth=1437093696-2562-by2jjwg9-192a14eac574d5351c19c245bb55c621","stream_h264_url":"http:\/\/www.dailymotion.com\/cdn\/H264-512x384\/video\/x2uk3q6.mp4?auth=1437093696-2562-ex773bw9-5140c3285fe9042bc5f58a644c6a592d","stream_hls_url":"http:\/\/www.dailymotion.com\/cdn\/manifest\/video\/x2uk3q6.m3u8?auth=1437093696-2562-imm55zmg-ed572a48cb3b74205253fac6d391099e","stream_live_hls_url":null,"studio":false,"svod":false,"swf_url":"http:\/\/www.dailymotion.com\/swf\/video\/x2uk3q6","tags":["Syrie","\u00c9tats-Unis","Moyen-Orient","\u00c9nergie nucl\u00e9aire","Arme nucl\u00e9aire","iran","accord","sexy"],"thumbnail_120_url":"http:\/\/s2.dmcdn.net\/LZaHw\/x120-kP1.png","thumbnail_240_url":"http:\/\/s2.dmcdn.net\/LZaHw\/x240-mHZ.png","thumbnail_url":"http:\/\/s2.dmcdn.net\/LZaHw.png","title":"Pourquoi l'accord sur le nucl\u00e9aire iranien est plus sexy que vous l'imaginez","tvod":false,"updated_time":1435352680,"url":"http:\/\/www.dailymotion.com\/video\/x2uk3q6_pourquoi-l-accord-sur-le-nucleaire-iranien-est-plus-sexy-que-vous-l-imaginez_news","userbrand":false,"verified":true,"log_external_view_urls":{"comscore":"http:\/\/b.scorecardresearch.com\/b?c1=1&c2=4000005&c3=4000005&c4=800000&c5=02&c6=x2uk3q6","mediametrie":"http:\/\/prof.estat.com\/m\/web\/219019208588?v=3.2&r=http%3A%2F%2Fwww.huffingtonpost.fr%2F%3Fcountry%3DFR&dom=www.dailymotion.com&c=LeHuffPost&p=news","internal":"http:\/\/www.dailymotion.com\/logger\/video\/access\/x2uk3q6?session_id=&referer=http%3A%2F%2Fwww.huffingtonpost.fr%2F%3Fcountry%3DFR&country=FR&user_agent=Mozilla%2F5.0+%28X11%3B+Linux+x86_64%3B+rv%3A39.0%29+Gecko%2F20100101+SlimerJS%2F0.9.6&blog_key=&key=c6lfrizsv2150k02lnrifio&v=55a5d610&i=93d2815d&h=c047e86f65d34f4a0aec9f9a395221af","loggerv3":"http:\/\/logger-02.vty.dailymotion.com\/dm\/desktop-linux\/embed_player\/u\/play?country=FR&pid=55a5ac40e4fed&vl=en-fr&sv=fr&channel_id=6&class=official&mode=vod&video_id=172258782&r=http%3A%2F%2Fwww.huffingtonpost.fr%2F%3Fcountry%3DFR&visitor_embedder=http%3A%2F%2Fwww.huffingtonpost.fr%2F%3Fcountry%3DFR&src_ref=&visitor_referer=&client_embedder=&owner_id=42760531&visitor_ip=2480046429&s=161f3bdbdd102e27265da52dd0321f8b150k02lnrifio","krux":"http:\/\/beacon.krxd.net\/usermatch.gif?partner=dailymotion&partner_uid=","progress@\/10%":"http:\/\/logger-02.vty.dailymotion.com\/dm\/desktop-linux\/embed_player\/a\/progress?country=FR&pid=55a5ac40e4fed&vl=en-fr&sv=fr&channel_id=6&class=official&mode=vod&video_id=172258782&r=&visitor_embedder=&src_ref=&visitor_referer=&client_embedder=&owner_id=42760531&length=129&pos=%position%&time=%time%&visitor_ip=2480046429","history":"http:\/\/www.dailymotion.com\/history\/log\/user\/LeHuffPost\/video\/x2uk3q6?action=start&","history@80%|10m":"http:\/\/www.dailymotion.com\/history\/log\/user\/LeHuffPost\/video\/x2uk3q6?action=complete&","behavior@40%|3m":"http:\/\/tofu.dmcdn.net\/behavior\/%session%\/x2uk3q6?"},"annotations":null},
+            fields = "access_error,ads,advertising,advertising_content,audience_url,available_formats,channel,claimer,created_time,duration,embed_url,explicit,id,isrc,language,mode,muyap,onair,owner.analytics_services,owner.id,owner.parent,owner.partner,owner.screenname,owner.url,owner.username,owner.verified,partner,paywall,private,sharing_urls,stream_audio_url,stream_h264_hd1080_url,stream_h264_hd_url,stream_h264_hq_url,stream_h264_ld_url,stream_h264_url,stream_hls_url,stream_live_hls_url,studio,svod,swf_url,tags,thumbnail_120_url,thumbnail_240_url,thumbnail_url,title,tvod,updated_time,url,userbrand,verified,log_external_view_urls";
+
+                    var internalPlugins = {
+                'related' : [
+                    'http://static1.dmcdn.net/js/component/player/player_related-e077df1f.js',
+                    'http://static1.dmcdn.net/css/component/player/player_related-5fcd2ec0.css'
+                ],
+                'hashchange' : 'http://static1.dmcdn.net/js/component/player/vendor/jquery-hashchange-752f3db1.js',
+                'gestures'   : 'http://static1.dmcdn.net/js/component/player/vendor/jquery-gestures-ff339322.js',
+                'audience'   : 'http://static1.dmcdn.net/js/component/player/vendor/jquery-audience-7238a38a.js',
+                's_code'     : 'http://static1.dmcdn.net/js/component/player/vendor/dailymotion_scode_mobile-cd1da98c.js',
+                'xiti'       : 'http://static1.dmcdn.net/js/component/player/vendor/ATPlugDM-f12e8116.js',
+                'estat'      : 'http://static1.dmcdn.net/js/component/player/vendor/mu_4.0.36-af59da88.js'
+            };
+            var plugins = [];
+            $.extend(plugins, internalPlugins)
+            DM.config('plugins', plugins);
+        
+        DM.config('assets',  {"logo_svg":"http:\/\/static1.dmcdn.net\/images\/logo.svg.v63cf8fedcab7b5969","logo_png":"http:\/\/static1.dmcdn.net\/images\/logo_player_60.png.vcded25a281a33c779","liveshow_logo_svg":"http:\/\/static1.dmcdn.net\/images\/logo_liveshow.svg.v061fb6bb049d874d9","loadingImg":"http:\/\/static1.dmcdn.net\/images\/black-loading.gif.vc368ccf53bb3dedd9","circleSVG":"http:\/\/static1.dmcdn.net\/images\/black-circle.svg.ve2f6fca4abd085f99","font_eot":"http:\/\/static1.dmcdn.net\/css\/fonts\/Dailymotion.eot","font_woff":"http:\/\/static1.dmcdn.net\/css\/fonts\/Dailymotion.woff","font_ttf":"http:\/\/static1.dmcdn.net\/css\/fonts\/Dailymotion.ttf","fullscreen_on":"http:\/\/static1.dmcdn.net\/images\/playerhtml5\/fullscreen_on.png.vfc0d917c8e6366f79","fullscreen_off":"http:\/\/static1.dmcdn.net\/images\/playerhtml5\/fullscreen_off.png.vb360d3f0f5fa70ec9"});
+        DM.config('options', {"cookie_root_domain":".dailymotion.com","device_type":"desktop","env":"prod","gifloader":false,"hls_default_quality":380,"http_x_requested_with":"","ip":"147.210.129.93","is_secure":false,"referer":"http:\/\/www.huffingtonpost.fr\/?country=FR","s_server_time":"02:41-Wednesday","userEnv":{"as":"AS2202","cc":"FR","version":"fr"},"sdk_liverail":{"swf":"http:\/\/vox-static.liverail.com\/swf\/v4\/admanager.swf","js":"http:\/\/cdn-static.liverail.com\/js\/LiveRail.AdManager-1.0.js"},"is_partner_player":false,"ui":{"background":"171d1b","foreground":"f7fffd","highlight":"ffcc33","foregroundRGB":"247,255,253","backgroundRGB":"23,29,27","foregroundDark1":"c5cdcb","foregroundDark2":"939b99"}});
+        DM.config('labels',  {"ads":{"video-countdown":"Publicit\u00e9 - Votre vid\u00e9o dans %d secondes","close":"Fermer","instreamErrorMessage":"D\u00e9sol\u00e9, il semble y avoir un probl\u00e8me. Nous travaillons pour le r\u00e9soudre au plus vite.","instreamErrorPlay":"Cliquer ici pour visionner la vid\u00e9o"},"flash_warning":["Vous devez mettre \u00e0 jour la version de votre Adobe Flash Player pour regarder cette vid\u00e9o.","<a href=\"http:\/\/get.adobe.com\/flashplayer\/\" target=\"_blank\">T\u00e9l\u00e9chargez-le sur Adobe<\/a>"],"load_error":["D\u00e9sol\u00e9, un probl\u00e8me est survenu...","Rafraichissez cette page ou r\u00e9essayez plus tard."],"partner_player_warning":["Vid\u00e9o non disponible","Cette vid\u00e9o n'a pas \u00e9t\u00e9 mise \u00e0 disposition sur votre appareil par le propri\u00e9taire."]});
+        
+        window.player = new DailymotionPlayer(info, $('#player'), fields);
+
+    }
+    catch (e)
+    {
+        if (console) console.error(e.stack);
+        document.write(
+            '<div class="load-error-container">' +
+                '<div class="load-error-content">' +
+                    '<h2>DÃ©solÃ©, un problÃ¨me est survenu...</h2>' +
+                    '<p>Rafraichissez cette page ou rÃ©essayez plus tard.</p>' +
+                '</div>' +
+            '</div>');
+        window.stopLoader();
+                (new Image).src = 'http://www.dailymotion.com/track/html.startupfail';
+            }
+    </script>
+</body>
+</html>

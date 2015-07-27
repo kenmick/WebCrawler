@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html><head><script type="text/javascript">
+/**
+ * Added doctype html to prevent ie8 compatibility mode
+ * http://stackoverflow.com/questions/4715373/json-object-undefined-in-internet-explorer-8-dom
+ * JSON is undefined with compatibility mode
+ *
+ Copyright 2010 Nicholas C. Zakas.
+ http://www.nczonline.net/blog/2010/09/07/learning-from-xauth-cross-domain-localstorage/
+ MIT License (MIT)
+ Copyright 2013 Juan RamÃ³n
+ https://github.com/juanrmn/localStorage-tools
+ */
+function verify(origin) {
+  return origin.replace(/:\d+$/, "") === "http://" + document.location.host.replace(/:\d+$/, "");
+}
+
+function handleRequest(event) {
+  var value,
+    request,
+    ls = localStorage;
+  if (verify(event.origin)) {
+    request = JSON.parse(event.data);
+    if (request.type === "get") {
+      value = ls.getItem(request.key);
+      event.source.postMessage(JSON.stringify({
+        id: request.id,
+        key: request.key,
+        value: value
+      }), event.origin);
+    } else if (request.type === "set") {
+      ls.setItem(request.key, request.value);
+    } else if (request.type === "unset") {
+      ls.removeItem(request.key);
+    }
+  }
+}
+// in ie9 and ie10 both properties are present
+// we want to correctly map addEventListener to message
+// attachEvent to onmessage
+(window.attachEvent || window.addEventListener)(
+    window.attachEvent ? "onmessage" : "message", handleRequest, false);
+</script><!-- vstct:1882:1,1890:1,1919:1,1933:1 -->
+</head></html>

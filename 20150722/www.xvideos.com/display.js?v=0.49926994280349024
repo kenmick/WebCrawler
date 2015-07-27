@@ -1,0 +1,26 @@
+/*Total Duration : 56.467 ms
+*/
+trackerId = "d44d0c49a83cb963f4f8ceaab394d4d1";
+
+document.getElementById(wpn_ad_configuration[0]['div_id']).innerHTML = '<a href="http://rpc-php.trafficfactory.biz/click/.1450YSFsAfjVQWgQuJzoduJylAjiFKGq1uwB8ccg7SPJ9A7ujZojC4z48tsV7ZaB6YRGY6HoANr4JW54Dg87vHTqU_PMXlAI3_CwKmuxp2s0Wgq-ejDJfXM6u5FFGCrgYsDjFw7Mg2vAnbLLcveFD-5V6frg1WWUwyWRx47HSWPNikQSPylQcJvRtQG1N_ud2MVTbJC4L41oANlV1P5i8Rn5YnTLMKjPXQxRIdEKerV3yLVHc_vFQz_K1QaynhB1m0vUsonj4G5ZK6vj1qff16FcZw==/d0b7022aa2bc6a0d9f1db3b80707625a" target="_blank"><img src="http://media.trafficfactory.biz//banners/2435/93bc3feaa5c94b29e66a48bba26ff83d.jpg"></a>';
+			
+function wpn_set_cookie( name, value, expires, path, domain, secure ) {
+	var today = new Date();
+	today.setTime( today.getTime() );
+	
+	if ( expires ) {
+		expires = expires * 1000 * 60 * 60 * 24;
+	}
+	
+	var expires_date = new Date( today.getTime() + (expires) );
+	
+	var toset = name + "=" +escape( value ) +
+	( ( expires ) ? ";expires=" + expires_date.toGMTString() : "" ) +
+	( ( path ) ? ";path=" + path : "" ) +
+	( ( domain ) ? ";domain=" + domain : "" ) +
+	( ( secure ) ? ";secure" : "" )
+	document.cookie = toset;
+	
+}
+
+wpn_set_cookie('wpn_ad_cookie', trackerId, 1, "/");

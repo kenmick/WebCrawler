@@ -1,0 +1,952 @@
+(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+(function() {
+  "use strict";
+  /**
+   * Represents attribute parser for BFAnalytics data binder
+   * @param {object} config Configuration data for 'data-bfa' attribute parser
+   * @constructor
+   */
+  function BFAttributeParser(config) {
+    this.defaultConfig = {
+      start: "@",
+      end: ";",
+      separator: ":",
+      parts: {
+        action: "a",
+        description: "d",
+        location: "l",
+        data: "e",
+        options: "o",
+      },
+    };
+
+    this.config = config || this.defaultConfig;
+
+    /**
+     * Function that begins the cain of parsing process.
+     * @param {HtmlElement} element Element which attribute should be parsed.
+     * @returns {*} Returns array with 'action', 'location', 'description', 'data'
+     */
+    this.parse = function (element) {
+      var result = {};
+      var attribute = element.getAttribute("data-bfa");
+      if (attribute === null || attribute === "") {
+        result = {action: "", location: "", description: "", data: {}, options: {}, };
+      }
+      else {
+        result = this.processAttribute(attribute);
+      }
+      if (result.location === "") {
+        result.location = this.findLocation(element.parentElement);
+      }
+
+      result.action = this.grabDataSource(result.action);
+      result.location = this.grabDataSource(result.location);
+      result.description = this.grabDataSource(result.description);
+
+      return [result.action, result.location, result.description, result.data, result.options, ];
+    };
+
+    /**
+     * Parse text value of 'data-bfa' attribute.
+     * @param {string} attribute Attribute's value that should be parsed.
+     * @returns {{action: string, location: string, description: string, data: string}} Returns 'action', 'location',
+     * 'description', 'data' values in one object
+     */
+    this.processAttribute = function (attribute) {
+      var collector = [];
+      for (var part in this.config.parts) {
+        if (this.config.parts.hasOwnProperty(part)) {
+          var idx = attribute.indexOf(this.config.start + this.config.parts[part] + this.config.separator);
+          if (idx > -1) {
+            collector.push({part: part, idx: idx, });
+          }
+        }
+      }
+
+      collector = collector.sort(function (a, b) {
+        return a.idx < b.idx ? -1 : a.idx === b.idx ? 0 : 1;
+      });
+
+      var result = {action: "", location: "", description: "", data: "", options: "", };
+      for (var i = 0; i < collector.length; i++) {
+        if (i < collector.length - 1) {
+          result[collector[i].part] = attribute.substring(collector[i].idx, collector[i + 1].idx);
+        }
+        else {
+          result[collector[i].part] = attribute.substring(collector[i].idx);
+        }
+      }
+
+      for (var key in result) {
+        if (result.hasOwnProperty(key)) {
+          result[key] = result[key]
+            .replace(this.config.start + this.config.parts[key] + this.config.separator, '')
+            .trim();
+          if (result[key][result[key].length - 1] === this.config.end) {
+            result[key] = result[key].substring(0, result[key].length - 1);
+          }
+        }
+      }
+
+      result.data = this.convertToObject(result.data);
+      result.options = this.convertToObject(result.options);
+      return result;
+    };
+
+    /**
+     * Function that searches the element which contains location value.
+     * @param {HtmlElement} element Element from which search would be started to the top of DOM tree.
+     * @returns {string} Returns location value.
+     */
+    this.findLocation = function (element) {
+      while (element !== null) {
+        var attr = element.getAttribute("data-bfa");
+        if (attr !== null && attr !== "") {
+          var result = this.processAttribute(attr);
+          if (result.location === "") {
+            element = element.parentElement;
+            continue;
+          }
+          return result.location;
+        }
+        else {
+          element = element.parentElement;
+        }
+      }
+      return "";
+    };
+
+    /**
+     * Converts 'data' part value to object
+     * @param {string} value Text value of 'data' part of 'data-bfa' attribute
+     * @returns {{}} Returns value as an object
+     */
+    this.convertToObject = function (value) {
+      value = value
+        .replace("{", "")
+        .replace("}", "")
+        .replace("\"", "");
+
+      var obj = {};
+      var dataRecords = value.split(",");
+      for (var i = 0; i < dataRecords.length; i++) {
+        var keyValue = dataRecords[i].split(":");
+        if (keyValue.length === 2) {
+          var key = keyValue[0].trim();
+          var val = keyValue[1].trim();
+          obj[key] = val;
+        }
+      }
+      return obj;
+    };
+
+    /**
+     * Function related for invocation of data-source functions.
+     * @param {string} value Value of the data-bfa attribute's part.
+     * @returns {string} Result of data-source invokation. If data-source is unavailable than returns plain
+     * provided value in argument.
+     */
+    this.grabDataSource = function (value) {
+      if (value.indexOf("source:") > -1) {
+        var funcFullName = value.replace("source:", "").trim();
+        if (funcFullName && window) {
+          var context = window;
+          var namespaces = funcFullName.split(".");
+          var funcName = namespaces.pop();
+
+          for (var i = 0; i < namespaces.length; i++) {
+            context = context[namespaces[i]];
+          }
+          var func = context[funcName];
+          if (func) {
+            return func();
+          }
+        }
+      }
+      return value;
+    };
+  }
+
+  /**
+   * Attribute parser module of Buzzfeed analytics event binder.
+   */
+  module.exports = BFAttributeParser;
+}());
+
+},{}],2:[function(require,module,exports){
+(function() {
+  "use strict";
+  var BFDomEventBinder = require("./dom/bf_dom_event_binder.js");
+  var SocialBinders = require("./social/bf_social_event_binder.js");
+  var BFScrollBinder = require("./scroll/bf_scroll_event_binder.js");
+
+  function BFEventBinder(configuration, executable) {
+    this.configuration = configuration;
+    this.init = function () {
+      if (this.configuration) {
+        // Processing configuration sections.
+        // Example configuration: { sectionName : [ "eventName elementLocator", ... ], ... }
+        for (var key in this.configuration) {
+          if (this.configuration.hasOwnProperty(key)) {
+            if (key === "dom" && this.configuration[key].enabled) {
+              var domBinder = new BFDomEventBinder(this.configuration[key], executable);
+              domBinder.init();
+            }
+            if (key === "social" && this.configuration[key].enabled) {
+              var socialMappings = this.configuration[key];
+
+              if (socialMappings.facebook !== undefined) {
+                var fbBinder = new SocialBinders.FacebookBinder(socialMappings.facebook, executable);
+                fbBinder.init();
+              }
+            }
+            if (key === "scroll" && this.configuration[key].enabled) {
+              var scrollBinder = new BFScrollBinder(this.configuration[key], executable);
+              scrollBinder.init();
+            }
+          }
+        }
+      }
+    };
+  }
+
+  /**
+   * Event binder module for Buzzfeed analytics.
+   * @type {BFAttributeParser|exports|module.exports}
+   */
+  module.exports = BFEventBinder;
+}());
+
+},{"./dom/bf_dom_event_binder.js":5,"./scroll/bf_scroll_event_binder.js":10,"./social/bf_social_event_binder.js":11}],3:[function(require,module,exports){
+var BFEventBinder = require("./bf_event_binder.js");
+
+(function (configuration) {
+  "use strict";
+  window.binder = new BFEventBinder(configuration, "bfa");
+})({
+  social: {
+    enabled: true,
+    facebook: ["like", "unlike", ],
+  },
+
+  dom: {
+    enabled: true,
+    mapping: {
+      click: [
+        {event: "mousedown", selector: ".page-nav__action--fb-share", options: {}, },
+        {event: "mousedown", selector: ".page-search__search-button", options: {}, },
+        {
+          event: "mousedown",
+          selector: "a",
+          options: {
+            handlers: ["ATagWithExternalLinkHandler", "ATagWithInternalLinkHandler", "DefaultHandler", ],
+          },
+        },
+        {event: "mousedown", selector: "button", options: {}, },
+        {event: "mousedown", selector: "svg", options: {directHandling: true, }, },
+        {event: "mousedown", selector: "select", options: {}, },
+        {event: "change", selector: "select", options: {
+            handlers: ["SelectTagChangedClickHandler", ],
+          },
+        },
+      ],
+    },
+  },
+
+  scroll: {
+    enabled: false,
+    mode: "pixel", /* "element,"*/ /*"pixel"*/
+    percentages: [25, 50, 75, 100, ],
+    elements: {
+      locator: ".buzz",
+      count: 16,
+    },
+  },
+});
+
+},{"./bf_event_binder.js":2}],4:[function(require,module,exports){
+var BFAttributeParser = require("./../bf_attribute_parser.js");
+var urlPattern = RegExp("^(([^:/?#]+):)?(//([^/?#]*))?([^?#]*)(\\?([^#]*))?(#(.*))?");
+function parseUrl(url){
+  "use strict";
+  var matches = url.match(urlPattern);
+  return {
+    url: matches[0] ? matches[0] : '',
+    scheme: matches[2] ? matches[2] : '',
+    host: matches[4] ? matches[4] : '',
+    path: matches[5] ? matches[5] : '',
+    cleanedPath: matches[5] ? matches[5] : '',
+    query: matches[7] ? matches[7] : '',
+    fragment: matches[9] ? matches[9] : '',
+  };
+}
+
+function getValidInternalUrl(href) {
+  "use strict";
+
+  if (href === null || href === undefined || href.indexOf('javascript' + ':;') === 0) {
+    return '';
+  }
+  var urlObj = parseUrl(href);
+  return urlObj.path + (urlObj.query ? "?" + urlObj.query : "");
+}
+
+function ATagWithInternalLinkHandler(element, executable) {
+  "use strict";
+
+  if (element === null || element.nodeName !== "A" || element.hasAttribute("data-bfa")) {
+    return false;
+  }
+  var href = element.getAttribute("href");
+  var urlObj = parseUrl(href);
+  if (urlObj.host && urlObj.host.indexOf("buzzfeed.com") === -1
+    || href && href.indexOf('javascript' + ':;') === 0) {
+    return false;
+  }
+  // look for location first.
+  var parser = new BFAttributeParser();
+  var location = parser.findLocation(element);
+  var trackingInfo = ["track", "click", "Nav-Link", location, "",
+    {url: urlObj.path + (urlObj.query ? "?" + urlObj.query : ""), }, {}, ];
+  if (executable && window[executable] instanceof Function) {
+    window[executable].apply(this, trackingInfo);
+  }
+  return true;
+}
+
+function ATagWithExternalLinkHandler(element, executable) {
+  "use strict";
+
+  if (element === null || element.nodeName !== "A" || element.hasAttribute("data-bfa")) {
+    return false;
+  }
+
+  var href = element.getAttribute("href");
+  if (href === ''){
+    return false;
+  }
+  var urlObj = parseUrl(href);
+  if (!urlObj.host || !urlObj.scheme || urlObj.host.indexOf("buzzfeed.com") > -1
+    || urlObj.scheme.indexOf("http") === -1) {
+    return false;
+  }
+
+  // look for location first.
+  var parser = new BFAttributeParser();
+  var location = parser.findLocation(element);
+  var anchorDesc = element.innerHTML;
+  var trackingInfo = ["track", "click", "Exit-Link", location, "", { url: href, anchorDesc: anchorDesc, }, {}, ];
+  if (executable && window[executable] instanceof Function) {
+    window[executable].apply(this, trackingInfo);
+  }
+  return true;
+}
+
+
+function SelectTagChangedClickHandler(element, executable) {
+  "use strict";
+
+  if (element === null || element.nodeName !== "SELECT" ) {
+    return false;
+  }
+  var optionElement = element.options[element.selectedIndex];
+  if (!optionElement){
+    return false;
+  }
+  if (!optionElement.hasAttribute("data-bfa")){
+    return false;
+  }
+
+  var parser = new BFAttributeParser();
+  var parsed = parser.parse(optionElement);
+
+  if (optionElement.hasAttribute("data-href")){
+    parsed[3].url = getValidInternalUrl(optionElement.getAttribute("data-href"));
+  }
+  var result = ["track", "click", ];
+  result = result.concat(parsed);
+  if (executable && window[executable] instanceof Function) {
+    window[executable].apply(this, result);
+  }
+  return true;
+}
+
+
+function DefaultHandler(element, executable, trackingMethod) {
+  "use strict";
+
+  if (element === null || !element.hasAttribute("data-bfa")) {
+    return false;
+  }
+  var parser = new BFAttributeParser();
+  var parsed = parser.parse(element);
+
+  //temporary for anchors
+  if (element.nodeName === "A"){
+    parsed[3].url = getValidInternalUrl(element.getAttribute("href"));
+  }
+  var result = ["track", trackingMethod, ];
+  result = result.concat(parsed);
+
+  if (executable && window[executable] instanceof Function) {
+    window[executable].apply(this, result);
+  }
+
+  return true;
+}
+
+module.exports = {
+  ATagWithInternalLinkHandler: ATagWithInternalLinkHandler,
+  ATagWithExternalLinkHandler: ATagWithExternalLinkHandler,
+  SelectTagChangedClickHandler: SelectTagChangedClickHandler,
+  DefaultHandler: DefaultHandler,
+};
+
+},{"./../bf_attribute_parser.js":1}],5:[function(require,module,exports){
+var BFDomEventhandlerDelegation = require("./bf_dom_eventhandler_delegation.js");
+var BFDomEventhandlerDirect = require("./bf_dom_eventhandler_direct.js");
+
+/**
+ * This is the class that represents binder for DOM events.
+ * @param {object} configuration  Object that contains configuration and mapping for DOM events.
+ * @param {string} executable Name of the function that should receive result data for tracking.
+ * @constructor
+ */
+function BFDomEventBinder(configuration, executable) {
+  "use strict";
+
+  this.configuration = configuration;
+  this.directEvents = {};
+  this.delegatedEvents = {};
+
+  this.eventhandlerDelegation = {};
+  this.eventhandlerDirect = {};
+
+  /**
+   * Function that required to be called. This function configure DOM binder with the provided mappings
+   * and also register all necessary event-handlers for tracking on document's content container that
+   * intercepts all bubbling events.
+   */
+  this.init = function () {
+    if (this.configuration) {
+      // Filling the mapping
+      var mapping = this.configuration.mapping;
+      if (mapping) {
+        for (var sectionName in mapping) {
+          if (mapping.hasOwnProperty(sectionName)) {
+            this.processMappingSection(sectionName, mapping[sectionName]);
+          }
+        }
+      }
+
+      // Init DOM eventhandlers
+      this.eventhandlerDelegation = new BFDomEventhandlerDelegation(this.delegatedEvents, executable);
+      this.eventhandlerDelegation.init();
+
+      this.eventhandlerDirect = new BFDomEventhandlerDirect(this.directEvents, executable);
+      this.eventhandlerDirect.init();
+    }
+  };
+
+  // The mappingSection is an array of event names and locators
+  /**
+   * Function that parses mappings configuration and store information for usage in future.
+   * @param {string} trackingMethod Method that should be invoked in the BFAnalytics to handle tracking info.
+   * @param {Array} mappingSectionValue List of elements that should be tracked and DOM events that should be handled
+   * for these elements.
+   */
+  this.processMappingSection = function (trackingMethod, mappingSectionValue) {
+    for (var i = 0; i < mappingSectionValue.length; i++) {
+      var record = mappingSectionValue[i];
+
+      if (record.options && record.options.directHandling) {
+        var directEvent = {
+          selector: record.selector,
+          trackingMethod: trackingMethod,
+          pipeline: record.options.handlers,
+        };
+        if (record.event in this.directEvents) {
+          this.directEvents[record.event].push(directEvent);
+        }
+        else {
+          this.directEvents[record.event] = [directEvent, ];
+        }
+      }
+      else {
+        var delegatedEvent = {
+          selector: record.selector,
+          trackingMethod: trackingMethod,
+          pipeline: record.options ? record.options.handlers : null,
+        };
+        if (record.event in this.delegatedEvents) {
+          this.delegatedEvents[record.event].push(delegatedEvent);
+        }
+        else {
+          this.delegatedEvents[record.event] = [delegatedEvent, ];
+        }
+      }
+    }
+  };
+
+  this.unbindAll = function () {
+    this.eventhandlerDelegation.unbindAll();
+  };
+}
+
+/**
+ * DOM event binder module for Buzzfeed analytics.
+ * @type {BFDomEventBinder}
+ */
+module.exports = BFDomEventBinder;
+
+},{"./bf_dom_eventhandler_delegation.js":6,"./bf_dom_eventhandler_direct.js":7}],6:[function(require,module,exports){
+var BFElementHandlers = require("./bf_dom_element_handlers.js");
+
+/**
+ * This is the class that represents binder for DOM events.
+ * @param {object} events  Object that contains configuration mapping for DOM events.
+ * @param {string} executable Name of the function that should receive result data for tracking.
+ * @constructor
+ */
+function BFDomEventhandlerDelegation(events, executable) {
+  "use strict";
+
+  this.events = events;
+  this.handlers = [];
+
+  /**
+   * Matching function that decides if element fits to the provided selector.
+   */
+  this.matches = document.documentElement.matches ||
+    document.documentElement.webkitMatchesSelector ||
+    document.documentElement.mozMatchesSelector ||
+    document.documentElement.oMatchesSelector ||
+    document.documentElement.msMatchesSelector;
+
+  /**
+   * Function that required to be called. This function configure DOM binder with the provided mappings
+   * and also register all necessary event-handlers for tracking on document's content container that
+   * intercepts all bubbling events.
+   */
+  this.init = function () {
+    this.subscribeDelegatedEvents();
+  };
+
+  /**
+   * Function that creates event-listeners on the main container for interception of bubbling events.
+   */
+  this.subscribeDelegatedEvents = function () {
+    var listener = document.body || document.documentElement;
+
+    //var handler = this.getHandler();
+    for (var domEventName in this.events) {
+      if (this.events.hasOwnProperty(domEventName)) {
+        var hndl = this.getHandler();
+        this.handlers.push({eventName: domEventName, handler: hndl,});
+        listener.addEventListener(domEventName, hndl);
+      }
+    }
+  };
+
+  this.getHandler = function(){
+    var _this = this;
+
+    return function(e) {
+      if (e.bfaHandled) {
+        return; // In case if event has been handled by direct event handler
+      }
+      if (e.target) {
+        var element = e.target;
+        var isHandled = false;
+        while (element) {
+          for (var j = 0; j < _this.events[e.type].length; j++) {
+            var record = _this.events[e.type][j];
+            if (element.nodeType && element.nodeType !== 9 && _this.matches.call(element, record.selector)) {
+              _this.trackElement(element, record.trackingMethod, record.pipeline);
+              isHandled = true;
+              break;
+            }
+          }
+          if (isHandled) {
+            e.bfaHandled = true;
+            break;
+          }
+          element = element.parentNode;
+        }
+      }
+    }
+  };
+
+  /**
+   * Function that plays role of event-handler for DOM elements. Parses tracking data from element's attribute
+   * and init it's sending to the server.
+   * @param {HTMLElement} element Element that should be handled and which attribute should be parsed.
+   * @param {string} trackingMethod Name of the method that should be invoked by analytics on event triggering.
+   * It matches to the 'sectionName' in mapping object.
+   * @param {Array} pipelineList List of handlers that should be executed against the element.
+   */
+  this.trackElement = function (element, trackingMethod, pipelineList) {
+    if (pipelineList) {
+      for (var i = 0; i < pipelineList.length; i++) {
+        if (BFElementHandlers[pipelineList[i]](element, executable, trackingMethod)) {
+          break;
+        }
+      }
+    }
+    else {
+      BFElementHandlers["DefaultHandler"](element, executable, trackingMethod);
+    }
+  };
+
+  this.unbindAll = function () {
+    var listener = document.body || document.documentElement;
+    for (var i = 0; i < this.handlers.length; i++) {
+      listener.removeEventListener(this.handlers[i].eventName, this.handlers[i].handler);
+    }
+  };
+}
+
+/**
+ * Events delegation handler module for Buzzfeed data-binder.
+ * @type {BFDomEventhandlerDelegation}
+ */
+module.exports = BFDomEventhandlerDelegation;
+
+},{"./bf_dom_element_handlers.js":4}],7:[function(require,module,exports){
+var BFElementHandlers = require("./bf_dom_element_handlers.js");
+
+/**
+ * This is the class that represents binder for DOM events.
+ * @param {object} events  Object that contains configuration mapping for DOM events.
+ * @param {string} executable Name of the function that should receive result data for tracking.
+ * @constructor
+ */
+function BFDomEventhandlerDirect(events, executable) {
+  "use strict";
+
+  this.events = events;
+  this.handlers = [];
+
+  /**
+   * Function that required to be called. This function configure DOM binder with the provided mappings
+   * and also register all necessary event-handlers for tracking on document's content container that
+   * intercepts all bubbling events.
+   */
+  this.init = function () {
+    this.subscribeDirectEvents();
+  };
+
+
+  /**
+   * Function that creates event-listeners on the main container for interception of bubbling events.
+   */
+  this.subscribeDirectEvents = function () {
+    for (var domEventName in this.events) {
+      if (this.events.hasOwnProperty(domEventName)) {
+        var toHandle = this.events[domEventName];
+        for (var i = 0; i < toHandle.length; i++) {
+          var element = document.querySelector(toHandle[i].selector);
+          element.addEventListener(domEventName, this.getHandler(toHandle[i].trackingMethod, toHandle[i].pipeline));
+        }
+      }
+    }
+  };
+
+  this.getHandler = function (trackingMethod, pipelineList) {
+    var _this = this;
+    return function (e) {
+      _this.trackElement(this, trackingMethod, pipelineList);
+      e.bfaHandled = true;
+    }
+  };
+
+  /**
+   * Function that plays role of event-handler for DOM elements. Parses tracking data from element's attribute
+   * and init it's sending to the server.
+   * @param {HTMLElement} element Element that should be handled and which attribute should be parsed.
+   * @param {string} trackingMethod Name of the method that should be invoked by analytics on event triggering.
+   * It matches to the 'sectionName' in mapping object.
+   * @param {Array} pipelineList List of handlers that should be executed against the element.
+   */
+  this.trackElement = function (element, trackingMethod, pipelineList) {
+    if (pipelineList) {
+      for (var i = 0; i < pipelineList.length; i++) {
+        if (BFElementHandlers[pipelineList[i]](element, executable, trackingMethod)) {
+          break;
+        }
+      }
+    }
+    else {
+      BFElementHandlers["DefaultHandler"](element, executable, trackingMethod);
+    }
+  };
+}
+
+/**
+ * Direct events handler module for Buzzfeed data-binder.
+ * @type {BFDomEventhandlerDirect}
+ */
+module.exports = BFDomEventhandlerDirect;
+
+},{"./bf_dom_element_handlers.js":4}],8:[function(require,module,exports){
+function ElementsScrollBinder(options, executable, checkPoints) {
+  "use strict";
+
+  this.options = options || {};
+  this.executable = executable;
+  this.checkPoints = checkPoints;
+
+  this.getHandler = function () {
+    var _this = this;
+
+    return function () {
+      if (!_this.options.elements || !_this.options.elements.locator || !_this.options.elements.count) {
+        return;
+      }
+
+      // 1px added to handle 100% scroll on iphone
+      var currentScroll = window.pageYOffset + document.documentElement.clientHeight + 1;
+      var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+      var clientTop = document.documentElement.clientTop || document.body.clientTop || 0;
+      var elements = document.querySelectorAll(_this.options.elements.locator);
+
+      var passedElementsCount = 0;
+      for (var i = 0; i < elements.length; i++) {
+        var elTop = elements[i].getBoundingClientRect().top + scrollTop - clientTop;
+        if (elTop <= currentScroll) {
+          passedElementsCount++;
+        }
+      }
+      var currentPercentage = passedElementsCount / _this.options.elements.count * 100;
+
+      for (var j = 0; j < _this.checkPoints.length; j++) {
+        if (_this.checkPoints[j].percentage <= currentPercentage && !_this.checkPoints[j].passed) {
+          _this.checkPoints[j].passed = true;
+          var result = ["track", "scroll", "post", null, _this.checkPoints[j].trackingValue, null, null, ];
+          if (_this.executable && window[_this.executable] instanceof Function) {
+            window[_this.executable].apply(this, result);
+          }
+        }
+      }
+    };
+  };
+}
+
+module.exports = ElementsScrollBinder;
+
+},{}],9:[function(require,module,exports){
+function PercentagesScrollBinder(options, executable, checkPoints) {
+  "use strict";
+
+  this.options = options || {};
+  this.executable = executable;
+  this.checkPoints = checkPoints;
+
+  this.getHandler = function () {
+    var _this = this;
+
+    return function () {
+      var scrollTop = window.pageYOffset;
+      var clientHeight = document.documentElement.clientHeight;
+      var scrollHeight = document.documentElement.scrollHeight;
+      // 1px added to handle 100% scroll on iphone
+      var currentPercentage = (scrollTop + clientHeight + 1) / scrollHeight * 100;
+
+      for (var i = 0; i < _this.checkPoints.length; i++) {
+        if (_this.checkPoints[i].percentage <= currentPercentage && !_this.checkPoints[i].passed) {
+          _this.checkPoints[i].passed = true;
+          var result = ["track", "scroll", "post", null, _this.checkPoints[i].trackingValue, null, null, ];
+          if (_this.executable && window[_this.executable] instanceof Function) {
+            window[_this.executable].apply(this, result);
+          }
+        }
+      }
+    };
+  };
+}
+
+module.exports = PercentagesScrollBinder;
+
+},{}],10:[function(require,module,exports){
+var PercentagesScrollBinder = require("./bf_percentages_scroll_event_binder.js");
+var ElementsScrollBinder = require("./bf_elements_scroll_event_binder.js");
+//var lodash = require("lodash");
+
+function BFScrollBinder(options, executable) {
+  "use strict";
+
+  this.options = options || {};
+  this.executable = executable;
+  this.handler = null;
+  this.checkPoints = [];
+
+  this.init = function () {
+    if (!window || !options || !executable) {
+      return;
+    }
+
+    this.fillCheckPoints();
+    this.handler = this.getHandler();
+
+    if (this.handler) {
+      window.onscroll = this.throttle(this.handler, 250);
+      var _this = this;
+      document.addEventListener("keydown", function(e){
+        if (e.which === 32     //spacebar
+          || e.which === 33   //page up
+          || e.which === 34   //page down
+          || e.which === 38   //up
+          || e.which === 40   //down
+          || (e.ctrlKey && e.which === 35)      //ctrl + home
+          || (e.ctrlKey && e.which === 36)){    //ctrl + end
+          _this.handler();
+        }
+      });
+    }
+  };
+
+  this.fillCheckPoints = function () {
+    if (!options.percentages) {
+      return;
+    }
+
+    for (var i = 0; i < this.options.percentages.length; i++) {
+      this.checkPoints.push({
+        percentage: this.options.percentages[i],
+        trackingValue: this.options.percentages[i],
+        passed: false,
+      });
+    }
+  };
+
+  this.getHandler = function () {
+    if (this.checkPoints.length > 0) {
+      var binder = options.mode === "pixel"
+        ? new PercentagesScrollBinder(this.options, this.executable, this.checkPoints)
+        : options.mode === "element"
+          ? new ElementsScrollBinder(this.options, this.executable, this.checkPoints)
+          : null;
+
+      if (binder) {
+        return binder.getHandler();
+      }
+    }
+    return null;
+  };
+
+  this.throttle = function (callback, limit) {
+    var wait = false;
+    return function () {
+      if (!wait) {
+        callback.call();
+        wait = true;
+        setTimeout(function () {
+          wait = false;
+        }, limit);
+      }
+    };
+  };
+}
+
+module.exports = BFScrollBinder;
+
+},{"./bf_elements_scroll_event_binder.js":8,"./bf_percentages_scroll_event_binder.js":9}],11:[function(require,module,exports){
+var BFAttributeParser = require("./../bf_attribute_parser.js");
+
+/**
+ * The binder for facebook events
+ * @param {object} mapping Object that contains configuration mapping for social events.
+ * @param {string} executable Name of the function that should receive result data for tracking.
+ * @constructor
+ */
+function FacebookBinder(mapping, executable) {
+  "use strict";
+
+  this.mapping = mapping;
+  this.executable = executable;
+  this.parser = new BFAttributeParser();
+
+  this.init = function () {
+    var _this = this;
+    var counter = 0;
+
+    var interval = setInterval(function () {
+      if (counter >= 10) {
+        clearInterval(interval);
+      }
+      // Waiting for external Facebook dependency
+      if (window.FB) {
+        clearInterval(interval);
+        _this.processMappings();
+      }
+      counter++;
+    }, 1000);
+  };
+
+  this.processMappings = function () {
+    if (mapping !== undefined) {
+      for (var i = 0; i < mapping.length; i++) {
+        if (mapping[i] === "like") {
+          this.regLikes();
+        }
+
+        if (mapping[i] === "unlike") {
+          this.regUnlikes();
+        }
+      }
+    }
+  };
+
+  /**
+   * Registers 'Like' events for tracking
+   * @returns {Void} Nothing.
+   */
+  this.regLikes = function() {
+    var _this = this;
+
+    window.FB.Event.subscribe("edge.create", function (url, element) {
+      var result = ["track", "click", ];
+      if (element !== null && element.getAttribute) {
+        var parsed = _this.parser.parse(element); // Closure binder inside the handler
+        result = result.concat(parsed);
+      }
+
+      // Closure executable function for tracking inside the FB handler
+      if (_this.executable && (window[_this.executable] instanceof Function)) {
+        window[_this.executable].apply(this, result);
+      }
+    });
+  };
+
+  /**
+   * Registers 'Unlike' events for tracking
+   * @returns {Void} Nothing.
+   */
+  this.regUnlikes = function() {
+    var _this = this;
+
+    window.FB.Event.subscribe("edge.remove", function (url, element) {
+      var result = ["track", "click", ];
+      if (element !== null && element.getAttribute) {
+        var parsed = _this.parser.parse(element); // Closure binder inside the handler
+        result = result.concat(parsed);
+      }
+
+      // Closure executable function for tracking inside the FB handler
+      if (_this.executable && (window[_this.executable] instanceof Function)) {
+        window[_this.executable].apply(this, result);
+      }
+    });
+  };
+}
+
+/**
+ *
+ * @type {{FacebookBinder: FacebookBinder}}
+ */
+module.exports = {
+  FacebookBinder: FacebookBinder,
+};
+
+},{"./../bf_attribute_parser.js":1}]},{},[3]);

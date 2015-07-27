@@ -1,0 +1,59 @@
+try{(function()
+	{
+	var flashAd='<OBJECT id="8749871286380447488" data="http://images.orangepublicite.fr/perf/300x250_6.swf" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" WIDTH="300" HEIGHT="250" flashvars="clickTag=http%3A%2F%2Fams1.ib.adnxs.com%2Fclick%3FAAAAAAAAAAAAAAAAAAAAAI_C9Shcj_o_AAAAAAAAAAAAAAAAAAAAAADHGH-TyW15pNHvOC4gokegl61VAAAAAK6wDwBIBgAAQQYAAAIAAADBLukB8cYCAAAAAQBVU0QARVVSACwB-gC4678FJdMAAgUAAQUAAIoAyxpYsAAAAAA.%2Fcnd%3D%2521tgZtQQjF8s8EEMHdpA8Y8Y0LIAE.%2Freferrer%3Dhttp%253A%252F%252Fwww.huffingtonpost.fr%252F%253Fcountry%253DFR%2Fclickenc%3Dhttp%253A%252F%252Fcetelem.solution.weborama.fr%252Ffcgi-bin%252Fperformance.fcgi%253FID%253D142001%2526A%253D1%2526L%253D1139427%2526C%253D9423%2526f%253D10%2526P%253D2293%2526T%253DE%2526W%253D1%2526CREA%253D30710%2526URL"><PARAM NAME=movie VALUE="http://images.orangepublicite.fr/perf/300x250_6.swf"><PARAM NAME=loop VALUE=true><PARAM NAME=menu VALUE=false><PARAM NAME=quality VALUE=high><PARAM NAME=wmode VALUE="opaque"><PARAM NAME=bgcolor VALUE=#FFFFFF><PARAM NAME=allowscriptaccess VALUE=always><PARAM NAME=flashvars VALUE="clickTag=http%3A%2F%2Fams1.ib.adnxs.com%2Fclick%3FAAAAAAAAAAAAAAAAAAAAAI_C9Shcj_o_AAAAAAAAAAAAAAAAAAAAAADHGH-TyW15pNHvOC4gokegl61VAAAAAK6wDwBIBgAAQQYAAAIAAADBLukB8cYCAAAAAQBVU0QARVVSACwB-gC4678FJdMAAgUAAQUAAIoAyxpYsAAAAAA.%2Fcnd%3D%2521tgZtQQjF8s8EEMHdpA8Y8Y0LIAE.%2Freferrer%3Dhttp%253A%252F%252Fwww.huffingtonpost.fr%252F%253Fcountry%253DFR%2Fclickenc%3Dhttp%253A%252F%252Fcetelem.solution.weborama.fr%252Ffcgi-bin%252Fperformance.fcgi%253FID%253D142001%2526A%253D1%2526L%253D1139427%2526C%253D9423%2526f%253D10%2526P%253D2293%2526T%253DE%2526W%253D1%2526CREA%253D30710%2526URL"><OBJECT TYPE="application/x-shockwave-flash" data="http://images.orangepublicite.fr/perf/300x250_6.swf?clickTag=http%3A%2F%2Fams1.ib.adnxs.com%2Fclick%3FAAAAAAAAAAAAAAAAAAAAAI_C9Shcj_o_AAAAAAAAAAAAAAAAAAAAAADHGH-TyW15pNHvOC4gokegl61VAAAAAK6wDwBIBgAAQQYAAAIAAADBLukB8cYCAAAAAQBVU0QARVVSACwB-gC4678FJdMAAgUAAQUAAIoAyxpYsAAAAAA.%2Fcnd%3D%2521tgZtQQjF8s8EEMHdpA8Y8Y0LIAE.%2Freferrer%3Dhttp%253A%252F%252Fwww.huffingtonpost.fr%252F%253Fcountry%253DFR%2Fclickenc%3Dhttp%253A%252F%252Fcetelem.solution.weborama.fr%252Ffcgi-bin%252Fperformance.fcgi%253FID%253D142001%2526A%253D1%2526L%253D1139427%2526C%253D9423%2526f%253D10%2526P%253D2293%2526T%253DE%2526W%253D1%2526CREA%253D30710%2526URL" width="300" height="250" wmode="opaque" allowscriptaccess="always"></OBJECT></OBJECT>';
+	var flashBackupUrl='http://images.orangepublicite.fr/perf/300x250_juin_gif.gif';
+	var alternate = '';
+	if (flashBackupUrl)
+	{
+		alternate='<a href="http://ams1.ib.adnxs.com/click?AAAAAAAAAAAAAAAAAAAAAI_C9Shcj_o_AAAAAAAAAAAAAAAAAAAAAADHGH-TyW15pNHvOC4gokegl61VAAAAAK6wDwBIBgAAQQYAAAIAAADBLukB8cYCAAAAAQBVU0QARVVSACwB-gC4678FJdMAAgUAAQUAAIoAyxpYsAAAAAA./cnd=%21tgZtQQjF8s8EEMHdpA8Y8Y0LIAE./referrer=http%3A%2F%2Fwww.huffingtonpost.fr%2F%3Fcountry%3DFR/clickenc=http%3A%2F%2Fcetelem.solution.weborama.fr%2Ffcgi-bin%2Fperformance.fcgi%3FID%3D142001%26A%3D1%26L%3D1139427%26C%3D9423%26f%3D10%26P%3D2293%26T%3DE%26W%3D1%26CREA%3D30710%26URL" target="_blank"><img width="300" height="250" style="border-style: none" src="http://images.orangepublicite.fr/perf/300x250_juin_gif.gif"/></a>';
+	}
+
+	var version=9;
+	var isIE=(navigator.appVersion.indexOf("MSIE")!=-1)?true:false;
+	var isWin=(navigator.appVersion.toLowerCase().indexOf("win")!=-1)?true:false;
+	var isOpera=(navigator.userAgent.indexOf("Opera")!=-1)?true:false;
+	function c(){var version;var axo;
+	try{axo=new ActiveXObject("ShockwaveFlash.ShockwaveFlash.7");
+	version=axo.GetVariable("$version");}catch(e1){}
+	if(!version) {try{axo=new ActiveXObject("ShockwaveFlash.ShockwaveFlash.6");
+	version="WIN 6,0,21,0";axo.AllowScriptAccess="always";
+	version=axo.GetVariable("$version");}catch(e2){}} 
+	if(!version) {try{axo=new ActiveXObject("ShockwaveFlash.ShockwaveFlash.3");
+	version=axo.GetVariable("$version");}catch(e3){}}
+	if(!version) {try{axo=new ActiveXObject("ShockwaveFlash.ShockwaveFlash.3");
+	version="WIN 3,0,18,0";}catch(e4){}}
+	if(!version) {try{axo=new ActiveXObject("ShockwaveFlash.ShockwaveFlash");
+	version="WIN 2,0,0,11";}catch(e){version=-1;}} return version;} 
+	function g(){var fV=-1;if(navigator.plugins!==null&&navigator.plugins.length>0){
+	if(navigator.plugins["Shockwave Flash 2.0"]||
+	navigator.plugins["Shockwave Flash"])
+	{var swVer2=navigator.plugins["Shockwave Flash 2.0"]?" 2.0":"";
+	var fD=navigator.plugins["Shockwave Flash"+swVer2].description;
+	var dA=fD.split(" ");var tAM=dA[2].split(".");var vM=tAM[0];
+	var vMi=tAM[1];var vRv=dA[3];if(vRv==""){vRv=dA[4];} 
+	if(vRv[0]=="d"){vRv=vRv.substring(1);}else if(vRv[0]=="r"){
+	vRv=vRv.substring(1);if(vRv.indexOf("d")>0){
+	vRv=vRv.substring(0,vRv.indexOf("d"));}} fV=vM+"."+vMi+"."+vRv;}} else 
+	if(navigator.userAgent.toLowerCase().indexOf("webtv/2.6")!=-1){fV=4;} else 
+	if(navigator.userAgent.toLowerCase().indexOf("webtv/2.5")!=-1){fV=3;} else 
+	if(navigator.userAgent.toLowerCase().indexOf("webtv")!=-1){fV=2;} else 
+	if(isIE&&isWin&&!isOpera){fV=c();} return fV;} function d(ma,mi,rv) {
+	var vStr=g();var vA;if(vStr==-1){return false;}else if(vStr!==0){
+	if(isIE&&isWin&&!isOpera){var tA=vStr.split(" ");var tS=tA[1];
+	vA=tS.split(",");}else{vA=vStr.split(".");} var vMa=vA[0];var vMi=vA[1];
+	var vRv=vA[2];if(vMa>parseFloat(ma)){return true;}else if(vMa==parseFloat(ma)){
+	if(vMi>parseFloat(mi)){return true;} else if(vMi==parseFloat(mi)){
+	if(vRv>=parseFloat(rv)){return true;}}} return false;}} var h=d(version,0,0);
+	if(h){document.write(flashAd);
+	if (isIE && navigator.appVersion.indexOf('MSIE 7.') != -1) {
+	document.write('<scr'+'ipt type="text/javascript">adnxsAuctionId="8749871286380447488";</scr'+'ipt>');
+	document.write('<scr'+'ipt type="text/javascript" src="http://cdn.adnxs.com/js/ie7fix.js?8749871286380447488"></scr' + 'ipt>');
+	}} else {document.write(alternate);}
+
+        if (flashBackupUrl)
+        {
+                document.write("<noscript>");
+                document.write(alternate);
+                document.write("</noscript>");
+        }
+})();document.write('<scr'+'ipt type="text/javascript" src="http://pixel.alephd.com/post_asq?LgDc=&L4DK=285084&rZzC=&aNVl=1&ZzpC=&Dsph=&Hsyz=&0ZGY=32059073&Xyes=&iK5S=&b6lE=0.1085&-tgi=-1&wziz=1.66&vKcZ=8749871286380447488&2jSB=0&-Zu8=&e9iH=5161723505815835044&b5ho=class_1&GAa8=1028270&DH5k=147.210.129.0&8rSZ=&-Z06=0&04mf=asqlemonde.nuggad.net%2Frc%3Fnuggn%3D1824551309%26nuggsid%3D658033633"></scr'+'ipt>');document.write('<scr' + 'ipt src="http://cdn.adnxs.com/ib/async_usersync.js"></scr'+'ipt>');}finally{;document.write('<div lnttag="v;tv=view5-1;d=300x250;s=285084;samp=1;vc=iab;icr;url=;cb=' + encodeURIComponent('http://ams1.ib.adnxs.com/vevent?e=wqT_3QKqBKghAgAAAgDWAAUIoK-2rQUQgI7j-Ley8rZ5GKSjv8fjhYjRRyABKi0JAAAABQIAEQUGMAAAABmPwvUoXI_6PyEBDgEBACkBBQEB8HIwruE-OMgMQMEMSAJQwd2kD1jxjQtgAGi41wNwvwt4paYDgAEBigEDVVNEkgEDRVVSmAGsAqAB-gGoAQCwAQC4AQLAAQXIAQDQAQDYAQDgAQDwAQCKAld1ZignYScsIDE2NDI1MywgMTQzNzQzOTkwNCk7ARwwYycsIDk2OTc2MDUsID4dAChyJywgMzIwNTkwNzo7APBekgKdASFwUi16OEFqRjhzOEVFTUhkcEE4WUFDRHhqUXN3QXpnQVFBRkl3UXhRcnVFLVdBQmdMR2dBY0FCNEFJQUJBSWdCQUpBQkFaZ0JBYUFCQXFnQkFMQUJBTGtCQUERAgxEQkFREQyYQUF5UUdFMmdZX1RfbjNQOWtCN01BNUkwcDc3VF9nQWNYSURmVUJBBS8sLi6aAh0hdGdadFFRNqAA8G44WTBMSUFFLtgCpwTgArHSCeoCKGh0dHA6Ly93d3cuaHVmZmluZ3RvbnBvc3QuZnIvP2NvdW50cnk9RlKAAwGIAwGQAwCYAwCgAwGqAwCwAwC4AwDAA6wCyAMA2AOVlTDgAwDoAwDwAwD4AwGABAA.&s=7e901a997d560a30e6b7b11f2d1b01c060be8262&dlo=1&referrer=http%3A%2F%2Fwww.huffingtonpost.fr%2F%3Fcountry%3DFR') + '" style="display:none"><\/div><sc' + 'ript type="text/javascript" async="true" src="http://cdn.adnxs.com/v/s/22/trk.js"><\/scr' + 'ipt>');}
