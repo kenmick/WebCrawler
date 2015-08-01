@@ -1,0 +1,169 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script type="text/javascript" src="../../jstUtils/jquery-1.7.1.js"></script>
+    <script type="text/javascript" src="../js/snnew.js"></script>
+    <title>èå®æè´­</title>
+    <style type="text/css">
+        *{margin:0;padding:0;list-style:none;border:0;font-style:normal;}
+        img{border:none;}
+        a{text-decoration:none;}
+        .fl{float: left;}
+        .fr{float: right;}
+        .clr{clear: both;}
+        .moban{background:#f8b500;padding:2px;overflow:hidden;position:relative;}
+        .logo{position:absolute;z-index:50;left:0;top:0;}
+        .mobanbd{width:423px;height:80px;padding:3px 31px 3px 184px;background:url(../images/72890/bg.png) no-repeat right bottom #fff;}
+        .leftbut{margin:26px 10px 0 0;cursor:pointer;}
+        .rightbut{cursor:pointer;margin-left:5px;}
+        .midpic{position:relative;overflow:hidden;}
+        .midpic ul{position:absolute;left:0;top:0;width:8000px;}
+        .midpic ul li{float:left;overflow:hidden;}
+        .txt{padding:5px 0 0 7px;}
+        .txt .wz{display:block;height:18px;overflow:hidden;}
+        .txt .wz a{font:normal 14px/18px "å¾®è½¯éé»";color:#221814;}
+        .txt .price{font:bold 18px/26px "å¾®è½¯éé»";color:#f60000;text-decoration: line-through;}
+        .txt .price i{font-size: 14px;}
+        .icon{padding:28px 0 0 5px;}
+        .su{position:absolute;right:0;bottom:0;height:24px;overflow:hidden;z-index:50}
+        .su a{float:right}
+    </style>
+    <script type="text/javascript">
+        var w=parent._zz_config.w//å¹¿åå®½åº¦
+        ,h=parent._zz_config.h;//å¹¿åé«åº¦
+        var stylecontent='';
+        var logowidth=0.24*w//logoå®½åº¦
+        ,logoheight=0.1*w;//logoé«åº¦
+        if(logoheight>h){
+            logoheight=h;
+            logowidth=2.41*h;
+        }
+        var rightlogowidth=80//å³ä¾§logoå®½åº¦
+        ,rightlogoheight=35;//å³ä¾§logoé«åº¦
+        if(w<400){
+            rightlogowidth=0;
+            rightlogoheight=22;
+        }
+        if(w<728){
+            logowidth=0.2*w;
+        }
+        stylecontent+='.icon{padding-top:'+(h-rightlogoheight)/2+'px;}.icon img{width:'+rightlogowidth+'px;}';//è®¾ç½®å³ä¾§logo
+        stylecontent+='.logo img{width:'+logowidth+'px;}';//è®¾ç½®å·¦ä¾§logo
+        stylecontent+='.moban{width:'+(w-4)+'px;height:'+(h-4)+'px}';//è®¾ç½®moban
+        var mobanbdwidth=w-logowidth-10-rightlogowidth-5-31-4;//è®¡ç®mobanbdå®½åº¦
+        stylecontent+='.mobanbd{width:'+mobanbdwidth+'px;height:'+(h-10)+'px;padding-left:'+(logowidth+10)+'px;}';//è®¾ç½®mobanbd
+        stylecontent+='.leftbut{margin-top:'+(h-32)/2+'px;}.rightbut{margin-top:'+(h-32)/2+'px;}';//è®¾ç½®ä¸¤ä¾§è½®æ¢ææ­
+        var midpicwidth=mobanbdwidth-46;//è®¡ç®midpicå®½åº¦
+        stylecontent+='.midpic{width:'+midpicwidth+'px;height:'+(h-10)+'px;}.midpic ul{height:'+(w-10)+'px;}';//è®¾ç½®midpic
+        if(w<640){//å®½åº¦å°äº640ååä¸ªååè½®æ¢
+            var liwidth=midpicwidth;
+            stylecontent+='.midpic ul li{width:'+liwidth+'px;height:'+(h-10)+'px;}';
+            stylecontent+='.tu img{height:'+(h-10)+'px;}.tu{height:'+(h-10)+'px;margin-left:2px;}.tu img{display:block;}';//è®¾ç½®å¾ç
+        }else if(w>=980){
+            var liwidth=midpicwidth/3;
+            stylecontent+='.midpic ul li{width:'+liwidth+'px;height:'+(h-10)+'px;}';//è®¾ç½®midpic
+            stylecontent+='.tu, .tu img{height:'+(h-10)+'px;}.tu{height:'+(h-10)+'px;margin-left:2px;}.tu img{display:block;}';//è®¾ç½®å¾ç
+        }
+        else{//å¦åä¸¤ä¸ªååè½®æ¢
+            var liwidth=midpicwidth/2;
+            stylecontent+='.midpic ul li{width:'+liwidth+'px;height:'+(h-10)+'px;}';//è®¾ç½®midpic
+            stylecontent+='.tu, .tu img{height:'+(h-10)+'px;}.tu{height:'+(h-10)+'px;margin-left:2px;}.tu img{display:block;}';//è®¾ç½®å¾ç
+        }
+        if(h<78){
+            stylecontent+='.buy{display:none;}';//é«åº¦å°äº78åéèè´­ä¹°ææ­
+            stylecontent+='.txt{padding-top:'+(h-55)/2+'px;}';
+        }
+        else{
+            stylecontent+='.txt{padding-top:'+(h-78)/2+'px;}';
+        }
+        
+        if(w==1000||w==1060){
+            stylecontent+='.logo img{width:'+logowidth*0.8+'px;}';//è®¾ç½®å·¦ä¾§logo 
+            stylecontent+='.mobanbd{width:'+mobanbdwidth+'px;height:'+(h-10)+'px;padding-left:'+(logowidth)+'px;}';//è®¾ç½®mobanbd
+        }
+        if(w==424){
+           stylecontent+='.icon{padding-top:'+(h-rightlogoheight)/2+'px;}.icon img{width:'+rightlogowidth*0.6+'px;}';//è®¾ç½®å³ä¾§logo 
+           stylecontent+='.mobanbd{width:'+mobanbdwidth*1.2+'px;height:'+(h-10)+'px;padding-left:'+(logowidth)+'px;}';//è®¾ç½®mobanbd
+           var midpicwidth=mobanbdwidth-10;//è®¡ç®midpicå®½åº¦
+           stylecontent+='.midpic{width:'+midpicwidth+'px;height:'+(h-10)+'px;}.midpic ul{height:'+(w-10)+'px;}';//è®¾ç½®midpic
+           var liwidth=midpicwidth;
+           stylecontent+='.midpic ul li{width:'+liwidth+'px;height:'+(h-10)+'px;}';
+           stylecontent+='.tu img{height:'+(h-10)+'px;}.tu{height:'+(h-10)+'px;margin-left:2px;}.tu img{display:block;}';//è®¾ç½®å¾ç
+        }
+        if(w==980||w==700){
+           stylecontent+='.icon{padding-top:'+(h-rightlogoheight)/2+'px;}.icon img{width:'+rightlogowidth*0.8+'px;}';//è®¾ç½®å³ä¾§logo 
+        }
+        if(w==308&h==90){
+           stylecontent+='.logo img{width:'+logowidth*1.2+'px;}';//è®¾ç½®å·¦ä¾§logo 
+           stylecontent+='.tu img{height:'+(h-10)+'px;}.tu{height:'+(h-10)+'px;margin-left:2px;}.tu img{width:'+(h-20)+'px;}';//è®¾ç½®å¾ç
+           stylecontent+='.txt .price{font:bold 14px/26px "å¾®è½¯éé»";}';
+        }
+        document.write('<style type="text/css">'+stylecontent+'</style>');
+        $(function(){
+            $('.logo a').attr('href',parent._zz_config.logoClickUrl);
+            $('.logo a').click(function(){//ç¹å»logoäºä»¶
+                if(parent._zz_config.events){
+                    if(typeof(parent._zz_config.events.logoClickEvent)=='function'){
+                        parent._zz_config.events.logoClickEvent.call();
+                    }
+                }
+            });
+            $('.icon a').attr('href',parent._zz_config.bottomLogoClickUrl);
+            $('.icon a').click(function(){//ç¹å»åºé¨logoäºä»¶
+                if(parent._zz_config.events){
+                    if(typeof(parent._zz_config.events.bottomLogoClickEvent)=='function'){
+                        parent._zz_config.events.bottomLogoClickEvent.call();
+                    }
+                }
+            });
+            $('.slogan').click(function(){//åºé¨logoäºä»¶
+                if(parent._zz_config.events){
+                    if(typeof(parent._zz_config.events.sloganClick)=='function'){
+                        parent._zz_config.events.sloganClick.call();
+                    }
+                }
+            });
+            $('.su a:eq(1)').attr('href',parent._zz_config.bottomSloganClick);
+        });
+        var pclick=function(index){//ç¹å»ååäºä»¶
+            if(parent._zz_config.events){
+                    if(typeof(parent._zz_config.events.pclick)=='function'){
+                        parent._zz_config.events.pclick.call(this,index);
+                    }
+                }
+        };
+        var DrawImage=function(img){
+            var $this=$(img);
+            var wrapwidth=$this.parents('li').width();
+            $this.css('width',$this.width()+'px');
+            $this.parents('li').find('.txt').css('width',wrapwidth-$this.width()-10+'px');
+            if(wrapwidth-$this.width()-9<84){
+                $this.parents('li').find('.buy img').width(wrapwidth-$this.width()-10);
+            }
+        };
+    </script>
+</head>
+<body>
+<div class="moban">
+	<div class="logo"><a href="" target="_blank"><img src="../images/72890/logo.png"></a></div>
+    <div class="mobanbd fl">
+    	<div class="leftbut fl"><img src="../images/72890/leftbut.png"></div>
+        <div class="midpic fl">
+        	<ul>
+                <script type="text/javascript">
+                    var pcontent='',plist=parent._zz_config.pList;
+                    for(var i in plist){
+                        pcontent+='<li data-index="'+i+'" data-pid="'+plist[i].pid+'"><div class="tu fl"><a href="'+plist[i].href+'" target="_blank" onclick="pclick('+i+')"><img onload="DrawImage(this)" src="'+plist[i].imgurl+'" /></a></div><div class="txt fl"><p class="wz"><a href="'+plist[i].href+'" target="_blank">'+plist[i].name+'</a></p><p class="price">'+plist[i].marketprice+'</p><a onclick="pclick('+i+')" href="'+plist[i].href+'" target="_blank" class="buy"><img src="../images/72890/buy.png" /></a></div></li>';
+                    }
+                    document.write(pcontent);
+                </script> 
+            </ul>
+        </div>
+        <div class="rightbut fr"><img src="../images/72890/rightbut.png"></div>
+    </div>
+    <div class="icon fl"><a href="" target="_blank"><img src="../images/72890/icon.png"></a></div>
+    <div class="su"><a href="" target="_blank"><img src="../images/72890/su1.png"></a><a class="slogan" href="" target="_blank" style="display:none;"><img src="../images/72890/su0.png"></a></div>
+</div>
+</body>
+</html>

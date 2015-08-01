@@ -1,0 +1,227 @@
+@charset "euc-jp";
+
+html {
+	filter: expression(document.execCommand("BackgroundImageCache", false, true));
+}
+#suggest {
+	z-index: 2;
+	background:#ffffff none repeat scroll 0 0;
+	border:1px solid #000000;
+	cursor:default;
+	line-height:18px;
+	margin:0;
+	position:absolute;
+	width:290px;
+	overflow: hidden;
+}
+#suggest .sggstKeyword {
+	background:#ffffff none repeat scroll 0 0;
+	overflow:hidden;
+	font-size:15px;
+	padding-left:3px;
+	padding-right:3px;
+	text-align:left;
+	white-space:nowrap;
+	float:left;
+	width:284px;
+}
+#suggest .sggstSelect .sggstKeyword {
+	background:#3366CC none repeat scroll 0 0;
+	color:#ffffff;
+	cursor:pointer;
+}
+#suggest .sggstComment{
+	padding: 0 5px;
+}
+#suggest .sggstComment .sggstCommentbox{
+	border-top: 0 none;
+	background-color:#ffffff;
+	color:#808080;
+	font-size:12px;
+	padding-top: 2px;
+	clear:both;
+}
+#suggest .sggstBetabtn01{
+	float: left;
+	display: inline;
+}
+#suggest .sggstBetabtn02{
+	float: right;
+	display: inline;
+	width: 101px;
+}
+#suggest .sggstHidetext{
+	float: left;
+	display: inline;
+}
+#suggest .sggstHideimg {
+    display : block ;
+	width: 102px;
+	height: 0;
+	overflow: hidden;
+	padding-top:17px;
+	background: url(http://image.www.rakuten.co.jp/com/img/home/beta/201011/new_on_4.gif) no-repeat left top;
+	cursor : pointer;
+}
+#suggest .sggstHideimg:hover {
+	background: url(http://image.www.rakuten.co.jp/com/img/home/beta/201011/new_hover_4.gif) no-repeat left top;
+}
+#suggest .sggstHideimg{
+	float: right;
+	display: inline;
+}
+.sggstInputWrap .openSuggest {
+	display: block;
+    background: url(http://image.www.rakuten.co.jp/com/img/home/beta/201011/new_off_23.gif) no-repeat center center;
+    cursor: pointer;
+    height: 27px;
+    right: 3px;
+    position: absolute;
+    top: 2px;
+    width: 112px;
+}
+.sggstInputWrap .openSuggest:hover {
+    background: url(http://image.www.rakuten.co.jp/com/img/home/beta/201011/new_hover_23.gif) no-repeat center center;
+}
+.sggstInputWrap {
+	position:relative;
+	width:100%;
+}
+#suggest .sggstNoselect strong {
+	font-weight: bold;
+	color: #000000;
+	font-style: normal;
+}
+#suggest .sggstKeyword span { 
+	margin-left:12px;
+	font-size:13px;
+	font-weight: normal;
+}
+#suggest .sggstNoselect .sggstKeyword span {
+	color:#838383;
+}
+#suggest .cnaviRow .cnaviLink,
+#suggest .asurakuRow .asurakuLink {
+	color: black;
+	line-height: 2em;
+	display: block;
+	white-space: nowrap;
+	text-align: left;
+	overflow: hidden;
+	float: left;
+	clear: both;
+	cursor: pointer;
+	text-decoration: none;
+}
+#suggest .cnaviRow .sggstKeyword,
+#suggest .asurakuRow .sggstKeyword {
+	font-weight: bold;
+}
+#suggest .sggstNoselect .sggstKeyword .cnaviEm,
+#suggest .sggstNoselect .sggstKeyword .asurakuEm {
+	color: #BF0000;
+}
+#suggest .sggstSelect .sggstKeyword .cnaviEm,
+#suggest .sggstSelect .sggstKeyword .asurakuEm {
+	color: #FFFFFF;
+}
+/*
+#suggest .cnaviRow .cnaviImg,
+#suggest .asurakuRow .asurakuImg {
+	width: 30px;
+	height: 30px;
+	float: left;
+	padding-left: 3px;
+	margin-right: 8px;
+}
+*/
+#suggest .sggstKeyword .cnaviEm,
+#suggest .sggstKeyword .asurakuEm {
+	font-weight: bold;
+	margin: 0;
+	font-size: 15px;
+}
+#suggest .cnaviRow.sggstNoselect .cnaviLink,
+#suggest .asurakuRow.sggstNoselect .asurakuLink {
+	background-color: white;
+}
+#suggest .cnaviRow.sggstSelect .cnaviLink,
+#suggest .asurakuRow.sggstSelect .asurakuLink {
+	background-color: #3366CC;
+}
+#suggest .cnaviRow .cnaviBorder {
+	display: none;
+}
+#suggest.sggstSwg .sggstBorder {
+	clear: both;
+	border: 0px none;
+}
+#suggest.sggstSwg.sggstCn .sggstBorder
+,#suggest.sggstSwg.sggstAr .sggstBorder {
+	clear: both;
+	border-top: 1px dotted #AEAEAE;
+	border-bottom: 0px none;
+	margin: 0 5px;
+}
+#suggest .shopRow {
+	padding: 0 0 10px 0;
+	float: left;
+	overflow: hidden;
+	width: 100%;
+}
+#suggest .shopCell {
+	position: relative;
+}
+#suggest .shopRow .suggest-shop-img {
+	padding: 5px;
+	width: 240px;
+	height: 60px;
+}
+
+#suggest .shopRow .shopColumn {
+/* for 2-columns view
+	float: left;
+	width: 50%;
+*/
+}
+
+#suggest .shopRow .shopColumn li:hover {
+	 background: none repeat scroll 0 0 #3366CC;
+	 color: #FFFFFF;
+	 cursor: pointer;
+}
+#suggest .shopRow .shopColumn .shopImg {
+	display: inline;
+	padding: 5px 10px;
+}
+#suggest .shopRow .shopColumn a {
+	display: block;
+	height: 100%;
+	text-decoration: none;
+	color: inherit;
+}
+#suggest .shopRow .shopText {
+	position: absolute;
+	top: 50%;
+	margin-top: -0.6em;
+	font-size: 15px;
+	margin-left: 0;
+}
+#suggest .shopRow .shopBorder {
+	border: none;
+	border-top: 1px dotted #AEAEAE;
+	height: 1px;
+	color: #FFFFFF;
+	margin: 0 5px;
+}
+#suggest .shopRow .shopTitle {
+	margin: 0;
+	padding: 10px 10px 5px 28px;
+	width: 100%;
+	color: #7f7f7f;
+	font-size: 15px;
+	font-weight: bold;
+	display: inline-block;
+	background: url(http://image.www.rakuten.co.jp/com/img/service/sd/ab_test/icn_shop.gif) no-repeat 10px 10px;
+}
+
