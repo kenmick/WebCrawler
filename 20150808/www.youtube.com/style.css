@@ -1,0 +1,388 @@
+/* setup */
+html {
+	box-sizing: border-box;
+}
+*, *:before, *:after {
+	box-sizing: inherit;
+}
+body {
+	background-color: #FFF;
+	margin: 0;
+	padding: 0;
+}
+/* this is a workaround hide stylesheet for IE
+	When display: none; is used, youtube video breaks in IE
+	Use this method instead. Works fine...
+*/
+.hide {
+	border:0!important;
+    clip:rect(0 0 0 0)!important;
+    height:1px!important;
+    margin:-1px!important;
+    overflow:hidden!important;
+    padding:0!important;
+    position: absolute!important;
+    width:1px!important;
+}
+#ytClose_dc{
+    z-index:9999;
+}
+
+
+/* Banner Styles */
+
+.banner {
+    position: relative;
+    width: 970px;
+    height: 250px;
+    border: solid 1px;
+    overflow: hidden;
+    background-color: #000;
+}
+
+#img_background2 {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+#div_main.reveal #img_background2 {
+    display: block;
+}
+#div_main.reveal #img_logo_sense_8 {
+    left: 498px;
+}
+#div_main.reveal #img_tagline {
+    right: 38px;
+}
+#div_main.reveal #div_cta {
+    right: 175px;
+}
+#div_main.reveal #img_copy {
+    /*display: none;*/
+    opacity: 0;
+}
+#div_main.reveal #img_logo_netflix {
+    top: 17px;
+    left: 628px;
+}
+#div_main.reveal #banner_click {
+    right: 0;
+    width: 529px;
+}
+
+#div_main {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+}
+    #img_background {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        opacity: 100;
+    }
+    #img_close {
+        z-index: 12;
+        position: absolute;
+        top: 5px;
+        left: 5px;
+        cursor: pointer;
+    }
+    #img_close2 {
+        z-index: 22;
+        position: absolute;
+        top: 5px;
+        left: 5px;
+        cursor: pointer;
+    }
+    #div_copy {
+        position: absolute;
+        top: 478px;
+        left: 64px;
+        width: 169px;
+        height: 45px;
+        overflow: hidden;
+    }
+    #div_cta.watch_now #img_cta_white_watch_trailer,
+    #div_cta.watch_now #img_cta_black_watch_trailer {
+        display: none;
+    }
+    #div_cta.watch_now #img_cta_white_watch_now,
+    #div_cta.watch_now #img_cta_black_watch_now {
+        display: block;
+    }
+    #img_cta_white_watch_now,
+    #img_cta_black_watch_now {
+        display: none;
+    }
+        #img_cta_white_watch_now,
+        #img_cta_white_watch_trailer,
+        #img_cta_black_watch_now, 
+        #img_cta_black_watch_trailer {
+            position: absolute;
+            -webkit-transition: opacity .3s ease;
+            transition: opacity .3s ease;
+        }
+        #div_cta_default {
+            position: absolute;
+            width: 186px;
+            height: 50px;
+            overflow: hidden;
+            -webkit-transition: all .2s ease;
+            transition: all .2s ease;
+        }    
+
+    #banner_click {
+        position: absolute;
+        width:100%;
+        height:100%;
+        cursor: pointer;
+        background: url('../img/1x1.png');
+    }
+
+
+/* Animated Elements */
+#div_flash {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff;
+    opacity: 1;
+    -webkit-transition: opacity .6s ease;
+    transition: opacity .6s ease;
+}
+#div_flash.in {
+    opacity: 0;
+}
+#img_logo_netflix {
+    position: absolute;
+    top: 22px;
+    left: 20px;
+    opacity: 0;
+    -webkit-transition: opacity .6s ease;
+    transition: opacity .6s ease;
+}   
+#img_logo_netflix.in {
+    opacity: 1;
+}   
+#img_logo_sense_8 {
+    position: absolute;
+    top: 74px;
+    left: 289px;
+    opacity: 0;
+     -ms-transform: scale(1.5);
+    -webkit-transform: scale(1.5);
+    transform: scale(1.5);
+    -webkit-transition: all .6s ease;
+    transition: all .6s ease;
+}
+#img_logo_sense_8.in {
+    -ms-transform: scale(1);
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    opacity: 1;
+}
+#img_tagline {
+    position: absolute;
+    top: 160px;
+    right: 282px;
+    opacity: 0;
+    -webkit-transition: all .5s ease;
+    transition: all .5s ease;
+}
+#img_tagline.in {
+    opacity: 1
+}
+#img_copy {
+    position: absolute;
+    top: 109px;
+    left: 20px;
+    opacity: 0;
+    -webkit-transition: all .3s ease;
+    transition: all .3s ease;
+}
+#img_copy.in {
+    opacity: 1;
+}
+
+#img_copy2 {
+    position: absolute;
+    top: 195px;
+    left: 440px;
+    opacity: 0;
+    -webkit-transition: all .3s ease;
+    transition: all .3s ease;
+}
+#img_copy2.in {
+    opacity: 1;
+}
+
+#div_cta {
+    position: absolute;
+    bottom: -42px;
+    left: 20px;
+    width: 157px;
+    height: 33px;
+    /*z-index: 10;*/
+    cursor: pointer;
+    -webkit-transition: all .4s ease;
+    transition: all .4s ease;
+}
+#div_cta.in {
+    bottom: 36px;
+}
+#replay {
+    position: absolute;
+    top: 30px;
+    right: 10px;
+    z-index: 20;
+    cursor: pointer;
+    -webkit-transition: all .3s ease;
+    transition: all .3s ease;
+}
+
+/* Hover states */
+#replay:hover {
+    -ms-transform: rotate(-180deg); 
+    -webkit-transform: rotate(-180deg);
+    transform: rotate(-180deg);
+}
+.banner:hover #img_cta_black_watch_trailer,
+.banner:hover #img_cta_black_watch_now {
+    opacity: 0;
+}
+
+
+
+
+/* Video */
+#videoWrapper {
+    z-index: 10;
+    position: absolute;
+    width: 970px;
+    height: 250px;
+    top: -1px;
+    left: -1px;
+}
+#videoContainer {
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+}
+.videoClick {
+    z-index: 11;
+    position: absolute;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+    width: 100%;
+    height: 250px;
+    background: url('data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7');
+}
+.close {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    z-index: 12;
+    cursor: pointer;
+}
+.controls {
+    position: absolute;   
+    top: 8px;
+    left: 33px;
+    z-index: 30;
+    width: 100%;
+}
+.sprite {
+    background: url(../img/icons.png) no-repeat;
+    width: 20px;
+    height: 20px;
+    float: left;
+    margin-right: 2px;
+    cursor: pointer;
+}
+.playBtn {
+    background-position: 0 0;
+}
+.playBtn:hover {
+    background-position: 0 -44px;
+}
+.playBtn.pause {
+    background-position: 0 -22px;
+}
+.playBtn.pause:hover {
+    background-position: 0 -66px;
+}
+.muteBtn {
+    background-position: -22px -22px;
+}
+.muteBtn.unmute {
+    background-position: -22px 0;
+}
+.muteBtn.unmute:hover {
+    background-position: -22px -44px;
+}
+.muteBtn:hover {
+    background-position: -22px -66px; 
+}
+.timer {
+    color: #fff;
+    font-size: 13px;
+    font-family: sans-serif, Arial;
+    line-height: 19px;
+    height: 19px;
+    margin-left: 5px;
+    letter-spacing: 1px;
+    text-shadow: 0 1px 1px rgba(0,0,0,.8);
+}
+.overlay img {
+    position: absolute;
+    bottom: 15px;
+}
+.overlay #img_overlay_logo {
+    left: 20px;
+}
+.overlay #img_overlay_sense8.in {
+    opacity: 1;
+}
+.overlay #img_overlay_sense8 {
+    right: 20px;
+    opacity: 0;
+    -webkit-transition: all .3s ease;
+    transition: all .3s ease;
+}
+.overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 60px;    
+    width: 100%;
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,000000+100&amp;0+0,0.5+100 */
+background: -moz-linear-gradient(top,  rgba(0,0,0,0) 0%, rgba(0,0,0,0.5) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0.5))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.5) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.5) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.5) 100%); /* IE10+ */
+background: linear-gradient(to bottom,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.5) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#80000000',GradientType=0 ); /* IE6-9 */
+
+}
+.controls div {
+    display:inline-block;
+    margin-right: 7px;
+    cursor: pointer;
+    float: left;
+}
+#logo_netflix_video {
+    position: absolute;
+    left: 15px;
+    bottom: 15px;
+    z-index: 1;
+}
+#logo_sense8_video {
+    position: absolute;
+    right: 15px;
+    bottom: 15px;
+}

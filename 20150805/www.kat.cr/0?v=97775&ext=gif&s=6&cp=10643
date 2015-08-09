@@ -1,0 +1,55 @@
+
+<html lang="fr">
+    <head>
+        <title></title>
+        <style type="text/css">
+          body { margin: 0px; padding: 0px; }
+        </style>
+        <script type="text/javascript">
+var fadeEffect=function(){
+	return{
+		init:function(id, flag, target){
+			this.elem = document.getElementById(id);
+			clearInterval(this.elem.si);
+			this.target = target ? target : flag ? 100 : 0;
+			this.flag = flag || -1;
+			this.alpha = this.elem.style.opacity ? parseFloat(this.elem.style.opacity) * 100 : 0;
+			this.si = setInterval(function(){fadeEffect.tween()}, 20);
+		},
+		tween:function(){
+			if(this.alpha == this.target){
+				clearInterval(this.si);
+			}else{
+				var value = Math.round(this.alpha + ((this.target - this.alpha) * .05)) + (1 * this.flag);
+				this.elem.style.opacity = value / 100;
+				this.alpha = value
+			}
+		}
+	}
+}();
+function showban(divban,divloader)
+{
+    fadeEffect.init(divloader,0);
+    document.getElementById(divloader).style.display='none';
+    document.getElementById(divban).style.display='inline';
+}
+setTimeout('showban("c7e49","51b0b")', 800);
+
+
+</script>
+    </head>
+    <body onload="fadeEffect.init('51b0b', 1);">
+<!--          <div id="51b0b" style="position:absolute; margin-top:300px;margin-left:80px;">
+          <img src="http://affiliation-france.com/img/ajax-loader.gif" width="width" height="hight" alt="alt" />
+           </div>-->
+        <div id="c7e49" style="position:relative;width:px;padding:0;margin:0;border:0;overflow:hidden;display:block;">
+            
+                                    <a href="http://www.affiliation-france.com/pooltag/ncl/dqZ7laOLgmarhGubY2ybm118fYCFp3N6go2klqSYpZtpnKBobmyZfZecnmjXqw?data=CC" target="_blank">
+                        <img src="http://www.affiliation-france.com/bans/10643/97775.gif" width="160" height="600" alt="" border="0"/>
+                    </a>
+                          </div>
+
+<!--<script type="text/javascript">
+document.write('<SCR'+'IPT TYPE="text/javascript" SRC="http://mongo3.sydtechnicals.com/data/e4d-p5pkjKl9eFyqrmR4iJt8lKh4soSfmnh2V4U?w=14905&cpg=10643&cntry=FR&src=1&visual=97775&act=1&ty=1&size=6&ref=www.affiliation-france.com&bw=Linux&os=Gecko+based&crty_pub=1&crty_adv=1"></SCR'+'IPT>')</script>-->
+    </body>
+</html>

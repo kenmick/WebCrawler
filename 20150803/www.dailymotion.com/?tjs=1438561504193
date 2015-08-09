@@ -1,0 +1,695 @@
+    ;(function(window, document) {
+    
+
+    if (!Array.prototype.forEach){
+        Array.prototype.forEach = function(fun /*, thisArg */){
+            //"use strict";
+            if (this === void 0 || this === null)
+                throw new TypeError();
+            var t = Object(this);
+            var len = t.length >>> 0;
+            if (typeof fun !== "function")
+                throw new TypeError();
+            var thisArg = arguments.length >= 2 ? arguments[1] : void 0;
+            for (var i = 0; i < len; i++){
+                if (i in t)
+                    fun.call(thisArg, t[i], i, t);
+            }
+        };
+    }
+
+    
+    
+    window.addScriptAsync = function(url,id) {
+        var script = document.createElement("script");
+        if (id) script.setAttribute("id",id);
+        script.setAttribute("type","text/javascript");
+        script.setAttribute("src",url);
+        document.getElementsByTagName("head").item(0).appendChild(script);
+    };
+
+    /*cookie sync*/
+    
+    /*full segment sync*/
+    
+    /*single segment pixel*/
+    
+
+    
+        /* pixel conversion */
+        /* -> ezc conditions list */
+        var ezcRefs = [[['d:games']],[['d:dmfr']]];
+        /* -> ezc condition operator */
+        var condRefs = [["or"],["or"]];
+        /* -> conditional pixel conversion list */
+        var condPixelRefs = [["https://secure.adnxs.com/px?id=497384&t=2"],["http://googleads.g.doubleclick.net/pagead/viewthroughconversion/959473563/?value=1.00&currency_code=EUR&label=YguGCIaahFoQm8_ByQM&guid=ON&script=0"]];
+        /* -> conditional pixel conversion type list */
+        var condPixelTypeList = [["img"],["img"]];
+        /* -> unconditional pixel conversion list */
+        
+        /* -> unconditional pixel conversion Type list */
+        
+        
+        var addPixelConv = function(pixelConvId, pixelConvType){
+            var ezc = "pixel_" + pixelConvType + ":" + pixelConvId;
+            var alreadySet = window.ezC.indexOf(ezc);
+            if (alreadySet === -1){
+                window.ezC.push(ezc);
+            }
+        };
+
+        var ezcCompare = function(ezc, m, fullImg){
+                var sep = ezc.match(new RegExp(m[1]+"([^a-z0-9_-]{1,1})","i"));
+                if (sep !== null){
+                        var m2 = ezc.match(new RegExp(m[1]+sep[1]+"(.+)","i"));
+                        if (m2 !== null) fullImg = fullImg.replace(m[0], m2[1]);
+                }
+                return fullImg;
+        };
+
+        var macro = function(img){
+                var regexp = /\{EZC_([^\}]+)\}/igm; 
+                var fullImg = img;
+                var m; 
+                while ((m = regexp.exec(img)) !== null) {
+                        for (var i = 0; i < window.ezC.length; i++){
+                                fullImg = ezcCompare(window.ezC[i], m,  fullImg);
+                        }
+                }
+                return fullImg;
+        };
+    
+ 
+    
+        
+    
+            var condEzcPixelConvRefs = [[70],[83]];
+            var condEzcPixelConvTypeRefs = [["conv"],["DEFAULT"]];
+            
+            var ezcMacro = function(ref, ezc){          
+                var m = null;
+                if (/\{\/.*\/\}/.exec(ref)) {
+                    var r = ref.replace("{/", "").replace("/}", "");
+                    var re = new RegExp(r, "g");
+                    m=re.exec(ezc);
+                } else if (ref.indexOf("{%}") > -1) { 
+                    var sp = ref.split("{%}");
+                    var ind = ezc.length-1;
+                    m = [];
+                    for (var i = sp.length-1; i >= 0; i--) {
+                        if (sp[i] !== null && sp[i] !== "" && m !== null) {
+                            ind = ezc.lastIndexOf(sp[i], ind);
+                            if (ind === -1) {
+                                m = null;
+                            } 
+                        }
+                    }  
+                } else {
+                    if (ezc === ref) m = [];
+                }
+                return m ? true : false;
+            };
+            
+            if (window.ezC){
+                    for (var loop1 = 0; loop1 < ezcRefs.length; loop1++){
+                            var sendPixelConversion = null;
+                            for (var loop2 = 0; loop2 < ezcRefs[loop1].length; loop2++){
+                                    var matching = false;
+                                    for (var loop3 = 0; loop3 < window.ezC.length; loop3++){
+                                            if (ezcMacro(ezcRefs[loop1][loop2][0], ezC[loop3])){
+                                                matching = true;
+                                            }
+                                    }
+                                    if (sendPixelConversion === null) sendPixelConversion = matching;
+                                    switch (condRefs[loop1][0]){
+                                            case "and" :
+                                                    sendPixelConversion = sendPixelConversion & matching;
+                                                    break;
+                                            case "or" :
+                                                    sendPixelConversion = sendPixelConversion | matching;
+                                                    break;
+                                    }
+                            }
+                            if (sendPixelConversion){
+                                    addPixelConv(condEzcPixelConvRefs[loop1][0], condEzcPixelConvTypeRefs[loop1][0]);
+                                    if (condPixelTypeList[loop1][0] == "img"){
+                                        new Image().src = macro(condPixelRefs[loop1][0]);
+                                    }
+                                    if (condPixelTypeList[loop1][0] == "js"){
+                                        window.addScriptAsync(macro(condPixelRefs[loop1][0]));
+                                    }  
+                            }
+                    }
+            }
+    
+       
+      
+    
+    var EZ = EZ || { },
+        console = console || window.console,
+        hasOwn = Object.prototype.hasOwnProperty,
+        ext = function(object, source, noCall, noOverwrite){
+            var index;
+            if(!noCall && typeof source == 'function') source = source();
+            for(index in source) if(hasOwn.call(source, index) && (noOverwrite ? !(index in object) : true)) object[index] = source[index];
+            return object;
+        };
+
+    ext(EZ, {
+        addScript: function(url, callback){
+            var script = document.createElement('script');
+            script.setAttribute('type','text/javascript');
+            script.setAttribute('src', url);
+            if(callback){
+                script.onload = script.onreadystatechange = callback;
+            }
+            document.getElementsByTagName('head').item(0).appendChild(script);
+        },
+        cDecode: function(s) { return decodeURIComponent(s.replace(/\+/g, ' ')); },
+        cEncode: function(s) { if(s) return encodeURIComponent(s.replace(/;/g, '$')); else return null;},
+        generateVarName: function(){ return 'ezVar' + Math.random().toString().slice(2,11); },
+        convertSegs: function(encoded){
+            var tmpSegs = {};
+            try {
+                encoded.split('C').forEach(function (cust, i) {
+                    var cids = cust.split('A'),
+                            tmpSegsArr = [],
+                            cid = cids[0];
+
+                    cids[1].split('B').forEach(function (seg, j) {
+                        tmpSegsArr.push(+seg);
+                    });
+                    tmpSegs[+cid] = tmpSegsArr;
+                });
+            }catch(err){
+
+            }
+            return tmpSegs;
+        },
+        convertSegsToCookie: function(encoded, filter){
+            var cook = [];
+            try {
+                for(var prop in encoded){
+                    if(encoded.hasOwnProperty(prop)) {
+                        var widOk = true;
+                        if(filter !== null && filter !==  '-1'){
+                            if(prop == filter){
+                                widOk  = true;
+                            }else{
+                                widOk  = false;
+                            }
+                        }
+                        if(widOk === true){
+                            var c = prop+'A'+encoded[prop].join('B');
+                            cook.push(c);
+                        }
+                    }
+                }
+                return cook.join('C');
+            }catch(err){
+                return '';
+            }
+        },
+        isEmpty: function(obj) {
+            for(var prop in obj) {
+                if(obj.hasOwnProperty(prop))
+                    return false;
+            }
+
+            return true;
+        }
+    });
+
+    function Cookie(params) {
+        var val = null, self = this,
+                opts = {path: '/', domain: document.domain};
+
+        if(!(self instanceof Cookie)) return new Cookie(params);
+
+        ext(self, opts);
+        ext(self, params);
+        ext(self, {_last: null});
+
+        if (typeof self.value != 'undefined') {
+
+            if (typeof self.expires === 'number') {
+                var days = self.expires, t = self.expires = new Date();
+                t.setDate(t.getDate() + days);
+            }
+
+            self._last = document.cookie = [
+                EZ.cEncode(self.key), '=', EZ.cEncode(self.value),
+                self.expires ? '; expires=' + self.expires.toUTCString() : '', // use expires attribute, max-age is not supported by IE
+                self.path    ? '; path=' + self.path : '',
+                self.domain  ? '; domain=' + self.domain : '',
+                self.secure  ? '; secure' : ''
+            ].join('');
+        }
+
+    }
+
+    ext(Cookie.prototype, {
+        get : function(){
+            var self = this, val = null;
+            document.cookie.split('; ').forEach(function(cookie, index){
+                var parts = cookie.split('=');
+                if (EZ.cDecode(parts.shift()) === self.key) {
+                    var tval = EZ.cDecode(parts.join('='));
+                    val = tval == 'null' ? null : tval;
+                }
+            });
+            return val;
+        }
+    });
+
+    ext(EZ, { Cookie: Cookie});
+
+    function Marker(params){
+        var opts = {type: 'dailymotion', customs: '', saveCustoms: '', uid: '',
+                    tmst: new Date().getTime()+"", fmt: '', frm: '', sfOrds: null, eventData: null,
+                    social: null, dbg: {}, posted: [], clb: null, optedOut: null, delegate: false, doCall: false, segsFilter: -1},
+            self = this,
+            mustGetSegs = false;
+
+        if(!(self instanceof Marker)) return new Marker(params);
+
+        ext(self, opts);
+        ext(self,params);
+
+        if(self.delegate && self.delegate === true){
+            self.customs += '&ezC=ezdelegate:1';
+        }
+
+        self.saveCustoms = self.customs;
+
+        self.segs = {};
+        self.bid = '4c56292d-d61b-4e02-9f0e-dde77255430c';
+        self.segsFilter = '1007';
+
+
+        self.optedOut = EZ.Cookie({key:'fofirdOptOut'}).get();
+        if(self.optedOut != 'OPTEDOUT'){
+
+            self.fofirdOk = '0';
+            self.fofirdSegs = null;
+
+            self.fofird = EZ.Cookie({key:'fofirdId'}).get();
+            if(self.fofird === null){
+                EZ.Cookie({ key: 'fofirdId', value: self.bid, path: '/', expires: 365 });
+                self.fofird = self.bid;
+            }else{
+                if(self.fofird != self.bid){
+                    self.bid = self.fofird;
+
+                    
+                }
+                self.fofirdOk = '1';
+            }
+
+            
+            self.fofirdSegs = EZ.Cookie({key:'fofirdSegs'}).get();
+
+            if(self.fofirdSegs === null){
+                if(EZ.isEmpty(self.segs)){
+                    if(self.fofird !== null && mustGetSegs){
+                        self.ezSegsVarName = EZ.generateVarName();
+
+                        EZ.addScript('http://dailymotion.ezakus.net/marker/segments/r/'+self.ezSegsVarName+'/f/'+self.fofird, function(){
+                            if(window[self.ezSegsVarName]){
+                                var retVar = window[self.ezSegsVarName],
+                                    cval = "";
+                                self.segs = retVar;
+                                cval = EZ.convertSegsToCookie(retVar, self.segsFilter);
+                                if(cval !== "") {
+                                    EZ.Cookie({ key: 'fofirdSegs', value: cval, path: '/', expires: 1 });
+                                }
+                                if(self.clb && typeof self.clb == 'function') self.clb.call(null);
+                            }
+                        });
+                    }else{
+                        self.doCall = true;
+                    }
+                }else{
+                    var cval = EZ.convertSegsToCookie(self.segs, self.segsFilter);
+                    if(cval !== "") {
+                        EZ.Cookie({ key: 'fofirdSegs', value: cval, path: '/', expires: 1 });
+                    }
+                    self.doCall = true;
+                }
+            }else{
+                self.segs = EZ.convertSegs(self.fofirdSegs);
+                self.doCall = true;
+            }
+            
+            
+
+        }else{
+            EZ.Cookie({ key: 'fofirdId', value: null, path: '/', expires: -1 });
+            EZ.Cookie({ key: 'fofirdSegs', value: null, path: '/', expires: -1 });
+        }
+
+    }
+
+    ext(EZ,{ Marker: Marker, encode: encodeURIComponent });
+
+    ext(EZ.Marker.prototype, {
+        getSegments: function (key) {
+            var self = this;
+            if (self.segs[key])
+                return self.segs[key];
+            else
+                return [];
+        },
+        ckok: function () {
+            document.cookie = 'ez=ok;expires=' + new Date(new Date().getTime() + 1800000).toGMTString() + ';path=/;';
+            if (document.cookie.indexOf('ez=ok') >= 0) {
+                document.cookie = 'ez=ok;expires=' + new Date(new Date().getTime() - 60000).toGMTString();
+                return 1;
+            } else {
+                return 0;
+            }
+        },
+        triggerSocialHit: function(socialData){
+            var self = this;
+            self.social = socialData;
+            self.mark();
+        },
+        event: function(eventData){
+            var self = this;
+            self.eventData = eventData;
+            self.mark();
+        },
+        addIframe: function(src, id){
+            var ils = document.createElement('iframe');
+            ils.src = src;
+            ils.id = id;
+            ils.style.height = '0px';
+            ils.style.width = '0px';
+            ils.style.padding = '0px';
+            ils.style.backgroundColor = 'transparent';
+            ils.style.border = '0px none transparent';
+            ils.style.overflow = 'hidden';
+            var body = document.getElementsByTagName('body')[0];
+            body.appendChild(ils);
+        },
+        optOut: function(){
+            EZ.Cookie({ key: 'fofirdOptOut', value: 'OPTEDOUT', path: '/', expires: 365 });
+        },
+        optIn: function(){
+            EZ.Cookie({ key: 'fofirdOptOut', value: null, path: '/', expires: -1 });
+            window.ezMarker = EZ.Marker(opt);
+            window.ezMarker.mark();
+        }
+    });
+
+    
+    function Request(params){
+        var _xhr = 'XMLHttpRequest' in window ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP'),
+            self = this,
+            dom,
+            udom;
+
+        if(!(self instanceof Request)) return new Request(params);
+
+        ext(self, params);
+        ext(self, {_xhr : _xhr});
+
+        if((dom = window.location.href.match(/:\/\/(.[^\/]+)/)) && dom[1] && (udom = self.url.match(/:\/\/(.[^\/]+)/)) && udom[1] && dom[1] != udom[1] && typeof XDomainRequest != 'undefined'){
+            self._xhr = new XDomainRequest();
+            success = self.success;
+            error = self.error;
+            self._xhr.onload = function(){ if(success) success(self._xhr.responseText); };
+            self._xhr.onerror = function(){ if(error) error('unknown error '+self._xhr.responseText); };
+        }else{
+            self._xhr.onreadystatechange = function(){
+                var readyState = self._xhr.readyState,
+                        status,
+                        success,
+                        error;
+
+                if(readyState == 4 && (status = self._xhr.status) && ((status >= 200 && status < 300) || status == 304) && (success = self.success)) success(self._xhr.responseText);
+                if(readyState == 4 && (status = self._xhr.status) && ((status < 200 || status > 300) && status != 304) && (error = self.error)) error(status);
+            };
+        }
+    }
+
+    ext(Request.prototype, {
+        _lastUrl: null,
+        send : function(data){
+            var self = this,
+                _xhr = self._xhr,
+                url = self.url,
+                headers = self.headers,
+                index;
+
+            self._lastUrl = url;
+            data += "&ezb=4c56292d-d61b-4e02-9f0e-dde77255430c";
+            if(typeof _xhr.onreadystatechange == 'function'){
+                _xhr.open('POST', url, true);
+                for(index in headers) if(hasOwn.call(headers, index)) _xhr.setRequestHeader(index, headers[index]);
+                _xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+                _xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                _xhr.send(data);
+            }else if(typeof _xhr.onload == 'function'){
+                _xhr.open('POST', url);
+                if(_xhr.setRequestHeader){
+                    _xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+                    _xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                }
+                _xhr.send(data);
+            }
+        }
+    });
+
+    ext(EZ.Marker.prototype, {
+        Request: Request,
+        keys : Object.keys || (function () {
+            var hasDontEnumBug = !{toString:null}.propertyIsEnumerable("toString"),
+                    DontEnums = [
+                        'toString',
+                        'toLocaleString',
+                        'valueOf',
+                        'hasOwnProperty',
+                        'isPrototypeOf',
+                        'propertyIsEnumerable',
+                        'constructor'
+                    ],
+                    DontEnumsLength = DontEnums.length;
+
+            return function (o) {
+                if (typeof o != "object" && typeof o != "function" || o === null)
+                    throw new TypeError("Object.keys called on a non-object");
+
+                var result = [];
+                for (var name in o) {
+                    if (hasOwn.call(o, name))
+                        result.push(name);
+                }
+
+                if (hasDontEnumBug) {
+                    for (var i = 0; i < DontEnumsLength; i++) {
+                        if (hasOwn.call(o, DontEnums[i]))
+                            result.push(DontEnums[i]);
+                    }
+                }
+
+                return result;
+            };
+        })(),
+        dumpVar: function(tab, subLevel){
+            var obj = {},
+                self = this,
+                keys = self.keys(tab),
+                iter = 0;
+            for(iter=0; iter<keys.length; iter++){
+                var item = keys[iter];
+                if (Object.prototype.toString.apply(tab[item]) === '[object Array]') {
+                    obj[item] = self.dumpVar(tab[item], true);
+                } else {
+                    obj[item] = tab[item];
+                }
+            }
+            if(!subLevel)
+                return window.JSON.stringify(obj);
+            else
+                return obj;
+        },
+        uuid: function(){
+            var d = new Date().getTime();
+            var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+                var r = (d + Math.random()*16)%16 | 0;
+                d = Math.floor(d/16);
+                return (c=='x' ? r : (r&0x7|0x8)).toString(16);
+            });
+            return uuid;
+        },
+        mark: function(){
+            var self = this,
+                    src = '',
+                    im = null,
+                    queryString = '',
+                    all = '',
+                    strSfOrds = '',
+                    dest = 'http://dailymotion.ezakus.net/marker/image';
+            try {
+                if(self.optedOut == 'OPTEDOUT'){
+                    return;
+                }
+
+                src = dest+'/' + self.type;
+                self.customs = self.saveCustoms;
+                if (self.ckok() < 1) {
+                    self.customs += '&ezC=ezCkKo';
+                }
+                if(self.social){
+                    self.customs += '&ezC=' + EZ.encode(self.social);
+                }
+                if(self.eventData){
+                    var strData = self.eventData;
+                    if(typeof self.eventData !== 'string')
+                        strData = window.JSON.stringify(self.eventData);
+                    self.customs += '&ezC=' + EZ.encode('type:event')+'&ezC=' + EZ.encode('event:'+strData);
+                }
+                if(self.sfOrds){
+                    self.customs += '&ezC=' + EZ.encode('ezSfOrds:'+self.dumpVar(self.sfOrds));
+                }
+                queryString = 'cref=' + EZ.encode(document.referrer) +'&hash='+EZ.encode(window.location.hash)+'&tjs=' + self.tmst + self.uid + self.fmt + self.frm + self.customs;
+                queryString += '&fofird='+self.fofird+'&fofirdOk='+self.fofirdOk;
+                if(self.fofirdSegs !== null){
+                    queryString += '&fofirdSegs='+self.fofirdSegs;
+                }
+                all = src + '?' + queryString;
+                if(all.length < 2048){
+                    im = new Image();
+                    im.src = all;
+                    im.onload = function () {
+                        im.onload = null;
+                    };
+                }else{
+                    self.Request({
+                        url: src,
+                        success: function(data){  }
+                    }).send(queryString);
+                }
+            } catch (e) {
+                var parts = [],
+                    noRef = '&hash='+EZ.encode(window.location.hash)+'&tjs=' + self.tmst + self.uid + self.fmt + self.frm,
+                    cRef = 'cref=' + EZ.encode(document.referrer),
+                    std = src + '?' + cRef + noRef,
+                    others = src + '?' + noRef,
+                    hashCode = EZ.encode(self.uuid()),
+                    truncPart = '&ezC=keyforsplittedhit&ezC=trunc&ezC='+hashCode+'&ezC=part',
+                    splitCustoms = self.customs.split('&ezC='),
+                    cmpt = 1;
+
+                std += '&fofird='+self.fofird+'&fofirdOk='+self.fofirdOk;
+                if(self.fofirdSegs !== null){
+                    std += '&fofirdSegs='+self.fofirdSegs;
+                }
+                if((std+truncPart).length < 2047){
+                    parts.push(std+truncPart+'0');
+                }else{
+                   var much = (std+truncPart).length - 2047;
+                   cRef = cRef.substring(0, cRef.length - much);
+                   std = src + '?' + cRef + noRef + truncPart + '0';
+                   parts.push(std);
+                }
+
+                var curr = others + truncPart,
+                    toPush = curr + cmpt,
+                    lastSplice = null;
+                do{
+                    do{
+                        lastSplice = splitCustoms.shift();
+                        if(lastSplice !== "")
+                            toPush += '&ezC=' + lastSplice;
+                    }while(toPush.length < 2048 && splitCustoms.length > 0);
+
+                    if(splitCustoms.length > 0){
+                        toPush = toPush.replace('&ezC=' + lastSplice, '');
+                        parts.push(toPush);
+                        cmpt++;
+                        splitCustoms.push(lastSplice);
+                        toPush = curr + cmpt;
+                    }
+
+                }while(splitCustoms.length > 0);
+
+                if(toPush.length >= 2048){
+                    toPush = toPush.replace('&ezC=' + lastSplice, '');
+                    parts.push(toPush);
+                    cmpt++;
+                    var cap = 2047 - (curr + cmpt).length - '&ezC=xxx&ezC=ezCTruncxxx:ezCPartxxx:xxxx'.length ,
+                        ezCExp = lastSplice.match(new RegExp('.{1,'+cap+'}', 'g')),
+                        mod = "",
+                        expLen = ezCExp.length,
+                        ezCId = new Date().getTime();
+
+                    for(var j=0; j<expLen; j++){
+                        var minEZC = ezCExp[j];
+                        try{
+                            minEZC = mod + minEZC;
+                            decodeURIComponent(minEZC);
+                        }catch(de){
+                            mod = minEZC.substring(minEZC.lastIndexOf('%'));
+                            minEZC = minEZC.substring(0, minEZC.lastIndexOf('%'));
+                        }
+                        var minCurr = curr + cmpt + '&ezC=ezCTrunc' + expLen + ':ezCPart' + j + ':' + minEZC;
+                        parts.push(minCurr);
+                        cmpt++;
+                    }
+                }
+
+
+                var truncNumber = parts.length,
+                    lcallb = function () { im.onload = null;};
+
+                for(var k=0; k<truncNumber; k++){
+                    var part = parts[k];
+                    part = part.replace("ezC=trunc", "ezC=trunc"+truncNumber);
+                    im = new Image();
+                    im.onload = lcallb;
+                    im.src = part;
+                }
+
+            }
+        }
+    });
+    
+
+    
+    
+    try {
+        var opt = {}, ezMarker, ezVarStore = window ;
+        
+        if (ezVarStore.ezMarkerType) { opt.type = ezVarStore.ezMarkerType; }
+        
+        if (ezVarStore.ezUID) { opt.uid = '&uid=' + ezVarStore.ezUID; }
+        if (ezVarStore.ezFmt) { opt.fmt = '&fmt=' + ezVarStore.ezFmt; }
+        if (top != self) { opt.frm = '&frm=1'; }
+        if (ezVarStore.ezFrm) { opt.frm = '&frm=' + ezVarStore.ezFrm; }
+        if (ezVarStore.ezSfOrds) { opt.sfOrds = ezVarStore.ezSfOrds; }
+        if(ezVarStore.ezClb && typeof ezVarStore.ezClb == 'function') { opt.clb = ezVarStore.ezClb; }
+        if (ezVarStore.ezC) {
+            if (Object.prototype.toString.call(ezVarStore.ezC) == '[object Array]') {
+                opt.customs = '';
+                for (var i = 0; i < ezVarStore.ezC.length; i++) {
+                    opt.customs += '&ezC=' + EZ.encode(ezVarStore.ezC[i]);
+                }
+            } else {
+                opt.customs = '&ezC=' + EZ.encode(ezVarStore.ezC);
+            }
+        }
+
+        ezVarStore.ezMarker = EZ.Marker(opt);
+        if(ezVarStore.ezMarker.doCall === true && ezVarStore.ezClb && typeof ezVarStore.ezClb == 'function') ezVarStore.ezClb.call(null);
+        ezVarStore.ezMarker.mark();
+
+        
+
+        
+
+    } catch (err) {
+        console.log(err);
+    }
+})(window, document);
