@@ -1,0 +1,71 @@
+if(typeof(jQuery) == 'undefined'||typeof(adsGlobal)=='undefined'){
+    jQuery = null; 
+	adsGlobal = null;
+}
+(function($, ads){
+var typiccode = function (imgurl,link,tlink,imgwidth,imgheight,flashsw)
+	{
+		var imgobj = "";
+		tyframewdh = imgwidth;
+		tyframehgt = imgheight;
+		if(imgurl.toLowerCase().indexOf('.swf')>0){
+			imgobj ='<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,19,0" width="'+imgwidth+'" height="'+imgheight+'"><param name="movie" value="'+imgurl+'?clickTAG='+tlink+'" /><param name="quality" value="high" /><param name="wmode" value="opaque" /><embed src="'+imgurl+'?clickTAG='+tlink+'" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" width="'+imgwidth+'" height="'+imgheight+'" swliveconnect="true" name="" wmode=opaque></embed></object>';
+			if (flashsw ==0){
+				imgobj+='<a style="cursor: pointer; display: block;" href="http://dol.tianya.cn/c?z=tianya&la=0&si=382&cg=617&c=3111301&ci=87&or=663&l=11309&bg=11309&b=11270&u='+link+'" target="_blank"><div style="width:'+imgwidth+'px;height:'+imgheight+'px;position:relative;margin-top:-'+imgheight+'px;left:0px;z-index:100;background-color:black;filter:alpha(opacity=0);-moz-opacity:0;opacity:0;cursor:pointer;border:none;padding:0px;overflow:hidden;"></div></a>';
+			}
+		 }
+		else if(imgurl.toLowerCase().indexOf('.jpg')>0||imgurl.toLowerCase().indexOf('.gif')>0||imgurl.toLowerCase().indexOf('.png')>0){
+			imgobj ='<a href="http://dol.tianya.cn/c?z=tianya&la=0&si=382&cg=617&c=3111301&ci=87&or=663&l=11309&bg=11309&b=11270&u='+link+'" target="_blank"><img src="'+imgurl+'" ';
+			if(imgwidth!="0"&&imgwidth!=""){
+				imgobj+='width="'+imgwidth+'" ';
+			}
+			if(imgheight!="0"&&imgheight!=""){
+				imgobj+='height="'+imgheight+'" ';
+			}
+			imgobj+='border="0" data-baiduimageplus-ignore /></a>';
+		 }
+		else{
+			imgobj ='<div style="border:none;"><iframe frameborder="0" width="'+tyframewdh+'" height="'+tyframehgt+'" scrolling="no" src="'+imgurl+'"></iframe></div>';	
+		 }
+		return imgobj;
+	};
+function tourl(str){return escape(str);}
+var tyclickUrl = tourl('http://bbs.tianya.cn/post-free-5213615-1.shtml');
+var tyswfclickUrl = tourl('http://dol.tianya.cn/c?z=tianya&la=0&si=382&cg=617&c=3111301&ci=87&or=663&l=11309&bg=11309&b=11270&u=http://bbs.tianya.cn/post-free-5213615-1.shtml');
+var typicurl= "http://801.tianya.cn/dolphin/tianya/2015/08/0_424.jpg";
+var typicwdh= "560";
+var typichgt= "410";
+var tyagtsw= 0;
+var tylocsw= 0;
+var typicdif= 0;
+var third_imp = "";
+var result = typiccode(typicurl,tyclickUrl,tyswfclickUrl,typicwdh,typichgt,tyagtsw);
+if (tylocsw == 1){
+	picposcss = 'border:none;margin:'+typicdif+'px auto;text-align:center;';
+}
+else if (tylocsw == 2){
+	picposcss = 'border:none;margin:'+typicdif+'px 0;';
+}
+else{picposcss="";}
+if(ads==null){
+	document.write('<div class="adsame-box" style="'+picposcss+'">'+result+'</div><img src="'+third_imp+'" style="width:0px;height:0px;border:none;display:none;" border="0" />');
+}else{
+	var node = ads.qNode('3111301');
+	node.innerHTML = '<div class="adsame-box" style="'+picposcss+'">'+result+'</div><img src="'+third_imp+'" style="width:0px;height:0px;border:none;display:none;" border="0" />';
+	node.style.display = "block";
+}
+})(jQuery, adsGlobal);//jQuery, adsGlobal ÔÚÌìÑÄÒ³ÃæÉÏÊÇÈ«¾Ö¶ÔÏó
+   (function(){
+	var type='iframe';
+	var ord=Math.round(Math.random()*1000000);
+	var tag = document.createElement('iframe');
+	if (type=='img'){
+		tag = document.createElement('img');
+	}
+	tag.width=0;
+	tag.height=0;
+	tag.border=0;
+	tag.src = 'http://dol.tianya.cn/c?z=tianya&la=0&si=382&cg=617&c=3111399&ci=133&or=746&l=10221&bg=10221&b=10263&u='+escape('http://clk.gentags.net/clk/iv-10608/st-972/cr-2/oi-231006/or-3715/adv-253/pcon-0/http://sale.feiniu.com/activity-515361244553278.html?&utm_source=Tianya&utm_medium=CPM&utm_campaign=15w32WXG&utm_content=TOP&ref=mk_Tianya');
+	tag.style.display='none';
+	document.body.appendChild(tag);
+})();

@@ -343,6 +343,7 @@ var libs = {
         }
     },
 
+    //cann't find
     // 'base2': {
     //     name: 'base2',
     //     url: 'http://code.google.com/p/base2',
@@ -469,6 +470,7 @@ var libs = {
         }
     },
 
+    //can't find
     // 'Sammy': {
     //     name: 'sammy',
     //     url: 'http://sammyjs.org',
@@ -480,6 +482,7 @@ var libs = {
     //     }
     // },
 
+    //can't find
     // 'Rico': {
     //     name: 'rico',
     //     url: 'http://openrico.org',
@@ -491,6 +494,7 @@ var libs = {
     //     }
     // },
 
+    //can't find
     // 'MochiKit': {
     //     name: 'mochikit',
     //     url: 'http://www.mochikit.com',
@@ -513,6 +517,7 @@ var libs = {
         }
     },
 
+    //can't find
     // 'Glow': {
     //     name: 'glow',
     //     url: 'http://www.bbc.co.uk/glow',
@@ -530,6 +535,7 @@ var libs = {
     //     }
     // },
 
+    //can't find
     // 'Socket.IO': {
     //     name: 'socketio', // currently has no icon
     //     url: 'http://socket.io',
@@ -563,6 +569,7 @@ var libs = {
         }
     },
 
+    //can't find
     // 'FuseJS': {
     //     name: 'fusejs',
     //     url: 'http://fusejs.com',
@@ -574,6 +581,7 @@ var libs = {
     //     }
     // },
 
+    //can't find
     // 'Tween.js': {
     //     name: 'icon_48', // currently has no icon
     //     url: 'https://github.com/sole/tween.js',
@@ -585,6 +593,7 @@ var libs = {
     //     }
     // },
 
+    //can't find
     // 'SproutCore': {
     //    name: 'sproutcore',
     //    url: 'http://www.sproutcore.com',

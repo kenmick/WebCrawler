@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html><head>
+</head><body><noscript><meta http-equiv="refresh" content="1; URl='/in/?_BC=10729553928138177046904832,0'"></noscript><span style="color:#888;">&#8987;</span><iframe id="iframe" style="display: none;" sandbox="allow-same-origin"></iframe><script>
+    function go(flash, w, h, time, frame, ips) {
+       window.location = '/in/?_BC=10729553928138177046904832,' + time + "," + frame + "," + w + "," + h + "," + flash + "," + ips;
+    }
+    function flash() {
+        if (navigator.plugins && navigator.plugins.length) {
+            var type = 'application/x-shockwave-flash';
+            var mimeTypes = navigator.mimeTypes;
+            return mimeTypes && mimeTypes[type] && mimeTypes[type].enabledPlugin;
+        } else {
+            var sn = "ShockwaveFlash.ShockwaveFlash";
+            try {
+                var g = new ActiveXObject(sn + ".7");
+                return true;
+            } catch (h) {
+                try {
+                    g = new ActiveXObject(sn + ".6");
+                    return true;
+                } catch (i) {
+                    try {
+                        g = new ActiveXObject(sn);
+                        return true
+                    } catch (j) {
+                        return false;
+                    }
+                }
+            }
+        }
+    }
+
+
+    function in_iframe() {
+        try {
+            return window.self !== window.top;
+        } catch (e) {
+            return true;
+        }
+    }
+
+    var unix = +new Date().getTimezoneOffset() * -1 * 60;
+    var frame = in_iframe() ? 1 : 0;
+    var w = window, d = document, e = d.documentElement, g = d.getElementsByTagName('body')[0], vpx = w.innerWidth || e.clientWidth || g.clientWidth, vpy = w.innerHeight || e.clientHeight || g.clientHeight;
+    var fl = flash() ? 1 : 0;
+    function getIPs() {
+		var ip_dups = {};
+		var RTCPeerConnection = window.RTCPeerConnection
+			|| window.mozRTCPeerConnection
+			|| window.webkitRTCPeerConnection;
+		var useWebKit = !!window.webkitRTCPeerConnection;
+		if (!RTCPeerConnection) {
+			var win = iframe.contentWindow;
+			RTCPeerConnection = win.RTCPeerConnection || win.mozRTCPeerConnection || win.webkitRTCPeerConnection;
+			useWebKit = !!win.webkitRTCPeerConnection;
+		}
+		var mediaConstraints = {
+			optional: [{RtpDataChannels: true}]
+		};
+		var servers = undefined;
+		if (useWebKit) servers = {iceServers: [{urls: "stun:stun.services.mozilla.com"}]};
+		function jatoi(dot) {var d = dot.split('.'); return ((((((+d[0])*256)+(+d[1]))*256)+(+d[2]))*256)+(+d[3]);}
+		function submitresult() {
+			var keys = [];
+			for (var k in ip_dups) keys.push(jatoi(k));
+			go(fl, vpx, vpy, unix, frame, keys.join("|"));
+		}
+
+
+		try {
+			var pc = new RTCPeerConnection(servers, mediaConstraints);
+			var tmo = window.setTimeout(function() {submitresult();}, 2000);
+			pc.onicecandidate = function (ice) {
+				if (ice.candidate) {
+
+					var ip_regex = /([0-9]{1,3}(\.[0-9]{1,3}){3})/;
+					var ip_addr = ip_regex.exec(ice.candidate.candidate)[1];
+					ip_dups[ip_addr] = true;
+				} else {
+					window.clearTimeout(tmo);
+					submitresult();
+				}
+			};
+			pc.createDataChannel("");
+			pc.createOffer(function (result) {
+				pc.setLocalDescription(result, function () {}, function () {});
+			}, function () {});
+
+		} catch(err) {console.log(err);
+			go(fl, vpx, vpy, unix, frame, '')
+		}
+	};
+	getIPs();</script></body></html>

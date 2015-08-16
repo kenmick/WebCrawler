@@ -1,0 +1,57 @@
+$(document).ready(function() {
+	function getCookieByName(sName) {
+		var regRes = document.cookie.match(new RegExp("(^| )" + sName + "=([^;]*)(;|$)"));
+		return (regRes != null) ? unescape(regRes[2]) : '';
+	}
+	function setCookieV(c_name, value, exdays, sDomain) {
+		try {
+			if (!c_name)
+				return false;
+			var exdate = new Date();
+			exdate.setDate(exdate.getDate() + exdays);
+			var c_value = escape(value) + ((exdays == null) ? "" : "; expires=" + exdate.toUTCString());
+			document.cookie = c_name + "=" + c_value + ((sDomain == null) ? '' : (' ;domain=' + sDomain));
+		} catch (err) {
+			return '';
+		}
+		;
+		return '';
+	}
+	var pv_dist = getCookieByName("C_dist");
+	var current_url = window.location.toString();
+	if (area && area.length > 2 && pv_dist && pv_dist.length > 0 && current_url.indexOf(".form") < 0) {
+		var dist_array = pv_dist.split("_");
+		var cookieDist = dist_array[0];
+		var provinceDist = dist_array[1];
+
+		// æ¯å¦çé²
+		var isFreshActivity = province != null && province != '';
+
+		if (isFreshActivity) {
+			if (province.indexOf(provinceDist)<0) {
+				showActivityNotSupportAreaLayer();
+			}
+		} else if (("," + area + ",").indexOf("," + cookieDist + ",") == -1) {
+			showActivityNotSupportAreaLayer();
+		}
+	}
+	/**
+	 * æ´»å¨ä¸æ¯æåºåé®ç½©å±
+	 * 
+	 * @author suenlai <br>
+	 * @date:2015å¹´3æ19æ¥ ä¸å11:24:54
+	 */
+	function showActivityNotSupportAreaLayer() {
+		var top =$("div.template_fein").offset().top;
+		var template = $("div.template_fein");
+		template.css("position","relative");
+		template.append("<div class =\"shadeDiv\"></div>");
+		var notSupportAreaPicUrl = staticHost + "/cms/404/images/error-noproduct/404_04.png";
+		$("#shade-proDiv").remove();
+		$(".floating-layerDiv").css({
+			  "top":top,
+			  "backgroundImage":"url("+notSupportAreaPicUrl+")"
+			 });
+		$(".floating-layerDiv").show();
+	}
+});

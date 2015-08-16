@@ -103,5 +103,3 @@ node comment.js $myDate
 #generate the csv
 node metrics_origin.js $myDate
 node metrics_selection.js $myDate
-
-#generate the graph

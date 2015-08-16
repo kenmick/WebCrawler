@@ -1,0 +1,67 @@
+for (var i in wpn_ad_configuration)
+{
+	var div = document.getElementById(wpn_ad_configuration[i]["div_id"]);
+	if (! div)
+	{
+		console.log("error, div " + wpn_ad_configuration[i]["div_id"] + " is missing !!!");
+		wpn_ad_configuration.splice(i, 1);
+	}
+	div.innerHTML = "";
+}
+function detectFlash()
+{
+	if( navigator.mimeTypes.length > 0 ) {
+		if (!navigator.mimeTypes["application/x-shockwave-flash"]) {
+			return false;
+		}
+		return navigator.mimeTypes["application/x-shockwave-flash"].enabledPlugin != null;
+		} else if( window.ActiveXObject ) {
+			try {
+				new ActiveXObject( "ShockwaveFlash.ShockwaveFlash" );
+				return true;
+			}
+			catch( oError ) {
+				return false;
+			}
+		} else {
+		return false;
+	}
+}
+function readCookie(name) {
+	var nameEQ = name + "=";
+	var ca = document.cookie.split(';');
+	for(var i=0;i < ca.length;i++) {
+		var c = ca[i];
+		while (c.charAt(0)==' ') c = c.substring(1,c.length);
+		if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+	}
+	return null;
+}
+var trackerId=readCookie("wpn_ad_cookie");
+if (! trackerId)
+{
+	trackerId = "";
+}
+
+var wpn_ad_cookieDomain = window.location.hostname+"/";
+var wpn_ad_idTracker = "";
+var wpn_ad_allowFlash = 1;
+if (!detectFlash()){
+	wpn_ad_allowFlash = 0;
+}
+var script = document.createElement("script");
+var wpn_ad_zones="";
+var wpn_ad_countZones = 0;
+for (var i in wpn_ad_configuration)
+{
+	if (wpn_ad_countZones != 0)
+	{
+		wpn_ad_zones +="x";
+	}
+	wpn_ad_zones += wpn_ad_configuration[i]["type"]+"-"+wpn_ad_configuration[i]["nb_ban"];
+	wpn_ad_countZones++;
+}
+script.src = "http://rpc-php.trafficfactory.biz/"+wpn_ad_zones+"/"+trackerId+"/"+wpn_ad_allowFlash+"/"+wpn_ad_category+"/"+wpn_ad_site+"/display.js?v=" + Math.random();
+script.type = "text/javascript";
+document.getElementsByTagName("head")[0].appendChild(script);
+

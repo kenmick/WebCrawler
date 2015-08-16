@@ -1,0 +1,426 @@
+<html>
+	
+	<head>
+	
+		<meta name="robots" content="noindex,nofollow"> 
+	
+		<style type="text/css">
+
+			* {
+				margin:0px;
+				margin-left: auto;
+				margin-right: auto;
+				padding:0px;
+			}
+	
+			img {
+				border:0px;
+			}
+	
+			div.containerBorder {
+				border:1px solid #bbbbc0;
+				-webkit-border-radius: 7px;
+				border-radius: 7px;
+				position:absolute;
+				width:298px;
+				height:248px;
+				z-index:-1;
+			}
+
+			div.container {
+				width:300px;
+				height:250px;
+				-webkit-perspective: 400;
+				perspective: 400;
+			}
+	
+			#arrow1 {
+				position:absolute;
+				margin-left:0px;
+				margin-top:0px;
+			}
+	
+			#arrow2 {
+				position:absolute;
+				margin-left:264px;
+				margin-top:0px;
+			}
+			
+			#arrow1 img, #arrow2 img {
+				-moz-border-radius: 6px; 
+				-webkit-border-radius: 6px; 
+				-khtml-border-radius: 6px; 
+				border-radius: 6px;
+			}
+	
+			#distractor {
+				position:absolute;
+			}
+	
+			div.bgLink {
+			
+				position:absolute;
+	
+				margin-top:108px;			
+				width:300px;
+				
+				text-align:center;
+				-moz-align:center;
+	
+				filter:alpha(opacity=25);
+				-moz-opacity:0.25;
+				-khtml-opacity: 0.25;
+				opacity: 0.25;
+			}
+	
+			div.bgLink a {
+			
+				font-size:17px;
+				font-family:arial;
+				color:#ffffff;
+				font-weight:bold;
+				
+				line-height:26px;
+				
+				text-decoration:none;
+				letter-spacing:-1px;
+	
+				text-shadow: 2px 2px 2px rgba(0,0,0,.8);
+				
+			}
+	
+			div.bgLink a:hover {
+				position:relative;
+				top:-1px;
+				text-shadow: 3px 3px 2px #000;
+			}
+	
+			div.bgLink a span.big {
+				font-size:33px;
+				letter-spacing:-2px;
+			}
+		
+			@-webkit-keyframes bAnimWebkit {
+				0% {	-webkit-transform: rotate3d(0,0,0,0deg);	}
+				1.5% {	-webkit-transform: rotate3d(0,0,0,0deg);	}
+				3.5% {	-webkit-transform: rotate3d(1,0,0,180deg);	}
+				6% {	-webkit-transform: rotate3d(1,0,0,360deg);	}
+				100% {	-webkit-transform: rotate3d(1,0,0,360deg);	}
+			}
+		
+			@keyframes bAnim {
+				0% {	transform: rotate3d(0,0,0,0deg);	}
+				1.5% {	transform: rotate3d(0,0,0,0deg);	}
+				3.5% {	transform: rotate3d(1,0,0,180deg);	}
+				6% {	transform: rotate3d(1,0,0,360deg);	}
+				100% {	transform: rotate3d(1,0,0,360deg);	}
+			}
+		
+			div.anim {
+				-webkit-animation-name: bAnimWebkit;	-webkit-animation-duration: 20s;	-webkit-animation-iteration-count: infinite;	-webkit-animation-direction: normal;	-webkit-animation-timing-function: linear;
+				animation-name: bAnim;					animation-duration: 20s;			animation-iteration-count: infinite;			animation-direction: normal;			animation-timing-function: linear;
+			}
+		
+			@-webkit-keyframes bAnimWebkitStart {
+				0% {	-webkit-transform: rotate3d(0,0,0,0deg);	}
+				25% {	-webkit-transform: rotate3d(0,0,0,0deg);	}
+				60% {	-webkit-transform: rotate3d(1,0,0,180deg);	}
+				100% {	-webkit-transform: rotate3d(1,0,0,360deg);	}
+			}
+		
+			@keyframes bAnimStart {
+				0% {	transform: rotate3d(0,0,0,0deg);	}
+				25% {	transform: rotate3d(0,0,0,0deg);	}
+				60% {	transform: rotate3d(1,0,0,180deg);	}
+				100% {	transform: rotate3d(1,0,0,360deg);	}
+			}
+		
+			div.animStart {
+				-webkit-animation-name: bAnimWebkitStart;	-webkit-animation-duration: 1.2s;	-webkit-animation-iteration-count: 1;	-webkit-animation-direction: normal;	-webkit-animation-timing-function: linear;
+				animation-name: bAnimStart;					animation-duration: 1.2s;			animation-iteration-count: 1;			animation-direction: normal;			animation-timing-function: linear;
+			}
+		
+			div.b {
+			
+				position:absolute;
+				visibility:hidden;
+	
+				-moz-border-radius: 3px; 
+				-webkit-border-radius: 3px; 
+				-khtml-border-radius: 3px; 
+				border-radius: 3px;
+		
+				cursor:pointer;
+			}
+	
+			div.link {
+			
+				text-align:center;
+				border-top:1px dotted #ffffff;
+	
+				margin-left:2px;
+				margin-right:2px;
+	
+				width:234px;
+				height:15px;
+	
+				overflow:hidden;
+	
+			}
+	
+			div.link a {
+				color:#ffffff;
+				font-size:11px;
+				font-weight:bold;
+				font-family:arial;
+				line-height:15px;
+				text-decoration:none;
+				text-shadow: 1px 1px 1px rgba(0,0,0,.3);
+			}
+	
+			
+			div.c1 {
+				background-color:#7F7F7F;
+				filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#AAAAAA', endColorstr='#7F7F7F');
+				background: -webkit-gradient(linear, left top, left bottom, from(#AAAAAA), to(#7F7F7F));
+				background: -moz-linear-gradient(top, #AAAAAA, #7F7F7F);
+			}
+			div.c1:hover {
+				filter:none;
+				background:none;
+				background-color:#AAAAAA;
+			}
+			
+			div.c2 {
+				background-color:#545451;
+				filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#70716c', endColorstr='#545451');
+				background: -webkit-gradient(linear, left top, left bottom, from(#70716c), to(#545451));
+				background: -moz-linear-gradient(top, #70716c, #545451);
+			}
+			div.c2:hover {
+				filter:none;
+				background:none;
+				background-color:#70716c;
+			}
+			
+			div.c3 {
+				background-color:#98004F;
+				filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#cb006a', endColorstr='#98004F');
+				background: -webkit-gradient(linear, left top, left bottom, from(#cb006a), to(#98004F));
+				background: -moz-linear-gradient(top, #cb006a, #98004F);
+			}
+			div.c3:hover {
+				filter:none;
+				background:none;
+				background-color:#cb006a;
+			}
+			
+	
+			div.b table {
+				width:238px;
+				height:64px;
+				clip:rect(0px 0px 0px 0px);
+			}
+	
+	
+			td.img {
+				width:124px;
+				text-align:center;
+				-moz-align:center;
+			}
+	
+			td.img div.bounding {
+				width:120px;
+				max-height:60px;
+				overflow:hidden;
+			}
+	
+			td.imgbig {
+				width:238px;
+				text-align:center;
+				-moz-align:center;
+			}
+	
+			td.imgbig div.bounding {
+				width:234px;
+				max-height:60px;
+				overflow:hidden;
+			}
+	
+			td.text div {
+				margin:0px;
+				margin-left:5px;
+				width:100px;
+				height:60px;
+				overflow:hidden;
+			}
+	
+			td.text div table {
+				width:100px;
+				height:60px;
+			}
+
+			td.text div table tr td {
+			}			
+	
+			a.link {
+				color:#ffffff;
+				font-family:arial;
+				font-size:11px;
+				text-decoration:none;
+				line-height:12px;
+				text-shadow: 1px 1px 1px rgba(0,0,0,.3);
+			}
+	
+		</style>
+		
+		<script src="https://cdn.contentspread.net/tp/adformats/triple/ad.js"></script>
+		
+	</head>
+	
+	<body>
+	
+		<script>
+
+			var currentTime = new Date();	
+
+			function handleMouseOver(id) {
+				if ( ! interactions[id].awaiting ) {
+					interactions[id].awaiting = true;
+					currentTime = new Date();	
+					interactions[id].awaitingSince = currentTime.getTime() / 1000;
+				} else {
+					currentTime = new Date();	
+					var timeNow = currentTime.getTime() / 1000;
+					if ( ( ( timeNow - interactions[id].awaitingSince ) > 1 ) && ( ! interactions[id].interacted ) ) {
+						interactions[id].interacted = true;
+						document.getElementById('mouseinteraction').src='https://ad.ad-srv.net/interaction.php?c='+interactions[id].c+'&h='+interactions[id].h;
+					}
+				}
+			}
+
+		</script>
+
+		<div class="container">
+
+			<div class="containerBorder">
+			</div>
+	
+			<div class="bgLink">
+				<a href="http://www.targetperformance.de" target="_blank"><span class="big">TARGET</span><br>PERFORMANCE</a>
+			</div>
+	
+			<div id="b[0]" class="b c1" onClick="window.open('https://n38.ad.ad-srv.net/c/pv5yrmksxvuba8j')" onMouseMove="handleMouseOver(0)">
+	
+
+				
+				<table id="tmix[0]" cellspacing="0" cellpadding="0" border="0">
+					<tr>
+						<td class="img"><div class="bounding"><div id="is[0]" onClick="disabledEventPropagation(event)"><a onClick="disabledEventPropagation(event)" href="https://n38.ad.ad-srv.net/c/pv5yrmksxvuba8j" target="_blank"><img src="https://ad.zanox.com/ppv/?31306756C2110986915&zpar0=7549739449522638"></a></div></div></td>
+						<td class="text"><div><table cellspacing="0" cellpadding="0" border="0"><tr><td><a onClick="disabledEventPropagation(event)" href="https://n38.ad.ad-srv.net/c/pv5yrmksxvuba8j" class="link" target="_blank">Obtenez sans frais votre carte de crÃ©dit ZERO Gold MasterCard ainsi que des crÃ©dits renouvelables.</a></td></tr></table></div></td>
+					</tr>
+				</table>
+				
+
+
+				
+
+
+				<div class="link"><a onClick="disabledEventPropagation(event)" href="https://n38.ad.ad-srv.net/c/pv5yrmksxvuba8j" target="_blank">cartezero.fr</a></div>
+	
+			</div><div id="b[1]" class="b c2" onClick="window.open('https://n38.ad.ad-srv.net/c/plqhj0xclxk0zp7')" onMouseMove="handleMouseOver(1)">
+	
+
+				
+				<table id="tmix[1]" cellspacing="0" cellpadding="0" border="0">
+					<tr>
+						<td class="img"><div class="bounding"><div id="is[1]" onClick="disabledEventPropagation(event)"><a onClick="disabledEventPropagation(event)" href="https://n38.ad.ad-srv.net/c/plqhj0xclxk0zp7" target="_blank"><img src="https://tracking.publicidees.com/banner.php?partid=25607&progid=3769&promoid=101158&cb=7549739449522638"></a></div></div></td>
+						<td class="text"><div><table cellspacing="0" cellpadding="0" border="0"><tr><td><a onClick="disabledEventPropagation(event)" href="https://n38.ad.ad-srv.net/c/plqhj0xclxk0zp7" class="link" target="_blank">Recevez votre carte grise en 24h et vos plaques d'immatriculation sans vous dÃ©placer avec EPLAQUE !</a></td></tr></table></div></td>
+					</tr>
+				</table>
+				
+
+
+				
+
+
+				<div class="link"><a onClick="disabledEventPropagation(event)" href="https://n38.ad.ad-srv.net/c/plqhj0xclxk0zp7" target="_blank">eplaque.fr</a></div>
+	
+			</div><div id="b[2]" class="b c3" onClick="window.open('https://n38.ad.ad-srv.net/c/py9ex52cai6fszp')" onMouseMove="handleMouseOver(2)">
+	
+
+				
+				<table id="tmix[2]" cellspacing="0" cellpadding="0" border="0">
+					<tr>
+						<td class="img"><div class="bounding"><div id="is[2]" onClick="disabledEventPropagation(event)"><script type="text/javascript" src="https://banniere.reussissonsensemble.fr/view.asp?ref=528363&js=1&site=13754&b=4&subid=7549739449522638&PURL=https%3A%2F%2Fn38.ad.ad-srv.net%2Fc%2Fpcb9setrdlprnby%3Ftprde%3D&target=_blank&title=Fran%c3%a7oise+Saget" ></script></div></div></td>
+						<td class="text"><div><table cellspacing="0" cellpadding="0" border="0"><tr><td><a onClick="disabledEventPropagation(event)" href="https://n38.ad.ad-srv.net/c/py9ex52cai6fszp" class="link" target="_blank">Collections de linge de maison, de lit et dâarts de table. Mais aussi : linge de toilette et de nuit</a></td></tr></table></div></td>
+					</tr>
+				</table>
+				
+
+
+				
+
+
+				<div class="link"><a onClick="disabledEventPropagation(event)" href="https://n38.ad.ad-srv.net/c/py9ex52cai6fszp" target="_blank">francoisesaget.com</a></div>
+	
+			</div>
+	
+			<a id="arrow1" href="request.php?zone=7au70fubkcni&nw=1&namespace=61d7a64503&subid=&uid=ebfa2848ae75ef41&screenSize=1920x1080&screenSizeAvail=1853x1056&clientSize=300x250&scrollPos=0x0&extData[0]=&extVar[0]=DOUBLEBORDER%3A1&extVar[1]=ANIM_AFTER_30S%3A0&redirectClick=http%3A%2F%2Fadclick.g.doubleclick.net%2Faclk%3Fsa%3DL%26ai%3DCMlOqE5DOVdCRKoenbO7Pt8APz7-o7Qbn3_isywKgq8CpWxABIABg-6HrgugJggEXY2EtcHViLTU2NzczMTgwNjE2NzE3MzDIAQmpApJUIYTZorI-qAMBmAQAqgR_T9CeUFSReEboJ5pwxIcWc0UoRapvIt7dWh9NGq61hp-9DYM4PGsxxdCNU4vJvjqwgkhd4IjI1qYRMrNRjYtZr-T_BPoJiSRMkLMuB4ED-cabXsvEW_MILi_4bSgyFy6NbJ1dwIQsk7AxyagzBgWWEefsP0-nV3QRvtT3IF4T7qAGIdgHAA%26num%3D1%26sig%3DAOD64_0teJNuCynnuHomDXTLiahMqtxZNw%26client%3Dca-pub-5677318061671730%26adurl%3D&documentReferer=http%3A%2F%2Fwww.life.com.tw%2F&ancestorOrigins=null&random=5355242988945&isIframe=1&container=&adPos=0x0&adPosCheck=1x1&adtagId=0&uidRedirect=1&reload=1&renderingType=html"><img src="https://cdn.contentspread.net/tp/adformats/triple/300x250_arrow_left.png"></a>
+			<a id="arrow2" href="request.php?zone=7au70fubkcni&nw=1&namespace=61d7a64503&subid=&uid=ebfa2848ae75ef41&screenSize=1920x1080&screenSizeAvail=1853x1056&clientSize=300x250&scrollPos=0x0&extData[0]=&extVar[0]=DOUBLEBORDER%3A1&extVar[1]=ANIM_AFTER_30S%3A0&redirectClick=http%3A%2F%2Fadclick.g.doubleclick.net%2Faclk%3Fsa%3DL%26ai%3DCMlOqE5DOVdCRKoenbO7Pt8APz7-o7Qbn3_isywKgq8CpWxABIABg-6HrgugJggEXY2EtcHViLTU2NzczMTgwNjE2NzE3MzDIAQmpApJUIYTZorI-qAMBmAQAqgR_T9CeUFSReEboJ5pwxIcWc0UoRapvIt7dWh9NGq61hp-9DYM4PGsxxdCNU4vJvjqwgkhd4IjI1qYRMrNRjYtZr-T_BPoJiSRMkLMuB4ED-cabXsvEW_MILi_4bSgyFy6NbJ1dwIQsk7AxyagzBgWWEefsP0-nV3QRvtT3IF4T7qAGIdgHAA%26num%3D1%26sig%3DAOD64_0teJNuCynnuHomDXTLiahMqtxZNw%26client%3Dca-pub-5677318061671730%26adurl%3D&documentReferer=http%3A%2F%2Fwww.life.com.tw%2F&ancestorOrigins=null&random=5355242988945&isIframe=1&container=&adPos=0x0&adPosCheck=1x1&adtagId=0&uidRedirect=1&reload=1&renderingType=html"><img src="https://cdn.contentspread.net/tp/adformats/triple/300x250_arrow_right.png"></a>
+	
+			<img onMouseOver="djump()" id="distractor" src="https://cdn.contentspread.net/tp/adformats/triple/cursor.png">
+	
+		</div>
+
+		<img style="position:absolute;visibility:hidden" id="mouseinteraction" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" />
+			
+		<script>
+			
+			var interactions = new Array();
+			interactions.push({awaiting:false,awaitingSince:0,interacted:false,c:'371509',h:'2628ea1f356b'});interactions.push({awaiting:false,awaitingSince:0,interacted:false,c:'317271',h:'afd165b0ada9'});interactions.push({awaiting:false,awaitingSince:0,interacted:false,c:'322295',h:'bb69ea4cf52c'});
+			
+			var items = new Array();
+			items.push({mode:'',id:0,s:0,iscroll:{active:true,x:0}});items.push({mode:'',id:1,s:0,iscroll:{active:true,x:0}});items.push({mode:'',id:2,s:0,iscroll:{active:true,x:0}});
+			
+			var itemConfig = {
+				width:238,
+				height:80
+			};
+			
+			var distractor = {
+				active: false,
+				pos: {x:0,y:0},
+				target: {x:0,y:0},
+				width:21,
+				height:27,
+				borderpadding:10,
+				jumpcounter:0
+			};
+			
+			var adConfig = {
+				a:200,
+				showtime:8,
+				itemDifftime:0.15,
+				iscrollRoundtrip:8,
+				smallImgWidth:120,
+				bigImgWidth:234,
+				width:300,
+				height:250,
+				animStart:false,
+				animRunning:false
+			};
+			
+			var screenpositions = [
+				{x:31,y:3},
+				{x:31,y:85},
+				{x:31,y:167}
+			];
+			
+			init();
+		
+		</script>
+	
+	</body>
+
+</html>

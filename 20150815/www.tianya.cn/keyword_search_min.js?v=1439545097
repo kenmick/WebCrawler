@@ -1,0 +1,185 @@
+$(document).ready(function() {
+    $('form[name="search"]').submit(function() {
+        var user_input = $(":input[name=q]").val();
+        user_input = substr(user_input, 255);
+        $(":input[name=q]").val(user_input);
+        var def_key = $("#text_label").text();
+        if (def_key == DEFAULT_KEYWORD && user_input === '') {
+            location.href = DEFAULT_KEYURL;
+            return false
+        } else {
+            var items = [];
+            /*
+            if ('' !== user_input) {
+                $.each(JUMP_KEY,
+                function(key, val) {
+                    if (user_input == val['keyword']) {
+                        var url = val['url'];
+                        if (null == url.match(/^http:\/\//g)) {
+                            url = 'http://' + val['url']
+                        }
+                        items.push(url);
+                        items.push(val['keyword']);
+                        return false
+                    }
+                })
+            }
+            */
+            if (items.length > 0) {
+                location.href = items[0];
+                return false
+            }
+        }
+    });
+    function substr(str, len) {
+        if (!str || !len) {
+            return '';
+        }
+        var a = 0;
+        var i = 0;
+        var temp = '';
+        for (i = 0; i < str.length; i++) {
+            if (str.charCodeAt(i) > 255) {
+                a += 3;
+            } else {
+                a++;
+            }
+            if (a > len) {
+                return temp;
+            }
+            temp += str.charAt(i);
+        }
+        return str;
+    }
+});
+function WidthCheck(str, maxLen) {
+    var w = 0;
+    var tempCount = 0;
+    for (var i = 0; i < str.value.length; i++) {
+        var c = str.value.charCodeAt(i);
+        if ((c >= 0x0001 && c <= 0x007e) || (0xff60 <= c && c <= 0xff9f)) {
+            w++;
+        } else {
+            w += 3;
+        }
+        if (w > maxLen) {
+            str.value = str.value.substr(0, i);
+            break;
+        }
+    }
+};
+
+
+(function(window,$) {
+
+    var write = {
+
+        setCookie: function(sName, sValue, oExpires, sPath, sDomain, bSecure) {
+
+            var currDate = new Date(),
+                sExpires = typeof oExpires == 'undefined' ? '' : ';expires=' + new Date(currDate.getTime() + (oExpires * 24 * 60 * 60 * 1000)).toUTCString();
+
+            document.cookie = sName + '=' + sValue + sExpires + ((sPath == null) ? '' : (' ;path=' + sPath)) + ((sDomain == null) ? '' : (' ;domain=' + sDomain)) + ((bSecure == true) ? ' ; secure' : '');
+
+        },
+
+        getDomain: function() {
+
+            return www_domain_sub;
+
+        },
+
+        getUrl: function() {
+
+            return window.location.href;
+
+        },
+
+        getRefer: function() {
+
+            return document.referrer;
+
+        },
+
+        //è·åæ¥æºé¡µhost
+        getRefHost: function(url) {
+
+            if (!url) {
+
+                return;
+
+            }
+
+            //http://www.baidu.com/?tn=98970868_hao_pg
+            var firstIndex = url.indexOf(':');
+
+            var firstStr = url.substring(firstIndex + 3);
+
+            var httpVal = url.substring(0,firstIndex + 3);
+
+            var lastIndex = firstStr.indexOf('/');
+
+            var returnVal = firstStr.substring(0,lastIndex);
+
+            return httpVal + returnVal;
+
+        },
+
+        getParam: function() {
+
+            var refVal = '', paramVal = '', paramArry = [];
+
+            paramVal = this.getUrl().substring(0);
+
+            if (paramVal && paramVal.indexOf('ref=') != -1) {
+
+                if (paramVal.indexOf('&') == -1) {
+
+                    refVal = paramVal.substring(paramVal.indexOf('ref=') + 4);
+
+                }else {
+
+                    paramArry = paramVal.split('&');
+
+                    for (var i = 0; i < paramArry.length; i++) {
+
+                        if (paramArry[i].indexOf('ref=') != -1) {
+
+                            refVal = paramArry[i].substring(paramArry[i].indexOf('ref=') + 4);
+
+                            break;
+
+                        }
+
+                    }
+
+                }
+
+            }else {
+
+                if (this.getRefer()) {
+
+                    if (this.getRefer().indexOf(this.getDomain()) == -1) {
+
+                        refVal = 'ref_' + this.getRefHost(this.getRefer());
+
+                    }
+
+                }
+
+            }
+
+            return refVal;
+
+        }
+
+    };
+
+    $(function() {
+        var _ref_cookie = write.getParam();
+        if(_ref_cookie){
+            write.setCookie('ref', _ref_cookie,'1','/',www_domain_sub);
+        }
+    });
+
+})(window,jQuery);

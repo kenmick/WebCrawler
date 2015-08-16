@@ -1,0 +1,158 @@
+@charset "utf-8";
+/*!
+ * @åç§°ï¼base.css
+ * @åè½ï¼1ãéè®¾æµè§å¨é»è®¤æ ·å¼
+ *       2ãè®¾ç½®éç¨åå­ç±»
+ */
+/* é²æ­¢ç¨æ·èªå®ä¹èæ¯é¢è²å¯¹ç½é¡µçå½±åï¼æ·»å è®©ç¨æ·å¯ä»¥èªå®ä¹å­ä½ */
+html {
+    background:white;
+    color:black;
+}
+/* åå¤è¾¹è·éå¸¸è®©åä¸ªæµè§å¨æ ·å¼çè¡¨ç°ä½ç½®ä¸å */
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td,hr,button,article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section {
+    margin:0;
+    padding:0;
+}
+/* è¦æ³¨æè¡¨ååç´ å¹¶ä¸ç»§æ¿ç¶çº§ font çé®é¢ */
+body,button,input,select,textarea {
+     /*font:12px \5b8b\4f53,arial,sans-serif;*/
+}
+input,select,textarea {
+    font-size:100%;
+}
+/* å»æ table cell çè¾¹è·å¹¶è®©å¶è¾¹éå */
+table {
+    border-collapse:collapse;
+    border-spacing:0;
+}
+/* ie bugï¼th ä¸ç»§æ¿ text-align */
+th {
+    text-align:inherit;
+}
+/* å»é¤é»è®¤è¾¹æ¡ */
+fieldset,img {
+    border:none;
+}
+/* ie6 7 8(q) bug æ¾ç¤ºä¸ºè¡åè¡¨ç° */
+iframe {
+    display:block;
+}
+/* å»æ firefox ä¸æ­¤åç´ çè¾¹æ¡ */
+abbr,acronym {
+    border:none;
+    font-variant:normal;
+}
+/* ä¸è´ç del æ ·å¼ */
+del {
+    text-decoration:line-through;
+}
+address,caption,cite,code,dfn,em,th,var {
+    font-style:normal;
+    font-weight:500;
+}
+/* å»æåè¡¨åçæ è¯ï¼li ä¼ç»§æ¿ */
+ol,ul {
+    list-style:none;
+}
+/* å¯¹é½æ¯æçæéè¦çå ç´ ï¼å«è®©ä»ä¹é½å±ä¸­ */
+caption,th {
+    text-align:left;
+}
+/* æ¥èªyahooï¼è®©æ é¢é½èªå®ä¹ï¼éåºå¤ä¸ªç³»ç»åºç¨ */
+h1,h2,h3,h4,h5,h6 {
+    font-size:100%;
+    font-weight:500;
+}
+q:before,q:after {
+    content:'';
+}
+/* ç»ä¸ä¸æ åä¸æ  */
+sub,sup {
+    font-size:75%;
+    line-height:0;
+    position:relative;
+    vertical-align:baseline;
+}
+sup {
+    top:-0.5em;
+}
+sub {
+    bottom:-0.25em;
+}
+/* é»è®¤ä¸æ¾ç¤ºä¸åçº¿ï¼ä¿æé¡µé¢ç®æ´ */
+ins,a {
+    text-decoration:none;
+}
+/* å»é¤ ie6 & ie7 ç¦ç¹ç¹ç¶çº¿ */
+a:focus,*:focus {
+    outline:none;
+}
+/* æ¸é¤æµ®å¨ */
+.clearfix:before,.clearfix:after {
+    content:"";
+    display:table;
+}
+.clearfix:after {
+	visibility:hidden;
+	display:block;
+	font-size:0;
+	content:" ";
+	clear:both;
+	height:0;
+	overflow:hidden;
+}
+.clearfix {
+    zoom:1; /* for ie6 & ie7 */
+}
+.clear {
+    clear:both;
+    display:block;
+    font-size:0;
+    height:0;
+    line-height:0;
+    overflow:hidden;
+}
+/* è®¾ç½®æ¾ç¤ºåéèï¼éå¸¸ç¨æ¥ä¸ js éå */
+.hide {
+    display:none;
+}
+.block {
+    display:block;
+}
+/* è®¾ç½®æµ®å¨ï¼åå°æµ®å¨å¸¦æ¥ç bug */
+.fl,.fr {
+    display:inline;
+}
+.fl {
+    float:left;
+}
+.fr {
+    float:right;
+}
+
+.float-up{position: relative;
+	top: 0;
+	-webkit-transition: all .2s;
+-moz-transition: all .2s;
+-ms-transition: all .2s;
+-o-transition: all .2s;
+}
+
+.float-up:hover{top:-4px; box-shadow:none;}
+
+.float-up .f-center {
+    background: url("../images/newda.png") no-repeat scroll center;
+   	background-size:80% 80%;
+    height: 100%;
+    position: absolute;
+    top: -60px;
+    width: 100%;
+}
+.float-up .f-left {
+    background: url("../images/newda.png") no-repeat scroll left;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}

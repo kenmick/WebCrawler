@@ -1,0 +1,303 @@
+
+
+$(document).ready(function() {
+	(function(factory){
+		factory($, window)
+	})(function($, window){
+
+		function Timer(data){
+			var list = data.list,
+				all = data.all,
+				len = all.length,
+				activeClass = data.activeClass || 'active',
+				index = 0
+				
+			this.isRuning = false
+			
+			this.next = function(){
+				all.removeClass(activeClass)
+				list[index].addClass(activeClass)
+				var result = index
+				
+				index++
+				
+				if(index >= len){
+					index = 0
+				}
+				
+				return result
+			}
+		}
+		
+		Timer.prototype.start = function(index, callback){
+			if(this.isRuning) return;
+			
+			this.result = index,
+			this.callback = callback,
+			this.isRuning = true
+			
+			this.speedUp()
+		}
+		
+		Timer.prototype.speedUp = function(){
+			var speed = 250,
+				that = this,
+				next = this.speedNormal,
+				timer = null
+			
+			function cd () {
+				that.next()
+				speed -= 20
+				
+				if(speed <= 50){
+					clearTimeout(timer)
+					next.call(that, speed, 20, that.speedDown)
+				} else {
+					timer = setTimeout(arguments.callee, speed)
+				}
+			}
+			
+			cd()
+		}
+		
+		Timer.prototype.speedNormal = function(speed, counter, next){
+			var that = this,
+			timer = null
+			
+			function cd () {
+				that.next()
+				counter--
+			
+				if(counter <= 0){
+					clearTimeout(timer)
+					next.call(that, speed)
+				} else {
+					timer = setTimeout(arguments.callee, speed)
+				}
+			}
+			
+			cd()
+		}
+		
+		Timer.prototype.speedDown = function(speed){
+			var that = this,
+			next = this.callback,
+			timer = null,
+			count = 300
+			
+			function cd () {
+				var index = that.next()
+				
+				if(speed > 500){
+					speed += 60
+				} else if(speed > 200){
+					speed += 40
+				} else {
+					speed += 10
+				}
+			
+				if(speed >= count && index == that.result){
+					clearTimeout(timer)
+					next.call(that)
+				} else {
+					timer = setTimeout(arguments.callee, speed)
+				}
+			}
+			
+			cd()
+		}
+		
+		var opts = {
+			list: [],
+			all: $('[data-role="prize"]')
+		}
+		
+		opts.all.each(function(){
+			var e = $(this),
+				index = parseInt(e.attr('index'))
+			opts.list[index] = e
+		})
+		
+		var timer = new Timer(opts)
+
+		/*$('[data-role="luck-trigger"]').on('click', function(){
+			timer.start(3, function(){
+				alert('å¨ç»ç»æ')
+			})
+		})*/
+		
+		function getCKV(sName){
+			var regRes = document.cookie.match(new RegExp("(^| )" + sName + "=([^;]*)(;|$)"));
+			return (regRes != null) ? unescape(regRes[2]) : '';
+		}
+		window.roll = "";
+		if($(".sudou_w990").length>0){
+			$("#order_view_link").attr("href",window.MEMBER_VIEW_DOMAIN+"/order/orderList");
+			$(".sudou_w990").each(function(){
+				var moduleId = $(this).attr("id");
+				var pageId = $(this).attr("pageId");
+				getPrizeList(moduleId,pageId);
+				$("#draw_"+moduleId).click(function(){
+					var url = frontServerHost+"/prize/checkOrderList";
+					lottery(url,moduleId,pageId);
+				});
+				$('[data-role="luck-trigger"]').on('click', function(){
+					var url = frontServerHost+"/prize/drawPrize";
+					lottery(url,moduleId,pageId);
+				});
+				$("#orderNo_"+moduleId).focus(function () {
+					var dv = $(this).val();
+					$(this).css("color","#000");
+					if (dv == "è¯·è¾å¥æ½å¥è®¢åå·") {
+						$(this).val("");
+						$(this).css("color","#000");
+					}
+				})
+				$("#orderNo_"+moduleId).blur(function () {
+					dv = $(this).val();
+					if (dv == "") {
+						$(this).val("è¯·è¾å¥æ½å¥è®¢åå·");
+						$(this).css("color","#666");
+					}
+				})
+				$("#member_"+moduleId).hover(function () {
+					clearInterval(window.roll);
+				    },function () {
+				    	if($("#member_"+moduleId).find("ul").length>10){
+				    		 window.roll=setInterval(function(){
+					    		 scrollList($("#member_"+moduleId));
+							  },2000); 
+				    	}
+				});
+				$(".sudou_w990 .sure").click(function(){
+					$(".shade-proDiv").hide();
+					$(".Order").hide();
+					$(".O_bg").hide();
+					$('[data-role="luck-trigger"]').unbind();
+					$('[data-role="luck-trigger"]').on('click', function(){
+						var thisurl = frontServerHost+"/prize/drawPrize";
+						lottery(thisurl,moduleId,pageId);
+					});
+				});
+			});
+		}
+		
+		function lottery(requestUrl,moduleId,pageId){
+			$.ajax({
+				  type: "GET",
+				  url: window.MEMBER_VIEW_DOMAIN+"/docheck/checkin",
+				  data: "",
+				  contenttype: "application/json; charset=utf-8",
+				  dataType: "jsonp",
+				  jsonpCallback:"callback",
+				  success: function(data){
+					  var orNo = $("#orderNo_"+moduleId).val();
+					  var userName = "",userId="";
+					  if(data.user!=undefined){
+						  userId = data.user.MEM_GUID;
+						  userName = data.user.MEM_HEADERNAME;
+						  if(userName=="" || userId==""){
+								window.open(window.MEMBER_VIEW_DOMAIN+'/getaway/login'); 
+								$('[data-role="luck-trigger"]').unbind();
+								$('[data-role="luck-trigger"]').on('click', function(){
+									var thisurl = frontServerHost+"/prize/drawPrize";
+									lottery(thisurl,moduleId,pageId);
+								});
+							}else{
+								if(orNo.length>0 && orNo!="è¯·è¾å¥æ½å¥è®¢åå·"){
+									var params = 'orderId=' + orNo+"&moduleId="+moduleId+"&userId="+userId+"&userName="+userName+"&pageId="+pageId;
+									var callbackParam = "prizeResult";
+									$.ajax({
+									  type: "GET",
+									  url: requestUrl,
+									  contenttype: "application/json; charset=utf-8",
+									  data: params,
+									  dataType: "jsonp",
+									  jsonpCallback:callbackParam,
+									  success: function(data){
+										  if(data.msg!="msg" && data.msg!="msg8" ){
+											  if(data.msg=="OK"){
+												  $("#checkMsg_"+moduleId).text("éªè¯éè¿ï¼è¯·ç¹å»å¼å§æé®æ½å¥");
+											  }else{
+												  $("#shade_"+moduleId).show();
+												  $("#"+data.msg+"_"+moduleId).show();
+												  $("#orderMsg_"+moduleId).show();
+											  }
+										  }else{
+											 timer.start(data.pi, function(){
+												timer.isRuning = false;
+												if(data.msg!="msg8"){
+													$("#pn_"+moduleId).text(data.pn);
+													$("#shade_"+moduleId).show();
+													$("#msg_"+moduleId).show();
+												    $("#orderMsg_"+moduleId).show();
+												    $("#checkMsg_"+moduleId).text("");
+													getPrizeList(moduleId,pageId);
+												}else{
+													$("#shade_"+moduleId).show();
+													$("#msg8_"+moduleId).show();
+													$("#orderMsg_"+moduleId).show();
+												}
+											 }); 
+										  }
+									   }
+									});
+								}else{
+									$("#shade_"+moduleId).show();
+									$("#msg6_"+moduleId).show();
+									$("#orderMsg_"+moduleId).show();
+								}
+							}
+					  }else{
+						  window.open(window.MEMBER_VIEW_DOMAIN+'/getaway/login'); 
+						  $('[data-role="luck-trigger"]').unbind();
+						  $('[data-role="luck-trigger"]').on('click', function(){
+								var thisurl = frontServerHost+"/prize/drawPrize";
+								lottery(thisurl,moduleId,pageId);
+							});
+					  }
+				   }
+				});
+		}
+		
+		function getPrizeList(moduleId,pageId){
+			var params = "moduleId="+moduleId+"&pageId="+pageId;
+			var callbackParam = "prizeList";
+			$.ajax({
+			  type: "GET",
+			  url: frontServerHost+"/prize/prizedList",
+			  data: params,
+			  contenttype: "application/json; charset=utf-8",
+			  dataType: "jsonp",
+			  jsonpCallback:callbackParam,
+			  success: function(data){
+				  clearInterval(window.roll);
+				  var memberHtml ="";
+				  for(var i=0;i<data.length;i++){
+					  memberHtml += "<ul><li>"+data[i].userName+"</li><li title=\""+data[i].prize+"\">"+data[i].prize+"</li><li>"+data[i].drawTime+"</li></ul>";
+				  }
+				  $("#member_"+moduleId).find("ul").remove();
+				  $("#member_"+moduleId).append(memberHtml);
+				  if(data.length>10){
+					  window.roll=setInterval(function(){
+						  scrollList($("#member_"+moduleId));
+							//$("#member_"+moduleId).append($("#member_"+moduleId).find("ul").eq(0));
+					  },2000); 
+				  }
+			   }
+			});
+		}
+		
+		function scrollList(obj) {
+			var $self = obj.find("ul");
+			var $self = obj;
+			var lineHeight = $self.find("ul:first").height();
+			$self.animate({"margin-top" : "-25px"}, 2000, function() {
+				$self.css({
+					"margin-top" : 0
+				}).find("ul:first").appendTo($self);
+			})
+		} 
+		
+	},window);
+});
