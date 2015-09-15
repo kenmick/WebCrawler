@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="fr">
+<head><script type="text/javascript">
+    
+      (function() {
+        var relegateNavigation = '';
+        var handleClickTagMessage = function(e) {
+          try {
+            var eventData = JSON.parse(e.data);
+          } catch (err) {
+            return;
+          }
+          if (eventData.isInitClickTag) {
+            if (eventData.clickTags) {
+              for (var i = 0; i < eventData.clickTags.length; i++) {
+                var clkTag = eventData.clickTags[i];
+                window[clkTag.name] = clkTag.url;
+              }
+            } else if (eventData.clickTag) {
+              window.clickTag = eventData.clickTag;
+            }
+            relegateNavigation = eventData.relegateNavigation;
+          }
+        };
+
+        if (open.call) {
+          window.open = function(open) {
+            return function(url, name, features) {
+              if (relegateNavigation === 'parent') {
+                var message = {'clickTag': url, 'isPostClickTag': true};
+                parent.postMessage(JSON.stringify(message), '*');
+              } else {
+                var args = [url, name];
+                if (features) {
+                  args.push(features);
+                }
+                open.apply(window, args);
+              }
+            };
+          }(window.open);
+        }
+
+        if (window.addEventListener) {
+          window.addEventListener(
+              'message', handleClickTagMessage, false);
+        } else {
+          window.attachEvent('onmessage', handleClickTagMessage);
+        }
+      })();
+    
+  </script>
+    <meta charset="utf-8">
+    <meta name="ad.size" content="width=160,height=600">
+    <script type="text/javascript">
+        var clickTag = "http://www.google.com";
+    </script>
+    <style type="text/css" media="screen">
+        /* BASE */
+
+        html,body,div,a,img{border:0;font-size:100%;font:inherit;vertical-align:baseline}
+        body{color:#000;font-family:Helvetic Neue,Helvetica,Arial;overflow:hidden;line-height:1}
+        *{padding:0;margin:0;box-sizing:border-box}
+        a,a:active,a:hover,a:visited{text-decoration:none;z-index:10;color:#868687}
+        .layer{position:absolute;width:100%;height:100%;top:0;left:0}
+
+
+        .bordered {
+            border: 1px solid #868687;
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        section{overflow:hidden}
+
+        .blink_me2{opacity:0;filter:alpha(opacity=0);-webkit-animation-name:blinker2;animation-name:blinker2;-webkit-animation-duration:2.5s;animation-duration:2.5s;-webkit-animation-timing-function:cubic-bezier(.39,.58,.57,1);animation-timing-function:cubic-bezier(.39,.58,.57,1);-webkit-animation-iteration-count:1;animation-iteration-count:1}
+        @-webkit-keyframes blinker2{0%{opacity:0;filter:alpha(opacity=0)}25%{opacity:1;filter:alpha(opacity=100)}75%{opacity:1;filter:alpha(opacity=100)}100%{opacity:0;filter:alpha(opacity=0)}}
+        @keyframes blinker2{0%{opacity:0;filter:alpha(opacity=0)}25%{opacity:1;filter:alpha(opacity=100)}75%{opacity:1;filter:alpha(opacity=100)}100%{opacity:0;filter:alpha(opacity=0)}}
+
+
+        .blink_me{ opacity:0;filter:alpha(opacity=0);-webkit-animation-name:blinker;animation-name:blinker;-webkit-animation-duration:1.5s;animation-duration:1.5s;-webkit-animation-timing-function:linear;animation-timing-function:linear;-webkit-animation-iteration-count:3;animation-iteration-count:3; animation-fill-mode:forwards;-webkit-animation-fill-mode:forwards}
+        @-webkit-keyframes blinker{0%{opacity:1;filter:alpha(opacity=100)}60%{opacity:0;filter:alpha(opacity=0)}100%{opacity:1;filter:alpha(opacity=100)}}
+        @keyframes blinker{0%{opacity:1;filter:alpha(opacity=100)}60%{opacity:0;filter:alpha(opacity=0)}100%{opacity:1;filter:alpha(opacity=100)}}
+
+
+        /* BANNER */
+        .banner {
+            display: block;
+            position: relative;
+            -webkit-transition: opacity 0.5s ease-out;
+            transition: opacity 0.5s ease-out;
+            overflow: hidden;
+            width: 160px;
+            height: 600px;
+        }
+
+        .opacity-transition {
+            opacity: 1;
+            filter: alpha(opacity=100);
+            -webkit-transition: opacity 0.5s cubic-bezier(0.39, 0.58, 0.57, 1);
+            transition: opacity 0.5s cubic-bezier(0.39, 0.58, 0.57, 1);
+        }
+
+        .transform-transition {
+            -webkit-transition: -webkit-transform 0.5s cubic-bezier(0.39, 0.58, 0.57, 1);
+            transition: transform 0.5s cubic-bezier(0.39, 0.58, 0.57, 1);
+            -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+        }
+
+        .txt {
+            background: url(txts.png) no-repeat top left;
+        }
+
+        /* DECLI */
+        #txt1 { -webkit-transition-delay: 0.25s; transition-delay: 0.25s; background-position: 0px 0px;}
+        #txt2 {-webkit-transition-delay: 1s; transition-delay: 1s;background-position: -160px 0px;}
+
+        #txt3{background-position:-320px 0px;}
+        #txt4{background-position:-480px 0px; -webkit-animation-delay: 2s; animation-delay: 2s; }
+        #txt5{background-position:-640px 0px; -webkit-transition-delay: 2.6s; transition-delay:2.6s;}
+        #txt6{background-position:-800px 0px; -webkit-transition-delay: 4.5s; transition-delay: 4.5s;}
+        #txt7{background-position:-960px 0px; -webkit-animation-delay: 4.5s; animation-delay: 4.5s;}
+
+
+        /* on replace tout pour les close */
+        .closed { z-index: 0;   }
+
+        .closing.from-right {
+            -webkit-transform: translate(-100%, 0);
+            -ms-transform: translate(-100%, 0);
+            transform: translate(-100%, 0);
+        }
+
+        .closed.from-right {
+            -webkit-transform: translate(100%, 0);
+            -ms-transform: translate(100%, 0);
+            transform: translate(100%, 0);
+            -webkit-transition-duration: 0s;
+            transition-duration: 0s
+        }
+
+        .closed .from-left {
+            -webkit-transform: translate(-100%, 0);
+            -ms-transform: translate(-100%, 0);
+            transform: translate(-100%, 0);
+            -webkit-transition-duration: 0s;
+            transition-duration: 0s;
+            -webkit-transition-delay: 1s !important;
+            transition-delay: 1s !important;
+        }
+
+        .closed .blink_me, .closed .blink_me2{
+            opacity:0!important;
+            filter:alpha(opacity=0); !important;
+            -webkit-animation: none !important;
+            animation: none !important;
+        }
+
+        .closed .opacity-transition {
+            -webkit-transition-delay: 1s !important;
+            transition-delay: 1s !important;
+            -webkit-transition-duration: 0s;
+            transition-duration: 0s
+        }
+
+        .closed .opacity-transition {
+            opacity: 0 !important;
+        }
+
+
+    </style>
+</head>
+<body>
+<div class="banner">
+    <section id="state1" class="layer transform-transition closed" data-stay="2000">
+        <img id="state1-bg" src="state1.png" class="layer opacity-transition" />
+        <!--div id="txt1" class="layer txt"></div>
+        <div id="txt2" class="layer txt"></div-->
+    </section>
+
+    <section id="state2" class="layer closed transform-transition from-right" data-stay="10000">
+            <img src="state2.jpg" class="layer " />
+            <div id="txt3" class="layer txt blink_me2"></div>
+            <div id="txt4" class="layer txt blink_me2"></div>
+            <div id="txt5" class="layer txt transform-transition from-left"></div>
+            <div id="txt6" class="layer txt opacity-transition"></div>
+            <div id="txt7" class="layer txt blink_me"></div>
+    </section>
+
+
+    <div class="layer bordered"></div>
+
+    <a href="javascript:window.open(window.clickTag)" class="layer"></a>
+
+</div>
+</body>
+<script>
+    var nStep = 0,finished=false;
+    function init() {
+
+        setTimeout(function () {
+            setSection(1);
+        }, 500);
+
+    }
+
+    function setSection(n) {
+        var section, aSections = document.getElementsByTagName('section'),curState;
+        var next = n >= aSections.length ? 1 : n + 1;
+        for (var i = 0; i < aSections.length; i++) {
+            section = aSections[i];
+
+            if (section.id === 'state' + n) {
+                section.classList.remove('closed');
+                if (nStep ===1) {
+                    document.getElementById('state1').classList.add('from-right');
+                    document.getElementById('state1-bg').classList.remove('opacity-transition');
+                }
+
+                if (nStep < 3) {
+                    setTimeout(function () {
+                        setSection(next);
+                    }, section.dataset['stay']);
+                    nStep++;
+                }
+
+            } else if (!section.classList.contains('closed')) {
+                section.classList.add('closing');
+
+               /* not fired when browser tab not active tab
+               section.addEventListener('webkitTransitionEnd', onTransitionEnd, false);
+                section.addEventListener('transitionend', onTransitionEnd, false);
+                section.addEventListener('OTransitionEnd', onTransitionEnd, false)*/
+
+                setTimeout(function(){
+                    curState = document.getElementsByClassName('closing')[0];
+                    curState.classList.remove('closing');
+                    curState.classList.add('closed');
+                },500);
+            } else {
+
+            }
+        }
+
+    }
+
+
+  /*  function onTransitionEnd(e){
+        e.target.removeEventListener('webkitTransitionEnd', onTransitionEnd, false);
+        e.target.removeEventListener('transitionend', onTransitionEnd, false);
+        e.target.removeEventListener('OTransitionEnd', onTransitionEnd, false)
+
+        e.target.classList.remove('closing');
+        e.target.classList.add('closed');
+    }*/
+
+
+    window.onload = init()
+
+</script>
+
+</html>

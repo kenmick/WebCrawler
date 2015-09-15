@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>Custom Node ID Test Object</title>
+</head>
+<body>
+<script>
+(function(){var c,e,i=/rnd=(\d+)-(\d+)-(\d+)-(\d+)-(\d+)/.exec(location.search),j=i[1],f=i[2],d=i[3],b=i[4],a=i[5],h,g;h=function(l,m){var k={source:"uni",s:l,p:{z:d,c:b,i:a},r:{z:j,c:f}};if("undefined"!==typeof m){k.node_id=m}parent.postMessage(JSON.stringify(k),"*")};c=function(l,k){return Math.floor(Math.random()*(k-l+1))+l};e=function(l){var n="abcdefghijklmnopqrstuvwxyz",m,k=[];for(m=0;m<l;m++){k.push(n.charAt(c(0,n.length-1)))}return k.join("")};if("undefined"===typeof XMLHttpRequest){h("e");return}g=new XMLHttpRequest();h("l");g.open("GET","/img/17003/r20.gif?rnd="+e(32),true);g.setRequestHeader("X-LDebug","1");g.onreadystatechange=function(){var l,k;if(4===this.readyState){if(200===this.status){l=this.getAllResponseHeaders();k=/X-Cache:\s\w+\sfrom\s[\.a-z]+\d+\.(\w+)\.llnw.net/im.exec(l);if(k){if(2===k.length){node=k[1].replace(/\-/g,".");h("s",node);return}}}h("e")}};g.send()}());
+</script>
+</body>
+</html>

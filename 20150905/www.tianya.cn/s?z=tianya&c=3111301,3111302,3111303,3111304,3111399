@@ -1,0 +1,67 @@
+if (typeof(jQuery) == 'undefined' || typeof(adsGlobal) == 'undefined') {
+	jQuery = null;
+	adsGlobal = null;
+}
+(function ($, ads) {
+	// ´«Ñú²ÎÊý
+	var tyclickUrl = tourl('http://jr.tianya.cn');
+	var tyswfclickUrl = tourl('http://dol.tianya.cn/c?z=tianya&la=0&si=382&cg=617&c=3111301&ci=554&or=771&l=10568&bg=10568&b=10614&u=http://jr.tianya.cn');
+	var typicurl = "http://801.tianya.cn/dolphin/tianya/2015/09/0_44.jpg";
+	var typicwdh = "560";
+	var typichgt = "410";
+	var tyagtsw = "0";
+	var tylocsw = "0";
+	var tyadlogo = "0";
+	var typicdif = "";
+	var third_imp = "d47a3b6964ef0de828599f8fceeeb506";
+	
+	var typiccode = function (imgurl, link, tlink, imgwidth, imgheight, flashsw) {
+		var imgobj = "";
+		var tyframewdh = imgwidth;
+		var tyframehgt = imgheight;
+		if (imgurl.toLowerCase().indexOf('.swf') > 0) {
+			imgobj = '<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,19,0" width="' + imgwidth + '" height="' + imgheight + '"><param name="movie" value="' + imgurl + '?clickTAG=' + tlink + '" /><param name="quality" value="high" /><param name="wmode" value="opaque" /><embed src="' + imgurl + '?clickTAG=' + tlink + '" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" width="' + imgwidth + '" height="' + imgheight + '" swliveconnect="true" name="" wmode=opaque></embed></object>';
+			if (flashsw == 0) {
+				imgobj += '<a style="cursor:pointer;display:block;" href="http://dol.tianya.cn/c?z=tianya&la=0&si=382&cg=617&c=3111301&ci=554&or=771&l=10568&bg=10568&b=10614&u=' + link + '" target="_blank"><div style="width:' + imgwidth + 'px;height:' + imgheight + 'px;position:relative;margin-top:-' + imgheight + 'px;left:0px;z-index:100;background-color:black;filter:alpha(opacity=0);-moz-opacity:0;opacity:0;cursor:pointer;border:none;padding:0px;overflow:hidden;"></div></a>';
+			}
+		} else if (imgurl.toLowerCase().indexOf('.jpg') > 0 || imgurl.toLowerCase().indexOf('.gif') > 0 || imgurl.toLowerCase().indexOf('.png') > 0) {
+			imgobj = '<a href="http://dol.tianya.cn/c?z=tianya&la=0&si=382&cg=617&c=3111301&ci=554&or=771&l=10568&bg=10568&b=10614&u=' + link + '" target="_blank"><img src="' + imgurl + '" ';
+			if (imgwidth != "0" && imgwidth != "") {
+				imgobj += 'width="' + imgwidth + '" ';
+			}
+			if (imgheight != "0" && imgheight != "") {
+				imgobj += 'height="' + imgheight + '" ';
+			}
+			imgobj += 'border="0" style="vertical-align:middle;" data-baiduimageplus-ignore /></a>';
+		} else {
+			imgobj = '<div style="border:none;"><iframe style="vertical-align:middle;" frameborder="0" width="' + tyframewdh + '" height="' + tyframehgt + '" scrolling="no" src="' + imgurl + '"></iframe></div>';
+		}
+		return imgobj;
+	};
+	function tourl(str) {
+		return escape(str);
+	}
+	var result = typiccode(typicurl, tyclickUrl, tyswfclickUrl, typicwdh, typichgt, tyagtsw),
+		picposcss = "",
+		adLogo = "";
+	
+	if (tylocsw == 1) {
+		picposcss = 'border:none;margin:' + typicdif + 'px auto;text-align:center;position:relative;*zoom:1;';
+	} else if (tylocsw == 2) {
+		picposcss = 'border:none;margin:' + typicdif + 'px 0;position:relative;*zoom:1;';
+	} else {
+		picposcss = "position:relative;*zoom:1;";
+	}
+	
+	if (tyadlogo == 1) {
+		adLogo = '<img src="http://801.tianya.cn/2015/leftbottom.png" style="width:29px;height:16px;position:absolute;left:0;bottom:0;">';
+	}
+	if (ads == null) {
+		document.write('<div class="adsame-box" style="' + picposcss + '">' + result + adLogo + '</div><img src="' + third_imp + '" style="width:0px;height:0px;border:none;display:none;" border="0" />');
+	} else {
+		var node = ads.qNode('3111301');
+		node.innerHTML = '<div class="adsame-box" style="' + picposcss + '">' + result + adLogo + '</div><img src="' + third_imp + '" style="width:0px;height:0px;border:none;display:none;" border="0" />';
+		node.style.display = "block";
+	}
+})(jQuery, adsGlobal);
+    

@@ -1,0 +1,83 @@
+var dcmh = dcmh || {};
+dcmh.scriptVersion = '0.94';
+
+dcmh.initialSetup = function() {
+    for (var i=0; i<studioV2.api.creatives.length; i++) {
+        var asset = studioV2.api.creatives[0].getFirstAssetByType(studioV2.api.creatives[0].AssetTypes.EXPANDING);
+        if (asset && asset.getDimension().width == 970) {
+            studioV2.myAsset = asset;
+            if (studioV2.myAsset.getContainerElement().parentElement.style.height) {
+                studioV2.myAsset.getContainerElement().parentElement.style.height = "auto";
+            }
+        }
+    }
+};
+
+dcmh.dm = function(s) {
+  return (document.URL.indexOf(s)>=0);
+};
+
+dcmh.corriereFix = function() {
+    dcmh.corfix = dcmh.corfix ? dcmh.corfix + 1 : 1;
+    studioV2.myAsset.getContainerElement().parentElement.parentElement.style.display = 'block';
+    if (dcmh.corfix < 50) {
+        setTimeout(dcmh.corriereFix, 100);
+    }
+};
+
+dcmh.gazzettaFix = function() {
+    dcmh.gazwidth = dcmh.gazwidth ? dcmh.gazwidth : 0;
+    var newWidth = $('.adv-pushbar-box').width();
+    setTimeout(dcmh.gazzettaFix, 1000);
+    if (newWidth == dcmh.gazwidth) {
+        return;
+    } else if (newWidth < 1000) {
+        studioV2.myAsset.getContainerElement().parentElement.parentElement.className =
+            studioV2.myAsset.getContainerElement().parentElement.parentElement.className.replace(' dotnAdMHParent', ' dcfix');
+        studioV2.myAsset.getContainerElement().parentElement.parentElement.style.marginLeft = '-10px';
+    } else {
+        studioV2.myAsset.getContainerElement().parentElement.parentElement.className =
+            studioV2.myAsset.getContainerElement().parentElement.parentElement.className.replace(' dcfix', ' dotnAdMHParent');
+        studioV2.myAsset.getContainerElement().parentElement.parentElement.style.marginLeft = '0';
+    }
+};
+
+dcmh.siteSpecificFixes = function() {
+    if (dcmh.dm('mediaset.it')) {
+        document.getElementById("stripadv").style.float = "center";
+    } else if (dcmh.dm('pianetadonna.it')) {
+        /* sospeso per ora
+        if (typeof altezza_testata != 'undefined') { // solo quando c'ÃÂ¨ la skin
+            studioV2.myAsset.getContainerElement().style.marginBottom = '-95px';
+            document.getElementById('contenitore-sito-x-adv').style.marginBottom = '85px';
+        } */
+    } else if (dcmh.dm('pianetamamma.it')) {
+        if (typeof altezza_testata != 'undefined') { // solo quando c'ÃÂ¨ la skin
+            studioV2.myAsset.getContainerElement().style.marginBottom = '-95px';
+            document.getElementById('contenitore-sito-x-adv').style.marginBottom = '85px';
+        }
+    } else if (dcmh.dm('living.corriere')) {
+        studioV2.myAsset.getContainerElement().parentElement.parentElement.style.padding = 0;
+    } else if (dcmh.dm('viaggi.corriere')) {
+        studioV2.myAsset.getContainerElement().parentElement.parentElement.className =
+            studioV2.myAsset.getContainerElement().parentElement.parentElement.className.replace(' dotnAdMHParent', '');
+        studioV2.myAsset.getContainerElement().parentElement.parentElement.style.marginLeft = '-5px';
+    } else if (dcmh.dm('panorama.it') || dcmh.dm('nationalgeographic.it')) {
+        studioV2.myAsset.getContainerElement().style.margin = "0 auto";
+    } else if (dcmh.dm('gazzetta.it')) {
+        dcmh.gazzettaFix();
+    }
+    if (dcmh.dm('corriere.it')) {
+		$('.bk_adv_02')[0].style.zIndex = 100;
+		studioV2.myAsset.getContainerElement().style.zIndex = 100;
+        dcmh.corriereFix();
+    }
+	// z-index fix
+	if (dcmh.dm('tgcom24.mediaset') ||  dcmh.dm('iodonna.it') ||
+	   dcmh.dm('pianetamamma.it')) {
+		studioV2.myAsset.getContainerElement().style.zIndex = 10;
+	}
+};
+
+dcmh.initialSetup();
+dcmh.siteSpecificFixes();

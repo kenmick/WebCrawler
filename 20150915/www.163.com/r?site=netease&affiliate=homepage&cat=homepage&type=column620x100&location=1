@@ -1,0 +1,24 @@
+<SCRIPT LANGUAGE=JavaScript>
+var ShockMode = 0;
+var plugin = (navigator.mimeTypes && navigator.mimeTypes["application/x-shockwave-flash"]) ? navigator.mimeTypes["application/x-shockwave-flash"].enabledPlugin : 0;
+if (plugin && parseInt(plugin.description.substring(plugin.description.indexOf(".")-2)) >= 8) { ShockMode = 1;}
+else if (navigator.userAgent && navigator.userAgent.indexOf("MSIE")>=0 
+&& navigator.userAgent.indexOf("Opera")<0) {
+document.write('<SCRIPT LANGUAGE=VBScript\> \n'+'on error resume next \n'+'ShockMode = (IsObject(CreateObject("ShockwaveFlash.ShockwaveFlash.8")))\n'+'<\/SCRIPT\> \n');
+}
+if ( ShockMode ) {
+document.write('<a href="http://g.163.com/c?AID=206572&FlightID=1218&Values=3471224671&Redirect=http://e.cn.miaozhen.com/r/k=2011307&p=6wLTz&ro=sm&dx=0&rt=2&ns=__IP__&ni=__IESID__&v=__LOC__&nd=__DRA__&np=__POS__&nn=__APP__&vo=37cb4f754&vr=2&o=http%3A%2F%2Fmlt01.com%2Fc.htm%3Fpv%3D1%26sp%3D0%2C1262363%2C1301894%2C2109891%2C0%2C1%2C1%26target%3Dhttp%3A%2F%2Fwww.ftms.com.cn%2Fvehicles%2Frav4%2Findex.php%3Fmz_ca%3D2011307%2526mz_sp%3D6wLTz%2526utm_source%3D163%2526utm_medium%3Dtop%2526utm_term%3Dtop%2526utm_content%3Dbanner%2526utm_campaign%3DY15Q3M9_rav4_004" target="_blank"><img src="http://img1.126.net/channel7/cover.gif" style="position:absolute; width:620px; height:100px; margin:0px; padding:0px; border:0px;" />');
+document.write('<OBJECT ');
+document.write(' codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0"');
+document.write(' ID=flashad WIDTH=620 HEIGHT=100>');
+document.write(' <PARAM NAME=movie VALUE="http://img1.126.net/channel4/020799/620100_0914.swf"> '); 
+document.write(' <PARAM NAME=quality VALUE=autohigh> ');
+document.write(' <PARAM NAME=wmode VALUE=opaque> ');
+document.write(' <EMBED SRC="http://img1.126.net/channel4/020799/620100_0914.swf" QUALITY=autohigh  wmode=opaque'); 
+document.write(' NAME=flashad swLiveConnect=TRUE WIDTH=620 HEIGHT=100');
+document.write(' TYPE="application/x-shockwave-flash" PLUGINSPAGE="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash">');
+document.write('</EMBED>');
+document.write('</OBJECT>');
+document.write('</a>');
+} 
+</SCRIPT>

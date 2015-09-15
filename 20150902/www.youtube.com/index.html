@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title></title>
+    <link rel="stylesheet" href="css/bundle.css" />
+    <script src="/879366/Enabler_01_76.js"></script>
+    <script src="https://www.gstatic.com/external_hosted/polymer/custom.elements.min.js"></script>
+    <script type="text/javascript" src="js/bundle.js"></script>
+</head>
+<body class="animation-enabled">
+<div class="content" data-click="background">
+
+    <div id="video-intro"></div>
+    <div class="video-overlay" data-click="background"></div>
+    <div class="intro-mute on" data-click="intro-mute"><div class="glow"></div></div>
+
+    <div class="background-loading">
+        <div id="loader" class="loader">
+            <div class="border"><div class="puce"></div></div>
+            <div class="border"><div class="puce"></div></div>
+            <div class="border"><div class="puce"></div></div>
+            <div class="border"><div class="puce"></div></div>
+            <div class="border"><div class="puce"></div></div>
+            <div class="border"><div class="puce"></div></div>
+            <div class="border"><div class="puce"></div></div>
+        </div>
+    </div>
+
+    <div class="intro-logo">
+        <div class="sauvage"><div class="c"></div></div>
+        <div class="dior"><div class="c"></div></div>
+    </div>
+
+    <div class="endshot hidden">
+        <div class="half blurred"></div>
+        <div class="blurred"></div>
+
+        <div class="logo-endshot hidden">
+            <div class="sauvage"><div class="c"></div></div>
+            <div class="new-fragrance"></div>
+            <div class="dior"><div class="c"></div></div>
+        </div>
+        <div class="packshot hidden"></div>
+    </div>
+
+    <div class="video-endshot-background hidden">
+        <div id="loader-video" class="loader">
+            <div class="border"><div class="puce"></div></div>
+            <div class="border"><div class="puce"></div></div>
+            <div class="border"><div class="puce"></div></div>
+            <div class="border"><div class="puce"></div></div>
+            <div class="border"><div class="puce"></div></div>
+            <div class="border"><div class="puce"></div></div>
+            <div class="border"><div class="puce"></div></div>
+        </div>
+    </div>
+
+    <div class="video-endshot-container hidden">
+        <div id="video-endshot" class="hidden"></div>
+        <div class="controls" data-click="toggle-play-endshot">
+            <div class="play playing" data-click="toggle-play-endshot"></div>
+            <div class="mute off" data-click="toggle-sound-endshot"></div>
+            <div class="progress-bar" data-click="_">
+                <div class="progress"></div>
+            </div>
+            <div class="fullscreen" data-click="toggle-fullscreen"></div>
+        </div>
+        <div class="play-endshot-black hidden" data-click="play-with-sound"></div>
+        <div class="play-endshot hidden" data-click="play-with-sound"></div>
+    </div>
+
+    <div class="cta-border" data-click="cta">
+        <div class="cta"></div>
+    </div>
+
+
+    <div class="flash"></div>
+
+    <ci-ytclosebutton lang="en" theme="white" shadow="false" data-click="yt-close"></ci-ytclosebutton>
+</div>
+</body>
+</html>

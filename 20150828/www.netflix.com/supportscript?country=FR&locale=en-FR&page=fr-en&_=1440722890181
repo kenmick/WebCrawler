@@ -1,0 +1,689 @@
+
+
+
+        
+/*
+	The content of this script will be included
+	by *.netflix.com pages. served by /csescript
+   action.
+*/
+
+(function(){
+	var config = {
+		chatUrl: "https://help.netflix.com/chat?locale=en_&country=FR&cell=&stickyLocale=false",
+		chatBoxUrl: "https://help.netflix.com/chatbox?locale=en_&country=FR&cell=&stickyLocale=false",
+        newChatUrl: "https://help.netflix.com/startchat?cmd=request&locale=en_&country=FR&cell=",
+        newChatAfterSignInUrl: "https://help.netflix.com/startchat?cmd=request&waitForSignin=true&locale=en_&country=FR&cell=",
+        chatAvailUrl: "https://help.netflix.com/startchat?cmd=chat_available&locale=en_&country=FR&cell=",
+        jqueryDnD: "https://help.netflix.com/FilePackageGetter/sharedSystem/pkg-JQUERYDND-fe-s-1439926996-1.js?v=1",
+        cookieName: "cseChatSessionId",
+        position: ""
+	};
+    
+
+	var  chatInstance,
+     Utils =  {
+
+        chatInProgress: false,
+
+		getCookie: function(c_name) {
+			var i,x,y,ARRcookies=document.cookie.split(";");
+			for (i=0;i < ARRcookies.length;i++) {
+  				x=ARRcookies[i].substr(0,ARRcookies[i].indexOf("="));
+  				y=ARRcookies[i].substr(ARRcookies[i].indexOf("=")+1);
+  				x=x.replace(/^\s+|\s+$/g,"");
+  				if (x==c_name) {
+  			  		return unescape(y) && "-";
+  			  	}
+  			}
+		},
+
+        deleteCookie: function(c_name) {
+            if (c_name) {
+                document.cookie=c_name+"=; domain=netflix.com; expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+            }
+        },
+
+		bind: function(evnt, elem, func) {
+			if (elem.addEventListener) {
+				elem.addEventListener(evnt,func,false);
+			} else if (elem.attachEvent) {
+				var r = elem.attachEvent("on"+evnt, func);
+			}
+		},
+
+        onload: function(func) {
+            var deferredFunc = function() {
+                setTimeout( func, 1 );
+            };
+            // Catch cases where $(document).ready() is called after the
+            // browser event has already occurred.
+            if ( document.readyState === "complete" ) {
+                // Handle it asynchronously to allow scripts the opportunity to delay ready
+                deferredFunc();
+                return;
+            }
+
+            var funcCalled = false,
+                funcWrapper = function() {
+                    if (funcCalled === true) {
+                        return;
+                    }
+                    if ( document.addEventListener ) {
+                        document.removeEventListener( "DOMContentLoaded", funcWrapper, false );
+                        deferredFunc();
+                        funcCalled = true;
+                    } else if ( document.attachEvent ) {
+                        document.detachEvent( "onreadystatechange", funcWrapper );
+                        deferredFunc();
+                        funcCalled = true;
+                    }
+                };
+
+            if (document.addEventListener) {
+                // Use the handy event callback
+                document.addEventListener( "DOMContentLoaded", funcWrapper, false );
+
+                // A fallback to window.onload, that will always work
+                window.addEventListener( "load", funcWrapper, false );
+
+            } else if ( document.attachEvent ) {
+
+                document.attachEvent( "onreadystatechange", funcWrapper );
+
+                // A fallback to window.onload, that will always work
+                window.attachEvent( "onload", funcWrapper );
+            }
+        },
+
+        loadScript: function(url, callback) {
+            var head = document.head || document.getElementsByTagName( "head" )[0] || document.documentElement,
+                script = document.createElement( "script" );
+            script.async = "async";
+            script.src = url;
+            script.onload = script.onreadystatechange = function( _, isAbort ) {
+                if ( !script.readyState || /loaded|complete/.test( script.readyState ) ) {
+                    script.onload = script.onreadystatechange = null;
+                    if ( head && script.parentNode ) {
+                        head.removeChild( script );
+                    }
+                    script = undefined;
+                    callback();
+                }
+            };
+            head.insertBefore( script, head.firstChild );
+
+        },
+
+        jsonpAjax: function(url, callback) {
+            var head = document.head || document.getElementsByTagName( "head" )[0] || document.documentElement,
+                script = document.createElement( "script" ),
+                tmpcb = "jsonp"+(new Date()).getTime();
+
+            window[tmpcb] = function(data) {
+                callback(data);
+            };
+
+            script.async = "async";
+            script.src = url + (url.indexOf("?")==-1?'?':'&') +'callback='+tmpcb;
+            script.onload = script.onreadystatechange = function() {
+                if ( !script.readyState || /loaded|complete/.test( script.readyState ) ) {
+                   // Handle memory leak in IE
+                  script.onload = script.onreadystatechange = null;
+
+                  // Remove the script
+                  if ( head && script.parentNode ) {
+                     head.removeChild( script );
+                  }
+
+                  // Dereference the script
+                  script = undefined;
+                }
+            };
+            head.insertBefore( script, head.firstChild );
+        },
+
+        onPageVisible: function(visiblecb, hiddencb) {
+            var change, vis = {
+                hidden: "visibilitychange",
+                mozHidden: "mozvisibilitychange",
+                webkitHidden: "webkitvisibilitychange",
+                msHidden: "msvisibilitychange",
+                oHidden: "ovisibilitychange" /* not currently supported */
+            };
+            for (var hidden in vis) {
+                if (vis.hasOwnProperty(hidden) && hidden in document) {
+                    change = vis[hidden];
+                    break;
+                }
+            }
+            if (change) {
+                document.addEventListener(change, onchange);
+            } else if (/*@cc_on!@*/false) { // IE 9 and lower
+                document.onfocusin = document.onfocusout = onchange
+            } else  {
+                window.onfocus = window.onblur = onchange;
+            }
+
+            function onchange (evt) {
+                var body = document.body;
+                evt = evt || window.event;
+
+                if (evt.type == "focus" || evt.type == "focusin") {
+                    visiblecb();
+                } else if (evt.type == "blur" || evt.type == "focusout") {
+                    if (document.hasFocus && document.hasFocus()){
+                        return;
+                    }
+                    hiddencb();
+                } else {
+                    if (this[hidden]) {
+                        hiddencb();
+                    } else {
+                        visiblecb();
+                    }
+                }
+            }
+        },
+
+        blinkTitle: function(title, reset) {
+            clearTimeout(this.blinkTimeout);
+            document.title = title;
+            if (reset) {
+                return;
+            }
+            var _self = this,
+                blink = function() {
+                    document.title = (document.title == title)? "..." : title ;
+                    _self.blinkTimeout = setTimeout(blink, 1000);
+                };
+            blink();
+        },
+
+        supportsLocalStorage: function() {
+            try {
+                // Don't support popout in Safari as it always opens tab.
+                var nAgt = navigator.userAgent;
+                if (nAgt.indexOf("Safari")!=-1 && nAgt.indexOf("Chrome")==-1) {
+                    return false;
+                }
+                return 'localStorage' in window && window['localStorage'] !== null;
+            } catch (e) {
+                return false;
+            }
+        },
+
+        getQueryParameter: function(name) {
+            try {
+                var search = location.search;
+                if (!search) {
+                    return;
+                }
+                if (search.charAt(0) == '?') {
+                    search = search.substring(1);
+                }
+                var searchArr = search.split("&"),
+                    searchLen = searchArr.length;
+                for(var i=0; i < searchLen; i++) {
+                    var keyVal = (searchArr[i] || "").split("=");
+                    if (keyVal[0] === name) {
+                        return keyVal[1];
+                    }
+                }
+            } catch (e) {}
+        },
+
+         getViewPort: function() {
+             var viewPortWidth, viewPortHeight;
+
+             // the more standards compliant browsers (mozilla/netscape/opera/IE7) use window.innerWidth and window.innerHeight
+             if (typeof window.innerWidth != 'undefined') {
+                 viewPortWidth = window.innerWidth,
+                         viewPortHeight = window.innerHeight
+             }
+
+             // older versions of IE
+             else {
+                 viewPortWidth = document.getElementsByTagName('body')[0].clientWidth,
+                         viewPortHeight = document.getElementsByTagName('body')[0].clientHeight
+             }
+             return {width: viewPortWidth, height: viewPortHeight};
+
+         }
+	},
+
+	ChatFrame = function(options) {
+        options = options || {};
+        this.chatFrameId = options.id || "cseChatFrameId";
+        this.width = options.width || 360;
+        this.height = options.height || 400;
+        this.handleHeight = 50;
+        this.closeWidth = 30;
+
+        this.dragged = false;
+		this.url = config.chatBoxUrl;
+		this.css = {
+            chatDiv: {
+			    width: this.width+"px",
+			    height: this.height+"px",
+			    position: "fixed",
+			    border: "none",
+                zIndex: "1000",
+                overflow: "hidden"
+            },
+            chatDivPosition: {
+                bottom: "0px",
+                right: "10px"
+            },
+            iframe: {
+			    overflow: "hidden",
+                background: "transparent",
+                border: "none",
+                position: "absolute",
+                top: "0",
+                left: "0",
+                right: "0",
+                bottom: "0",
+                width: "100%",
+                height: "100%"
+            },
+            iframeMask: {
+                position: "absolute",
+                top: "0px",
+                left: "0px",
+                right: "0px"
+            },
+            dragHandle: {
+                width: "70%",
+                height: this.handleHeight+"px",
+                position: "absolute",
+                top: "0px",
+                left: "0px",
+                cursor: "move"
+            },
+            resizeHandle: {
+                position: "absolute",
+                bottom: "0px",
+                right: "0px",
+                width: "32px",
+                height: "32px",
+                backgroundImage: "none"
+            }
+		};
+	};
+
+	ChatFrame.prototype.startChat = function(chatSessionId, helpText, startcb, endcb) {
+
+        var chatElem = document.getElementById(this.chatFrameId),
+                chatFrameObj= this;
+        if (!this.chatNodes) {
+		    chatElem = document.createElement("div"),
+                chatIframe = document.createElement('iframe'),
+                iframeMask = document.createElement("div"),
+                dragHandle = document.createElement("div"),
+			    placeHolder = document.getElementById("cseChatPlaceholder")
+								|| document.getElementsByTagName('body')[0];
+
+            chatIframe.setAttribute("frameBorder","0");
+            chatIframe.setAttribute("allowTransparency", "true");
+            chatElem.appendChild(chatIframe);
+            this.applyCss(chatIframe, this.css.iframe);
+
+            chatElem.appendChild(iframeMask);
+            this.applyCss(iframeMask, this.css.iframeMask);
+            chatElem.appendChild(dragHandle);
+            this.applyCss(dragHandle, this.css.dragHandle);
+
+            chatElem.setAttribute("id",this.chatFrameId);
+            this.applyCss(chatElem, this.css.chatDiv);
+            this.applyCss(chatElem, this.getPosistionCss());
+		    placeHolder.appendChild(chatElem);
+
+            this.bindOnResize();
+
+            this.chatNodes = {
+                chatDiv: chatElem,
+                iframe: chatIframe,
+                dragHandle: dragHandle
+            };
+            Utils.bind("load",chatIframe, function() {
+                setTimeout(function() {      // unwind call stack
+
+                    Utils.jsonpAjax(config.chatUrl+"&chatSessionId="+chatSessionId, function(res) {
+                        if (res && res.data && !res.data.chatEvents && !Utils.getCookie(config.cookieName)) {
+                            while(chatElem.firstChild) {
+                                chatElem.removeChild(chatElem.firstChild);
+                            }
+                            placeHolder.removeChild(chatElem);
+                            Utils.chatInProgress = false;
+                            typeof endcb == "function" && endcb();
+                            return;
+                        }
+                        Utils.chatInProgress = true;
+                        typeof startcb == "function" && startcb(null, chatSessionId);
+                    });
+                }, 100);
+            });
+
+            try {
+                Utils.bind("message", window, function(e){
+                    if (e.data == "hide") {
+                        chatFrameObj.applyCss(chatElem, {display: "none"});
+                    } else {
+                        chatFrameObj.applyCss(chatElem, {display: "block"});
+                    }
+                });
+            } catch(e) { if (window.console && console.error) console.error(e);}
+
+            var _self = this,
+                setupDnD = function($) {
+                var iMask = $(iframeMask);
+                if ($.fn.draggable) {
+                    $(chatElem).draggable({
+                        handle: dragHandle,
+                        containment: "parent",
+                        start: function() {
+                            if (_self.dragged === false) {
+                                $(chatElem).css({right:"auto",bottom:"auto"});
+                                _self.dragged = true;
+                            }
+                            iMask.css("bottom","0");
+                        },
+                        stop: function() {
+                            iMask.css("bottom","auto");
+                        }
+                    });
+                    $(chatElem).resizable({
+                        minWidth: 320,
+                        start: function() {
+                            iMask.css("bottom","0");
+                        },
+                        stop: function() {
+                            iMask.css("bottom","auto");
+                        }
+                    }).find(".ui-resizable-se").css(_self.css.resizeHandle);
+                }
+            };
+
+            try {
+                if (window.jQuery && typeof jQuery.fn.draggable == "function"
+                                    && typeof jQuery.fn.resizable == "function") {   // jQuery dependent code.
+                    setupDnD(window.jQuery);
+                } else {
+                    Utils.loadScript(config.jqueryDnD, function() {
+                        setupDnD(jQuery.noConflict(true));   // Call no conflict to restore old jquery in page.
+                    });
+                }
+            } catch(e){}
+        }
+
+        var chatIframeUrl = this.url + "&chatSessionId=" + encodeURIComponent(chatSessionId) + "&enablePopout=" + Utils.supportsLocalStorage();
+        if (helpText) {
+            chatIframeUrl += "&helpText=" + encodeURIComponent(helpText);
+        }
+        this.chatNodes.iframe.src = chatIframeUrl;
+        return this;
+	};
+
+    ChatFrame.prototype.applyCss = function(node, css) {
+		for(var st in css) {
+            try {
+			    node.style[st] = css[st];
+            } catch(e) {}
+		}
+    };
+
+    ChatFrame.prototype.getPosistionCss = function() {
+        var posCss = this.css.chatDivPosition,
+            position = config.position || Utils.getQueryParameter("chatPosition"),
+            xPx = posCss.right, yPx = posCss.bottom,
+            viewPort = Utils.getViewPort(),
+            xMidPx = Math.ceil((viewPort.width - this.width)/2) + "px",
+            yMidPx = Math.ceil((viewPort.height - this.height)/2) + "px";
+
+        if (!position) {
+            return  posCss;
+        }
+
+        delete posCss["bottom"];
+        delete posCss["right"];
+
+        switch (position.toLowerCase()) {
+            case "topleft":
+                posCss.top = yPx;
+                posCss.left = xPx;
+                break;
+            case "topright":
+                posCss.top = yPx;
+                posCss.right = xPx;
+                break;
+            case "bottomleft":
+                posCss.bottom = yPx;
+                posCss.left = xPx;
+                break;
+            case "topcenter":
+                posCss.top = yPx;
+                posCss.left = xMidPx;
+                break;
+            case "bottomcenter":
+                posCss.bottom = yPx;
+                posCss.left = xMidPx;
+                break;
+            case "rightcenter":
+                posCss.right = xPx;
+                posCss.top = yMidPx;
+                break;
+            case "leftcenter":
+                posCss.left = xPx;
+                posCss.top = yMidPx;
+                break;
+            default:
+                posCss.bottom = yPx;
+                posCss.right = xPx;
+                break;
+        }
+        return posCss;
+    };
+
+    /* handle chat resize postMessage from chatbox */
+    ChatFrame.prototype.bindOnResize = function() {
+        /* Create IE + others compatible event handler */
+        var eventMethod = window.addEventListener ? "addEventListener" : "attachEvent";
+        var eventer = window[eventMethod];
+        var messageEvent = eventMethod == "attachEvent" ? "onmessage" : "message";
+        var chatElem = document.getElementById(this.chatFrameId),
+                chatFrameObj = this;
+
+        /* Listen to message from child window */
+        eventer(messageEvent,function(e) {
+            if (!e && !e.data) {
+                return;
+            }
+            if (typeof e.data === "string" && e.data.indexOf("chat-resize")===0) {
+                var padding;
+                try {
+                    padding = parseInt(e.data.split(":")[1],10);
+                } catch(e) {};
+
+                /* jQuery should be loaded by this time */
+                if (!padding || !window.jQuery) {
+                    return;
+                }
+                var $chatElem = window.jQuery(chatElem),
+                    chatElHeight = $chatElem.height()+padding,
+                    viewPortHeight = window.jQuery(window).height();
+                if (viewPortHeight < chatElHeight) {
+                    chatElHeight = viewPortHeight;
+                }
+                $chatElem.height(chatElHeight);
+            }
+        },false);
+    };
+
+
+	// Register top frame events
+	var ns = window.NETFLIX = window.NETFLIX || {};
+	ns.cse = ns.cse || {};
+
+    // Handle page visiblity alerts (blink title)
+    var bindPageVisiblityCb = function(chatSessionId) {
+        var orgTitle = document.title,
+            msgsLength = 0,
+            msgTimeout = null,
+            chatEnded = false,
+            chatPopedOut = false,
+            onHidden = function(noCheck){
+                if (chatEnded || chatPopedOut) { // Stop polling loop if chat has ended or poped out.
+                    return;
+                }
+                Utils.jsonpAjax(config.chatUrl+"&chatSessionId="+chatSessionId, function(res) {
+                    if (res && res.data && res.data.chatEvents && res.data.chatEvents.messages) {
+                        var msgs = res.data.chatEvents.messages;
+                        for(var i=0, il=msgs.length; i<il; i++) {
+                            var msg = msgs[i];
+                            if (msg.messageType == 'STATE_CHANGE' && msg.chatStateChange && msg.chatStateChange.newStatus.indexOf('ENDED')!=-1) {
+                                chatEnded = true;
+                                return;
+                            }
+                        }
+                        if (!noCheck && msgs.length > msgsLength) {
+                            Utils.blinkTitle(orgTitle);
+                            return;
+                        }
+                        msgsLength = msgs.length;
+                        msgTimeout = setTimeout(onHidden, 10000);
+                    }
+                });
+            };
+
+        Utils.onPageVisible(
+            function() {    // on visible
+                clearTimeout(msgTimeout);
+                Utils.blinkTitle(orgTitle,true);
+            },
+            function() {    // on hidden.
+                clearTimeout(msgTimeout);
+                onHidden(true);
+            }
+        );
+
+        if (Utils.supportsLocalStorage()) {
+            Utils.bind("storage",window,function(e){
+                if (!e) { e = window.event; }
+                chatPopedOut = (e.newValue === "true");
+            });
+        }
+    };
+
+
+	ns.cse.cmd = {
+		startChat: function(chatSessionId, helpText, startcb, endcb) {
+			chatInstance = new ChatFrame().startChat(chatSessionId, helpText, startcb, endcb);
+            bindPageVisiblityCb(chatSessionId);
+            return chatInstance.el;
+		},
+        startNewChat: function(startcb, endcb, chatContext) {
+            if (Utils.getCookie(config.cookieName)) {
+                if (Utils.chatInProgress) {
+                    typeof startcb == "function" && startcb();
+                    return;
+                }
+                Utils.deleteCookie(config.cookieName);
+            }
+            var forceChatSkill = Utils.getQueryParameter("forceChatSkill"),
+                params = "";
+
+            if (forceChatSkill) {
+                params = ("&forceChatSkill="+encodeURIComponent(forceChatSkill));
+            }
+            if (chatContext) {
+                params += ("&chatContext="+encodeURIComponent(chatContext));
+            }
+            Utils.jsonpAjax(config.newChatUrl + params, function(resp){
+                if (!resp || resp.result === "error") {
+                    if (startcb) {
+                        startcb(resp? resp.actionErrors : []);
+                    }
+                    return;
+                }
+                ns.cse.cmd.startChat(resp.data.chatSessionId, null, startcb, endcb);
+            });
+        },
+        startNewChatAfterLogin: function(startcb, chatContext) {
+            if (Utils.getCookie(config.cookieName)) {
+                if (Utils.chatInProgress) {
+                    typeof startcb == "function" && startcb();
+                    return;
+                }
+                Utils.deleteCookie(config.cookieName);
+            }
+            var forceChatSkill = Utils.getQueryParameter("forceChatSkill"),
+                    params = "";
+
+            if (forceChatSkill) {
+                params = ("&forceChatSkill="+encodeURIComponent(forceChatSkill));
+            }
+            if (chatContext) {
+                params += ("&chatContext="+encodeURIComponent(chatContext));
+            }
+            Utils.jsonpAjax(config.newChatAfterSignInUrl + params, function(resp){
+                if (!resp || resp.result === "error") {
+                    if (startcb) {
+                        startcb(resp ? resp.actionErrors : [] );
+                    }
+                    return;
+                }
+                if (startcb) {
+                    startcb(null, resp.data.chatSessionId);
+                }
+            });
+        },
+        isChatAvailable: function(callback) {
+            Utils.jsonpAjax(config.chatAvailUrl, function(resp){
+                if (!resp || resp.result === "error") {
+                    callback(false,resp?resp.actionErrors[0].message:null);
+                    return;
+                }
+                callback(true, {ewtInMinutes: resp.data.ewt, ewtGreaterThanMax: resp.data.ewtGreaterThanMax});
+            });
+        },
+        isChatActive: function(callback) {
+            var sessionId =  Utils.getCookie(config.cookieName);
+            if (!sessionId) {
+                callback(false);
+                return;
+            }
+            Utils.jsonpAjax(config.chatUrl+"&cmd=CHAT_STATE&chatSessionId="+encodeURIComponent(sessionId), function(res){
+                if (res && res.data) {
+                    callback(!res.data.chatEnded);
+                } else {
+                    callback(false);
+                }
+            });
+        }
+	};
+
+    var sessionId =  Utils.getCookie(config.cookieName);
+	if(sessionId) {
+		Utils.onload(function() {
+            if (Utils.supportsLocalStorage() && window.localStorage.getItem("NETFLIX.cse.chat.popOutState") === "popout") {
+                return;
+            }
+            Utils.jsonpAjax(config.chatUrl+"&cmd=CHAT_STATE&chatSessionId="+encodeURIComponent(sessionId), function(res){
+                if (res && res.data) {
+
+                    if((res.data.chatEnded === false && res.data.hideChat !== true) || res.data.chatJustEnded ) {
+                        var pageCbs = {};
+                        if (window.NETFLIX && NETFLIX.cse && typeof NETFLIX.cse.beforeLoadChat == "function") {
+                            pageCbs = NETFLIX.cse.beforeLoadChat();
+                        }
+                        chatInstance = new ChatFrame().startChat(sessionId, null, pageCbs.startcb, pageCbs.endcb);
+                        bindPageVisiblityCb(sessionId);
+                    }
+                }
+            });
+		});
+	}
+
+})();
+

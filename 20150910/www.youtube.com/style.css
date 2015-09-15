@@ -1,0 +1,286 @@
+
+body, body * {
+  vertical-align: baseline;
+  border: 0 none;
+  outline: 0;
+  padding: 0;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  font-size: 9pt;
+  color: #333;
+}
+
+#main-container {
+  position: absolute;
+  width: 970px;
+  height: 250px;
+  top: 0px;
+  left: 0px;
+  border: 1px solid black;
+  box-sizing: border-box;
+  background: #000;
+  overflow:hidden;
+}
+
+#exit {
+cursor: pointer;
+width: 100%;
+height: 100%;
+position: absolute;
+top: 0;
+left: 0;
+z-index: 505;
+}
+#yt-close {
+  z-index: 999;
+}
+
+.feature {
+  top: 0px;
+  left: 0px;
+  width: 968px;
+  height: 248px;
+  position: absolute;
+  overflow:hidden;
+}
+#video-container-0 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: none;
+  border: none;
+  visibility: hidden;
+}
+
+#video-0 {
+  position: absolute;
+  /*width: 100%;
+  height: 100%;*/
+  padding-bottom: 18px;
+  left: 0;
+  top: 0;
+  box-sizing: border-box;
+  z-index: 500;
+  }
+
+.video-controls {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  bottom: 4px;
+  cursor: pointer;
+  background-color: #FFF;
+}
+
+/* Video button hiding an positioning */
+.video-controls:hover {
+  border-bottom: 1px solid #666;
+}
+
+#play-btn-0 {
+  background-image:url(play.svg);
+  background-repeat:no-repeat;
+  background-size:cover;
+  right: 20px;
+  z-index:506;
+}
+
+#progress-bar-0 {
+  position: absolute;
+  background-color: #339933;
+  bottom: 0px;
+  height: 4px;
+  z-index:503;
+}
+
+#pause-btn-0 {
+  background-image:url(pause.svg);
+  background-repeat:no-repeat;
+  background-size:cover;
+  right: 20px;
+  visibility: hidden;
+  z-index:506;
+}
+
+#stop-btn-0 {
+  background-image:url(stop.svg);
+  background-size:cover;
+  background-repeat:no-repeat;
+  left: -20px;
+  z-index:499;
+}
+
+#unmute-btn-0 {
+  background-image:url(unmute.svg);
+  background-size:cover;
+  background-repeat:no-repeat;
+  left: -20px;
+  z-index:506;
+}
+
+#mute-btn-0 {
+  background-image:url(mute.svg);
+  background-size:cover;
+  background-repeat:no-repeat;
+  left: -20px;
+  visibility: hidden;
+  z-index:506;
+}
+
+#replay-btn-0 {
+  background-image:url(replay.svg);
+  background-size:cover;
+  background-repeat:no-repeat;
+  right: 0px;
+  z-index:506;
+}
+
+:focus {
+  outline:none;
+}
+::-moz-focus-inner {
+  border:0;
+}
+
+
+.spot {
+  background-image:url(spot.png);
+  background-repeat:no-repeat;
+  background-size:cover;
+  cursor:pointer;
+} 
+#spot_1 {
+	top: 49px;
+	left: 720px;
+	width: 44px;
+	height: 41px;
+	position: absolute;
+	z-index: 505;
+	display:none;
+}
+#spot_2 {
+	top: 58px;
+	left: 529px;
+	width: 44px;
+	height: 41px;
+	position: absolute;
+	z-index: 505;
+	display:none;
+}
+#spot_3 {
+	top: 157px;
+	left: 430px;
+	width: 44px;
+	height: 41px;
+	position: absolute;
+	z-index: 505;
+	display:none;
+}
+
+
+
+
+.texte {
+	background-repeat:no-repeat;
+	background-size:cover;
+	top: 0px;
+	left: 0px;
+	width: 968px;
+	height: 248px;
+	position: absolute;
+	z-index: 502;
+} 
+#texte_1 {
+  background-image:url(texte_1.png);
+  display:none;
+}
+#texte_2 {
+  background-image:url(texte_2.png);
+  display:none;
+}
+#texte_3 {
+  background-image:url(texte_3.png);
+  display:none;
+}
+
+
+#continuer_1 {
+	top: 0;
+	left: 420px;
+	width: 550px;
+	height: 250px;
+	position: absolute;
+	z-index: 505;
+	display:none;
+  cursor:pointer;
+} 
+#continuer_2 {
+	top: 0;
+	left: 420px;
+	width: 550px;
+	height: 250px;
+	position: absolute;
+	z-index: 505;
+	display:none;
+  cursor:pointer;
+} 
+#continuer_3 {
+	top: 0;
+	left: 420px;
+	width: 550px;
+	height: 250px;
+	position: absolute;
+	z-index: 505;
+	display:none;
+  cursor:pointer;
+} 
+
+.fermer {
+  background-image:url(fermer.png);
+  background-repeat:no-repeat;
+  background-size:cover;
+  cursor:pointer;
+} 
+#fermer_1 {
+	top: 14px;
+	left: 394px;
+	width: 44px;
+	height: 41px;
+	position: absolute;
+	z-index: 506;
+	display:none;
+}
+#fermer_2 {
+	top: 14px;
+	left: 391px;
+	width: 44px;
+	height: 41px;
+	position: absolute;
+	z-index: 506;
+	display:none;
+}
+#fermer_3 {
+	top: 14px;
+	left: 406px;
+	width: 44px;
+	height: 41px;
+	position: absolute;
+	z-index: 506;
+	display:none;
+}
+
+
+.bluebrand {
+  background-image:url(bluebrand.jpg);
+  background-repeat:no-repeat;
+  background-size:cover;
+	top: 0px;
+	left: 0pxpx;
+	width: 968px;
+	height: 248px;
+	position: absolute;
+	z-index: 504;
+	display:none;
+} 

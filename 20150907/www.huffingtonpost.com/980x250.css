@@ -1,0 +1,385 @@
+
+/*  MARGIN-LEFT : (1200-taille header)/2     */
+#banner {
+    position: absolute;
+    top: 0px;
+    left: 101px !important;
+    width:998px;
+    height:210px;
+    /*overflow: hidden;*/
+    z-index:100;
+    display:block;
+}
+
+#collapse-loader{
+    left: 101px !important;
+    width:998px !important;
+    height:210px !important;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+#video_header{
+    width: 100%;
+    height: 100%;
+    display:none;
+}
+
+.video-container_mpu {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    visibility: hidden;
+    overflow : hidden;
+    cursor:pointer;
+}
+
+#border_l
+{
+    position:absolute;
+    width:1px;
+    height:100%;
+    top:0;
+    left:0;
+    background-color:black;
+    display:none;
+}
+
+#border_r
+{
+    position:absolute;
+    width:1px;
+    height:100%;
+    top:0;
+    right:0;
+    background-color:black;
+    display:none;
+}
+
+#border_u
+{
+    position:absolute;
+    width:100%;
+    height:1px;
+    top:0;
+    right:0;
+    background-color:black;
+    display:none;
+}
+
+#border_d
+{
+    position:absolute;
+    width:100%;
+    height:1px;
+    bottom:0;
+    background-color:black;
+    display:none;
+}
+
+#logo_loading
+{
+    position:absolute;
+    width:249px;
+    height:135px;
+    left:50%;
+    margin-left: -125px;
+    top:16px;
+    background-image: url('../img/logo_loading.png');
+}
+
+
+
+
+#cta_mpu {
+  width: 300px;
+  height: 40px;
+  bottom: 0px;
+  position: absolute;
+  left: 50%;
+  margin-left: -150px;
+  overflow: hidden;
+  display: none;
+}
+
+/*                                          */
+/* PLACER L'EXPORT CSS DE LA MOULINETTE ICI */
+/*                                          */
+
+.main.animation {
+    display: none;
+    width: 980px;
+    height: 250px;
+    position: relative;
+    margin: 0 auto;
+    overflow: hidden;
+}
+#endshot.main.animation {
+        position: absolute;
+        margin-left: 9px;
+        margin-top: -20px;
+    }
+
+
+
+.main.animation {
+    display: none;
+    width: 980px;
+    height: 250px;
+    overflow: hidden;
+}
+
+.main.animation div {
+    position: absolute;
+    background-repeat: no-repeat;
+    -webkit-transform-origin: 0 0;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-duration: 1.7s;
+    -webkit-animation-fill-mode: forwards;
+    -moz-transform-origin: 0 0;
+    -moz-animation-iteration-count: 1;
+    -moz-animation-timing-function: linear;
+    -moz-animation-duration: 1.7s;
+    -moz-animation-fill-mode: forwards;
+    -ms-transform-origin: 0 0;
+    -ms-animation-iteration-count: 1;
+    -ms-animation-timing-function: linear;
+    -ms-animation-duration: 1.7s;
+    -ms-animation-fill-mode: forwards;
+    -o-transform-origin: 0 0;
+    -o-animation-iteration-count: 1;
+    -o-animation-timing-function: linear;
+    -o-animation-duration: 1.7s;
+    -o-animation-fill-mode: forwards;
+    transform-origin: 0 0;
+    animation-iteration-count: 1;
+    animation-timing-function: linear;
+    animation-duration: 1.7s;
+    animation-fill-mode: forwards;
+}
+
+.main.animation > div {
+    width: 100%;
+    height: 100%;
+}
+
+.main .t_tous_les_episodes {
+    -webkit-animation-name : t_tous_les_episodes;
+    -moz-animation-name : t_tous_les_episodes;
+    -ms-animation-name : t_tous_les_episodes;
+    -o-animation-name : t_tous_les_episodes;
+    animation-name : t_tous_les_episodes;
+    margin-left:-102.5px;
+    margin-top:-15.5px;
+    width: 205px;
+    height: 31px;
+    background-image: url('../img/205x31_t_episodes.png');
+}
+
+
+.main .t_seulement_sur {
+    -webkit-animation-name : t_seulement_sur;
+    -moz-animation-name : t_seulement_sur;
+    -ms-animation-name : t_seulement_sur;
+    -o-animation-name : t_seulement_sur;
+    animation-name : t_seulement_sur;
+        margin-left:-126px;
+    margin-top:-13.5px;
+    width: 252px;
+    height: 27px;
+    background-image: url('../img/252x27_t_seulement_sur.png');
+}
+
+
+
+.main .logo {
+    -webkit-animation-name : logo;
+    -moz-animation-name : logo;
+    -ms-animation-name : logo;
+    -o-animation-name : logo;
+    animation-name : logo;
+        margin-left:-128.5px;
+    margin-top:-37px;
+    width: 257px;
+    height: 74px;
+    background-image: url('../img/257x74_logo.png');
+}
+
+
+
+.main .logo_netflix_brand {
+    -webkit-animation-name : logo_netflix_brand;
+    -moz-animation-name : logo_netflix_brand;
+    -ms-animation-name : logo_netflix_brand;
+    -o-animation-name : logo_netflix_brand;
+    animation-name : logo_netflix_brand;
+    margin-left:-113px;
+    margin-top:-67px;
+    width: 226px;
+    height: 134px;
+    background-image: url('../img/226x134_logo_netflix_brand.png');
+}
+
+
+.main .t_baseline {
+    -webkit-animation-name : t_baseline;
+    -moz-animation-name : t_baseline;
+    -ms-animation-name : t_baseline;
+    -o-animation-name : t_baseline;
+    animation-name : t_baseline;
+    margin-left: -139.4px;
+    margin-top: -32.5px;
+    width: 486px;
+    height: 141px;
+    background-image: url('../img/486x141_t_baseline.png');
+}
+
+
+@-webkit-keyframes t_tous_les_episodes
+{
+    0%, 40.9% { opacity: 0; -webkit-transform: translate(17.602%, 37%) rotate(0deg) scale(1, 1); -webkit-animation-timing-function: cubic-bezier(0.33, 0.66, 0.66, 0.99); }
+    41% { opacity: 0; -webkit-transform: translate(17.602%, 37%) rotate(0deg) scale(1, 1); -webkit-animation-timing-function: cubic-bezier(0.33, 0.66, 0.66, 0.99); }
+    59%, 100% { opacity: 1; -webkit-transform: translate(17.602%, 43.8%) rotate(0deg) scale(1, 1); }
+}
+@-moz-keyframes t_tous_les_episodes
+{
+    0%, 40.9% { opacity: 0; -moz-transform: translate(17.602%, 37%) rotate(0deg) scale(1, 1); -moz-animation-timing-function: cubic-bezier(0.33, 0.66, 0.66, 0.99); }
+    41% { opacity: 0; -moz-transform: translate(17.602%, 37%) rotate(0deg) scale(1, 1); -moz-animation-timing-function: cubic-bezier(0.33, 0.66, 0.66, 0.99); }
+    59%, 100% { opacity: 1; -moz-transform: translate(17.602%, 43.8%) rotate(0deg) scale(1, 1); }
+}
+@-ms-keyframes t_tous_les_episodes
+{
+    0%, 40.9% { opacity: 0; -ms-transform: translate(17.602%, 37%) rotate(0deg) scale(1, 1); -ms-animation-timing-function: cubic-bezier(0.33, 0.66, 0.66, 0.99); }
+    41% { opacity: 0; -ms-transform: translate(17.602%, 37%) rotate(0deg) scale(1, 1); -ms-animation-timing-function: cubic-bezier(0.33, 0.66, 0.66, 0.99); }
+    59%, 100% { opacity: 1; -ms-transform: translate(17.602%, 43.8%) rotate(0deg) scale(1, 1); }
+}
+@-o-keyframes t_tous_les_episodes
+{
+    0%, 40.9% { opacity: 0; -o-transform: translate(17.602%, 37%) rotate(0deg) scale(1, 1); -o-animation-timing-function: cubic-bezier(0.33, 0.66, 0.66, 0.99); }
+    41% { opacity: 0; -o-transform: translate(17.602%, 37%) rotate(0deg) scale(1, 1); -o-animation-timing-function: cubic-bezier(0.33, 0.66, 0.66, 0.99); }
+    59%, 100% { opacity: 1; -o-transform: translate(17.602%, 43.8%) rotate(0deg) scale(1, 1); }
+}
+@keyframes t_tous_les_episodes
+{
+    0%, 40.9% { opacity: 0; transform: translate(17.602%, 37%) rotate(0deg) scale(1, 1); animation-timing-function: cubic-bezier(0.33, 0.66, 0.66, 0.99); }
+    41% { opacity: 0; transform: translate(17.602%, 37%) rotate(0deg) scale(1, 1); animation-timing-function: cubic-bezier(0.33, 0.66, 0.66, 0.99); }
+    59%, 100% { opacity: 1; transform: translate(17.602%, 43.8%) rotate(0deg) scale(1, 1); }
+}
+@-webkit-keyframes t_seulement_sur
+{
+    0%, 33.2% { opacity: 0; -webkit-transform: translate(17.3469%, 48.2%) rotate(0deg) scale(1, 1); -webkit-animation-timing-function: cubic-bezier(0.33, 0.66, 0.66, 0.99); }
+    33.3% { opacity: 0; -webkit-transform: translate(17.3469%, 48.2%) rotate(0deg) scale(1, 1); -webkit-animation-timing-function: cubic-bezier(0.33, 0.66, 0.66, 0.99); }
+    51.3%, 100% { opacity: 1; -webkit-transform: translate(17.3469%, 55.4%) rotate(0deg) scale(1, 1); }
+}
+@-moz-keyframes t_seulement_sur
+{
+    0%, 33.2% { opacity: 0; -moz-transform: translate(17.3469%, 48.2%) rotate(0deg) scale(1, 1); -moz-animation-timing-function: cubic-bezier(0.33, 0.66, 0.66, 0.99); }
+    33.3% { opacity: 0; -moz-transform: translate(17.3469%, 48.2%) rotate(0deg) scale(1, 1); -moz-animation-timing-function: cubic-bezier(0.33, 0.66, 0.66, 0.99); }
+    51.3%, 100% { opacity: 1; -moz-transform: translate(17.3469%, 55.4%) rotate(0deg) scale(1, 1); }
+}
+@-ms-keyframes t_seulement_sur
+{
+    0%, 33.2% { opacity: 0; -ms-transform: translate(17.3469%, 48.2%) rotate(0deg) scale(1, 1); -ms-animation-timing-function: cubic-bezier(0.33, 0.66, 0.66, 0.99); }
+    33.3% { opacity: 0; -ms-transform: translate(17.3469%, 48.2%) rotate(0deg) scale(1, 1); -ms-animation-timing-function: cubic-bezier(0.33, 0.66, 0.66, 0.99); }
+    51.3%, 100% { opacity: 1; -ms-transform: translate(17.3469%, 55.4%) rotate(0deg) scale(1, 1); }
+}
+@-o-keyframes t_seulement_sur
+{
+    0%, 33.2% { opacity: 0; -o-transform: translate(17.3469%, 48.2%) rotate(0deg) scale(1, 1); -o-animation-timing-function: cubic-bezier(0.33, 0.66, 0.66, 0.99); }
+    33.3% { opacity: 0; -o-transform: translate(17.3469%, 48.2%) rotate(0deg) scale(1, 1); -o-animation-timing-function: cubic-bezier(0.33, 0.66, 0.66, 0.99); }
+    51.3%, 100% { opacity: 1; -o-transform: translate(17.3469%, 55.4%) rotate(0deg) scale(1, 1); }
+}
+@keyframes t_seulement_sur
+{
+    0%, 33.2% { opacity: 0; transform: translate(17.3469%, 48.2%) rotate(0deg) scale(1, 1); animation-timing-function: cubic-bezier(0.33, 0.66, 0.66, 0.99); }
+    33.3% { opacity: 0; transform: translate(17.3469%, 48.2%) rotate(0deg) scale(1, 1); animation-timing-function: cubic-bezier(0.33, 0.66, 0.66, 0.99); }
+    51.3%, 100% { opacity: 1; transform: translate(17.3469%, 55.4%) rotate(0deg) scale(1, 1); }
+}
+@-webkit-keyframes logo
+{
+    0% { opacity: 0; -webkit-transform: translate(50.1531%, 47.2%) rotate(0deg) scale(1, 1); -webkit-animation-timing-function: cubic-bezier(0.33, 0, 0.66, 0.33); }
+    30.8%, 100% { opacity: 1; -webkit-transform: translate(50.1531%, 47.2%) rotate(0deg) scale(1, 1); }
+}
+@-moz-keyframes logo
+{
+    0% { opacity: 0; -moz-transform: translate(50.1531%, 47.2%) rotate(0deg) scale(1, 1); -moz-animation-timing-function: cubic-bezier(0.33, 0, 0.66, 0.33); }
+    30.8%, 100% { opacity: 1; -moz-transform: translate(50.1531%, 47.2%) rotate(0deg) scale(1, 1); }
+}
+@-ms-keyframes logo
+{
+    0% { opacity: 0; -ms-transform: translate(50.1531%, 47.2%) rotate(0deg) scale(1, 1); -ms-animation-timing-function: cubic-bezier(0.33, 0, 0.66, 0.33); }
+    30.8%, 100% { opacity: 1; -ms-transform: translate(50.1531%, 47.2%) rotate(0deg) scale(1, 1); }
+}
+@-o-keyframes logo
+{
+    0% { opacity: 0; -o-transform: translate(50.1531%, 47.2%) rotate(0deg) scale(1, 1); -o-animation-timing-function: cubic-bezier(0.33, 0, 0.66, 0.33); }
+    30.8%, 100% { opacity: 1; -o-transform: translate(50.1531%, 47.2%) rotate(0deg) scale(1, 1); }
+}
+@keyframes logo
+{
+    0% { opacity: 0; transform: translate(50.1531%, 47.2%) rotate(0deg) scale(1, 1); animation-timing-function: cubic-bezier(0.33, 0, 0.66, 0.33); }
+    30.8%, 100% { opacity: 1; transform: translate(50.1531%, 47.2%) rotate(0deg) scale(1, 1); }
+}
+@-webkit-keyframes logo_netflix_brand
+{
+    0%, 15.2% { opacity: 0; -webkit-transform: translate(50.102%, 42.8%) rotate(0deg) scale(1, 1); -webkit-animation-timing-function: cubic-bezier(0.33, 0, 0.66, 0.33); }
+    15.4% { opacity: 0; -webkit-transform: translate(50.102%, 42.8%) rotate(0deg) scale(1, 1); -webkit-animation-timing-function: cubic-bezier(0.33, 0, 0.66, 0.33); }
+    41%, 100% { opacity: 1; -webkit-transform: translate(50.102%, 42.8%) rotate(0deg) scale(1, 1); }
+}
+@-moz-keyframes logo_netflix_brand
+{
+    0%, 15.2% { opacity: 0; -moz-transform: translate(50.102%, 42.8%) rotate(0deg) scale(1, 1); -moz-animation-timing-function: cubic-bezier(0.33, 0, 0.66, 0.33); }
+    15.4% { opacity: 0; -moz-transform: translate(50.102%, 42.8%) rotate(0deg) scale(1, 1); -moz-animation-timing-function: cubic-bezier(0.33, 0, 0.66, 0.33); }
+    41%, 100% { opacity: 1; -moz-transform: translate(50.102%, 42.8%) rotate(0deg) scale(1, 1); }
+}
+@-ms-keyframes logo_netflix_brand
+{
+    0%, 15.2% { opacity: 0; -ms-transform: translate(50.102%, 42.8%) rotate(0deg) scale(1, 1); -ms-animation-timing-function: cubic-bezier(0.33, 0, 0.66, 0.33); }
+    15.4% { opacity: 0; -ms-transform: translate(50.102%, 42.8%) rotate(0deg) scale(1, 1); -ms-animation-timing-function: cubic-bezier(0.33, 0, 0.66, 0.33); }
+    41%, 100% { opacity: 1; -ms-transform: translate(50.102%, 42.8%) rotate(0deg) scale(1, 1); }
+}
+@-o-keyframes logo_netflix_brand
+{
+    0%, 15.2% { opacity: 0; -o-transform: translate(50.102%, 42.8%) rotate(0deg) scale(1, 1); -o-animation-timing-function: cubic-bezier(0.33, 0, 0.66, 0.33); }
+    15.4% { opacity: 0; -o-transform: translate(50.102%, 42.8%) rotate(0deg) scale(1, 1); -o-animation-timing-function: cubic-bezier(0.33, 0, 0.66, 0.33); }
+    41%, 100% { opacity: 1; -o-transform: translate(50.102%, 42.8%) rotate(0deg) scale(1, 1); }
+}
+@keyframes logo_netflix_brand
+{
+    0%, 15.2% { opacity: 0; transform: translate(50.102%, 42.8%) rotate(0deg) scale(1, 1); animation-timing-function: cubic-bezier(0.33, 0, 0.66, 0.33); }
+    15.4% { opacity: 0; transform: translate(50.102%, 42.8%) rotate(0deg) scale(1, 1); animation-timing-function: cubic-bezier(0.33, 0, 0.66, 0.33); }
+    41%, 100% { opacity: 1; transform: translate(50.102%, 42.8%) rotate(0deg) scale(1, 1); }
+}
+@-webkit-keyframes t_baseline
+{
+    0%, 46% { opacity: 0; -webkit-transform: translate(83.3367%, 50.76%) rotate(0.00000001deg) scale(0.48, 0.48); -webkit-animation-timing-function: cubic-bezier(0.33, 0.66, 0.66, 0.99); }
+    46.2% { opacity: 0; -webkit-transform: translate(83.3367%, 50.76%) rotate(0.00000001deg) scale(0.48, 0.48); -webkit-animation-timing-function: cubic-bezier(0.33, 0.66, 0.66, 0.99); }
+    84.6%, 100% { opacity: 1; -webkit-transform: translate(83.3367%, 50.76%) rotate(0.00000001deg) scale(0.48, 0.48); }
+}
+@-moz-keyframes t_baseline
+{
+    0%, 46% { opacity: 0; -moz-transform: translate(83.3367%, 50.76%) rotate(0.00000001deg) scale(0.48, 0.48); -moz-animation-timing-function: cubic-bezier(0.33, 0.66, 0.66, 0.99); }
+    46.2% { opacity: 0; -moz-transform: translate(83.3367%, 50.76%) rotate(0.00000001deg) scale(0.48, 0.48); -moz-animation-timing-function: cubic-bezier(0.33, 0.66, 0.66, 0.99); }
+    84.6%, 100% { opacity: 1; -moz-transform: translate(83.3367%, 50.76%) rotate(0.00000001deg) scale(0.48, 0.48); }
+}
+@-ms-keyframes t_baseline
+{
+    0%, 46% { opacity: 0; -ms-transform: translate(83.3367%, 50.76%) rotate(0.00000001deg) scale(0.48, 0.48); -ms-animation-timing-function: cubic-bezier(0.33, 0.66, 0.66, 0.99); }
+    46.2% { opacity: 0; -ms-transform: translate(83.3367%, 50.76%) rotate(0.00000001deg) scale(0.48, 0.48); -ms-animation-timing-function: cubic-bezier(0.33, 0.66, 0.66, 0.99); }
+    84.6%, 100% { opacity: 1; -ms-transform: translate(83.3367%, 50.76%) rotate(0.00000001deg) scale(0.48, 0.48); }
+}
+@-o-keyframes t_baseline
+{
+    0%, 46% { opacity: 0; -o-transform: translate(83.3367%, 50.76%) rotate(0.00000001deg) scale(0.48, 0.48); -o-animation-timing-function: cubic-bezier(0.33, 0.66, 0.66, 0.99); }
+    46.2% { opacity: 0; -o-transform: translate(83.3367%, 50.76%) rotate(0.00000001deg) scale(0.48, 0.48); -o-animation-timing-function: cubic-bezier(0.33, 0.66, 0.66, 0.99); }
+    84.6%, 100% { opacity: 1; -o-transform: translate(83.3367%, 50.76%) rotate(0.00000001deg) scale(0.48, 0.48); }
+}
+@keyframes t_baseline
+{
+    0%, 46% { opacity: 0; transform: translate(83.3367%, 50.76%) rotate(0.00000001deg) scale(0.48, 0.48); animation-timing-function: cubic-bezier(0.33, 0.66, 0.66, 0.99); }
+    46.2% { opacity: 0; transform: translate(83.3367%, 50.76%) rotate(0.00000001deg) scale(0.48, 0.48); animation-timing-function: cubic-bezier(0.33, 0.66, 0.66, 0.99); }
+    84.6%, 100% { opacity: 1; transform: translate(83.3367%, 50.76%) rotate(0.00000001deg) scale(0.48, 0.48); }
+}
+

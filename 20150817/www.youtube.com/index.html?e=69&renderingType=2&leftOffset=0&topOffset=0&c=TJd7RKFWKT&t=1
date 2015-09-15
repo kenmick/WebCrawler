@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta data-template-name="Template_H5T_mhexpanding-970x250-ytplayer">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" href="gwdyoutube_style.css">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <script type="text/javascript" src="/879366/Enabler_01_77.js"></script>
+  <script type="text/javascript" src="https://www.gstatic.com/external_hosted/polymer/custom.elements.min.js"></script>
+  <script type="text/javascript" src="https://www.gstatic.com/ads/ci/ytclosebutton/1/ytclosebutton_min.js"></script>
+  <script type="text/javascript" src="gwdyoutube_min.js"></script>
+  <script src="https://www.gstatic.com/ads/ci/studio/pixelloader/1/pixelloader_min.js"></script>
+</head>
+<body>
+    <div id="main-container">
+      <!-- Collapsed Conent -->
+      <div id="collapsed-content">
+        <div id="collapsed-exit"></div>
+        <div class="feature-collapsed" id="feature-collapsed">
+        </div>
+        <img src="fondRetract.jpg" class="fond_nonexpand">
+        <img src="mc_baseline.png" class="baseline">
+        <img src="produit.png" class="packshot">
+        <img src="logo_diesel.png" class="logo">
+        <img src="animWatchNowExpand_3boucle.gif" class="voir" id="btn-gif">
+        <img src="animWatchNowExpand.gif" class="voir_static" id="btn-static">
+        <div id="expand-button" class="button"></div>
+      </div>
+
+      <!-- Expand Content -->
+      <div id="expanded-content">        
+        <div id="expanded-exit"></div>
+        <div class="feature-expanded" id="feature-expanded">
+        </div>
+        <img src="background.jpg" class="fond_expand">
+        <img src="cadre.png" class="cadre">
+        <img src="animDiscoverExpand_3boucle.gif" class="decouvrir">
+        <img src="expanded.png" class="fermer">
+        <div id="collapse-button"></div>
+      </div>
+      <ci-ytclosebutton id="yt-close" theme="white"></ci-ytclosebutton>
+    </div>
+
+  <script src="logic.js"></script>
+</body>
+</html>

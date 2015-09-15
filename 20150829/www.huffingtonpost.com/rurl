@@ -1,0 +1,175 @@
+/* 
+ * Mediaplex Flash template, flash_new
+ * Maintained By: Christopher D. Robison (cdr@cdr2.com) and 
+ * Heath Matthew Kornblum (heathkornblum@gmail.com) 
+ * Last Modified: 8/4/2015 3:43 pm
+ *
+*/
+(function(){
+	function mojoProtocol() {
+		 var regexx = /\d+-\d+-\d+-\d+/;
+		 var theMpck = "adfarm.mediaplex.com/ad/ck/25521-185134-34920-31?mpt=4661636967894085289&mpcr=63591066&mpcrset=root";
+		 var myplid = regexx.test(theMpck) ? theMpck.match(/\d+-\d+-\d+-\d+/) : null;
+		 var myURL = "";
+		 try{
+			if (myplid != null) {
+				var tags = window.document.getElementsByTagName("script");
+				for (var i=0; i < tags.length; i++) {
+					if (tags.item(i).src){
+					  if (tags.item(i).src.match(myplid)) {
+						myURL = tags.item(i).src;  
+					  }
+					}
+				}
+				window.mojoProto = myURL.substring(0,6);
+			} else {
+			  window.mojoProto = "http:";	
+			}
+			
+		 } catch (e) {
+			 window.mojoProto = "http:";
+		 }		
+                 if (window.mojoProto == "" || window.mojoProto == null) window.mojoProto = window.location.protocol;
+
+
+	}
+	mojoProtocol();
+	var mojopro = window.mojoProto;
+	if (mojopro == "https:") {
+		mojopro = "https://secure.img-cdn.mediaplex.com/0/";
+	}	else  {
+		mojopro = "http://img-cdn.mediaplex.com/0/";
+  	};  
+	var mpvce = '<mpvce/>';
+	mpenhanced = "",
+	mpenhancedurl = "" || "http://www.conversantmedia.com/ad-choices";
+	if (mpvce == 1) {
+		mpvclick = encodeURIComponent("http://pr.ybp.yahoo.com/cj/cd/3E5QINCQTjmrnI4YgV4ffjQA8qCtKPYkWPal4LUfgjYxO08X4nzHmOi-U528CLPDx3DbHC9m3sVYO3-v92e5l4SjrY9ZHmKx7C6fho1gLb8hlxrG8m-v09qkmJFerUsE/rurl/");
+		mpvc = mpvclick;
+	}
+	else if (mpvce == 2) {
+		mpvclick2 = encodeURIComponent("http://pr.ybp.yahoo.com/cj/cd/3E5QINCQTjmrnI4YgV4ffjQA8qCtKPYkWPal4LUfgjYxO08X4nzHmOi-U528CLPDx3DbHC9m3sVYO3-v92e5l4SjrY9ZHmKx7C6fho1gLb8hlxrG8m-v09qkmJFerUsE/rurl/");
+		mpvc = encodeURIComponent(mpvclick2);
+	}
+	else
+  	{
+		mpvc = ("http://pr.ybp.yahoo.com/cj/cd/3E5QINCQTjmrnI4YgV4ffjQA8qCtKPYkWPal4LUfgjYxO08X4nzHmOi-U528CLPDx3DbHC9m3sVYO3-v92e5l4SjrY9ZHmKx7C6fho1gLb8hlxrG8m-v09qkmJFerUsE/rurl/");
+  	}
+	var mpcke = '<mpcke/>';
+	if (mpcke == 1) {
+		mpcclick = encodeURIComponent("adfarm.mediaplex.com%2Fad%2Fck%2F25521-185134-34920-31%3Fmpt%3D4661636967894085289%26mpcr%3D63591066%26mpcrset%3Droot");
+		mpck = "http://" + mpcclick;
+	}
+	else if (mpcke == 2) {
+		mpcclick2 = encodeURIComponent("adfarm.mediaplex.com%2Fad%2Fck%2F25521-185134-34920-31%3Fmpt%3D4661636967894085289%26mpcr%3D63591066%26mpcrset%3Droot");
+		mpck = "http://" + encodeURIComponent(mpcclick2);
+	}
+	else if (mpcke == -1) { 
+		mpcclick = "adfarm.mediaplex.com/ad/ck/25521-185134-34920-31?mpt=4661636967894085289&mpcr=63591066&mpcrset=root"; 
+		mpck = "http://" + mpcclick; 
+	} 
+	else
+  	{
+		mpck = ("http://adfarm.mediaplex.com%2Fad%2Fck%2F25521-185134-34920-31%3Fmpt%3D4661636967894085289%26mpcr%3D63591066%26mpcrset%3Droot");
+  	}
+	var mp_swver = 0, mp_html = "", mp_crpv = 9 * 1;
+	mp_html += "<div id='mp_wrapper63591066' style='position:relative;display:inline-block;width:300px;height:250px;'>";
+	if( navigator.mimeTypes && navigator.mimeTypes["application/x-shockwave-flash"] && navigator.mimeTypes["application/x-shockwave-flash"].enabledPlugin ) {
+  		if( navigator.plugins && navigator.plugins["Shockwave Flash"] ) {
+    		mp_swver = (navigator.plugins["Shockwave Flash"].description.split( " " ))[2];
+  		}
+	} else if ( navigator.userAgent && navigator.userAgent.indexOf("MSIE") >= 0 && ( navigator.userAgent.indexOf("Windows") >= 0 ) ) {
+		var mp_axo,e;
+  		for( var mp_i = 11; mp_i > 6; mp_i-- ) {
+			try {
+				mp_axo = new ActiveXObject("ShockwaveFlash.ShockwaveFlash." + mp_i );
+				mp_swver = mp_i;
+				break;
+			} catch (e) {}
+		}
+	}
+	var activeXVersion = "";
+	try {
+		var myxo = new ActiveXObject("ShockwaveFlash.ShockwaveFlash");
+		activeXVersion = myxo.getVariable("$version");
+	} catch (e) {
+	  activeXVersion = "";
+	}
+    var errorMode = false;
+	if ( (activeXVersion.indexOf("18,0,0,203") > -1) || (activeXVersion.indexOf("13,0,0,302") > -1) ) {
+		document.write('<a href="http://pr.ybp.yahoo.com/cj/cd/3E5QINCQTjmrnI4YgV4ffjQA8qCtKPYkWPal4LUfgjYxO08X4nzHmOi-U528CLPDx3DbHC9m3sVYO3-v92e5l4SjrY9ZHmKx7C6fho1gLb8hlxrG8m-v09qkmJFerUsE/rurl/http://adfarm.mediaplex.com/ad/ck/25521-185134-34920-31?mpt=4661636967894085289&mpcr=63591066&mpcrset=root" target="_blank"><img src="' + mojopro + '25521/FR_2015-08-17_Knitwear_300x250.jpg" width="300" height="250" border="0" alt=""></a>');
+		errorMode = true;
+	}
+	try {
+		if ( (navigator.plugins["Shockwave Flash"].version == "18.0.0.203" || navigator.plugins["Shockwave Flash"].version == "13.0.0.302" ) && errorMode == false ) {
+		document.write('<a href="http://pr.ybp.yahoo.com/cj/cd/3E5QINCQTjmrnI4YgV4ffjQA8qCtKPYkWPal4LUfgjYxO08X4nzHmOi-U528CLPDx3DbHC9m3sVYO3-v92e5l4SjrY9ZHmKx7C6fho1gLb8hlxrG8m-v09qkmJFerUsE/rurl/http://adfarm.mediaplex.com/ad/ck/25521-185134-34920-31?mpt=4661636967894085289&mpcr=63591066&mpcrset=root" target="_blank"><img src="' + mojopro + '25521/FR_2015-08-17_Knitwear_300x250.jpg" width="300" height="250" border="0" alt=""></a>');
+			errorMode = true;
+		}
+	} catch (e) {
+		
+	}
+	if( mp_swver >= mp_crpv && errorMode == false) {
+  		mp_html +=  '<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" ';
+  		mp_html += ' codebase="https://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,40,0" id="63591066" name="movie63591066" width="300" height="250">';
+  		if( mp_swver > 5 ) {
+			mp_html += '<param name="FlashVars" value="clickTAG=' + mpvc + mpck +'&clickTag=' + mpvc + mpck + '&clickTag1=' + mpvc + mpck + '">';
+			mp_html += '<param name="movie" value="' + mojopro + '25521/FR_2015-08-17_Knitwear_300x250.swf">';
+			mp_html += '<param name="wmode" value="opaque">';
+			mp_html += '<param name="allowscriptaccess" value="always">';
+
+  		} 
+  		else {
+			mp_html += '<param name="movie" value="' + mojopro + '25521/FR_2015-08-17_Knitwear_300x250.swf?clickTAG=' + mpvc + mpck +'&clickTag=' + mpvc + mpck + '&clickTag1=' + mpvc + mpck + '">';
+			mp_html += '<param name="wmode" value="opaque">';
+			mp_html += '<param name="allowscriptaccess" value="always">';
+  		}
+  		if( mp_swver > 5 ) {
+			mp_html += '<embed wmode="opaque" allowscriptaccess="always" name="FR_2015-08-17_Knitwear_300x250.swf" src="' + mojopro + '25521/FR_2015-08-17_Knitwear_300x250.swf" FlashVars="clickTAG=' + mpvc + mpck  +'&clickTag=' + mpvc + mpck  +'&clickTag1=' + mpvc + mpck  + '"';
+		}
+ 		else {
+    		mp_html += '<embed wmode="opaque" allowscriptaccess="always" NAME="FR_2015-08-17_Knitwear_300x250.swf" src="' + mojopro + '25521/FR_2015-08-17_Knitwear_300x250.swf?clickTAG=' + mpvc + mpck  +'&clickTag=' + mpvc + mpck  +'&clickTag1=' + mpvc + mpck  + '"';
+		}
+ 		mp_html += ' swLiveConnect="false" width="300" height="250" type="application/x-shockwave-flash" pluginspage="">';
+  		mp_html += '</embed>';
+  		mp_html += '</object>';
+  		mp_html += (mpenhanced) ? "<div style='position:absolute;z-index:10500;top:0px;right:1px;width:17px;height15px;z-index:999999;overflow:hidden;' onmouseover='this.style.width = \"75px\";document.getElementById(\"en_sm_63591066\").style.display=\"none\";document.getElementById(\"en_lg_63591066\").style.display=\"inline\";' onmouseout='this.style.width = \"17px\";document.getElementById(\"en_sm_63591066\").style.display=\"inline\";document.getElementById(\"en_lg_63591066\").style.display=\"none\";'><a href='" + mpenhancedurl + "' target='_blank'><img src='" + mojopro + "16179/109012/IconOnlyCollisionMarker.png' border='0'  id='en_sm_63591066'  style='display:inline'/><img src='" + mojopro + "16179/109012/CollisionAdMarker.png' border='0' id='en_lg_63591066'  style='display:none' /></a></div>" : "";
+	
+  		mp_html += '</div>';
+    		document.write( mp_html );
+	} else if( !( navigator.appName && navigator.appName.indexOf("Netscape") >= 0 && navigator.appVersion.indexOf("2.") >= 0 ) ) {
+
+  		document.write('<a href="http://pr.ybp.yahoo.com/cj/cd/3E5QINCQTjmrnI4YgV4ffjQA8qCtKPYkWPal4LUfgjYxO08X4nzHmOi-U528CLPDx3DbHC9m3sVYO3-v92e5l4SjrY9ZHmKx7C6fho1gLb8hlxrG8m-v09qkmJFerUsE/rurl/http://adfarm.mediaplex.com/ad/ck/25521-185134-34920-31?mpt=4661636967894085289&mpcr=63591066&mpcrset=root" target="_blank"><img src="' + mojopro + '25521/FR_2015-08-17_Knitwear_300x250.jpg" width="300" height="250" border="0" alt=""></a>');
+	} else {
+  		document.write('<a href="http://pr.ybp.yahoo.com/cj/cd/3E5QINCQTjmrnI4YgV4ffjQA8qCtKPYkWPal4LUfgjYxO08X4nzHmOi-U528CLPDx3DbHC9m3sVYO3-v92e5l4SjrY9ZHmKx7C6fho1gLb8hlxrG8m-v09qkmJFerUsE/rurl/http://adfarm.mediaplex.com/ad/ck/25521-185134-34920-31?mpt=4661636967894085289&mpcr=63591066&mpcrset=root" target="_blank"><img src="' + mojopro + '25521/FR_2015-08-17_Knitwear_300x250.jpg" width="300" height="250" border="0" alt=""></a>');
+        }
+        document.close();
+})();
+
+   function mojo_clickthru() {
+	     var OOBImg = new Image();
+         if (typeof (mpOOBClickTrack) !== 'undefined') {
+            try {
+				OOBImg.src = mpOOBClickTrack;
+			} catch (e) {
+			  if (window.console && window.console.error) {
+				   window.console.error(e.message);
+			  }
+			}
+         }
+   }
+
+//-->
+
+var mpjs = String("https://secure.img-cdn.mediaplex.com/0/25985/adclear_fr.js?camp=FR_BB_CC_ME_20_00001&ts=4661636967894085289");
+if (mpjs && typeof mpjs === "string" && mpjs.length > 0 && mpjs!="<mp"+"jsp/>") {
+  var mpscr, head = document.getElementsByTagName("head")[0] || document.documentElement;
+  mpjs = mpjs.split( " " );
+  for( var i = 0; i < mpjs.length; i++ ) {
+    mpscr = document.createElement("script");
+    mpscr.type = "text/javascript";
+                mpscr.async = true;
+    mpscr.src = mpjs[i];
+    head.insertBefore(mpscr, head.firstChild);
+  }
+}
+

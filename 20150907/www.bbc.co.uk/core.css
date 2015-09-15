@@ -1,0 +1,434 @@
+@font-face {
+  font-family: 'gelicons-core';
+  src:url('../fonts/gelicons-core.eot');
+  src:url('../fonts/gelicons-core.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/gelicons-core.ttf') format('truetype'),
+    url('../fonts/gelicons-core.woff') format('woff'),
+    url('../fonts/gelicons-core.svg#gelicons-core') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'gelicons-media';
+  src:url('../fonts/gelicons-media.eot');
+  src:url('../fonts/gelicons-media.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/gelicons-media.ttf') format('truetype'),
+    url('../fonts/gelicons-media.woff') format('woff'),
+    url('../fonts/gelicons-media.svg#gelicons-media') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'gelicons-social';
+  src:url('../fonts/gelicons-social.eot');
+  src:url('../fonts/gelicons-social.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/gelicons-social.ttf') format('truetype'),
+    url('../fonts/gelicons-social.woff') format('woff'),
+    url('../fonts/gelicons-social.svg#gelicons-social') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.gelicon {
+    font-family: 'gelicons-core';
+}
+.gelicon, .gelicon:before {
+  speak: none;
+  font-style: normal!important;
+  font-weight: normal!important;
+  text-decoration: none!important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.gelicon--leading:before {
+  margin-right: 8px;
+}
+.gelicon--trailing:before {
+  margin-left: 8px;
+}
+/* Set font on all icons (need to do this as Opera doesn't fallback per Glyph) */
+/* On the icon, not :before as IE7 hack injects the icon into the element instead of a pseudo element */
+.gelicon--iplayer,.gelicon--iplayer-radio,.gelicon--previous,.gelicon--up,.gelicon--down,
+.gelicon--next,.gelicon--tobottom,.gelicon--totop,.gelicon--zoomin,.gelicon--zoomout,
+.gelicon--search,.gelicon--print,.gelicon--print-invert,.gelicon--yes,.gelicon--no,
+.gelicon--add,.gelicon--help,.gelicon--info,.gelicon--alert,.gelicon--expires,.gelicon--duration,
+.gelicon--alarm,.gelicon--countdown,.gelicon--grid,.gelicon--chapters,.gelicon--list,
+.gelicon--listthumb,.gelicon--lock,.gelicon--unlock,.gelicon--home,.gelicon--new,.gelicon--vocab,
+.gelicon--degraded,.gelicon--calendar-mini,.gelicon--calendar,.gelicon--mail,.gelicon--location,
+.gelicon--load,.gelicon--settings,.gelicon--embed,.gelicon--external,.gelicon--traffic,
+.gelicon--refresh,.gelicon--link,.gelicon--point,.gelicon--upload,.gelicon--download,
+.gelicon--finder,.gelicon--stations,.gelicon--untitled,.gelicon--untitled-2,.gelicon--quote,
+.gelicon--calendar-30,.gelicon--download-desktop,.gelicon--collection {
+  font-family: 'gelicons-core' !important;
+}
+
+/* Begin Icons */
+.gelicon--iplayer:before {
+    content: "\e000";
+}
+.gelicon--iplayer-radio:before {
+    content: "\e001";
+}
+.gelicon--previous:before {
+    content: "\e002";
+}
+.gelicon--up:before {
+    content: "\e003";
+}
+.gelicon--down:before {
+    content: "\e004";
+}
+.gelicon--next:before {
+    content: "\e005";
+}
+.gelicon--tobottom:before {
+    content: "\e006";
+}
+.gelicon--totop:before {
+    content: "\e007";
+}
+.gelicon--zoomin:before {
+    content: "\e008";
+}
+.gelicon--zoomout:before {
+    content: "\e00a";
+}
+.gelicon--search:before {
+    content: "\e009";
+}
+.gelicon--print:before {
+    content: "\e00b";
+}
+.gelicon--print-invert:before {
+    content: "\e00c";
+}
+.gelicon--yes:before {
+    content: "\e00d";
+}
+.gelicon--no:before {
+    content: "\e00e";
+}
+.gelicon--add:before {
+    content: "\e00f";
+}
+.gelicon--help:before {
+    content: "\e010";
+}
+.gelicon--info:before {
+    content: "\e011";
+}
+.gelicon--alert:before {
+    content: "\e012";
+}
+.gelicon--expires:before {
+    content: "\e013";
+}
+.gelicon--duration:before {
+    content: "\e014";
+}
+.gelicon--alarm:before {
+    content: "\e015";
+}
+.gelicon--countdown:before {
+    content: "\e016";
+}
+.gelicon--grid:before {
+    content: "\e017";
+}
+.gelicon--chapters:before {
+    content: "\e018";
+}
+.gelicon--list:before {
+    content: "\e019";
+}
+.gelicon--listthumb:before {
+    content: "\e01a";
+}
+.gelicon--lock:before {
+    content: "\e01b";
+}
+.gelicon--unlock:before {
+    content: "\e01c";
+}
+.gelicon--home:before {
+    content: "\e01d";
+}
+.gelicon--new:before {
+    content: "\e01e";
+}
+.gelicon--vocab:before {
+    content: "\e01f";
+}
+.gelicon--degraded:before {
+    content: "\e020";
+}
+.gelicon--calendar-mini:before {
+    content: "\e021";
+}
+.gelicon--calendar:before {
+    content: "\e022";
+}
+.gelicon--mail:before {
+    content: "\e023";
+}
+.gelicon--location:before {
+    content: "\e024";
+}
+.gelicon--load:before {
+    content: "\e025";
+}
+.gelicon--settings:before {
+    content: "\e026";
+}
+.gelicon--embed:before {
+    content: "\e027";
+}
+.gelicon--external:before {
+    content: "\e028";
+}
+.gelicon--traffic:before {
+    content: "\e029";
+}
+.gelicon--refresh:before {
+    content: "\e02a";
+}
+.gelicon--link:before {
+    content: "\e02b";
+}
+.gelicon--point:before {
+    content: "\e02c";
+}
+.gelicon--upload:before {
+    content: "\e02d";
+}
+.gelicon--download:before {
+    content: "\e02e";
+}
+.gelicon--finder:before {
+    content: "\e02f";
+}
+.gelicon--stations:before {
+    content: "\e030";
+}
+.gelicon--untitled:before {
+    content: "\42";
+}
+.gelicon--untitled-2:before {
+    content: "\43";
+}
+.gelicon--quote:before {
+    content: "\22";
+}
+.gelicon--playlister-add:before {
+    content: "\e031";
+}
+.gelicon--calendar-30:before {
+    content: "\e032";
+}
+.gelicon--download-desktop:before {
+    content: "\e033";
+}
+.gelicon--collection:before {
+    content: "\e034";
+}
+
+/* Media icons */
+.gelicon--live,.gelicon--subtitles,.gelicon--ws,.gelicon--sd,.gelicon--hd,.gelicon--bsl,
+.gelicon--ad,.gelicon--3d,.gelicon--tv,.gelicon--radio,.gelicon--mobile,.gelicon--desktop,
+.gelicon--game,.gelicon--tablet,.gelicon--quiz,.gelicon--guidance,.gelicon--record,
+.gelicon--listen,.gelicon--play,.gelicon--pause,.gelicon--rewind,.gelicon--forward,
+.gelicon--restart,.gelicon--image,.gelicon--document,.gelicon--slideshow,.gelicon--activity,
+.gelicon--360,.gelicon--podcast,.gelicon--newsletter,.gelicon--rss,.gelicon--fullscreen,
+.gelicon--expand,.gelicon--popout,.gelicon--mute,.gelicon--music-on,.gelicon--music-off,.gelicon--windows,.gelicon--apple,.gelicon--android {
+    font-family: 'gelicons-media' !important;
+}
+
+/* Begin Icons */
+.gelicon--live:before {
+    content: "\e100";
+}
+.gelicon--subtitles:before {
+    content: "\e101";
+}
+.gelicon--ws:before {
+    content: "\e102";
+}
+.gelicon--sd:before {
+    content: "\e103";
+}
+.gelicon--hd:before {
+    content: "\e104";
+}
+.gelicon--bsl:before {
+    content: "\e105";
+}
+.gelicon--ad:before {
+    content: "\e106";
+}
+.gelicon--3d:before {
+    content: "\e107";
+}
+.gelicon--tv:before {
+    content: "\e108";
+}
+.gelicon--radio:before {
+    content: "\e109";
+}
+.gelicon--mobile:before {
+    content: "\e10a";
+}
+.gelicon--desktop:before {
+    content: "\e10b";
+}
+.gelicon--game:before {
+    content: "\e10c";
+}
+.gelicon--tablet:before {
+    content: "\e10d";
+}
+.gelicon--quiz:before {
+    content: "\e10e";
+}
+.gelicon--guidance:before {
+    content: "\e10f";
+}
+.gelicon--record:before {
+    content: "\e110";
+}
+.gelicon--listen:before {
+    content: "\e111";
+}
+.gelicon--play:before {
+    content: "\e112";
+}
+.gelicon--pause:before {
+    content: "\e113";
+}
+.gelicon--rewind:before {
+    content: "\e114";
+}
+.gelicon--forward:before {
+    content: "\e115";
+}
+.gelicon--restart:before {
+    content: "\e116";
+}
+.gelicon--image:before {
+    content: "\e117";
+}
+.gelicon--document:before {
+    content: "\e118";
+}
+.gelicon--slideshow:before {
+    content: "\e119";
+}
+.gelicon--activity:before {
+    content: "\e11a";
+}
+.gelicon--360:before {
+    content: "\e11b";
+}
+.gelicon--podcast:before {
+    content: "\e11c";
+}
+.gelicon--newsletter:before {
+    content: "\e11d";
+}
+.gelicon--rss:before {
+    content: "\e11e";
+}
+.gelicon--fullscreen:before {
+    content: "\e11f";
+}
+.gelicon--expand:before {
+    content: "\e120";
+}
+.gelicon--popout:before {
+    content: "\e121";
+}
+.gelicon--mute:before {
+    content: "\e122";
+}
+.gelicon--music-on:before {
+    content: "\e123";
+}
+.gelicon--music-off:before {
+    content: "\e124";
+}
+.gelicon--windows:before {
+    content: "\e125";
+}
+.gelicon--apple:before {
+    content: "\e126";
+}
+.gelicon--android:before {
+    content: "\e127";
+}
+
+/* Social Icons */
+.gelicon--share,.gelicon--recommend,.gelicon--comments,.gelicon--blog,.gelicon--smiley,.gelicon--love,
+.gelicon--love-outline,.gelicon--twitter,.gelicon--facebook,.gelicon--google-plus,.gelicon--google, .gelicon--spotify,
+.gelicon--pinterest, .gelicon--tumblr, .gelicon--stumbleupon, .gelicon--linkedin, .gelicon--reddit, .gelicon--digg {
+    font-family: 'gelicons-social' !important;
+}
+
+
+
+/* GEL */
+.gelicon--share:before {
+    content: "\e200";
+}
+.gelicon--recommend:before {
+    content: "\e201";
+}
+.gelicon--comments:before {
+    content: "\e202";
+}
+.gelicon--blog:before {
+    content: "\e203";
+}
+.gelicon--smiley:before {
+    content: "\e204";
+}
+.gelicon--love:before {
+    content: "\e205";
+}
+.gelicon--love-outline:before {
+    content: "\e206";
+}
+
+
+/* THIRD PARTY */
+.gelicon--twitter:before {
+    content: "\e300";
+}
+.gelicon--facebook:before {
+    content: "\e301";
+}
+.gelicon--google-plus:before {
+    content: "\e302";
+}
+.gelicon--google:before {
+    content: "\e303";
+}
+.gelicon--spotify:before {
+    content: "\e304";
+}
+.gelicon--pinterest:before {
+    content: "\e305";
+}
+.gelicon--tumblr:before {
+    content: "\e306";
+}
+.gelicon--stumbleupon:before {
+    content: "\e307";
+}
+.gelicon--linkedin:before {
+    content: "\e308";
+}
+.gelicon--reddit:before {
+    content: "\e309";
+}
+.gelicon--digg:before {
+    content: "\e30a";
+}

@@ -1,0 +1,35 @@
+/**
+  * ä¾§è¾¹æ 
+  * @author fuwenqing@youku.com
+  *
+  */
+(function(){
+	
+	UC_DOMAIN = window.UC_DOMAIN || "i.youku.com";
+	
+	var SideTool = {
+		tool: 'sideTool',
+		token: '',
+		curpanel: '',
+		loginUID: 0,
+		tmpUID: 0,
+		isfirstcome: true,
+		shoppingisshow: true,
+		gotopisshow: true,
+
+		classOpen: 'yk-toolbar-group-open',
+		classHover: 'yk-toolbar-group-hover',
+		$curOpenGroup:null,
+		scrollBarWidth:null,
+
+		modleicon:{
+			appQrcode:{modlename:'appQrcode',modleitemid:'iconitemqrcode',modlegroupid:'icongroupqrcode',callback:'SideTool.showAppQrcode',isshow:true},
+			eshop: {modlename:'eshop',modleitemid:'iconitemshopping',modlegroupid:'icongroupshopping',callback:'SideTool.showShoppingList',isshow:true},
+			gotop: {modlename:'gotop',modleitemid:'iconitemgotop',modlegroupid:'icongroupgotop',callback:'',isshow:true},
+			lightoff: {modlename:'lightoff',modleitemid:'iconitemlighton',modlegroupid:'lightoff',callback:'',isshow:true},
+			feedback: {modlename:'feedback',modleitemid:'iconitemfeedback',modlegroupid:'icongroupfeedback',callback:'',isshow:true}
+		},
+		panel: {
+			shopping:		'panelshopping',
+			shoppinginfo:   'panelshoppinginfo',
+			shoppinglist:   'panelshoppin

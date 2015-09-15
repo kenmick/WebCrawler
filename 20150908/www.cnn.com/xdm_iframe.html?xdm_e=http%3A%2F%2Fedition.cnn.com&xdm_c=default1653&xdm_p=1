@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>easyXDM cross-domain XMLHttpRequest provider</title>
+		<script type="text/javascript" src="http://z.cdn.turner.com/xslo/cvp/easyxdm/js/easyXDM.ugly.js"></script>
+		<script type="text/javascript">
+			easyXDM.DomHelper.requiresJSON("http://z.cdn.turner.com/xslo/cvp/easyxdm/js/json2.ugly.js");
+		</script>
+		<script type="text/javascript">
+
+/*
+ * This is a CORS (Cross-Origin Resource Sharing) and AJAX enabled endpoint for easyXDM.
+ * The ACL code is adapted from pmxdr (http://github.com/eligrey/pmxdr/) by Eli Grey (http://eligrey.com/)
+ *
+ */
+// From http://peter.michaux.ca/articles/feature-detection-state-of-the-art-browser-scripting
+function isHostMethod(object, property) {
+	var t = typeof object[property];
+	return t === 'function' || (!!(t === 'object' && object[property])) || t === 'unknown';
+}
+
+/**
+ * Creates a cross-browser XMLHttpRequest object
+ * @return {XMLHttpRequest} A XMLHttpRequest object.
+ */
+var getXhr = (function () {
+	var item;
+
+	if (isHostMethod(window, "XMLHttpRequest")) {
+		return function () {
+			return new XMLHttpRequest();
+		};
+	}
+
+	item = (function () {
+		var list = ["Microsoft", "Msxml2", "Msxml3"],
+			i = list.length,
+			obj;
+		while (i--) {
+			try {
+				item = list[i] + ".XMLHTTP";
+				obj = new ActiveXObject(item);
+				return item;
+			} catch (e) {
+			}
+		}
+	}());
+
+	return function () {
+		return new ActiveXObject(item);
+	};
+}());
+
+// this file is by default set up to use Access Control - this means that it will use the headers set by the server to decide whether or not to allow the call to return
+var useAccessControl = false;
+// always trusted origins, can be exact strings or regular expressions
+var alwaysTrustedOrigins = [(/\.?turner\.com(:\d+)?$/)];
+
+// instantiate a new easyXDM object which will handle the request
+var remote = new easyXDM.Rpc({
+	// local: "/name.html",
+	swf: "http://i.cdn.turner.com/xslo/cvp/easyxdm/swf/easyxdm.swf"
+}, {
+	local: {
+		// define the exposed method
+		request: function (config, success, error) {
+			var isPOST = config.method === "POST",
+				pairs = [],
+				key = '',
+				data = '',
+				req,
+				prop = '',
+				timeout,
+				alwaysTrusted = true,
+				i = alwaysTrustedOrigins.length;
+
+			// apply default values if not set
+			easyXDM.apply(config, {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/x-www-form-urlencoded",
+					"X-Requested-With": "XMLHttpRequest"
+				},
+				success: Function.prototype,
+				error: function (msg) {
+					throw new Error(msg);
+				},
+				data: {},
+				timeout: 10 * 1000
+			}, true);
+
+			// set the CORS request header
+			// only if there is no XHR2 features
+			if (!window.XMLHttpRequest || !('withCredentials' in (new XMLHttpRequest))) {
+				config.headers.Origin = remote.origin;
+			}
+
+			// convert the data into a format we can send to the server
+			for (key in config.data) {
+				if (config.data.hasOwnProperty(key)) {
+					pairs.push(encodeURIComponent(key) + "=" + encodeURIComponent(config.data[key]));
+				}
+			}
+			data = pairs.join("&");
+
+			// create the XMLHttpRequest object
+			req = getXhr();
+			url = !isPOST && data
+				? config.url + (~config.url.indexOf('?') ? '&' : '?') + data
+				: config.url;
+			req.open(config.method, url, true);
+
+			// apply the request headers
+			for (prop in config.headers) {
+				if (config.headers.hasOwnProperty(prop) && config.headers[prop]) {
+					req.setRequestHeader(prop, config.headers[prop]);
+				}
+			}
+
+			// set a timeout
+			timeout = setTimeout(function () {
+				// reset the handler
+				req.onreadystatechange = Function.prototype;
+				req.abort();
+				req = null;
+				error({
+					message: "timeout after " + config.timeout + " second",
+					status: 0,
+					data: null,
+					toString: function () {
+						return this.message + " Status: " + this.status;
+					}
+				}, null);
+			}, config.timeout);
+
+			// check if this origin should always be trusted
+			while (i-- && !alwaysTrusted) {
+				if (alwaysTrustedOrigins[i] instanceof RegExp) {
+					alwaysTrusted = alwaysTrustedOrigins[i].test(remote.origin);
+				} else if (typeof alwaysTrustedOrigins[i] === "string") {
+					alwaysTrusted = (remote.origin === alwaysTrustedOrigins[i]);
+				}
+			}
+
+
+			// define the onreadystate handler
+			req.onreadystatechange = function () {
+				var rawHeaders,
+					headers,
+					headers_lowercase,
+					reHeader,
+					m,
+					errorMessage,
+					aclAllowedOrigin,
+					aclAllowedMethods;
+
+				if (req.readyState === 4) {
+					clearTimeout(timeout);
+
+					// parse the response headers
+					rawHeaders = req.getAllResponseHeaders();
+					headers = {};
+					headers_lowercase = {};
+					reHeader = /([\w-_]+):\s+(.*)$/gm;
+
+					while ((m = reHeader.exec(rawHeaders))) {
+						headers_lowercase[m[1].toLowerCase()] = headers[m[1]] = m[2];
+					}
+
+					if (req.status < 200 || req.status >= 300) {
+						if (useAccessControl) {
+							error("INVALID_STATUS_CODE");
+						} else {
+							error("INVALID_STATUS_CODE", {
+								status: req.status,
+								data: req.responseText
+							});
+						}
+					} else {
+
+						if (useAccessControl) {
+							// normalize the valuse access controls
+							aclAllowedOrigin = (headers_lowercase["access-control-allow-origin"] || "").replace(/\s/g, "");
+							aclAllowedMethods = (headers_lowercase["access-control-allow-methods"] || "").replace(/\s/g, "");
+
+							// determine if origin is trusted
+							if (alwaysTrusted || aclAllowedOrigin === "*" || aclAllowedOrigin.indexOf(remote.origin) !== -1) {
+								// determine if the request method was allowed
+								if (aclAllowedMethods && aclAllowedMethods !== "*" && aclAllowedMethods.indexOf(config.method) === -1) {
+									errorMessage = "DISALLOWED_REQUEST_METHOD";
+								}
+							} else {
+								errorMessage = "DISALLOWED_ORIGIN";
+							}
+
+						}
+
+						if (errorMessage) {
+							error(errorMessage);
+						} else {
+							success({
+								data: req.responseText,
+								status: req.status,
+								headers: headers
+							});
+						}
+					}
+
+					// reset the handler
+					req.onreadystatechange = Function.prototype;
+					req = null;
+				}
+			};
+
+			// issue the request
+			req.send(isPOST ? data : "");
+		}
+	}
+});
+
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

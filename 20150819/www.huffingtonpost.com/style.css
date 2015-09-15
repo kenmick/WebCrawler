@@ -1,0 +1,576 @@
+@font-face {
+    font-family: sfrblack;
+    src: url(../fonts/sfr-1.0-black-webfont.woff);
+    
+}
+
+@font-face {
+    font-family: sfrbold;
+    src: url(../fonts/sfr-bold-webfont.woff);
+    
+}
+
+/*~~~~~~~~~~~~CONTROLLERS~~~~~~~~~~~~~*/
+
+/*    .controllers{
+        position: absolute;
+        width: 200px;
+        height: 100px;
+        padding-top: 50px;
+        padding-left: 50px;
+    }
+    .controllers img{
+            width: 50px;
+            height: 50px;
+            display: inline;
+    }
+        #pause{
+            width: 50px;
+            height: 50px;
+        }
+
+        button{
+            cursor: pointer;
+        }
+
+*/
+/*--------formating------------*/
+#container{
+    cursor: pointer;
+	width: 728px;
+	height: 90px;
+	overflow: hidden;
+	/*border: solid black 1px;*/
+	position: relative;
+	background-image: url("../images/Fibre_fond.jpg");
+}
+
+body{
+	margin: 0px;
+}
+
+/*--------CONTENT---------*/
+
+#logo{
+	position: absolute;
+	left: 19px;
+	top: 21px;
+	width: 50px;
+	height: 50px;
+	z-index: 50;
+}
+
+#smartphone{
+	position: absolute;
+    left: 122px;
+    top: 8px;
+}
+
+#text_1{
+	top: 0px;
+    left: -120px;
+	position: absolute;	
+	width: 728px;
+	height: 90px;
+}
+
+#offrez{
+	position: absolute;
+    top: 113px;
+    left: 367px;    
+}
+
+#toute{
+	position: absolute;
+    top: 139px;
+    left: 326px;
+	text-align: center;
+	text-transform: uppercase;
+	letter-spacing: 0.7px;
+	line-height: 1;
+	font-family: sfrbold;
+    color: #fff;
+    font-size: 18px;
+    text-shadow: 0 0 3px rgba(255, 255, 255, 0.7), 0 0 7px rgba(255, 255, 255, 0.7);
+
+    animation-name: glow;
+    animation-duration: 0.4s;
+    animation-delay: 3.6s;
+    animation-iteration-count: 1;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+
+    -webkit-animation-name: glow;
+    -webkit-animation-duration: 0.4s;
+    -webkit-animation-delay: 3.6s;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-fill-mode: forwards;
+
+    -moz-animation-name: glow;
+    -moz-animation-duration: 0.4s;
+    -moz-animation-delay: 3.6s;
+    -moz-animation-iteration-count: 1;
+    -moz-animation-timing-function: linear;
+    -moz-animation-fill-mode: forwards;
+}
+
+#text_2{
+	top: 95px;
+	position: absolute;	
+	left: -135px;
+	width: 900px;
+	height: 90px;
+}
+
+#avec{
+    position: absolute;
+    top: 36px;
+    left: 290px;   
+}
+
+#change{
+    position: absolute;
+    top: 31px;
+    left: 375px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: -0.9px;
+    line-height: 1.25;
+    font-family: sfrbold;
+    color: #fff;
+    font-size: 26px;
+    text-shadow: 0 0 3px rgba(255, 255, 255, 0.7), 0 0 7px rgba(255, 255, 255, 0.7);
+
+    animation-name: glow;
+    animation-duration: 0.4s;
+    animation-delay: 7.3s;
+    animation-iteration-count: 1;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+
+    -webkit-animation-name: glow;
+    -webkit-animation-duration: 0.4s;
+    -webkit-animation-delay: 7.3s;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-fill-mode: forwards;
+
+    -moz-animation-name: glow;
+    -moz-animation-duration: 0.4s;
+    -moz-animation-delay: 7.3s;
+    -moz-animation-iteration-count: 1;
+    -moz-animation-timing-function: linear;
+    -moz-animation-fill-mode: forwards;
+}
+
+#text_3{
+    position: absolute;
+    top: 95px; 
+    left: -130px;
+    width: 900px;
+    height: 90px;
+}
+
+#rapid{
+	position: absolute;
+	top: 119px;
+	left: -252px;	
+}
+
+#x-5{
+	position: absolute;
+	top: 5px;
+	left: 43px;
+	text-align: center;
+	text-transform: uppercase;
+	letter-spacing: -0.8px;
+	line-height: 1;
+	font-family: sfrbold;
+    color: #fff;
+    font-size: 80px;
+    text-shadow: 0 0 3px rgba(255, 255, 255, 0.7), 0 0 7px rgba(255, 255, 255, 0.7);
+
+    animation-name: glow;
+    animation-duration: 0.4s;
+    animation-delay: 10.2s;
+    animation-iteration-count: 1;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+
+    -webkit-animation-name: glow;
+    -webkit-animation-duration: 0.4s;
+    -webkit-animation-delay: 10.2s;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-fill-mode: forwards;
+
+    -moz-animation-name: glow;
+    -moz-animation-duration: 0.4s;
+    -moz-animation-delay: 10.2s;
+    -moz-animation-iteration-count: 1;
+    -moz-animation-timing-function: linear;
+    -moz-animation-fill-mode: forwards;
+}
+
+#x-euro{
+    position: absolute;
+    top: 8px;
+    left: 120px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: -0.8px;
+    line-height: 1;
+    font-family: sfrblack;
+    color: #fff;
+    font-size: 45px;
+    text-shadow: 0 0 3px rgba(255, 255, 255, 0.7), 0 0 7px rgba(255, 255, 255, 0.7);
+
+    animation-name: glow;
+    animation-duration: 0.4s;
+    animation-delay: 10.2s;
+    animation-iteration-count: 1;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+
+    -webkit-animation-name: glow;
+    -webkit-animation-duration: 0.4s;
+    -webkit-animation-delay: 10.2s;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-fill-mode: forwards;
+
+    -moz-animation-name: glow;
+    -moz-animation-duration: 0.4s;
+    -moz-animation-delay: 10.2s;
+    -moz-animation-iteration-count: 1;
+    -moz-animation-timing-function: linear;
+    -moz-animation-fill-mode: forwards;
+}
+
+#mois{
+    position: absolute;
+    left: 120px;
+    top: 55px;
+}
+
+
+#fiveEuro{
+    position: absolute;
+    top: 0px;
+    left: 420px;
+    width: 170px;
+    height: 90px;
+}
+
+#txtJ{
+
+    position: absolute;
+    left: -280px;
+    top: 150px;
+}
+
+#forfaits{
+    position: absolute;
+    top: 95px; 
+    left: 515px; 
+}
+
+#EcranFin{
+
+    position: absolute; 
+    left: -130px;
+    width: 900px;
+    height: 90px;
+}
+
+#txtExclu{
+
+    position: absolute;
+    top: 95px;
+    left: 395px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: -0.6px;
+    line-height: 1.25;
+    font-family: sfrbold;
+    color: #fff;
+    font-size: 22px;
+    text-shadow: 0 0 3px rgba(255, 255, 255, 0.7), 0 0 7px rgba(255, 255, 255, 0.7);
+
+    animation-name: glow;
+    animation-duration: 0.4s;
+    animation-delay: 15.5s;
+    animation-iteration-count: 1;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+
+    -webkit-animation-name: glow;
+    -webkit-animation-duration: 0.4s;
+    -webkit-animation-delay: 15.5s;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-fill-mode: forwards;
+
+    -moz-animation-name: glow;
+    -moz-animation-duration: 0.4s;
+    -moz-animation-delay: 15.5s;
+    -moz-animation-iteration-count: 1;
+    -moz-animation-timing-function: linear;
+    -moz-animation-fill-mode: forwards;
+}
+
+#txtFin{
+
+    position: absolute;
+    top: 95px;
+    left: 260px;
+}
+
+
+#Forfait5{
+
+    position:absolute;
+    left: -130px;
+    top: 95px;
+    width: 900px;
+    height: 90px;
+
+}
+
+#Euro5{
+    position: absolute;
+    top: 5px;
+    left: 243px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: -0.8px;
+    line-height: 1;
+    font-family: sfrbold;
+    color: #fff;
+    font-size: 80px;
+    text-shadow: 0 0 3px rgba(255, 255, 255, 0.7), 0 0 7px rgba(255, 255, 255, 0.7);
+
+    animation-name: glow;
+    animation-duration: 0.4s;
+    animation-delay: 18.8s;
+    animation-iteration-count: 1;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+
+    -webkit-animation-name: glow;
+    -webkit-animation-duration: 0.4s;
+    -webkit-animation-delay: 18.8s;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-fill-mode: forwards;
+
+    -moz-animation-name: glow;
+    -moz-animation-duration: 0.4s;
+    -moz-animation-delay: 18.8s;
+    -moz-animation-iteration-count: 1;
+    -moz-animation-timing-function: linear;
+    -moz-animation-fill-mode: forwards;
+
+}
+
+#Euro{
+    position: absolute;
+    top: 8px;
+    left: 320px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: -0.8px;
+    line-height: 1;
+    font-family: sfrblack;
+    color: #fff;
+    font-size: 45px;
+    text-shadow: 0 0 3px rgba(255, 255, 255, 0.7), 0 0 7px rgba(255, 255, 255, 0.7);
+
+    animation-name: glow;
+    animation-duration: 0.4s;
+    animation-delay: 18.8s;
+    animation-iteration-count: 1;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+
+    -webkit-animation-name: glow;
+    -webkit-animation-duration: 0.4s;
+    -webkit-animation-delay: 18.8s;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-fill-mode: forwards;
+
+    -moz-animation-name: glow;
+    -moz-animation-duration: 0.4s;
+    -moz-animation-delay: 18.8s;
+    -moz-animation-iteration-count: 1;
+    -moz-animation-timing-function: linear;
+    -moz-animation-fill-mode: forwards;
+
+}
+
+
+#ImgJ{
+    position:absolute;
+    top: 95px;
+    left: 60px;
+}
+
+#ImgM{
+    position:absolute;
+    top: 54px;
+    left: 322px; 
+}
+
+#ImgFin{
+    position:absolute;
+    top: 95px;
+    left: 300px;
+}
+#CTA{
+	position: absolute;
+	width: 205px;
+	height: 39px;
+	left: 555px;
+	top: 33px;
+	opacity: 0;
+}
+
+/*Mention Legal*/
+#ml
+{
+    z-index: 51;
+    position: relative;
+    top: 75px;
+    left:0px;
+    opacity: 0;
+    animation: mlanim 0.3s linear 7s forwards;
+
+    -webkit-animation-name: mlanim;
+    -webkit-animation-duration: 0.3s;
+    -webkit-animation-delay: 7s;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-fill-mode: forwards;
+}
+
+#ml .VoirConditions {
+    width:77px;
+    height: 15px; 
+    padding-left: 644px;
+}
+#ml img
+{
+    display: block;
+    cursor: pointer;
+}
+
+#ml:hover > #mention
+{
+    bottom:0px;
+    transition: all 0.2s linear;
+    -webkit-transition: all 0.2s linear;
+}
+
+#mention
+{
+    position: absolute;
+    bottom: -36px;
+    z-index: 70;
+}
+
+@keyframes mlanim {
+
+    0%{
+        bottom:-20px;
+    }
+
+    100%{
+        bottom:0px;
+
+    }
+}
+
+
+
+/**** ANIM GLOW ****/
+@keyframes glow {
+    0% {
+        text-shadow: 0 0 2px rgba(255, 255, 255, 0.7), 
+        0 0 7px rgba(255, 255, 255, 0.7)
+    }
+    50% {
+        text-shadow: 0 0 5px rgba(255, 255, 255, 0.7),
+        0 0 10px rgba(255, 255, 255, 0.7),
+        0 0 15px rgba(255, 255, 255, 0.7),
+        0 0 20px rgba(255, 255, 255, 0.7),
+        0 0 25px rgba(255, 255, 255, 0.7)
+
+    }
+    100% {
+        text-shadow: 0 0 2px rgba(255, 255, 255, 0.7), 
+        0 0 7px rgba(255, 255, 255, 0.7)
+    }
+}
+
+
+@-webkit-keyframes glow {
+    0% {
+        text-shadow: 0 0 2px rgba(255, 255, 255, 0.7), 
+        0 0 7px rgba(255, 255, 255, 0.7)
+    }
+    50% {
+        text-shadow: 0 0 5px rgba(255, 255, 255, 0.7),
+        0 0 10px rgba(255, 255, 255, 0.7),
+        0 0 15px rgba(255, 255, 255, 0.7),
+        0 0 20px rgba(255, 255, 255, 0.7),
+        0 0 25px rgba(255, 255, 255, 0.7)
+
+    }
+    100% {
+        text-shadow: 0 0 2px rgba(255, 255, 255, 0.7), 
+        0 0 7px rgba(255, 255, 255, 0.7)
+    }
+}
+
+
+@-moz-keyframes glow {
+    0% {
+        text-shadow: 0 0 2px rgba(255, 255, 255, 0.7), 
+        0 0 7px rgba(255, 255, 255, 0.7)
+    }
+    50% {
+        text-shadow: 0 0 5px rgba(255, 255, 255, 0.7),
+        0 0 10px rgba(255, 255, 255, 0.7),
+        0 0 15px rgba(255, 255, 255, 0.7),
+        0 0 20px rgba(255, 255, 255, 0.7),
+        0 0 25px rgba(255, 255, 255, 0.7)
+
+    }
+    100% {
+        text-shadow: 0 0 2px rgba(255, 255, 255, 0.7), 
+        0 0 7px rgba(255, 255, 255, 0.7)
+    }
+}
+
+
+#ml_partout{
+    z-index: 2;
+    position: absolute;
+    width: 100%;
+    top: 225px;
+    left: 5px;
+    opacity: 0;
+
+}
+
+#ml_web{
+    z-index: 2;
+    position: absolute;
+    width: 100%;
+    top: 215px;
+    left: 13px;
+    opacity: 0;
+
+}

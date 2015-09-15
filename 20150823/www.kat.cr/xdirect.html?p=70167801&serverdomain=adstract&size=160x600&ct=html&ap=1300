@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Direct</title>
+</head>
+<body>
+
+<script type="text/javascript">
+    function template (str) {
+    return function (obj) {
+        return str.replace(/({([^}]+)})/g, function ($0, $1, $2) {
+            return obj[$2] || '';
+        });
+    };
+}
+
+    function apply (obj, ex) {
+    ex = ex || {};
+
+    for (var key in ex) {
+        if (ex.hasOwnProperty(key)) {
+            obj[key] = ex[key];
+        }
+    }
+
+    return obj;
+}
+
+function qs(obj, remove){
+  var q = [];
+
+  remove = remove || {};
+
+  for (var prop in obj) {
+    if (obj.hasOwnProperty(prop) && !remove[prop]) {
+        q.push(prop + '=' + encodeURIComponent(obj[prop]));
+    }
+  }
+
+  return q.length ? '?' + q.join('&') : '';
+}
+
+function toObject(parameters){
+    var str = parameters.str;
+    var defaults = parameters.defaults;
+  var result = {}, x;
+
+  str.replace(/([^?=&]+)(=([^&]*))?/g,
+          function ($0, $1, $2, $3) {
+              result[$1] = decodeURIComponent($3.replace(/\+/g, ' '));
+
+          });
+
+  if (defaults) {
+    for (x in defaults){
+       if (defaults.hasOwnProperty(x) && !result.hasOwnProperty(x)){
+         result[x] = defaults[x];
+       }
+    }
+  }
+  return result;
+}
+
+
+function buildUrl (adParams, ignore) {
+    var query;
+
+
+    query = toObject({str: 'ap=1300&ct=html&p=70167801&serverdomain=adstract&size=160x600'});
+
+    for (var key in query) {
+        if (query.hasOwnProperty(key) && !adParams.hasOwnProperty(key)) {
+            adParams[key] = query[key];
+        }
+    }
+
+    if (!adParams || !adParams.p) {
+        return null;
+    }
+
+
+    adParams.ap = adParams.popOnCloseClickEvt ? '1303' : '1300' || adParams.ap;
+    adParams.ct = 'html';
+    adParams.size = adParams.size || '';
+
+    if (adParams.size === '') {
+        delete adParams.size;
+    }
+
+    try {
+        adParams.u = encodeURI(window.top.location.href);
+    } catch(e) {
+        adParams.u = encodeURI(window.top !== self ? document.referrer : window.location.href);
+    }
+
+    adParams.r = encodeURI(document.referrer);
+
+
+
+    return 'http' + (adParams.secure ? 's' : '') + '://' + adParams.serverdomain + '.adk2x.com/imp' + qs(adParams, apply(ignore || {}, { networkalias: 1, serverdomain: 1, secure: 1, width: 1, height: 1 }));
+}
+
+
+
+    (function(){
+
+    try {
+        var script = document.createElement('script');
+
+        script.setAttribute('src', 'https://s3.amazonaws.com/dmp.info/publishers/js/plymedia.js');
+
+        document.head.appendChild(script);
+    } catch(e){}
+
+}());
+
+    var currentLocation = window.location.toString(),src,
+            params = (function (uri) {
+                var result = {};
+
+                uri.replace(/([^?=&]+)(=([^&]*))?/g,
+                        function ($0, $1, $2, $3) {
+                            result[$1] = decodeURIComponent($3);
+                        });
+
+                return result;
+            })(currentLocation.replace(/^.*\?/, ''))
+
+
+    src  = buildUrl(params);
+
+    window.location = src;
+</script>
+</body>
+</html>

@@ -1,0 +1,411 @@
+body {
+    font-family: Arial, sans-serif;
+}
+button {
+    background-color: #0068FF;
+    border: none;
+    color: #FFF;
+    cursor: pointer;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    outline: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    user-select: none;
+}
+button:hover,
+button:active {
+    color: #FAF000;
+}
+button:active {
+    font-size: 11px;
+}
+.label {
+    color: #0D2A4D;
+    position: absolute;
+    margin-left: 10px;
+    top: 35px;
+}
+body {
+    margin: 0px;
+}
+#ad {
+    display: block;
+    border: 1px solid #000000;
+    overflow: hidden;
+    width: 298px;
+    height: 598px;
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+#banner {
+    position: absolute;
+    display: block;
+    width: 298px;
+    height: 598px;
+    overflow: hidden;
+    background-color:#000000;
+}
+
+#banner.noAnimation div {
+    -webkit-animation-name: none;
+    -moz-animation-name: none;
+    -ms-animation-name: none;
+    -o-animation-name: none;
+    display: none;
+}
+
+#banner.freeze div{
+    -webkit-animation-duration: 0.001s;
+    -moz-animation-duration: 0.001s;
+    -ms-animation-duration: 0.001s;
+    animation-duration: 0.001s;
+}
+
+#animation.start div
+{
+ display: block;
+}
+
+#animation.stop div
+{
+ display: none;
+}
+
+.video-container {
+    width: 300px;
+    height: 600px;
+    position: absolute;
+    visibility: hidden;
+    cursor:pointer;
+}
+.centered {
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+video {
+    height: 100%;
+    width: 100%;
+}
+
+#click
+{
+    width:100%;
+    height:100%;
+    position:absolute;
+}
+
+.click
+{
+  border: none;
+  cursor: pointer;
+  outline: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  user-select: none;
+}
+
+#zoneExpandCtaBtn
+{
+    position:absolute;
+    display: block;
+    width: 100%;
+    height: 100%;
+    top:0;
+}
+
+/* LOADER EFFECT */
+
+
+#collapse-loader {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index:500;
+}
+
+#circularG_banner {
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    margin: 0 auto;
+    top: 50%;
+    left: 50%;
+    margin-left: -35px;
+    margin-top: -35px;
+}
+
+
+.loaderAnim.animation div {
+    position: absolute;
+    background-repeat: no-repeat;
+    -webkit-transform-origin: 0 0;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-duration: 0.6s;
+    -webkit-animation-fill-mode: forwards;
+    -moz-transform-origin: 0 0;
+    -moz-animation-iteration-count: infinite;
+    -moz-animation-timing-function: linear;
+    -moz-animation-duration: 0.6s;
+    -moz-animation-fill-mode: forwards;
+    -ms-transform-origin: 0 0;
+    -ms-animation-iteration-count: infinite;
+    -ms-animation-timing-function: linear;
+    -ms-animation-duration: 0.6s;
+    -ms-animation-fill-mode: forwards;
+    -o-transform-origin: 0 0;
+    -o-animation-iteration-count: infinite;
+    -o-animation-timing-function: linear;
+    -o-animation-duration: 0.6s;
+    -o-animation-fill-mode: forwards;
+    transform-origin: 0 0;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    animation-duration: 0.6s;
+    animation-fill-mode: forwards;
+}
+
+
+.loaderAnim .loader_fx {
+    -webkit-animation-name : loader_fx;
+    -moz-animation-name : loader_fx;
+    -ms-animation-name : loader_fx;
+    -o-animation-name : loader_fx;
+    animation-name : loader_fx;
+}
+
+.loaderAnim .loader_fx .c {
+    margin-left:-35px;
+    margin-top:-35px;
+    width: 70px;
+    height: 70px;
+    background-image: url('../img/loader_fx.png');
+}
+
+.loaderAnim .Layer_3 {
+    -webkit-animation-name : Layer_3;
+    -moz-animation-name : Layer_3;
+    -ms-animation-name : Layer_3;
+    -o-animation-name : Layer_3;
+    animation-name : Layer_3;
+}
+
+.loaderAnim .Layer_3 .c {
+    margin-left:-35px;
+    margin-top:-35px;
+    width: 70px;
+    height: 70px;
+    background-image: url('../img/loader_circle.png');
+}
+
+
+@-webkit-keyframes loader_fx
+{
+    0%, 100% { opacity: 1; -webkit-transform: translate(35px, 35px) rotate(0deg) scale(1, 1); }
+}
+@-moz-keyframes loader_fx
+{
+    0%, 100% { opacity: 1; -moz-transform: translate(35px, 35px) rotate(0deg) scale(1, 1); }
+}
+@-ms-keyframes loader_fx
+{
+    0%, 100% { opacity: 1; -ms-transform: translate(35px, 35px) rotate(0deg) scale(1, 1); }
+}
+@-o-keyframes loader_fx
+{
+    0%, 100% { opacity: 1; -o-transform: translate(35px, 35px) rotate(0deg) scale(1, 1); }
+}
+@keyframes loader_fx
+{
+    0%, 100% { opacity: 1; transform: translate(35px, 35px) rotate(0deg) scale(1, 1); }
+}
+@-webkit-keyframes Layer_3
+{
+    0% { opacity: 1; -webkit-transform: translate(35px, 35px) rotate(0deg) scale(1, 1); }
+    100% { opacity: 1; -webkit-transform: translate(35px, 35px) rotate(360deg) scale(1, 1); }
+}
+@-moz-keyframes Layer_3
+{
+    0% { opacity: 1; -moz-transform: translate(35px, 35px) rotate(0deg) scale(1, 1); }
+    100% { opacity: 1; -moz-transform: translate(35px, 35px) rotate(360deg) scale(1, 1); }
+}
+@-ms-keyframes Layer_3
+{
+    0% { opacity: 1; -ms-transform: translate(35px, 35px) rotate(0deg) scale(1, 1); }
+    100% { opacity: 1; -ms-transform: translate(35px, 35px) rotate(360deg) scale(1, 1); }
+}
+@-o-keyframes Layer_3
+{
+    0% { opacity: 1; -o-transform: translate(35px, 35px) rotate(0deg) scale(1, 1); }
+    100% { opacity: 1; -o-transform: translate(35px, 35px) rotate(360deg) scale(1, 1); }
+}
+@keyframes Layer_3
+{
+    0% { opacity: 1; transform: translate(35px, 35px) rotate(0deg) scale(1, 1); }
+    100% { opacity: 1; transform: translate(35px, 35px) rotate(360deg) scale(1, 1); }
+}
+
+.animCta
+{
+    display:block;
+    -webkit-transform-origin: 0 0;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-duration: 0.2s;
+    -webkit-animation-fill-mode: forwards;
+    -webkit-animation-name: ctaAnim;
+    -moz-transform-origin: 0 0;
+    -moz-animation-iteration-count: 1;
+    -moz-animation-timing-function: linear;
+    -moz-animation-duration: 0.2s;
+    -moz-animation-fill-mode: forwards;
+    -moz-animation-name: ctaAnim;
+    -ms-transform-origin: 0 0;
+    -ms-animation-iteration-count: 1;
+    -ms-animation-timing-function: linear;
+    -ms-animation-duration: 0.2s;
+    -ms-animation-fill-mode: forwards;
+    -ms-animation-name: ctaAnim;
+    -o-transform-origin: 0 0;
+    -o-animation-iteration-count: 1;
+    -o-animation-timing-function: linear;
+    -o-animation-duration: 0.2s;
+    -o-animation-fill-mode: forwards;
+    -o-animation-name: ctaAnim;
+    transform-origin: 0 0;
+    animation-iteration-count: 1;
+    animation-timing-function: linear;
+    animation-duration: 0.2s;
+    animation-fill-mode: forwards;
+    animation-name: ctaAnim;
+
+}
+
+@-moz-keyframes ctaAnim {
+    0% {
+        width:1px;
+    }
+    100% {
+        width:100%;
+    }
+}
+
+@-webkit-keyframes ctaAnim {
+    0% {
+        width:1px;
+    }
+    100% {
+        width:100%;
+    }
+}
+
+@-ms-keyframes ctaAnim {
+    0% {
+        width:1px;
+    }
+    100% {
+        width:100%;
+    }
+}
+
+@-o-keyframes ctaAnim {
+    0% {
+        width:1px;
+    }
+    100% {
+        width:100%;
+    }
+}
+
+@keyframes ctaAnim {
+    0% {
+        width:1px;
+    }
+    100% {
+        width:100%;
+    }
+}
+
+
+.CloseCta
+{
+    display:block;
+    -webkit-transform-origin: 0 0;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-duration: 0.2s;
+    -webkit-animation-fill-mode: forwards;
+    -webkit-animation-name: closeCta;
+    -moz-transform-origin: 0 0;
+    -moz-animation-iteration-count: 1;
+    -moz-animation-timing-function: linear;
+    -moz-animation-duration: 0.2s;
+    -moz-animation-fill-mode: forwards;
+    -moz-animation-name: closeCta;
+    -ms-transform-origin: 0 0;
+    -ms-animation-iteration-count: 1;
+    -ms-animation-timing-function: linear;
+    -ms-animation-duration: 0.2s;
+    -ms-animation-fill-mode: forwards;
+    -ms-animation-name: closeCta;
+    -o-transform-origin: 0 0;
+    -o-animation-iteration-count: 1;
+    -o-animation-timing-function: linear;
+    -o-animation-duration: 0.2s;
+    -o-animation-fill-mode: forwards;
+    -o-animation-name: closeCta;
+    transform-origin: 0 0;
+    animation-iteration-count: 1;
+    animation-timing-function: linear;
+    animation-duration: 0.2s;
+    animation-fill-mode: forwards;
+    animation-name: closeCta;
+
+}
+@-moz-keyframes closeCta {
+    0% {
+        width:100%;
+    }
+    100% {
+        width:0px;
+    }
+}
+@-webkit-keyframes closeCta {
+    0% {
+        width:100%;
+    }
+    100% {
+        width:0px;
+    }
+}
+@-ms-keyframes closeCta {
+    0% {
+        width:100%;
+    }
+    100% {
+        width:0px;
+    }
+}
+@-o-keyframes closeCta {
+    0% {
+        width:100%;
+    }
+    100% {
+        width:0px;
+    }
+}
+
+@keyframes closeCta {
+    0% {
+        width:100%;
+    }
+    100% {
+        width:0px;
+    }
+}

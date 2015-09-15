@@ -1,0 +1,33 @@
+<html>
+<body leftmargin='0' topmargin='0' marginwidth='0' marginheight='0' style='background-color:transparent; width: 100%; text-align: center;'>
+<html><body><div><img src="http://ps.eyeota.net/match?bid=51mdg9u&uid=cf8f56f601df42f3a130890805a85549" width="1" height="1" /><img src="http://su.addthis.com/red/usync?pid=11127&puid=cf8f56f601df42f3a130890805a85549" height="1" width="1"><img src="http://lotame.nexac.com/5/c=205/dc=1/pid=cf8f56f601df42f3a130890805a85549/tp=DLGX/tpc=na_id" height="1" width="1"><img src="http://loadm.exelator.com/load/?p=204&g=260&buid=cf8f56f601df42f3a130890805a85549&j=0" height="1" width="1"><img src="http://cm.g.doubleclick.net/pixel?google_nid=lotame_dmp&google_cm" height="1" width="1"><img src="http://idsync.rlcdn.com/382416.gif?partner_uid=cf8f56f601df42f3a130890805a85549" 
+width="1" height="1"><script>
+function processTargusData(json)
+{
+   if (json != null) {
+       if (json.targus != null) {
+            u = "";
+            v = "map";
+            if (json.targus.sk != null && json.targus.sk != "") {
+                u += "/tp=TARG/tpid=" + json.targus.sk;
+            }
+            if (json.targus.age != null && json.targus.age != "") {
+                u += "/genp=" + (new Date().getFullYear() - json.targus.age);
+                v = "5";
+            }
+            if (json.targus.gender != null && json.targus.gender != "") {
+                u += "/genp=gender%20-%20" + json.targus.gender;
+                v = "5";
+            }
+            if (u != "") {
+              var img = new Image();
+              img.src = "http://bcp.crwdcntrl.net/" + v + "/c=368" + u;
+              document.body.appendChild(img);
+            }
+        }
+   }
+}
+</script>
+<script src="http://adadvisor.net/adscores/g.json?sid=9202507693"></script><img src="http://tags.bluekai.com/site/5907?limit=0&id=4d7484679348021c41c93e877d82c703" width=1 height=1><img src="http://tap.rubiconproject.com/oz/feeds/lotame/tokens?pk=BP6A-G754QKW2&afu=cf8f56f601df42f3a130890805a85549" height="1" width="1" /></div></body></html>
+</body>
+</html>

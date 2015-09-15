@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html>
+<head><script type="text/javascript">
+    
+      (function() {
+        var relegateNavigation = '';
+        var handleClickTagMessage = function(e) {
+          try {
+            var eventData = JSON.parse(e.data);
+          } catch (err) {
+            return;
+          }
+          if (eventData.isInitClickTag) {
+            if (eventData.clickTags) {
+              for (var i = 0; i < eventData.clickTags.length; i++) {
+                var clkTag = eventData.clickTags[i];
+                window[clkTag.name] = clkTag.url;
+              }
+            } else if (eventData.clickTag) {
+              window.clickTag = eventData.clickTag;
+            }
+            relegateNavigation = eventData.relegateNavigation;
+          }
+        };
+
+        if (open.call) {
+          window.open = function(open) {
+            return function(url, name, features) {
+              if (relegateNavigation === 'parent') {
+                var message = {'clickTag': url, 'isPostClickTag': true};
+                parent.postMessage(JSON.stringify(message), '*');
+              } else {
+                var args = [url, name];
+                if (features) {
+                  args.push(features);
+                }
+                open.apply(window, args);
+              }
+            };
+          }(window.open);
+        }
+
+        if (window.addEventListener) {
+          window.addEventListener(
+              'message', handleClickTagMessage, false);
+        } else {
+          window.attachEvent('onmessage', handleClickTagMessage);
+        }
+      })();
+    
+  </script>
+
+<script type="text/javascript">
+var clickTag = "http://www.google.com"; </script>
+  
+  <meta charset="UTF-8">
+  <title>Lancome-img</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+  <!--CSS-->
+  <style>
+    html, body {  margin: 0; padding:0; background:#000; }
+    #bg-exit { background-color: rgba(255,255,255,0); cursor: pointer; height: 100%; left: 0px; position: absolute; top: 0px; width: 100%; z-index: 1000; }
+    #container { overflow: hidden; position: absolute; width: 300px; height: 600px; background: #fff; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
+    #container img { position: absolute; opacity: 0; }
+    #handwriting, #speckling { position: absolute; z-index: 10; }
+  </style>
+  <!--JAVASCRIPTS-->
+  <script src="zepto.min.js" defer></script>
+  <script src="timeline.js" defer></script>
+  <script src="path.js" defer></script>
+  <script src="freehand.js" defer></script>
+  <!-- DB -->
+  <script src="https://s0.2mdn.net/ads/studio/Enabler.js"> </script>
+  <script>
+    if (!Enabler.isInitialized()) {
+      Enabler.addEventListener(
+          studio.events.StudioEvent.INIT,
+          enablerInitialized);
+    } else {
+      enablerInitialized();
+    }
+    function enablerInitialized() {
+      // Enabler initialized.
+      // In App ads are rendered offscreen so animation should wait for
+      // the visible event. These are simulated with delays in the local
+      // environment.
+      if (!Enabler.isVisible()) {
+        Enabler.addEventListener(
+            studio.events.StudioEvent.VISIBLE,
+            adVisible);
+      } else {
+        adVisible();
+      }
+    }
+    function adVisible() {
+      preloadImages([
+        'bg.jpg',
+        'btn.png',
+        'la-vieee_1.png',
+        'la-vieee_2.png',
+        'paris-light.jpg',
+        'perfume_new.png'
+      ], timelines);
+    }
+  </script>
+  <!-- end DB -->
+  <script>
+    // Preload images
+    function preloadImages (images, callback) {
+      window.IMAGES_CACHE = {};
+
+      var url;
+      var image;
+      var count = images.length;
+
+      while (url = images.pop()) {
+        image = new Image();
+        image.onload = (function (key) {
+          console.log('Loading image: ', key);
+          window.IMAGES_CACHE[key] = this;
+
+          count--;
+          if (count === 0) {
+            console.log('All images are ready...');
+
+            callback();
+          }
+        }).bind(image, url);
+
+        image.src = url;
+      }
+    }
+
+    function timelines() {
+      console.log('Executing timelines...');
+      var group = [];
+
+      group.push(new Timeline('#bg1',
+          {
+            0:     { opacity: 1 },
+            1000:  { opacity: 1 },
+            1500:  { opacity: 0 }
+          }, 'ease-in'));
+
+      group.push(new Timeline('#bg2',
+          {
+            0:    { opacity: 0 },
+            1000:    { opacity: 0 },
+            1500:  { opacity: 1 }
+          }, 'ease-in'));
+
+
+      group.push(new Timeline('#perfume',
+          {
+            0: { opacity: 0, left: 20, top: 190 },
+            1500: { opacity: 0 },
+            2500: { opacity: 1 }
+          }, 'ease-in'));
+      group.push(new Timeline('#btn',
+          {
+            0: { opacity:0, left: 28, top: 522 },
+            8000: { opacity: 0 },
+            11000: { opacity: 1 }
+          }, 'ease-in'));
+
+      var glyph, data;
+      glyph = window.IMAGES_CACHE['la-vieee_1.png'];
+      data = [
+        // Lavie
+        [8, 111, 2.5],
+        [5, 117, 2.5],
+        [6, 121, 2.5],
+        [12, 121, 2.5],
+        [33, 106, 2.5],
+        [41, 98, 2.5],
+        [56, 82, 3],
+        [66, 68, 3],
+        [78, 44, 3],
+        [80, 32, 3],
+        [74, 31, 3],
+        [63, 42, 4],
+        [50, 63, 4.5],
+        [42, 79, 5],
+        [38, 91, 4.5],
+        [37, 109, 4],
+        [41, 119, 3],
+        [47, 120, 3],
+        [58, 116, 3.5],
+        [71, 102, 4],
+        [72, 92, 3],
+        [67, 92, 3],
+        [61, 101, 3],
+        [61, 112, 4],
+        [78, 103, 4],
+        [96, 112, 4],
+        [111, 107, 4],
+        ////
+        null,
+        // Est
+        [125, 91, 4],
+        [124, 107, 5],
+        [140, 90, 5],
+        [138, 106, 5],
+        [142, 107, 3.5],
+        [152, 97, 3.5],
+        [156, 92, 3.5],
+        [155, 88, 3.5],
+        [148, 94, 3.5],
+        [148, 100, 4.5],
+        [157, 105, 4],
+        [166, 105, 4],
+        [180, 101, 4],
+        [195, 95, 4],
+        ////
+        null,
+        // Belle
+        [65, 188, 4],
+        [67, 197, 4.5],
+        [77, 191, 4.5],
+        [83, 185, 3],
+        [90, 174, 3],
+        [89, 169, 4],
+        [83, 170, 4],
+        [77, 181, 6],
+        [82, 189, 6],
+        [101, 178, 6],
+        [105, 181, 4],
+        [105, 186, 4],
+        [91, 199, 4],
+        [93, 201, 4],
+        [107, 187, 5],
+        [112, 177, 5],
+        [120, 163, 4],
+        [131, 139, 4],
+        [129, 152, 4],
+        [122, 170, 5],
+        [114, 186, 5],
+        [116, 174, 5],
+        [122, 171, 5],
+        [131, 170, 6],
+        [144, 166, 5],
+        [165, 155, 5],
+        [182, 140, 3.5],
+        [190, 129, 3.5],
+        [195, 116, 3.5],
+        [189, 134, 3.5],
+        [183, 153, 3.5],
+        [181, 170, 4.5],
+        [184, 161, 4],
+        [193, 153, 4],
+        [201, 152, 3.5],
+        [202, 161, 3.5],
+        [193, 169, 4],
+        [182, 171, 4],
+        [193, 169, 4],
+        [216, 152, 4],
+        [217, 146, 4],
+        [209, 147, 4],
+        [203, 154, 4],
+        [204, 164, 5],
+        [211, 169, 4],
+        [220, 162, 4],
+        [228, 141, 4],
+        [235, 116, 4],
+        [232, 115, 4],
+        [225, 137, 4],
+        [222, 156, 4],
+        [224, 164, 4],
+        [229, 163, 4],
+        [234, 158, 3.5],
+        [240, 145, 3.5],
+        [247, 122, 3.5],
+        [248, 112, 3.5],
+        [238, 141, 4],
+        [236, 157, 5],
+        [240, 165, 4],
+        [249, 164, 4],
+        [258, 158, 4],
+        [263, 154, 4],
+        [267, 145, 4],
+        [262, 143, 4],
+        [259, 146, 4],
+        [260, 156, 5],
+        [267, 162, 5],
+        [285, 161, 5],
+        [297, 153, 5],
+        [309, 145, 5],
+        [321, 137, 5],
+      ];
+      var handwriting = new Freehand(); // TODO: new Freehand(context, glyph, data);
+      handwriting.init('#handwriting', glyph, data);
+
+      group.push(new ObjectTimeline(handwriting,
+          {
+            0: { nope: [] },
+            3000: { play: [] }
+          }));
+
+      var glyph2, data2;
+      var speckling = new Freehand(); // TODO: new Freehand(context, glyph, data);
+      glyph2 = window.IMAGES_CACHE['la-vieee_2.png'];
+      data2 = [
+        // Lavie
+        [8, 111, 10],
+        [5, 117, 10],
+        [6, 121, 10],
+        [12, 121, 10],
+        [33, 106, 10],
+        [41, 98, 10],
+        [56, 82, 12],
+        [66, 68, 12],
+        [78, 44, 12],
+        [80, 32, 12],
+        [74, 31, 12],
+        [63, 42, 16],
+        [50, 63, 18],
+        [42, 79, 20],
+        [38, 91, 18],
+        [37, 109, 16],
+        [41, 119, 12],
+        [47, 112, 12],
+        [58, 116, 14],
+        [71, 102, 16],
+        [72, 92, 12],
+        [67, 92, 12],
+        [61, 101, 12],
+        [61, 112, 16],
+        [78, 103, 16],
+        [96, 112, 16],
+        [111, 107, 16],
+        ////
+        null,
+        // Est
+        [125, 91, 16],
+        [124, 107, 20],
+        [140, 90, 20],
+        [138, 106, 20],
+        [142, 107, 14],
+        [152, 97, 14],
+        [156, 92, 14],
+        [155, 88, 14],
+        [148, 94, 14],
+        [148, 100, 18],
+        [157, 105, 16],
+        [166, 105, 16],
+        [180, 101, 16],
+        [195, 95, 16],
+        ////
+        null,
+        // Belle
+        [65, 188, 16],
+        [67, 197, 18],
+        [77, 191, 18],
+        [83, 185, 12],
+        [90, 174, 12],
+        [89, 169, 16],
+        [83, 170, 16],
+        [77, 181, 24],
+        [82, 189, 24],
+        [101, 178, 24],
+        [105, 181, 16],
+        [105, 186, 16],
+        [91, 199, 16],
+        [93, 201, 16],
+        [107, 187, 20],
+        [112, 177, 20],
+        [120, 163, 16],
+        [131, 139, 16],
+        [129, 152, 16],
+        [122, 170, 20],
+        [114, 186, 20],
+        [116, 174, 20],
+        [122, 171, 20],
+        [131, 170, 24],
+        [144, 166, 20],
+        [165, 155, 20],
+        [182, 140, 14],
+        [190, 129, 14],
+        [195, 116, 14],
+        [189, 134, 14],
+        [183, 153, 14],
+        [181, 170, 18],
+        [184, 161, 16],
+        [193, 153, 16],
+        [201, 152, 14],
+        [202, 161, 14],
+        [193, 169, 16],
+        [182, 171, 16],
+        [193, 169, 16],
+        [216, 152, 16],
+        [217, 146, 16],
+        [209, 147, 16],
+        [203, 154, 16],
+        [204, 164, 20],
+        [211, 169, 16],
+        [220, 162, 16],
+        [228, 141, 16],
+        [235, 116, 16],
+        [232, 115, 16],
+        [225, 137, 16],
+        [222, 156, 16],
+        [224, 164, 16],
+        [229, 163, 16],
+        [234, 158, 14],
+        [240, 145, 14],
+        [247, 122, 14],
+        [248, 112, 14],
+        [238, 141, 16],
+        [236, 157, 20],
+        [240, 165, 16],
+        [249, 164, 16],
+        [258, 158, 16],
+        [263, 154, 16],
+        [267, 145, 16],
+        [262, 143, 16],
+        [259, 146, 16],
+        [260, 156, 20],
+        [267, 162, 20],
+        [285, 161, 20],
+        [297, 153, 20],
+        [309, 145, 20],
+        [321, 137, 20],
+      ];
+      speckling.init('#speckling', glyph2, data2);
+
+      group.push(new ObjectTimeline(speckling,
+          {
+            0: { nope: [] },
+            3000: { play: [] }
+          }));
+
+      for (var i= group.length-1;i>=0;i--) {
+        group[i].play();
+      }
+    }
+
+  </script>
+</head>
+
+<body>
+
+<a href="javascript:window.open(window.clickTag)"> 
+
+<div id="bg-exit"></div>
+<!-- <a href="#" target="_blank">-->
+<div id="container">
+  <img id="bg1" src="bg.jpg" width="300" height="600" style="opacity:1;">
+  <img id="bg2" src="paris-light.jpg" width="300" height="600">
+
+  <img id="btn" src="btn.png" width="240">
+  <img id="perfume" src="perfume_new.png" width="275">
+
+  <canvas id="handwriting" width="300" height="228" style="left: 1px; top: 20px;"></canvas>
+  <canvas id="speckling" width="300" height="228" style="left: 1px; top: 20px;"></canvas>
+</div>
+</a>
+<!-- CTA -->
+<script>
+  function bgExitHandler(e) {
+    Enabler.exit('Background Exit');
+  }
+
+  document.getElementById('bg-exit').addEventListener('click', bgExitHandler, false);
+</script>
+<!-- end CTA -->
+
+</a>
+
+</body>
+
+</html>

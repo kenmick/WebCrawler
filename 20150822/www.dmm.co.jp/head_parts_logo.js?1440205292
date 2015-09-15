@@ -1,0 +1,281 @@
+// ãªãã¥ã¼ã¢ã«å ä¼å¡ç»é² / ã­ã°ã¤ã³ wrap
+var mymenuWrap = DMM.findClass('hd-mymenu-wrap')[0],
+// ãªãã¥ã¼ã¢ã«å ä¼å¡ç»é² / ã­ã°ã¤ã³ å±é
+    mymenuBody = DMM.findClass('hd-mymenu-body')[0],
+// ãªãã¥ã¼ã¢ã«å ä¼å¡ç»é² / ã­ã°ã¤ã³ ãã¿ã³
+    mymenuBtn = DMM.findClass('hd-mymenu-btn')[0],
+// ãªãã¥ã¼ã¢ã«å ãã¹ã±ãã wrap
+    basketWrap = DMM.findClass('hd-basket-wrap')[0],
+// ãªãã¥ã¼ã¢ã«å ãã¹ã±ãã å±é
+    basketBody = DMM.findClass('hd-basket-body')[0],
+// ãªãã¥ã¼ã¢ã«å ãã¹ã±ãã ãã¿ã³
+    basketBtn = DMM.findClass('hd-basket-btn')[0];
+
+// ãªãã¥ã¼ã¢ã«å¾ headerã®idæå® ãªãã¥ã¼ã¢ã«åï¼å¾ï¼ã®å¤å®ã«ä½¿ç¨
+var $header = document.getElementById('d-header');
+
+var myToggle = false;
+var basketToggle = false;
+
+function setClose(e) {
+    function checkTarget(target) {
+        if (!target.parentNode) {
+            mymenuBody.style.display = 'none';
+            myToggle = false;
+            basketBody.style.display = 'none';
+            basketToggle = false;
+            return false;
+        }
+        if (!(basketToggle && target === basketWrap) && !(myToggle && target === mymenuWrap)) {
+            checkTarget(target.parentNode);
+        }
+    }
+    checkTarget(e.target);
+}
+
+/**
+ * mymenuBody, basketBodyã¯ãªãã¥ã¼ã¢ã«å¾ãªããã
+ */
+(typeof mymenuBody === 'undefined') ? false : mymenuBody.style.display = 'none';
+(typeof basketBody === 'undefined') ? false : basketBody.style.display = 'none';
+
+var UA = navigator.userAgent;
+
+/**
+ * touchDevice + #l-headerããªãå ´åã®ã¿ï¼ãªãã¥ã¼ã¢ã«åï¼
+ */
+if(
+((UA.indexOf('iPhone') !== -1)//iphone
+|| (UA.indexOf('Android') !== -1)
+|| (UA.indexOf('Windows Phone') !== -1)
+|| (UA.indexOf('iPad') !== -1)
+|| (UA.indexOf('Touch') !== -1))
+&& ($header === null)
+){
+    //touchdevice
+
+    basketBtn.href = "javascript:void(0)";
+    mymenuBtn.href = "javascript:void(0)";
+
+    if (typeof mymenuBtn !== 'undefined') {
+        DMM.addEvent(mymenuBtn, 'click', function (e) {
+            if(myToggle !== true){
+                mymenuBody.style.display = 'block';
+                myToggle = true;
+                DMM.addEvent(document.getElementsByTagName('body')[0], 'touchend', setClose);
+
+            }else{
+                mymenuBody.style.display = 'none';
+                myToggle = false;
+                DMM.removeEvent(document.getElementsByTagName('body')[0], 'touchend', setClose);
+            }
+            basketBody.style.display = 'none';
+            basketToggle = false;
+        });
+    }
+    if (typeof basketBtn !== 'undefined') {
+        DMM.addEvent(basketBtn, 'click', function (e) {
+            if(basketToggle !== true){
+                basketBody.style.display = 'block';
+                basketToggle = true;
+                DMM.addEvent(document.getElementsByTagName('body')[0], 'touchend', setClose);
+
+            }else{
+                basketBody.style.display = 'none';
+                basketToggle = false;
+                DMM.removeEvent(document.getElementsByTagName('body')[0], 'touchend', setClose);
+            }
+            mymenuBody.style.display = 'none';
+            myToggle = false;
+        });
+    }
+} else if (!$header) {
+    //PC
+    if (typeof mymenuWrap !== 'undefined' && typeof mymenuBody !== 'undefined') {
+        DMM.addEvent(mymenuWrap, 'mouseover', function (e) {
+            mymenuBody.style.display = 'block';
+            myToggle = true;
+            DMM.addEvent(document.getElementsByTagName('body')[0], 'touchend', setClose);
+        });
+        DMM.addEvent(mymenuWrap, 'mouseout', function (e) {
+            mymenuBody.style.display = 'none';
+            myToggle = false;
+            DMM.removeEvent(document.getElementsByTagName('body')[0], 'touchend', setClose);
+        });
+    }
+    if (typeof basketWrap !== 'undefined' && typeof basketBody !== 'undefined') {
+        DMM.addEvent(basketWrap, 'mouseover', function (e) {
+            basketBody.style.display = 'block';
+            basketToggle = true;
+            DMM.addEvent(document.getElementsByTagName('body')[0], 'touchend', setClose);
+        });
+        DMM.addEvent(basketWrap, 'mouseout', function (e) {
+            basketBody.style.display = 'none';
+            basketToggle = false;
+            DMM.removeEvent(document.getElementsByTagName('body')[0], 'touchend', setClose);
+        });
+    }
+}
+
+if( location.href.match('/en/')) {
+    var basketBtn = document.querySelectorAll('.hd-mymenu-regist-l a, .hd-mymenu-body a, .hd-mymenu-body a p, .hd-basket-body a');
+
+    var smallFont = basketBtn;
+    for(var i = 0; i < basketBtn.length; i = i + 1){
+        smallFont[i].style.fontSize = '10px';
+    }
+}
+(function() {
+    /**
+     * addClass
+     * DOM Elementã«classãè¿½å ãã
+     *
+     * @param {DOM Element} element
+     * @param {string} className è¿½å ããã¯ã©ã¹å
+     */
+    function addClass(element, className) {
+        element.className += ' ' + className;
+    }
+    /**
+     * removeClass
+     * DOM Elementã«è¿½å ãã¦ããæå®ãããã¯ã©ã¹åãåé¤ãã
+     *
+     * @param {DOM Element} element
+     * @param {string} className åé¤ããã¯ã©ã¹å
+     */
+    function removeClass(element, className) {
+        var name = element.className;
+        var reg = new RegExp('[\\s\\u00A0\\u3000]*' + className + '[\\s\\u00A0\\u3000]*', 'g');
+        element.className = name.replace(reg, ' ').replace(/[\s\u00A0\u3000]*$/, '');
+    }
+    /**
+     * checkClass
+     * DOM Elementã«æå®ãããã¯ã©ã¹åãããã®ãï¼ãã§ãã¯ãã
+     *
+     * @param {DOM Element} element
+     * @param {string} className ãã§ãã¯ããã¯ã©ã¹å
+     * @return {boolean} ãã: true | ãªã: false
+     */
+    function checkClass(element, className) {
+        var name = element.className;
+        var reg = new RegExp(className, 'g');
+        return reg.test(name);
+    }
+    /**
+     * checkTarget
+     * ã¿ããããå ´æã®å¤å®ãDOMéå±¤ãnullã¾ã§ããã®ã¼ã
+     * tapTargetElementã¨openNavigationElementãæ¯è¼ãã
+     *
+     * @param {DOM Element} tapTargetElement tapããelement
+     * @param {DOM Element} openNavigationElement è¡¨ç¤ºãããDOM Element
+     * @param {boolean} ===: true | !==: false
+     */
+    function checkTarget(tapTargetElement, openNavigationElement) {
+        if(tapTargetElement === openNavigationElement) {
+            return true;
+        }
+
+        if(tapTargetElement.parentNode === null) {
+            return false;
+        } else {
+            return checkTarget(tapTargetElement.parentNode, openNavigationElement);
+        }
+    }
+    /**
+     * searchChildElementArr
+     */
+    function searchChildElementArr(parentElement, childElementClassName) {
+        var arr = [];
+        for(var i = 0; i < parentElement.length; i++) {
+            arr.push(DMM.findClass(childElementClassName, parentElement[i])[0]);
+        }
+        return arr;
+    }
+    /**
+     * navigationAnimation
+     * ããã²ã¼ã·ã§ã³è¡¨ç¤ºãéè¡¨ç¤º
+     *
+     * @return {function} show
+     * @return {function} hide
+     */
+    var navigationAnimation = (function() {
+        var nowShowElement = null;
+        /**
+         * show
+         *
+         * @param {DOM Element} element è¡¨ç¤ºãããããã²ã¼ã·ã§ã³ã¨ã¬ã¡ã³ã
+         */
+        function show(element) {
+            // ãã§ã«ããã²ã¼ã·ã§ã³ãè¡¨ç¤ºãã¦ããå ´åã¯åã«éè¡¨ç¤ºã«ãã
+            nowShowElement !== null ? hide() : false;
+            addClass(element, 'hd-on');
+            nowShowElement = element;
+        }
+        /**
+         * hide
+         * 
+         * @param  {DOM Element} element éè¡¨ç¤ºã«ããããã²ã¼ã·ã§ã³ã¨ã¬ã¡ã³ã
+         * ãªãå ´åã¯nowShowElementãéè¡¨ç¤ºã«ãã
+         */
+        function hide(element) {
+            // elementå¼æ°ãããå ´åã¯ãã®Boxãéè¡¨ç¤ºã«
+            // ãªãå ´åã¯nowShowElementãéè¡¨ç¤ºã«
+            if(element === 'undefine' && nowShowElement === null) { return; }
+            typeof element !== 'undefined' ?
+            removeClass(element, 'hd-on') :
+            removeClass(nowShowElement, 'hd-on');
+
+            nowShowElement = null;
+        }
+        return {
+            show: show,
+            hide: hide
+        };
+    })();
+
+    // ãããã¼æ¹ä¿®å¾
+    if((
+       (UA.indexOf('iPhone') !== -1)//iphone
+    || (UA.indexOf('Android') !== -1)
+    || (UA.indexOf('Windows Phone') !== -1)
+    || (UA.indexOf('iPad') !== -1)
+    || (UA.indexOf('Touch') !== -1))
+    && $header !== null) {
+        removeClass($header, 'hd-deviceDefault');
+
+        var $openNaviTarget = DMM.findClass('hd-fn-floatnavi-target', $header);
+        var $openNaviTargetBox = searchChildElementArr($openNaviTarget, 'hd-fn-floatnavi-box');
+        var $openNaviTargetIcon = searchChildElementArr($openNaviTarget, 'hd-fn-floatnavi-icon');
+        var $openNaviTargetIconInBox = searchChildElementArr($openNaviTargetBox, 'hd-fn-floatnavi-icon');
+        var $body = document.getElementsByTagName('body')[0];
+
+        for(var k = 0; k < $openNaviTarget.length; k++) {
+            (function(len) {
+                var removeEventFunction = null;
+                function removeTouchendEvent(){
+                    if(removeEventFunction === null) {return;}
+                    DMM.removeEvent($body, 'touchend', removeEventFunction);
+                    removeEventFunction = null;
+                    // console.count('remove event');
+                }
+
+                DMM.addEvent($openNaviTargetIcon[len], 'click', function(e) {
+                    navigationAnimation.show($openNaviTargetBox[len]);
+
+                    DMM.addEvent($body, 'touchend', function(e){
+                        removeEventFunction =  arguments.callee;
+
+                        if(!checkTarget(e.target, $openNaviTargetBox[len])) {
+                            navigationAnimation.hide($openNaviTargetBox[len]);
+                            removeTouchendEvent();
+                        }
+                    });
+                });
+                DMM.addEvent($openNaviTargetIconInBox[len], 'click', function(e) {
+                    navigationAnimation.hide($openNaviTargetBox[len]);
+                    removeTouchendEvent();
+                });
+            })(k);
+        }
+    }
+})();

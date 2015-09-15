@@ -1,0 +1,77 @@
+$('div#welcome').ready(function($){
+    var localizeURL = document.URL,
+        localizeDomain = '.dmm.co.jp',
+        expDayCklg = new Date(),
+        isOpacity = typeof document.createElement('div').style.opacity !== 'undefined',
+        welcome = document.getElementById('welcome'),
+        style = welcome.style,
+        isFirst = true;
+
+    // event handler
+    // addEventListener  removeEventListener -> for modern browser
+    // attachEvent, detachEvent -> for IE( <=9 )
+    var addEvent = document.addEventListener ?
+    function(node, type, handler) {
+           node.addEventListener(type, handler, false);
+    } :
+    function(node, type, handler) {
+           node.attachEvent('on' + type, handler);
+    };
+           
+    var removeEvent = document.removeEventListener ?
+    function(node, type, handler) {
+           node.removeEventListener(type, handler, false);
+    } :
+    function(node, type, handler) {
+           node.detachEvent('on' + type, handler);
+    };
+    
+    // cookie domain set
+    if (localizeURL.match('.dmm.com')) { localizeDomain = '.dmm.com'; }
+
+    function localize_welcome_show(event) {
+        // control display (at first time only.)
+        if (isFirst && event.type === 'mousemove') {
+            isFirst = false;
+        }
+        // ajax load
+        // chariloto.dmm.com:service in japan
+        if (localizeURL.match('chariloto.dmm.com') || localizeURL.match('make.dmm.com')) {
+            
+            jQuery.ajax({
+                type: 'GET',
+                url:  'http://www.dmm.com/parts/site/-/translate_welcome_unservice/',
+                crossDoamin: true,
+                scriptCharset:"UTF-8",
+                dataType: 'jsonp',
+                jsonp: "callbackfunc",
+                success : function(res) {
+                    $('div#welcome').html(decodeURIComponent(res.param1)); 
+                    return;
+                },
+                error: function(res) {
+                }
+            });
+            
+        } else {
+            $('div#welcome').load('/parts/site/-/translate_welcome/',{ linkurl:localizeURL });
+        }
+        // control display (changing css state.)
+        style.display = 'block';    // for IE
+        style.opacity = '1';        // for modern browser
+
+        // set cookie 'cklg' (val : 'welcome' expires: 1 year)
+        $('div#welcome').click(function($){
+            expDayCklg.setTime(expDayCklg.getTime()+(365*1000*60*60*24));
+            document.cookie = 'cklg=welcome;domain='+ localizeDomain +';path=/;expires='+expDayCklg.toGMTString();
+        });
+        // remove event handler 
+        removeEvent(document, 'mousemove', localize_welcome_show);
+        removeEvent(document, 'keydown', localize_welcome_show);
+    }
+    // control display for IE
+    if (!isOpacity) { style.display = 'none'; }
+    // add event handler 
+    addEvent(document, 'mousemove', localize_welcome_show);
+    addEvent(document, 'keydown', localize_welcome_show);
+});

@@ -1,0 +1,156 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- Set ad size -->
+    <meta name="ad.size" content="width=970,height=250">
+    <!-- Studio Enabler Required -->
+    <script src="/879366/Enabler_01_81.js"></script>
+    <!--[if gte IE 9]>
+    <style type="text/css">
+        .gradient {
+            opacity: none;
+        }
+    </style>
+    <![endif]-->
+    <style type="text/css">
+        #main-container {
+            visibility: hidden;
+        }
+    </style>
+    <script language="javascript">
+        /* Init namespace */
+        var creative = window.creative || {};
+        /* Initialize Enabler */
+        if (Enabler.isInitialized())
+        {
+            init();
+        } else
+        {
+            Enabler.addEventListener(studio.events.StudioEvent.INIT, init);
+        }
+        /* Run when Enabler is ready */
+        function init()
+        {
+            if (Enabler.isPageLoaded())
+            {
+                politeInit();
+            } else
+            {
+                Enabler.addEventListener(studio.events.StudioEvent.PAGE_LOADED, politeInit);
+            }
+        }
+
+        function loadScripts(urls, callback)
+        {
+            function next()
+            {
+                if (urls.length > 1)
+                {
+                    urls.shift();
+                    loadScripts(urls, callback)
+                }
+                else
+                {
+                    callback();
+                }
+            }
+
+            var url = urls[0];
+            var el = document.createElement('script');
+            el.type = 'text/javascript';
+
+            if (el.readyState)
+            {  /* IE */
+                el.onreadystatechange = function ()
+                {
+                    if (el.readyState === 'loaded' || el.readyState === 'complete')
+                    {
+                        el.onreadystatechange = null;
+                        next();
+                    }
+                };
+            } else
+            {  /* Others */
+                el.onload = function ()
+                {
+                    next();
+                };
+            }
+            el.src = url;
+            document.getElementsByTagName('head')[0].appendChild(el);
+        }
+
+        function politeInit()
+        {
+            /* Load in CSS */
+            var extCSS = document.createElement('link');
+            extCSS.setAttribute('rel', 'stylesheet');
+            extCSS.setAttribute('type', 'text/css');
+            extCSS.setAttribute('href', 'assets/css/main.css');
+            document.getElementsByTagName('head')[0].appendChild(extCSS);
+
+            /* Preload external libraries first. */
+            loadScripts([
+                '//www.gstatic.com/external_hosted/polymer/custom.elements.min.js',
+                '//www.gstatic.com/ads/ci/studio/pixelloader/1/pixelloader_min.js',
+                '//www.gstatic.com/ads/ci/ytclosebutton/1/ytclosebutton_min.js',
+                'assets/js/vendor/gwdyoutube_min.js',
+                'assets/js/main.js'
+            ], function ()
+            {
+                creative.app.init();
+            });
+        }
+    </script>
+</head>
+<body>
+<div id="main-container">
+    <div id="teaser-content">
+        <button id="play-btn"></button>
+        <button id="pause-btn"></button>
+        <button id="sound-mute-btn"></button>
+        <button id="sound-unmute-btn"></button>
+        <div id="progress-bar"></div>
+        <div id="total-bar"></div>
+        <div id="teaser" class="teaser"></div>
+    </div>
+    <!-- Collapsed Content -->
+    <div id="collapsed-content">
+        <button id="col-fb-btn" class="fb-btn"></button>
+        <button id="col-twitter-btn" class="twitter-btn"></button>
+        <button id="col-instagram-btn" class="instagram-btn"></button>
+        <button id="expand-button" class="button">Click To Expand<span class="arrow"></span></button>
+        <div class="logo"></div>
+        <article id="content">
+            <h1 id="headline">Headline</h1>
+
+            <p id="copy">Copy</p>
+            <div id="txt-fr"></div>
+            <button id="collapsed-cta-btn"><span id="collapsed-cta-label" class="btn-label">Label</span><span class="arrow"></span></button>
+        </article>
+        <div id="collapsed-exit"></div>
+        <div id="feature-collapsed" class="feature-collapsed">
+        </div>
+    </div>
+    <!-- Expand Content -->
+    <div id="expanded-content">
+        <div id="expanded-exit"></div>
+        <button class="fb-btn"></button>
+        <button class="twitter-btn"></button>
+        <button class="instagram-btn"></button>
+        <button id="collapse-button" class="button"><img width="25" height="25" alt="Close Ad" src="https://www.gstatic.com/ads/ci/ytclosebutton/1/close_gray.png"><span class="btn-label">Close Expanded</span></button>
+        <div id="center-expanded-cta-wrapper">
+            <button id="expanded-cta-btn"><span id="expanded-cta-label" class="btn-label">Label</span><span class="arrow"></span></button>
+        </div>
+        <div class="logo"></div>
+        <div id="feature-expanded" class="feature-expanded">
+        </div>
+    </div>
+    <ci-ytclosebutton id="yt-close" theme="gray" lang="en"></ci-ytclosebutton>
+    <ci-studio-pixelloader eventtype="auto" url="https://googleads.g.doubleclick.net/pagead/viewthroughconversion/939820095/?value=1.00&amp;currency_code=EUR&amp;label=ZVmXCLGa3V8Qv4iSwAM&amp;guid=ON&amp;script=0">
+    </ci-studio-pixelloader>
+</div>
+
+</body>
+</html>

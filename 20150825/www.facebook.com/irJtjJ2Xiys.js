@@ -1,0 +1,5 @@
+/*!CK:2725608805!*//*1439174577,*/
+
+if (self.CavalryLogger) { CavalryLogger.start_js(["4vv8\/"]); }
+
+__d('TimeSpentBitArrayLogger',['Arbiter','Banzai','BanzaiODS','TimeSpentArray','TimeSpentConfig','TimeSpentImmediateActiveSecondsLogger','UserActivity','isInIframe'],function a(b,c,d,e,f,g,h,i,j,k,l,m,n,o){if(c.__markCompiled)c.__markCompiled();var p=Object.assign||function(s){for(var t=1;t<arguments.length;t++){var u=arguments[t];for(var v in u)if(Object.prototype.hasOwnProperty.call(u,v))s[v]=u[v];}return s;},q={delay:i.BASIC.delay,retry:true};function r(s,t){if(i.isEnabled('time_spent_bit_array')){h.inform('timespent/tosbitdataposted',p({},s));if(typeof t=='number'){q.delay=t;}else q.delay=i.BASIC.delay;i.post('time_spent_bit_array',p({},s),q);q.delay=l.delay;}}f.exports={init:function(s){if(o())return;n.subscribe(function(u,v){var w=v.last_inform;k.update(w);m.maybeReportActiveSecond(w);});var t=Date.now();k.init(r,l,t);m.maybeReportActiveSecond(t);j.bumpEntityKey('ms.time_spent.qa.www','time_spent.bits.js_initialized');}};},null);

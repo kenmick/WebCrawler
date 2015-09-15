@@ -1,0 +1,183 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script type="text/javascript" src="../../jstUtils/jquery-1.7.1.js"></script>
+    <script type="text/javascript" src="../js/snnew3.js"></script>
+    <title>èå®æè´­160600</title>
+    <style type="text/css">
+        *{margin:0;padding:0;list-style:none;border:0;font-style:normal;}
+        img{border:none;}
+        a{text-decoration:none;}
+        .moban{background:#ff2248;padding:3px;overflow:hidden;position:relative;}
+        .logo{position:absolute;z-index:50;left:0;top:0;overflow:hidden;background:#ff2248 url(../images/160600/logo_bg.png) right bottom no-repeat;}
+        .logo a{display:block;width:100%;margin:0 auto;text-align:center}
+        .mobanbd{width:135px;height:430px;padding:98px 10px 3px 9px;background:#fff;position:relative;}
+        .leftbut{cursor:pointer;position:absolute;}
+        .rightbut{cursor:pointer;position:absolute;}
+        .midpic{position:relative;overflow:hidden;}
+        .midpic ul{position:absolute;left:0;top:0;height:8000px;}
+        .midpic ul li{overflow:hidden;}
+        .txt{text-align:center;width:100%;}
+        .txt .wz{display:block;width:100%;padding-top:6px;overflow:hidden;white-space: nowrap;text-overflow: ellipsis;}
+        .txt .wz a{font:normal 16px/24px "å¾®è½¯éé»";color:#221814;}
+        .txt .price{display:block;overflow:hidden;}
+        .txt .price span{overflow:hidden;font:bold 14px/24px "å¾®è½¯éé»";color:#e70000;text-decoration: line-through;}
+        .icon{width:100%;padding-top:5px;}
+        .icon img{display:block;margin:0 auto;}
+        .su{position:absolute;right:0;bottom:0;width:76px;height:24px;overflow:hidden;z-index:50}
+        .su a{float:right}
+    </style>
+    <script type="text/javascript">
+        var w=parent._zz_config.w//å¹¿åå®½åº¦
+        ,h=parent._zz_config.h;//å¹¿åé«åº¦
+        var stylecontent='';
+        var logoheight=0.15*h,//é¡¶é¨logoé«åº¦
+            logowidth=0.3*h;//é¡¶é¨logoå®½åº¦
+        if(logowidth>w-20){
+            logowidth=w-20;
+            logoheight=0.41*w-8.2;
+        }
+        var bottomlogoheight=0.12*h-4,//åºé¨logoé«åº¦
+            bottomlogowidth=2.37*bottomlogoheight;//åºé¨logoå®½åº¦
+        if(bottomlogowidth>w){
+            bottomlogowidth=w-4;
+            bottomlogoheight=0.44*w-1.76;
+        }
+        if(bottomlogoheight>40){
+            bottomlogoheight=40;
+            bottomlogowidth=2.37*bottomlogoheight;
+        }
+        stylecontent+='.logo {width:'+w*0.8+'px;height:'+h*0.15+'px;}';//è®¾ç½®logo
+        stylecontent+='.logo img{width:'+w*0.8*0.8+'px;}';//è®¾ç½®logo
+        if(w==120&h==270){stylecontent+='.logo img{width:'+w*0.8*0.95+'px;padding-top:2px}';};
+        if(w==130&h==600){
+             stylecontent+='.logo {width:'+w*0.9+'px;height:'+h*0.09+'px;}';//è®¾ç½®logo
+             stylecontent+='.logo img{width:'+w*0.85+'px;padding-top:7px}';
+        };
+        if(w==160&h==600){
+             stylecontent+='.logo {width:'+w*0.9+'px;height:'+h*0.09+'px;}';//è®¾ç½®logo
+             stylecontent+='.logo img{width:'+w*0.85+'px;}';
+        };
+        stylecontent+='.moban{width:'+(w-6)+'px;height:'+(h-6)+'px;}';//è®¾ç½®å¹¿åä¸»ä½
+        var mobanbdheight=h-logoheight-27-bottomlogoheight,midpicheight=mobanbdheight-18;//è®¡ç®mobanbdé«åº¦
+        stylecontent+='.mobanbd{width:'+(w-24)+'px;padding:'+(logoheight+18)+'px 9px 3px 9px;height:'+mobanbdheight+'px;}';//è®¾ç½®mobanbd
+        stylecontent+='.leftbut{left:'+(w-29)/2+'px;top:'+(logoheight)+'px;}';//è®¾ç½®å·¦ä¾§ææ­
+        stylecontent+='.rightbut{left:'+(w-29)/2+'px;bottom:5px;}';//è®¾ç½®å³ä¾§ææ­
+        stylecontent+='.midpic{width:'+(w-24)+'px;height:'+midpicheight+'px;}';//è®¾ç½®midpic
+        stylecontent+='.midpic ul,.midpic ul li{width:'+(w-24)+'px;}';//è®¾ç½®è½®æ¢åºå
+        if(w==100&h==270){
+            stylecontent+='.logo {width:'+w*0.9+'px;height:'+h*0.15+'px;}';//è®¾ç½®logo
+            stylecontent+='.logo img{width:'+w*0.85+'px;padding-top:4px}';//è®¾ç½®logo 
+            var mobanbdheight=h-logoheight-55-bottomlogoheight,midpicheight=mobanbdheight-30;//è®¡ç®mobanbdé«åº¦
+            stylecontent+='.midpic{width:'+(w-24)+'px;height:'+midpicheight+'px;}';//è®¾ç½®midpic
+            stylecontent+='.mobanbd{width:'+(w-24)+'px;padding:'+(logoheight+35)+'px 9px 3px 9px;height:'+mobanbdheight+'px;}';//è®¾ç½®mobanbd
+            stylecontent+='.leftbut{left:'+(w-29)/2+'px;top:'+(logoheight+10)+'px;}';//è®¾ç½®å·¦ä¾§ææ­
+             stylecontent+='.rightbut{left:'+(w-29)/2+'px;bottom:10px;}';//è®¾ç½®å³ä¾§ææ­
+        };
+        if(w==130&h==600){
+            stylecontent+='.leftbut{left:'+(w-29)/2+'px;top:'+(logoheight+10)+'px;}';//è®¾ç½®å·¦ä¾§ææ­
+        }
+        var liheight//liæ ç­¾é«åº¦
+        ,tuheight;//å¾çé«åº¦
+        if(h<500){//å¦æé«åº¦å°äº500æèéè¦å±ç¤ºçååæ°éä¸ºå¥æ°åæèå®½é«æ¯å¤§äº0.3åä¸æ¬¡åªè½®æ¢ä¸ä¸ªåå
+            liheight=Math.ceil(midpicheight),tuheight=liheight-88;
+            if(h<300){
+                tuheight=liheight-60;
+                stylecontent+='.txt .price span{line-height:16px;font-size:14px;}.txt .wz a{line-height:16px;font-size:14px;}.txt .buy img{height:18px;}';
+            }
+        }
+        else{
+            liheight=0.5*midpicheight,tuheight=liheight-88;
+        }
+        stylecontent+='.midpic ul li{height:'+liheight+'px;}';
+            stylecontent+='.tu{width:'+(w-24)+'px;height:'+tuheight+'px;}';
+            if(w-24>tuheight){
+                stylecontent+='.tu img{height:'+tuheight+'px;}';
+            }
+            else{
+                stylecontent+='.tu img{width:'+(w-24)+'px;}';
+            }
+        if(w<150){
+            stylecontent+='.txt .wz a{font-size:14px;}';
+        }
+        if(w-24<88){
+            stylecontent+='.buy img{width:100%;}';
+        }
+        if(bottomlogowidth<100){//è®¾ç½®åºé¨logo
+            stylecontent+='.icon img{width:'+bottomlogowidth+'px;height:'+bottomlogoheight+'px;}'; 
+            stylecontent+='.icon{padding-top:2px;}';
+            if(w==120&h==270){stylecontent+='.icon img{width:'+bottomlogowidth*0.8+'px;height:'+bottomlogoheight*0.8+'px;}';stylecontent+='.icon{padding-top:5px;}';};
+            if(w==100&h==270){stylecontent+='.icon img{width:'+bottomlogowidth*1.1+'px;height:'+bottomlogoheight*1.1+'px;}';stylecontent+='.icon{padding-top:5px;}';};
+            if(w==130&h==600){stylecontent+='.icon img{width:'+bottomlogowidth*0.82+'px;height:'+bottomlogoheight*0.82+'px;padding-top:2px;}';}
+        }
+        document.write('<style type="text/css">'+stylecontent+'</style>');
+        $(function(){
+            $('.logo a').attr('href',parent._zz_config.logoClickUrl);
+            $('.logo a').click(function(){//ç¹å»logoäºä»¶
+                if(parent._zz_config.events){
+                    if(typeof(parent._zz_config.events.logoClickEvent)=='function'){
+                        parent._zz_config.events.logoClickEvent.call();
+                    }
+                }
+            });
+            $('.icon a').attr('href',parent._zz_config.bottomLogoClickUrl);
+            $('.icon a').click(function(){//ç¹å»åºé¨logoäºä»¶
+                if(parent._zz_config.events){
+                    if(typeof(parent._zz_config.events.bottomLogoClickEvent)=='function'){
+                        parent._zz_config.events.bottomLogoClickEvent.call();
+                    }
+                }
+            });
+            $('.slogan').click(function(){//åºé¨logoäºä»¶
+                if(parent._zz_config.events){
+                    if(typeof(parent._zz_config.events.sloganClick)=='function'){
+                        parent._zz_config.events.sloganClick.call();
+                    }
+                }
+            });
+            $('.su a:eq(1)').attr('href',parent._zz_config.bottomSloganClick);
+        });
+        var pclick=function(index){//ç¹å»ååäºä»¶
+            if(parent._zz_config.events){
+                    if(typeof(parent._zz_config.events.pclick)=='function'){
+                        parent._zz_config.events.pclick.call(this,index);
+                    }
+                }
+        };
+        var DrawImage=function(img){
+            var $this=$(img);
+            var wrapheight=$this.parents('.tu').height(),wrapwidth=$this.parents('.tu').width();
+            $this.css('width',$this.width()+'px');
+            if(wrapheight>$this.height()){
+                $this.css('padding-top',(wrapheight-$this.height())/2+'px');
+            }
+            if(wrapwidth>$this.width()){
+                $this.css('padding-left',(wrapwidth-$this.width())/2+'px');
+            }
+        };
+    </script>
+</head>
+<body>
+<div class="moban">
+	<div class="logo"><a href="" target="_blank"><img src="../images/160600/logo.png"></a></div>
+    <div class="mobanbd">
+    	<div class="leftbut"><img src="../images/160600/leftbut.png"></div>
+        <div class="midpic">
+        	<ul>
+            	<script type="text/javascript">
+                    var pcontent='',plist=parent._zz_config.pList;
+                    for(var i in plist){
+                        pcontent+='<li data-index="'+i+'" data-pid="'+plist[i].pid+'"><div class="tu"><a href="'+plist[i].href+'" title="'+plist[i].name+'" target="_blank" onclick="pclick('+i+')"><img onload="DrawImage(this)" src="'+plist[i].imgurl+'" /></a></div><div class="txt"><p class="wz"><a onclick="pclick('+i+')" title="'+plist[i].name+'" href="'+plist[i].href+'" target="_blank">'+plist[i].name+'</a></p><p class="price"><span>'+plist[i].marketprice+'</span></p><a onclick="pclick('+i+')" href="'+plist[i].href+'" target="_blank" class="buy"><img src="../images/160600/buy.png" /></a></div></li>';
+                    }
+                    document.write(pcontent);
+                </script>               
+            </ul>
+        </div>
+        <div class="rightbut"><img src="../images/160600/rightbut.png"></div>
+    </div>
+    <div class="icon"><a href="" target="_blank"><img src="../images/160600/icon.png"></a></div>
+    <div class="su"><a href="" target="_blank"><img src="../images/160600/su1.png"></a><a class="slogan" href="" target="_blank" style="display:none;"><img src="../images/160600/su0.png"></a></div>
+</div>
+</body>
+</html>

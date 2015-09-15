@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>728x90</title>
+<script src="/lp/enabler/ADventori-2.0.0.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="/lp/enabler/ADventori-2.0.0.css">
+<script src="assets/easeljs-0.8.1.min.js"></script>
+<script src="assets/tweenjs-0.6.1.min.js"></script>
+<script src="assets/movieclip-0.8.1.min.js"></script>
+<script src="assets/preloadjs-0.6.1.min.js"></script>
+<script src="assets/728x90.js"></script>
+<style>
+
+#container{
+	position:relative;
+}
+
+#ML{
+	display:none;
+	width:450px;
+	position:absolute;
+	top:55px;
+	left:130px;
+	background:#671113;
+	opacity:0.9;
+	color:white;
+	font-size:0.7em;
+	font-family: Arial, Times, serif;
+	padding:10px; 
+}
+
+#canvas{
+	position:absolute;
+}
+</style>
+<script>
+/* ADVENTORI - Initialisation de lavariable dynamique */
+var demo = ADventori.initData({'dateToday':'VALABLE JUSQU\'AU 3 SEPTEMBRE 2015'});
+/* ADVENTORI - Initialisation de lavariable dynamique - Fin */
+
+var canvas, stage, exportRoot;
+var ML;
+var FF = 0;
+if(navigator.userAgent.toLowerCase().indexOf('firefox') > -1) FF = 1;
+
+function init() {
+	canvas = document.getElementById("canvas");
+	images = images||{};
+	ss = ss||{};
+	
+	ML = document.getElementById("ML");
+
+	var loader = new createjs.LoadQueue(false);
+	loader.addEventListener("fileload", handleFileLoad);
+	loader.addEventListener("complete", handleComplete);
+loader.loadFile({src:"assets/728x90_atlas_.json", type:"spritesheet", id:"728x90_atlas_"}, true);
+	loader.loadManifest(lib.properties.manifest);
+}
+
+function handleFileLoad(evt) {
+	if (evt.item.type == "image") { images[evt.item.id] = evt.result; }
+}
+
+function hideML(){
+	ML.style.display = 'none';
+}
+
+function showML(){
+	ML.style.display = 'block';
+}
+
+/* ADVENTORI - Fonction getDate liÃ©e au paramÃ¨tre ADventori */
+
+function getDate(){
+		
+		var J = demo['dateToday'],
+		D,
+		W;
+		if(J < 2){
+			D = "JOUR";
+		}else{
+			D = "JOURS";
+		}
+		if(J > 0) {
+		  W = "PLUS QUE " + J + " " + D + ' POUR EN PROFITER';
+		} else {
+		  W = 'JUSQU\'AU 3 SEPTEMBRE 2015';
+		}
+		return W ;
+}
+/* ADVENTORI - Fonction getDate liÃ©e au paramÃ¨tre ADventori - Fin*/
+
+
+function handleComplete(evt) {
+	var queue = evt.target;
+	ss["728x90_atlas_"] = queue.getResult("728x90_atlas_");
+	exportRoot = new lib._728x90();
+
+	stage = new createjs.Stage(canvas);
+	stage.addChild(exportRoot);
+	stage.update();
+	stage.enableMouseOver();
+
+	createjs.Ticker.setFPS(lib.properties.fps);
+	createjs.Ticker.addEventListener("tick", stage);
+}
+</script>
+</head>
+
+<body onload="init();" style="background-color:#D4D4D4">
+	<div id="container">
+		<canvas id="canvas" width="728" height="90" style="background-color:#FFFFFF" onclick="ADventori.click();"></canvas>
+		<div id="ML">Offre soumise &agrave; conditions valable jusquâau 03/09/2015. 4G sous r&eacute;serve de couverture.</div>
+	</div>
+</body>
+</html>

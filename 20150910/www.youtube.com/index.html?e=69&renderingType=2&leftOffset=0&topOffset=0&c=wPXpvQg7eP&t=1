@@ -1,0 +1,96 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta data-template-name="Template_H5T_mhinpage-970x250-video">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <script type="text/javascript" src="/879366/Enabler_01_79.js"></script>
+  <script type="text/javascript" src="https://www.gstatic.com/external_hosted/polymer/custom.elements.min.js"></script>
+  <script type="text/javascript" src="https://www.gstatic.com/ads/ci/ytclosebutton/1/ytclosebutton_min.js"></script>
+</head>
+<body>
+    <div id="main-container">
+      <div id="exit"></div>
+      <ci-ytclosebutton id="yt-close" theme="white" shadow="true"></ci-ytclosebutton>
+      <div class="feature" id="feature">
+        <div id="video-container-0">
+            <video id="video-0" autoplay>
+               <!-- Sources will be added via JS using Enabler.getUrl calls. -->
+            </video>
+            <button id="play-btn-0" class="video-controls"></button>
+            <button id="pause-btn-0" class="video-controls"></button>
+            <button id="stop-btn-0" class="video-controls"></button>
+            <button id="replay-btn-0" class="video-controls"></button>
+            <button id="unmute-btn-0" class="video-controls"></button>
+            <button id="mute-btn-0" class="video-controls"></button>
+            <div id="progress-bar-0"></div>
+         </div>
+      </div>
+      <div id="spot_1" class="spot"></div>
+      <div id="spot_2" class="spot"></div>
+      <div id="spot_3" class="spot"></div>
+
+      <div id="texte_1" class="texte"></div>
+      <div id="texte_2" class="texte"></div>
+      <div id="texte_3" class="texte"></div>
+      
+      <div id="continuer_1" class="continuer_1"></div>
+      <div id="continuer_2" class="continuer_2"></div>
+      <div id="continuer_3" class="continuer_3"></div>
+      
+
+      <div id="fermer_1" class="fermer"></div>
+      <div id="fermer_2" class="fermer"></div>
+      <div id="fermer_3" class="fermer"></div>
+
+      <div id="bluebrand" class="bluebrand"></div>
+
+    </div>
+
+  <script type="text/javascript">
+	 var loadPixel = function(url) {
+	  // Create a new image element.
+	  var imageElement = document.createElement('img');
+	
+	  // Add the image to the DOM.
+	  document.body.appendChild(imageElement);
+	
+	  // Set the src attribute of the image.
+	  imageElement.src = url;
+	  imageElement.style.borderStyle = 'none';
+	  imageElement.height = 1;
+	  imageElement.width = 1;
+	  imageElement.alt = '';
+	};
+
+    // The pixel URL to be loaded on exit. Replace with your corrected pixel URL:
+    var pixelUrlExit = 'https://googleads.g.doubleclick.net/pagead/viewthroughconversion/951376692/?value=1.00&currency_code=EUR&label=0vqzCMLi-14QtLbTxQM&guid=ON&script=0';
+
+    // The pixel URL to be loaded on impression.
+    var pixelUrlImpression = 'https://googleads.g.doubleclick.net/pagead/viewthroughconversion/951376692/?value=1.00&currency_code=EUR&label=KqT6CL_c-14QtLbTxQM&guid=ON&script=0';
+
+    // A Boolean flag to ensure the exit pixel loads only once per impression.
+    var exitPixelWasLoaded = false;
+
+    // Exit pixel will load only once.
+    var exitHandler = function() {
+      if (!exitPixelWasLoaded) {
+        loadPixel(pixelUrlExit);
+        exitPixelWasLoaded = true;
+      }
+    };
+
+    // Register for the EXIT event from Studio.
+    Enabler.addEventListener(studio.events.StudioEvent.EXIT, exitHandler);
+
+
+    // Load the impression pixel.
+    loadPixel(pixelUrlImpression);
+
+    
+  </script>
+    <script src="logic.js"></script>
+
+</body>
+</html>

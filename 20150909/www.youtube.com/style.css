@@ -1,0 +1,365 @@
+
+body, body * {
+  vertical-align: baseline;
+  border: 0 none;
+  outline: 0;
+  padding: 0;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  font-size: 9pt;
+  color: #333;
+}
+
+#main-container {
+  position: absolute;
+  width: 970px;
+  height: 250px;
+  top: 0px;
+  left: 0px;
+/*  border: 1px solid black;*/
+  box-sizing: border-box;
+  background: #fff;
+}
+
+#collapsed-content {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+  z-index: 100;
+  cursor: pointer;
+  text-align: center;
+  background-color: #fff;
+  box-sizing: border-box;
+  display: block;
+}
+
+#collapsed-content-end {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+  z-index: 100;
+  cursor: pointer;
+  text-align: center;
+  background-color: #fff;
+  box-sizing: border-box;
+  display: none;
+  overflow: hidden !important;
+}
+
+
+#expanded-content {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background-color: #F1F1F1;
+  z-index: 200;
+  display: none;
+  box-sizing: border-box;
+  border: 1px solid black;
+}
+
+#expanded-exit {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+  cursor: pointer;
+  /* IE10 needs a background color otherwise he won't capture clicks */
+  background-color: #FFF;
+  opacity: 0;
+  z-index: 400;
+  display: none;
+}
+
+#collapsed-exit {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+  cursor: pointer;
+  /* IE10 needs a background color otherwise he won't capture clicks */
+  background-color: #FFF;
+  opacity: 0;
+  z-index: 400;
+  display: none;
+}
+
+.button {
+  position: absolute;
+/*  color: #FFF;
+  background-color: #339933;
+  border: 1px outset #333;*/
+  cursor: pointer;
+  padding: 4px 9px;
+  z-index: 500;
+  font-family: Arial, sans-serif;
+  font-size: 10pt;
+}
+
+#expand-button {
+  bottom: 0;
+  right: 0;
+  border-width: 1px 0 0 1px;
+  display: none;
+  width: 100%;
+  height: 100%;
+}
+
+#collapse-button {
+    width: 69px;
+    height: 12px;
+    position: absolute;
+    left: 5px;
+    top: 10px;
+    cursor: pointer;
+    /* Important: keep 5px padding at top: 0 and left: as per YouTube Specs */
+    display: none;
+    z-index: 500;
+}
+
+#yt-close {
+  z-index: 999;
+}
+
+.feature-collapsed {
+  top: 67px;
+  right: 90px;
+  width: 297px;
+  height: 167px;
+  position: absolute;
+}
+
+.feature-expanded {
+    top: 0;
+    left: 0;
+    width: 970px;
+    height: 500px;
+    position: absolute;
+}
+#ytp-0 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 500;
+}
+#ytp-1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 500;
+}
+
+:focus {
+  outline:none;
+}
+::-moz-focus-inner {
+  border:0;
+}
+
+/* NON EXPAND */
+
+#fond_nonexpand{
+  width: 970px;
+  height: 250px;
+  position: absolute;
+  left: 0;
+}
+
+#fond_nonexpand2{
+  width: 970px;
+  height: 250px;
+  position: absolute;
+  display: none;
+}
+
+#chassedeau{
+  width: 37px;
+  height: 141px;
+  position: absolute;
+  top: 0px;
+  left: 100px;
+}
+
+#bulle{
+  width: 309px;
+  height: 109px;
+  position: absolute;
+  top: 40px;
+  right: 40px;
+  transform: scale(0);
+  -o-transform: scale(0);
+  -moz-transform: scale(0);
+  -webkit-transform: scale(0);
+  -ms-transform: scale(0);
+  -khtml-transform: scale(0);
+}
+
+#fleches{
+  width: 31px;
+  height: 18px;
+  position: absolute;
+  top: 100px;
+  left: 150px;
+}
+
+#video_court{
+  width: 970px;
+  height: 250px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  display: none;
+  opacity: 1;
+}
+
+#ouibus{
+  width: 123px;
+  height: 87px;
+  position: absolute;
+  bottom: 1px;
+  left: 420px;
+  opacity: 0;
+}
+
+#vignette {
+  top: 67px;
+  right: 90px;
+  width: 297px;
+  height: 167px;
+  position: absolute;
+  opacity: 0;
+}
+
+#interdits{
+  width: 358px;
+  height: 109px;
+  position: absolute;
+  top: 70px;
+  left: 30px;
+  transform: scale(0);
+  -o-transform: scale(0);
+  -moz-transform: scale(0);
+  -webkit-transform: scale(0);
+  -ms-transform: scale(0);
+  -khtml-transform: scale(0);
+}
+
+#border{
+  width: 968px;
+  height: 248px;
+  position: absolute;
+/*  display: block;*/
+  overflow: hidden;
+  border: 1px solid black;
+}
+
+#voir{
+  width: 184px;
+  height: 43px;
+  position: absolute;
+  top: 15px;
+  right: 90px;
+  transform: scale(0);
+  -o-transform: scale(0);
+  -moz-transform: scale(0);
+  -webkit-transform: scale(0);
+  -ms-transform: scale(0);
+  -khtml-transform: scale(0);
+}
+
+/* EXPAND */
+
+#photo1{
+    width: 529px;
+    height: 250px;
+    position: absolute;
+    top: 250px;
+    left: 0;
+    opacity: 1;
+}
+
+#photo2{
+    width: 528px;
+    height: 250px;
+    position: absolute;
+    display: inline-block;
+    top: -250px;
+    right: 0;
+    opacity: 1;
+}
+
+#exit-gauche{
+    width: 485px;
+    height: 250px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#exit-droite{
+    width: 485px;
+    height: 250px;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+
+#etoile1{
+    width: 133px;
+    height: 137px;
+    position: absolute;
+    top: 100px;
+    left: 245px;
+    transform: scale(0);
+  -o-transform: scale(0);
+  -moz-transform: scale(0);
+  -webkit-transform: scale(0);
+  -ms-transform: scale(0);
+  -khtml-transform: scale(0);
+}
+
+#etoile2{
+    width: 133px;
+    height: 137px;
+    position: absolute;
+    top: 15px;
+    right: 220px;
+      transform: scale(0);
+  -o-transform: scale(0);
+  -moz-transform: scale(0);
+  -webkit-transform: scale(0);
+  -ms-transform: scale(0);
+  -khtml-transform: scale(0);
+}
+
+#ouibus_fin{
+    width: 216px;
+    height: 215px;
+    position: absolute;
+    top: 18px;
+    left: 390px;
+  transform: scale(0);
+  -o-transform: scale(0);
+  -moz-transform: scale(0);
+  -webkit-transform: scale(0);
+  -ms-transform: scale(0);
+  -khtml-transform: scale(0);
+}
+
+.fermer{
+    width: 69px;
+    height: 12px;
+}

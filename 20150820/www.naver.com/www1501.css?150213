@@ -1,0 +1,83 @@
+@charset "utf-8";
+/* NHN Web Standard 2Team SMY 150113 */
+
+
+
+/* Common */
+body,p,h1,h2,h3,h4,h5,h6,ul,ol,li,dl,dt,dd,table,th,td,form,fieldset,legend,input,textarea,button,select{margin:0;padding:0}
+body,input,textarea,select,button,table{font-family:'ëì',Dotum,Helvetica,sans-serif;font-size:12px}
+img,fieldset{border:0}
+ul,ol{list-style:none}
+em,address{font-style:normal}
+a{text-decoration:none}
+a:hover,a:active,a:focus{text-decoration:underline}
+.blind{visibility:hidden;overflow:hidden;position:absolute;top:0;left:0;width:1px;height:1px;font-size:0;line-height:0}
+
+/* layout */
+body{line-height:14px;color:#888}
+.login_wrap{position:relative;z-index:30;width:298px;height:105px;border:1px solid #dcdcdc;border-bottom:none;background:#f8f8f8}
+.login{height:104px;border-bottom:1px solid #e6e6e6}
+.htmlarea,.flasharea{position:absolute;z-index:16;margin:0;padding:0;border:0}
+.htmlarea{width:122px;height:55px}
+#htmlarea{display:none}
+.htmlarea,.flasharea,.login_help,.btn_login{top:14px!important}
+.htmlarea,.flasharea,.chk_id_login{left:13px}
+.login_help,.btn_dis{display:block;position:absolute;top:41px;left:206px;width:77px;height:26px;border:solid 1px #e9e9e9;background:#fbfbfb;font-size:11px;line-height:28px;color:#4a4a4a;letter-spacing:-1px;text-align:center}
+.login_help{border-bottom:none;letter-spacing:0}
+@-moz-document url-prefix(){
+.login_help{line-height:26px}
+}
+.login_help a{display:inline-block;position:relative;top:1px;font-size:11px;line-height:14px;color:#4a4a4a;vertical-align:middle}
+.chk_id_login{position:relative;top:76px;z-index:15;width:95px}
+.btn_lnk{position:absolute;top:77px;top:78px\9;right:13px}
+.btn_lnk a{font-size:11px;color:#888;letter-spacing:-1px}
+.btn_lnk a.btn_join{margin-right:7px}
+
+/* input */
+.input_box{position:relative;z-index:13;width:121px;height:26px;border:1px solid #bebebe;border-right:0;zoom:1}
+.input_box:first-child{border-bottom:0;zoom:1}
+.int{position:relative;z-index:10;width:116px;height:21px;*margin-top:-1px;padding:3px 0 2px 5px;border:0;border-radius:0;background:#fff;line-height:16px;*line-height:20px;font-size:12px;color:#4a4a4a;-webkit-appearance:none;zoom:1}
+.int.focus{background-color:#feffcc}
+.lbl_in{position:absolute;top:6px;*top:7px;left:6px;z-index:9;background:#fff;font-size:12px;line-height:16px;color:#4a4a4a}
+.ie7 .lbl_in,.ie8 .lbl_in,.ie9 .lbl_in{z-index:11}
+.ie7 .lbl_in.focus,.ie8 .lbl_in.focus,.ie9 .lbl_in.focus{z-index:9;border:none}
+.btn_login{position:absolute;left:135px;z-index:8;width:64px;height:53px;border:solid 1px #c9cac9}
+.btn_login input{width:64px;height:53px;border:0;border-radius:0;background:#fdfdfd;font-size:12px;line-height:55px\9;color:#222;-webkit-appearance:none;cursor:pointer}
+
+/* ë¡ê·¸ì¸ ìí ì ì§ ì²´í¬ë°ì¤ */
+.chk_id_login .chk_login{width:96px;height:16px;-webkit-appearance:none}
+.chk_id_login .chk_login::-ms-check{border:solid 1px #f8f8f8}
+.chk_id_login .lbl_long{display:inline-block;position:absolute;top:1px;left:1px;height:14px;padding-left:16px;background:#f8f8f8 url(/loginv3/img/sp_login_20150113.gif) no-repeat 0 -31px;font-size:11px;line-height:16px;*line-height:14px;letter-spacing:-1px;vertical-align:top;cursor:pointer}
+.chk_id_login .lbl_long.on{background-position:0 -50px}
+.chk_id_login .chk_login:checked +label{background-position:0 -50px}
+@-moz-document url-prefix() {
+	.chk_id_login .lbl_long {line-height:15px}
+}
+.vis .chk_id_login{top:77px}
+.vis .chk_id_login .chk_login{background:transparent}
+.vis .chk_id_login .lbl_long{top:0;height:16px}
+
+/* ip ì²´í¬ë°ì¤ */
+.ip_box{display:inline-block;overflow:hidden;position:relative;top:-1px\9;*top:0;width:25px;height:14px;text-indent:-999px;vertical-align:middle}
+.ip_box .chb_b{position:absolute;top:0;left:0;width:25px;height:13px;border:0 none;background:0 none;-webkit-appearance:none}
+.ip_box .lbl_type{position:absolute;top:0;left:1px;z-index:8;width:23px;height:13px;background:#fbfbfb url(/loginv3/img/sp_login_20150113.gif) no-repeat 0 1px;text-indent:-999px;vertical-align:middle;cursor:pointer}
+.ip_box .lbl_type.on{background-position:0 -12px}
+.ip_box .chb_b:checked +label{background-position:0 -12px}
+::-ms-backdrop,.ip_box{top:-1px}
+
+/* placeholder */
+::-webkit-input-placeholder{display:inline-block;position:relative;top:-1px;font-family:Arial,'ëì',Dotum;color:#616161}
+::-moz-placeholder{color:#000}
+:-ms-input-placeholder{color:#616161}
+
+/* ë©ì¸ì§ì°½ */
+.error_box_v2{position:absolute;top:32px;left:-15px;z-index:16;width:300px;height:31px;background:#595959;font-size:12px;font-weight:bold;color:#fff}
+.error_box_v2 p{padding-left:19px;line-height:32px;line-height:31px\9}
+.error_box_v2 strong{font-family:Arial,Helvetica,sans-serif;color:#fcff00}
+.error_box_v3,.error_box{position:fixed;top:0;left:133px;z-index:14;width:165px;height:104px;border:1px solid #888;background:#fff;zoom:1}
+.error_box{left:0;z-index:20;width:298px}
+.error_box .er3_txt{margin-left:39px}
+.close_x{position:fixed;top:8px;left:271px;width:21px;height:21px;border:none;background:url(/loginv3/img/sp_login_20150113.gif) no-repeat 2px -68px;text-indent:-999em;cursor:pointer}
+.er3_txt{margin:23px 0 0 13px;line-height:20px;color:#4a4a4a}
+.er3_txt strong{color:#4a4a4a}
+a.help_txt{display:inline-block;*margin-top:3px;padding-right:5px;background:url(/loginv3/img/sp_login_20150113.gif) no-repeat 100% -95px;line-height:14px;color:#888;text-decoration:none}

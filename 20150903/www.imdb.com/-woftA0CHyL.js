@@ -1,0 +1,5 @@
+/*!CK:933873653!*//*1440996720,*/
+
+if (self.CavalryLogger) { CavalryLogger.start_js(["1NMyK"]); }
+
+__d('PagesButton.react',['AbstractButton.react','React','cx','joinClasses'],function a(b,c,d,e,f,g,h,i,j,k){if(c.__markCompiled)c.__markCompiled();var l=i.PropTypes,m='accentblue',n='medium',o=i.createClass({displayName:'PagesButton',statics:{getButtonSize:function(p){return p.size||n;},getButtonColor:function(p){return p.color||m;}},propTypes:{color:l.oneOf(['accentblue','fbblue','green']),size:l.oneOf(['small','medium','large']),disabled:l.bool,fill:l.bool},getDefaultProps:function(){return {color:m,size:n,disabled:false,fill:false};},render:function(){var p=o.getButtonColor(this.props),q=o.getButtonSize(this.props),r=this.props.disabled,s=this.props.fill,t=k("_xa7"+(q==='small'?' '+"_xa8":'')+(q==='medium'?' '+"_xa9":'')+(q==='large'?' '+"_xaf":'')+(!r&&p==='accentblue'?' '+"_xag":'')+(!r&&p==='fbblue'?' '+"_xah":'')+(!r&&p==='green'?' '+"_xai":'')+(r?' '+"_xaj":'')+(s?' '+"_xak":'')+(!s?' '+"_xal":''));return (i.createElement(h,babelHelpers._extends({},this.props,{className:k(this.props.className,t)})));}});f.exports=o;},null);

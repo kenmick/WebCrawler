@@ -1,0 +1,119 @@
+<html>
+  <head>
+  </head>
+  <body>  
+    <div id="mf_pix_div"></div>
+    <script type="text/javascript">
+      (function(doc) {
+        createCookie = function(name, value, days) {
+          if (days) {
+            var date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            var expires = "; expires=" + date.toGMTString();
+          }
+          else var expires = "";
+          document.cookie = name + "=" + value + expires + ";path=/;domain=.mediaforge.com;";
+        }
+        cleanCookies = function(cookie_name) {
+          var ca = doc.cookie.split(';');
+          var cookie_array = [];
+          var max_merchant_keep = 10;
+          // find pID and split cookie value into array
+          for (var i = 0; i < ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+            if (c.indexOf(cookie_name) == 0) {
+              cookie_array = c.substring(cookie_name.length + 1).split('|');
+              break
+            }
+          }
+          // go through each mid,value in the cookie_array
+          var cookie_hash = {};
+          for (var count = 0; count < cookie_array.length; count++) {
+            // split the mid from the value
+            var comma_idx = cookie_array[count].indexOf(',');
+            if (comma_idx != -1) {
+              var clean_value = cookie_array[count].replace(/,{2,}/g,',');
+              if (clean_value.charAt(clean_value.length - 1) == ",") clean_value = clean_value.slice(0, -1);
+              
+              var mid = clean_value.substr(0, comma_idx);
+              var value = clean_value.substr(comma_idx + 1);
+              if (value.length > 0) {  
+                if (mid in cookie_hash) {
+                  // already have the mid in the hash table
+                  var existing_array = cookie_hash[mid];
+                  var found = false;
+                  // go through the array and only add unique entries
+                  for (var i = 0; i < existing_array.length; i++) {
+                    if (existing_array[i] == value) existing_array.splice(i, 1);
+                  }
+                  existing_array[existing_array.length] = value;
+                  cookie_hash[mid] = existing_array;
+                }
+                else {
+                  // new hash entry for mid
+                  var new_array = new Array;
+                  new_array[0] = value;
+                  cookie_hash[mid] = new_array;
+                }
+              }
+            }
+          }
+          // push the merchant_id into the array if it doesn't exist and we are cleaning the pID
+          var new_mid = '4058';
+          if (cookie_name == 'pID' && !(new_mid in cookie_hash)) {
+            cookie_hash[new_mid] = '0';
+          }
+          // go through mid hash and create the cookie string on the last 10 value if applicable
+          var new_value = '';
+          for (var mid in cookie_hash) {
+            var existing_array = cookie_hash[mid];
+            var start_count = (existing_array.length > max_merchant_keep) ? existing_array.length - max_merchant_keep : 0;
+            for (var array_count = start_count; array_count < existing_array.length; array_count++) {
+              new_value += (new_value.length == 0) ? mid + ',' + existing_array[array_count] : '|' + mid + ',' + existing_array[array_count];
+            }
+          }          
+          createCookie(cookie_name, new_value, 365);
+        }
+        optOut = function() {
+          var result = false;
+          var nameEQ = "opt-out=";
+          var ca = doc.cookie.split(';');
+          for (var i = 0; i < ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+            if (c.indexOf(nameEQ) == 0) result = true;
+          } 
+          return result;
+        }
+        processtags = function() {
+          var DIV_ID = 'mf_pix_div';
+          var content = '';
+          var tags = {
+            
+              
+                "4058_20":"pixel.mathtag.com/event/img?mt_id=807310&mt_adid=146653&v1=&v2=&v3=&s1=&s2=&s3=",
+              
+                "4058_33":"secure.adnxs.com/seg?add=3214635&t=2"
+              
+            
+          };
+          for(var tag_id in tags) {
+            content += "<img id=\"" + tag_id + "\" src=\"//" + tags[tag_id] + "\" height=\"0\" width=\"0\"/>";
+          }
+          document.getElementById(DIV_ID).innerHTML = content;
+        }
+        if (optOut() == false) {
+          processtags();
+          cleanCookies('pID');
+          cleanCookies('cID');
+        }
+        else {
+          createCookie('pID', '', -1);
+          createCookie('cID', '', -1);
+          createCookie('uID', '', -1);
+        }
+      })(document);
+    </script>
+  </body>
+</html>
