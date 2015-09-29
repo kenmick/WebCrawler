@@ -1,0 +1,103 @@
+<html>
+
+
+<head>
+
+<style type="text/css">
+body {margin:0px;}
+    
+a {border:none;}
+
+</style>
+
+</head>
+
+
+<body>
+
+<script>
+var ebRand = Math.random()+'';
+ebRand = ebRand * 1000000;
+document.write('<scr'+'ipt src="http://bsch.serving-sys.com/BurstingPipe/adServer.bs?cn=rsb&c=28&pli=14675119&PluID=56&w=1190&h=1&dlm=3&ucm=true&ord=' + ebRand + '"></scr' + 'ipt>');
+</script>
+<noscript>
+<a href="http://bsch.serving-sys.com/BurstingPipe/adServer.bs?cn=brd&FlightID=14675119&Page=&PluID=56&Pos=2069805694" target="_blank"><img src="http://bsch.serving-sys.com/BurstingPipe/adServer.bs?cn=bsr&FlightID=14675119&Page=&PluID=56&Pos=2069805694" border=0 width=1190 height=1></a>
+</noscript>
+
+</body>
+
+
+<script>
+function execGetCartierCookie(name){
+    var nameEQ = name + "="; 
+    var ca = document.cookie.split(';'); 
+    for(var i=0;i < ca.length;i++) {
+    var c = ca[i];
+    while (c.charAt(0)==' ') 
+    c = c.substring(1,c.length); 
+    if (c.indexOf(nameEQ) == 0) return unescape(c.substring(nameEQ.length,c.length));
+    }
+    return null;
+}
+
+function execHtmlEndCMDforMedia(){
+    var cartier_count = execGetCartierCookie("_cartier_youku_ad_crazy_count");
+    expires = new Date(); 
+    expires.setTime(expires.getTime()+24*60*60*1000);
+    document.cookie = "_cartier_youku_ad_crazy_close_lastdate" + "="+ escape (new Date()) + ";expires=" + expires.toGMTString() + ";domain=" + ".youku.com" + ";path=/";
+    var cartier_date = execGetCartierCookie("_cartier_youku_ad_crazy_close_lastdate");
+    document.domain = "youku.com";
+    
+    //parent.document.getElementById("ab_145").parentNode.parentNode.parentNode.style.height="0px";
+    
+    var ab_145 = parent.document.getElementById("ab_145").parentNode.parentNode.parentNode;
+    ab_145.style.height="0px";
+    ab_145.style.display = "none";
+
+    var ad_vb = parent.document.getElementById("ad_vb");
+    if(ad_vb){
+        //ab_vb.parentNode.parentNode.parentNode.parentNode.style.height="0px";
+        ad_vb.parentNode.style.display="none";
+        ad_vb.parentNode.innerHTML="";
+    }
+
+}
+
+function extend(val){
+    document.domain = "youku.com";
+    var ad_145 = parent.document.getElementById("ab_145");
+    var ad_vb = parent.document.getElementById("ad_vb");
+    var ad_vb_iframe = parent.document.getElementById("ad_vb_iframe");
+    var ad_145_parent = ad_145.parentNode.parentNode.parentNode;
+    
+    ad_145_parent.style.height = (parseInt(val) + 20) + 'px';
+    ad_vb_iframe.style.height = 
+    ad_145.style.height = 
+    ad_vb.style.height = val+"px";   
+}
+
+//å±å¼&åå§å
+//extend(400)
+//æ¶èµ·
+//extend(200);
+</script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

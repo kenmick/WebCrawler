@@ -1,0 +1,76 @@
+var expicurl = "http://adpic.chinadaily.com.cn/chinadaily/2015/09/0_44.jpg";
+var expiclnk = "http://www.qualcomm.cn/futurenow";
+var expicheight = 400;
+var qsbk=""
+var picurl = "http://adpic.chinadaily.com.cn/chinadaily/2015/09/0_45.jpg";
+var piclnk = "http://www.qualcomm.cn/futurenow";
+var picwidth = 980;
+var picheight = 100;
+var qsbk2="hr"
+var showtime = 5;
+var flash_swch = 1;
+var fullhtml ="";
+function tourl(str){return escape(str);}
+function pictype(id,url,link,dis,w,h,btnid,offset,btnname,Priority){
+	var link2 ="http://same.chinadaily.com.cn/c?z=chinadaily&la=0&si=18&cg=175&c=1722&ci=53&or=688&l=1403&bg=1403&b=1658&u="+link+"";
+	link2 = link2.replace(/\[COMMA\]/g,",");
+	var adlink = tourl(link2);
+	fullhtml+='<div id="'+id+'" style="display:'+dis+';width:'+w+'px;position:absolute;z-index:'+Priority+';">';
+	if(url.toLowerCase().indexOf('.swf')>0){
+		fullhtml+='<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,19,0" width="'+w+'" height="'+h+'"><param name="movie" value="'+url+'?clickTAG='+adlink+'" /><param name="quality" value="high" /><param name="wmode" value="opaque" /><embed src="'+url+'?clickTAG='+adlink+'" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" width="'+w+'" height="'+h+'" swliveconnect="true" name="" wmode=opaque></embed></object>';
+			if(flash_swch == 1)
+			{
+				fullhtml+='<a style="cursor: pointer; display: block;" href="'+link2+'" target="_blank"><div style="width:'+w+'px;height:'+h+'px;position:relative;margin-top:-'+h+'px;left:0px;z-index:100;background-color:black;filter:alpha(Opacity=0);-moz-opacity:0;opacity: 0;-khtml-opacity:0;cursor:pointer;border:none;padding:0px;overflow:hidden;"></div></a>';
+			}
+	}
+	else if (url.toLowerCase().indexOf('.jpg')>0||url.toLowerCase().indexOf('.gif')>0||url.toLowerCase().indexOf('.png')>0){
+		fullhtml+='<a href="'+link2+'" target="_blank"><img src="'+url+'" style="border:none;width:'+w+'px;height:'+h+'px;" border="0"/></a>';
+	}
+	else {
+		fullhtml+='<iframe frameborder="0" width="'+w+'" height="'+h+'" scrolling="no" src="'+url+'"></iframe>';
+	}
+	fullhtml+='<div style="cursor:pointer;position:absolute;*position:relative;z-index:9999;width:42px;line-height:14px;height:14px;float:right;right:10px;text-align:center;margin-top:-'+offset+'px;padding:2px 2px;background:#bfbfbf;" id="'+btnid+'"><a style="color:#333333;font-size:12px;font-weight:bold;text-decoration:none">'+btnname+'</a></div>';
+	fullhtml+='</div>';
+	return fullhtml;
+}
+pictype("fullscr1658",expicurl,expiclnk,"none",picwidth,expicheight,"cls_btn1658","388","Close",999);
+pictype("column1658",picurl,piclnk,"block",picwidth,picheight,"rply_btn1658","88","Expand",500);
+document.write('<div id="MyMoveAd1658" style="width:'+picwidth+'px;height:100px;overflow:hidden;position:relative;z-index:100;margin:0 auto;">'+fullhtml+'</div>');
+var intervalId_clm = null;
+function slideAd_clm(id,nStayTime,sState,nMaxHth,nMinHth){ 
+  this.stayTime=nStayTime*1000 || 3000; 
+  this.maxHeigth_clm=nMaxHth || 400; 
+  this.minHeigth_clm=nMinHth || 105; 
+  this.state=sState || "down" ; 
+  var obj = document.getElementById(id); 
+  if(intervalId_clm != null)window.clearInterval(intervalId_clm); 
+  function openBox(){ 
+	var h = obj.offsetHeight; 
+	document.getElementById("fullscr1658").style.display="block";
+	obj.style.height = ((this.state == "down") ? (h + 5) : (h - 5))+"px"; 
+    if(obj.offsetHeight>this.maxHeigth_clm){ 
+		window.clearInterval(intervalId_clm); 
+		intervalId_clm=window.setInterval(closeBox,this.stayTime); 
+    } 
+    if (obj.offsetHeight<this.minHeigth_clm){ 
+		window.clearInterval(intervalId_clm); 
+		document.getElementById("fullscr1658").style.display="none";
+    } 
+  } 
+  
+  function closeBox(){ 
+	slideAd_clm(id,this.stayTime,"up",nMaxHth,nMinHth); 
+  } 
+  intervalId_clm = window.setInterval(openBox,10); 
+} 
+var fullscr_img = document.getElementById("cls_btn1658");
+var cloumn_img = document.getElementById("rply_btn1658");
+	function add_agent(oTarget,sEventType,fnHandler)    
+	{   
+	if(oTarget.addEventListener){oTarget.addEventListener(sEventType,fnHandler,false);}
+	else if(oTarget.attachEvent){oTarget.attachEvent("on"+sEventType,fnHandler);}
+	else{oTarget["on"+sEventType] = fnHandler;}    
+	}
+	add_agent(fullscr_img,"click",function(){var intervalId_clm = null;slideAd_clm("MyMoveAd1658",0,"up");});
+	add_agent(cloumn_img,"click",function(){var intervalId_clm = null;slideAd_clm("MyMoveAd1658",showtime,"down");});
+slideAd_clm("MyMoveAd1658",showtime);

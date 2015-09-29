@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Expanding Masthead 970x250 &gt; 970x500 + YouTube Video Player</title>
+        <!-- CSS -->
+        <link rel="stylesheet" href="css/main.css">
+        <!-- Enabler should always come first. -->
+        <script src="/879366/Enabler_01_83.js"></script>
+
+        <script src="js/localisation.js"></script>
+
+        <!-- Polymer should come before custom elements, like the close button. -->
+        <script src="https://www.gstatic.com/external_hosted/polymer/custom.elements.min.js"></script>
+        <!-- YouTube close button -->
+        <script src="https://www.gstatic.com/ads/ci/ytclosebutton/1/ytclosebutton_min.js?shadow=true"></script>
+
+        <!-- // <script src="js/preloadjs.js"></script> -->
+        <!-- JS -->
+
+        <script>
+
+            // JS Begin
+            var isClickOnLoader = false;
+            window.onload = function () {
+
+                document.getElementById('collapseLoading').addEventListener("click", _clickOnLoader);
+                function _clickOnLoader(e) {
+                    isClickOnLoader = true;
+                }
+
+            };
+
+        </script>
+        <script src="js/main.js"></script>
+    </head>
+
+    <body>
+
+        <div id="main-panel">
+
+            <div id="collapsed-panel">
+                <!-- Add Collapsed content here. -->
+                
+
+                <!-- VIDEO INTRO -->
+
+                <div id="video-block">
+                    <video id="background-video">
+<!--                        <source src="video/970x250-prod.mp4" type="video/mp4">
+                        <source src="video/970x250-prod.webm" type="video/webm"> -->
+                    </video>
+                    <div id="expand-intro" class="pointer"></div>
+                </div>
+
+                <div id="collapseLoading" class="pointer">
+                    <div class="loader animation">
+                        <div class="green_circle"><div class="c"></div></div>
+                        <div class="white_circle"><div class="c"></div></div>
+                        <div class="dirt"><div class="c"></div></div>
+                        <div class="black_point"><div class="c"></div></div>
+                        <div class="x"><div class="c"></div></div>
+                        <div class="black_arrow"><div class="c"></div></div>
+                    </div>
+                </div>
+
+                <!-- ENDSHOT -->
+
+                <div id="after-video-bg" class="pointer">
+                    <div id="brandlogo"></div>
+                    <div id="ccopy"></div>
+                </div>
+
+                <div id="after-video">
+                    <div id="bg-player"></div>
+                    <div id="collapsed-bg-exit" class="pointer"></div>
+                    <div id="side-youtube-player"></div>
+                </div>
+
+                <div id="logo-cta">
+
+                    <div id="btcta" class="btcta animation pointer">
+                        <div class="btcta_green"><div class="c"></div></div>
+                        <div class="btcta_metal"><div class="c"></div></div>
+                        <div class="btcta_metal_light"><div class="c"></div></div>
+                        <div class="btcta_txt2"><div class="c"></div></div>
+                        <div class="btcta_txt1"><div class="c"></div></div>
+                        <div class="btcta_arrow1"><div class="c"></div></div>
+                        <div class="btcta_arrow2"><div class="c"></div></div>
+                    </div>
+
+                    
+                    <div id="col_logo_container" class="col_logo_container animation">
+
+                        <div id="col_logo" class="col_logo pointer"><div class="c"></div></div>
+
+                        <div id="col_logo_cta" class="col_logo_cta pointer">
+                            <div id="btfree" class="btfree animation">
+                                <div class="cta2_bt"><div class="c"></div></div>
+                                <div class="cta2_roll_bt"><div class="c"></div></div>
+                                <div class="cta2_txt"><div class="c"></div></div>
+                            </div>
+                        </div>
+                        
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div id="expanded-panel">
+
+                <div id="expandLoading">
+                    <div class="loader animation">
+                        <div class="green_circle"><div class="c"></div></div>
+                        <div class="white_circle"><div class="c"></div></div>
+                        <div class="dirt"><div class="c"></div></div>
+                        <div class="black_point"><div class="c"></div></div>
+                        <div class="x"><div class="c"></div></div>
+                        <div class="black_arrow"><div class="c"></div></div>
+                    </div>
+                </div>
+                
+                <!-- Add expanded content here. -->
+
+                <div id="expanded-anim-container">
+                    <div class="expand animation">
+                        <div class="fl_expand_background">
+                            <div class="c">
+                                <div id="ecopy"></div>
+                            </div>
+                        </div>
+                        <div class="fl_expand_backgroundmetal"><div class="c"></div></div>
+                        <!-- <div class="fl_expand_txt"><div class="c"></div></div> -->
+                        <!-- <div class="fl_expand_vr"><div class="c"></div></div> -->
+                        <!-- <div class="fl_expand_pluss"><div class="c"></div></div> -->
+                        <!-- <div class="fl_expand_telephone"><div class="c"></div></div> -->
+                        <!-- <div class="fl_expand_xpurl"><div class="c"></div></div> -->
+                        <div class="fl_expand_war"><div class="c"></div></div>
+                        <div class="fl_expand_pc"><div class="c"></div></div>
+
+                        <div id="expanded-bg-exit"></div>
+                        <div id="fl_expand_wow" class="fl_expand_wow"><div class="c"></div></div>
+                        <!-- <div id="zone-bt-xp" class="pointer"></div> -->
+
+                        <div id="fl_expand_play_for_free" class="fl_expand_play_for_free pointer">
+                            <!-- <div class="c"></div> -->
+                            <!-- <div class="chover"></div> -->
+
+                            <div class="btfree animation">
+                                <div class="cta2_bt"><div class="c"></div></div>
+                                <div class="cta2_roll_bt"><div class="c"></div></div>
+                                <div class="cta2_txt"><div class="c"></div></div>
+                            </div>
+                        </div>
+                        <div id="share-facebook" class="fl_expand_facebook_ico pointer">
+                            <div class="c"></div>
+                        </div>
+
+                        <div id="share-twitter" class="fl_expand_twitter_ico pointer">
+                            <div class="c"></div>
+                        </div>
+                        
+                    </div>
+
+                </div>
+            
+                <div id="video-yt-player"></div>
+
+                <div id="ctaClose_dc" style="position: absolute; top: 0px; left: 0px; left: auto; bottom: auto; width: auto; height: auto; cursor: pointer; display: block;">
+                    <img width="25" height="25" alt="Close Ad" src="https://www.gstatic.com/ads/ci/ytclosebutton/1/close_white_shadow.png">
+                    <span id="closeExpandedText" style="position: relative; bottom: 9px; font-family: arial,sans-serif; font-size: 11px; letter-spacing: 0.4px; text-decoration: underline; color: rgb(255, 255, 255); text-shadow: 0px 1px 6px rgb(0, 0, 0);">Close Expanded</span>
+                </div>
+
+            </div>
+
+
+            <div style="z-index:999 ; position:relative">
+                <ci-ytclosebutton lang="fr" theme="white" shadow="true" id="ytCloseWhite"></ci-ytclosebutton>
+            </div>
+
+        </div>
+
+        
+
+        <!-- Remarketing tags may not be associated with personally identifiable information or placed on pages related to sensitive categories. For instructions on adding this tag and more information on the above requirements, read the setup guide: google.com/ads/remarketingsetup -->
+        <div style="display:inline;">
+            <img id="taggenerique" height="1" width="1" style="border-style:none;" alt="" />
+        </div>
+
+    </body>
+</html>
+
+
+
+ 

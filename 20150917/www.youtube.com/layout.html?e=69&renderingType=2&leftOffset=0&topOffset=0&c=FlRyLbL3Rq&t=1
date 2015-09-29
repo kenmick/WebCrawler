@@ -1,0 +1,69 @@
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>YouTube Masthead Multi Feature Layout</title>
+  <script src="/879366/Enabler_01_81.js"></script>
+  <script>
+    var remotePath = window.location.protocol +
+        '//www.gstatic.com/doubleclick/studio/innovation/h5/layouts/masthead/multifeature/6/';
+    var isLocalEnvironment = false;
+    var isExpandingLocally = true;
+
+    if (Enabler.isInitialized()) {
+      init();
+    } else {
+      Enabler.addEventListener(studio.events.StudioEvent.INIT, init);
+    }
+
+    function init() {
+      var Environment = studio.common.Environment;
+      isLocalEnvironment = Environment.hasType(Environment.Type.LOCAL);
+
+      var moduleId = isLocalEnvironment ?
+          studio.module.ModuleId.CONFIGURABLE_FILLER :
+          studio.module.ModuleId.CONFIGURABLE;
+
+      studio.utils.EnablerAccessor.loadModuleWhenReady(moduleId, loadAssets);
+    }
+
+    function loadAssets() {
+      var isExpanding = Enabler.getParameter('assetType') == 'Expanding';
+      if (isLocalEnvironment && isExpandingLocally) {
+        isExpanding = true;
+      }
+      var styles = ['gwd_lib.css', 'style.css'];
+      var scripts = ['gwd_lib.js', 'layout' + (isExpanding ? 'expanding_min.js' : '_min.js')];
+      var runtime = studio.sdk.configurable.getRuntimeMode();
+      var context = studio.sdk.configurable.getFillerContext();
+      // Load remote assets when live or in creative workflow.
+      if (runtime == studio.sdk.configurable.RUNTIME_MODE.TRAFFIK ||
+          context == studio.sdk.configurable.FILLER_CONTEXT.CREATIVE) {
+        styles = styles.map(function(style) {
+          return remotePath + style;
+        });
+        scripts = scripts.map(function(script) {
+          return remotePath + script;
+        });
+      }
+
+      for (var i = 0; i < styles.length; ++i) {
+        var element = document.createElement('link');
+        element.setAttribute('rel', 'stylesheet');
+        element.setAttribute('type', 'text/css');
+        element.setAttribute('href', styles[i]);
+        document.head.appendChild(element);
+      }
+
+      var popAndLoadNextScript = function() {
+        var script = scripts.shift();
+        var callback = scripts.length > 0 ? popAndLoadNextScript.bind(this) : function() {
+          new studioinnovation.layouts.masthead.multifeature.Layout();
+        };
+        Enabler.loadScript(script, callback);
+      };
+      popAndLoadNextScript();
+    }
+  </script>
+</head>
+<body>
+</body>

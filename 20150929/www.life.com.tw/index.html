@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+  <head><script type="text/javascript">
+    
+      (function() {
+        var relegateNavigation = '';
+        var handleClickTagMessage = function(e) {
+          try {
+            var eventData = JSON.parse(e.data);
+          } catch (err) {
+            return;
+          }
+          if (eventData.isInitClickTag) {
+            if (eventData.clickTags) {
+              for (var i = 0; i < eventData.clickTags.length; i++) {
+                var clkTag = eventData.clickTags[i];
+                window[clkTag.name] = clkTag.url;
+              }
+            } else if (eventData.clickTag) {
+              window.clickTag = eventData.clickTag;
+            }
+            relegateNavigation = eventData.relegateNavigation;
+          }
+        };
+
+        if (open.call) {
+          window.open = function(open) {
+            return function(url, name, features) {
+              if (relegateNavigation === 'parent') {
+                var message = {'clickTag': url, 'isPostClickTag': true};
+                parent.postMessage(JSON.stringify(message), '*');
+              } else {
+                var args = [url, name];
+                if (features) {
+                  args.push(features);
+                }
+                open.apply(window, args);
+              }
+            };
+          }(window.open);
+        }
+
+        if (window.addEventListener) {
+          window.addEventListener(
+              'message', handleClickTagMessage, false);
+        } else {
+          window.attachEvent('onmessage', handleClickTagMessage);
+        }
+      })();
+    
+  </script>
+    <title>
+      300x250_IBM_Storewize
+    </title>
+      <meta charset="UTF-8">
+    <link href="css/styles.css" type="text/css" rel="stylesheet" />
+    <!-- Embed Google Fonts -->
+	<meta name="ad.size" content="width=300,height=250">
+	<link href="https://fonts.googleapis.com/css?family=Lato:700" rel="stylesheet" type="text/css">
+	<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:700" rel="stylesheet" type="text/css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/plugins/CSSPlugin.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/easing/EasePack.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenLite.min.js"></script>
+	<script type="text/javascript">
+        var clickTag = "http://www.google.com";
+
+        var clickArea = document.getElementById("globallink");
+        clickArea.href = clickTag;
+
+    </script>
+  </head>
+  <body>
+	<div id="banniere">
+    <a href="javascript:window.open(window.clickTag);" onclick="" id="globallink">
+		<div id="contours"></div>
+		<div id="txt1">
+		  <p class="text-style-1">
+			  Stockage hybride IBM Storwize<sup>Â®</sup>
+		  </p>
+		</div>
+		<img id="arrow" src="img/arrow.png" />
+		<div id="txt2">
+		  <p class="text-style-3">
+			  En savoir plus
+		  </p>
+		</div>
+		<div id="barre"></div>
+		<img id="logoibm" src="img/logoibm.png" />
+		<div id="txt3">
+		  <p class="text-style-2">
+			  RÃ©duisez vos
+		  </p>
+		  <p>
+			  coÃ»ts avec la
+
+		  </p>
+		  <p>
+			  virtualisation du stockage
+		  </p>
+		</div>
+		<img id="imagefond" src="img/imagefond.jpg" />
+	</a>	
+	</div>
+  </body>
+  <script src="js/animation.js" type="application/javascript"></script>
+</html>

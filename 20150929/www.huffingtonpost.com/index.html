@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="fr">
+<head><script type="text/javascript">
+    
+      (function() {
+        var relegateNavigation = '';
+        var handleClickTagMessage = function(e) {
+          try {
+            var eventData = JSON.parse(e.data);
+          } catch (err) {
+            return;
+          }
+          if (eventData.isInitClickTag) {
+            if (eventData.clickTags) {
+              for (var i = 0; i < eventData.clickTags.length; i++) {
+                var clkTag = eventData.clickTags[i];
+                window[clkTag.name] = clkTag.url;
+              }
+            } else if (eventData.clickTag) {
+              window.clickTag = eventData.clickTag;
+            }
+            relegateNavigation = eventData.relegateNavigation;
+          }
+        };
+
+        if (open.call) {
+          window.open = function(open) {
+            return function(url, name, features) {
+              if (relegateNavigation === 'parent') {
+                var message = {'clickTag': url, 'isPostClickTag': true};
+                parent.postMessage(JSON.stringify(message), '*');
+              } else {
+                var args = [url, name];
+                if (features) {
+                  args.push(features);
+                }
+                open.apply(window, args);
+              }
+            };
+          }(window.open);
+        }
+
+        if (window.addEventListener) {
+          window.addEventListener(
+              'message', handleClickTagMessage, false);
+        } else {
+          window.attachEvent('onmessage', handleClickTagMessage);
+        }
+      })();
+    
+  </script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <script type="text/javascript">
+  	var clickTag = "#";
+  </script>
+  <title>DISPLAY</title>
+  <link rel="stylesheet" href="global.css">
+</head>
+<body>
+
+	<a href="javascript:window.open(window.clickTag)" style="border: 1px solid #e6e6e6; position: absolute; width: 100%; height: 100%">
+
+		<div class="top_bar">
+			<img src="logo.jpg" alt="Volkswagen.">
+			<span>Polo</span>
+		</div>
+
+		<div class="background">
+
+			<section class="slide_title" id="slide_title"> <!-- PO -->
+				<div class="content">
+					<div class="title_op">
+						<img src="title_op.svg" alt="Les instants volkswagen du 1er au 30 septembre 2015">
+					</div>
+				</div>
+				<div class="valign"></div>
+			</section>
+
+			<section class="slide_po" id="slide_po"> <!-- PO -->
+				<div class="content">
+					<div class="po">
+						<img src="po.svg" alt="Du samedi 12 au dimanche 13 septembre 2015">
+					</div>
+				</div>
+				<div class="valign"></div>
+			</section>
+
+			<section class="slide_car">
+				<div class="content">
+
+					<div class="slide_car_1" id="slide_car_1"> <!-- PO -->
+						<div class="name_car">
+							<img src="name_car.svg" alt="Polo Lounge Ã  partir de 150â¬/mois* sans apport et sans condition">
+						</div>
+						<div class="ml_bottom">
+							<span>*Voir dÃ©tails de l&#39;offre.</span>
+						</div>
+						<div class="valign"></div>
+					</div>
+
+					<div class="slide_car_2">
+						<div class="name_car">
+							<img src="name_car2.svg" alt="Polo sÃ©rie spÃ©ciale Lounge surÃ©quipÃ© Ã  175â¬/mois* sans apport et sans condition">
+						</div>
+						<div class="img_car">
+							<img src="img_car.png" alt="Polo Lounge">
+						</div>
+						<div class="btn_rdv">
+							<img src="btn_rdv.png" alt="RÃ©servez votre essai.">
+						</div>
+						<div class="ml_bottom">
+							<span>*Voir dÃ©tails de l&#39;offre.</span>
+						</div>
+					</div>
+
+				</div>
+				<div class="valign"></div>
+			</section>
+
+		</div>
+
+	</a>
+
+
+	<script type="text/javascript">
+
+		date = new Date;
+	    moi = date.getMonth();
+	    j = date.getDate();
+	    resultat = j+' / '+moi;
+
+	    //alert(resultat);
+
+	    var a = document.getElementById("slide_po");
+	    var b = document.getElementById("slide_title");
+	    var c = document.getElementById("slide_car_1");
+
+	    if (moi == 8 && j > 13){
+	    	a.classList.remove("po");
+	    	b.classList.remove("po");
+	    	c.classList.remove("po");
+	    }else{
+	    	a.classList.add("po");
+	    	b.classList.add("po");
+	    	c.classList.add("po");
+	    }
+
+	</script>
+	
+</body>
+</html>

@@ -1,0 +1,88 @@
+
+body, body * {
+  vertical-align: baseline;
+  border: 0 none;
+  outline: 0;
+  padding: 0;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  font-size: 9pt;
+  color: #333;
+}
+
+#main-container {
+  position: absolute;
+  width: 970px;
+  height: 250px;
+  overflow:hidden;
+  top: 0px;
+  left: 0px;
+  border: 1px solid black;
+  box-sizing: border-box;
+  background: #000;
+  background-image:url("fond.jpg");
+  background-repeat:no-repeat;
+}
+#packshot {
+  position: absolute;
+  width: 970px;
+  height: 250px;
+  top: 0px;
+  left: 0px;
+  border: 1px solid black;
+  background-image:url("backup.jpg");
+  z-index:200;
+  display:none;
+}
+
+#replay_btn {
+	position:absolute;
+	width:28px;
+	height:30px;
+	right:10px;
+	bottom:5px;
+	background-image:url("rejouer_btn.png");
+	z-index:250;
+	display:none;
+	cursor:pointer;
+}
+
+#exit {
+  cursor: pointer;
+  width: 970px;
+  height: 250px;
+  z-index:2000;
+}
+
+#pixelClick{
+	display:none;
+}
+
+#yt-close {
+  z-index: 999;
+}
+
+.feature {
+  top: 0px;
+  left: 522px;
+  width: 448px;
+  height: 248px;
+  position: absolute;
+}
+#ytp-0 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+}
+
+
+
+:focus {
+  outline:none;
+}
+::-moz-focus-inner {
+  border:0;
+}

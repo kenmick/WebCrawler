@@ -1,0 +1,118 @@
+<!doctype html>
+<html>
+
+<head><script type="text/javascript">
+    
+      (function() {
+        var relegateNavigation = '';
+        var handleClickTagMessage = function(e) {
+          try {
+            var eventData = JSON.parse(e.data);
+          } catch (err) {
+            return;
+          }
+          if (eventData.isInitClickTag) {
+            if (eventData.clickTags) {
+              for (var i = 0; i < eventData.clickTags.length; i++) {
+                var clkTag = eventData.clickTags[i];
+                window[clkTag.name] = clkTag.url;
+              }
+            } else if (eventData.clickTag) {
+              window.clickTag = eventData.clickTag;
+            }
+            relegateNavigation = eventData.relegateNavigation;
+          }
+        };
+
+        if (open.call) {
+          window.open = function(open) {
+            return function(url, name, features) {
+              if (relegateNavigation === 'parent') {
+                var message = {'clickTag': url, 'isPostClickTag': true};
+                parent.postMessage(JSON.stringify(message), '*');
+              } else {
+                var args = [url, name];
+                if (features) {
+                  args.push(features);
+                }
+                open.apply(window, args);
+              }
+            };
+          }(window.open);
+        }
+
+        if (window.addEventListener) {
+          window.addEventListener(
+              'message', handleClickTagMessage, false);
+        } else {
+          window.attachEvent('onmessage', handleClickTagMessage);
+        }
+      })();
+    
+  </script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Peugeot SW</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js"></script>
+    <meta name="âad.sizeâ" content="âwidth=728,height=90â">
+	<script type="text/javascript">var clickTag = "http://www.google.com";Â </script>
+</head>
+
+<body>
+
+<div id="ad">
+    <div id="banner">
+        <div id="voiture_1" class="smooth">
+            <div class="img_jpg"></div>
+        </div>
+        <div id="trait" class="smooth">
+            <div class="img_png"></div>
+        </div>
+        <div id="texte_1" class="smooth">
+            <div class="img_png texte_1"></div>
+        </div>
+        <div id="texte_2" class="smooth">
+            <div class="img_png texte_2"></div>
+        </div>
+        <div id="france" class="smooth">
+            <div class="img_png france"></div>
+        </div>
+        <div id="moteur" class="smooth">
+            <div class="img_jpg moteur"></div>
+        </div>
+        <div id="footer" class="smooth">
+            <div class="img_png footer"></div>
+        </div>
+        <div id="voiture_2" class="smooth">
+            <div class="img_jpg voiture_2"></div>
+        </div>
+        <div id="texte_cta" class="smooth">
+            <div class="img_png texte_cta"></div>
+        </div>
+        <div id="cta" class="smooth">
+            <div class="img_png cta"></div>
+        </div>
+        <div id="condition" class="smooth">
+            <div class="img_png condition"></div>
+        </div>
+        <div id="fin" class="smooth">
+            <div class="img_jpg fin"></div>
+        </div>
+        <div id="logo" class="smooth">
+            <div class="img_png logo"></div>
+        </div>
+        <div id="motion" class="smooth">
+            <div class="img_png motion"></div>
+        </div>
+        <div id="cta_2" class="smooth">
+            <div class="img_png cta_2"></div>
+        </div>
+        
+        <a href="javascript:window.open(window.clickTag)"><div id="clickthrough" class="clickthrough"></div></a>
+    </div>
+</div>
+
+</body>
+
+</html>

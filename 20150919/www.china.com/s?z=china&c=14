@@ -1,0 +1,190 @@
+function _AdSame_getBody() {
+	if (document.compatMode=="CSS1Compat") {
+		return (document.documentElement) ? document.documentElement : document.body;
+	} else { return document.body; }
+}
+function _AdSame_getBodyScrollTop() {
+	if (self.pageYOffset) { var yScroll = self.pageYOffset; }
+	else if (document.documentElement && document.documentElement.scrollTop) {
+		var yScroll = document.documentElement.scrollTop;
+	} else if (document.body) { var yScroll = document.body.scrollTop; }
+	return yScroll;
+}
+function _AdSame_getBodyScrollLeft() {
+    if (self.pageYOffset) {
+        var xScroll = self.pageXOffset;
+    } else if (document.documentElement 
+               && document.documentElement.scrollLeft) {
+        /* Explorer 6 Strict*/
+        var xScroll = document.documentElement.scrollLeft;
+    } else if (document.body) {
+        /* all other Explorers*/
+        var xScroll = document.body.scrollLeft;
+    }
+    return xScroll;
+}
+function _AdSame_getBrowerWeight(){
+   if(window.innerWidth){
+    return window.innerWidth;
+   }else if(document.documentElement&&document.documentElement.clientWidth){
+    return document.documentElement.clientWidth;
+   }else if(document.body){
+    return document.body.clientWidth;
+   }
+   return 0;
+}
+function _AdSame_getFlashCode(w, h, c, u, t, n, ct) {
+	var html	=	"<div name='"+n+"' id='"+n+"' style='width:"+w+"px;height:"+h+"px;'>";
+	html		+=	"<object height='"+h+"px' width='"+w+"px' codebase='http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,0,0' ";
+	html		+=	"classid='clsid:D27CDB6E-AE6D-11cf-96B8-444553540000'>";
+	html		+=	"<param value='"+c+"' name='movie' />";
+	html		+=	"<param value='high' name='quality' />";
+	html		+=	"<param value='null' name='bgcolor' />";
+	html		+=	"<param value='opaque' name='wmode' />";
+	html		+=	"<embed height='"+h+"px' width='"+w+"px' src='"+c+"' wmode='opaque' bgcolor='null' type='application/x-shockwave-flash'  quality='high' pluginspage='http://www.macromedia.com/go/getflashplayer' />";
+	html		+=	"</object></div>";
+	if (!ct) {
+		html		+=	"<a style='top:0px;position:absolute;left:0px;z-index:10;cursor:pointer;display:block;' href='"+u+"' target='"+t+"'>";
+		html		+=	"<div style='width:"+w+"px;height:"+h+"px;background-color:black;filter:alpha(opacity=0);-moz-opacity:0;opacity:0;cursor:pointer;border:none;padding:0px;margin:0px;'>";
+		html		+=	"</div></a>";
+	}
+	return html;
+}
+function _AdSame_getImgCode(w, h, c, u, t, n) {
+	var html	=	"<div name='"+n+"' id='"+n+"' style='width:"+w+"px;height:"+h+"px;border:none;padding:0px;margin:0px;'>";
+	html		+=	"<a href='"+u+"' target='"+t+"'>";
+	html		+=	"<img src='"+c+"' style='width:"+w+"px;height:"+h+"px;border:none;' /></a></div>";
+	return html;
+}
+function _AdSame_getCloseButton(html, w, h, a, c, dt, dl, id, hide) {
+	html	=	"<div id='"+id+"' style='position:absolute;width:"+w+"px;height:"+(h+20)+"px;top:"+dt+"px;"+a+":0px;display:"+(hide?'none':'block')+"'>"+html+"<div style='top:0px;left:0px;width:"+(w-10)+"px;text-align:"+(a=="left"?"right":"left")+";font-size:9pt;color:"+c+";cursor:pointer;padding:5px;background-color:#ccc;' onclick='closeSymmetry();'>&#20851;&#38381;</div></div>";
+	return html;
+}
+function _AdSame_getReplayButton(html, w, h, a, c, dt, dl, id, hide) {
+	html	=	"<div id='"+id+"' style='position:absolute;width:"+w+"px;height:"+(h+20)+"px;top:"+dt+"px;"+a+":0px;display:"+(hide?'none':'block')+"'>"+html+"<div style='top:0px;left:0px;width:"+(w-10)+"px;text-align:"+(a=="left"?"right":"left")+";font-size:9pt;color:"+c+";cursor:pointer;padding:5px;background-color:#ccc;' onclick='replaySymmetry();'>&#37325;&#25773;</div></div>";
+	return html;
+}
+var xpadding = parseInt("0");
+var ypadding = parseInt("0");
+var width = parseInt("100");
+var height = parseInt("300");
+var qsbk="";
+var target =  "_blank";
+var main_content_width = parseInt("200");
+var textcolor = "#000000";
+var followScroll = "0"=='1'?true:false;
+var contentType = 'picture';
+var clicktag = '0'=='1'?true:false;
+var creativeUrl1 = "http://dvsour.china.com/china/2015/09/0_66.jpg";
+var creativeUrl2 = "http://dvsour.china.com/china/2015/09/0_67.jpg";
+var divid = "";
+var collapseflag = "0"=='1'?1:0;
+var subcontentType = "picture";
+var subclicktag = '0'=='1'?true:false;
+var subwidth =  parseInt("200");
+var subheight = parseInt("200");
+var subcreativeUrl = "http://";
+var subcreativeUrl_right =  "http://";
+var autocloseseconds = "0";
+var bannermonitorlink = "http://";
+if (subcreativeUrl_right=="") subcreativeUrl_right = subcreativeUrl;
+var clickUrl = "http://dvser.china.com/c?z=china&la=0&si=1&cg=1&c=14&ci=65&or=114&l=441&bg=441&b=432&u=http://sports.china.com/slc/";
+var ld_left = xpadding;
+var rd_left = _AdSame_getBody().clientWidth-width-xpadding;
+var ld_top = ypadding;
+var rd_top = ypadding;
+var collapse_hd = null;
+var collapse_status = 1;
+if (contentType=="flash") {
+	var html1 = _AdSame_getCloseButton(_AdSame_getFlashCode(width, height, creativeUrl1, clickUrl, target, '', clicktag), width, height, 'left', textcolor, ld_top, -width, '_AdSame_ld');
+	var html2 = _AdSame_getCloseButton(_AdSame_getFlashCode(width, height, creativeUrl2, clickUrl, target, '', clicktag), width, height, 'right', textcolor, rd_top, -width, '_AdSame_rd');
+} else {
+	var html1 = _AdSame_getCloseButton(_AdSame_getImgCode(width, height, creativeUrl1, clickUrl, target, ''), width, height, 'left', textcolor, ld_top, -width, '_AdSame_ld');
+	var html2 = _AdSame_getCloseButton(_AdSame_getImgCode(width, height, creativeUrl2, clickUrl, target, ''), width, height, 'right', textcolor, rd_top, -width, '_AdSame_rd');
+}
+if (collapseflag) {
+	var ld_left2 = xpadding;
+	var rd_left2 = _AdSame_getBody().clientWidth-subwidth-xpadding;
+	var ld_top2 = ypadding;
+	var rd_top2 = ypadding;
+	if (subcontentType == "flash") {
+		var html3 = _AdSame_getReplayButton(_AdSame_getFlashCode(subwidth, subheight, subcreativeUrl, clickUrl, target, '', subclicktag), subwidth, subheight, 'left', textcolor, ld_top2, -subwidth, '_AdSame_ld2', true);
+		var html4 = _AdSame_getReplayButton(_AdSame_getFlashCode(subwidth, subheight, subcreativeUrl_right, clickUrl, target, '', subclicktag), subwidth, subheight, 'right', textcolor, rd_top2, -subwidth, '_AdSame_rd2', true);
+	} else {
+		var html3 = _AdSame_getReplayButton(_AdSame_getImgCode(subwidth, subheight, subcreativeUrl, clickUrl, target, ''), subwidth, subheight, 'left', textcolor, ld_top2, -subwidth, '_AdSame_ld2', true);
+		var html4 = _AdSame_getReplayButton(_AdSame_getImgCode(subwidth, subheight, subcreativeUrl_right, clickUrl, target, ''), subwidth, subheight, 'right', textcolor, rd_top2, -subwidth, '_AdSame_rd2', true);
+	}
+}
+var str = html1+html2;
+if (collapseflag) { str += html3+html4; }
+str += '<img width="0" height="0" src="'+ bannermonitorlink +'" />';
+if (divid) {
+	var div = document.getElementById(divid);
+	if (div) {
+		if (div.style.position != "absolute" && div.style.position != "relative")
+			div.style.position = "relative";
+		div.innerHTML += str;
+	} else { document.write(str); }
+} else { document.write(str); }
+var ld = document.getElementById('_AdSame_ld');
+var rd = document.getElementById('_AdSame_rd');
+if (collapseflag) {
+	var ld2 = document.getElementById('_AdSame_ld2');
+	var rd2 = document.getElementById('_AdSame_rd2');
+}
+window.setInterval(function() {
+	var bw = _AdSame_getBrowerWeight() ;
+	var cw = parseInt(main_content_width) + width*2 + xpadding*2;
+	if(bw < cw){
+		if (collapse_status == 1) {
+			rd.style.display = ld.style.display = "none";
+		} else if(collapse_status == 2) {
+			if (collapseflag) { rd2.style.display = ld2.style.display = "none"; }
+		}
+	} else {
+    	rd.style.left = (_AdSame_getBodyScrollLeft()+_AdSame_getBody().clientWidth-width-xpadding)+"px";
+    	ld.style.left =  _AdSame_getBodyScrollLeft()+xpadding+"px";
+    	if (followScroll) {
+    		ld.style.top = ld_top+_AdSame_getBodyScrollTop()+"px";
+    		rd.style.top = rd_top+_AdSame_getBodyScrollTop()+"px";
+    	}
+    
+    	if (collapseflag) {
+    		rd2.style.left = (_AdSame_getBodyScrollLeft()+_AdSame_getBody().clientWidth-subwidth-xpadding)+"px";
+    		ld2.style.left =  _AdSame_getBodyScrollLeft()+xpadding+"px";
+    		if (followScroll) {
+    			ld2.style.top = ld_top2+_AdSame_getBodyScrollTop()+"px";
+    			rd2.style.top = rd_top2+_AdSame_getBodyScrollTop()+"px";
+    		}
+    	}
+    	if (collapse_status == 1) {
+			rd.style.display = ld.style.display = "block";
+			if (collapseflag) { rd2.style.display = ld2.style.display = "none"; }
+		} else if (collapse_status == 2){
+			rd.style.display = ld.style.display = "none";
+			if (collapseflag) { rd2.style.display = ld2.style.display = "block"; }
+		}
+	}
+}, 200);
+function closeSymmetry() {
+	window.clearTimeout(collapse_hd);
+	rd.style.display = ld.style.display = "none";
+	if (collapseflag) { rd2.style.display = ld2.style.display = "block"; };
+	collapse_status = 2;
+}
+function replaySymmetry() {
+	window.clearTimeout(collapse_hd);
+	rd.style.display = ld.style.display = "block";
+	if (collapseflag) { rd2.style.display = ld2.style.display = "none"; };
+	collapse_status = 1;
+	adsamesys_adv_startSymmetry();
+}
+function adsamesys_adv_startSymmetry(){
+if (collapseflag && autocloseseconds) {
+	collapse_hd = window.setTimeout(function() {
+		rd.style.display = ld.style.display = "none";
+		rd2.style.display = ld2.style.display = "block";
+		collapse_status = 2;
+	}, autocloseseconds*1000);
+}}
+adsamesys_adv_startSymmetry();

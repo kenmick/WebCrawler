@@ -1,0 +1,224 @@
+<html>
+<head>
+</head>
+<body>
+<div id="mf_pix_div"></div>
+<script type="text/javascript">
+  (function (doc) {
+    var parameters = {};
+    var DIV_ID = 'mf_pix_div';
+    setParametersDefault = function () {
+      parameters['orderNumber'] = '';
+      parameters['prodID'] = '';
+      parameters['catID'] = '';
+      parameters['cart'] = '';
+      parameters['price'] = '';
+      parameters['nan_type'] = 'visit';
+      parameters['nan_name'] = 'landing';
+      parameters['ts'] = new Date().getTime();
+      parameters['uid'] = translateUID();
+      parameters['uid3'] = readCookie('uid3');
+      parameters['uid1'] = "";
+    };
+    createCookie = function (name, value, days) {
+      if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        var expires = "; expires=" + date.toGMTString();
+      }
+      else var expires = "";
+      document.cookie = name + "=" + value + expires + ";path=/;domain=.mediaforge.com;";
+    };
+    readCookie = function (cookie_name) {
+      var ca = doc.cookie.split(';');
+      var cookie_value = "";
+      var max_merchant_keep = 10;
+      for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+        if (c.indexOf(cookie_name) == 0) {
+          cookie_value = c.substring(cookie_name.length + 1);
+          break
+        }
+      }
+      return cookie_value;
+    };
+    cleanCookies = function (cookie_name) {
+      var ca = doc.cookie.split(';');
+      var cookie_array = [];
+      var max_merchant_keep = 12;
+      // find pID and split cookie value into array
+      for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+        if (c.indexOf(cookie_name) == 0) {
+          cookie_array = c.substring(cookie_name.length + 1).split('|');
+          break
+        }
+      }
+      // go through each mid,value in the cookie_array
+      var cookie_hash = {};
+      for (var count = 0; count < cookie_array.length; count++) {
+        // split the mid from the value
+        var comma_idx = cookie_array[count].indexOf(',');
+        if (comma_idx !== -1) {
+          var clean_value = cookie_array[count].replace(/,{2,}/g, ',');
+          if (clean_value.charAt(clean_value.length - 1) === ",") clean_value = clean_value.slice(0, -1);
+
+          var mid = clean_value.substr(0, comma_idx);
+          var value = clean_value.substr(comma_idx + 1);
+          if (value.length > 0) {
+            if (mid in cookie_hash) {
+              // already have the mid in the hash table
+              var existing_array = cookie_hash[mid];
+              var found = false;
+              // go through the array and only add unique entries
+              for (var i = 0; i < existing_array.length; i++) {
+                if (existing_array[i] === value) existing_array.splice(i, 1);
+              }
+              existing_array[existing_array.length] = value;
+              cookie_hash[mid] = existing_array;
+            }
+            else {
+              // new hash entry for mid
+              var new_array = new Array;
+              new_array[0] = value;
+              cookie_hash[mid] = new_array;
+            }
+          }
+        }
+      }
+      // push the merchant_id into the array if it doesn't exist and we are cleaning the pID
+      var new_mid = '4058';
+      if (cookie_name === 'pID' && !(new_mid in cookie_hash)) {
+        cookie_hash[new_mid] = '0';
+      }
+      // go through mid hash and create the cookie string on the last 10 value if applicable
+      var new_value = '';
+      for (var mid in cookie_hash) {
+        var existing_array = cookie_hash[mid];
+        var start_count = (existing_array.length > max_merchant_keep) ? existing_array.length - max_merchant_keep : 0;
+        for (var array_count = start_count; array_count < existing_array.length; array_count++) {
+          new_value += (new_value.length === 0) ? mid + ',' + existing_array[array_count] : '|' + mid + ',' + existing_array[array_count];
+        }
+      }
+      createCookie(cookie_name, new_value, 365);
+    };
+    optOut = function () {
+      var result = false;
+      var nameEQ = "opt-out=";
+      var ca = doc.cookie.split(';');
+      for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+        if (c.indexOf(nameEQ) === 0) result = true;
+      }
+      return result;
+    };
+    translateUID = function () {
+      var uid = readCookie('uID');
+      var new_uid = "";
+      for (var i = 0; i < uid.length; i++) {
+        var uid_char = uid.charAt(i).charCodeAt();
+        if ((uid_char < 48) || (uid_char > 122) || ((uid_char > 57) && (uid_char < 65)) || ((uid_char > 90) && (uid_char < 97))) {
+          if (uid_char === 43) new_uid += "mfplusmf";
+          if (uid_char === 61) new_uid += "mfequalmf";
+          if (uid_char === 47) new_uid += "mfslashmf";
+          if (uid_char === 45) new_uid += "mfhyphenmf";
+        }
+        else {
+          new_uid += uid.charAt(i);
+        }
+      }
+      return new_uid;
+    };
+    parseQueryString = function () {
+      var params = location.search.split('&');
+      for (var param_index = 0; param_index < params.length; param_index++) {
+        var split_query = params[param_index].split('=');
+        if (split_query.length === 2) {
+          var name = split_query[0];
+          var value = split_query[1];
+          parameters[name] = value;
+          if (name.indexOf('orderNumber') !== -1) {
+            parameters['nan_type'] = 'purchase';
+            parameters['nan_name'] = 'main';
+          }
+          if (name.indexOf('prodID') !== -1) {
+            parameters['nan_type'] = 'user';
+            parameters['nan_name'] = 'product_view';
+          }
+          if (name.indexOf('catID') !== -1) {
+            parameters['nan_type'] = 'user';
+            parameters['nan_name'] = 'product_view';
+          }
+        }
+      }
+    };
+    processtags = function () {
+      var drop_js = function (pixel) {
+        var body = document.getElementsByTagName('body')[0].firstChild;
+        var script_jsTag = document.createElement('script');
+        if (script_jsTag) {
+          script_jsTag.setAttribute('type', 'text/javascript');
+          script_jsTag.src = pixel;
+          if (body) body.parentNode.insertBefore(script_jsTag, body);
+        }
+      };
+      setParametersDefault();
+      parseQueryString();
+      // temp variables for pixel calls
+      var mf_uID = parameters['uid'];
+      var mf_uID3 = parameters['uid3'];
+      var mf_uID1 = parameters['uid1'];
+      var mf_price = parameters['cart'];
+      var mf_ordernumber = parameters['orderNumber'];
+      var mf_prod_id = parameters['prodID'];
+      var mf_type = parameters['nan_type'];
+      var mf_name = parameters['nan_name'];
+
+      if (mf_ordernumber !== '') mf_price = parameters['price'];
+
+      var content = '';
+
+      if (parameters['cart'] !== '') {
+        var tags = {
+          
+        };
+      }
+      else {
+        var tags = {
+          
+          
+          "4058_20":"pixel.mathtag.com/event/img?mt_id=807310&mt_adid=146653&v1=&v2=&v3=&s1=&s2=&s3=",
+          
+          "4058_33":"secure.adnxs.com/seg?add=3214635&t=2"
+          
+          
+        };
+      }
+      for (var tag_id in tags) {
+        var pixel = tags[tag_id];
+        if (pixel.indexOf('/js/') !== -1 || pixel.indexOf('/js?') !== -1) {
+          drop_js("//" + pixel);
+        }
+        else {
+          content += "<img id=\"" + tag_id + "\" src=\"//" + pixel + "\" height=\"0\" width=\"0\"/>";
+        }
+      }
+      document.getElementById(DIV_ID).innerHTML = content;
+    };
+    if (optOut() === false) {
+      processtags();
+      cleanCookies('pID');
+      cleanCookies('cID');
+    }
+    else {
+      createCookie('pID', '', -1);
+      createCookie('cID', '', -1);
+      createCookie('uID', '', -1);
+    }
+  })(document);
+</script>
+</body>
+</html>

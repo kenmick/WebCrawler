@@ -1,0 +1,116 @@
+<html>
+<head>
+    <title>BA 21 Landmarks</title>
+   	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">   
+	<script src="/879366/Enabler_01_73.js"></script>
+	
+    <style type="text/css">		
+		#container_dc	{ position:absolute; width:300px; height:250px; top:0px; left:0px; margin:auto; overflow:hidden; border: 1px #666 solid;box-sizing:border-box;}}
+		#content_dc		{ position:absolute; width:100%; height:100%; top:0px; left:0px; overflow:hidden; display:none;
+		#loading		{ position:absolute; left:130px; top:100px; width:30px;  height:30px; z-index:10;}
+	</style>
+	
+</head>
+
+<body>
+	
+<div id="container_dc">
+	
+	<div id="bg"><img src="bg30.jpg" id="bg" class="bg" width="300" height="250" /> </div>
+	
+	<div id="content_dc">
+		<!-- <img src="guide3.jpg" id="bg" class="bg" width="300" height="600"/> -->
+		<div id="plane"></div>
+		<div id="planeb"></div>	
+		<div class="txt">
+			<p style="opacity:0;" id="txt1">Discover more of Britain</p>
+			<p id="txt2">with British Airways</p>
+		</div>
+		<div id="finalframe">
+			<div class="txt">
+				<p id="txt3">For our best fares <br />visit ba.com</p>
+				<div id="cta">Book now</div>
+			</div>
+			<div id="line"></div>
+			<div id="logo"></div>
+			<div id="gblogo"></div>
+			<div id="oneworld"></div>
+			<div id="terms">Terms and conditions apply</div>
+		</div>
+	</div>
+
+	<div id="loading"><img src="loading.gif" width="30" height="30"></div>
+
+	<!-- DC background exit -->
+	<div id="bg-exit"></div>
+
+	<div id="replay"></div>
+	
+</div>
+
+<script>
+
+//we'll use a window.onload for simplicity, but typically it is best to use either jQuery's $(document).ready() or $(window).load() or cross-browser event listeners so that you're not limited to one.
+window.onload = function() {
+	// Wait for DoubleClick Enabler Initialisation
+	if (Enabler.isInitialized()) {
+		console.log ("> Enabler Initialised");
+		enablerInitHandler();
+	} else {
+		console.log ("> Enabler NOT Initialised");
+		Enabler.addEventListener(studio.events.StudioEvent.INIT, enablerInitHandler);
+	}
+}
+
+function enablerInitHandler() {
+	// Polite Load
+	if (Enabler.isPageLoaded()) {
+		console.log ('Page Loaded');
+		pageLoadedHandler();
+	} else {
+		console.log ('Page NOT Loaded');
+		Enabler.addEventListener(studio.events.StudioEvent.PAGE_LOADED, pageLoadedHandler);
+	}
+}
+
+function pageLoadedHandler() {
+	console.log ("pageLoadedHandler()");
+
+	// load JS and CSS
+	var extJS_CSSPlugin = document.createElement('script');
+	extJS_CSSPlugin.setAttribute('type', 'text/javascript');
+	extJS_CSSPlugin.setAttribute('src', Enabler.getUrl('CSSPlugin.min.js')); 
+	document.getElementsByTagName('head')[0].appendChild(extJS_CSSPlugin);
+	
+	var extJS_EasePack = document.createElement('script');
+	extJS_EasePack.setAttribute('type', 'text/javascript');
+	extJS_EasePack.setAttribute('src', Enabler.getUrl('EasePack.min.js')); 
+	document.getElementsByTagName('head')[0].appendChild(extJS_EasePack);
+	
+	var extJS_TweenLite = document.createElement('script');
+	extJS_TweenLite.setAttribute('type', 'text/javascript');
+	extJS_TweenLite.setAttribute('src', Enabler.getUrl('TweenLite.min.js')); 
+	document.getElementsByTagName('head')[0].appendChild(extJS_TweenLite);
+	
+	var extJS_MainAnim = document.createElement('script');
+	extJS_MainAnim.setAttribute('type', 'text/javascript');
+	extJS_MainAnim.setAttribute('src', Enabler.getUrl('anim.js'));
+	document.getElementsByTagName('head')[0].appendChild(extJS_MainAnim);
+	
+	var extCSS=document.createElement('link');
+	extCSS.setAttribute("rel", "stylesheet");
+	extCSS.setAttribute("type", "text/css");
+	extCSS.setAttribute("href", Enabler.getUrl("styles.css")); 
+	document.getElementsByTagName("head")[0].appendChild(extCSS);
+}
+
+function bgExitHandler(e) {
+    Enabler.exit('Background Exit');
+}
+
+document.getElementById('bg-exit').addEventListener('click', bgExitHandler, false);
+
+</script>
+
+</body>
+</html>

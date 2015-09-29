@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+	<meta charset="UTF-8" />
+
+	<title>Masthead</title>
+
+	<style>
+
+		body{margin: 0;}
+
+		#topbanner{
+			display:block;
+			width:970px;
+			height:270px;
+			background-color:transparent;
+		}
+
+		#player{
+			position:absolute;
+			/* Change player size */
+			width:380px;
+			height:223px;
+			/* Change player position */
+			left:298px;
+			top:16px;
+		}
+
+		#social{
+			position:absolute;
+			width:970px;
+			left:0;
+			/* Move share bar vertically */
+			top:236px;
+		}
+
+		#fb{
+			width:110px;
+			float:left;
+			margin-left:15px;
+		}
+
+		#tw{
+			width:110px;
+			float:left;
+		}
+
+		#gg{
+			width:110px;
+			float:left;
+		}
+
+		#dm{
+			width:90px;
+			float:left;
+			margin-top:-5px;
+			/* Move Dailymotion share button horizontally */
+			margin-left:400px;
+		}
+
+	</style>
+
+</head>
+
+<body>
+
+	<a href="http://soshinrockslab.fr" target="_blank" id="topbanner">
+
+		<!--
+
+			PARAMS
+			controls=0 -> hide controls
+			autoplay=1 -> autoplay video
+			info=0 -> shows videos information (title/author) on the start screen (if autoplay=0)
+
+
+			/!\ WARNING /!\
+			The sound control button only display when the player width is more than 440px
+
+		-->
+
+		<div id="player">
+			<iframe frameborder="0" width="100%" height="100%" src="http://www.dailymotion.com/embed/video/x36bkgf?html=1&info=0&controls=1&autoplay=1&mute=1"></iframe>
+		</div> <!-- #player -->
+
+	</a> <!-- #topbanner -->
+
+</body>
+</html>

@@ -1,0 +1,183 @@
+(function(){
+
+	var _win=window,
+	_dc=_win.document,
+	_track_url = "http://track.ra.icast.cn/icast3/?cid=47284&r=[rnd]&pos_id=7387&ad_id=250077&",
+	_ad_id = 250077,
+	_pos_id = 7387,
+	_download = "http://rm.sina.com.cn/bj-icast/mv/cr/2015/09/250077/47284/",
+	_imp_track=_track_url+"mp=1&imp=1,1",
+	_clk_track=_track_url+"mc=1&clk=1,1",
+	_fply_track=_track_url+"mfp=1",
+	_ext_track=_track_url+"[EXTTYPE]=[EXTVALUE]",
+	_replay_track=_track_url+"mrp=1",
+	_close_track=_track_url+"mbrk=1",
+	_um_imp="",
+	_um_clk="",
+	_clk_url="http://clk.gentags.net/clk/iv-13150/st-23/cr-2/oi-375264/or-4338/adv-403/pcon-0/http://dc2.jd.com/auto.php?service=transfer&type=dmp&from=dmp&kid=770&klid=61817&to=http://sale.jd.com/act/G68XUWNEe0HzxP.html",
+	_xpos=(660-1000)/2,
+	_is_done=0,
+	_util = {
+		loadJS:function(_url,_fn){
+			var _s = _dc.createElement("script");_s.src = _url;
+			_s.onload=_s.onreadystatechange=function(){if(!_s.readyState||_s.readyState.match(/loaded|complete/i)){_fn();_s.onload=_s.onreadystatechange=null}}
+			_dc.getElementsByTagName("head")[0].appendChild(_s)
+		}
+	};
+	if(_um_imp!="")_imp_track+="\n"+_um_imp;
+	if(_um_clk!="")_clk_track+="\n"+_um_clk;
+
+
+	function run(){
+		iCast5["2.4"].load({"aid":_ad_id,"path":_download,"impTrack":_imp_track,"clkTrack":_clk_track,"extTrack":_ext_track,"clkUrl":_clk_url, 
+		"params":{
+			"ad_apc":2,
+			"ad_life":1440,
+			"ad_volume":20,
+			"shFrame":20,"shTime":0,"exFrame":20,"exTime":0
+		},
+		"poses":{
+			"origPos":[
+			{"tag":"main",
+			"zi":12000,//z-index
+			"materialScale":"1",
+			"x_fit":-1,
+			"location":{"rt":"","rf":"_viewport","rp":8,"sp":8,"dx":_xpos,"dy":0},
+			"materials":{"main":{"type":"swf","f":"1.swf","w":660,"h":250,"w2":330,"h2":250}}
+			}
+		], 
+		"extdPos":[
+			{"tag":"cls",
+			"location":{"rt":"af","rf":"&main","rp":1,"sp":7,"dx":0,"dy":0},
+			"materials":{"main":{"type":"pic","f":"cls_77x31.png","w":77,"h":31}}
+			}
+		
+		],
+		"extDomObjs":{}
+		},
+		
+		"displayLogic":{	
+			"init":[
+				["apc","LiveCounter","*ad_life"],
+				["dt1","DownTimer","=0.02"],
+				["ct1","Counter"],
+				["ct3","Counter"],
+				["ti1","Timer"],
+				["f2","Func",function(){
+					if(!_is_done){
+						_is_done=1;
+						_win.sinaadsROC.done('feibiao_xibao');
+					}
+				}]
+			],
+			"checkApc":[["@apc","count","<","*ad_apc"]],
+			"interactive":[
+				[
+					["_ad","onInit"],
+					[	
+						["@apc","count","<","*ad_apc"]		
+					], 
+					[
+						["@dt1","start"],
+						["_ad","trackImp"]	
+					],
+					[
+						["_ad","execFun","f2"],
+						["_ad","unload"]
+					]
+				],
+				[
+					["@dt1","onEnd"],
+					[
+						["&main","isLoaded","isTrue"],
+						["&cls","isLoaded","isTrue"]
+					],
+					[
+						["&main","expand"],
+						["&main","show"],
+						["&cls","show"],
+						["@ti1","start"],
+						["@apc","count"]
+					],
+					[
+						["@dt1","start"]
+					]
+				],
+				[
+					["&main","onEnd"],
+					[],
+					[	
+						["@ct1","count"],
+						["_ad","track", _fply_track],
+						["_ad","trackExt","mpt","@ti1.time"],
+						["@ti1","reset"],
+						["_ad","execFun","f2"]
+					]
+				],
+				[
+					["&cls","onClick"],
+					[
+						["@ct1","count","==","=1"]		
+					],
+					[
+						["@ct1","reset"]		
+					],
+					[
+						["_ad","track", _close_track],
+						["_ad","trackExt","mpt","@ti1.time"],
+						["@ti1","reset"],
+						["_ad","execFun","f2"]
+					],
+					[
+						["&cls","hide"],
+						["&main","close"],
+						["_ad","unload"]
+					]
+				],
+				[
+					["&main","onClick"],
+					[],
+					[
+						["_ad","trackClk"],
+						["_ad","track",""]
+					]
+				],
+				[
+					["&main","onBig"],
+					[],
+					[
+						["&main","expand"]
+					]
+				],
+				[
+					["&main","onSmall"],
+					[],
+					[
+						["&main","shrink"],
+						["&main","move",-335-_xpos,0]
+					]
+				],
+				[
+					["&main","onShow"],
+					[
+					],
+					[
+						["&main","play"]
+					]
+				],
+				[
+					["&main","onReady"],
+					[
+						["&main","isLoaded","isTrue"]
+					],
+					[
+						["&main","play"]
+					]
+				]
+			]
+		}	
+		})
+	}
+	
+	_util.loadJS(_download+'icast5.js', run)
+})();
