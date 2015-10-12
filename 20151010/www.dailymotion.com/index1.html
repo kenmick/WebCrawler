@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+	<meta charset="UTF-8" />
+
+	<title>Masthead</title>
+
+	<style>
+
+		body{margin: 0;}
+
+		#topbanner{
+			display:block;
+			width:970px;
+			height:270px;
+			background-color:transparent;
+		}
+
+		#player{
+			position:absolute;
+			/* Change player size */
+			width:380px;
+			height:223px;
+			/* Change player position */
+			right:0;
+			top:16px;
+		}
+
+	</style>
+
+</head>
+
+<body>
+
+	<a href="https://www.facebook.com/MuneLeGardienDeLaLune" target="_blank" id="topbanner">
+
+		<!--
+
+			PARAMS
+			controls=0 -> hide controls
+			autoplay=1 -> autoplay video
+			info=0 -> shows videos information (title/author) on the start screen (if autoplay=0)
+
+
+			/!\ WARNING /!\
+			The sound control button only display when the player width is more than 440px
+
+		-->
+
+		<div id="player">
+			<iframe frameborder="0" width="100%" height="100%" src="http://www.dailymotion.com/embed/video/x37y5em?html=1&info=0&controls=1&autoplay=1&mute=1"></iframe>
+		</div> <!-- #player -->
+
+	</a> <!-- #topbanner -->
+
+</body>
+</html>

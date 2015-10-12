@@ -1,0 +1,50 @@
+ï»¿// JavaScript Document
+// zengqingfeng_20130618 create
+function GetRequest() {
+    var d = document.getElementById("ebsgovicon").src;
+    var theRequest = /govicon.js\?id=([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})&width=([0-9]+)&height=([0-9]+)/.test(d) ? RegExp.$1 : "error";
+    var iconwidth = /govicon.js\?id=([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})&width=([0-9]+)&height=([0-9]+)&type=([0-9]+)/.test(d) ? RegExp.$2 : "36"; //default height
+    var iconheight = /govicon.js\?id=([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})&width=([0-9]+)&height=([0-9]+)&type=([0-9]+)/.test(d) ? RegExp.$3 : "50"; //default width
+    var type = /govicon.js\?id=([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})&width=([0-9]+)&height=([0-9]+)&type=([0-9]+)/.test(d) ? RegExp.$4 : "1"; //default width
+    var retstr = { "id": theRequest, "width": iconwidth, "height": iconheight, "type": type };
+    return retstr;
+}
+var webprefix = "http://szcert.ebs.org.cn/"
+var iconImageURL = "http://szcert.ebs.org.cn/Images/govIcon.gif";
+var niconImageURL = "http://szcert.ebs.org.cn/Images/newGovIcon.gif";
+var webCertAccessTraceURL = "http://szcert.ebs.org.cn/cert/CertAccessTrace";
+var tempiconImageURL = "";
+
+var params = GetRequest();
+if (params.type == "1") {
+    tempiconImageURL = iconImageURL;
+}
+if (params.type == "2") {
+    tempiconImageURL = niconImageURL;
+}
+document.write('<a href="' + webprefix + params.id + '" target="_blank"><img src="' + tempiconImageURL + '" title="æ·±å³å¸å¸åºçç£ç®¡çå±ä¼ä¸ä¸»ä½èº«ä»½å¬ç¤º" alt="æ·±å³å¸å¸åºçç£ç®¡çå±ä¼ä¸ä¸»ä½èº«ä»½å¬ç¤º" width="' + params.width + '" height="' + params.height + '"border="0" style="border-width:0px;border:hidden; border:none;"></a>');
+
+//å¨é¡µé¢å è½½å®æåï¼è·åä¿¡æ¯å¹¶ä¸å¼æ­¥postå°cert.gov.com
+document.write('<script type="text/javascript" src="http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js"></script>');
+
+function crossDomainPost() {
+	try{
+	  // Add the iframe with a unique name
+	  var iframe = document.createElement("iframe");
+	  var uniqueString = "Gov";
+	  document.body.appendChild(iframe);
+	  iframe.style.display = "none";
+	  iframe.contentWindow.name = uniqueString;
+
+	  // construct a form with hidden inputs, targeting the iframe
+	  var form = document.createElement("form");
+	  form.target = uniqueString;
+	  form.action = webCertAccessTraceURL+"?remote_id=" + params.id +"&remote_ip="+remote_ip_info.end+"&remote_country="+remote_ip_info.country+"&remote_province="+remote_ip_info.province+"&remote_city="+remote_ip_info.city+"&remote_url="+window.location.href;
+	  form.method = "POST";
+	  document.body.appendChild(form);
+	  form.submit();  
+	  }catch(ex) {
+		//don't throw exception to client
+	  }
+}
+document.write('<script id="dyamicGovScript" defer="defer" type="text/javascript">  window.onload=function( ){  crossDomainPost(); } </script>');

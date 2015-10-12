@@ -1,0 +1,81 @@
+
+<a id="DA_928401428397" class="mosaic--tile__link" href="">
+  <p class="mosaic--tile__title"></p>
+</a>
+<script>
+  require(['slotplacement/topic', 'jquery'], function (Topic, $) {
+    var $ad = $("#DA_928401428397");
+    var adParentId=$ad.parent().attr('id');
+    var tripletLink, tripletImageAlt, tripletTitle, tripletCallToAction, adVariantContext;
+    var imagePaths = {};
+    Topic.subscribe('adUpdate', function (pageId, data) {
+      injectAd(data);
+    }); 
+    Topic.subscribe('adError', function () {         
+      injectAd({});
+    });
+    
+    
+    function tripletImageSrc (device, imagePaths, alt) {
+      var size = (device === "small-mobile" ? "mobile" : "desktop");
+      var src = "src='"+imagePaths[size]+"'";
+      
+      var alt = " alt='" + alt + "'";
+      
+      return "<img " + src + alt + " />";
+    }
+    
+    function injectAd(data){  
+      
+      var _a = data._a ? data._a.split(',') : [];
+      
+      function hA(a) {
+        if ($.inArray(a, _a) > -1) {
+          return true;
+        }
+        return false;
+      }
+      
+      var rules = {};
+      
+      
+      
+      
+      
+        tripletLink = "https://creditcards.chase.com/?list=1,2,4&CELL=682K";
+        
+          imagePaths["desktop"] = "/content/services/structured-image/image.desktop.jpg/XCRT/Triplets/Card/Multi-Card/41175_v2_Multicard_Trip.jpg";
+        
+          imagePaths["mobile"] = "/content/services/structured-image/image.mobile.jpg/XCRT/Triplets/Card/Multi-Card/41175_v2_Multicard_Trip.jpg";
+        
+        tripletImageAlt = "United, Sapphire, Marriott, Freedom, and Slate credit cards";
+        tripletTitle = "From cash back, to savings on interest, we have the right credit card for you.";
+        tripletCallToAction = "Explore all cards >>";
+        adVariantContext="tripletLinkId:default;tripletImageId:default;tripletTitleId:default;tripletCallToActionId:default";
+      
+      
+      
+      
+      
+      // Dynamic Ad Injection
+      var device = $("body").data("device");
+      $ad.prepend(tripletImageSrc(device, imagePaths, tripletImageAlt));
+      $ad.attr("href", tripletLink);
+      $ad.find(".mosaic--tile__title").text(tripletTitle);
+      if (tripletCallToAction) {
+        var $callToAction = $('<p class="mosaic--tile__slug"></p>');
+        $callToAction.text(tripletCallToAction);
+        $ad.append($callToAction);
+      }
+      Topic('placementComplete').publish(adParentId,adVariantContext);
+      $(window).on("resize", function () {
+        var currentDevice = $("body").attr("data-device");
+        if (currentDevice !== device) { 
+          device = currentDevice; 
+          $ad.find("img").remove(); 
+          $ad.prepend(tripletImageSrc(device, imagePaths, tripletImageAlt)); 
+        }
+      });
+    }
+  });
+</script>

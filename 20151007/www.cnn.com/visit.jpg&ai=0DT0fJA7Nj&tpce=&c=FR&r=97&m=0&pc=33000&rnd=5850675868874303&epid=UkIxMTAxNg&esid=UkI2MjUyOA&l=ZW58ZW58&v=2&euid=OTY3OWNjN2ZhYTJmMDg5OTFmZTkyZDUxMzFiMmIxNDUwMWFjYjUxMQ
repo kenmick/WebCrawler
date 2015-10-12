@@ -1,0 +1,154 @@
+<script type='text/javascript'>
+  try {
+
+    var DX = {
+      AD: {
+        aid: '5850675868874303',
+        main: 'http://ads.w55c.net/t/d/0_DvD17BRh.swf?at=0&rtbhost=rtb01-c.eu.dataxu.net&btid=YjBlNDZhNDlkOTQ0OGMxZjUxMWFiOTg1ODAyNGQxZDc1YTQ3MDk2NXxSRlFCZHFZWGpzfDE0NDQxNzcxMjQ2MjN8MXwwRm1DNDM1Wkc4fDBSRzVkSmNlUkZ8NjExMTI3Nl9FWHw1NzQ1NTN8fHx8MTUuMFB8VVNE&ei=RUBICON&ac=&js=0&ob=0&ccw=SUFCMTIjMC4zNjM4NjU1OHxJQUIxMi0xIzAuMTc1NzY0ODR8SUFCMTItMiMwLjE3MzM5MDA5&ci=0C2WTeB5e0&psid=&s=http%3A%2F%2Fedition.cnn.com%2F&ts=1444177124628&c=FR&r=97&m=0&pc=33000&epid=UkIxMTAxNg&esid=UkI2MjUyOA&mi=&wp_exchange=71E7C792DBA49C0F',
+        bk: 'http://ads.w55c.net/t/d/0_wqFi5Wmv.gif?at=1&rtbhost=rtb01-c.eu.dataxu.net&btid=YjBlNDZhNDlkOTQ0OGMxZjUxMWFiOTg1ODAyNGQxZDc1YTQ3MDk2NXxSRlFCZHFZWGpzfDE0NDQxNzcxMjQ2MjN8MXwwRm1DNDM1Wkc4fDBSRzVkSmNlUkZ8NjExMTI3Nl9FWHw1NzQ1NTN8fHx8MTUuMFB8VVNE&ei=RUBICON&ac=&js=0&ob=0&ccw=SUFCMTIjMC4zNjM4NjU1OHxJQUIxMi0xIzAuMTc1NzY0ODR8SUFCMTItMiMwLjE3MzM5MDA5&ci=0C2WTeB5e0&psid=&s=http%3A%2F%2Fedition.cnn.com%2F&ts=1444177124628&c=FR&r=97&m=0&pc=33000&epid=UkIxMTAxNg&esid=UkI2MjUyOA&mi=&wp_exchange=71E7C792DBA49C0F',
+        click_through: 'https://exia.cesi.fr/formations/8246-cycle-preparatoire-les-bases-informatiques-et-scientifiques/?utm_source=Adexchange&utm_medium=300x250&utm_campaign=exia-prepa',
+        minV: 9,
+        h: 250,
+        w: 300,
+        wmode: 'transparent',
+        bg: '',
+        imp_trk: ''
+      },
+      click_tracking_url: 'http://i.w55c.net/cl?t=1&btid=YjBlNDZhNDlkOTQ0OGMxZjUxMWFiOTg1ODAyNGQxZDc1YTQ3MDk2NXxSRlFCZHFZWGpzfDE0NDQxNzcxMjQ2MjN8MXwwRm1DNDM1Wkc4fDBSRzVkSmNlUkZ8NjExMTI3Nl9FWHw1NzQ1NTN8fHx8MTUuMFB8VVNE&ei=RUBICON&tpc=&rurl=',
+      allow_script_access: 'always',
+      click_tags: ['clickTag', 'clickTAG', 'ClickTAG', 'ClickTag', 'clicktag', 'clickURL'],
+
+      encode_uri: function (s) {
+        return encodeURI(s).replace(/&/g, '&a'+'mp;');
+      },
+      escape: function (s) {
+        return encodeURIComponent(s);
+      },
+      asset_uri: function (s) {
+        return DX.encode_uri(s);
+      },
+      chain_click_urls: function (a) {
+        return a.join('');
+      },
+
+      uses_flash: function () {
+        var version = null,
+        major = 0,
+        minor = 0,
+        build = 0;
+
+        if (typeof window.ActiveXObject !== 'undefined') {
+          var acx;
+          try {
+            acx = new ActiveXObject('ShockwaveFlash.ShockwaveFlash');
+          } catch (e) { }
+          if (acx) {
+            version = acx.GetVariable('$version');
+          }
+        }
+        if (version === null && navigator.plugins && navigator.plugins['Shockwave Flash']) {
+          var node = null;
+          try {
+            node = document.createElement('object');
+            node.setAttribute('type', 'application/x-shockwave-flash');
+            node.setAttribute('width', 0);
+            node.setAttribute('height', 0);
+            node.setAttribute('id', 'dxtestflash');
+            document.getElementsByTagName('body')[0].appendChild(node);
+
+          } catch (e) {
+
+          }
+
+          node = document.getElementById('dxtestflash');
+
+          if (node) {
+            try {
+
+              version = node.GetVariable('$version');
+
+              if (node.parentElement) node.parentElement.removeChild(node);
+            } catch (e) {
+
+            }
+          } else {
+
+          }
+        }
+        if (version) {
+          version = version.split(' ')[1].split(',');
+          major = parseInt(version[0], 10);
+          minor = parseInt(version[1], 10);
+          build = parseInt(version[2], 10);
+        }
+
+        return DX.AD.minV <= major;
+      },
+      adshown: false,
+      show_bk: function (force) {
+        var url = DX.chain_click_urls([DX.click_tracking_url, DX.AD.click_through]),
+        FWH = ' width="' + DX.AD.w + '" height="' + DX.AD.h + '" ';
+        if (DX.adshown && !force) return;
+        DX.adshown = true;
+        var adcode = '<a target="_blank" href="' + url + '"><img src="' + DX.asset_uri(DX.AD.bk) + '"' + FWH + 'border="0" alt="Advertisement" galleryimg="no"/></a>';
+        document.write('<div id="dxad_' + DX.AD.aid + '">' + adcode + '</div>');
+        document.write('<div id="dximp_trk_' + DX.AD.aid + '" style="height:0;overflow:hidden;position:absolute">' + DX.AD.imp_trk + '</div>');
+      },
+      DXFlash: function (use_flash) {
+        if (!use_flash) {
+          DX.show_bk();
+          return;
+        }
+        var swf = DX.asset_uri(DX.AD.main)
+        , url = DX.chain_click_urls([DX.click_tracking_url, DX.AD.click_through])
+        , FWH = ' width="' + DX.AD.w + '" height="' + DX.AD.h + '" '
+        , moviePath = swf.substring(0, swf.lastIndexOf('/'))
+        , defaultCtVal = DX.escape(url)
+        , click_tags = DX.click_tags
+        , flash_vars = '"moviePath=' + moviePath + '/' + '&moviepath=' + moviePath + '/';
+
+        for (var i = 0; i < click_tags.length; i++) {
+          flash_vars += '&' + click_tags[i] + '=' + defaultCtVal;
+        }
+        flash_vars += '"';
+
+        var bg = DX.AD.bg;
+        var bgo = (bg === '') ? '' : '<param name="bgcolor" value="#' + bg + '">';
+        var bge = (bg === '') ? '' : ' bgcolor="#' + bg + '"';
+
+        var id = DX.AD.aid;
+        var adcode = '<object id="' + id + '"' + FWH + '>';
+        adcode += '<param name="movie" value="' + swf + '"><param name="flashvars" value=' + flash_vars + '><param name="quality" value="high">';
+        adcode += '<param name="wmode" value="' + DX.AD.wmode + '"><param name="base" value="' + swf.substring(0, swf.lastIndexOf('/')) + '">';
+        adcode += '<param name="AllowScriptAccess" value="' + DX.allow_script_access + '">' + bgo;
+        adcode += '<embed src="' + swf + '" flashvars=' + flash_vars + bge + FWH + ' type="application/x-shockwave-flash" quality="high" ';
+        adcode += 'swliveconnect="true" wmode="' + DX.AD.wmode + '" name="' + id + '" base="' + swf.substring(0, swf.lastIndexOf('/')) + '" ';
+        adcode += 'AllowScriptAccess="' + DX.allow_script_access + '"';
+        adcode += '></embed></object>';
+        document.write('<div id="dxad_' + DX.AD.aid + '">' + adcode + '</div>');
+        document.write('<div id="dximp_trk_' + DX.AD.aid + '" style="height:0;overflow:hidden;position:absolute">' + DX.AD.imp_trk + '</div>');
+        DX.adshown = true;
+      }
+
+    };
+    document.write('<span>');
+
+    var existingError = window.onerror;
+    window.onerror = function(e, line, url) {
+      DX.show_bk();
+      return false;
+    };
+    DX.DXFlash(DX.uses_flash());
+    window.onerror = existingError;
+  } catch (e) { }
+
+</script>
+<noscript>
+  <a target="_blank" href="http://i.w55c.net/cl?t=1&btid=YjBlNDZhNDlkOTQ0OGMxZjUxMWFiOTg1ODAyNGQxZDc1YTQ3MDk2NXxSRlFCZHFZWGpzfDE0NDQxNzcxMjQ2MjN8MXwwRm1DNDM1Wkc4fDBSRzVkSmNlUkZ8NjExMTI3Nl9FWHw1NzQ1NTN8fHx8MTUuMFB8VVNE&ei=RUBICON&tpc=&rurl=https://exia.cesi.fr/formations/8246-cycle-preparatoire-les-bases-informatiques-et-scientifiques/?utm_source=Adexchange&utm_medium=300x250&utm_campaign=exia-prepa">
+    <img src="http://ads.w55c.net/t/d/0_wqFi5Wmv.gif?at=1&rtbhost=rtb01-c.eu.dataxu.net&btid=YjBlNDZhNDlkOTQ0OGMxZjUxMWFiOTg1ODAyNGQxZDc1YTQ3MDk2NXxSRlFCZHFZWGpzfDE0NDQxNzcxMjQ2MjN8MXwwRm1DNDM1Wkc4fDBSRzVkSmNlUkZ8NjExMTI3Nl9FWHw1NzQ1NTN8fHx8MTUuMFB8VVNE&ei=RUBICON&ac=&js=0&ob=0&ccw=SUFCMTIjMC4zNjM4NjU1OHxJQUIxMi0xIzAuMTc1NzY0ODR8SUFCMTItMiMwLjE3MzM5MDA5&ci=0C2WTeB5e0&psid=&s=http%3A%2F%2Fedition.cnn.com%2F&ts=1444177124628&c=FR&r=97&m=0&pc=33000&epid=UkIxMTAxNg&esid=UkI2MjUyOA&mi=&wp_exchange=71E7C792DBA49C0F" width="300" height="250" border="0" alt="Advertisement" galleryimg="no">
+  </a>
+  <div id="dximp_trk_5850675868874303" style="height:0;overflow:hidden;position:absolute">
+    
+  </div>
+</noscript>
+<script type="text/javascript" src="http://cti.w55c.net/ct/creative_add_on.js?w=300&h=250&pos=top-right&zindex=0&ci=0C2WTeB5e0&ei=RUBICON&fiu=MEZtQzQzNVpHOA&epid=UkIxMTAxNg&esid=UkI2MjUyOA&ai=0DT0fJA7Nj&ob=0&dvt=1&s=http%3A%2F%2Fedition.cnn.com%2F"></script>

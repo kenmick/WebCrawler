@@ -1,0 +1,100 @@
+
+(function(){
+
+var random ={
+	current: -1,
+	groups:[
+		{
+			first:	10,
+			other:	8,
+			type:	'ad',
+			id:		22
+		},
+		{
+			first:	5,
+			other:	3,
+			type:	'ad',
+			id:		101555
+		},{
+			first:	5,
+			other:	3,
+			type:	'ad',
+			id:		101554
+		},{
+			first:	5,
+			other:	3,
+			type:	'ad',
+			id:		101627
+		}
+	],
+	//åå§å
+	init:function(el){
+		//è®¡ç®é¦æ¬¡
+		this.initGroups('first');
+		this.bind(el);
+		this.next();
+		this.deal();
+		//éæ°åå¤åæ¥
+		this.initGroups('other');
+	},
+	//åå§åéæºæ°æ¯è¾å¼ï¼æ´æ°æ¯éæ»å¼
+	//param type 'first'é¦è½®æ¯é|'other'æ¬¡è½®æ¦ç
+	
+	initGroups:function(type){
+		var sum = min = 0;
+		for (var i = 0; i < this.groups.length; i++) {
+			var group = this.groups[i];
+				group.min = sum;
+				sum       += +group[type];
+				group.count = 0;
+		};
+		this.sum = sum;
+	},
+	//å¤çDOMç¸å³ç»å®
+	bind:function(el){
+		var self= this;
+		this.el = el;
+		el.className+=" yk-AD-random";
+        el.style.cssText+=";position:relative;width:310px;height:110px;";
+        this.$wrap = document.getElementById("yk-AD-random-wrap");
+        this.$next = document.getElementById("yk-AD-random-next");
+        this.$next.onclick = function(){self.next();self.deal();};
+	},
+	//éè®¾æä¸æ¬¡æ½åä¸èèthis.current
+	reset:function(){
+		this.current = -1; 
+	},
+	//ææ¯éç®åºä¸ä¸ªä¸this.currentä¸åçä¸ä¸ä¸ªå¼
+	next:function(){
+		var rand, id;
+		do{
+			rand = Math.random() * this.sum;
+			for( var i = this.groups.length - 1 ; i >= 0 ; --i ){
+				if(this.groups[i].min <= rand){
+                	id = i;
+                	break;
+        	    }
+        	}
+		}while(id === this.current);
+		//save current
+		this.current = id;
+	},
+	//æthis.currentå¯¹åºåå®¹å±ç°åå®¹
+	deal:function(){
+		var group = this.groups[this.current],
+			func  = this[group.type],
+			html  = false;
+		func && ( html = this[group.type](group) );
+		html && ( this.$wrap.innerHTML = html );
+	},
+	//ä»¥ä¸ä¸ºå¤çå½æ°
+	//-----------
+	//å¾ç@params link, url, title
+	image: function(item){
+        var str='<a href="' + item.link + '" title="' +item.title+'">';
+           str+='<img src="' + item.url + '" alt="' + item.title  +'"/>';
+           str+='</a>';
+        return str;
+    },
+    //FLASH
+    //params data width height

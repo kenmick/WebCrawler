@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html>
+    <head lang="en"><script type="text/javascript">
+    
+      (function() {
+        var relegateNavigation = '';
+        var handleClickTagMessage = function(e) {
+          try {
+            var eventData = JSON.parse(e.data);
+          } catch (err) {
+            return;
+          }
+          if (eventData.isInitClickTag) {
+            if (eventData.clickTags) {
+              for (var i = 0; i < eventData.clickTags.length; i++) {
+                var clkTag = eventData.clickTags[i];
+                window[clkTag.name] = clkTag.url;
+              }
+            } else if (eventData.clickTag) {
+              window.clickTag = eventData.clickTag;
+            }
+            relegateNavigation = eventData.relegateNavigation;
+          }
+        };
+
+        if (open.call) {
+          window.open = function(open) {
+            return function(url, name, features) {
+              if (relegateNavigation === 'parent') {
+                var message = {'clickTag': url, 'isPostClickTag': true};
+                parent.postMessage(JSON.stringify(message), '*');
+              } else {
+                var args = [url, name];
+                if (features) {
+                  args.push(features);
+                }
+                open.apply(window, args);
+              }
+            };
+          }(window.open);
+        }
+
+        if (window.addEventListener) {
+          window.addEventListener(
+              'message', handleClickTagMessage, false);
+        } else {
+          window.attachEvent('onmessage', handleClickTagMessage);
+        }
+      })();
+    
+  </script>
+    <meta charset="UTF-8">
+    <!--External JS and CSS is possible, but the banner 10 or less files total including the HTML.-->
+    <!--The fallback is and extra file not included-->
+
+    <!--Banner title-->
+    <title>Honda</title>
+
+    <!--Banner dimensions-->
+    <meta name="ad.size" content="width=300,height=250">
+
+    <!--Banner CSS-->
+    <style type="text/css" media="screen">
+html, body {
+	width: 100%;
+	height: 100%
+}
+img {
+	border: none;
+}
+div {
+	position: absolute;
+}
+#ad {
+	-khtml-user-select: none;
+	display: block;
+	/*border: rgb(145,153,153) 1px solid;*/
+	overflow: hidden;
+	width: 300px;
+	height: 250px;
+	-webkit-user-select: none;
+	-moz-user-select: -moz-none;
+	-ms-user-select: none;
+	user-select: none;
+}
+#banner {
+	display: block;
+	overflow: hidden;
+	position: absolute;
+	width: 300px;
+	height: 250px;
+}
+#wrapper {
+	position: absolute;
+	width: 300px;
+	height: 250px;
+	overflow: hidden;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	border-color: black;
+	border-width: 1px;
+	border-style: solid;
+}
+#logo {
+	margin: auto;
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+}
+#logo:hover {
+	transform: scale(1.1);
+}
+	#content {
+	width: 300px;
+	height: 250px;
+	background: #000;
+	border: 1px solid #e0e0e0;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box
+}
+#screen1 {
+	background:url(1.jpg) no-repeat;
+	width: 100%;
+	height: 100%;
+	-webkit-animation: fadeOut 0.5s ease 7s both;
+	-moz-animation: fadeOut 0.5s ease 7s both;
+	-ms-animation: fadeOut 0.5s ease 7s both;
+	animation: fadeOut 0.5s ease 7s both;
+}
+#screen1 #phrase1{
+	background:url(1.png) no-repeat 61px 0px;
+	width: 100%;
+	height: 100%;
+	-webkit-animation: fadeInOut 3s ease 1s both;
+	-moz-animation: fadeInOut 3s ease 1s both;
+	-ms-animation: fadeInOut 3s ease 1s both;
+	animation: fadeInOut 3s ease 1s both;
+}
+#screen1 #nouveau{
+	background:url(2.png) no-repeat 96px 20px;
+	width: 100%;
+	height: 100%;
+	-webkit-animation: fadeIn .5s ease 4.5s both;
+	-moz-animation: fadeIn .5s ease 4.5s both;
+	-ms-animation: fadeIn .5s ease 4.5s both;
+	animation: fadeIn .5s ease 4.5s both;
+}
+#screen1 #forza{
+	background:url(3.png) no-repeat 0px 36px;
+	width: 100%;
+	height: 100%;
+	-webkit-animation: fadeIn .5s ease 5s both;
+	-moz-animation: fadeIn .5s ease 5s both;
+	-ms-animation: fadeIn .5s ease 5s both;
+	animation: fadeIn .5s ease 5s both;
+}
+#screen2 {
+	background:url(2.jpg) no-repeat;
+	width: 100%;
+	height: 100%;
+	-webkit-animation: fadeIn 0.5s ease 7.5s both;
+	-moz-animation: fadeIn 0.5s ease 7.5s both;
+	-ms-animation: fadeIn 0.5s ease 7.5s both;
+	animation: fadeIn 0.5s ease 7.5s both;
+}
+
+#screen2 #prix{
+	background:url(5.png) no-repeat 94px 205px;
+	width: 100%;
+	height: 100%;
+	-webkit-animation: fadeInB 3s ease 8s both;
+	-moz-animation: fadeInB 3s ease 8s both;
+	-ms-animation: fadeInB 3s ease 8s both;
+	animation: fadeInB 3s ease 8s both;
+}
+#screen2 #bt{
+	background:url(4.png) no-repeat 94px 212px;
+	width: 100%;
+	height: 100%;
+	-webkit-animation: fadeIn 0.8s ease 11.5s both;
+	-moz-animation: fadeIn 0.8s ease 11.5s both;
+	-ms-animation: fadeIn 0.8s ease 11.5s both;
+	animation: fadeIn 0.8s ease 11.5s both;
+}
+/*ANIMATIONS*/
+	 @-webkit-keyframes fadeIn {
+ 0%, 10% {
+ opacity: 0;
+}
+ 100% {
+ opacity: 1;
+}
+}
+ @-moz-keyframes fadeIn {
+ 0%, 10% {
+ opacity: 0;
+}
+ 100% {
+ opacity: 1;
+}
+}
+ @-ms-keyframes fadeIn {
+ 0%, 10% {
+ opacity: 0;
+}
+ 100% {
+ opacity: 1;
+}
+}
+ @keyframes fadeIn {
+ 0%, 10% {
+ opacity: 0;
+}
+ 100% {
+ opacity: 1;
+}
+}
+ @-webkit-keyframes fadeOut {
+ 0%, 10% {
+ opacity: 1;
+}
+ 100% {
+ opacity: 0;
+}
+}
+ @-moz-keyframes fadeOut {
+ 0%, 10% {
+ opacity: 1;
+}
+ 100% {
+ opacity: 0;
+}
+}
+ @-ms-keyframes fadeOut {
+ 0%, 10% {
+ opacity: 1;
+}
+ 100% {
+ opacity: 0;
+}
+}
+ @keyframes fadeOut {
+ 0%, 10% {
+ opacity: 1;
+}
+ 100% {
+ opacity: 0;
+}
+}
+@-webkit-keyframes fadeInOut {
+ 0%, 10% {
+ opacity: 0;
+}
+20%,80%{
+	opacity: 1;
+}
+ 100% {
+ opacity: 0;
+}
+}
+ @-moz-keyframes fadeInOut {
+  0%, 10% {
+ opacity: 0;
+}
+20%,80%{
+	opacity: 1;
+}
+ 100% {
+ opacity: 0;
+}
+}
+ @-ms-keyframes fadeInOut {
+  0%, 10% {
+ opacity: 0;
+}
+20%,80%{
+	opacity: 1;
+}
+ 100% {
+ opacity: 0;
+}
+}
+ @keyframes fadeInOut {
+  0%, 10% {
+ opacity: 0;
+}
+20%,80%{
+	opacity: 1;
+}
+ 100% {
+ opacity: 0;
+}
+}
+
+@-webkit-keyframes fadeInB {
+ 0%, 10% {
+ opacity: 0;
+ transform: scale(5);
+}
+ 20% {
+ opacity: 1;
+ transform: scale(1);
+}
+80% {
+ opacity: 1;
+ transform: scale(1);
+}
+100% {
+ opacity: 0;
+ transform: scale(1);
+}
+}
+ @-moz-keyframes fadeInB {
+ 0%, 10% {
+ opacity: 0;
+ transform: scale(5);
+}
+ 20% {
+ opacity: 1;
+ transform: scale(1);
+}
+80% {
+ opacity: 1;
+ transform: scale(1);
+}
+100% {
+ opacity: 0;
+ transform: scale(1);
+}
+}
+ @-ms-keyframes fadeInB {
+ 0%, 10% {
+ opacity: 0;
+ transform: scale(5);
+}
+ 20% {
+ opacity: 1;
+ transform: scale(1);
+}
+80% {
+ opacity: 1;
+ transform: scale(1);
+}
+100% {
+ opacity: 0;
+ transform: scale(1);
+}
+}
+ @keyframes fadeInB {
+ 0%, 10% {
+ opacity: 0;
+ transform: scale(5);
+}
+ 20% {
+ opacity: 1;
+ transform: scale(1);
+}
+80% {
+ opacity: 1;
+ transform: scale(1);
+}
+100% {
+ opacity: 0;
+ transform: scale(1);
+}
+}
+</style>
+
+    <!--Banner JS-->
+    <script>
+        //This link will be automaticly changed by the ad server
+        var clickTag = "http://google.com/";
+
+        //Put your banner JS here
+    </script>
+    </head>
+    <bodyonload="init()">
+    
+    <a href="javascript:void(window.open(window.clickTag))">
+    <div id="content">
+      <div id="screen1">
+        <div id="phrase1"></div>
+        <div id="nouveau"></div>
+        <div id="forza"></div>
+      </div>
+      <div id="black"></div>
+      <div id="screen2">
+        <div id="prix"></div>
+        <div id="bt"></div>
+      </div>
+    </div>
+    </a>
+</body></html>

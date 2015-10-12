@@ -1,0 +1,197 @@
+ï»¿@charset "utf-8";
+/* CSS Document */
+body { margin: 0; font-family: å®ä½; padding: 0; }
+    body div.border { border: 1px solid; }
+        body div.border.radius { border-radius: 5px; }
+a { text-decoration: none; }
+    a:hover { text-decoration: underline; }
+table { border-collapse: collapse; border-spacing: 0; empty-cells: show; }
+    table td { padding: 0; }
+em { font-family: Arial,Helvetica,sans-serif; font-style: normal; }
+.container { font-size: 12px; width: 100%; font-family: 'å®ä½'; }
+.hide { display: none; }
+.sep { border-bottom: 1px #EAEAEA dashed; }
+.vsep { border-right: 1px #EAEAEA dashed; }
+/*icon*/
+.icon-search { background-image: url('http://static.css.weather.com.cn/gadget/images/glyphicons-halflings-white.png'); background-position: -48px 0; background-repeat: no-repeat; display: inline-block; height: 14px; line-height: 14px; vertical-align: text-top; width: 14px; }
+
+/*å¤©æ°å¾æ */
+.symbol-big, .symbol-biggif { width: 56px; height: 56px; display: inline-block; }
+.symbol-mini, .symbol-minigif { width: 20px; height: 20px; display: inline-block; }
+.symbol-small, .symbol-smallgif { width: 36px; height: 36px; display: inline-block; }
+
+/*å°ç¬¦å·*/
+.symbol-small-cloudy, .symbol-smallgif-cloudy { background-position: -36px 0; }
+.symbol-small-dustblowing, .symbol-smallgif-dustblowing { background-position: -144px -108px; }
+.symbol-small-duststorm, .symbol-smallgif-duststorm { background-position: -72px -108px; }
+.symbol-small-floatingdust, .symbol-smallgif-floatingdust { background-position: -108px -108px; }
+.symbol-small-fog, .symbol-smallgif-fog { background-position: -36px -108px; }
+.symbol-small-freezingrain, .symbol-smallgif-freezingrain { background-position: -36px -72px; }
+.symbol-small-hail, .symbol-smallgif-hail { background-position: -180px 0; }
+.symbol-small-heavyrain, .symbol-smallgif-heavyrain { background-position: -180px -36px; }
+.symbol-small-heavysnow, .symbol-smallgif-heavysnow { background-position: -180px -72px; }
+.symbol-small-lightrain, .symbol-smallgif-lightrain { background-position: -36px -36px; }
+.symbol-small-lightsnow, .symbol-smallgif-lightsnow { background-position: -108px -72px; }
+.symbol-small-moderaterain, .symbol-smallgif-moderaterain { background-position: -72px -36px; }
+.symbol-small-moderatesnow, .symbol-smallgif-moderatesnow { background-position: -144px -72px; }
+.symbol-small-overcast, .symbol-smallgif-overcast { background-position: -72px 0; }
+.symbol-small-rain, .symbol-smallgif-rain { background-position: -108px -36px; }
+.symbol-small-shower, .symbol-smallgif-shower { background-position: -108px 0; }
+.symbol-small-sleet, .symbol-smallgif-sleet { background-position: 0 -36px; }
+.symbol-small-snow, .symbol-smallgif-snow { background-position: 0 -108px; }
+.symbol-small-snowshower, .symbol-smallgif-snowshower { background-position: -72px -72px; }
+.symbol-small-sunny, .symbol-smallgif-sunny { background-position: 0 0; }
+.symbol-small-thundershower, .symbol-smallgif-thundershower { background-position: -144px 0; }
+.symbol-small-torrentialrain, .symbol-smallgif-torrentialrain { background-position: -144px -36px; }
+.symbol-small-twister, .symbol-smallgif-twister { background-position: -180px -108px; }
+.symbol-small-xrain, .symbol-smallgif-xrain { background-position: 0 -72px; }
+
+/*å¾®ç¬¦å·*/
+.symbol-mini-cloudy, .symbol-minigif-cloudy { background-position: -20px 0; }
+.symbol-mini-dustblowing, .symbol-minigif-dustblowing { background-position: -80px -60px; }
+.symbol-mini-duststorm, .symbol-minigif-duststorm { background-position: -40px -60px; }
+.symbol-mini-floatingdust, .symbol-minigif-floatingdust { background-position: -60px -60px; }
+.symbol-mini-fog, .symbol-minigif-fog { background-position: -20px -60px; }
+.symbol-mini-freezingrain, .symbol-minigif-freezingrain { background-position: -20px -40px; }
+.symbol-mini-hail, .symbol-minigif-hail { background-position: -100px 0; }
+.symbol-mini-heavyrain, .symbol-minigif-heavyrain { background-position: -100px -20px; }
+.symbol-mini-heavysnow, .symbol-minigif-heavysnow { background-position: -100px -40px; }
+.symbol-mini-lightrain, .symbol-minigif-lightrain { background-position: -20px -20px; }
+.symbol-mini-lightsnow, .symbol-minigif-lightsnow { background-position: -100px -40px; }
+.symbol-mini-moderaterain, .symbol-minigif-moderaterain { background-position: -40px -20px; }
+.symbol-mini-moderatesnow, .symbol-minigif-moderatesnow { background-position: -80px -40px; }
+.symbol-mini-overcast, .symbol-minigif-overcast { background-position: -40px 0; }
+.symbol-mini-rain, .symbol-minigif-rain { background-position: -60px -20px; }
+.symbol-mini-shower, .symbol-minigif-shower { background-position: -60px 0; }
+.symbol-mini-sleet, .symbol-minigif-sleet { background-position: 0 -20px; }
+.symbol-mini-snow, .symbol-minigif-snow { background-position: 0 -60px; }
+.symbol-mini-snowshower, .symbol-minigif-snowshower { background-position: -40px -40px; }
+.symbol-mini-sunny, .symbol-minigif-sunny { background-position: 0 0; }
+.symbol-mini-thundershower, .symbol-minigif-thundershower { background-position: -80px 0; }
+.symbol-mini-torrentialrain, .symbol-minigif-torrentialrain { background-position: -80px -20px; }
+.symbol-mini-twister, .symbol-minigif-twister { background-position: -100px -60px; }
+.symbol-mini-xrain, .symbol-minigif-xrain { background-position: 0 -40px; }
+
+/*ç»å¸ç*/
+.classic .symbol-mini { background-image: url(images/symbols/classic/mini.png); background-repeat: no-repeat; }
+.classic .symbol-small { background-image: url(images/symbols/classic/small.png); background-repeat: no-repeat; }
+.classic .symbol-big-cloudy { background: url(images/symbols/classic/big/cloudy.png); }
+.classic .symbol-big-dustblowing { background: url(images/symbols/classic/big/dustblowing.png); }
+.classic .symbol-big-duststorm { background: url(images/symbols/classic/big/duststorm.png); }
+.classic .symbol-big-floatingdust { background: url(images/symbols/classic/big/floatingdust.png); }
+.classic .symbol-big-fog { background: url(images/symbols/classic/big/fog.png); }
+.classic .symbol-big-freezingrain { background: url(images/symbols/classic/big/freezingrain.png); }
+.classic .symbol-big-hail { background: url(images/symbols/classic/big/hail.png); }
+.classic .symbol-big-heavyrain { background: url(images/symbols/classic/big/heavyrain.png); }
+.classic .symbol-big-heavysnow { background: url(images/symbols/classic/big/heavysnow.png); }
+.classic .symbol-big-lightrain { background: url(images/symbols/classic/big/lightrain.png); }
+.classic .symbol-big-lightsnow { background: url(images/symbols/classic/big/lightsnow.png); }
+.classic .symbol-big-moderaterain { background: url(images/symbols/classic/big/moderaterain.png); }
+.classic .symbol-big-moderatesnow { background: url(images/symbols/classic/big/moderatesnow.png); }
+.classic .symbol-big-overcast { background: url(images/symbols/classic/big/overcast.png); }
+.classic .symbol-big-rain { background: url(images/symbols/classic/big/rain.png); }
+.classic .symbol-big-shower { background: url(images/symbols/classic/big/shower.png); }
+.classic .symbol-big-sleet { background: url(images/symbols/classic/big/sleet.png); }
+.classic .symbol-big-snow { background: url(images/symbols/classic/big/snow.png); }
+.classic .symbol-big-snowshower { background: url(images/symbols/classic/big/snowshower.png); }
+.classic .symbol-big-sunny { background: url(images/symbols/classic/big/sunny.png); }
+.classic .symbol-big-thundershower { background: url(images/symbols/classic/big/thundershower.png); }
+.classic .symbol-big-torrentialrain { background: url(images/symbols/classic/big/torrentialrain.png); }
+.classic .symbol-big-twister { background: url(images/symbols/classic/big/twister.png); }
+.classic .symbol-big-xrain { background: url(images/symbols/classic/big/xrain.png); }
+/*Gif*/
+.classic .symbol-minigif { background-image: url(images/symbols/classic/mini.gif); background-repeat: no-repeat; }
+.classic .symbol-smallgif { background-image: url(images/symbols/classic/small.gif); background-repeat: no-repeat; }
+.classic .symbol-biggif-cloudy { background: url(images/symbols/classic/biggif/cloudy.gif); }
+.classic .symbol-biggif-heavyrain { background: url(images/symbols/classic/biggif/heavyrain.gif); }
+.classic .symbol-biggif-moderaterain { background: url(images/symbols/classic/biggif/moderaterain.gif); }
+.classic .symbol-biggif-overcast { background: url(images/symbols/classic/biggif/overcast.gif); }
+.classic .symbol-biggif-shower { background: url(images/symbols/classic/biggif/shower.gif); }
+.classic .symbol-biggif-sunny { background: url(images/symbols/classic/biggif/sunny.gif); }
+
+/*ç°ä»£ç*/
+.modern .symbol-mini { background-image: url(images/symbols/modern/mini.png); background-repeat: no-repeat; }
+.modern .symbol-small { background-image: url(images/symbols/modern/small.png); background-repeat: no-repeat; }
+.modern .symbol-big-cloudy { background: url(images/symbols/modern/big/cloudy.png); }
+.modern .symbol-big-dustblowing { background: url(images/symbols/modern/big/dustblowing.png); }
+.modern .symbol-big-duststorm { background: url(images/symbols/modern/big/duststorm.png); }
+.modern .symbol-big-floatingdust { background: url(images/symbols/modern/big/floatingdust.png); }
+.modern .symbol-big-fog { background: url(images/symbols/modern/big/fog.png); }
+.modern .symbol-big-freezingrain { background: url(images/symbols/modern/big/freezingrain.png); }
+.modern .symbol-big-hail { background: url(images/symbols/modern/big/hail.png); }
+.modern .symbol-big-heavyrain { background: url(images/symbols/modern/big/heavyrain.png); }
+.modern .symbol-big-heavysnow { background: url(images/symbols/modern/big/heavysnow.png); }
+.modern .symbol-big-lightrain { background: url(images/symbols/modern/big/lightrain.png); }
+.modern .symbol-big-lightsnow { background: url(images/symbols/modern/big/lightsnow.png); }
+.modern .symbol-big-moderaterain { background: url(images/symbols/modern/big/moderaterain.png); }
+.modern .symbol-big-moderatesnow { background: url(images/symbols/modern/big/moderatesnow.png); }
+.modern .symbol-big-overcast { background: url(images/symbols/modern/big/overcast.png); }
+.modern .symbol-big-rain { background: url(images/symbols/modern/big/rain.png); }
+.modern .symbol-big-shower { background: url(images/symbols/modern/big/shower.png); }
+.modern .symbol-big-sleet { background: url(images/symbols/modern/big/sleet.png); }
+.modern .symbol-big-snow { background: url(images/symbols/modern/big/snow.png); }
+.modern .symbol-big-snowshower { background: url(images/symbols/modern/big/snowshower.png); }
+.modern .symbol-big-sunny { background: url(images/symbols/modern/big/sunny.png); }
+.modern .symbol-big-thundershower { background: url(images/symbols/modern/big/thundershower.png); }
+.modern .symbol-big-torrentialrain { background: url(images/symbols/modern/big/torrentialrain.png); }
+.modern .symbol-big-twister { background: url(images/symbols/modern/big/twister.png); }
+.modern .symbol-big-xrain { background: url(images/symbols/modern/big/xrain.png); }
+
+/*æµè¡ç*/
+.pop .symbol-mini { background-image: url(images/symbols/pop/mini.png); background-repeat: no-repeat; }
+.pop .symbol-small { background-image: url(images/symbols/pop/small.png); background-repeat: no-repeat; }
+.pop .symbol-big-cloudy { background: url(images/symbols/pop/big/cloudy.png); }
+.pop .symbol-big-dustblowing { background: url(images/symbols/pop/big/dustblowing.png); }
+.pop .symbol-big-duststorm { background: url(images/symbols/pop/big/duststorm.png); }
+.pop .symbol-big-floatingdust { background: url(images/symbols/pop/big/floatingdust.png); }
+.pop .symbol-big-fog { background: url(images/symbols/pop/big/fog.png); }
+.pop .symbol-big-freezingrain { background: url(images/symbols/pop/big/freezingrain.png); }
+.pop .symbol-big-hail { background: url(images/symbols/pop/big/hail.png); }
+.pop .symbol-big-heavyrain { background: url(images/symbols/pop/big/heavyrain.png); }
+.pop .symbol-big-heavysnow { background: url(images/symbols/pop/big/heavysnow.png); }
+.pop .symbol-big-lightrain { background: url(images/symbols/pop/big/lightrain.png); }
+.pop .symbol-big-lightsnow { background: url(images/symbols/pop/big/lightsnow.png); }
+.pop .symbol-big-moderaterain { background: url(images/symbols/pop/big/moderaterain.png); }
+.pop .symbol-big-moderatesnow { background: url(images/symbols/pop/big/moderatesnow.png); }
+.pop .symbol-big-overcast { background: url(images/symbols/pop/big/overcast.png); }
+.pop .symbol-big-rain { background: url(images/symbols/pop/big/rain.png); }
+.pop .symbol-big-shower { background: url(images/symbols/pop/big/shower.png); }
+.pop .symbol-big-sleet { background: url(images/symbols/pop/big/sleet.png); }
+.pop .symbol-big-snow { background: url(images/symbols/pop/big/snow.png); }
+.pop .symbol-big-snowshower { background: url(images/symbols/pop/big/snowshower.png); }
+.pop .symbol-big-sunny { background: url(images/symbols/pop/big/sunny.png); }
+.pop .symbol-big-thundershower { background: url(images/symbols/pop/big/thundershower.png); }
+.pop .symbol-big-torrentialrain { background: url(images/symbols/pop/big/torrentialrain.png); }
+.pop .symbol-big-twister { background: url(images/symbols/pop/big/twister.png); }
+.pop .symbol-big-xrain { background: url(images/symbols/pop/big/xrain.png); }
+
+/*ç®æ´ç*/
+.metro .symbol-mini { background-image: url(images/symbols/metro/mini.png); background-repeat: no-repeat; }
+.metro .symbol-small { background-image: url(images/symbols/metro/small.png); background-repeat: no-repeat; }
+.metro .symbol-big-cloudy { background: url(images/symbols/metro/big/cloudy.png); }
+.metro .symbol-big-dustblowing { background: url(images/symbols/metro/big/dustblowing.png); }
+.metro .symbol-big-duststorm { background: url(images/symbols/metro/big/duststorm.png); }
+.metro .symbol-big-floatingdust { background: url(images/symbols/metro/big/floatingdust.png); }
+.metro .symbol-big-fog { background: url(images/symbols/metro/big/fog.png); }
+.metro .symbol-big-freezingrain { background: url(images/symbols/metro/big/freezingrain.png); }
+.metro .symbol-big-hail { background: url(images/symbols/metro/big/hail.png); }
+.metro .symbol-big-heavyrain { background: url(images/symbols/metro/big/heavyrain.png); }
+.metro .symbol-big-heavysnow { background: url(images/symbols/metro/big/heavysnow.png); }
+.metro .symbol-big-lightrain { background: url(images/symbols/metro/big/lightrain.png); }
+.metro .symbol-big-lightsnow { background: url(images/symbols/metro/big/lightsnow.png); }
+.metro .symbol-big-moderaterain { background: url(images/symbols/metro/big/moderaterain.png); }
+.metro .symbol-big-moderatesnow { background: url(images/symbols/metro/big/moderatesnow.png); }
+.metro .symbol-big-overcast { background: url(images/symbols/metro/big/overcast.png); }
+.metro .symbol-big-rain { background: url(images/symbols/metro/big/rain.png); }
+.metro .symbol-big-shower { background: url(images/symbols/metro/big/shower.png); }
+.metro .symbol-big-sleet { background: url(images/symbols/metro/big/sleet.png); }
+.metro .symbol-big-snow { background: url(images/symbols/metro/big/snow.png); }
+.metro .symbol-big-snowshower { background: url(images/symbols/metro/big/snowshower.png); }
+.metro .symbol-big-sunny { background: url(images/symbols/metro/big/sunny.png); }
+.metro .symbol-big-thundershower { background: url(images/symbols/metro/big/thundershower.png); }
+.metro .symbol-big-torrentialrain { background: url(images/symbols/metro/big/torrentialrain.png); }
+.metro .symbol-big-twister { background: url(images/symbols/metro/big/twister.png); }
+.metro .symbol-big-xrain { background: url(images/symbols/metro/big/xrain.png); }
+
+/* Css Hacks */
+[class^="symbol-"], [class*=" symbol-"] { *display: block; }

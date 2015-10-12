@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Suez_Envir_1000x90</title>
+
+<script src="http://code.createjs.com/easeljs-0.8.1.min.js"></script>
+<script src="http://code.createjs.com/tweenjs-0.6.1.min.js"></script>
+<script src="http://code.createjs.com/movieclip-0.8.1.min.js"></script>
+<script src="http://code.createjs.com/preloadjs-0.6.1.min.js"></script>
+<script src="Suez_Envir_1000x90.js"></script>
+<script src="Suez_Envir_1000x400.js"></script>
+
+<script>
+var canvas, stage, exportRoot;
+
+function init() {
+	canvas = document.getElementById("canvasSmall");
+	canvas.style.display="block";
+	canvas.addEventListener('click', function(event) {
+		canvas.style.display="none";
+		canvasBigInit();
+	});
+
+	images_small = images_small||{};
+
+	var loader = new createjs.LoadQueue(false);
+	loader.addEventListener("fileload", handleFileLoad);
+	loader.addEventListener("complete", handleComplete);
+	loader.loadManifest(libs_small.properties.manifest);
+}
+
+function handleFileLoad(evt) {
+	if (evt.item.type == "image") { images_small[evt.item.id] = evt.result; }
+}
+
+function handleComplete(evt) {
+	exportRoot = new libs_small.Suez_Envir_1000x90();
+
+	stage = new createjs.Stage(canvas);
+	stage.addChild(exportRoot);
+	stage.update();
+
+	createjs.Ticker.setFPS(libs_small.properties.fps);
+	createjs.Ticker.addEventListener("tick", stage);
+}
+
+function canvasBigInit(){
+	var canvasBig, stageBig, exportRootBig;
+	canvasBig = document.getElementById("canvasBig");
+	canvasBig.style.display="block";
+	images_big = images_big||{};
+
+	var loader = new createjs.LoadQueue(false);
+	loader.addEventListener("fileload", handleFileLoadBig);
+	loader.addEventListener("complete", handleCompleteBig);
+	loader.loadManifest(libs_big.properties.manifest);
+	canvasBig.addEventListener('click', function(event) {
+		canvasBig.style.display="none";
+		init();
+	});
+}
+function handleFileLoadBig(evt) {
+	if (evt.item.type == "image") { images_big[evt.item.id] = evt.result; }
+}
+
+function handleCompleteBig(evt) {
+	exportRootBig = new libs_big.Suez_Envir_1000x400();
+
+	stageBig = new createjs.Stage(canvasBig);
+	stageBig.addChild(exportRootBig);
+	stageBig.update();
+
+	createjs.Ticker.setFPS(libs_big.properties.fps);
+	createjs.Ticker.addEventListener("tick", stageBig);
+}
+</script>
+
+<script src="//ns.sascdn.com/diff/templates/js/banner/sas-clicktag-2.0.js">
+</script>
+
+</head>
+
+<body onLoad="init();" style="background-color:#ffffff; padding:0px; margin:0px;">
+	<script type="text/javascript">
+		var clickTag = "http://gdf.solution.weborama.fr/fcgi-bin/dispatch.fcgi?a.A=cl&a.si=356&a.te=2030&a.ra=[RANDOM]&g.lu=";
+	</script>
+	<a href="javascript:window.open(window.clickTag, '_blank')">
+		<canvas id="canvasSmall" width="1000" height="90" style="background-color:#FFFFFF;cursor:pointer"></canvas>
+	</a>
+	<a href="javascript:window.open(window.clickTag, '_blank')">
+		<canvas id="canvasBig" width="1000" height="400" style="background-color:#FFFFFF;display:none;cursor:pointer"></canvas>
+	</a>
+</body>
+</html>

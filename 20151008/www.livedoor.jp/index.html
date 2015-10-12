@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html>
+<head><script type="text/javascript">
+    
+      (function() {
+        var relegateNavigation = '';
+        var handleClickTagMessage = function(e) {
+          try {
+            var eventData = JSON.parse(e.data);
+          } catch (err) {
+            return;
+          }
+          if (eventData.isInitClickTag) {
+            if (eventData.clickTags) {
+              for (var i = 0; i < eventData.clickTags.length; i++) {
+                var clkTag = eventData.clickTags[i];
+                window[clkTag.name] = clkTag.url;
+              }
+            } else if (eventData.clickTag) {
+              window.clickTag = eventData.clickTag;
+            }
+            relegateNavigation = eventData.relegateNavigation;
+          }
+        };
+
+        if (open.call) {
+          window.open = function(open) {
+            return function(url, name, features) {
+              if (relegateNavigation === 'parent') {
+                var message = {'clickTag': url, 'isPostClickTag': true};
+                parent.postMessage(JSON.stringify(message), '*');
+              } else {
+                var args = [url, name];
+                if (features) {
+                  args.push(features);
+                }
+                open.apply(window, args);
+              }
+            };
+          }(window.open);
+        }
+
+        if (window.addEventListener) {
+          window.addEventListener(
+              'message', handleClickTagMessage, false);
+        } else {
+          window.attachEvent('onmessage', handleClickTagMessage);
+        }
+      })();
+    
+  </script>
+
+<script type="text/javascript">
+var clickTag = "http://www.google.com"; </script>
+
+  <meta charset="UTF-8">
+  <title>Lancome-img</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+  <!--CSS-->
+  <style>
+    html, body {  margin: 0; padding:0; background:#000; }
+    #bg-exit { background-color: rgba(255,255,255,0); cursor: pointer; height: 100%; left: 0px; position: absolute; top: 0px; width: 100%; z-index: 1000; }
+    #container { overflow: hidden; position: absolute; width: 300px; height: 250px; background: #fff; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
+    #container img { position: absolute; opacity: 0; }
+    #handwriting, #speckling { position: absolute; z-index: 10; }
+  </style>
+  <!--JAVASCRIPTS-->
+  <script src="zepto.min.js" defer></script>
+  <script src="timeline.js" defer></script>
+  <script src="path.js" defer></script>
+  <script src="freehand.js" defer></script>
+  <!-- DB -->
+  <script src="https://s0.2mdn.net/ads/studio/Enabler.js"> </script>
+  <script>
+    if (!Enabler.isInitialized()) {
+      Enabler.addEventListener(
+          studio.events.StudioEvent.INIT,
+          enablerInitialized);
+    } else {
+      enablerInitialized();
+    }
+    function enablerInitialized() {
+      // Enabler initialized.
+      // In App ads are rendered offscreen so animation should wait for
+      // the visible event. These are simulated with delays in the local
+      // environment.
+      if (!Enabler.isVisible()) {
+        Enabler.addEventListener(
+            studio.events.StudioEvent.VISIBLE,
+            adVisible);
+      } else {
+        adVisible();
+      }
+    }
+    function adVisible() {
+      preloadImages([
+        'bg.jpg',
+        'btn.png',
+        'la-vieee_1.png',
+        'la-vieee_2.png',
+        'paris-light.jpg',
+        'perfume_new.png'
+      ], timelines);
+    }
+  </script>
+  <!-- end DB -->
+  <script>
+    // Preload images
+    function preloadImages (images, callback) {
+      window.IMAGES_CACHE = {};
+
+      var url;
+      var image;
+      var count = images.length;
+
+      while (url = images.pop()) {
+        image = new Image();
+        image.onload = (function (key) {
+          console.log('Loading image: ', key);
+          window.IMAGES_CACHE[key] = this;
+
+          count--;
+          if (count === 0) {
+            console.log('All images are ready...');
+
+            callback();
+          }
+        }).bind(image, url);
+
+        image.src = url;
+      }
+    }
+
+    function timelines() {
+      console.log('Executing timelines...');
+      var group = [];
+
+      group.push(new Timeline('#bg1',
+          {
+            0:     { opacity: 1 },
+            1000:  { opacity: 1 },
+            1500:  { opacity: 0 }
+          }, 'ease-in'));
+
+      group.push(new Timeline('#bg2',
+          {
+            0:    { opacity: 0 },
+            1500:    { opacity: 0 },
+            2500:  { opacity: 1 }
+          }, 'ease-in'));
+
+
+      group.push(new Timeline('#perfume',
+          {
+            0: { opacity: 0, left: 13, top: 36 },
+            1500: { opacity: 0 },
+            2500: { opacity: 1 }
+          }, 'ease-in'));
+      group.push(new Timeline('#btn',
+          {
+            0: { opacity:0, left: 0, top: 200 },
+            5000: { opacity: 0 },
+            8000: { opacity: 1 }
+          }, 'ease-in'));
+
+      var glyph, data;
+      glyph = window.IMAGES_CACHE['la-vieee_1.png'];
+      data = [
+        // Lavie
+        [142, 121, 3],
+        [139, 127, 3],
+        [140, 131, 3],
+        [154, 121, 3],
+        [169, 103, 3],
+        [174, 87, 3],
+        [160, 102, 3],
+        [154, 121, 3],
+        [158, 131, 3],
+        [168, 123, 3],
+        [170, 116, 3],
+        [165, 122, 3],
+        [167, 127, 3],
+        [174, 122, 3],
+        [182, 126, 3],
+        [189, 123, 3],
+        [193, 121, 3],
+        ////
+        null,
+        // Vie
+        [197, 111, 3],
+        [196, 116, 3],
+        [196, 124, 3],
+        [204, 116, 3],
+        [203, 123, 3],
+        [212, 117, 3],
+        [211, 114, 3],
+        [207, 121, 3],
+        [219, 122, 3],
+        [231, 118, 3],
+        [244, 113, 3],
+        ////
+        null,
+        // Est Belle
+        [167, 157, 3],
+        [167, 162, 3],
+        [169, 167, 3],
+        [180, 155, 3],
+        [177, 153, 3],
+        [173, 159, 3],
+        [175, 163, 3],
+        [184, 158, 3],
+        [188, 164, 3],
+        [180, 168, 3],
+        [190, 158, 3],
+        [200, 139, 3],
+        [195, 154, 3],
+        [190, 161, 3],
+        [211, 150, 3],
+        [230, 129, 3],
+        [231, 128, 3],
+        [224, 150, 3],
+        [224, 152, 3],
+        [233, 145, 3],
+        [232, 152, 3],
+        [223, 154, 3],
+        [232, 152, 3],
+        [241, 145, 3],
+        [239, 143, 3],
+        [235, 150, 3],
+        [238, 154, 3],
+        [244, 149, 3],
+        [246, 139, 3],
+        [241, 127, 3],
+        [246, 139, 3],
+        [244, 149, 3],
+        [246, 152, 3],
+        [252, 141, 3],
+        [256, 127, 3],
+        [252, 141, 3],
+        [251, 151, 3],
+        [257, 151, 3],
+        [266, 143, 3],
+        [263, 141, 3],
+        [262, 147, 3],
+        [269, 151, 3],
+        [280, 146, 3],
+        [291, 138, 3],
+        [302, 130, 3],
+      ];
+      var handwriting = new Freehand(); // TODO: new Freehand(context, glyph, data);
+      handwriting.init('#handwriting', glyph, data);
+
+      group.push(new ObjectTimeline(handwriting,
+          {
+            0: { nope: [] },
+            2500: { play: [] }
+          }));
+
+      var glyph2, data2;
+      var speckling = new Freehand(); // TODO: new Freehand(context, glyph, data);
+      glyph2 = window.IMAGES_CACHE['la-vieee_2.png'];
+      data2 = [
+        // Lavie
+        [142, 121, 9],
+        [139, 127, 6],
+        [140, 131, 6],
+        [154, 121, 6],
+        [169, 103, 6],
+        [174, 87, 6],
+        [160, 102, 6],
+        [154, 121, 6],
+        [158, 131, 6],
+        [168, 123, 6],
+        [170, 116, 6],
+        [165, 122, 6],
+        [167, 127, 6],
+        [174, 122, 6],
+        [182, 126, 6],
+        [189, 123, 6],
+        [193, 121, 6],
+        ////
+        null,
+        // Vie
+        [197, 111, 9],
+        [196, 116, 9],
+        [196, 124, 9],
+        [204, 116, 9],
+        [203, 123, 9],
+        [212, 117, 9],
+        [211, 114, 9],
+        [207, 121, 9],
+        [219, 122, 9],
+        [231, 118, 9],
+        [244, 113, 9],
+        ////
+        null,
+        // Est Belle
+        [167, 157, 9],
+        [167, 162, 9],
+        [169, 167, 9],
+        [180, 155, 9],
+        [177, 153, 9],
+        [173, 159, 9],
+        [175, 163, 9],
+        [184, 158, 9],
+        [188, 164, 9],
+        [180, 168, 9],
+        [190, 158, 9],
+        [200, 139, 9],
+        [195, 154, 9],
+        [190, 161, 9],
+        [211, 150, 9],
+        [230, 129, 9],
+        [231, 128, 9],
+        [224, 150, 9],
+        [224, 152, 9],
+        [233, 145, 9],
+        [232, 152, 9],
+        [223, 154, 9],
+        [232, 152, 9],
+        [241, 145, 9],
+        [239, 143, 9],
+        [235, 150, 9],
+        [238, 154, 9],
+        [244, 149, 9],
+        [246, 139, 9],
+        [241, 127, 9],
+        [246, 139, 9],
+        [244, 149, 9],
+        [246, 152, 9],
+        [252, 141, 9],
+        [256, 127, 9],
+        [252, 141, 9],
+        [251, 151, 9],
+        [257, 151, 9],
+        [266, 143, 9],
+        [263, 141, 9],
+        [262, 147, 9],
+        [269, 151, 9],
+        [280, 146, 9],
+        [291, 138, 9],
+        [302, 130, 9],
+      ];
+      speckling.init('#speckling', glyph2, data2);
+
+      group.push(new ObjectTimeline(speckling,
+          {
+            0: { nope: [] },
+            2500: { play: [] }
+          }));
+
+      for (var i= group.length-1;i>=0;i--) {
+        group[i].play();
+      }
+    }
+
+  </script>
+</head>
+
+<body>
+
+<a href="javascript:window.open(window.clickTag)">
+
+<div id="bg-exit"></div>
+<!-- <a href="#" target="_blank">-->
+<div id="container">
+  <img id="bg1" src="bg.jpg" width="300" style="opacity:1;">
+  <img id="bg2" src="paris-light.jpg" width="300">
+
+  <img id="btn" src="btn.png" width="292">
+  <img id="perfume" src="perfume_new.png" width="125">
+
+  <canvas id="handwriting" width="300" height="250" style="left: 0px; top: 0px;"></canvas>
+  <canvas id="speckling" width="300" height="250" style="left: 0px; top: 0px;"></canvas>
+</div>
+</a>
+<!-- CTA -->
+<script>
+  function bgExitHandler(e) {
+    Enabler.exit('Background Exit');
+  }
+
+  document.getElementById('bg-exit').addEventListener('click', bgExitHandler, false);
+</script>
+<!-- end CTA -->
+
+</a>
+
+</body>
+
+</html>

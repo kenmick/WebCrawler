@@ -1,0 +1,58 @@
+
+<script>
+if ('csm' in window){
+    csm.measure('csm_recs_widget_start');
+}
+</script>
+<span class="rightcornerlink">
+          <a     href="/help/show_leaf?personalrecommendations&ref_=hm_rec_lm"    >Learn more</a>
+</span>
+<h2 class="rec_heading_wrapper">
+  <span class="rec_heading" data-spec="">&nbsp;</span>
+</h2>
+<div class="rec_wrapper" id="title_recs" data-items-per-request="25" data-items-per-page="6" data-ref = hm   data-specs="personal" data-caller-name="persrecs-homepage"
+>
+  <div class="rec_const_picker">
+    <div class="rec_view">
+      <div class="rec_grave" style="display:none"></div>
+      <div class="rec_slide">
+      </div>
+      <div class="rec_nav">
+        <div class="rec_nav_page_num">
+        </div>
+        <a class="rec_nav_left">&#9668; Prev 6</a>
+        <a class="rec_nav_right">Next 6 &#9658;</a>
+      </div>
+    </div>
+  </div>
+  <div class="rec_overviews">
+    <div class="rec_overview">
+    </div>
+  </div>
+  <div class="rec_spinner rec_loading"></div>
+</div>
+    
+<script>
+if ('csm' in window){
+    csm.measure('csm_recs_widget_end');
+}
+</script>
+
+
+
+
+
+<link rel="stylesheet" type="text/css" href="http://i.media-imdb.com/images/SFc25df55df212e779731eda38c3806095/css/min/lists.css" ><link rel="stylesheet" type="text/css" href="http://i.media-imdb.com/images/SFd36761b30ebc061c8d30826d3d211d3c/css2/site/consumer-navbar-mega.css" ><link rel="stylesheet" type="text/css" href="http://i.media-imdb.com/images/SFa88e6ba92e5894e7909b0d2ef5d21e79/css2/site/consumer-navbar-suggestionsearch.css" >
+<script>
+    $("#title_recs").rec_widget()
+    .one('recs_slider_update', function() {
+        if ('csm' in window) {
+            csm.measure('csm_recs_slider_visible');
+        }
+    })
+    .one('recs_title_update', function() {
+        if ('csm' in window) {
+            csm.measure('csm_recs_title_visible');
+        }
+    });
+</script>

@@ -1,0 +1,59 @@
+@charset "utf-8";
+
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, button, select, option, textarea, p, blockquote, th, td{
+    padding: 0;
+    margin: 0;
+    font: 12px/20px arial, helvetica, verdana, tahoma, sans-serif;
+}
+body,.yk-con{background-color: #fff;}
+ul{list-style:none;}
+
+/*  */
+.v,
+.p,
+.v-mini-group{margin-bottom:20px;}
+.v-mini-group .v{margin-bottom:10px;}
+.v-small-group .v{margin-bottom:30px;}
+.v .vb-oneline{*padding:0;}
+.v .vb-oneline .v-meta-title,
+.yk-v-oneline .v .v-meta-title{margin-top:18px;}
+.v .vb-oneline .v-meta-overlay,
+.yk-v-oneline .v .v-meta-overlay{
+    background: url("/index/img/2013/video/bg_video_mini.png") no-repeat left bottom;
+    _background: none;
+    _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="http://static.youku.com/index/img/2013/video/bg_video_mini.png");
+}
+.v-hover .vb-oneline .v-meta-overlay,
+.yk-v-oneline .v-hover .v-meta-overlay{
+    background: #000;
+    filter: alpha(opacity=70);
+}
+.v .vb-oneline .v-meta-tagrt{
+    display: none;
+}
+.yk-v-oneline .v-hover .v-meta-title,
+.v-hover .vb-oneline .v-meta-title{
+    margin-top:0;
+}
+
+.yk-row-through{margin-bottom:40px;}
+
+
+/* yk-box */
+.yk-box .yk-head .yk-title span{color:#909090;}
+/* tab */
+.yk-tab li a{cursor: pointer;line-height:20px;padding:5px 10px;font-family:"Microsoft YaHei","å¾®è½¯éé»", SimHei, helvetica, arial, verdana, tahoma, sans-serif;}
+.yk-tab-large li a{padding:0 20px;font-size:20px;line-height:30px;font-family:"Microsoft YaHei","å¾®è½¯éé»", SimHei, helvetica, arial, verdana, tahoma, sans-serif;}
+
+
+/* æ»å */
+.yk-slide{overflow:hidden;position:relative;}
+.yk-slide .yk-slide-pages{position:absolute;left:0;top:0;}
+.yk-slide .yk-slide-pager{overflow:hidden;z-index:10;position:absolute;bottom:0;left:0;width:100%;height:10px;padding-top:10px;text-align:center;}
+.yk-slide .yk-slide-pager div{cursor:pointer;overflow:hidden;display:inline-block;*display:inline;*zoom:1;width:10px;height:10px;margin:0 5px;vertical-align:top;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;background:#c3c3c3;}
+.yk-slide .yk-slide-pager div:hover{background:#aaa;}
+.yk-slide .yk-slide-pager div.current{cursor:default;background:#69aaec;}
+.yk-slide .yk-slide-btnprev,
+.yk-slide .yk-slide-btnnext{cursor:pointer;visibility:hidden;z-index:10;position:absolute;top:0;width:90px;height:100%;display:block;}
+.yk-slide .yk-slide-btnprev,
+.yk-slide .yk-slide-btnnext{-moz-u
