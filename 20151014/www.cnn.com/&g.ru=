@@ -1,0 +1,53 @@
+/*
+(c) Copyright Weborama SA - France. All rights reserved.
+It is illegal to modify, disassemble, sell, copy or publish this software
+or any part thereof. The use of this software is only permitted with the
+prior and express written permission of Weborama SA - France.
+More information: http://www.weborama.com/contacts/
+*/
+function x17() {
+    var x1cl, x1ey = x1bb.x1cj();
+    x1ey.x1ie = x1bb.x1nn(x1ey.x1ie,'wuid=&retargeting=&');
+    x1ey.x1fN = 'http://cstatic.weborama.fr/advertiser/571/19/295/321/';
+    x1ey.x1lp = '210';
+
+
+
+    x1ey.conf_oba = false;
+    adperfobj.zindex = adperfobj.zindex || 0 || 214748360;
+
+    adperfobj.clicks = new Array();
+    adperfobj.clicks[0] = 'http://a.rfihub.com/acs/b/c3Q9aHRtbCZhYT0xOTE3MzQ5LDE3MDI2NjI3LDgzODgwMSwzMjM5ODM5Nyw2NzQwNSw2MDA2MDcsY2EwMjM4ZmFiZWQzOWQ2MTVmODdlZjdmZWE5MDE1YzAscCwxMTk1MSwyNTQ5OTUsMTY3NzU1NzcsMTc2NDA3LDQyNjAxMyZtdD0xJnJiPTY0JnJlPTM0NzAxJmhjaT0mdXVpZD0xMDQ4MjgzMTg2MzQ0MTc0MTg1JmRpPSZkYz0zJmRpc3JjPTA./n/http://asus.solution.weborama.fr/fcgi-bin/dispatch.fcgi?a.A=cl&a.si=571&a.te=397&a.aap=210&a.agi=236&g.lu=' + (adperfobj.landing_urls[0] || '');
+
+
+    try{
+        adperfobj.imptrackers = new Array(
+                
+        );
+
+        adperfobj.clicktrackers = (new Array(
+                
+        ).concat(adperfobj.clicktrackers));
+
+        adperfobj.eventtrackers = (new Array(
+                
+        ).concat(adperfobj.eventtrackers));
+    }catch(scr_e){}
+
+
+
+    x1ey.addTrackers(adperfobj);
+    x1ey.addClicks(adperfobj);
+
+    x1cl = new x1bb.x1hW();
+x1cl.x1c(x1ey, 775, '300x250_Rocket.jpg', adperfobj.width, adperfobj.height, '', '', '');
+x1ey.x1gG(x1cl, '', 2, '');
+
+
+
+
+    x1ey.x1gQ();
+
+
+}
+x1L('adperf_core_' + adperf_version + '_scrambled.js');

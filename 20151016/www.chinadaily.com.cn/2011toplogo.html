@@ -1,0 +1,158 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>www.chinadaily.com.cn</title>
+<link href="css/top-logo.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" language="javascript">
+<!--
+today=new Date()
+theYear = today.getYear()
+if(theYear >= 100 && theYear < 2000) theYear=theYear-100+2000
+
+function DayArray(){
+  this.length=DayArray.arguments.length
+  for(var i=0;i<this.length;i++)
+  this[i+1]=DayArray.arguments[i] }
+
+function MonthArray(){
+  this.length=MonthArray.arguments.length
+  for(var i=0;i<this.length;i++)
+  this[i+1]=MonthArray.arguments[i] }
+
+var d=new DayArray("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat")
+m=new MonthArray("Jan", "Feb", "Mar", "Apr", "May", "June", "July","Aug","Sept","Oct","Nov","Dec")
+
+function cleanword(obj){
+    obj.value = "";
+}
+function isSpecial(ch) { 
+    var special = new Array("\\","%","?","{","}",":",";","|","[","]","'","\"",",","(",")","/","@","=",">","<","!","&","*","^","-","+");
+    for(i=0;i<special.length;i++) { if(ch == special[i]) {  return true;}} return false;
+}
+
+function CheckRes(s1) { 
+    var res = new Array("to","bt","nt","pt","uf","ab","rt","le","allbt","allnt","st","at","between","beyond","exact","include","amb","all","range","lower","upper","tochinese","toascii","case");
+    for(i=0;i<res.length;i++) {
+        s2 = new RegExp("\\b"+res[i]+"\\b", "gi");
+        s3 = "\\" + res[i];
+        s1=s1.replace(s2, s3);
+    }
+    return s1;
+}
+function toSubmit() {
+    document.google_window.submit();
+}
+
+function do_search(frmSearch) {
+var strInput = frmSearch.searchText.value;
+ for (i = 0; i< strInput.length; i++) {     
+     if (strInput.charCodeAt(i) > 127) { 
+       alert("Only English allowed in your words."); return false; 
+     } 
+   }
+    strInput = strInput.replace(/^ +| +$/g,"");
+    strInput = strInput.replace(/^. +| +.$/g,"");
+    strInput = strInput.replace(/ +. +/g," ");
+    if (strInput == "") {
+          alert("Please input your words!");
+          return false;
+    }
+    return true;
+}
+//-->
+</script>
+
+<script type="text/javascript" language="javascript">
+<!--
+function forumsubmit(){
+        if(do_search(document.searchform)){
+            document.searchform.submit();
+        }
+}
+function accoonasubmit(c){
+            document.seek1.col.value=c;
+            document.seek1.submit();
+}
+//-->
+</script>
+</head>
+<body>
+<div class="top">
+<div style="width:970px; height:33px; background-color:#FFFFFF; color:#333333;">
+<table width="970" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="1" height="6"></td>
+<td width="120"><img src="http://europe.chinadaily.com.cn/2011img/logo-c.gif"/></td>
+<td width="213">
+<div class="date">
+<script type="text/javascript">
+<!--
+
+document.write("<table width=120 border=0 cellspacing=0 cellpadding=0 ><tr><td width=120><strong>" + d[today.getDay()+1] + ", <\/strong>"+ m[today.getMonth()+1]+ " "+ today.getDate()+", " + theYear + " <\/td><\/tr><\/table>");
+-->
+</script>
+</div>
+</td>
+<td width="410">
+<table width="355" height="16" border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td width="9"><img src="2011img/top-l.jpg" width="9" height="16"/></td>
+<td width="392" align="center" background="2011img/top-m.jpg">
+<div class="edition"><a href="http://www.chinadaily.com.cn/hqzx/" target="_blank" style="font-size:12px; ">ä¸­æ</a> <a href="http://usa.chinadaily.com.cn/" target="_blank">US</a> <a href="http://www.chinadaily.com.cn/index.html" target="_blank" atremote="1">China</a> <a href="http://africa.chinadaily.com.cn" target="_blank">Africa</a> <a href="http://www.chinadailyapac.com/" target="_blank">ASIA PACIFIC</a><a href="http://www.asianewsphoto.com/Web_ENG/default.aspx" target="_blank">ASIA NEWSPHOTO</a></div>
+</td>
+<td width="9"><img src="2011img/top-r.jpg" width="9" height="16"/></td>
+</tr>
+</table>
+</td>
+<td>
+<form name="searchform" method="get" action="http://search.chinadaily.com.cn/searchen.jsp?ch=2@europe" onsubmit="return do_search(this)" target="_blank" style="margin:0px; padding:0px; ">
+<table>
+<tr>
+<td width="227">
+<table width="220" border="0" align="right" cellpadding="0" cellspacing="0">
+<tr>
+<td height="5" colspan="5"></td>
+</tr>
+
+<tr>
+<td width="76" valign="top"><input type="hidden" name="ch" value="2@europe"/> <input type="hidden" name="secondsearch" value="ON"/> <input type="text" name="searchText" class="but" size="9" onfocus="cleanword(this)"/></td>
+<td width="37" valign="top"><a href="javascript:forumsubmit()" class="butn">Go</a></td>
+<td width="99" valign="top"><a href="http://search.chinadaily.com.cn/" class="butn" target="_blank">Adv Search</a></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</form>
+</td>
+</tr>
+</table>
+</div>
+
+<div class="logo">
+<table width="950" height="80" border="0" align="center" cellpadding="0" cellspacing="0">
+<tr>
+<td width="516" rowspan="3" valign="top"><a href="/" target="_top"><img src="2011img/logo-europe.jpg" border="0"/></a></td>
+<td width="434" height="15"></td>
+</tr>
+
+<tr>
+<td valign="top">
+<div><!-- AdSame ShowCode: ä¸­å½æ¥æ¥ç½ æ¬§æ´²çç¾æ´²ç / æ¬§æ´²çé¦é¡µ / 10.21 Begin -->
+<script type="text/javascript" src="http://same.chinadaily.com.cn/s?z=chinadaily&#38;c=2092" charset="gb2312">
+</script>
+
+ <!-- AdSame ShowCode: ä¸­å½æ¥æ¥ç½ æ¬§æ´²çç¾æ´²ç / æ¬§æ´²çé¦é¡µ / 10.21 End --></div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+
+<div style="display:none "><!--begin 2477583-0-3-->
+<!--end 2477583-0-3-->
+</div>
+</body><!-- Start Alexa Certify Javascript --><script type="text/javascript"> _atrk_opts = { atrk_acct:"uM+9j1a8Dy00qn", domain:"chindaily.com.cn",dynamic: true}; (function() { var as = document.createElement('script'); as.type = 'text/javascript'; as.async = true; as.src = "https://d31qbv1cthcecs.cloudfront.net/atrk.js"; var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(as, s); })();</script><noscript><img src="https://d5nxst8fruw4z.cloudfront.net/atrk.gif?account=uM+9j1a8Dy00qn" style="display:none" height="1" width="1" alt="" /></noscript><!-- End Alexa Certify Javascript -->
+</html>

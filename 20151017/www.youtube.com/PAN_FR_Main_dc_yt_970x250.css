@@ -1,0 +1,363 @@
+
+/* === MAIN ELEMENTS === */ 
+
+body, body * {
+	vertical-align:baseline;
+	border:0 none;
+	outline:0;
+	padding:0;
+	margin:0;
+}
+
+@font-face {
+  font-family: 'TrajanPro-Regular';
+  src: url('TrajanPro-Regular.eot');
+  src: url('TrajanPro-Regular.eot?#iefix') format('embedded-opentype'),
+       url('TrajanPro-Regular.woff') format('woff'),
+       url('TrajanPro-Regular.woff2') format('woff2'),
+       url('TrajanPro-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+#container{
+	position:absolute;
+	width:970px;
+	height:250px;
+	top:0px;
+	left:0px;
+	margin:auto;
+	background: #333;
+	overflow:hidden;
+}
+
+#intro {
+	position: absolute;
+	top: 0px;
+	left:0px;
+	
+	width:968px;
+	height:248px;
+	background: #000;
+	z-index:9100;
+	display:none;
+}
+
+#ytClose {
+  	z-index: 19999;
+}
+
+#btn_exit {
+	position:absolute;
+	width:968px;
+	height:248px;
+	border:1px solid #000;
+	top:0px;
+	left:0px;
+	z-index: 700;
+	cursor:pointer;
+}
+
+/* === INTRO ELEMENTS === */ 
+#intro_hide {
+	position:absolute;
+	top:0px;
+	left:0px;
+	width:970px;
+	height:250px;
+	z-index: 800;
+}
+
+#btn_intro_skip {
+	position: absolute;
+	top:8px;
+	left:8px;
+	width:151px;
+	height:28px;
+	background: url('btn_intro_skip.png') top ;
+	z-index:800;
+	cursor: pointer;
+}
+
+#btn_intro_skip:hover {
+	background-position: bottom;
+}
+
+#intro_video_player {
+	position: absolute;
+	top:0px;
+	left:0px;
+	width: 970px;
+	height: 250px;
+	z-index: 100;
+	background:#000;
+	overflow:hidden;
+}
+
+#intro_TT {
+	position: absolute;
+	left:10px;
+	bottom:10px;
+	width: 185px;
+	height: 62px;
+	z-index: 150;
+	background: url('img_intro_TT.png')
+}
+
+#intro_date {
+	position: absolute;
+	right: 0px;
+	bottom: 0px;
+	width: 231px;
+	height: 44px;
+	z-index: 150;
+	background: url('img_date_intro.png')	
+}
+
+/* === BACKGROUND, LOCKUP & ANIMATION === */ 
+
+#resolve_mask {
+	position: absolute;
+	top: 0;
+	left:0;
+	width:970px;
+	height:250px;
+	z-index: 150;
+	overflow:hidden;
+}
+
+#resolve_blocker {
+	position: absolute;
+	top: 1px;
+	left:1px;
+	width:968px;
+	height:248px;
+	background: #00D1CC;
+	opacity:0;
+	z-index: 150;
+}
+
+#resolve_bg {
+	position: absolute;
+	top: 1px;
+	left:1px;
+	width:968px;
+	height:248px;
+	background: url('img_resolve_bg.jpg');
+	opacity:0;
+	z-index: 100;
+}
+
+#anim_resolve_cast {
+	position: absolute;
+	top: -55px;
+	left: 0px;
+	width: 970px;
+	height: 305px;
+	background: url('img_resolve_cast.png');
+	z-index: 125;
+}
+
+#anim_resolve_TT {
+	position: absolute;
+	top: 35px;
+	left: 22px;
+	width: 259px;
+	height: 126px;
+	background: url('img_resolve_TT.png');
+	z-index: 150;
+	opacity:0;
+}
+
+#resolve_date {
+	position: absolute;
+	top: 173px;
+	left: 28px;
+	width: 248px;
+	height: 19px;
+	z-index: 150;
+	opacity:0;
+	background: url('img_date_resolve.png');
+}
+
+/*
+#resolve_3dline{
+	position: absolute;
+	top: 170px;
+	left: 45px;
+	width: 190px;
+	height: 41px;
+	z-index: 150;
+	opacity:0;
+	background: url('img_3d-lines_resolve.png');
+}
+*/
+
+#resolve_legals {
+	position: absolute;
+	bottom: 30px;
+	left: 1px;
+	width: 6px;
+	height: 91px;
+	background: url('img_resolve_legals.png');
+	opacity: 0;
+	z-index: 150;
+}
+
+/* === MENU ELEMENTS === */ 
+
+#menu {
+	position: absolute;
+	bottom: 0;
+	width: 970px;
+	height: 26px;
+	overflow:hidden;
+	z-index: 800;
+	opacity:0;
+	font-family: 'TrajanPro-Regular';
+	letter-spacing: 2px;
+	font-size:13px;
+}
+
+#menu_bg {
+	position: absolute;
+	width: 970px;
+	height: 26px;
+	background: url('img_menu_bg.jpg');
+	opacity:1;
+	cursor:pointer;
+}
+
+#menu_blocker {
+	position: absolute;
+	width: 970px;
+	height: 26px;
+	cursor:pointer;
+	z-index:150;
+}
+
+#btn_menu_videos {
+	position: absolute;
+	top: 7px;
+	left: 130px;
+	width: 130px;
+	height: 26px;
+	color: #fff;
+	z-index:805;
+	cursor:pointer;
+}
+
+#btn_menu_fun {
+	position: absolute;
+	top: 7px;
+	left: 250px;
+	width: 200px;
+	height: 26px;
+	color: #fff;
+	z-index:805;
+	cursor:pointer;
+}
+
+#btn_menu_game {
+	position: absolute;
+	top: 1px;
+	left: 440px;
+	width: 169px;
+	height: 26px;
+	color: #fff;
+	z-index:805;
+	cursor:pointer;
+	font-size:14px;
+}
+
+#btn_menu_tickets {
+	position: absolute;
+	top: 7px;
+	left: 610px;
+	width: 250px;
+	height: 26px;
+	color: #fff;
+	z-index:805;
+	cursor:pointer;
+}
+
+.menuSmallText{
+	position:relative;
+	top:-8px;
+	font-size:9px;
+}
+
+.menuMediumText{
+	position:relative;
+	top:-1px;
+	font-size:11px;
+}
+.lessSpace{
+	position:relative;
+	top:-7px;
+}
+
+#menu_social {
+	position: absolute;
+	bottom: 19px;
+	left: 9px;
+	z-index:800;
+	cursor:pointer;
+}
+
+#btn_menu_facebook {
+	position: absolute;
+	width: 13px;
+	height: 13px;
+	background: url('btn_social_facebook.png') top;
+	z-index:800;
+	cursor:pointer;
+}
+#btn_menu_facebook:hover {
+	background-position:bottom;
+}
+
+#btn_menu_twitter {
+	position: absolute;
+	left: 19px;
+	width: 13px;
+	height: 13px;
+	background: url('btn_social_twitter.png') top;
+	z-index:800;
+	cursor:pointer;
+}
+#btn_menu_twitter:hover {
+	background-position:bottom;
+}
+
+
+
+/* === VIDEOS SECTION === */ 
+
+#section_videos {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 340px;
+	height: 219px;
+	display:none;
+	z-index:800;
+}
+
+#section_videos_player {
+	position: relative;
+	top: 35px;
+	left: 30px;
+	width: 300px;
+	height: 166px;
+	border: 2px solid #4d6779;
+	background:#000;
+	z-index:800;
+}
+
+
+
+
+
+

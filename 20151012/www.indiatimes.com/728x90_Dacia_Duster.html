@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head><script type="text/javascript">
+    
+      (function() {
+        var relegateNavigation = '';
+        var handleClickTagMessage = function(e) {
+          try {
+            var eventData = JSON.parse(e.data);
+          } catch (err) {
+            return;
+          }
+          if (eventData.isInitClickTag) {
+            if (eventData.clickTags) {
+              for (var i = 0; i < eventData.clickTags.length; i++) {
+                var clkTag = eventData.clickTags[i];
+                window[clkTag.name] = clkTag.url;
+              }
+            } else if (eventData.clickTag) {
+              window.clickTag = eventData.clickTag;
+            }
+            relegateNavigation = eventData.relegateNavigation;
+          }
+        };
+
+        if (open.call) {
+          window.open = function(open) {
+            return function(url, name, features) {
+              if (relegateNavigation === 'parent') {
+                var message = {'clickTag': url, 'isPostClickTag': true};
+                parent.postMessage(JSON.stringify(message), '*');
+              } else {
+                var args = [url, name];
+                if (features) {
+                  args.push(features);
+                }
+                open.apply(window, args);
+              }
+            };
+          }(window.open);
+        }
+
+        if (window.addEventListener) {
+          window.addEventListener(
+              'message', handleClickTagMessage, false);
+        } else {
+          window.attachEvent('onmessage', handleClickTagMessage);
+        }
+      })();
+    
+  </script>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+	<title>Sans titre</title>
+<!--Adobe Edge Runtime-->
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <script type="text/javascript" charset="utf-8" src="https://animate.adobe.com/runtime/5.0.1/edge.5.0.1.min.js"></script>
+    <style>
+        .edgeLoad-EDGE-16198120 { visibility:hidden; }
+    </style>
+<script>
+   AdobeEdge.loadComposition('728x90_Dacia_Duster', 'EDGE-16198120', {
+    scaleToFit: "none",
+    centerStage: "none",
+    minW: "0",
+    maxW: "undefined",
+    width: "728px",
+    height: "90px"
+}, {"dom":{}}, {"dom":{}});
+</script>
+    <script type="text/javascript">
+var clickTag = "http://www.dacia.fr";Â </script>
+<!--Adobe Edge Runtime End-->
+
+</head>
+<body style="margin:0;padding:0;">
+	<div id="Stage" class="EDGE-16198120" style="border: 1px solid black; cursor: pointer;" onclick="javascript:window.open(window.clickTag)">
+	
+        <div id="Stage_mec" class="edgeLoad-EDGE-16198120"></div>
+        <div id="Stage_text_1" class="edgeLoad-EDGE-16198120"></div>
+        <div id="Stage_texte_2" class="edgeLoad-EDGE-16198120"></div>
+        <div id="Stage_texte_4" class="edgeLoad-EDGE-16198120"></div>
+        <div id="Stage_texte_6" class="edgeLoad-EDGE-16198120"></div>
+        <div id="Stage__160x600_voiture" class="edgeLoad-EDGE-16198120"></div>
+        <div id="Stage_Nom_voiture" class="edgeLoad-EDGE-16198120">DACIA Duster</div>
+        <div id="Stage_Prix" class="edgeLoad-EDGE-16198120">Ã partir de 11 990â¬*</div>
+        <div id="Stage_ML" class="edgeLoad-EDGE-16198120">ModÃ¨le prÃ©sentÃ© : Duster Prestige TCe 125 4x2 avec option peinture mÃ©tallisÃ©e Ã  17Â 380 â¬. *Prix conseillÃ© pour Duster SCe 115 E6 4X2, niveau de finition Duster.</div>
+        <div id="Stage_BTN" class="edgeLoad-EDGE-16198120">
+            <div id="Stage_BTN_Text4">RÃ©servez un essai</div>
+            <div id="Stage_BTN_Rectangle"></div>
+        </div>
+        <div id="Stage_logo_dacia" class="edgeLoad-EDGE-16198120"></div>
+    </div>
+</body>
+</html>

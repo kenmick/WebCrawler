@@ -1,0 +1,83 @@
+<!-- dip popup -->
+
+<style type="text/css">
+
+html,body {
+	height:100%;
+	margin:0;
+}
+
+#dipPopUpBoxMask {
+	position:fixed;
+	top:0;
+	left:0;
+	height:100%;
+	width:100%;
+	background:black;
+	filter:alpha(opacity=50);
+	-moz-opacity:0.50;
+	opacity: 0.50;
+	z-index:9999999;
+}
+
+#dipPopUpBox p,
+#dipPopUpBox div,
+#dipPopUpBox ul{
+	margin:0;
+	padding:0;
+	list-style:none;
+}
+
+#dipPopUpBox a img { border:0; }
+
+#dipPopUpBox {
+	position:fixed;
+	top:50%;
+	left:50%;
+	width:600px;
+	padding-bottom:20px;
+	margin:-220px 0 0 -300px;
+	overflow:hidden;
+	background:url(http://image.event.rakuten.co.jp/com/global/en/img/common/ichiba_langselect_en_bg.gif) no-repeat center 30px #fff;
+	text-align:center;
+	font-size:75%;
+	font-family: arial,verdana,geneva,lucida,'lucida grande',helvetica,sans-serif;
+	z-index:10000000;
+}
+
+#dipPopUpBox ul {
+	width:380px;
+	margin:15px auto 10px auto;
+	text-align:left;
+}
+
+.rgm-image {
+	text-align:center;
+	background:url(http://event.rakuten.co.jp/borderless/img/banner/ichiba/os_ichibamodal_2014_bg.gif) top center repeat-y;
+}
+</style>
+
+<div id="dipPopUpBoxMask"></div>
+
+<div id="dipPopUpBox">
+
+<div class="rgm-image">
+<p><img src="http://image.event.rakuten.co.jp/borderless/img/banner/ichiba/os_ichibamodal_2014_en.jpg" alt="Rakuten Global Market" width="600" height="376" usemap="#global_banner_map" border="0">
+	<map name="global_banner_map">
+		<area shape="rect" coords="55,321,550,368" href="http://global.rakuten.com/en/?l-id=rgm_0115-en-01" alt="Start shopping on Rakuten Global Marketplace">
+	</map>
+</p>
+<ul>
+<li class="rgm-showIchiba"><a class="dipHidePopUp" href="http://www.rakuten.co.jp/?l-id=global_popup_Ichiba_top_en">Go to Rakuten in Japanese ¡ÊÆüËÜ¤Î³ÚÅ·»Ô¾ì¤Ë¥¢¥¯¥»¥¹¤¹¤ë¡Ë</a></li>
+<li><input type="checkbox" id="dipPopUpCheckBox"><label for="dipPopUpCheckBox">Always show Japanese page¡Êº£¸å¤³¤Î¥¦¥£¥ó¥É¥¦¤òÉ½¼¨¤·¤Ê¤¤¡Ë</label></li>
+</ul>
+</div>
+
+</div><!-- /dipPopUpBox -->
+<script type="text/javascript">
+<!-- 
+var sc_pulldownbannar="top_pb_pop_en";
+//-->
+</script>
+
+<!-- /dip popup -->

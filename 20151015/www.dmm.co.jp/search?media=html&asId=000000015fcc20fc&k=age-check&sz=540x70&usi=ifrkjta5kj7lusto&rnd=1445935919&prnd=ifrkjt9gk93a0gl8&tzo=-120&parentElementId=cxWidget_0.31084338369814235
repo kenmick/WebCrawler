@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<title>render</title>
+<style type="text/css" media="all">
+    body { overflow: hidden; }
+    body, span, ul, li, a {
+        background: #fff;
+        padding: 0;
+        margin: 0;
+        font: 12px/1.3em Verdana, Arial, Helvetica, sans-serif;
+    }
+    div.ads {
+        padding: 0;
+        margin: 0;
+    }
+    a.ad {
+        color: #9c9c9c;
+        float: left;
+        text-decoration: none;
+        text-align: left;
+        overflow: hidden;
+        margin: 0;
+    }
+    a.ad img {
+        border: none;
+    }
+    a.ad span.title {
+        color: #157dc4;
+        display:block;
+        text-decoration: none;
+        font: bold 12px/1.6em Verdana, Arial, Helvetica, sans-serif;
+    }
+    a.ad span.title em {
+        color: #157dc4;
+        font-style: normal;
+        font-weight: bold;
+    }
+    a.ad span.url {
+        color: #54b012;
+        text-decoration: underline;
+        font: 12px/1.5em Verdana, Arial, Helvetica, sans-serif;
+    }
+    a.ad em {
+        font-weight: bold;
+        font-style: normal;
+    }
+    img.impTrackUrl {
+        position:absolute;
+        visibility:hidden;
+    }
+</style>
+</head>
+<body>
+<div id="spaces" style="overflow:hidden;">
+            <div class="ads">
+            <a class="ad" rel="nofollow" href="http://display.dmm.com/adserver/click/XKe3jqnnddl2TuUsm2TsFSAU7WBMtvHPe0wV6AmtqjNvpLmPOg6aKDuHZgp-3AJJIwlJcM_y6IKc39cl6lfXQLK4xkDXPtLyWhJDZCIcEEsMKE-KV2NPlRRw47YUi6Qp2BSeLjPD9beehkYtip0nlk3lzJPX" target="_top"  style="height: 70px; width: 540px;">
+    <img src="http://cdn-content-production.cxpublic.com/a3e9ed18a814c9b34980c522db37a3e297ec25ff53d38a3bea051be4c783909e.jpg" height="70" width="540" alt="" />
+</a>
+        </div>
+
+    <div style="clear:both"></div>
+</div>
+
+<script type="text/javascript" src="http://cdn.cxense.com/cx.js"></script>
+<script type="text/javascript">
+    var allArgs = cX.combineArgs(cX.parseUrlArgs(), cX.parseHashArgs()); // Hash overrides URL
+    if (allArgs.parentElementId) {
+        var contentWidth = -1;
+        var contentHeight = -1;
+        try {
+            var adsDivEl = document.getElementById('spaces');
+            contentWidth = adsDivEl.clientWidth ? adsDivEl.clientWidth : adsDivEl.offsetWidth;
+            contentHeight = adsDivEl.clientHeight ? adsDivEl.clientHeight : adsDivEl.offsetHeight;
+        } catch (e) {
+            contentWidth = -1;
+            contentHeight = -1;
+        }
+
+        var matchedAdCount = 1;
+        var isVerticallyOriented = false;
+
+        var message = 'method=updateAdSpace'
+            + '\u0026matchedAdCount=' + matchedAdCount
+            + '\u0026isVerticallyOriented=' + isVerticallyOriented
+            + '\u0026contentWidth=' + contentWidth
+            + '\u0026contentHeight=' + contentHeight
+            + '\u0026elementId=' + encodeURIComponent(allArgs.parentElementId);
+
+        cX.library.postMessageToParent(message, '*');
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,280 @@
+/* setup */
+html {
+  box-sizing: border-box; }
+
+*, *:before, *:after {
+  box-sizing: inherit; }
+
+body {
+  margin: 0;
+  padding: 0; }
+
+.hide {
+  border: 0 !important;
+  clip: rect(0 0 0 0) !important;
+  height: 1px !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  position: absolute !important;
+  width: 1px !important; }
+
+/*********************
+       SNAPSHOT
+**********************/
+.snapshot #intro_logo {
+  display: none; }
+.snapshot #cta_red_watch_trailer {
+  display: none; }
+.snapshot #cta_red_watch_now {
+  clip: auto !important;
+  width: 126px !important;
+  height: 29px !important;
+  margin: 0 !important; }
+
+/*********************
+    Banner Styles
+**********************/
+.banner {
+  position: relative;
+  width: 970px;
+  height: 250px;
+  border: solid 1px;
+  overflow: hidden;
+  background-color: #f5f5f1;
+  cursor: pointer; }
+
+.close {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 15; }
+
+#banner_click {
+  position: absolute;
+  width: 100%;
+  height: 100%; }
+
+#intro_logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -107px;
+  margin-top: -30px; }
+
+#images {
+  position: absolute;
+  top: 0;
+  left: 0; }
+
+#content {
+  width: 350px;
+  height: 250px;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  right: 0; }
+
+#images .block {
+  position: absolute;
+  width: 200px;
+  height: 250px;
+  overflow: hidden;
+  left: 0; }
+
+#images .block {
+  top: 0; }
+
+#images .block:nth-child(2) {
+  left: 200px; }
+
+#images .block:nth-child(3) {
+  left: 400px; }
+
+#images .block .title {
+  position: absolute;
+  left: 13px;
+  bottom: 8px; }
+
+#images .block .image {
+  position: absolute;
+  top: 0px;
+  left: 0; }
+
+#images .shadow {
+  top: 0;
+  right: 0; }
+
+.shadow {
+  width: 15px;
+  height: 250px;
+  background: url(../img/strip_shadow.png) no-repeat center right;
+  position: absolute; }
+
+#red_strip {
+  background-color: #e50914;
+  left: 600px; }
+
+#logo {
+  position: absolute;
+  right: 24px;
+  bottom: 30px; }
+
+#copy {
+  position: absolute;
+  left: 30px;
+  top: 31px; }
+
+#replay:hover {
+  -ms-transform: rotate(180deg);
+  -webkit-transform: rotate(180deg);
+  transform: rotate(180deg); }
+
+#replay {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 20px;
+  height: 20px;
+  background: url(../img/replay.png) no-repeat center;
+  cursor: pointer;
+  -webkit-transition: -webkit-transform .3s ease-out;
+  transition: transform .3s ease-out, -ms-transform .3s ease-out; }
+
+#div_cta .lang {
+  width: 128px;
+  height: 29px;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: absolute;
+  right: 0; }
+
+#div_cta {
+  position: absolute;
+  bottom: 30px;
+  left: 30px;
+  width: 128px;
+  height: 31px;
+  overflow: hidden;
+  cursor: pointer;
+  border: solid 1px #e50914; }
+
+#div_cta .bottom img#cta_white_watch_trailer {
+  left: 7px;
+  top: 10px; }
+
+#div_cta .top img#cta_red_watch_trailer {
+  left: 10px;
+  top: 10px; }
+
+#div_cta .bottom img {
+  position: absolute;
+  top: 10px;
+  left: 17px; }
+
+#div_cta .bottom {
+  width: 100%;
+  height: 100%;
+  background-color: #e50914; }
+
+#div_cta .bottom,
+#div_cta .top {
+  position: absolute;
+  top: 0;
+  overflow: hidden; }
+
+#div_cta .top {
+  right: 0;
+  width: 130px;
+  height: 29px;
+  background-color: #f5f5f1;
+  -webkit-backface-visibility: hidden;
+  transform-origin: right bottom;
+  -ms-transform-origin: right bottom;
+  -webkit-transform-origin: right bottom; }
+
+#div_cta .top img {
+  position: absolute;
+  top: 10px;
+  left: 19px;
+  -webkit-backface-visibility: hidden;
+  transform-origin: right bottom;
+  -ms-transform-origin: right bottom;
+  -webkit-transform-origin: right bottom; }
+
+/*********************
+        Video
+**********************/
+#videoWrapper {
+  z-index: 10;
+  position: absolute;
+  width: 300px;
+  height: 250px;
+  top: 0;
+  left: 0; }
+
+#videoContainer {
+  width: 100%;
+  height: 100%;
+  background-color: #000; }
+
+.videoClick {
+  z-index: 11;
+  position: absolute;
+  top: 0;
+  left: 0;
+  cursor: pointer;
+  width: 100%;
+  height: 600px;
+  background: url("data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"); }
+
+.controls {
+  z-index: 12;
+  position: absolute;
+  bottom: 10px;
+  left: 10px; }
+
+.sprite {
+  background: url(../img/icons.png) no-repeat;
+  width: 20px;
+  height: 20px;
+  float: left;
+  margin-right: 2px;
+  cursor: pointer; }
+
+.playBtn {
+  background-position: 0 0; }
+
+.playBtn:hover {
+  background-position: 0 -44px; }
+
+.playBtn.pause {
+  background-position: 0 -22px; }
+
+.playBtn.pause:hover {
+  background-position: 0 -66px; }
+
+.muteBtn {
+    background-position: -22px -22px;
+}
+.muteBtn.unmute {
+  background-position: -22px 0;
+}
+.muteBtn.unmute:hover {
+    background-position: -22px -44px;
+}
+.muteBtn:hover {
+  background-position: -22px -66px; 
+}
+
+.timer {
+  float: left;
+  color: #fff;
+  font-family: Arial;
+  font-weight: bold;
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  width: 100px;
+  line-height: 20px;
+  margin-left: 5px; }

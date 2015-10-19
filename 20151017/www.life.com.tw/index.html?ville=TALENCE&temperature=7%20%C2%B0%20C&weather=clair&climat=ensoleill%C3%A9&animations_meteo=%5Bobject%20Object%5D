@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/zepto/1.1.6/zepto.min.js"></script> 
+    <script src="/lp/enabler/ADventori-2.0.0.js" type="text/javascript"></script>
+    <link rel=stylesheet type="text/css" href="/lp/enabler/ADventori-2.0.0.css">
+    <style type="text/css">
+            html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre,a, abbr, acronym, address, big, cite, code,del,dfn, em, img, ins, kbd, q, s, samp,small, strike, strong, sub, sup, tt, var,b, u, i, center,dl, dt, dd, ol, ul, li,fieldset, form, label, legend,table, caption, tbody, tfoot, thead, tr, th, td,article, aside, canvas, details, embed,figure, figcaption, footer, header, hgroup,menu, nav, output, ruby, section, summary,time, mark, audio, video {border: 0;}
+            a{text-decoration: none;}
+            body {line-height: 1; background: grey; overflow:hidden;}
+            #container { position: absolute; top: 0; left: 0; width: 300px; height: 600px; background: grey; border: 1px solid black; overflow: hidden !important; box-sizing: border-box;}
+            #temps { position: absolute; margin: 0 auto; width: 300px; height: 535px; /*background: url('') center center no-repeat; background-size: 100% 100%;*/ opacity: 1; display: none;}
+            #animation { position: absolute; top: 0 !important; left: 0 !important; width: 300px; height: 535px; opacity: 1; -moz-transform: scale(1.05) translateX(-3px); -ms-transform: scale(1.05) translateX(-3px);}
+            #road { position: absolute; bottom: 0; width: 300px; height: 147px; } 
+            #road { position: absolute; bottom: 0; left: 0; width: 1200px; height: 147px; background-image: url('road2.png'); background-repeat: repeat; transform: translateX(0px); -webkit-transform: translateX(0px); -moz-transform: translateX(0px); -ms-transform: translateX(0px); -webkit-animation: roadGo 1.5s linear infinite; -moz-animation: roadGo 1.5s linear infinite; -ms-animation: roadGo 1.5s linear infinite;}
+            @-webkit-keyframes roadGo { 0% { -webkit-transform: translateX(0px); } 100% { -webkit-transform: translateX(-600px); } }
+            @-moz-keyframes roadGo { 0% { -moz-transform: translateX(0px); } 100% { -moz-transform: translateX(-600px); } }
+            @-ms-keyframes roadGo { 0% { -ms-transform: translateX(0px); } 100% { -ms-transform: translateX(-600px); } }
+            #roadOff { position: absolute; bottom: 0; width: 600px; height: 147px; opacity: 0; }
+            #txt1 { position: absolute; top: 266px; left: 6px; margin: 0 auto; width: 288px; height: 39px; background: url('txt1.png') center center no-repeat; background-size: 100% 100%; opacity: 0; }
+            #wrapper_roue { position: absolute; bottom: 2px; left: -275px; width: 171px; height: 155px; -webkit-animation: roueGo 1s ease-out 1 forwards; -webkit-animation-delay: 3s; -moz-animation: roueGo 1s ease-out 1 forwards; -moz-animation-delay: 3s; -ms-animation: roueGo 1s ease-out 1 forwards; -ms-animation-delay: 3s; }
+            @-webkit-keyframes roueGo { 0% { left:-275px; } 100% { left:60px; } }
+            @-moz-keyframes roueGo { 0% { left:-275px; } 100% { left:60px; } }
+            @-ms-keyframes roueGo { 0% { left:-275px; } 100% { left:60px; } }
+            #ombre { position: absolute; bottom: 0; left: 0;}
+            #roue{ position: absolute; top: 0; left: 14px; -webkit-transform: rotate(0deg); -webkit-animation: roueTurn 1s linear infinite; -moz-transform: rotate(0deg); -moz-animation: roueTurn 1s linear infinite; -ms-transform: rotate(0deg); -ms-animation: roueTurn 1s linear infinite;}
+            @-webkit-keyframes roueTurn { 0% { -webkit-transform: rotate(0deg); } 25% { -webkit-transform: rotate(90deg); } 50% { -webkit-transform: rotate(180deg); } 75% { -webkit-transform: rotate(270deg); } 100% {  -webkit-transform: rotate(359deg); } }
+            @-moz-keyframes roueTurn { 0% { -moz-transform: rotate(0deg); } 25% { -moz-transform: rotate(90deg); } 50% { -moz-transform: rotate(180deg); } 75% { -moz-transform: rotate(270deg); } 100% { -moz-transform: rotate(359deg); } }
+            @-ms-keyframes roueTurn { 0% { -ms-transform: rotate(0deg); } 25% { -ms-transform: rotate(90deg); } 50% { -ms-transform: rotate(180deg); } 75% { -ms-transform: rotate(270deg); } 100% { -ms-transform: rotate(359deg); } }
+            #roueOff{ position: absolute; top: 0; left: 14px; opacity: 0; -webkit-transform: rotate(0deg); -webkit-animation: roueTurnOff 1.5s linear 1 forwards; -webkit-animation-delay: 12.5s; -moz-transform: rotate(0deg); -moz-animation: roueTurnOff 1.5s linear 1 forwards; -moz-animation-delay: 12.5s; -ms-transform: rotate(0deg); -ms-animation: roueTurnOff 1.5s linear 1 forwards; -ms-animation-delay: 12.5s;}
+            @-webkit-keyframes roueTurnOff { 0% { -webkit-transform: rotate(0deg); opacity: 0;} 25% { -webkit-transform: rotate(90deg); } 50% { -webkit-transform: rotate(180deg); opacity: 1;} 75% { -webkit-transform: rotate(270deg); } 100% { -webkit-transform: rotate(359deg); opacity: 1;} }
+            @-moz-keyframes roueTurnOff { 0% { -moz-transform: rotate(0deg); opacity: 0;} 25% { -moz-transform: rotate(90deg); } 50% { -moz-transform: rotate(180deg); opacity: 1;} 75% { -moz-transform: rotate(270deg); } 100% { -moz-transform: rotate(359deg); opacity: 1;} }
+            @-ms-keyframes roueTurnOff { 0% { -ms-transform: rotate(0deg); opacity: 0;} 25% { -ms-transform: rotate(90deg); } 50% { -ms-transform: rotate(180deg); opacity: 1;} 75% { -ms-transform: rotate(270deg); } 100% { -ms-transform: rotate(359deg); opacity: 1;} }
+            #ville_climat,.ville_climat{position: absolute; width: 100%; left: 0px; top: 352px; opacity: 0; line-height: 0px; text-align: center;}
+            #ville,#separation,#temperature,#climat{ color: #ffffff; font-family: Arial Black, Helvetica, Verdana, sans-serif; text-transform: uppercase; font-weight: 900; font-style: italic; /*font-family:'Michelin-Black', 'Arial Black';*/ text-align: center !important; font-size: 16px; line-height: 10px; text-shadow: 1px 1px 6px #444444;}
+            #dates {position: absolute; top: 363px; left: 118px; width: 1311px; height: 14px; opacity: 0; }
+            #ellipse{ position: absolute; top: 352px; left: 50%; margin-left: -19px; width: 38px; height: 38px; opacity: 0;}
+            #clair,#couvert,#averses,#orageux,#neige {position: absolute; top: 0px; left: 0px; width: 300px; height: 535px; opacity: 0; }
+            #pluie{ position: absolute; width: 600px; height: 900px; top: -900px; left: -100px; opacity: 0.7; -webkit-animation: pluieGo 0.8s linear infinite; -webkit-animation-delay: 7.3s; -moz-animation: pluieGo 0.8s linear infinite; -moz-animation-delay: 7.3s; -ms-animation: pluieGo 0.8s linear infinite; -ms-animation-delay: 7.3s;}
+            @-webkit-keyframes pluieGo { 0% { left:-100px; top:-500px; } 100% { left:-300px; top:0px; } }
+            @-moz-keyframes pluieGo { 0% { left:-100px; top:-500px; } 100% { left:-300px; top:0px; } }
+            @-ms-keyframes pluieGo { 0% { left:-100px; top:-500px; } 100% { left:-300px; top:0px; } }    
+            #eclair1 { position: absolute; top: 0px; left: -30px; width: 198px; height: 211px; opacity: 0;}
+            #eclair2 { position: absolute; top: -50px; right: -50px; width: 198px; height: 211px; opacity: 0; transform: scale(0.7); -webkit-transform: scaleX(-1); -moz-transform: scaleX(-1); -ms-transform: scaleX(-1); transform: scaleX(-1); filter: FlipH; -ms-filter: "FlipH"; -moz-filter: "FlipH"}
+            #flocons{ position: absolute; width: 600px; height: 900px; top: -900px; left: -100px; opacity: 1; -webkit-animation: floconsGo 5.5s linear 1 forwards; -webkit-animation-delay: 9.1s; -moz-animation: floconsGo 5.5s linear 1 forwards; -moz-animation-delay: 9.1s; -ms-animation: floconsGo 5.5s linear 1 forwards; -ms-animation-delay: 9.1s;}
+            @-webkit-keyframes floconsGo { 0% { left:-100px; top:-500px; } 100% { left:-300px; top:0px; } }
+            @-moz-keyframes floconsGo { 0% { left:-100px; top:-500px; } 100% { left:-300px; top:0px; } }
+            @-ms-keyframes floconsGo { 0% { left:-100px; top:-500px; } 100% { left:-300px; top:0px; } }
+            #txt2 { position: absolute; top: 266px; left: 350px; width: 277px; height: 40px; background: url('txt2.png') center center no-repeat; background-size: 100% 100%; opacity: 0; }
+            #txt3 { position: absolute; top: 235px; left: 7px; width: 286px; height: 66px; background: url('txt3.png') center center no-repeat; background-size: 100% 100%; opacity: 0; }
+            #logo {position: absolute;bottom: 16px;right: -200px;width: 122px;height: 52px;background: url('logo.png') center center no-repeat;background-size: 100% 100%;opacity: 0; }
+            #cta {position: absolute;bottom: 64px;right: -200px;width: 110px;height: 39px; opacity: 1; overflow: hidden; cursor: pointer;}
+            #cta img {position: absolute;top: 0; left: 0px;}
+            #lueur {position: absolute;bottom: 75px;right: 70px;width: 34px;height: 28px;background: url('lueur.png') center center no-repeat;background-size: 100% 100%;opacity: 0; }
+            #blue_back{position: absolute; opacity: 0; width: 100%; height: 100%;background: #3a65a8; /* Old browsers */background: -moz-radial-gradient(center, ellipse cover,  #3a65a8 1%, #3a65a8 7%, #04275d 100%); /* FF3.6+ */background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(1%,#3a65a8), color-stop(7%,#3a65a8), color-stop(100%,#04275d)); /* Chrome,Safari4+ */background: -webkit-radial-gradient(center, ellipse cover,  #3a65a8 1%,#3a65a8 7%,#04275d 100%); /* Chrome10+,Safari5.1+ */background: -o-radial-gradient(center, ellipse cover,  #3a65a8 1%,#3a65a8 7%,#04275d 100%); /* Opera 12+ */background: -ms-radial-gradient(center, ellipse cover,  #3a65a8 1%,#3a65a8 7%,#04275d 100%); /* IE10+ */background: radial-gradient(ellipse at center,  #3a65a8 1%,#3a65a8 7%,#04275d 100%); /* W3C */filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3a65a8', endColorstr='#04275d',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */}
+    </style>  
+</head>
+<body>
+<a href="javascript:void(0);" onclick="ADventori.click();">
+    <div id="container">
+            <img id="temps" src="">
+            <iframe id="animation" style="overflow:hidden" scrolling="no"></iframe>
+            <img id="clair" src="clair.jpg">
+            <img id="couvert" src="couvert.jpg">
+            <img id="averses" src="averses.jpg">
+            <img id="orageux" src="orageux.jpg">
+            <img id="pluie" src="pluie.png">
+            <img id="eclair1" src="eclair.png">
+            <img id="eclair2" src="eclair.png">
+            <img id="neige" src="neige.jpg">
+            <img id="flocons" src="flocons.png">
+            <img id="roadOff" src="road2.png">
+            <div id="road"></div>
+            <div id="txt1"></div>
+            <div id="ville_climat"><p><span id="ville">...</span><span id="separation"> // </span><span id="temperature">...</span></p><p id="climat">...</p></div>
+            <div id="blue_back"></div>
+            <div id="txt2"></div>
+            <div id="txt3"></div>
+            <div id="logo"></div>
+            <div id="cta"><img src="cta.png"></div>
+            <div id="lueur"></div>
+            <img id="dates" src="dates.png">
+            <img id="ellipse" src="ellipse.png">
+        <div id="wrapper_roue">
+            <img id="ombre" src="ombre.png">
+            <img id="roue" src="roue.png">
+            <img id="roueOff" src="roue.png">
+        </div> 
+    </div>
+</a>
+<script>
+(function(e,t){function w(e){return e.replace(/([a-z])([A-Z])/,"$1-$2").toLowerCase()}function E(e){return r?r+e:e.toLowerCase()}var n="",r,i,s,o={Webkit:"webkit",Moz:"",O:"o"},u=window.document,a=u.createElement("div"),f=/^((translate|rotate|scale)(X|Y|Z|3d)?|matrix(3d)?|perspective|skew(X|Y)?)$/i,l,c,h,p,d,v,m,g,y,b={};e.each(o,function(e,i){if(a.style[e+"TransitionProperty"]!==t){n="-"+e.toLowerCase()+"-";r=i;return false}});l=n+"transform";b[c=n+"transition-property"]=b[h=n+"transition-duration"]=b[d=n+"transition-delay"]=b[p=n+"transition-timing-function"]=b[v=n+"animation-name"]=b[m=n+"animation-duration"]=b[y=n+"animation-delay"]=b[g=n+"animation-timing-function"]="";e.fx={off:r===t&&a.style.transitionProperty===t,speeds:{_default:400,fast:200,slow:600},cssPrefix:n,transitionEnd:E("TransitionEnd"),animationEnd:E("AnimationEnd")};e.fn.animate=function(n,r,i,s,o){if(e.isFunction(r))s=r,i=t,r=t;if(e.isFunction(i))s=i,i=t;if(e.isPlainObject(r))i=r.easing,s=r.complete,o=r.delay,r=r.duration;if(r)r=(typeof r=="number"?r:e.fx.speeds[r]||e.fx.speeds._default)/1e3;if(o)o=parseFloat(o)/1e3;return this.anim(n,r,i,s,o)};e.fn.anim=function(n,r,i,s,o){var u,a={},E,S="",x=this,T,N=e.fx.transitionEnd,C=false;if(r===t)r=e.fx.speeds._default/1e3;if(o===t)o=0;if(e.fx.off)r=0;if(typeof n=="string"){a[v]=n;a[m]=r+"s";a[y]=o+"s";a[g]=i||"linear";N=e.fx.animationEnd}else{E=[];for(u in n)if(f.test(u))S+=u+"("+n[u]+") ";else a[u]=n[u],E.push(w(u));if(S)a[l]=S,E.push(l);if(r>0&&typeof n==="object"){a[c]=E.join(", ");a[h]=r+"s";a[d]=o+"s";a[p]=i||"linear"}}T=function(t){if(typeof t!=="undefined"){if(t.target!==t.currentTarget)return;e(t.target).unbind(N,T)}else e(this).unbind(N,T);C=true;e(this).css(b);s&&s.call(this)};if(r>0){this.bind(N,T);setTimeout(function(){if(C)return;T.call(x)},r*1e3+25)}this.size()&&this.get(0).clientLeft;this.css(a);if(r<=0)setTimeout(function(){x.each(function(){T.call(this)})},0);return this};a=null})(Zepto)
+</script>
+<script type="text/javascript">
+    var data = ADventori.initData({"ville":'paris',"temperature":'6Â°C',"climat":'dÃ©gagÃ©',
+        "weather": "neige",
+        "animations_meteo": {
+            "clair":'clair.jpg',
+            "couvert":'couvert.jpg',
+            "pluie":'pluie.html',
+            "orage":'orage.html',
+            "neige":'neige.html'
+        }
+    });
+    // ADventori.Display.setImageUrl(document.getElementById('temps'),data.url_branche, "averses.jpg");
+    ADventori.Display.setText(document.getElementById('ville'),data.ville);
+    ADventori.Display.setText(document.getElementById('temperature'),data.temperature);
+    ADventori.Display.setText(document.getElementById('climat'),data.climat);
+    document.getElementById('animation').src = data.animations_meteo[data.weather];
+    //////
+    $(document).ready(function(){anim_banner();});
+    function anim_banner(){
+        setTimeout(function(){$("#ville_climat").animate({opacity: 1}, 500, 'easeInOut');}, 500);
+        setTimeout(function(){$("#txt1").animate({opacity: 1}, 500, 'easeInOut');}, 2000);
+        setTimeout(function(){$("#ville_climat").animate({opacity: 0}, 500, 'easeInOut');}, 4500);
+        setTimeout(function(){$("#ellipse,#dates").animate({opacity: 1}, 500, 'easeInOut');}, 5000);
+        setTimeout(function(){$("#dates").animate({left: "-1149px"}, 5000, 'linear');}, 5500);
+        setTimeout(function(){$("#clair").animate({opacity:1}, 500, 'linear');}, 5500);
+        setTimeout(function(){$("#animation").css({display:'none'});}, 10000);
+        setTimeout(function(){$("#couvert").animate({opacity:0.5}, 500, 'linear');}, 6400);
+        setTimeout(function(){$("#averses").animate({opacity:1}, 500, 'linear');}, 7300);
+        setTimeout(function(){$("#clair,#couvert").animate({opacity:0}, 100, 'linear');}, 7700);
+        setTimeout(function(){$("#orageux").animate({opacity:1}, 500, 'linear');}, 8200);
+        setTimeout(function(){$("#eclair1").animate({opacity:1}, 150, 'linear');}, 8300); i=setTimeout(function(){$("#eclair1").animate({opacity:0}, 150, 'linear');}, 8500);
+        setTimeout(function(){$("#eclair2").animate({opacity:1}, 150, 'linear');}, 8400); i=setTimeout(function(){$("#eclair2").animate({opacity:0}, 150, 'linear');}, 8600);
+        setTimeout(function(){$("#eclair1").animate({opacity:1, scale:1.2}, 150, 'linear');}, 8700); i=setTimeout(function(){$("#eclair1").animate({opacity:0,scale:1}, 150, 'linear');}, 8900);
+        setTimeout(function(){$("#eclair2").animate({opacity:1}, 150, 'linear');}, 8800); i=setTimeout(function(){$("#eclair2").animate({opacity:0}, 150, 'linear');}, 9000);
+        setTimeout(function(){$("#neige").animate({opacity:1}, 500, 'linear');}, 9100);
+        setTimeout(function(){$("#pluie").css({display:'none'});}, 10000);
+        setTimeout(function(){$("#txt1").animate({left: -290}, 800);}, 9200);
+        setTimeout(function(){$("#txt2").animate({left: 11, opacity: 1}, 800, 'easeInOut');}, 10000);
+        setTimeout(function(){$("#ellipse,#dates").animate({opacity: 0}, 800, 'easeInOut');}, 11000);
+        setTimeout(function(){$("#txt2").animate({left: -300}, 800, 'easeInOut');}, 13500);
+        setTimeout(function(){$("#txt3").animate({opacity: 1}, 800, 'easeInOut');}, 14200);
+        setTimeout(function(){$("#roue").animate({opacity: 0}, 600, 'linear');}, 12850);
+        setTimeout(function(){$("#roue").animate({left: "-45px"}, 2000, 'easeIn');}, 13600);
+        setTimeout(function(){$("#roueOff").animate({left: "-45px"}, 2000, 'easeIn');}, 13600);
+        setTimeout(function(){$("#ombre").animate({left: "-65px"}, 2000, 'easeIn');}, 13600);
+        setTimeout(function(){$("#road").animate({opacity: 0}, 2000, 'easeIn');}, 13600);
+        setTimeout(function(){$("#roadOff").animate({opacity: 1}, 1000, 'easeIn');}, 13600);
+        setTimeout(function(){$("#flocons").animate({opacity: 0}, 1500, 'linear');}, 13600);
+        setTimeout(function(){$("#flocons").css({display:'none'});}, 15100);
+        setTimeout(function(){$("#blue_back").animate({opacity: 1}, 500, 'easeInOut');}, 15200);
+        setTimeout(function(){$("#logo").animate({right: 1, opacity: 1}, 500, 'easeInOut');}, 15000);
+        setTimeout(function(){$("#cta").animate({right: "-4px"}, 500, 'easeOut');}, 15200);
+        setTimeout(function(){$("#lueur").animate({opacity: 0.8}, 1);}, 16500); o=setTimeout(function(){$("#lueur").animate({right: "-45px"}, 500, 'easeInOut');}, 16550);
+        setTimeout(function(){$("#lueur").animate({opacity: 0.8,right: "70px"}, 1);}, 18500); q=setTimeout(function(){$("#lueur").animate({right: "-45px"}, 500, 'easeInOut');}, 18550);
+        setTimeout(function(){$("#lueur").animate({opacity: 0.8,right: "70px"}, 1);}, 20500); s=setTimeout(function(){$("#lueur").animate({right: "-45px"}, 500, 'easeInOut');}, 20550);
+        setTimeout(function(){$("#lueur").animate({opacity: 0.8,right: "70px"}, 1);}, 22500); s=setTimeout(function(){$("#lueur").animate({right: "-45px"}, 500, 'easeInOut');}, 22550);
+        setTimeout(function(){$("#lueur").animate({opacity: 0.8,right: "70px"}, 1);}, 24500); s=setTimeout(function(){$("#lueur").animate({right: "-45px"}, 500, 'easeInOut');}, 24550);
+        setTimeout(function(){$("#lueur").animate({opacity: 0.8,right: "70px"}, 1);}, 26500); s=setTimeout(function(){$("#lueur").animate({right: "-45px"}, 500, 'easeInOut');}, 26550);
+        setTimeout(function(){$("#lueur").animate({opacity: 0.8,right: "70px"}, 1);}, 28500); s=setTimeout(function(){$("#lueur").animate({right: "-45px"}, 500, 'easeInOut');}, 28550);
+        $("#cta").mouseover(function(){$("#cta").animate({right: 0}, 250, 'easeOut');});
+        $("#cta").mouseleave(function(){$("#cta").animate({right: "-4px"}, 250, 'easeOut');});
+    };
+</script>
+</body>
+</html>

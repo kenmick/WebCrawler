@@ -1,0 +1,367 @@
+
+
+
+<!doctype html>
+<html xmlns:ng="http://angularjs.org">
+    <head>
+        <title>Login</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=yes"/>
+        <meta charset="utf-8">
+
+        <link rel="shortcut icon" type="image/png" href='/pc/cf/images/favicon.ico'>
+
+         
+<link rel="stylesheet" media="screen" href="https://s.glbimg.com/pc/cf/css/site.min.css">
+<link rel="stylesheet" media="screen" href="https://s.glbimg.com/pc/cf/css/autocomplete.min.css">
+
+        <link rel='stylesheet' media="screen" href="/dyn-assets/4728/header.css">
+
+        <!--[if lte IE 7]><!-->
+        <script src="https://s.glbimg.com/pc/cf/javascripts/json2.js"></script>
+        <!--<![endif]-->
+
+        <!--[if lte IE 8]><!-->
+        <script type="text/javascript" src='https://s.glbimg.com/pc/cf/javascripts/es5-shim.min.js'></script>
+        <script type="text/javascript" src='https://s.glbimg.com/pc/cf/javascripts/array.generics.js'></script>
+        <script type="text/javascript">
+            document.createElement('welcome');
+            document.createElement('welcome-link');
+            document.createElement('salutation');
+            document.createElement('autocomplete');
+        </script>
+        <script type="text/javascript" src="https://s.glbimg.com/pc/cf/javascripts/ui-utils-ieshiv.min.js"></script>
+        <!--<![endif]-->
+
+        <!--[if lt IE 9]><!-->
+        <script type="text/javascript" src='https://s.glbimg.com/pc/cf/javascripts/html5shiv.min.js'></script>
+        <!--<![endif]-->
+
+        <script type="text/javascript">
+            var _gaq = window._gaq || [];
+            _gaq.push(
+                ['_setAccount', 'UA-296593-6'],
+                ['_setDomainName', '.login.globo.com'],
+                ['_trackPageview'],
+                ['b._setAccount', 'UA-296593-15'],
+                ['b._setDomainName', '.globo.com'],
+                ['b._trackPageview']
+            );
+        </script>
+    </head>
+
+    <body>
+        <div id="ng-app" ng-app="FlowApp" class="cadun-flow-container" ng-controller="MainController"
+        ng-init="initialize('//flow.cadun.globo.com', 4728, 'https%3A%2F%2Fintervencao.globo.com%2Fintervencoes%2Fshow.do%3Fpopin%3Dtrue%26servicoId%3D4728%26urlIntervencao%3D%2F%2Fs.glbimg.com%2Fgl%2Fba%2Fbarra-globocom.callback.html%2523http%253A%252F%252Fwww.globo.com%252F')">
+
+            <main>
+                <header ng-globoid-sdk-hidden focus-on="alertFocus" class="ng-hide">
+                    <div class="header dynamic-window-sized">
+                        <img src="//flow.cadun.globo.com/assets/images/logos-globocom-header.png" align="absmiddle" class="product-logo" height="54px">
+                    </div>
+
+                    
+                </header>
+
+                <header ng-globoid-sdk class="dynamic-window-sized ng-hide"></header>
+
+                <div ng-controller="NotificationAreaController" ng-init="init()" class="ng-hide notification-container" ng-show="isValid()">
+                    <div class="notification-area">
+                        <div class="dynamic-window-sized">
+                            <span class="notification-area-description">{{ data.description }}</span>
+                            <span class="notification-area-price">{{ data.priceText }}</span>
+                            <span class="notification-area-extrainfo">{{ data.extraInfo }}</span>
+                        </div>
+                    </div>
+                    <span class="notification-area-arrow"></span>
+                </div>
+
+                <div class="alert ng-hide" ng-show="hasMessageToShow()"
+                    ng-class="{'alert-success': alertMessage.type == 'success', 'alert-error': alertMessage.type == 'error', 'alert-with-product': false}">
+
+                    <div class="alert-wrapper dynamic-window-sized">
+                        <div class="icon"></div>
+                        <div class="alert-message" >{{ alertMessage.content }}</div>
+                    </div>
+                </div>
+
+                
+<div ng-controller="AuthenticationController"
+     ng-init="init(4728, '/provisionamento/4728?tam=widget&amp;url=https%3A%2F%2Fintervencao.globo.com%2Fintervencoes%2Fshow.do%3Fpopin%3Dtrue%26servicoId%3D4728%26urlIntervencao%3D%2F%2Fs.glbimg.com%2Fgl%2Fba%2Fbarra-globocom.callback.html%2523http%253A%252F%252Fwww.globo.com%252F')"
+     ng-form="form"
+     ng-class="{'recaptcha-enabled': recaptchaEnabled}">
+    
+
+    <div id="tpl-content" class="container" ng-include src="currentTpl"></div>
+</div>
+
+<script type="text/ng-template" id="login-tmpl">
+    <div class="title-wrapper dynamic-window-sized">
+        <welcome title="faÃ§a seu login" subtitle="use seu acesso" whitelabel-name="Globo.com"></welcome>
+        
+            <welcome-link link-to="registration" sign-up-url="" service-id="4728"
+                prefix="" text=""
+                query-string="?tam=widget&amp;url=https%3A%2F%2Fintervencao.globo.com%2Fintervencoes%2Fshow.do%3Fpopin%3Dtrue%26servicoId%3D4728%26urlIntervencao%3D%2F%2Fs.glbimg.com%2Fgl%2Fba%2Fbarra-globocom.callback.html%2523http%253A%252F%252Fwww.globo.com%252F" position="top">
+            </welcome-link>
+        
+        <hr class="strong-title-separator"/>
+    </div>
+
+    <div class="container">
+        <hr class="title-separator"/>
+        <div class="form-container dynamic-window-sized">
+            
+
+            <form class="form-fields-container" name="form" novalidate ng-submit="authenticate()">
+                <div class="login-field">
+                    <input required type="text" name="login" id="login" placeholder="e-mail" class="iconed email"
+                           ng-model="credentials.email" ng-class='{"ng-invalid": invalidLogin}'>
+                </div>
+
+                <div class="login-field">
+                    <input required type="password" name="password" id="password" placeholder="senha" class="iconed password"
+                    ng-model="credentials.password" ng-class='{"ng-invalid": invalidLogin}'>
+                </div>
+
+                <div class="validation-message login-field ng-hide" ng-show="emptyLogin">
+                    <span class="error" ng-cloak>Preencha seu usuÃ¡rio e senha.</span>
+                </div>
+
+                <div class="validation-message login-field ng-hide" ng-show="invalidLogin">
+                    <span class="error" ng-cloak>Seu usuÃ¡rio ou senha estÃ£o incorretos.</span>
+                </div>
+
+                <div ng-show="recaptchaEnabled">
+                    
+
+<div class="field" ng-style="captchaFieldHasErrors() ? 'border: 1px solid red' : ''">
+    <label>VerificaÃ§Ã£o de seguranÃ§a:</label>
+    <div vc-recaptcha class="recaptcha-container" ng-model="registrationForm.captcha" theme="custom" lang="pt"
+         key="'6LdCgPMSAAAAANgSmHQx371wmZGnc467JcbbzYmW'">
+
+        <div id="recaptcha_image" class="recaptcha-image"></div>
+        <a href="javascript:Recaptcha.reload()" class="reload-link" Title="Mudar imagem">Mudar imagem</a>
+
+        <div class="recaptcha-content">
+            <label for="recaptcha_response_field">Digite o texto da imagem acima:</label>
+            <input id="recaptcha_response_field" name="recaptcha_response_field" placeholder="Digite o texto da imagem" ng-class="{'ng-invalid': (messages.captcha.wrong || form.recaptcha_response_field.$error.required)}" ng-required="true" ng-model="registrationForm.captcha.response" />
+        </div>
+
+        <div class="validation-message">
+
+            
+            <span class="error ng-hide" ng-show="messages.captcha.wrong">O texto informado nÃ£o confere.<br/> Tente novamente.</span>
+            <span class="error ng-hide"
+            ng-show="(recaptchaEnabled || form.recaptcha_response_field.$dirty) &&
+                         form.recaptcha_response_field.$error.required &&
+                         !messages.captcha.wrong">
+                Preencha o texto de verificaÃ§Ã£o de seguranÃ§a.
+            </span>
+            <span class="error ng-hide" ng-show="invalidLogin && !hideCaptchaMessage && registrationForm.captcha.response === '' && !messages.captcha.wrong">Preencha o texto de verificaÃ§Ã£o de seguranÃ§a.</span>
+        </div>
+    </div>
+</div>
+
+                </div>
+
+                <div class="termos">
+                    <div class="left">
+                        <input id="keepLoggedIn" class="checkbox" type="checkbox" name="uses-sso" checked="checked"
+                            ng-model="keepLoggedIn">
+                        <label for="keepLoggedIn" class="logado" style="font-size: 0.6875em;">Manter conectado</label>
+                    </div>
+
+                    <div class="right">
+                        <a href="/recuperacaoSenha/4728" class="inline-link" analytics-on="click"
+                            analytics-event="Recuperar Senha" analytics-category="flow"
+                            analytics-label="Click: Esqueceu sua senha?" style="font-size: 0.6875em;">Esqueceu sua senha?</a>
+                    </div>
+                </div>
+
+                <div class="actions">
+                    <button class="button" type="submit" analytics-on="click" analytics-event="Login Default"
+                            analytics-category="flow"
+                            analytics-label='{{ keepLoggedIn ? "manter conectado" : "nao manter conectado" }}'>
+                        Entrar
+                    </button>
+                </div>
+            </form>
+        </div>
+        
+            <div class="dynamic-window-sized">
+                <welcome-link
+                    link-to="registration" sign-up-url=""
+                    service-id="4728" query-string="?tam=widget&amp;url=https%3A%2F%2Fintervencao.globo.com%2Fintervencoes%2Fshow.do%3Fpopin%3Dtrue%26servicoId%3D4728%26urlIntervencao%3D%2F%2Fs.glbimg.com%2Fgl%2Fba%2Fbarra-globocom.callback.html%2523http%253A%252F%252Fwww.globo.com%252F"
+                    prefix="" text=""
+                    position="bottom">
+                </welcome-link>
+            </div>
+        
+    </div>
+</script>
+
+<script type="text/ng-template" id="social-fbassoc-form-tmpl">
+    <section class="form-container dynamic-window-sized social-network-wrapper" ng-controller="SocialController">
+        <salutation></salutation>
+
+        <form name="form" class="form-fields-container">
+
+            <div class="text-content">
+                <h2>Associe suas contas</h2>
+
+                <p>Associaremos seu perfil do Facebook ao seu login {{service.whitelabelName}}.
+                Assim, vocÃª poderÃ¡ acessar da maneira que vocÃª preferir.
+                </p>
+            </div>
+
+            <div class="association-widget">
+                <div class="facebook-association"></div>
+                <div class="arrow"></div>
+                <div class="globocom-association"></div>
+            </div>
+
+            <div class="actions">
+                <button type="submit" class="button" ng-click="associateAccountWithFB('facebook')">Concluir</button>
+            </div>
+        </form>
+    </section>
+</script>
+
+<script type="text/ng-template" id="login-and-associate-with-fb-tmpl">
+    <section class="form-container dynamic-window-sized social-network-wrapper" ng-controller="SocialController">
+        <salutation></salutation>
+
+        <form class="form-fields-container" name="form" novalidate>
+
+            <div class="text-content">
+                <h2>Associe suas contas</h2>
+
+                <p>
+                Verificamos que esse e-mail jÃ¡ estÃ¡ cadastrado.
+                FaÃ§a login abaixo utilizando sua conta {{service.whitelabelName}} para que o seu Facebook seja associado.
+                Assim, vocÃª poderÃ¡ acessar da maneira que vocÃª preferir.
+                </p>
+            </div>
+
+            <fieldset class="one-fieldset">
+
+                <div class="field">
+                    <input required type="text" name="login" id="login" placeholder="e-mail" class="iconed email"
+                       ng-model="user.email" disabled />
+                </div>
+
+                <div class="field">
+                    <input required autofocus type="password" name="password" placeholder="senha"
+                       class="iconed password" ng-model="user.password" ng-class="{submitted: invalidLogin}" />
+
+                    <div class="validation-message" ng-show="unauthorized">
+                        <span class="error">UsuÃ¡rio e senha nÃ£o conferem! Tente novamente.</span>
+                    </div>
+
+                    <div class="validation-message" ng-show="form.submitted && form.password.$invalid">
+                        <span class="error" ng-show="form.password.$error.required">VocÃª precisa informar a senha.</span>
+                    </div>
+                </div>
+
+                <div>
+                    <a href="javascript:void(0);" ng-click="openBlankIfIFrame('/recuperacaoSenha/'+serviceId)"
+                        class="inline-link" title="Esqueceu a senha?">Esqueceu a senha?</a>
+                </div>
+            </fieldset>
+
+            <div class="actions">
+                <button type="submit" class="button" ng-click="authenticateAndAssociateWithFB()">Confirmar</button>
+            </div>
+
+        </form>
+    </section>
+</script>
+
+<script type="text/ng-template" id="social-account-email-tmpl">
+    <section class="form-container dynamic-window-sized social-network-wrapper" ng-controller="SocialController">
+        <salutation></salutation>
+
+        <form class="form-fields-container" name="form" novalidate>
+            <div class="text-content">
+                <h2>Informe seu e-mail</h2>
+
+                <p>
+                    Para continuar precisamos saber seu endereÃ§o de e-mail.
+                </p>
+            </div>
+
+            <fieldset class="one-fieldset">
+                <div class="field">
+                    <label for="email">E-mail</label>
+
+                    <input type="email" name="email" id="email"  ng-model="user.email" autocomplete="off" required
+                        ng-class="{'has-visited': user.email.$invalid}"
+                    />
+
+                    <div class="validation-message ng-hide" ng-show="form.email.$dirty && form.email.$invalid">
+                        <span class="error" ng-show="form.email.$error.email">Ops! VocÃª precisa informar um e-mail vÃ¡lido.</span>
+                        <span class="error" ng-show="form.email.$error.required">VocÃª precisa informar um e-mail.</span>
+                    </div>
+                </div>
+            </fieldset>
+
+            <div class="actions">
+                <button type="submit" class="button" ng-click="setUserEmail()">Confirmar</button>
+            </div>
+        </form>
+    </section>
+</script>
+
+<script type="text/ng-template" id="social-account-success-tmpl">
+    <section class="form-container dynamic-window-sized social-network-wrapper" ng-controller="SocialController">
+        <salutation></salutation>
+
+        <form class="form-fields-container" name="form" novalidate>
+            <div class="text-content">
+                <h2>Seu acesso foi criado com sucesso!</h2>
+
+                <p>
+                    Com esse acesso, vocÃª pode entrar nos sites {{service.whitelabelName}}.
+                    Enviamos para vocÃª um e-mail de boas vindas com mais informaÃ§Ãµes.
+                </p>
+            </div>
+
+            <div class="actions">
+                <button type="submit" class="button" ng-click="redirectToGrantAccess()">Continuar</button>
+            </div>
+        </form>
+    </section>
+</script>
+
+<script type="text/ng-template" id="social-loading-feedback">
+    <section class="dynamic-window-sized social-network-wrapper" ng-controller="SocialController">
+        <div class="ajax-loader"></div>
+    </section>
+</script>
+
+
+            </main>
+
+            
+        </div>
+
+        <script type="text/javascript">
+            // inject vars from backend into js app
+            var serviceId = 4728;
+            var fbAppId = '289255557788943';
+            var debug = false;
+            var service = {"id":4728,"name":"Portal Globo.com","whitelabelName":"Globo.com","isFree":true,"signUpUrl":null,"facebookAppId":"289255557788943"};
+        </script>
+        <script type="text/javascript" src="//www.google.com/recaptcha/api/js/recaptcha_ajax.js"></script>
+        
+             <script type="text/javascript" src="https://s.glbimg.com/pc/cf/javascripts/built.min.js"></script> 
+        
+
+        
+
+        
+            <script type="text/javascript" src="https://ssl.google-analytics.com/ga.js" async="async"></script>
+        
+
+    </body>
+</html>
+

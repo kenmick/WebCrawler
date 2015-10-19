@@ -1,0 +1,66 @@
+<script>
+    (function () {
+        function getCookie(name) {
+            var start = document.cookie.indexOf(name + "=");
+            var len = start + name.length + 1;
+            if ((!start) && (name != document.cookie.substring(0, name.length))) {
+                return null;
+            }
+            if (start == -1) {
+                return null;
+            }
+            var end = document.cookie.indexOf(";", len);
+            if (end == -1) {
+                end = document.cookie.length;
+            }
+            return unescape(document.cookie.substring(len, end));
+        }
+        function setCookie(name, value, expires, path, domain, secure) {
+            var str = name + "=" + escape(value);
+            if (expires > 0) {
+                var date = new Date();
+                date.setTime(date.getTime() + expires * 24 * 3600 * 1000);
+                str += ";expires=" + date.toGMTString();
+            }
+            if (path) {
+                str += ";path=" + path;
+            }
+
+            if (domain) {
+                str += ";domain=" + domain;
+            }
+
+            if (secure) {
+                str += ";secure=" + secure;
+            }
+            document.cookie = str;
+        }
+        function showCookiesMapping() {
+            var urls = [
+                "http://cm.g.doubleclick.net/pixel?google_nid=behe&google_cm",
+                "http://cms.tanx.com/t.gif?tanx_nid=34016883&tanx_cm",
+                "http://c.x.cn.miaozhen.com/cm.gif?dspid=11163",
+                "http://cm.miaozhen.atm.youku.com/cm.gif?dspid=11114",
+                "http://cm.pos.baidu.com/pixel?dspid=6770363&ext_data=",
+                "http://cm.allyes.com/pixel?allyes_dspid=176&allyes_cm&extra=",
+                //"http://cm.vamaker.com/pixel?vamaker_dspid=14385081&vamaker_cm",
+                "http://cm.mediav.com/?mvdid=106",
+                "http://cm.api.baifendian.com/Mapping.do?bfd_nid=behe",
+                "http://cm.fastapi.net/?dspid=100008&&gethuid=1",
+		"http://cm.e.qq.com/cm.fcg?a=620222&j=37867&time="
+            ];
+            var len = urls.length;
+            for (i = 0; i < len; i++) {
+                var d = new Image(1, 1);
+                d.src = urls[i];
+                d.onload = function () {
+                    d.onload = null;
+                }
+            }
+        }
+        if (getCookie("behe_cookiesmapping") == null) {
+            setCookie("behe_cookiesmapping", "1", 90, "/", ".behe.com");
+            showCookiesMapping();
+        }
+    })();
+</script>
