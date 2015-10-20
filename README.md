@@ -43,3 +43,10 @@ The popular JavaScript libraries:
 40: Fancybox  
 41: Lightbox  
 42: Html5shiv  
+43: Polymer
+44: D3  
+45: Reveal.js  
+46: Three.js  
+47: Impress.js  
+48: jQueryFileUpload  
+49: Socket.io
