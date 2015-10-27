@@ -1,0 +1,45 @@
+
+
+if (navigator && navigator.userAgent) {
+    var sasIsIosUiwebview = /(iPhone|iPod|iPad).*AppleWebKit(?!.*Safari)/i.test(navigator.userAgent);
+    if (!sasIsIosUiwebview) {
+        var smartCsync=document.createElement('IFRAME');smartCsync.src='http://cdn1.smartadserver.com/diff/rtb/csync/CookieSync.html?nwid=690&dcid=4';
+        smartCsync.scrolling = 'no';smartCsync.frameBorder = 0;smartCsync.width = 0;smartCsync.height = 0;smartCsync.style.margin = 0;smartCsync.style.padding = 0;smartCsync.style.display = 'none';smartCsync.style.width = '0px';smartCsync.style.height = '0px';smartCsync.style.visibility = 'hidden';
+        if(document.body != null)document.body.appendChild(smartCsync);
+    }
+}(function(w, d){
+var getDomElem = function(id)
+{ return d.getElementById(id).contentDocument || d.frames[id].document; }
+
+var i = d.createElement('iframe');
+i.id = 'sas_4179583_iframe';
+i.scrolling = 'no';
+i.frameBorder = 0;
+i.width = 300; 
+i.height = 250; 
+i.style.margin = 0;
+i.style.padding = 0;
+i.style.width = '300px';
+i.style.height = '250px';
+if (typeof(sas_ajax) != 'undefined' && sas_ajax) {
+    sas_appendToContainer(21485, i); // sas_formatId 
+} 
+else
+{ 
+    d.write('<div id="sas_rtb_4179583"></div>');
+    var sas_rtb_div = d.getElementById("sas_rtb_4179583");    
+    if((typeof (sas_rtb_div) != 'undefined') && (sas_rtb_div != null))
+    {
+        sas_rtb_div.appendChild(i);
+    }
+}
+i.doc = getDomElem(i.id);
+i.doc.write(
+'<!doctype html><html><head><title></title></head><body style="margin:0;padding:0">'+
+'<scr'+'ipt type="text/javascript">var inDapIF=inDapMgrIf=true;</scr'+'ipt>'+
+"\x3Cimg src=\'http://ww690.smartadserver.com:80/h/aip?visit=s&amp;pubid=26&amp;statid=7&amp;ckid=5274647617671816218&amp;tmstp=9761526175&amp;usrtgt=&amp;tgt=country%3dfrance%3bcat%3d%3b%24dt%3d1t%3b%24hc&amp;systgt=%24qc%3d1309908405%3b%24ql%3dhigh%3b%24qpc%3d33000%3b%24qpp%3d0%3b%24qt%3d184_1788_22057t%3b%24dma%3d0%3b%24b%3d9999%3b%24o%3d99999&amp;rfr=http%3a%2f%2fwww.huffingtonpost.fr%2f%3fcountry%3dFR&amp;capp=0&amp;mcrdbt=1&amp;insid=4179583&amp;imgid=0&amp;pgid=365932&amp;fmtid=21485&amp;loguid=328294581636987607&amp;logdate=1445904424553&amp;rtb=1&amp;rtbnid=690&amp;rtbbid=328294581636987608&amp;rtbh=76ece91a66d90cb9dceef56e6bf2b2afb79bd5da&amp;rtblt=635815012245533494&amp;rtbet=0\' border=\'0\' width=\'0\' height=\'0\' style=\'display:none\'/>\x3Ciframe src=\'http://ak-ns.sascdn.com:80/diff/rtb/handler/st.min.html?%7b%22bid%22%3a%22328294581636987608%22%2c%22adomain%22%3a%22join.me%22%2c%22page%22%3a%22365932%22%2c%22format%22%3a%2221485%22%2c%22crid%22%3a%22420958%22%2c%22dsp%22%3a%2260%22%2c%22buyer%22%3a%224279%22%2c%22cid%22%3a%228489%22%2c%22adid%22%3a%22%22%7d\' width=\'0\' scrolling=\'no\' height=\'0\' frameborder=\'0\' style=\'display: none;\'>\x3C/iframe>\x3Cscript type=\"text/javascript\" src=\"http://rs.gwallet.com/r1/ad/c420958T411407B41520F45157R19t2/_amh8sgr1eqbbrxz4pcywshaz164icoew8tk3cqc4u38ds69k3u6kc15i4s7o1s6usttop8ie9yokxi4kq7g45g55y7zjno19mb4ang8thk1yazq518bz73i3nfeseu9hrob6ykcz3n6pn9f5yhz8j3ite63r7pg96xozx8pujrtspn558neo?auction_price=YEAGaE40L3EUnNvWUUII5w2DwSSCOSFPJ0YOcA\">\x3C/script>" + 
+'</body></html>'
+);
+
+if (navigator.userAgent.indexOf('MSIE') == -1 && navigator.userAgent.indexOf('Opera') == -1) i.doc.close();
+})(window, document);

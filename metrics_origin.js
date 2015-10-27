@@ -10,7 +10,8 @@ var header = ['website', 'jQuery', 'jQueryTools', 'jQueryUI', 'jQueryMobile', 'j
 			'Yepnope', 'Isotope', 'Underscore', 'Lodash', 'GoogleAPI', 
 			'Fastclick', 'Backbone', 'Flotcharts', 'Webfont', 'GoogleAnalytics', 
 			'LABjs', 'Hammerjs', 'Headjs', 'Leaflet', 'Zurb', 'Velocity',
-			 'Mustache', 'Zepto', 'Extjs', "Scriptaculousjs", "Sizzle", "Fancybox", "Lightbox", "Html5shiv"];
+			 'Mustache', 'Zepto', 'Extjs', "Scriptaculousjs", "Sizzle", "Fancybox", "Lightbox", "Html5shiv", "Polymer",
+			 "D3", "Reveal.js", "Three.js", "Impress.js", "jQueryFileUpload", "Socket.io", "Shadowbox", "MooTools", "Spry"];
 
 fs.writeFile('result_origin'+date +'.csv', header.toString()+'\n', {flag:'a'});
 

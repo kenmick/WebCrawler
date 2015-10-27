@@ -1,0 +1,56 @@
+<html>
+	<head>
+		<meta name="robots" content="noindex,nofollow"> 
+	</head>
+	<body style="margin:0px;">
+
+		<script>
+
+			var currentTime = new Date();	
+
+			function handleMouseOver(id) {
+				if ( ! interactions[id].awaiting ) {
+					interactions[id].awaiting = true;
+					currentTime = new Date();	
+					interactions[id].awaitingSince = currentTime.getTime() / 1000;
+				} else {
+					currentTime = new Date();	
+					var timeNow = currentTime.getTime() / 1000;
+					if ( ( ( timeNow - interactions[id].awaitingSince ) > 1 ) && ( ! interactions[id].interacted ) ) {
+						interactions[id].interacted = true;
+						document.getElementById('mouseinteraction').src='//hal9000.redintelligence.net/interaction.php?c='+interactions[id].c+'&h='+interactions[id].h;
+					}
+				}
+			}
+			
+			var interactions = new Array();
+			interactions.push({awaiting:false,awaitingSince:0,interacted:false,c:'322305',h:'24a6e1740b4b'});
+
+		</script>
+
+		<table cellspacing="0" cellpadding="0" border="0" width="300" height="250">
+			
+				<tr>
+					<td width="300" height="250" align="center" onMouseMove="handleMouseOver(0)"><script type="text/javascript" src="https://banniere.reussissonsensemble.fr/view.asp?ref=527540&js=1&site=13754&b=23&target=_blank&title=Fran%c3%a7oise+Saget&PURL=https%3A%2F%2Fn15.hal9000.redintelligence.net%2Fc%2Fp7t403tm9nby8ib%3Ftprde%3D&subid=3102392181529815" ></script><noscript><a href="https://clic.reussissonsensemble.fr/click.asp?ref=527540&site=13754&type=b23&bnb=23&PURL=https%3A%2F%2Fn15.hal9000.redintelligence.net%2Fc%2Fp7t403tm9nby8ib%3Ftprde%3D&subid=3102392181529815" target="_blank">
+<img src="https://banniere.reussissonsensemble.fr/view.asp?ref=527540&site=13754&b=23&subid=3102392181529815" border="0" title="FranÃ§oise Saget" alt="FranÃ§oise Saget" width="300" height="250" /></a></noscript></td>
+				</tr>
+			
+		</table>
+		
+		<img style="position:absolute;visibility:hidden" id="mouseinteraction" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" />
+<script>
+if ( '' == '1' ) {
+	document.write('<sc'+'ript src="//cdn.contentspread.net/24i/tools/js/addDoubleBorder.js"></sc'+'ript>');
+}
+</script>
+<script>
+if ( '' == '1' ) {
+	addDoubleBorder(300,250,"#666666 ","transparent");
+}
+</script>
+	</body>
+
+
+
+
+</html>

@@ -8,7 +8,7 @@ do
 	run_time=`ps -eo pid,etime | grep $pid | awk '{print $2}'`
 	run_min=`echo $run_time | cut -d ':' -f 1`
 	echo $run_time
-	if [ "$run_min"x = "10"x ]; then
+	if [ "$run_min"x = "02"x ]; then
 		# kill -9 $pid
 		ps -ef | grep "firefox" | grep -v "grep" | awk '{print $2}' | xargs kill -9
 	fi

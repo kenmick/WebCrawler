@@ -2,6 +2,8 @@ var simhash = require('simhash')('md5');
 var fs = require('fs');
 var compare = require('hamming-distance');
 var stringSimilarity = require('string-similarity');
+// var Levenshtein = require('simmetrics');
+// var MongeElkan = require('./node_modules/simmetrics/lib/similaritymetrics/MongeElkan');
 
 var date = process.argv[2];
 
@@ -10,7 +12,6 @@ console.log(date);
 var dir = fs.readdirSync('./'+date);
 // read existing libs hash
 var libs = JSON.parse(fs.readFileSync('libsHash.txt', 'utf-8'));
-
 
 // traverse whole directory to get name of each folder
 for (var i = 0; i < dir.length; i++) {
@@ -37,6 +38,7 @@ for (var i = 0; i < dir.length; i++) {
 		for (var k in libs){
 			var distance = compare(libs[k], fileHash);
 			if (distance < 2){
+				console.log("--------------");
 				var lib = fs.readFileSync('./Libs/'+k, 'utf-8');
 				//get the size of the file
                 var libSize = fs.statSync('./Libs/'+k, 'utf-8')["size"];
@@ -48,9 +50,13 @@ for (var i = 0; i < dir.length; i++) {
 
                 //remove some files
                 if(fileSize > (libSize + 1024) || fileSize < (libSize - 1024)) continue;
-
+               
+                // var stringSimilarity = new MongeElkan();
+                // var simi = stringSimilarity.getSimilarity(lib, file);
 				var simi = stringSimilarity.compareTwoStrings(lib, file);
 				console.log("The ratio is : " + simi);
+				console.log("The file is : " + folder[j]);
+				console.log("The lib is : " + libs[k]);
 				console.log("==================================");
 				if (simi > ratio){
 					ratio = simi;

@@ -53,6 +53,12 @@ Sizzle=('sizzle 1.4.4 1.9.1 1.9.2 1.9.3 1.10.0 1.10.1 1.10.2 1.10.3 1.10.4 1.10.
 Fancybox=('fancybox 1.3.4 2.0.4 2.0.5 2.0.6 2.1.1 2.1.3 2.1.4 2.1.5')
 Lightbox=('lightbox 2.7.1 2.7.2 2.7.3 2.7.4 2.8.0 2.8.1') 
 Html5shiv=('html5shiv 3.6 3.6.1 3.6.2 3.7 3.7.1 3.7.2')
+D3=('d3 3.5.6 3.5.5 3.5.4 3.5.3 3.5.2 3.5.1 3.5.0 3.4.13 3.4.12 3.4.11 3.4.10 3.4.9 3.4.8 3.4.7 3.4.6 3.4.5 3.4.4 3.4.3 3.4.2 3.4.1 3.4.0 3.3.13 3.3.12 3.3.11 3.3.10 3.3.9 3.3.8 3.3.7 3.3.6 3.3.5 3.3.4 3.3.3 3.3.3 3.3.1 3.3.0 3.2.8 3.2.7 3.2.6 3.2.5 3.2.4 3.2.3 3.2.2 3.2.1 3.2.0 3.1.10 3.1.9 3.1.8 3.1.7 3.1.6 3.1.5 3.1.4 3.1.3 3.1.2 3.1.1 3.1.0 3.0.8 3.0.7 3.0.6 3.0.5 3.0.4 3.0.3 3.0.2 3.0.1 3.0.0 2.10.0 2.8.1 2.7.5 2.7.4 2.7.3 2.7.2 2.7.0 2.6.0 2.5.2 2.5.1 2.4.2 2.4.1 2.4.0 2.3.4 2.3.3 2.3.2 2.3.0 2.2.1 2.1.3 1.29.5')
+Reveal=('reveal 3.1.0 3.0.0 2.6.2 2.6.1 2.6.0 2.6 2.5.0 2.5 2.4.0 2.4 2.3.0 2.3 2.2.0 2.2 2.1.0 2.1 2.0.0 1.4.0 1.3.0 1.2.0 1.1.0 1.0.0 0.3.0')
+Impress=('impress 0.5.3')
+Three=('three r73 r72 r71 r70 r69 r68 r67 r66 r65 r64 r63 r62 r61 r60 r56 r58 r57 r56 r55 r54 r53 r52 r51 r50 r49 r48 r47 r46 r45 r44 r43 r42 r41 r40 r39 r38 r37 r36 r35 r34 r33 r32 r31 r30 r29 r28 r27 r26 r25 r24 r23 r22 r21 r20 r19 r18 r17 r16 r15 r14 r13 r12 r11 r10 r9 r8 r7 r6 r5 r4 r3 r2 r1')
+Socketio=('socketio 1.3.7 1.3.6 1.3.5 1.3.4 1.3.3 1.3.2 1.3.1 1.3.0 1.2.1 1.2.0 1.1.0 1.0.6 1.0.5 1.0.4 1.0.3 1.0.2 1.0.1 1.0.0 0.9.17 0.9.16 0.9.15 0.9.11 0.9.10 0.9.9 0.9.8 0.9.7 0.9.6 0.9.5 0.9.4 0.9.3 0.9.2 0.9.1 0.9.0 0.8.7 0.8.6 0.8.5 0.8.4 0.8.3 0.8.2 0.8.1 0.8.0 0.7.10 0.7.9 0.7.8 0.7.7 0.7.6 0.7.5 0.7.4 0.7.3 0.7.2 0.7.1 0.7.0 0.6.2')
+
 
 array=(
 	# "${AngularVer[@]}" 
@@ -97,7 +103,12 @@ array=(
  # "${Sizzle[@]}"
  # "${Fancybox[@]}"
  # "${Lightbox[@]}"
- "${Html5shiv[@]}"
+ # "${Html5shiv[@]}"
+ # "${D3[@]}"
+ # "${Reveal[@]}"
+ # "${Impress[@]}"
+ # "${Three[@]}"
+ "${Socketio[@]}"
 )
 
 n_array=${#array[*]}     #获取一维的数组长度  
@@ -312,12 +323,32 @@ do
        then  
          label="html5shiv.js"
        fi 
+       if [ $libName = "d3" ]  
+       then  
+         label="d3.js"
+       fi
+       if [ $libName = "reveal" ]  
+       then  
+         label="reveal.js"
+       fi
+       if [ $libName = "impress" ]  
+       then  
+         label="impress.js"
+       fi
+       if [ $libName = "three" ]  
+       then  
+         label="three.js"
+       fi
+       if [ $libName = "socketio" ]  
+       then  
+         label="socket.io.min.js"
+       fi
        
     else
       echo ${inner_array[$i,$j]} 
       #do something  
       # url=$prefix2$libName'/'${inner_array[$i,$j]}'/'$label
-      url=$prefix2$libName'/'${inner_array[$i,$j]}'/'$label
+      url=$prefix2'socket.io/'${inner_array[$i,$j]}'/'$label
       echo "$url"
       slimerjs --ssl-protocol=any getLibrary.js "$url"
     fi

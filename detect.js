@@ -5,8 +5,8 @@ var libs = {
 
   'GWT': {
         name: 'GWT',
-        url: 'http://www.gwtproject.org/',
-        test: function() {
+        keyURL: 'http://www.gwtproject.org/',
+        keyObject: function() {
             // pretty complicated, many possible tell tales
             var doc = document,
                 hasHistFrame = doc.getElementById('__gwt_historyFrame'),
@@ -48,8 +48,8 @@ var libs = {
     'Ink': {
 
         name: 'Ink Interface',
-        url: 'http://ink.sapo.pt/',
-        test: function() {
+        keyURL: 'http://ink.sapo.pt/',
+        keyObject: function() {
             if(window.Ink) {
                 return { version: 'unknown' };
             }
@@ -59,8 +59,8 @@ var libs = {
 
     'Vaadin': {
         name: 'Vaadin',
-        url: 'http://vaadin.com/home',
-        test: function() {
+        keyURL: 'http://vaadin.com/home',
+        keyObject: function() {
             if(window.vaadin) {
                 return { version: 'unknown' };
             }
@@ -70,8 +70,8 @@ var libs = {
 
     'jQuery': {
         name: 'jquery',
-        url: 'http://jquery.com',
-        test: function() {
+        keyURL: 'jquery.com',
+        keyObject: function() {
             var jq = window.jQuery || window.$ || window.$jq || window.$j;
             if(jq && jq.fn && jq.fn.jquery) {
                 return { version: jq.fn.jquery };
@@ -82,9 +82,9 @@ var libs = {
 
     'Bootstrap': {
         name: 'Bootstrap',
-        url: 'http://getbootstrap.com/',
+        keyURL: 'http://getbootstrap.com/',
         // look for a function Boostrap has added to jQuery - regex for BS 2 & 3
-        test: function() {
+        keyObject: function() {
             
            var jQueryAvailable = window.$ && window.$.fn,
 
@@ -134,8 +134,8 @@ var libs = {
 
     'Zurb': {
         name: 'Zurb',
-        url: 'http://foundation.zurb.com/',
-        test: function() {
+        keyURL: 'http://foundation.zurb.com/',
+        keyObject: function() {
             if(window.Foundation && window.Foundation.version) {
                 return { version: window.Foundation.version };
             }
@@ -145,8 +145,8 @@ var libs = {
 
     'Polymer': {
         name: 'Polymer',
-        url: 'http://www.polymer-project.org/',
-        test: function() {
+        keyURL: 'http://www.polymer-project.org/',
+        keyObject: function() {
             if(window.Polymer && window.Polymer.version) {
                 return { version: window.Polymer.version };
             }
@@ -157,8 +157,8 @@ var libs = {
     
     'Highcharts': {
         name: 'highcharts',
-        url: 'http://www.highcharts.com',
-        test: function() {
+        keyURL: 'http://www.highcharts.com',
+        keyObject: function() {
             if(window.Highcharts && window.Highcharts.version) {
                 return { version: window.Highcharts.version };
             }
@@ -169,8 +169,8 @@ var libs = {
     //cannot find
     // 'InfoVis': {
     //     name: 'jit',
-    //     url: 'http://philogb.github.com/jit/',
-    //     test: function() {
+    //     keyURL: 'http://philogb.github.com/jit/',
+    //     keyObject: function() {
     //         if(window.$jit && window.$jit.version) {
     //             return { version: window.$jit.version };
     //         }
@@ -180,8 +180,8 @@ var libs = {
 
     'Flotcharts': {
         name: 'FlotCharts',
-        url: 'http://www.flotcharts.org/',
-        test: function() {
+        keyURL: 'http://www.flotcharts.org/',
+        keyObject: function() {
             if(window.$ && window.$.plot && window.$.plot.version) {
                 return { version: window.$.plot.version };
             }
@@ -192,8 +192,8 @@ var libs = {
     //cannot find
     // 'Blackbird': {
     //     name: 'Blackbird',
-    //     url: 'http://www.gscottolson.com/blackbirdjs/',
-    //     test: function() {
+    //     keyURL: 'http://www.gscottolson.com/blackbirdjs/',
+    //     keyObject: function() {
     //         if(window.log && window.log.warn) {
     //             return { version: "unknown"}; // no version info
     //         }
@@ -204,8 +204,8 @@ var libs = {
     //cannot find
     // 'CreateJS': {
     //     name: 'CreateJS',
-    //     url: 'http://createjs.com/',
-    //     test: function() {
+    //     keyURL: 'http://createjs.com/',
+    //     keyObject: function() {
     //         if(window.Stage || window.Shape || window.Container) {
     //             return { version: "unknown"}; // no version info available
     //         }
@@ -215,8 +215,8 @@ var libs = {
 
     'Google Maps': {
         name: 'gmaps',
-        url: 'https://developers.google.com/maps/',
-        test: function() {
+        keyURL: 'https://developers.google.com/maps/',
+        keyObject: function() {
             if (window.google && window.google.maps && window.google.maps.version) {
                 return { version: window.google.maps.version };
             }
@@ -228,8 +228,8 @@ var libs = {
 
     'jQueryUI': {
         name: 'jquery_ui',
-        url: 'http://jqueryui.com',
-        test: function() {
+        keyURL: 'http://jqueryui.com',
+        keyObject: function() {
             var jq = window.jQuery || window.$ || window.$jq || window.$j;
             if(jq && jq.fn && jq.fn.jquery && jq.ui) {
                 var plugins = 'accordion,datepicker,dialog,draggable,droppable,progressbar,resizable,selectable,slider,menu,grid,tabs'.split(','), concat = [];
@@ -242,8 +242,8 @@ var libs = {
 
     'Dojo': {
         name: 'dojo',
-        url: 'http://dojotoolkit.org',
-        test: function() {
+        keyURL: 'http://dojotoolkit.org',
+        keyObject: function() {
             if(window.dojo) {
                 return { version: window.dojo.version.toString(), details: 'Details: '+(window.dijit ? 'Uses Dijit' : 'none') };
             }
@@ -253,8 +253,8 @@ var libs = {
 
     'Prototype': {
         name: 'prototype',
-        url: 'http://prototypejs.org',
-        test: function() {
+        keyURL: 'http://prototypejs.org',
+        keyObject: function() {
             if(window.Prototype && window.Prototype.Version) {
                 return { version: window.Prototype.Version };
             }
@@ -264,8 +264,8 @@ var libs = {
 
     'Scriptaculous': {
         name: 'scriptaculous',
-        url: 'http://script.aculo.us',
-        test: function() {
+        keyURL: 'http://script.aculo.us',
+        keyObject: function() {
             if(window.Scriptaculous && window.Scriptaculous.Version) {
                 return { version: window.Scriptaculous.Version };
             }
@@ -275,8 +275,8 @@ var libs = {
 
     'MooTools': {
         name: 'mootools',
-        url: 'http://mootools.net',
-        test: function() {
+        keyURL: 'http://mootools.net',
+        keyObject: function() {
             if(window.MooTools && window.MooTools.version) {
                 return { version: window.MooTools.version };
             }
@@ -286,8 +286,8 @@ var libs = {
 
     'Spry': {
         name: 'spry',
-        url: 'http://labs.adobe.com/technologies/spry',
-        test: function() {
+        keyURL: 'http://labs.adobe.com/technologies/spry',
+        keyObject: function() {
             if(window.Spry) {
                 return { version: 'unknown' };
             }
@@ -297,8 +297,8 @@ var libs = {
 
     'YUI': {
         name: 'yui',
-        url: 'http://developer.yahoo.com/yui/2/',
-        test: function() {
+        keyURL: 'http://developer.yahoo.com/yui/2/',
+        keyObject: function() {
             if (window.YAHOO && window.YAHOO.VERSION) {
                 return { version: window.YAHOO.VERSION };
             }
@@ -308,8 +308,8 @@ var libs = {
 
     'YUI': {
         name: 'yui3',
-        url: 'http://yuilibrary.com/',
-        test: function() {
+        keyURL: 'http://yuilibrary.com/',
+        keyObject: function() {
             if (window.YUI && window.YUI.Env && window.YUI.version) {
                 return { version: window.YUI.version };
             }
@@ -320,8 +320,8 @@ var libs = {
     // //cannot 
     // 'Qooxdoo': {
     //     name: 'qooxdoo',
-    //     url: 'http://qooxdoo.org',
-    //     test: function() {
+    //     keyURL: 'http://qooxdoo.org',
+    //     keyObject: function() {
     //         if(window.qx && window.qx.Bootstrap) {
     //             return { version: 'unknown' };
     //         }
@@ -331,8 +331,8 @@ var libs = {
 
     'ExtJS': {
         name: 'extjs',
-        url: 'http://www.sencha.com/products/extjs',
-        test: function() {
+        keyURL: 'http://www.sencha.com/products/extjs',
+        keyObject: function() {
             if(window.Ext && window.Ext.version) {
                 return { version: window.Ext.version };
             }
@@ -346,8 +346,8 @@ var libs = {
     //cann't find
     // 'base2': {
     //     name: 'base2',
-    //     url: 'http://code.google.com/p/base2',
-    //     test: function() {
+    //     keyURL: 'http://code.google.com/p/base2',
+    //     keyObject: function() {
     //         if(window.base2 && window.base2.version) {
     //             return { version: window.base2.version };
     //         }
@@ -357,8 +357,8 @@ var libs = {
 
     'Closure Library': {
         name: 'closure',
-        url: 'https://developers.google.com/closure/library',
-        test: function() {
+        keyURL: 'https://developers.google.com/closure/library',
+        keyObject: function() {
             if(window.goog && window.goog.provide) {
                 return { version: 'unknown' };
             }
@@ -368,8 +368,8 @@ var libs = {
 
     'Raphael': {
         name: 'raphael',
-        url: 'http://raphaeljs.com',
-        test: function() {
+        keyURL: 'http://raphaeljs.com',
+        keyObject: function() {
             if(window.Raphael) {
                 return { version: window.Raphael.version };
             }
@@ -379,8 +379,8 @@ var libs = {
 
     'React': {
         name: 'react',
-        url: 'http://facebook.github.io/react/',
-        test: function() {
+        keyURL: 'http://facebook.github.io/react/',
+        keyObject: function() {
             if(window.React) {
                 return { version: window.React.version };
             }
@@ -390,8 +390,8 @@ var libs = {
 
     'Modernizr': {
         name: 'modernizr',
-        url: 'http://www.modernizr.com',
-        test: function() {
+        keyURL: 'http://www.modernizr.com',
+        keyObject: function() {
             if(window.Modernizr) {
                 return { version: Modernizr._version };
             }
@@ -401,8 +401,8 @@ var libs = {
 
     'Processing.js': {
         name: 'processingjs',
-        url: 'http://processingjs.org',
-        test: function() {
+        keyURL: 'http://processingjs.org',
+        keyObject: function() {
             if(window.Processing) {
                 return { version: Processing.version };
             }
@@ -412,8 +412,8 @@ var libs = {
 
     'Backbone': {
         name: 'backbone',
-        url: 'http://documentcloud.github.com/backbone',
-        test: function() {
+        keyURL: 'http://documentcloud.github.com/backbone',
+        keyObject: function() {
             if (window.Backbone && window.Backbone.Model.extend) {
                 return {version: window.Backbone.VERSION};
             }
@@ -423,8 +423,8 @@ var libs = {
 
     'Leaflet': {
         name: 'leaflet',
-        url: 'http://leafletjs.com',
-        test: function() {
+        keyURL: 'http://leafletjs.com',
+        keyObject: function() {
             if (window.L) {
                 return {version: window.L.version};
             }
@@ -434,8 +434,8 @@ var libs = {
 
     'Mapbox': {
         name: 'mapbox',
-        url: 'http://mapbox.com',
-        test: function() {
+        keyURL: 'http://mapbox.com',
+        keyObject: function() {
             if (window.L && window.L.mapbox) {
                 return { version: window.L.mapbox.VERSION };
             }
@@ -445,8 +445,8 @@ var libs = {
 
     'Lodash': {
         name: 'lodash',
-        url: 'http://lodash.com/',
-        test: function() {
+        keyURL: 'http://lodash.com/',
+        keyObject: function() {
             var _ = typeof (_ = window._) == 'function' && _,
                 chain = typeof (chain = _ && _.chain) == 'function' && chain,
                 wrapper = (chain || _ || function() { return {}; })(1);
@@ -460,10 +460,10 @@ var libs = {
 
     'Underscore': {
         name: 'underscore',
-        url: 'http://underscorejs.org/',
-        test: function() {
+        keyURL: 'http://underscorejs.org/',
+        keyObject: function() {
             if (window._ && window._.VERSION && typeof window._.tap === 'function') {
-                // !d41d8cd98f00b204e9800998ecf8427e_LibraryDetectorTests['Lo-Dash'].test(window)) {
+                // !d41d8cd98f00b204e9800998ecf8427e_LibraryDetectorkeyObjects['Lo-Dash'].keyObject(window)) {
                 return {version: window._.VERSION};
             }
             return false;
@@ -473,8 +473,8 @@ var libs = {
     //can't find
     // 'Sammy': {
     //     name: 'sammy',
-    //     url: 'http://sammyjs.org',
-    //     test: function() {
+    //     keyURL: 'http://sammyjs.org',
+    //     keyObject: function() {
     //         if (window.Sammy && window.Sammy.VERSION && window.Sammy.Application.curry) {
     //             return {version: window.Sammy.VERSION};
     //         }
@@ -485,8 +485,8 @@ var libs = {
     //can't find
     // 'Rico': {
     //     name: 'rico',
-    //     url: 'http://openrico.org',
-    //     test:  function() {
+    //     keyURL: 'http://openrico.org',
+    //     keyObject:  function() {
     //         if (window.Rico && window.Rico.Version) {
     //             return {version: window.Rico.Version};
     //         }
@@ -497,8 +497,8 @@ var libs = {
     //can't find
     // 'MochiKit': {
     //     name: 'mochikit',
-    //     url: 'http://www.mochikit.com',
-    //     test: function() {
+    //     keyURL: 'http://www.mochikit.com',
+    //     keyObject: function() {
     //         if (window.MochiKit && window.MochiKit.Base.module) {
     //             return {version: MochiKit.VERSION};
     //         }
@@ -508,8 +508,8 @@ var libs = {
 
     'gRaphael': {
         name: 'graphael',
-        url: 'http://g.raphaeljs.com',
-        test: function() {
+        keyURL: 'http://g.raphaeljs.com',
+        keyObject: function() {
             if (window.Raphael && window.Raphael.fn.g) {
                 return {version: 'unknown'};
             }
@@ -520,8 +520,8 @@ var libs = {
     //can't find
     // 'Glow': {
     //     name: 'glow',
-    //     url: 'http://www.bbc.co.uk/glow',
-    //     test: function() {
+    //     keyURL: 'http://www.bbc.co.uk/glow',
+    //     keyObject: function() {
     //         if (window.gloader) {
     //             return {version: 'unknown'};
     //         }
@@ -535,22 +535,21 @@ var libs = {
     //     }
     // },
 
-    //can't find
-    // 'Socket.IO': {
-    //     name: 'socketio', // currently has no icon
-    //     url: 'http://socket.io',
-    //     test: function() {
-    //         if (window.io && window.io.sockets && window.io.version) {
-    //             return {version: window.io.version};
-    //         }
-    //         return false;
-    //     }
-    // },
+    'Socket.IO': {
+        name: 'socketio', // currently has no icon
+        keyURL: 'http://socket.io',
+        keyObject: function() {
+            if (window.io && window.io.sockets && window.io.version) {
+                return {version: window.io.version};
+            }
+            return false;
+        }
+    },
 
     'Mustache': {
         name: 'mustache',
-        url: 'http://mustache.github.com',
-        test: function() {
+        keyURL: 'http://mustache.github.com',
+        keyObject: function() {
             if (window.Mustache && window.Mustache.to_html) {
                 return {version: window.Mustache.version};
             }
@@ -560,8 +559,8 @@ var libs = {
 
     'Fabric.js': {
         name: 'fabricjs', // currently has no icon
-        url: 'http://fabricjs.com/',
-        test: function() {
+        keyURL: 'http://fabricjs.com/',
+        keyObject: function() {
             if (window.fabric && window.fabric.util) {
                 return {version: window.fabric.version};
             }
@@ -572,8 +571,8 @@ var libs = {
     //can't find
     // 'FuseJS': {
     //     name: 'fusejs',
-    //     url: 'http://fusejs.com',
-    //     test: function() {
+    //     keyURL: 'http://fusejs.com',
+    //     keyObject: function() {
     //         if (window.fuse && window.fuse.version) {
     //             return {version: window.fuse.version};
     //         }
@@ -584,8 +583,8 @@ var libs = {
     //can't find
     // 'Tween.js': {
     //     name: 'icon_48', // currently has no icon
-    //     url: 'https://github.com/sole/tween.js',
-    //     test: function() {
+    //     keyURL: 'https://github.com/sole/tween.js',
+    //     keyObject: function() {
     //         if (window.TWEEN) {
     //             return {version: 'unknown'};
     //         }
@@ -596,8 +595,8 @@ var libs = {
     //can't find
     // 'SproutCore': {
     //    name: 'sproutcore',
-    //    url: 'http://www.sproutcore.com',
-    //    test: function() {
+    //    keyURL: 'http://www.sproutcore.com',
+    //    keyObject: function() {
     //        if (window.SC && window.SC.Application) {
     //            return {version: 'unknown'};
     //        }
@@ -607,8 +606,8 @@ var libs = {
 
     'Zepto': {
        name: 'zepto',
-       url: 'http://zeptojs.com',
-       test: function() {
+       keyURL: 'http://zeptojs.com',
+       keyObject: function() {
            if (window.Zepto && window.Zepto.fn) {
                return {version: 'unknown'};
            }
@@ -616,24 +615,24 @@ var libs = {
        }
     },
 
-    // 'three.js': {
-    //    name: 'icon_48', // currently has no icon
-    //    url: 'https://github.com/mrdoob/three.js',
-    //    test: function() {
-    //        if (window.THREE && window.THREE.REVISION) {
-    //            return {version: 'r' + window.THREE.REVISION};
-    //        }
-    //        else if (window.THREE) {
-    //            return {version: 'unknown'};
-    //        }
-    //        return false;
-    //    }
-    // },
+    'three.js': {
+       name: 'icon_48', // currently has no icon
+       keyURL: 'https://github.com/mrdoob/three.js',
+       keyObject: function() {
+           if (window.THREE && window.THREE.REVISION) {
+               return {version: 'r' + window.THREE.REVISION};
+           }
+           else if (window.THREE) {
+               return {version: 'unknown'};
+           }
+           return false;
+       }
+    },
 
     'PhiloGL': {
        name: 'philogl',
-       url: 'http://www.senchalabs.org/philogl/',
-       test: function() {
+       keyURL: 'http://www.senchalabs.org/philogl/',
+       keyObject: function() {
            if (window.PhiloGL) {
                return {version: window.PhiloGL.version};
            }
@@ -643,8 +642,8 @@ var libs = {
 
     'CamanJS': {
         name: 'camanjs',
-        url: 'http://camanjs.com/',
-        test: function() {
+        keyURL: 'http://camanjs.com/',
+        keyObject: function() {
             if (window.Caman && window.Caman.version) {
                 return {version: window.Caman.version.release};
             }
@@ -654,8 +653,8 @@ var libs = {
 
     'Yepnope': {
         name: 'yepnope',
-        url: 'http://yepnopejs.com/',
-        test: function() {
+        keyURL: 'http://yepnopejs.com/',
+        keyObject: function() {
             if (window.yepnope) {
                 return {version: 'unknown'};
             }
@@ -665,8 +664,8 @@ var libs = {
 
     'LABjs': {
         name: 'icon_48',
-        url: 'http://labjs.com/',
-        test: function() {
+        keyURL: 'http://labjs.com/',
+        keyObject: function() {
             if (window.$LAB) {
                 return {version: 'unknown'};
             }
@@ -676,8 +675,8 @@ var libs = {
 
     'Headjs': {
         name: 'headjs',
-        url: 'http://headjs.com/',
-        test: function() {
+        keyURL: 'http://headjs.com/',
+        keyObject: function() {
             if (window.head &&  window.head.js) {
                 return {version: 'unknown'};
             }
@@ -687,8 +686,8 @@ var libs = {
 
     // 'ControlJS': {
     //     name: 'icon_48',
-    //     url: 'http://stevesouders.com/controljs/',
-    //     test: function() {
+    //     keyURL: 'http://stevesouders.com/controljs/',
+    //     keyObject: function() {
     //         if (window.CJS) {
     //             return {version: 'unknown'};
     //         }
@@ -698,8 +697,8 @@ var libs = {
 
     'Requirejs': {
         name: 'requirejs',
-        url: 'http://requirejs.org/',
-        test: function() {
+        keyURL: 'http://requirejs.org/',
+        keyObject: function() {
             // if ((window.require && window.require.load) || (window.requirejs && window.requirejs.load)) {
             //     return {version: window.require.version || window.requirejs.version};
             // }
@@ -712,8 +711,8 @@ var libs = {
 
     'Rightjs': {
         name: 'rightjs',
-        url: 'http://rightjs.org/',
-        test: function() {
+        keyURL: 'http://rightjs.org/',
+        keyObject: function() {
             if (window.RightJS && window.RightJS.isNode) {
                 return {version: window.RightJS.version};
             }
@@ -723,8 +722,8 @@ var libs = {
 
     'jQueryTools': {
        name: 'jquerytools',
-       url: 'http://flowplayer.org/tools/',
-       test: function() {
+       keyURL: 'http://flowplayer.org/tools/',
+       keyObject: function() {
             var jq = window.jQuery || window.$;
             if(jq && jq.tools) {
                return { version: jq.tools.version };
@@ -735,8 +734,8 @@ var libs = {
 
     // 'Pusher': {
     //    name: 'pusher',
-    //    url: 'http://pusher.com/docs/pusher_js/',
-    //    test: function() {
+    //    keyURL: 'http://pusher.com/docs/pusher_js/',
+    //    keyObject: function() {
     //         if(window.Pusher && window.Pusher.Channel) {
     //            return { version: window.Pusher.VERSION };
     //        }
@@ -746,8 +745,8 @@ var libs = {
 
     'Paper.js': {
        name: 'paperjs',
-       url: 'http://paperjs.org/',
-       test: function() {
+       keyURL: 'http://paperjs.org/',
+       keyObject: function() {
             if(window.paper && window.paper.Point) {
                return { version: window.paper.version };
            }
@@ -757,8 +756,8 @@ var libs = {
 
     // 'Swiffy': {
     //    name: 'icon_48',
-    //    url: 'http://www.google.com/doubleclick/studio/swiffy/',
-    //    test: function() {
+    //    keyURL: 'http://www.google.com/doubleclick/studio/swiffy/',
+    //    keyObject: function() {
     //         if(window.swiffy) {
     //            return { version: 'unknown' };
     //        }
@@ -768,8 +767,8 @@ var libs = {
 
     // 'Move': {
     //    name: 'move',
-    //    url: 'http://movelang.org/',
-    //    test: function() {
+    //    keyURL: 'http://movelang.org/',
+    //    keyObject: function() {
     //         if(window.move && window.move.compile) {
     //            return { version: window.move.version() };
     //        }
@@ -779,8 +778,8 @@ var libs = {
 
     'AmplifyJS': {
        name: 'amplifyjs',
-       url: 'http://amplifyjs.com/',
-       test: function() {
+       keyURL: 'http://amplifyjs.com/',
+       keyObject: function() {
             if(window.amplify && window.amplify.publish) {
                return { version: 'unknown' };
            }
@@ -790,8 +789,8 @@ var libs = {
 
     // 'Popcorn.js': {
     //    name: 'popcornjs',
-    //    url: 'http://mozillapopcorn.org/popcornjs/',
-    //    test: function() {
+    //    keyURL: 'http://mozillapopcorn.org/popcornjs/',
+    //    keyObject: function() {
     //         if(window.Popcorn && window.Popcorn.Events) {
     //            return { version: window.Popcorn.version };
     //        }
@@ -801,8 +800,8 @@ var libs = {
 
     'D3': {
         name: 'd3',
-        url: 'http://d3js.org',
-        test: function() {
+        keyURL: 'http://d3js.org',
+        keyObject: function() {
             if(window.d3 && window.d3.select) {
                 return { version: window.d3.version };
             }
@@ -812,8 +811,8 @@ var libs = {
 
     'Handlebars': {
         name: 'handlebars',
-        url: 'http://handlebarsjs.com/',
-        test: function() {
+        keyURL: 'http://handlebarsjs.com/',
+        keyObject: function() {
             if(window.Handlebars && window.Handlebars.compile) {
                 return { version: window.Handlebars.VERSION };
             }
@@ -823,8 +822,8 @@ var libs = {
 
     'Knockout': {
         name: 'knockout',
-        url: 'http://knockoutjs.com/',
-        test: function() {
+        keyURL: 'http://knockoutjs.com/',
+        keyObject: function() {
             if(window.ko) {
                 return { version: window.ko.version };
             }
@@ -834,8 +833,8 @@ var libs = {
 
     'Spine': {
         name: 'icon_48',
-        url: 'http://spinejs.com/',
-        test: function() {
+        keyURL: 'http://spinejs.com/',
+        keyObject: function() {
             if (window.Spine && window.Spine.Controller) {
                 return {version: window.Spine.version};
             }
@@ -845,8 +844,8 @@ var libs = {
 
     'jQueryMobile': {
         name: 'jquery_mobile',
-        url: 'http://jquerymobile.com/',
-        test: function() {
+        keyURL: 'http://jquerymobile.com/',
+        keyObject: function() {
             var jq = window.jQuery || window.$ || window.$jq || window.$j;
             if(jq && jq.fn && jq.fn.jquery && jq.mobile) {
                 return { version: jq.mobile.version || 'unknown' };
@@ -857,8 +856,8 @@ var libs = {
 
     'jQueryCookie': {
         name: 'jquery_cookie',
-        url: 'http://plugins.jquery.com/cookie/',
-        test: function() {
+        keyURL: 'http://plugins.jquery.com/cookie/',
+        keyObject: function() {
             var jq = window.jQuery || window.$ || window.$jq || window.$j;
             if(jq && jq.fn && jq.fn.jquery && jq.cookie) {
                 return { version: jq.cookie.version || 'unknown' };
@@ -869,8 +868,8 @@ var libs = {
 
     'Webfont': {
         name: 'icon_48',
-        url: 'https://github.com/typekit/webfontloader',
-        test: function() {
+        keyURL: 'https://github.com/typekit/webfontloader',
+        keyObject: function() {
             if(window.WebFont) {
                 return { version: "unknown" };
             }
@@ -880,8 +879,8 @@ var libs = {
 
     'Angular': {
         name: 'angularjs',
-        url: 'http://angularjs.org',
-        test: function() {
+        keyURL: 'http://angularjs.org',
+        keyObject: function() {
             var ng = window.angular;
             if(ng && ng.version && ng.version.full) {
                 return { version: ng.version.full };
@@ -892,8 +891,8 @@ var libs = {
 
     'Ember.js': {
         name: 'emberjs',
-        url: 'http://emberjs.com/',
-        test: function() {
+        keyURL: 'http://emberjs.com/',
+        keyObject: function() {
             var ember = window.Ember || window.Em;
             if (ember && ember.VERSION) {
                 return { version: ember.VERSION };
@@ -904,8 +903,8 @@ var libs = {
 
     'Hammerjs': {
         name: 'hammerjs',
-        url: 'http://eightmedia.github.io/hammer.js/',
-        test: function() {
+        keyURL: 'http://eightmedia.github.io/hammer.js/',
+        keyObject: function() {
             var hammer = window.Hammer;
             if(hammer) {
                 // Hammer.VERSION available in 1.0.10+
@@ -917,8 +916,8 @@ var libs = {
 
     // 'Visibility.js': {
     //     name: 'icon_48',
-    //     url: 'https://github.com/ai/visibilityjs',
-    //     test: function() {
+    //     keyURL: 'https://github.com/ai/visibilityjs',
+    //     keyObject: function() {
     //         var visibility = window.Visibility;
     //         if(visibility) {
     //             return { version: 'unknown' };
@@ -929,8 +928,8 @@ var libs = {
     
     'Velocity': {
         name: 'icon_48',
-        url: 'http://velocityjs.org/',
-        test: function() {
+        keyURL: 'http://velocityjs.org/',
+        keyObject: function() {
             var jq = window.jQuery || window.$,
                 velocity = jq ? jq.Velocity : window.Velocity;
 
@@ -948,8 +947,8 @@ var libs = {
     
     // 'IfVisible.js': {
     //     name: 'icon_48',
-    //     url: 'http://serkanyersen.github.io/ifvisible.js/',
-    //     test: function() {
+    //     keyURL: 'http://serkanyersen.github.io/ifvisible.js/',
+    //     keyObject: function() {
     //         var iv = window.ifvisible;
     //         if(iv && iv.__ceGUID === "ifvisible.object.event.identifier") {
     //             return { version: "unknown" };
@@ -960,8 +959,8 @@ var libs = {
 
     // 'Pixi.js': {
     //     name: 'pixi',
-    //     url: 'https://github.com/GoodBoyDigital/pixi.js',
-    //     test: function() {
+    //     keyURL: 'https://github.com/GoodBoyDigital/pixi.js',
+    //     keyObject: function() {
     //         var px = window.PIXI;
     //         if(px && px.VERSION) {
     //             return { version: PIXI.VERSION.split('v')[1] };
@@ -972,8 +971,8 @@ var libs = {
 
     'DC.js': {
         name: 'icon_48',
-        url: 'http://dc-js.github.io/dc.js/',
-        test: function() {
+        keyURL: 'http://dc-js.github.io/dc.js/',
+        keyObject: function() {
             var dc = window.dc;
             if(dc && dc.version && dc.registerChart) {
                 return { version: dc.version };
@@ -984,8 +983,8 @@ var libs = {
 
     // 'Greensock JS': {
     //     name: 'greensock',
-    //     url: 'https://github.com/greensock/GreenSock-JS',
-    //     test: function() {
+    //     keyURL: 'https://github.com/greensock/GreenSock-JS',
+    //     keyObject: function() {
     //         var gs = window.TweenMax || window.TweenLite ;
     //         if(gs && gs.version) {
     //             return { version: gs.version }
@@ -996,8 +995,8 @@ var libs = {
 
     'Fastclick': {
         name: 'fastclick',
-        url: 'https://github.com/ftlabs/fastclick',
-        test: function() {
+        keyURL: 'https://github.com/ftlabs/fastclick',
+        keyObject: function() {
             if(window.FastClick) {
                 return { version: 'unknown' }
             }
@@ -1007,8 +1006,8 @@ var libs = {
 
     'Isotope': {
         name: 'isotope',
-        url: 'https://github.com/metafizzy/isotope',
-        test: function() {
+        keyURL: 'https://github.com/metafizzy/isotope',
+        keyObject: function() {
             var iso = window.Isotope || (window.$ != null && window.$.Isotope);
             if(iso) {
                 return { version: 'unknown' }
@@ -1019,8 +1018,8 @@ var libs = {
     
     'Marionette': {
         name: 'marionette',
-        url: 'http://marionettejs.com/',
-        test: function() {
+        keyURL: 'http://marionettejs.com/',
+        keyObject: function() {
             if(window.Marionette) {
                 return { version: window.Marionette.VERSION };
             }
@@ -1031,8 +1030,8 @@ var libs = {
     //start to add new library
     'Lightbox': {
         name: 'lightbox',
-        url: 'http://lokeshdhakar.com/projects/lightbox2/',
-        test: function() {
+        keyURL: 'http://lokeshdhakar.com/projects/lightbox2/',
+        keyObject: function() {
             if(window.Lightbox) {
                 return { version: 'unknown' };
             }
@@ -1042,8 +1041,8 @@ var libs = {
 
     'SWFObject': {
         name: 'swfobject',
-        url: 'https://code.google.com/p/swfobject/',
-        test: function() {
+        keyURL: 'https://code.google.com/p/swfobject/',
+        keyObject: function() {
             if(window.swfobject) {
                 return { version: 'unknown' };
             }
@@ -1053,8 +1052,8 @@ var libs = {
 
     'SizzleJS': {
         name: 'sizzlejs',
-        url: 'http://sizzlejs.com/',
-        test: function() {
+        keyURL: 'http://sizzlejs.com/',
+        keyObject: function() {
             if(window.Sizzle) {
                 return { version: 'unknown' };
             }
@@ -1064,8 +1063,8 @@ var libs = {
 
     'Fancybox': {
         name: 'fancybox',
-        url: 'http://fancybox.net/',
-        test: function() {
+        keyURL: 'http://fancybox.net/',
+        keyObject: function() {
             if(window.$.fancybox) {
                 return { version: 'unknown' };
             }
@@ -1075,14 +1074,104 @@ var libs = {
 
     'Html5shiv': {
         name: 'html5shiv',
-        url: 'https://github.com/afarkas/html5shiv',
-        test: function() {
+        keyURL: 'https://github.com/afarkas/html5shiv',
+        keyObject: function() {
             if(window.html5) {
                 return { version: 'unknown' };
             }
             return false;
         }
+    },
+
+    'Reveal.js': {
+        name: 'revealjs',
+        keyURL: 'http://lab.hakim.se/reveal-js/#/',
+        keyObject: function() {
+            if(window.Reveal) {
+                return { version: 'unknown' };
+            }
+            return false;
+        }
+    },
+
+    'Impress.js': {
+        name: 'impressjs',
+        keyURL: 'http://impress.github.io/impress.js/#/bored',
+        keyObject: function() {
+            if(window.impress) {
+                return { version: 'unknown' };
+            }
+            return false;
+        }
+    },
+
+    'jQueryFileUpload': {
+        name: 'jQueryFileUpload',
+        keyURL: 'https://blueimp.github.io/jQuery-File-Upload/',
+        keyObject: function() {
+            var jq = window.jQuery || window.$ || window.$jq || window.$j;
+            if(jq && jq.fn && jq.fn.jquery&jq.support.xhrFileUpload) {
+                return { version: 'unknown' };
+            }
+            return false;
+        }
+    },
+
+    'GoogleAnalytics': {
+        name: 'GoogleAnalytics',
+        keyURL: 'www.google-analytics.com',
+        keyObject: function() {
+            if(window.E && window.E.$) {
+                return { version: 'unknown' };
+            }
+            return false;
+        }
+    },
+
+    'Facebook': {
+        name: 'Facebook',
+        keyURL: 'connect.facebook.net',
+        keyObject: function() {
+            if(window.FB) {
+                return { version: 'unknown' };
+            }
+            return false;
+        }
+    },
+
+    'Twitter': {
+        name: 'Twitter',
+        keyURL: 'platform.twitter.com',
+        keyObject: function() {
+            if(window.twttr||window.__twttr) {
+                return { version: 'unknown' };
+            }
+            return false;
+        }
+    },
+
+    'GoogleAPI': {
+        name: 'GoogleAPI',
+        keyURL: 'apis.google.com',
+        keyObject: function() {
+            if(window.gapi) {
+                return { version: 'unknown' };
+            }
+            return false;
+        }
+    },
+
+    'Shadowbox': {
+        name: 'Shadowbox',
+        keyURL: 'shadowbox-js.com',
+        keyObject: function() {
+            if(window.document.shadowbox) {
+                return { version: 'unknown' };
+            }
+            return false;
+        }
     }
+
 
 };
 
@@ -1098,14 +1187,15 @@ page.captureContent = [ /.*/ ];
 
 page.onResourceReceived = function(response) {
     if (response.stage!="end" || !response.bodySize) return;
-    arr = ['GoogleAPI', 'apis.google.com', 'Facebook', 'connect.facebook.net', 
-            'GoogleAnalytics', 'www.google-analytics.com', 'Twitter', 'platform.twitter.com'];
-    for (var i = 0; i < arr.length; i=i+2) {
-        if (response.url.indexOf(arr[i+1]) != -1){
-            var str = arr[i]+'-unknown-|Runtime\n';
+    
+    for(var i in libs) {
+
+        if (response.url.indexOf(libs[i].keyURL) != -1){
+            var str = i+'-unknown-|Runtime\n';
             fs.write(name, str, 'a');       
         }
-    }
+     }
+
 };
 
 page.onError = function(msg, trace) {
@@ -1127,7 +1217,7 @@ page.open(url, function(){
     console.log(url);
     window.setTimeout(function() {
         for(var i in libs) {
-            var versionObject = page.evaluate(libs[i].test);
+            var versionObject = page.evaluate(libs[i].keyObject);
             if (versionObject != false){
                 var str = i+'-'+versionObject.version+'-|Runtime\n';
 

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    
+    <head></head>
+    
+    <body>
+        <script type="text/javascript">            
+            var getCookie=function(b,d){var a;d=d||window;var c=RegExp("(^| )"+b+"=([^;]*)(;|$)").exec(d.document.cookie);c&&(a=c[2]);return a},setCookie=function(b,d,a){a=a||{};var c=a.expires;"number"==typeof a.expires&&(c=new Date,c.setTime(c.getTime()+a.expires));document.cookie=b+"="+d+(a.path?"; path="+a.path:"")+(c?"; expires="+c.toGMTString():"")+(a.domain?"; domain="+a.domain:"")+(a.secure?"; secure":"")},getUrlParam=function(b){b=RegExp("(^|&)"+b+"=([^&]*)(&|$)","i");b=window.location.search.substr(1).match(b);
+            return null!=b?decodeURIComponent(b[2]):null},currentDomain=document.domain.toLowerCase(),referDomain=(document.referrer?document.referrer.match(/.*\:\/\/([^\/]*).*/i)[1]:"").toLowerCase(),urlCproId=getUrlParam("CPROID"),cookieCproId=getCookie("CPROID"),targetCproId;!urlCproId||"pos.baidu.com"!==currentDomain||"cpro.baidu.com"!==referDomain&&"cpro.baidustatic.com"!==referDomain||cookieCproId&&cookieCproId===urlCproId||setCookie("CPROID",urlCproId,{path:"/",domain:".pos.baidu.com",expires:(new Date).setFullYear(2042)});
+            var sendByIframe = function (b) {
+                var c = document.createElement("iframe");
+                c.style.display = "none";
+                c.setAttribute("src", b);
+                document.body.insertBefore(c, document.body.firstChild)
+            }
+            sendByIframe("http://release.baidu.com/sync2r.htm?cproid=" + encodeURIComponent(urlCproId));
+        </script>
+    </body>
+
+</html>

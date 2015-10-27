@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head><script type="text/javascript">
+    
+      (function() {
+        var relegateNavigation = '';
+        var handleClickTagMessage = function(e) {
+          try {
+            var eventData = JSON.parse(e.data);
+          } catch (err) {
+            return;
+          }
+          if (eventData.isInitClickTag) {
+            if (eventData.clickTags) {
+              for (var i = 0; i < eventData.clickTags.length; i++) {
+                var clkTag = eventData.clickTags[i];
+                window[clkTag.name] = clkTag.url;
+              }
+            } else if (eventData.clickTag) {
+              window.clickTag = eventData.clickTag;
+            }
+            relegateNavigation = eventData.relegateNavigation;
+          }
+        };
+
+        if (open.call) {
+          window.open = function(open) {
+            return function(url, name, features) {
+              if (relegateNavigation === 'parent') {
+                var message = {'clickTag': url, 'isPostClickTag': true};
+                parent.postMessage(JSON.stringify(message), '*');
+              } else {
+                var args = [url, name];
+                if (features) {
+                  args.push(features);
+                }
+                open.apply(window, args);
+              }
+            };
+          }(window.open);
+        }
+
+        if (window.addEventListener) {
+          window.addEventListener(
+              'message', handleClickTagMessage, false);
+        } else {
+          window.attachEvent('onmessage', handleClickTagMessage);
+        }
+      })();
+    
+  </script>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+	<title>Sans titre</title>
+	<script type="text/javascript" src="https://s0.2mdn.net/ads/studio/Enabler.js"></script>
+<!--Adobe Edge Runtime-->
+    <script type="text/javascript" charset="utf-8" src="edge_includes/edge.6.0.0.min.js"></script>
+    <style>
+        .edgeLoad-EDGE-7222061 { visibility:hidden; }
+    </style>
+<script>
+   AdobeEdge.loadComposition('AOX_300250_sport', 'EDGE-7222061', {
+    scaleToFit: "none",
+    centerStage: "none",
+    minW: "0px",
+    maxW: "undefined",
+    width: "300px",
+    height: "250px"
+}, {"dom":{}}, {"dom":{}});
+</script>
+<!--Adobe Edge Runtime End-->
+<script type="text/javascript">
+	var clickTag = "http://www.vichy.fr";
+</script>
+</head>
+<body style="margin:0;padding:0;">
+	<div id="Stage" class="EDGE-7222061" onclick="javascript:window.open(window.clickTag)">
+	
+        <div id="Stage_BG_black" class="edgeLoad-EDGE-7222061"></div>
+        <div id="Stage_txt01_step01" class="edgeLoad-EDGE-7222061"><p style="margin: 0px;">âMANQUE</p></div>
+        <div id="Stage_txt02_step01" class="edgeLoad-EDGE-7222061"><p style="margin: 0px;">DE DENSITÃ</p></div>
+        <div id="Stage_txt03_step01" class="edgeLoad-EDGE-7222061"><p style="margin: 0px;">CAPILLAIRE ?</p></div>
+        <div id="Stage_v_step02" class="edgeLoad-EDGE-7222061"></div>
+        <div id="Stage_txt01_step02" class="edgeLoad-EDGE-7222061">VOS CHEVEUX SONT PRÃCIEUX.</div>
+        <div id="Stage_txt02_step02" class="edgeLoad-EDGE-7222061">OFFREZ-LEUR</div>
+        <div id="Stage_txt03_step02" class="edgeLoad-EDGE-7222061">CE QU&#39;IL Y A DE MIEUX.</div>
+        <div id="Stage_v_step03" class="edgeLoad-EDGE-7222061"></div>
+        <div id="Stage_v_pack" class="edgeLoad-EDGE-7222061"></div>
+        <div id="Stage_v_title-pack" class="edgeLoad-EDGE-7222061"></div>
+        <div id="Stage_txt01_step03" class="edgeLoad-EDGE-7222061"><p style="margin: 0px;">âTRAITEMENT ET</p></div>
+        <div id="Stage_txt02_step03" class="edgeLoad-EDGE-7222061"><p style="margin: 0px;">SHAMPOOING</p></div>
+        <div id="Stage_txt03_step03" class="edgeLoad-EDGE-7222061"><p style="margin: 0px;">REDENSIFIANT</p></div>
+        <div id="Stage_cta" class="edgeLoad-EDGE-7222061">
+            <div id="Stage_cta_txt08_step04">SUR VOTRE RITUEL</div>
+            <div id="Stage_cta_txt07_step04">DE RÃDUCTION*</div>
+            <div id="Stage_cta_txt06_step04">â¬</div>
+            <div id="Stage_cta_txt05_step04">9</div>
+            <div id="Stage_cta_txt04_step04">JUSQU&#39;Ã</div>
+            <div id="Stage_cta_txt03_step04">CAPILLAIRE</div>
+            <div id="Stage_cta_txt02_step04">DIAGNOSTIC</div>
+            <div id="Stage_cta_txt01_step04">COMMENCEZ VOTRE</div>
+            <div id="Stage_cta_v_dotline"></div>
+            <div id="Stage_cta_rectangle02"></div>
+            <div id="Stage_cta_rectangle01"></div>
+        </div>
+        <div id="Stage_txt09_step04" class="edgeLoad-EDGE-7222061">*RÃ©duction diffÃ©rÃ©e maximale obtenue</div>
+        <div id="Stage_txt10_step04" class="edgeLoad-EDGE-7222061">pour l&#39;achat de 3 produits Dercos.</div>
+        <div id="Stage_clicktag" class="edgeLoad-EDGE-7222061"></div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head><script type="text/javascript">
+    
+      (function() {
+        var relegateNavigation = '';
+        var handleClickTagMessage = function(e) {
+          try {
+            var eventData = JSON.parse(e.data);
+          } catch (err) {
+            return;
+          }
+          if (eventData.isInitClickTag) {
+            if (eventData.clickTags) {
+              for (var i = 0; i < eventData.clickTags.length; i++) {
+                var clkTag = eventData.clickTags[i];
+                window[clkTag.name] = clkTag.url;
+              }
+            } else if (eventData.clickTag) {
+              window.clickTag = eventData.clickTag;
+            }
+            relegateNavigation = eventData.relegateNavigation;
+          }
+        };
+
+        if (open.call) {
+          window.open = function(open) {
+            return function(url, name, features) {
+              if (relegateNavigation === 'parent') {
+                var message = {'clickTag': url, 'isPostClickTag': true};
+                parent.postMessage(JSON.stringify(message), '*');
+              } else {
+                var args = [url, name];
+                if (features) {
+                  args.push(features);
+                }
+                open.apply(window, args);
+              }
+            };
+          }(window.open);
+        }
+
+        if (window.addEventListener) {
+          window.addEventListener(
+              'message', handleClickTagMessage, false);
+        } else {
+          window.attachEvent('onmessage', handleClickTagMessage);
+        }
+      })();
+    
+  </script>
+<meta charset="UTF-8">
+<meta name="ad.size" content="width=728,height=90">
+<title>C4Pic_PromoVP_10_2015_728x90_Canvas</title>
+
+<script type="text/javascript"> var clickTag = "http://www.google.com"; </script>
+<script src="https://s0.2mdn.net/ads/studio/Enabler.js"></script>
+<script src="https://code.createjs.com/easeljs-0.8.1.min.js"></script>
+<script src="https://code.createjs.com/tweenjs-0.6.1.min.js"></script>
+<script src="https://code.createjs.com/movieclip-0.8.1.min.js"></script>
+<script src="https://code.createjs.com/preloadjs-0.6.1.min.js"></script>
+<script src="C4Pic_PromoVP_10_2015_728x90_Canvas.js"></script>
+
+<script>
+var canvas, stage, exportRoot;
+
+function init() {
+	canvas = document.getElementById("canvas");
+	images = images||{};
+
+	var loader = new createjs.LoadQueue(false);
+	loader.addEventListener("fileload", handleFileLoad);
+	loader.addEventListener("complete", handleComplete);
+	loader.loadManifest(lib.properties.manifest);
+}
+
+function handleFileLoad(evt) {
+	if (evt.item.type == "image") { images[evt.item.id] = evt.result; }
+}
+
+function handleComplete(evt) {
+	exportRoot = new lib.C4Pic_PromoVP_10_2015_728x90_Canvas();
+
+	stage = new createjs.Stage(canvas);
+	stage.addChild(exportRoot);
+	stage.update();
+	stage.enableMouseOver();
+
+	createjs.Ticker.setFPS(lib.properties.fps);
+	createjs.Ticker.addEventListener("tick", stage);
+}
+</script>
+
+<script> 
+if (!Enabler.isInitialized()) {
+   Enabler.addEventListener(
+     studio.events.StudioEvent.INIT,
+     enablerInitialized);
+ } else {
+    enablerInitialized();
+ }
+ function enablerInitialized() {
+   // Enabler initialized.
+   // In App ads are rendered offscreen so animation should wait for
+   // the visible event. These are simulated with delays in the local
+   // environment.
+   if (!Enabler.isVisible()) {
+     Enabler.addEventListener(
+       studio.events.StudioEvent.VISIBLE,
+       adVisible);
+   } else {
+      adVisible();
+   }
+ }
+ function adVisible() {
+   // Ad visible, start ad/animation.
+   init();
+ } 
+</script>
+ <style type="text/css">
+ body {
+ 	margin-left: 0px;
+ 	margin-top: 0px;
+ 	margin-right: 0px;
+ 	margin-bottom: 0px;
+ }
+ </style>
+
+</head>
+
+<body style="background-color:#D4D4D4">
+	<div onclick="javascript:window.open(window.clickTag);">
+	<canvas id="canvas" width="728" height="90" style="background-color:#FFFFFF"></canvas>
+    </div>
+</body>
+</html>

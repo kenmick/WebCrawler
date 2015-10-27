@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- ADRIME SCREENAD META DATA (don't edit/remove) -->
+	<!-- SCRVERSION: screenad_interface_1.0.3 -->
+	<!-- SCRFORMAT: banner -->
+	<!-- SCRWIDTH: 300 -->
+	<!-- SCRHEIGHT: 250 -->
+	<!-- SCRDATE: 30-09-15 -->
+
+	<script type="text/javascript">
+		//specs 'ADPERF' ou 'RTB'
+		var adserverSpecs = 'RTB';
+
+		//chemin
+		var path = "https://www.eficiens-serving.com/pmu/";
+
+		//variables *** COMMUNES A TOUS LES FORMATS ***
+		var masterban = "tirelire-multigain-v2";
+		var sport = "hippique";
+		var sloganDefaut = "Pariez sur la prochaine course";
+
+		// variables *** A MODIFIER EN FONCTION DU FORMAT ***
+		var adFormat = "300x250";
+
+		// globals
+		var tlArjel;
+		var tl;
+
+		/**
+		 * create references to DOM Elements
+		 */
+		function setupVars() {
+			// assign animated elements to variables
+			window.container = sel("#container");
+			window.logo = sel('#logo');
+			window.titre = sel('#titre');
+			window.bg = sel('#bg');
+			window.bgcolor = sel('#bgcolor');
+			window.details = sel('#details');
+			window.date = sel('#date');
+			window.montant = sel('#montant');
+			window.montantFlou = {val: 0, tgt: montant};
+			window.description = sel('#description');
+			window.cta = sel('#cta');
+			window.ctaFlou = {val: 0, tgt: cta};
+			window.offre = sel('#offre');
+			window.mentions = sel('#mentions');
+			window.arjelp = selAll('#arjel .risque');
+		}
+
+		/**
+		 * setup the main Timeline
+		 */
+		function createMainTimeline() {
+
+			// main TimelineLite
+			tl = new TimelineLite({onComplete: onTlComplete});
+
+			tl.set(logo, {width: 441, height: 357, right: 353, top: 368});
+			tl.set(titre, {left: -330, bottom: 44});
+			tl.set(bg, {opacity: 0});
+
+			tl.set(details, {left: 330, top: 29});
+			tl.set(date, {right: 0});
+			tl.set(montant, {top: 38, right: 0, width: 1, height: 1, opacity: 0});
+			tl.set(montantFlou, {val: 5});
+			tl.set(description, {top: 60, width: 220, height: 53, opacity: 0});
+
+			tl.set(cta, {left: 15, top: 73, width: 1, height: 1, opacity: 0});
+			tl.set(ctaFlou, {val: 5});
+			tl.set(offre, {left: 100, top: 73, width: 90, height: 90, opacity: 0});
+			tl.set(mentions, {opacity: 0});
+
+			tl.set(bg, {opacity: 0});
+
+			tl.to(logo, .3, {right: 53, top: 68}, '+=.1')
+					.to(logo, .2, {width: 185, height: 100})
+					.to(logo, .2, {transformOrigin: 'right top', scaleX: .45, scaleY: .45, right: 202, top: 14}, '+=1')
+					.to(bg, .5, {opacity: 1}, '+=0.2')
+					.to(titre, .2, {left: 15})
+					.to([bg, titre], .6, {opacity: 0}, '+=3.5');
+
+			if (!noData) {
+				tl.to(details, .3, {left: 15})
+						.set(montant, {opacity: 1})
+						.to(montant, .3, {width: 270, height: 90})
+						.to(montantFlou, .3, {val: 0, onUpdate: onUpdateBlur}, '-=0.3')
+						.set(description, {opacity: 1})
+						.to(description, .3, {top: 123})
+						.to(details, .3, {opacity: 0}, '+=4.2');
+			}
+
+			tl.set(mentions, {opacity: 1}, '+=0.2')
+					.set(cta, {opacity: 1})
+					.to(cta, .3, {width: 180, height: 134})
+					.to(ctaFlou, .3, {val: 0, onUpdate: onUpdateBlur}, '-=0.3')
+					.set(offre, {opacity: 1})
+					.to(offre, .3, {left: 195}, '+=.5');
+			if (adserverSpecs == 'ADPERF') {
+				tl.to([logo, cta, offre, mentions], .3, {opacity: 0}, '+=4');
+			}
+		}
+
+		/**
+		 * setup the ARJEL Timeline
+		 */
+		function createArjelTimeline() {
+			tlArjel = new TimelineLite({onComplete: onTlArjelComplete});
+			tlArjel.set([arjelp[1], arjelp[2]], {opacity: 0});
+			tlArjel.to(arjelp[0], .3, {opacity: 0}, '+=1.25')
+					.to(arjelp[1], .3, {opacity: 1})
+					.to(arjelp[1], .3, {opacity: 0}, '+=1.25')
+					.to(arjelp[2], .3, {opacity: 1})
+					.to(arjelp[2], .3, {opacity: 0}, '+=1.25')
+					.to(arjelp[0], .3, {opacity: 1});
+		}
+	</script>
+
+	<!-- AdServer init script -->
+	<script type="text/javascript" src="//media.adrcdn.com/scripts/screenad_interface_1.0.3_scrambled.js"></script>
+	<!-- local testing fallback -->
+	<script type="text/javascript">
+		window.location.protocol != "file:" || document.write('<script type="text/javascript" src="http://media.adrcdn.com/scripts/screenad_interface_1.0.3_scrambled.js"><\/script>');
+	</script>
+
+	<!-- Animation engine -->
+	<script type="text/javascript" src="greensock.js"></script>
+
+	<!-- PMU data feeds -->
+	<script type="text/javascript" src="https://www.eficiens-serving.com/pmu/FLUXTIRELIRE/js/tirelire-multigain-v2.js"></script>
+	<script type="text/javascript" src="https://s3-eu-west-1.amazonaws.com/pmucta/offre-hippique.js"></script>
+
+	<!-- CSS -->
+	<link rel="stylesheet" href="style.css"/>
+
+</head>
+
+<body>
+<div id="stage">
+	<div id="container">
+		<div id="bgcolor"></div>
+		<div id="bg"></div>
+		<div id="titre">100% ÃMOTIONS</div>
+		<div id="details">
+			<div id="date">Demain</div>
+			<div id="description">
+				<div class="inner">Tirelire&nbsp;&nbsp;<img src="pictoQuinte.png" alt=""/></div>
+			</div>
+			<div id="montant">
+				<div class="inner">2 MILLIONS D'EUROS MINIMUM
+					<br>Ã  gagner chaque jour
+				</div>
+			</div>
+		</div>
+		<div id="offre">
+			<div id="offreBefore">JUSQU'Ã</div>
+			<div id="offreMontant">170â¬</div>
+			<div id="offreAfter">OFFERTS*</div>
+		</div>
+		<div id="cta">
+			<div class="inner">
+				<div id="textCta">Pariez sur la prochaine course</div>
+				<div id="btCta">J'OUVRE UN COMPTE</div>
+			</div>
+		</div>
+		<div id="mentions">*Voir conditions sur pmu.fr</div>
+		<div id="logo">
+			<img src="logo_hippique.png" class="inner"/>
+		</div>
+		<div id="arjel">
+			<div id="arjel1">JOUER COMPORTE DES RISQUES :&nbsp;</div>
+			<div id="arjel2">
+				<div class="risque">ENDETTEMENT, ISOLEMENT...</div>
+				<div class="risque">ISOLEMENT, DÃPENDANCE...</div>
+				<div class="risque">DÃPENDANCE, ENDETTEMENT...</div>
+			</div>
+			<div id="arjel3">APPELEZ LE 09 74 75 13 13 (APPEL NON SURTAXÃ)</div>
+		</div>
+		<button id="btInv" onclick="screenad.click();"></button>
+		<a id="btArjel" href="http://www.joueurs-info-service.fr/" target="_blank"></a>
+	</div>
+</div>
+
+<script src="scripts.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,175 @@
+_mf_tag = {
+  "init": function () {
+    var id = 'mf_4058_div';
+    var script_parts = this.find_mf_tag();
+    var url = script_parts[0];
+    if (url.indexOf('//') !== 0) url = '//' + url;
+    var q_str = script_parts[1];
+    var query_string = "";
+    if (q_str !== "") query_string = "&" + q_str;
+    if (url.indexOf('jp-tags.') === -1) {
+      var mfidsQS = _mf_tag.mfids.qs();
+      if (mfidsQS !== "") {
+        // Update the PIX call with the mfids values.
+        query_string += '&' + mfidsQS;
+      } else {
+        this.create_element(document, ['script', 'src', '//tags.mediaforge.com/fpid/4058?d=' + encodeURIComponent(_mf_tag.fpcookies.domain())], document.body);
+      }
+    }
+
+    var div = this.create_element(document, ['div', 'id', id]);
+    if (div) {
+      div.style.display = "none";
+      var body = document.getElementsByTagName('body')[0].firstChild;
+      if (body) body.parentNode.insertBefore(div, body);
+      var iframeSrc = url + '/pix/4058?type=pos' + query_string;
+      this.create_element(document, ['iframe', 'width', '0', 'height', '0', 'src', iframeSrc], div);
+      this.set_timeout(3000);
+    }
+  },
+  "create_element": function (doc, def, parent) {
+    var el = null;
+    if (typeof doc.createElementNS !== "undefined") el = doc.createElementNS('http://www.w3.org/1999/xhtml', def[0]);
+    else if (typeof doc.createElement !== "undefined") el = doc.createElement(def[0]);
+
+    if (!el) return false;
+
+    for (var i = 1; i < def.length; i++) el.setAttribute(def[i++], def[i]);
+
+    if (parent) parent.appendChild(el);
+
+    return el;
+  },
+  "set_timeout": function (t) {
+    this.timeout = setTimeout('timeout_mf()', t ? t : 3000);
+  },
+  "inner_html": function (id, html) {
+    document.getElementById(id).innerHTML = html;
+  },
+  "find_mf_tag": function () {
+    var query_strings = [];
+    var query_string = "";
+    var url = "";
+    var scripts = document.getElementsByTagName('script');
+    for (var script_index = 0; script_index < scripts.length; script_index++) {
+      script_name = scripts[script_index].src;
+      if (script_name.indexOf('tags.mediaforge.com') !== -1) {
+        var index = script_name.indexOf("?");
+        url = '//' + script_name.split('/')[2];
+
+        if (index > -1) {
+          query_strings.push(script_name.substr(index + 1));
+        }
+      }
+    }
+    if (query_strings.length > 1) {
+      for (var mf_idx = 0; mf_idx < query_strings.length; mf_idx++) {
+        if (query_strings[mf_idx].indexOf("orderNumber") > -1) {
+          query_string = query_strings[mf_idx];
+          break
+        }
+      }
+      if (query_string.length === 0) query_string = query_strings[0];
+    }
+    else if (query_strings.length === 1) query_string = query_strings[0];
+
+    return [url, query_string];
+  }
+};
+
+_mf_tag.fpcookies = {
+  set: function (name, value, days, hostname) {
+    var expires;
+    if (days) {
+      var date = new Date();
+      date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+      expires = '; expires=' + date.toGMTString();
+    } else {
+      expires = '';
+    }
+    if (!hostname) hostname = document.domain;
+    if (hostname.indexOf('.') === -1) {
+      document.cookie = name + '=' + value + expires + '; path=/';
+    } else {
+      var domain = this.domain(hostname);
+      document.cookie = name + '=' + value + expires + '; path=/; domain=.' + domain;
+    }
+  },
+  get: function (name) {
+    var c = document.cookie, nameEQ = name + '=';
+    var i1 = c.indexOf(nameEQ);
+    if (i1 >= 0) {
+      var s1 = c.substring(i1 + nameEQ.length);
+      var i2 = s1.indexOf(';');
+      if (i2 < 0) {
+        return s1;
+      } else {
+        return s1.substring(0, i2);
+      }
+    }
+    return null;
+  },
+  remove: function (name, hostname) {
+    this.set(name, '', -1, hostname);
+  },
+  domain: function (hostname) {
+    if (!hostname) hostname = document.domain;
+    if (this.domains[hostname]) {
+      return this.domains[hostname];
+    }
+    var i = 0, domain = hostname, p = domain.split('.'), s = '_gd' + (new Date()).getTime();
+    while (i < (p.length - 1) && document.cookie.indexOf(s + '=' + s) === -1) {
+      domain = p.slice(-1 - (++i)).join('.');
+      document.cookie = s + '=' + s + ';domain=' + domain;
+    }
+    document.cookie = s + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;domain=' + domain;
+    this.domains[hostname] = domain;
+    return domain;
+  },
+  domains: {}
+};
+_mf_tag.mfids = {
+  ids: function () {
+    var items = {}, re = /(.*?)\[(.*?)\]/g;
+    var idscookie = _mf_tag.fpcookies.get('mfids');
+    if (idscookie) {
+      while (m = re.exec(idscookie)) {
+        items[m[1]] = m[2];
+      }
+    }
+    return items;
+  }(),
+  qs: function () {
+    var str = '';
+    for (var key in this.ids) {
+      if (this.ids.hasOwnProperty(key) && this.ids[key]) {
+        str += '&' + key + '=' + this.ids[key];
+      }
+    }
+    return str.substring(1);
+  },
+  cookie: function () {
+    var str = '';
+    for (var key in this.ids) {
+      if (this.ids.hasOwnProperty(key) && this.ids[key]) {
+        str += key + '[' + this.ids[key] + ']';
+      }
+    }
+    return str;
+  }
+};
+
+function mf_fpidsCallback(ids) {
+  if (!ids) return;
+  var mf_uid1 = ids['mf_uid1'], mf_uid3 = ids['mf_uid3'];
+  if (mf_uid1) _mf_tag.mfids.ids['uid1'] = mf_uid1;
+  if (mf_uid3) _mf_tag.mfids.ids['uid3'] = mf_uid3;
+  _mf_tag.fpcookies.set('mfids', _mf_tag.mfids.cookie(), 365);
+}
+
+function timeout_mf() {
+  var t = _mf_tag.timeout;
+  if (t) _mf_tag.inner_html('mf_4058_div', '');
+}
+
+_mf_tag.init();

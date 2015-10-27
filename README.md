@@ -50,3 +50,6 @@ The popular JavaScript libraries:
 47: Impress.js  
 48: jQueryFileUpload  
 49: Socket.io
+50: Shadowbox
+51: MooTools
+52: Spry
