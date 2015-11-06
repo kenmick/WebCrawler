@@ -1,0 +1,108 @@
+<html><body><script type="text/javascript">
+
+/**/
+
+
+(function() {
+    metric = function(url, wait)
+    {
+        setTimeout(function() {
+                var e = document.createElement("img");
+                e.src = url;
+            }, wait);
+    }
+
+    var intervals = [0, 10];
+    var inlen = intervals.length;
+    for (var k = 0; k < inlen; ++k)
+        this.metric("https://pixel.mathtag.com/misc/img?mm_bnc&bcdv="+k, intervals[k] * 1000);
+})();
+
+
+var sync_4815162342 = function()
+{
+this.urls = [
+[0, "https://pixel.mathtag.com/misc/img?mop_seq=0:16&mt_cb=234745&mop_top="],
+[4, "https://cm.g.doubleclick.net/pixel?google_nid=mediamath&google_cm&google_hm=lG1WNmESQQCfRCOcf3dPOg"],
+[0, "https://pixel.mathtag.com/misc/img?mop_seq=1:16&mt_cb=627726&mop_top=4:1445799590|"],
+[9, "https://pixel.rubiconproject.com/tap.php?v=4222&nid=1512&put=946d5636-6112-4100-9f44-239c7f774f3a&expires=28"],
+[0, "https://pixel.mathtag.com/misc/img?mop_seq=2:16&mt_cb=704544&mop_top=4:1445799590|9:1445799590|"],
+[13, "https://ib.adnxs.com/getuid?https://sync.mathtag.com/sync/img?mt_exid=13&mt_mminit=1&mt_exuid=$UID"],
+[3, "https://simage2.pubmatic.com/AdServer/Pug?vcode=bz0yJnR5cGU9MSZjb2RlPTM2MiZ0bD00MzIwMA==&piggybackCookie=uid:946d5636-6112-4100-9f44-239c7f774f3a"],
+[23, "https://www.facebook.com/fr/u.php?p=418865601488577&m=946d5636-6112-4100-9f44-239c7f774f3a"],
+[16, "https://ad.360yield.com/match?publisher_dsp_id=5&external_user_id=946d5636-6112-4100-9f44-239c7f774f3a"],
+[5, "https://eu-u.openx.net/w/1.0/sd?id=536872786&val=946d5636-6112-4100-9f44-239c7f774f3a"],
+[15, "https://dsum-sec.casalemedia.com/rum?cm_dsp_id=3&external_user_id=946d5636-6112-4100-9f44-239c7f774f3a"],
+[46, "https://x.bidswitch.net/sync?dsp_id=80&user_id=946d5636-6112-4100-9f44-239c7f774f3a&expires=30"],
+[34, "https://t4.liverail.com/?metric=csync&p=3061&s=946d5636-6112-4100-9f44-239c7f774f3a"],
+[0, "https://pixel.mathtag.com/misc/img?mop_seq=10:16&mt_cb=292776&mop_top=4:1445799590|9:1445799590|13:1445799590|3:1445799590|23:1445799590|16:1445799590|5:1445799590|15:1445799590|46:1445799590|34:1445799590|"],
+[32, "https://pix.btrll.com/partner/334886.png"],
+[44, "https://ads.stickyadstv.com/user-registering?dataProviderId=183&userId=946d5636-6112-4100-9f44-239c7f774f3a"],
+[40, "https://cs.adingo.jp/sync/?from=mediamath&id=946d5636-6112-4100-9f44-239c7f774f3a"],
+[10002, "https://stags.bluekai.com/site/2948?id=946d5636-6112-4100-9f44-239c7f774f3a"],
+[10010, "https://stags.bluekai.com/site/4448?id=946d5636-6112-4100-9f44-239c7f774f3a"],
+[10008, "https://loadm.exelator.com/load/?p=204&g=101&buid=946d5636-6112-4100-9f44-239c7f774f3a&j=0"],
+[0, "https://pixel.mathtag.com/misc/img?mop_seq=16:16&mt_cb=265019&check=946d5636-6112-4100-9f44-239c7f774f3a&mop_top=4:1445799590|9:1445799590|13:1445799590|3:1445799590|23:1445799590|16:1445799590|5:1445799590|15:1445799590|46:1445799590|34:1445799590|32:1445799590|44:1445799590|40:1445799590|10002:1445799590|10010:1445799590|10008:1445799590|"]
+]
+
+   this.progress = 0;
+
+   var self = this;
+
+   var tims = "";
+   var errs = "";
+
+   this.sync = function(i)
+   {
+       var e = document.createElement("img");
+
+       var now = new Date();
+
+       if (e.addEventListener)
+       {
+	   e.addEventListener('load', function() {
+	       var temp = new Date().getTime() - now.getTime(); tims += self.urls[i][0]+':'+temp+"|";
+	   });
+
+	   e.addEventListener('error', function() {
+	       var temp = new Date().getTime() - now.getTime(); errs += self.urls[i][0]+':'+temp+"|";
+	   });
+       }
+
+       e.src = self.urls[i][1];
+   }
+
+   this.batch = function()
+   {
+      for (var i = self.progress; i < self.urls.length; ++i)
+      {
+	 self.sync(i);
+      }
+   }
+
+   this.final = function()
+   {
+      var e = document.createElement("img");
+      e.src = self.urls[self.urls.length-1][1]+"&final&timings="+tims+"&errors="+errs;
+   }
+
+   this.some = function(howmany)
+   {
+      var count = 0;
+      for (var i = self.progress; i < self.urls.length && count < howmany; ++i)
+      {
+         self.sync(i);
+	 self.progress++;
+         count++;
+      }
+   }
+}
+
+
+var s_4815162342 = new sync_4815162342();
+s_4815162342.some(1);
+setTimeout('s_4815162342.some(2)', 1000);
+setTimeout(s_4815162342.batch, 3000);
+setTimeout(s_4815162342.final, 10000);
+
+</script></body></html>

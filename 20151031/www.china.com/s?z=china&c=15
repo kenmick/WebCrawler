@@ -1,0 +1,102 @@
+var chn_fs_url= "http://dvsour.china.com/china/2015/10/0_94.jpg";
+var chn_fs_link= "http://www.china.com/zh_cn/active/tiyanji/";
+var chn_fs_wdh= 1000;
+var chn_fs_hgt= 450;
+var hengxian1="";
+var chn_fl_url= "http://dvsour.china.com/china/2015/10/0_96.jpg";
+var chn_fl_link= "http://www.china.com/zh_cn/active/tiyanji/";
+var chn_fl_wdh= 80;
+var chn_fl_hgt= 80;
+var chn_fl_rgt= 20;
+var chn_fl_btm= 50;
+var hengxian2="";
+var flash_swch = 1;
+var fs_showtime= 5;
+var close_btn="http://dvsour.china.com/materiallib/china/2015-07-24/cls.jpg";
+var replay_btn="http://dvsour.china.com/materiallib/china/2015-07-24/rpy.jpg";
+function loadimg(id,url,link,slink,w,h,img_sw,cls_sw,rpy_sw){
+	var h1= h+22;
+	var close_content;
+	var reply_content;
+	close_content ='<a id="clsbtn'+id+'" href="javascript:;" target="_self" hidefocus="true" style="border:medium none;position:absolute; display:block;width:38px;height:16px;right:0px;bottom:-16px; z-index:99999;background:url('+close_btn+') no-repeat scroll 0px 0px transparent;"></a>';
+	reply_content ='<a id="rplybtn'+id+'" href="javascript:;" target="_self" hidefocus="true" style="border:medium none;position:absolute; display:block;width:38px;height:16px;left:0px;bottom:-16px; z-index:99999;background:url('+replay_btn+') no-repeat scroll 0px 0px transparent;"></a>';
+	if(url.toLowerCase().indexOf('.swf')>0){
+		var content='<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,19,0" width="'+w+'" height="'+h+'"><param name="movie" value="'+url+'?clickTAG='+slink+'" /><param name="quality" value="high" /><param name="wmode" value="opaque" /><embed src="'+url+'?clickTAG='+slink+'" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" width="'+w+'" height="'+h+'" swliveconnect="true" name="" wmode="opaque"></embed></object>';
+		if(img_sw == 1)
+			{
+				content+='<a style="cursor: pointer; display: block;" href="http://dvser.china.com/c?z=china&la=0&si=1&cg=1&c=15&ci=81&or=132&l=526&bg=526&b=528&u='+link+'" target="_blank"><div style="width:'+w+'px;height:'+h+'px;position:relative;margin-top:-'+h+'px;left:0px;z-index:20000;background-color:black;filter:alpha(opacity=0);-moz-opacity:0;opacity:0;cursor:pointer;border:none;padding:0px;overflow:hidden;"></div></a>';
+			}
+		}
+	else if(url.toLowerCase().indexOf('.jpg')>0||url.toLowerCase().indexOf('.gif')>0||url.toLowerCase().indexOf('.png')>0){
+	   	content='<a href="http://dvser.china.com/c?z=china&la=0&si=1&cg=1&c=15&ci=81&or=132&l=526&bg=526&b=528&u='+link+'" target="_blank"><img src="'+url+'" style="width:'+w+';height:'+h+'; border:none;" border="0" /></a>';
+	}
+	else{
+		content='<iframe frameborder="0" width="'+w+'" height="'+h+'" scrolling="no" src="'+url+'"></iframe>';
+	}
+	if (rpy_sw=="1"){content+=reply_content;}
+	if (cls_sw=="1"){content+=close_content;}
+	return content;
+}
+function Noexist(eid){var s=document.getElementById(eid);if(s){return false;}else{return true;}}
+function bugfix(linkurl){var url = linkurl.replace(/\[COMMA\]/g, "," );return url;}
+chn_fs_link = bugfix(chn_fs_link);
+chn_fl_link = bugfix(chn_fl_link);
+function tourl(str){return escape(str);}
+var chn_fs_link_s = tourl(chn_fs_link);
+var chn_fs_link_swf = tourl("http://dvser.china.com/c?z=china&la=0&si=1&cg=1&c=15&ci=81&or=132&l=526&bg=526&b=528&u="+chn_fs_link_s+"");
+var chn_fl_link_s = tourl(chn_fl_link);
+var chn_fl_link_swf = tourl("http://dvser.china.com/c?z=china&la=0&si=1&cg=1&c=15&ci=81&or=132&l=526&bg=526&b=528&u="+chn_fl_link_s+"");
+function add_agent(oTarget,sEventType,fnHandler){
+	if (oTarget!=null){
+		if(oTarget.addEventListener){oTarget.addEventListener(sEventType,fnHandler,false);}
+		else if(oTarget.attachEvent){oTarget.attachEvent("on"+sEventType,fnHandler);}
+		else{oTarget["on"+sEventType] = fnHandler;}
+	}
+}
+if (Noexist("full_clm")){
+	var fscore= loadimg("fs",chn_fs_url,chn_fs_link_s,chn_fs_link_swf,chn_fs_wdh,chn_fs_hgt,flash_swch,0,0);
+	var Thirdhtml = document.createElement("div");
+	Thirdhtml.id = "full_clm";
+	Thirdhtml.style.cssText = 'z-index:7777; position:relative; width:'+chn_fs_wdh+'px; height:'+chn_fs_hgt+'px;margin:0 auto;overflow:visible;'
+	Thirdhtml.innerHTML = fscore;
+	document.body.insertBefore(Thirdhtml, document.body.childNodes[0]);
+}
+else{	document.getElementById("full_clm").innerHTML=fscore;}
+if (Noexist("full_flt") && chn_fl_url!="http://" && chn_fl_url!=""){
+		var flcore= loadimg("fl",chn_fl_url,chn_fl_link_s,chn_fl_link_swf,chn_fl_wdh,chn_fl_hgt,flash_swch,1,0);
+		var Forthhtml = document.createElement("div");
+		Forthhtml.id = "full_flt";
+		Forthhtml.style.cssText = 'z-index:7777; position:fixed; width:'+chn_fl_wdh+'px; height:'+chn_fl_hgt+'px; bottom:'+chn_fl_btm+'px; left:'+chn_fl_rgt+'px; /* for ie6 */ _position:absolute; _bottom:expression(documentElement.scrollTop+documentElement.clientHeight-'+chn_fl_hgt+');overflow:visible;display:none;'
+		Forthhtml.innerHTML = flcore;
+	document.body.insertBefore(Forthhtml, document.body.childNodes[1]);
+}
+var settimeStatus=1;
+var clsdivfs = document.getElementById("clsbtnfs");
+var clsdivfl = document.getElementById("clsbtnfl");
+var rpydiv_fs = document.getElementById("rplybtnfl");
+var maxwin = document.getElementById("full_clm");
+var minwin = document.getElementById("full_flt");
+function cls_fs(){maxwin.style.display="none";}
+function cls_fs1(){
+		if (settimeStatus>0){
+			maxwin.style.display="none";
+			minwin.style.display="block";
+			settimeStatus = 0;
+			clearTimeout(st);
+		}
+}
+function cls_fl(){minwin.style.display="none";}
+function rpy_fl(){
+		settimeStatus =1;
+		maxwin.style.display="block";
+		minwin.style.display="none";
+		st = setTimeout(function(){cls_fs1();},fs_showtime*1000);
+}
+rpy_fl();
+if (clsdivfs){add_agent(clsdivfs,"click",function(){cls_fs();})}
+if (clsdivfl){add_agent(clsdivfl,"click",function(){cls_fl();});}
+if (rpydiv_fs){add_agent(rpydiv_fs,"click",function(){rpy_fl();});}
+if (chn_fl_url!="" && chn_fl_url!="http://"){
+	add_agent(clsdivfs,"click",function(){cls_fs1();});//ÕâÀïµÄclsdivfsµÄadd_agentÒÑ¾­Ìæ»»ÁËÇ°Ò»¸öÏàÍ¬¼à²â¶¨Òå
+//add_agent(window,"load",function(){rpy_fl();});
+}

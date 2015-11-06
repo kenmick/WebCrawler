@@ -1,0 +1,33 @@
+(function(window, cfg) {
+    var html = null;
+
+        html = '\
+    <div id="J-pre-act" style="width: 117px; height: 100px;display:none; position: absolute; bottom: 72px; left: -87px; z-index: 1;">\
+        <a href="#none" onclick="$(\'#J-pre-act\').remove();" style="position:absolute;right:0;top:0;width:25px;height:25px;display:block;z-index:2"></a>\
+        <img src="http://img14.360buyimg.com/da/jfs/t1840/38/906091202/13845/32c579be/56334549N7d7705b2.jpg" />\
+    </div>';
+    var $target = $('#J-global-toolbar .jdm-toolbar-footer');
+
+    var start = +new Date(2015, 9, 31, 0, 0, 0);
+    var end = +new Date(2015, 10, 11, 0, 0, 0);
+    var now = +new Date();
+    var isBegin = now > start && now < end;
+    var isDebug = /debug=pre/.test(window.location.href);
+    var isWideVersion = $(window).height() >= 650;
+
+    if (isBegin && isWideVersion && html && $target.length) {
+        $target.prepend(html);
+
+        var $preAct = $('#J-pre-act');
+
+        if ($preAct.length) {
+            cfg.toolbar.onOpen = function () {
+                $preAct.show();
+            };
+            cfg.toolbar.onClose = function () {
+                $preAct.hide();
+            };
+        }
+    }
+
+})(window, pageConfig);

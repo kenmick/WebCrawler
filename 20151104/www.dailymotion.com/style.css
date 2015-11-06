@@ -1,0 +1,364 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0px;
+}
+#ad {
+     position: absolute;
+    display: block;
+    overflow: hidden;
+    width: 970px;
+    height: 250px;
+    background: #000000;
+    -moz-user-select:    -moz-none;
+    -khtml-user-select:       none;
+    -webkit-user-select:      none;
+    -ms-user-select:          none;
+    user-select:              none;
+}
+#banner {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.smooth {
+    -webkit-transition:  all 1s ease-in-out;
+    -moz-transition:     all 1s ease-in-out;
+    -ms-transition:      all 1s ease-in-out;
+    -o-transition:       all 1s ease-in-out;
+    transition:          all 1s ease-in-out;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility:    hidden;
+    -ms-backface-visibility:     hidden;
+    backface-visibility:         hidden;
+    -webkit-transform:  translate3d(0, 0, 0);
+    -moz-transform:     translate3d(0, 0, 0);
+    -ms-transform:      translate3d(0, 0, 0);
+    transform:          translate3d(0, 0, 0);
+}
+
+.logo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-image: url("logo.png");
+}
+.hashtag {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-image: url("hashtag.png");
+    opacity:0;
+}
+.hashtag.animate {
+    opacity:1;
+    -webkit-transition:  all 0.8s ease-in-out;
+    -moz-transition:     all 0.8s ease-in-out;
+    -ms-transition:      all 0.8s ease-in-out;
+    -o-transition:       all 0.8s ease-in-out;
+    transition:          all 0.8s ease-in-out;
+}
+
+.video-container {
+    height: 100%;
+    position: absolute;
+    width: 100%;
+    top:0;
+    left:0;
+}
+
+.video_1 {
+    height: 141px;
+    position: absolute;
+    width: 33.33%;
+    top:0;
+    left: -14px;
+    bottom:0;
+    margin:auto;
+    cursor:pointer;
+    opacity:0;
+    display:none;
+    overflow:hidden;
+    margin-top: 62px;
+}
+.video_1.animate {
+    opacity:1;
+    -webkit-transition:  all 0.8s ease-in-out;
+    -moz-transition:     all 0.8s ease-in-out;
+    -ms-transition:      all 0.8s ease-in-out;
+    -o-transition:       all 0.8s ease-in-out;
+    transition:          all 0.8s ease-in-out;
+}
+
+.video_2 {
+    height: 141px;
+    position: absolute;
+    width: 33.33%;
+    top:0;
+    bottom:0;
+    margin:auto;
+    left:33.33%;
+    cursor:pointer;
+    opacity:0;
+    display:none;
+    overflow:hidden;
+    margin-top: 57px;
+}
+.video_2.animate {
+    opacity:1;
+    -webkit-transition:  all 0.8s ease-in-out;
+    -moz-transition:     all 0.8s ease-in-out;
+    -ms-transition:      all 0.8s ease-in-out;
+    -o-transition:       all 0.8s ease-in-out;
+    transition:          all 0.8s ease-in-out;
+}
+.video_3 {
+    height: 141px;
+    position: absolute;
+    width: 33.33%;
+    top:0;
+    bottom:0;
+    margin:auto;
+    left:66.66%;
+    cursor:pointer;
+    opacity:0;
+    display:none;
+    overflow:hidden;
+    margin-top: 58px;
+}
+.video_3.animate {
+    opacity:1;
+    -webkit-transition:  all 0.8s ease-in-out;
+    -moz-transition:     all 0.8s ease-in-out;
+    -ms-transition:      all 0.8s ease-in-out;
+    -o-transition:       all 0.8s ease-in-out;
+    transition:          all 0.8s ease-in-out;
+}
+
+
+.video {
+    height: 100%;
+    width: 100%;
+}
+
+.video_over_1 {
+    height: 250px;
+    width: 970px;
+    margin-top: -63px;
+    margin-left: 1px;
+}
+.video_over_2 {
+    height: 250px;
+    width: 970px;
+    margin-top: -63px;
+    margin-left: -323px;
+}
+.video_over_3 {
+    height: 250px;
+    width: 970px;
+    margin-top: -61px;
+    margin-left: -647px;
+}
+
+.son_on {
+    position: absolute;
+    left: 5px;
+    bottom: -5px;
+    display: block;
+    width: 47px;
+    height:47px;
+    background-image: url("son_on.png");
+    background-repeat:no-repeat;
+    background-size:80% auto;
+    display:block;
+    cursor:pointer;
+}
+.son_on.animate {
+    opacity:0;
+    -webkit-transition:  all 0.8s ease-in-out;
+    -moz-transition:     all 0.8s ease-in-out;
+    -ms-transition:      all 0.8s ease-in-out;
+    -o-transition:       all 0.8s ease-in-out;
+    transition:          all 0.8s ease-in-out;
+}
+.son_off {
+    position: absolute;
+    left: 5px;
+    bottom: -5px;
+    display: block;
+    width: 47px;
+    height:47px;
+    background-image: url("son_off.png");
+    background-repeat:no-repeat;
+    background-size:80% auto;
+    display:none;
+    cursor:pointer;
+}
+.son_off.animate {
+    opacity:0;
+    -webkit-transition:  all 0.8s ease-in-out;
+    -moz-transition:     all 0.8s ease-in-out;
+    -ms-transition:      all 0.8s ease-in-out;
+    -o-transition:       all 0.8s ease-in-out;
+    transition:          all 0.8s ease-in-out;
+}
+.screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-image: url("screen.jpg");
+    opacity:0;
+}
+.screen.animate {
+    opacity:1;
+    -webkit-transition:  all 0.8s ease-in-out;
+    -moz-transition:     all 0.8s ease-in-out;
+    -ms-transition:      all 0.8s ease-in-out;
+    -o-transition:       all 0.8s ease-in-out;
+    transition:          all 0.8s ease-in-out;
+}
+.black {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color:#000000;
+    opacity:0;
+}
+.black.animate {
+    opacity:1;
+    -webkit-transition:  all 0.8s ease-in-out;
+    -moz-transition:     all 0.8s ease-in-out;
+    -ms-transition:      all 0.8s ease-in-out;
+    -o-transition:       all 0.8s ease-in-out;
+    transition:          all 0.8s ease-in-out;
+}
+.cadre {
+    position: absolute;
+    top: 207px;
+    left: 0;
+    right: 0;
+    margin:auto;
+    display: block;
+    width: 0px;
+    height: 31px;
+    border: 1px #ffffff solid;
+    visibility:hidden;
+}
+.cadre.animate {
+    -webkit-transition:  all 0.8s ease-in-out;
+    -moz-transition:     all 0.8s ease-in-out;
+    -ms-transition:      all 0.8s ease-in-out;
+    -o-transition:       all 0.8s ease-in-out;
+    transition:          all 0.8s ease-in-out;
+    width: 297px;
+}
+.txt1, .txt2 {
+    position: absolute;
+    top: 40%;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 20px;
+    background-image: url("txt1.png");
+    background-position: center center;
+    opacity:0;
+    background-repeat: no-repeat;
+}
+.txt2 {
+    top: 100%;
+    background-image: url("txt2.png");
+}
+.txt1.animate, .txt2.animate {
+    opacity:1;
+    -webkit-transition:  all 0.8s ease-in-out;
+    -moz-transition:     all 0.8s ease-in-out;
+    -ms-transition:      all 0.8s ease-in-out;
+    -o-transition:       all 0.8s ease-in-out;
+    transition:          all 0.8s ease-in-out;
+}
+.txt1.animate_2, .txt2.animate_2 {
+    top: 19px;
+    -webkit-transition:  all 0.8s ease-in-out;
+    -moz-transition:     all 0.8s ease-in-out;
+    -ms-transition:      all 0.8s ease-in-out;
+    -o-transition:       all 0.8s ease-in-out;
+    transition:          all 0.8s ease-in-out;
+}
+.txt2.animate_2 {
+    top: 210px;
+}
+.cta {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-image: url("cta.png");
+    opacity:0;
+}
+.cta.animate {
+    opacity:1;
+    -webkit-transition:  all 0.8s ease-in-out;
+    -moz-transition:     all 0.8s ease-in-out;
+    -ms-transition:      all 0.8s ease-in-out;
+    -o-transition:       all 0.8s ease-in-out;
+    transition:          all 0.8s ease-in-out;
+}
+#shinemask {
+    position: absolute;
+    top: 481px;
+    left: 76px;
+    display: block;
+    width: 152px;
+    height: 33px;
+    overflow: hidden;
+    border-radius: 10px 10px 10px 10px;
+}
+#shine {
+    position: absolute;
+    top:0px;
+    left:-100%;
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-image: url("shine.png");
+    background-repeat:no-repeat;
+}
+#shine.animate {
+    left:100%;
+    -webkit-transition:  all 1.4s ease-in-out;
+    -moz-transition:     all 1.4s ease-in-out;
+    -ms-transition:      all 1.4s ease-in-out;
+    -o-transition:       all 1.4s ease-in-out;
+    transition:          all 1.4s ease-in-out;
+}
+.clickthrough {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 1px solid #666666;
+    -moz-box-sizing:    border-box;
+    -webkit-box-sizing: border-box;
+    -o-box-sizing:      border-box;
+    -ms-box-sizing:     border-box;
+    box-sizing:         border-box;
+    cursor: pointer;
+}

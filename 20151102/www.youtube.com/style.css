@@ -1,0 +1,249 @@
+/* setup */
+html {
+  box-sizing: border-box; }
+
+*, *:before, *:after {
+  box-sizing: inherit; }
+
+body {
+  background-color: #FFF;
+  margin: 0;
+  padding: 0; }
+
+.hide {
+  border: 0 !important;
+  clip: rect(0 0 0 0) !important;
+  height: 1px !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  position: absolute !important;
+  width: 1px !important; }
+
+.ytClose {
+  z-index: 999; }
+
+.button_close_expanded {
+  position: absolute;
+  z-index: 998;
+  top: 1px;
+  left: 2px;
+  cursor: pointer; }
+
+/* Banner Styles */
+.banner {
+  position: relative;
+  width: 970px;
+  height: 250px;
+  border: solid 1px;
+  overflow: hidden;
+  background-color: #000; }
+  .banner #div_expand {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; }
+    .banner #div_expand .bg {
+      height: 500px;
+      opacity: 1; }
+    .banner #div_expand .copy_exp {
+      position: absolute;
+      left: 22px;
+      top: 209px; }
+    .banner #div_expand .replay {
+      position: absolute;
+      top: 92px;
+      left: 381px;
+      width: 575px;
+      height: 323px;
+      z-index: 15;
+      cursor: pointer; }
+    .banner #div_expand .banner_click {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+      z-index: 14; }
+    .banner #div_expand .close {
+      width: 19px;
+      height: 19px;
+      background: url(../img/close.png) no-repeat;
+      left: auto;
+      right: 5px;
+      cursor: pointer; }
+      .banner #div_expand .close:hover {
+        background: url(../img/close.png) no-repeat -19px 0; }
+  .banner #div_main {
+    width: 970px;
+    height: 250px;
+    position: absolute;
+    top: 0;
+    left: 0; }
+    .banner #div_main .container {
+      position: absolute;
+      top: 0;
+      left: 0px;
+      width: 100%;
+      height: 100%; }
+    .banner #div_main .copy {
+      pointer-events: none;
+      position: absolute;
+      z-index: 50;
+      width: 100%;
+      height: 100%; }
+      .banner #div_main .copy img {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -webkit-transform: translate(-50%, -50%);
+                transform: translate(-50%, -50%);
+        opacity: 0; }
+  .banner .logo {
+    position: absolute;
+    top: 11px;
+    left: 11px;
+    z-index: 11;
+    pointer-events: none; }
+    .banner .logo.logo_down {
+      top: 34px; }
+  .banner .cta img.cta_in {
+    padding: 5px 6px 4px 6px;
+    background-color: #000;
+    position: absolute;
+    bottom: 19px;
+    right: 19px;
+    border: 1px solid #fff;
+    z-index: 12; }
+    .banner .cta img.cta_in.end_button {
+      padding: 7px 10px 9px 9px;
+      left: 19px;
+      z-index: 0; }
+  .banner .cta img.cta_out {
+    padding: 5px 6px 4px 6px;
+    background-color: #fff;
+    position: absolute;
+    bottom: 19px;
+    right: 19px;
+    border: 1px solid #000;
+    z-index: 12; }
+    .banner .cta img.cta_out.end_button {
+      padding: 7px 10px 9px 9px;
+      left: 19px;
+      z-index: 0; }
+  .banner .bg {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 970px;
+    height: 250px;
+    opacity: 0; }
+
+.banner_click {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  z-index: 13; }
+
+/* Video */
+.close {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  z-index: 17; }
+
+#replay:hover {
+  -webkit-transform: rotate(180deg);
+  transform: rotate(180deg); }
+
+#replay {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 20px;
+  height: 20px;
+  background: url(../img/replay.png) no-repeat center;
+  cursor: pointer;
+  transition: -webkit-transform .3s ease-out, -ms-transform .3s ease-out;
+  transition: transform .3s ease-out, -ms-transform .3s ease-out; }
+
+#trailerWrapper,
+#videoWrapper {
+  z-index: 15;
+  position: absolute;
+  top: 0;
+  left: 0; }
+
+#trailerWrapper {
+  top: 92px;
+  left: 381px; }
+
+.videoContainer {
+  width: 100%;
+  height: 100%;
+  background-color: #000; }
+
+.videoClick {
+  z-index: 11;
+  position: absolute;
+  top: 0;
+  left: 0;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  background: url("data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"); }
+
+.controls {
+  z-index: 16;
+  position: absolute;
+  bottom: 4px;
+  left: 10px; }
+
+.sprite {
+  background: url(../img/icons.png) no-repeat;
+  width: 20px;
+  height: 20px;
+  float: left;
+  margin-right: 2px;
+  cursor: pointer; }
+
+.playBtn {
+  background-position: 0 0; }
+
+.playBtn:hover {
+  background-position: 0 -44px; }
+
+.playBtn.pause {
+  background-position: 0 -22px; }
+
+.playBtn.pause:hover {
+  background-position: 0 -66px; }
+
+.muteBtn {
+  background-position: -22px -22px; }
+
+.muteBtn.unmute {
+  background-position: -22px 0; }
+
+.muteBtn.unmute:hover {
+  background-position: -22px -44px; }
+
+.muteBtn:hover {
+  background-position: -22px -66px; }
+
+.timer {
+  float: left;
+  color: #fff;
+  font-family: Arial;
+  font-weight: bold;
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  width: 100px;
+  line-height: 20px;
+  margin-left: 5px; }

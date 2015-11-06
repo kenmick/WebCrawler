@@ -1,0 +1,27 @@
+/*Total Duration : 56.336 ms
+*/
+trackerId = "c9bbb632f6961d34a67e97d2a7b5448a";
+
+document.getElementById(wpn_ad_configuration[0]['div_id']).innerHTML = '<a href="http://rpc-php.trafficfactory.biz/click/.8491mK0TFuIRmmzD1VurUQ8BwsbBOEO3kvq0wK7Y_yVuSBISSp80RcD65nJL8HOEj6Aj7mu49AumnKLTC51hOymeQ7UbPfuPM4iOkJ-PBT7ErZIwGoIp-2zlMV9nU3SLvsNByMgJQtemtmNgWCo6WclIPfr-ZyaLYCrMA2jVXH9xxoG0zK5ai5ctn3rQMLk7jRII-td3NeBUzlJ7YoWi7piRg0wk4vn5KOtDjfX1gFLgQTwxvjvwL_yyaO86GQQVqNu2kF1NDBJFJFAGp1LOULYtKg==/36d7e3958de883a9df6f9ed2fb352b7d" target="_blank"><img src="http://media.trafficfactory.biz//banners/4702/7d312c6be422d7f5d5bc9f82da198b78.gif"></a>';
+			document.getElementById(wpn_ad_configuration[1]['div_id']).innerHTML = '<a href="http://rpc-php.trafficfactory.biz/click/.7734tidiu1trdxEvSghhcpPEeASAJsLH-gU_wm463t4FLcs3lwWKNrN9gucZfCHE6R7Rq35GTQWTEi06OvtapLIfy28iCI9b2D7fILXpowoNxl1yPPUGk2FOZTrh2VaSNdeqOBCuVU2DHu3x8CliqabV2bg78PewZmNBPrGIdLnsRtMcm6L8EIPxB9KKX7F6PcPHbhrNqvu6n8MVMGFDFeEIcZ3P6KB90BVGYkJgL7utYJg4pAlI3BJRGI2GVSQEwjHiGgMi6vS131Vic4pL169xxg==/e33eb3c7772c598fa359eff7ddf2b4c6" target="_blank"><img src="http://media.trafficfactory.biz//banners/822/1e6da2f4f7b5767cbd25380aeb782f93.gif"></a>';
+			
+function wpn_set_cookie( name, value, expires, path, domain, secure ) {
+	var today = new Date();
+	today.setTime( today.getTime() );
+	
+	if ( expires ) {
+		expires = expires * 1000 * 60 * 60 * 24;
+	}
+	
+	var expires_date = new Date( today.getTime() + (expires) );
+	
+	var toset = name + "=" +escape( value ) +
+	( ( expires ) ? ";expires=" + expires_date.toGMTString() : "" ) +
+	( ( path ) ? ";path=" + path : "" ) +
+	( ( domain ) ? ";domain=" + domain : "" ) +
+	( ( secure ) ? ";secure" : "" )
+	document.cookie = toset;
+	
+}
+
+wpn_set_cookie('wpn_ad_cookie', trackerId, 1, "/");

@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Orange Masthead - 860x250</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js"></script>
+	<script>function getURLParameter(name){return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null}</script>
+</head>
+
+<body>
+
+<div id="ad">
+    <div id="banner">
+        <div id="video-container" class="video-container">
+            <video id="video" class="video" autoplay>
+                <source src="video.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div id="black" class="smooth black"></div>
+        <div id="screen" class="smooth screen"></div>
+        <div id="logo" class="smooth logo"></div>
+        <div id="txt1" class="smooth txt txt1"></div>
+        <div id="txt2" class="smooth txt txt2"></div>
+        <a href="javascript:void(0);" onclick="window.open('http://homelive.orange.fr/accueil/');return false;"><div id="clickthrough" class="clickthrough"></div></a>
+        <div id="son_on" class="smooth son_on" onclick="javascript:son_on();"></div>
+        <div id="son_off" class="smooth son_off" onclick="javascript:son_off();"></div>
+
+
+        <div id="video_1" onclick="window.open('http://www.dailymotion.com/video/k4nYVLYKuwqoRAdxoGq');return false;" onMouseOver="javascript:video_1_in();" onMouseOut="javascript:video_1_out();" class="smooth video_1">
+            <video id="video_over_1" class="video_over_1">
+                <source src="video.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div id="video_2" onclick="window.open('http://www.dailymotion.com/video/k1BesnIJ4AM2PpdxoSE');return false;" onMouseOver="javascript:video_2_in();" onMouseOut="javascript:video_2_out();" class="smooth video_2">
+            <video id="video_over_2" class="video_over_2">
+                <source src="video.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div id="video_3" onclick="window.open('http://www.dailymotion.com/video/k6pGhSpopQE1EddxpcI');return false;" onMouseOver="javascript:video_3_in();" onMouseOut="javascript:video_3_out();" class="smooth video_3">
+            <video id="video_over_3" class="video_over_3">
+                <source src="video.mp4" type="video/mp4">
+            </video>
+        </div>
+
+    </div>
+</div>
+
+<script type='text/javascript'>
+animation();
+document.getElementById('video').volume = 0;
+
+function animation() {
+animation01 = setTimeout(function() {animation();}, 200);
+if(document.getElementById('video').currentTime > 4.8){
+	document.getElementById('video').pause();
+	clearTimeout(animation01);
+	document.getElementById('black').classList.add('animate');
+	document.getElementById('son_on').classList.add('animate');
+	document.getElementById('son_off').classList.add('animate');
+	setTimeout(function() {
+		document.getElementById('txt1').classList.add('animate');
+        document.getElementById('txt2').classList.add('animate');
+		setTimeout(function() {
+			document.getElementById('txt1').classList.add('animate_2');
+            document.getElementById('txt2').classList.add('animate_2');
+			setTimeout(function() {
+				document.getElementById('video_1').style.display='block';
+				document.getElementById('video_2').style.display='block';
+				document.getElementById('video_3').style.display='block';
+				document.getElementById('screen').classList.add('animate');
+				setTimeout(function() {
+					document.getElementById('hashtag').classList.add('animate');
+					setTimeout(function() {
+					}, 500);
+				}, 500);
+			}, 500);
+		}, 1000);
+	}, 200);
+	}
+}</script>
+
+</body>
+
+</html>

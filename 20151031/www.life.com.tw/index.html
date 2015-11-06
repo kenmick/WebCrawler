@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head><script type="text/javascript">
+    
+      (function() {
+        var relegateNavigation = '';
+        var handleClickTagMessage = function(e) {
+          try {
+            var eventData = JSON.parse(e.data);
+          } catch (err) {
+            return;
+          }
+          if (eventData.isInitClickTag) {
+            if (eventData.clickTags) {
+              for (var i = 0; i < eventData.clickTags.length; i++) {
+                var clkTag = eventData.clickTags[i];
+                window[clkTag.name] = clkTag.url;
+              }
+            } else if (eventData.clickTag) {
+              window.clickTag = eventData.clickTag;
+            }
+            relegateNavigation = eventData.relegateNavigation;
+          }
+        };
+
+        if (open.call) {
+          window.open = function(open) {
+            return function(url, name, features) {
+              if (relegateNavigation === 'parent') {
+                var message = {'clickTag': url, 'isPostClickTag': true};
+                parent.postMessage(JSON.stringify(message), '*');
+              } else {
+                var args = [url, name];
+                if (features) {
+                  args.push(features);
+                }
+                open.apply(window, args);
+              }
+            };
+          }(window.open);
+        }
+
+        if (window.addEventListener) {
+          window.addEventListener(
+              'message', handleClickTagMessage, false);
+        } else {
+          window.attachEvent('onmessage', handleClickTagMessage);
+        }
+      })();
+    
+  </script>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="ad.size" content="width=300,height=600">
+    <script type="text/javascript">
+        var clickTag = "http://www.google.com";
+    </script>
+</head>
+<body>
+<div id="bg" class="full-absolute"></div>
+<div id="content">
+    <img id="logo" src="img/logo.png" alt="L&#39;OrÃ©al">
+
+    <div class="screen" id="screen-1">
+        <div class="text" id="text-1"><img src="img/text-1.png" alt="Chaque peau est unique"></div>
+        <img src="img/screen1-women.png" alt="Leila Bekhti - Blake Lively - Liya Kebede" id="women">
+    </div>
+
+    <div class="screen" id="screen-2">
+        <div class="text" id="text-2"><img src="img/text-2.png" alt="Chaque femme a son accord parfait"></div>
+        <img src="img/products-bottom.png" alt="" id="products-bottom">
+
+        <div class="p-1 screen2-product"></div>
+        <div class="p-2 screen2-product"></div>
+        <div class="p-3 screen2-product"></div>
+        <div class="p-4 screen2-product"></div>
+        <div class="p-5 screen2-product"></div>
+        <div class="p-6 screen2-product"></div>
+        <div class="p-7 screen2-product"></div>
+        <div class="p-8 screen2-product"></div>
+        <div class="p-9 screen2-product"></div>
+        <div class="p-10 screen2-product"></div>
+        <div class="p-11 screen2-product"></div>
+        <div class="p-12 screen2-product"></div>
+        <div class="p-13 screen2-product"></div>
+        <div class="p-14 screen2-product"></div>
+        <div class="p-15 screen2-product"></div>
+        <div class="p-16 screen2-product"></div>
+        <div class="p-17 screen2-product"></div>
+        <div class="p-18 screen2-product"></div>
+        <div class="p-19 screen2-product"></div>
+        <div class="p-20 screen2-product"></div>
+        <div class="p-21 screen2-product"></div>
+        <div class="p-22 screen2-product"></div>
+        <div class="p-23 screen2-product"></div>
+        <div class="p-24 screen2-product"></div>
+        <img src="img/shadow.png" alt="" class="shadow full-absolute">
+    </div>
+
+    <div class="screen" id="screen-3">
+        <div class="text" id="text-3"><img src="img/text-3.png" alt="Quelle sera votre accord parfait ?"></div>
+        <img class="screen3-product" src="img/products-screen3/65D.png" alt="Teinte 6.5D">
+        <img class="screen3-product" src="img/products-screen3/3D.png" alt="Teinte 3D">
+        <img class="screen3-product" src="img/products-screen3/10D.png" alt="Teinte 10D">
+        <div id="button">
+            <img src="img/glow.png" id="glow" alt="">
+            <div id="arrow"></div>
+        </div>
+    </div>
+</div>
+
+<a id="link" style="z-index: 1000;" class="full-absolute" href="javascript:window.open(window.clickTag,&#39;_blank&#39;);void(0);">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgYAAAAAMAASsJTYQAAAAASUVORK5CYII=">
+</a>
+
+<div id="mask" class="full-absolute"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.17.0/TweenLite.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.17.0/TimelineLite.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/easing/EasePack.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.17.0/plugins/CSSPlugin.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

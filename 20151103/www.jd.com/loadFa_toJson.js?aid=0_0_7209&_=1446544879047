@@ -1,0 +1,45 @@
+(function () {
+var width = "94px-152px".split("-")[0];
+var height = "94px-152px".split("-")[1];
+
+var widthB = "35px-108px".split("-")[0];
+var heightB = "35px-108px".split("-")[1];
+
+var data = [
+    {
+        src: "http://img14.360buyimg.com/da/jfs/t2284/331/833657499/11485/291d03d1/562dfcdfN45b4ba47.gif",
+        width: width,
+        height: height,
+        srcB: "http://img30.360buyimg.com/da/jfs/t2110/349/809796017/3889/dcb6f704/562c9398N33b2e3b1.png",
+        widthB: widthB,
+        heightB: heightB,
+        clstag: "20151111",
+        iframe: "http://sale.jd.com/act/yP03fbz5QCE.html?t=7",
+        tit: "11ÔÂ11Ìì"
+    }
+];
+
+var getCompatibleData=function(object){
+    var flag=(screen.width<1380);
+    if(flag){
+        object.width=object.widthB?object.widthB:object.width;
+        object.height=object.heightB?object.heightB:object.height;
+        object.src=object.srcB?object.srcB:object.src;
+    }
+    return object
+};
+
+var currentItem = getCompatibleData(data[0]);
+
+$("#J-global-toolbar").find(".jdm-tbar-panel-ad").attr("data-iframe", currentItem.iframe);
+
+$("#J-global-toolbar").find(".jdm-tbar-panel-ad .title").text(currentItem.tit);
+
+$("#J-global-toolbar").find(".jdm-toolbar-header .J-trigger").attr("clstag", $("#J-global-toolbar").find(".jdm-toolbar-header .J-trigger").attr("clstag") + currentItem.clstag);
+
+$("#J-global-toolbar").find(".jdm-toolbar-header .jdm-tbar-act").css({"width":currentItem.width,"height":currentItem.height,"background":"url("+currentItem.src+") no-repeat","cursor":"pointer"});
+
+$("#J-global-toolbar").find(".jdm-toolbar-header").css("width",currentItem.width);
+})();
+
+$.getScript('http://nfa.jd.com/loadFa_toJson.js?aid=0_0_7201');

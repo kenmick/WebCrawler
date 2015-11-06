@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <title>Expand Composition</title>
+    
+    <script type="text/javascript" src="/879366/Enabler_01_86.js"></script>
+    
+    
+    <!--Adobe Edge Runtime-->
+    <script type="text/javascript" charset="utf-8" src="edge_includes/edge.6.0.0.min.js"></script>
+    <!-- Polymer should come before custom elements, like the close button. -->
+    <script src="https://www.gstatic.com/external_hosted/polymer/custom.elements.min.js"></script>
+
+    <!-- YouTube close button -->
+    <script src="https://www.gstatic.com/ads/ci/ytclosebutton/1/ytclosebutton_min.js?shadow=true"></script>
+
+    <style>
+        .edgeLoad-collapse {
+            visibility: hidden;
+        }
+
+        .expand, .collapse {
+            position: absolute !important;
+            top: 0;
+        }
+
+        .close-expand {
+            top: 5px;
+            left: 0;
+            height: 15px;
+            cursor: pointer;
+            display: block;
+            position: absolute;
+            font-family: arial, sans-serif;
+            font-size: 11px;
+            letter-spacing: 0.4px;
+            text-decoration: underline;
+            color: #000;
+            background: transparent url("https://www.gstatic.com/ads/ci/ytclosebutton/1/close_black_shadow.png") no-repeat left center;
+            padding-left: 25px;
+        }
+
+        #ytClose span, .close-expand {
+            text-shadow: 0 0 6px #FFF, 0 0 4px #FFF, 0 0 2px #FFF !important;
+        }
+    </style>
+    <script>
+
+        var collapseLoaded = false;
+        var expandLoaded = false;
+        var expanded = false;
+
+        AdobeEdge.bootstrapCallback(function (compId)
+        {
+
+        });
+
+        document.addEventListener("DOMContentLoaded", function (event)
+        {
+            
+            if (Enabler.isInitialized())
+                enablerInitHandler();
+            else
+                Enabler.addEventListener(studio.events.StudioEvent.INIT, enablerInitHandler);
+
+            function enablerInitHandler()
+            {
+                Enabler.loadModule(studio.module.ModuleId.VIDEO, videoModuleHandler);
+            }
+
+            function videoModuleHandler()
+            {
+                if (!Enabler.isVisible())
+                    Enabler.addEventListener(studio.events.StudioEvent.VISIBLE, start);
+                else
+                    start();
+            }
+            
+        });
+
+        function start()
+        {
+            AdobeEdge.loadComposition('collapse', 'collapse', {
+    scaleToFit: "none",
+    centerStage: "none",
+    minW: "0px",
+    maxW: "undefined",
+    width: "970px",
+    height: "250px"
+}, {"style":{"${symbolSelector}":{"isStage":"true","rect":["undefined","undefined","970px","250px"],"fill":["rgba(255,255,255,1)"]}},"dom":[{"rect":["10px","10px","40px","40px","auto","auto"],"id":"preloader","fill":["rgba(0,0,0,0)","images/loader.gif","0px","0px"],"type":"image","tag":"img"},{"rect":["0px","0px","1px","100%","auto","auto"],"stroke":[0,"rgb(0, 0, 0)","none"],"id":"border_l","opacity":"1","type":"rect","fill":["rgba(0,0,0,1.00)"]},{"rect":["auto","0px","1px","100%","0px","auto"],"stroke":[0,"rgb(0, 0, 0)","none"],"id":"border_r","opacity":"1","type":"rect","fill":["rgba(0,0,0,1.00)"]},{"rect":["0px","0px","100%","1px","auto","auto"],"stroke":[0,"rgb(0, 0, 0)","none"],"id":"border_t","opacity":"1","type":"rect","fill":["rgba(0,0,0,1.00)"]},{"rect":["0px","auto","100%","1px","auto","0px"],"stroke":[0,"rgb(0, 0, 0)","none"],"id":"border_b","opacity":"1","type":"rect","fill":["rgba(0,0,0,1.00)"]}]}, {"style":{"${symbolSelector}":{"isStage":"true","rect":["undefined","undefined","300px","250px"],"fill":["rgba(255,255,255,1)"]}},"dom":{}});
+
+            document.getElementById('collapse').addEventListener('click', collapseClick);
+            document.getElementById('expand').addEventListener('click', expandClick);
+            document.getElementById('close-expand').addEventListener('click', closeExpandClick);
+
+            Enabler.addEventListener(studio.events.StudioEvent.EXPAND_START, expandStart, false);
+            Enabler.addEventListener(studio.events.StudioEvent.EXPAND_FINISH, expandFinish, false);
+            Enabler.addEventListener(studio.events.StudioEvent.COLLAPSE_START, collapseStart, false);
+            Enabler.addEventListener(studio.events.StudioEvent.COLLAPSE_FINISH, collapseFinish, false);
+            Enabler.addEventListener(studio.events.StudioEvent.EXIT, exit, false);
+            Enabler.setExpandingPixelOffsets(0, 0, 1000, 500);
+            Enabler.setIsMultiDirectional(false);
+            
+        }
+
+        function closeExpandClick()
+        {
+            Enabler.counter('Close_Expanded', true);
+            Enabler.requestCollapse();
+        }
+
+        function collapseClick()
+        {
+            requestExpand();
+        }
+
+        function expandClick()
+        {
+            requestExit();
+        }
+
+        function requestExpand()
+        {
+            if (expanded || !('controller' in AdobeEdge.getComposition('collapse')))
+                return;
+
+            
+            Enabler.requestExpand();
+            
+        }
+
+        function requestCollapse()
+        {
+            if (!expanded)
+                return;
+
+            
+            Enabler.requestCollapse();
+            
+        }
+
+        function requestExit()
+        {
+
+        }
+
+        function requestClose()
+        {
+            if (expanded)
+                AdobeEdge.getComposition(expanded ? 'expand' : 'collapse').controller.freeze();
+
+            Enabler.reportManualClose();
+
+            requestCollapse();
+        }
+
+        function expandStart()
+        {
+            if (!expandLoaded)
+            {
+                expandLoaded = true;
+
+                AdobeEdge.loadComposition('expand', 'expand', {
+    scaleToFit: "none",
+    centerStage: "none",
+    minW: "0px",
+    maxW: "undefined",
+    width: "970px",
+    height: "500px"
+}, {"style":{"${symbolSelector}":{"isStage":"true","rect":["undefined","undefined","970px","500px"]}},"dom":[{"rect":["20px","20px","40px","40px","auto","auto"],"id":"loader","fill":["rgba(0,0,0,0)","images/loader.gif","0px","0px"],"type":"image","tag":"img"},{"rect":["0px","0px","1px","100%","auto","auto"],"stroke":[0,"rgb(0, 0, 0)","none"],"id":"border_l","opacity":"1","type":"rect","fill":["rgba(0,0,0,1.00)"]},{"rect":["auto","0px","1px","100%","0px","auto"],"stroke":[0,"rgb(0, 0, 0)","none"],"id":"border_r","opacity":"1","type":"rect","fill":["rgba(0,0,0,1.00)"]},{"rect":["0px","0px","100%","1px","auto","auto"],"stroke":[0,"rgb(0, 0, 0)","none"],"id":"border_t","opacity":"1","type":"rect","fill":["rgba(0,0,0,1.00)"]},{"rect":["0px","auto","100%","1px","auto","0px"],"stroke":[0,"rgb(0, 0, 0)","none"],"id":"border_b","opacity":"1","type":"rect","fill":["rgba(0,0,0,1.00)"]}]}, {"dom":{}});
+            }
+            else
+            {
+                AdobeEdge.getComposition('expand').controller.rePlay();
+            }
+
+            AdobeEdge.getComposition('collapse').controller.freeze();
+            document.getElementById('collapse').style.display = 'none';
+            document.getElementById('expand').style.display = 'block';
+            document.getElementById('close-expand').style.display = 'block';
+
+            
+            Enabler.finishExpand();
+        }
+
+        function expandFinish()
+        {
+            expanded = true;
+        }
+
+        function collapseStart()
+        {
+            try
+            {
+                document.getElementById('expand').style.display = 'none';
+                document.getElementById('close-expand').style.display = 'none';
+                document.getElementById('collapse').style.display = 'block';
+
+                AdobeEdge.getComposition('expand').controller.collapseStart();
+            }
+            catch (error)
+            {
+
+            }
+
+            
+            Enabler.finishCollapse();
+        }
+
+        function collapseFinish()
+        {
+            expanded = false;
+        }
+
+        function exit()
+        {
+            requestCollapse();
+        }
+
+    </script>
+    <!--Adobe Edge Runtime End-->
+
+</head>
+<body style="margin:0;padding:0;width:970px;position:absolute">
+<img src="https://googleads.g.doubleclick.net/pagead/viewthroughconversion/987912429/?value=1.00&amp;currency_code=EUR&amp;label=qbt1CMiyg2AQ7bGJ1wM&amp;guid=ON&amp;script=0" style="visibility: hidden" width="1" height="1">
+<img src="https://ad.doubleclick.net/ddm/activity/src=3830203;type=invmedia;cat=atw9ib3d;ord=1?" width="1" height="1" alt="" />
+
+<div id="collapse" class="collapse">
+</div>
+<div id="expand" class="expand">
+</div>
+<div id="close-expand" class="close-expand" style="display:none">Fermer l&#39;expand</div>
+<ci-ytclosebutton lang="fr" theme="black" shadow="true" id="ytClose"></ci-ytclosebutton>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<html><body><script type="text/javascript">
+
+/**/
+
+
+(function() {
+    metric = function(url, wait)
+    {
+        setTimeout(function() {
+                var e = document.createElement("img");
+                e.src = url;
+            }, wait);
+    }
+
+    var intervals = [0, 10];
+    var inlen = intervals.length;
+    for (var k = 0; k < inlen; ++k)
+        this.metric("https://pixel.mathtag.com/misc/img?mm_bnc&bcdv="+k, intervals[k] * 1000);
+})();
+
+
+var sync_4815162342 = function()
+{
+this.urls = [
+[0, "https://pixel.mathtag.com/misc/img?mop_seq=0:17&mt_cb=153118&mop_top="],
+[4, "https://cm.g.doubleclick.net/pixel?google_nid=mediamath&google_cm&google_hm=eHtWMArvQACXqlSwXwHUHA"],
+[0, "https://pixel.mathtag.com/misc/img?mop_seq=1:17&mt_cb=243019&mop_top=4:1445384323|"],
+[9, "https://pixel.rubiconproject.com/tap.php?v=4222&nid=1512&put=787b5630-0aef-4000-97aa-54b05f01d41c&expires=28"],
+[0, "https://pixel.mathtag.com/misc/img?mop_seq=2:17&mt_cb=874433&mop_top=4:1445384323|9:1445384323|"],
+[13, "https://ib.adnxs.com/getuid?https://sync.mathtag.com/sync/img?mt_exid=13&mt_mminit=1&mt_exuid=$UID"],
+[3, "https://simage2.pubmatic.com/AdServer/Pug?vcode=bz0yJnR5cGU9MSZjb2RlPTM2MiZ0bD00MzIwMA==&piggybackCookie=uid:787b5630-0aef-4000-97aa-54b05f01d41c"],
+[23, "https://www.facebook.com/fr/u.php?p=418865601488577&m=787b5630-0aef-4000-97aa-54b05f01d41c"],
+[16, "https://ad.360yield.com/match?publisher_dsp_id=5&external_user_id=787b5630-0aef-4000-97aa-54b05f01d41c"],
+[5, "https://eu-u.openx.net/w/1.0/sd?id=536872786&val=787b5630-0aef-4000-97aa-54b05f01d41c"],
+[15, "https://dsum-sec.casalemedia.com/rum?cm_dsp_id=3&external_user_id=787b5630-0aef-4000-97aa-54b05f01d41c"],
+[46, "https://x.bidswitch.net/sync?dsp_id=80&user_id=787b5630-0aef-4000-97aa-54b05f01d41c&expires=30"],
+[34, "https://t4.liverail.com/?metric=csync&p=3061&s=787b5630-0aef-4000-97aa-54b05f01d41c"],
+[0, "https://pixel.mathtag.com/misc/img?mop_seq=10:17&mt_cb=305206&mop_top=4:1445384323|9:1445384323|13:1445384323|3:1445384323|23:1445384323|16:1445384323|5:1445384323|15:1445384323|46:1445384323|34:1445384323|"],
+[45, "https://cs.gssprt.jp/yie/ld/cs?dspid=tone&uid=787b5630-0aef-4000-97aa-54b05f01d41c"],
+[32, "https://pix.btrll.com/partner/334886.png"],
+[44, "https://ads.stickyadstv.com/user-registering?dataProviderId=183&userId=787b5630-0aef-4000-97aa-54b05f01d41c"],
+[40, "https://cs.adingo.jp/sync/?from=mediamath&id=787b5630-0aef-4000-97aa-54b05f01d41c"],
+[10002, "https://stags.bluekai.com/site/2948?id=787b5630-0aef-4000-97aa-54b05f01d41c"],
+[10010, "https://stags.bluekai.com/site/4448?id=787b5630-0aef-4000-97aa-54b05f01d41c"],
+[10008, "https://loadm.exelator.com/load/?p=204&g=101&buid=787b5630-0aef-4000-97aa-54b05f01d41c&j=0"],
+[0, "https://pixel.mathtag.com/misc/img?mop_seq=17:17&mt_cb=492015&check=787b5630-0aef-4000-97aa-54b05f01d41c&mop_top=4:1445384323|9:1445384323|13:1445384323|3:1445384323|23:1445384323|16:1445384323|5:1445384323|15:1445384323|46:1445384323|34:1445384323|45:1445384323|32:1445384323|44:1445384323|40:1445384323|10002:1445384323|10010:1445384323|10008:1445384323|"]
+]
+
+   this.progress = 0;
+
+   var self = this;
+
+   var tims = "";
+   var errs = "";
+
+   this.sync = function(i)
+   {
+       var e = document.createElement("img");
+
+       var now = new Date();
+
+       if (e.addEventListener)
+       {
+	   e.addEventListener('load', function() {
+	       var temp = new Date().getTime() - now.getTime(); tims += self.urls[i][0]+':'+temp+"|";
+	   });
+
+	   e.addEventListener('error', function() {
+	       var temp = new Date().getTime() - now.getTime(); errs += self.urls[i][0]+':'+temp+"|";
+	   });
+       }
+
+       e.src = self.urls[i][1];
+   }
+
+   this.batch = function()
+   {
+      for (var i = self.progress; i < self.urls.length; ++i)
+      {
+	 self.sync(i);
+      }
+   }
+
+   this.final = function()
+   {
+      var e = document.createElement("img");
+      e.src = self.urls[self.urls.length-1][1]+"&final&timings="+tims+"&errors="+errs;
+   }
+
+   this.some = function(howmany)
+   {
+      var count = 0;
+      for (var i = self.progress; i < self.urls.length && count < howmany; ++i)
+      {
+         self.sync(i);
+	 self.progress++;
+         count++;
+      }
+   }
+}
+
+
+var s_4815162342 = new sync_4815162342();
+s_4815162342.some(1);
+setTimeout('s_4815162342.some(2)', 1000);
+setTimeout(s_4815162342.batch, 3000);
+setTimeout(s_4815162342.final, 10000);
+
+</script></body></html>

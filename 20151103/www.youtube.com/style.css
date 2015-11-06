@@ -1,0 +1,428 @@
+
+body, body * {
+  vertical-align: baseline;
+  border: 0 none;
+  outline: 0;
+  padding: 0;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  font-size: 9pt;
+  color: #333;
+}
+
+#main-container {
+  position: absolute;
+  width: 970px;
+  height: 250px;
+  top: 0px;
+  left: 0px;
+  border: 1px solid black;
+  box-sizing: border-box;
+  background: #EEE;
+  overflow: hidden;
+}
+
+#collapsed-content {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+  z-index: 100;
+  cursor: pointer;
+  text-align: center;
+  background-color: #EEE;
+  box-sizing: border-box;
+}
+
+#expanded-content {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background-color: #F1F1F1;
+  z-index: 200;
+  display: none;
+  box-sizing: border-box;
+}
+
+#expanded-exit {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+  cursor: pointer;
+  /* IE10 needs a background color otherwise he won't capture clicks */
+  background-color: #FFF;
+  opacity: 0;
+  z-index: 400;
+  display: none;
+}
+
+#collapsed-exit {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+  cursor: pointer;
+  /* IE10 needs a background color otherwise he won't capture clicks */
+  background-color: #FFF;
+  opacity: 0;
+  z-index: 400;
+  display: none;
+}
+
+#mainExpand {
+    cursor: pointer;
+    height: 250px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 970px;
+    z-index: 402;
+}
+
+#expand-button {
+     background-image: url("ctaC0.png");
+    background-repeat: no-repeat;
+    cursor: pointer;
+    display: none;
+    height: 21px;
+    left: 846px;
+    opacity: 0;
+    position: absolute;
+    top: 220px;
+    width: 103px;
+    z-index: 500;
+}
+
+#expand-button1 {
+     background-image: url("ctaC1.png");
+    background-repeat: no-repeat;
+    cursor: pointer;
+    height: 21px;
+    left: 846px;
+    opacity: 0;
+    position: absolute;
+    top: 220px;
+    width: 103px;
+    z-index: 499;
+}
+
+
+#collapse-ad {
+  color: #fff;
+  border-width: 0 1px 1px 0;
+  cursor: pointer;
+  text-decoration: underline;
+  /* Important: keep 5px padding at top: 0 and left: as per YouTube Specs */
+  top: 0px;
+  left: 0px;
+  position: absolute;
+  padding: 7px;
+  display: inline;
+  z-index: 2000;
+  font-family: Arial, sans-serif;
+  font-size: 10pt;
+}
+
+#yt-close {
+  z-index: 999;
+  top:2px!important;
+  right:3px!important;
+}
+
+.feature-collapsed {
+  top: 10px;
+  left: 297px;
+  width: 376.88888888888886px;
+  height: 230px;
+  position: absolute;
+}
+
+.feature-expanded {
+  top: 0px;
+  left: 0px;
+  width: 640px;
+  height: 500px;
+  position: absolute;
+}
+#ytp-1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 500;
+}
+
+/* Collapsed content */
+
+#findLogoC {
+  background-image: url('findLogoC.png');
+  width: 282px;
+  height: 43px;
+  position: absolute;
+  top: 30px;
+  left: 638px;
+  z-index: 3;
+}
+
+#whiteBgC {
+  background-image: url('whiteBgC.png');
+  width: 380px;
+  height: 210px;
+  position: absolute;
+  top: 0px;
+  left: 590px;
+  z-index: 2;
+}
+
+#footerC {
+  background-color: #11242a;
+  width: 380px;
+  height: 40px;
+  position: absolute;
+  z-index: 401;
+  top: 250px;
+  left: 590px;
+}
+
+#fitbitLogoC {
+  background-image: url('fitbitLogoC.png');
+  width: 82px;
+  height: 21px;
+  position: absolute;
+  top: 10px;
+  left: 20px;
+  z-index: 3;
+}
+
+#coverProducts {
+  background-image: url('coverProducts.jpg');
+  width: 378px;
+  height: 210px;
+  position: absolute;
+  top: 0px;
+  opacity:0;
+  left: 590px;
+  z-index: 5;
+}
+
+#productHolder {
+    width: 378px;
+    height: 160px;
+    top: 50px;
+    left: 590px;
+    position: absolute;
+    z-index:3;
+}
+
+#p0 {
+  background-image: url('p0.png');
+  width: 102px;
+  height: 113px;
+  position: absolute;
+  top: 200px;
+  left: 136px;
+  z-index: 6;
+}
+#p1 {
+  background-image: url('p1.png');
+  width: 102px;
+  height: 113px;
+  position: absolute;
+  top: 200px;
+  left: 73px;
+  z-index: 5;
+}
+
+#p2 {
+  background-image: url('p2.png');
+  width: 102px;
+  height: 113px;
+  position: absolute;
+  top: 200px;
+  left: 24px;
+  z-index: 4;
+}
+
+#p3 {
+  background-image: url('p3.png');
+  width: 102px;
+  height: 113px;
+  position: absolute;
+  top: 200px;
+  left: 244px;
+  z-index: 4;
+}
+
+#p4 {
+  background-image: url('p4.png');
+  width: 102px;
+  height: 113px;
+  position: absolute;
+  top: 200px;
+  left: 198px;
+  z-index: 5;
+}
+
+#t0 {
+  background-image: url('t0.png');
+  width: 112px;
+  height: 26px;
+  position: absolute;
+  top: 260px;
+  left: 134px;
+  z-index: 6;
+}
+#t1 {
+  background-image: url('t1.png');
+  width: 112px;
+  height: 26px;
+  position: absolute;
+  top: 260px;
+  left: 134px;
+  z-index: 6;
+}
+
+#t2 {
+  background-image: url('t2.png');
+  width: 112px;
+  height: 26px;
+  position: absolute;
+  top: 260px;
+  left: 134px;
+  z-index: 6;
+}
+
+#t3 {
+  background-image: url('t3.png');
+  width: 112px;
+  height: 26px;
+  position: absolute;
+  top: 260px;
+  left: 134px;
+  z-index: 6;
+}
+
+#t4 {
+  background-image: url('t4.png');
+  width: 112px;
+  height: 26px;
+  position: absolute;
+  top: 260px;
+  left: 134px;
+  z-index: 6;
+}
+
+#video1 {
+    position: absolute;
+    width: 590px;
+    height: 250px;
+    left:0px;
+    top:0px;
+}
+
+/* Expanded 0 */
+
+#rightFrameE {
+  background-image: url('rightFrameE.jpg');
+  width: 330px;
+  height: 500px;
+  position: absolute;
+  top: 0px;
+  left: 1040px;
+  z-index: 6;
+}
+
+#exit-button {
+    background-image: url('ctaE0.png');
+    width: 124px;
+    height: 24px;
+    position: absolute;
+    top: 469px;
+    left: 825px;
+    z-index: 402;
+    display: none;
+    opacity:0;
+    cursor: pointer;
+}
+
+#exit-button1 {
+    background-image: url('ctaE1.png');
+    width: 124px;
+    height: 24px;
+    position: absolute;
+    top: 469px;
+    left: 825px;
+    z-index: 401;
+    opacity:0;
+    cursor: pointer;
+}
+
+#whiteBgE {
+    background-image: url('whiteBgE.jpg');
+    width: 970px;
+    height: 500px;
+    position: absolute;
+    top: 500px;
+    left: 0px;
+    z-index: 1000;
+}
+
+#footerE {
+    background-image: url('footerE.jpg');
+    width: 970px;
+    height: 50px;
+    position: absolute;
+    top: 500px;
+    left: 0px;
+    z-index: 1001;
+}
+
+#findLogoE {
+    background-image: url('findLogoE.png');
+    width: 370px;
+    height: 71px;
+    position: absolute;
+    top: -100px;
+    left: 300px;
+    z-index: 1001;
+}
+
+#exit-button2 {
+    background-image: url('ctaE2.png');
+    width: 158px;
+    height: 29px;
+    position: absolute;
+    top: 460px;
+    left: 783px;
+    display: none;
+    z-index: 2000;
+    opacity: 0;
+    cursor: pointer;
+}
+
+#exit-button3 {
+    background-image: url('ctaE3.png');
+    width: 158px;
+    height: 29px;
+    position: absolute;
+    top: 460px;
+    left: 783px;
+    z-index: 1999;
+    display: none;
+    opacity: 0;
+    cursor: pointer;
+}
+
+:focus {
+  outline:none;
+}
+::-moz-focus-inner {
+  border:0;
+}
