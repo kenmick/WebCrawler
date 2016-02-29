@@ -1,0 +1,86 @@
+
+   setTimeout(function(){
+       __ad__slide($("ab_24").select(".yk-slide-index")[0]);
+   },300);
+
+	function execGetYouKuCookie(name){
+		var nameEQ = name + "="; 
+		var ca = document.cookie.split(';'); 
+		for(var i=0;i < ca.length;i++) {
+		var c = ca[i];
+		while (c.charAt(0)==' ') 
+		c = c.substring(1,c.length); 
+		if (c.indexOf(nameEQ) == 0) return unescape(c.substring(nameEQ.length,c.length));
+		}
+		return null;
+	}
+	function execSetYouKuCookie(name,value){
+			expires = new Date(); 
+			expires.setTime(expires.getTime()+24*60*60*1000);
+			document.cookie = name + "="+ escape (value) + ";expires=" + expires.toGMTString()+ ";path=/";
+	}
+	function formatDate(d) {
+			var year = d.getFullYear();
+			var month = d.getMonth() + 1;
+			var date = d.getDate();
+			return year + "-" + padZero(month) + "-" + padZero(date);
+	}
+	function padZero(num) {
+			return ((num <= 9) ? ("0" + num) : num);
+	}
+    function execHtmlEndCMDfortaobao(){
+        //å»æå¤§flash
+        var l=document.getElementById("youkuCrazytaobaoAD_node");
+        //window.clearInterval(ad_time);
+        if(l){
+        //l.parentNode.removeChild(l);
+        l.parentNode.innerHTML="";
+        }
+        //åå»ºå°flash
+        var s=document.getElementById("youku_crazy_taobao_div");
+        s.innerHTML ='<div id="youkuCrazytaobaoAD_replay_node" style="position:absolute;top:0px;right:-60px;line-height:0px;margin-bottom:15px;z-index:1049;"><object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="0px" height="0px" codebase="http://fpdownload.macromedia.com/get/flashplayer/current/swflash.cab"><param name="movie" value="http://static.atm.youku.com/idea/201601/0115/100678/shifu5070.swf?jsStart=execHtmlStartCMDfortaobao&jsEnd=execHtmlEndCMDfortaobao" /><param name="quality" value="high" /><param name="allowscriptaccess" value="always" /><param name="wmode" value="transparent" /><embed src="http://static.atm.youku.com/idea/201601/0115/100678/shifu5070.swf?jsStart=execHtmlStartCMDfortaobao&jsEnd=execHtmlEndCMDfortaobao" quality="high"  width="0px" height="0px"  align="middle" play="true" loop="false" quality="high" allowscriptaccess="always"   wmode="transparent" type="application/x-shockwave-flash" pluginspage="http://www.adobe.com/go/getflashplayer"></embed></object></div>';
+    }
+    function execHtmlStartCMDfortaobao(){
+        //å»æå°flash
+        var s=document.getElementById("youkuCrazytaobaoAD_replay_node");
+        if(s){
+        //s.parentNode.removeChild(s);
+        s.parentNode.innerHTML="";
+        }
+        //åå»ºå¤§flash
+        var l=document.getElementById("youku_crazy_taobao_div");
+        if(!l){
+            setTimeout(execHtmlStartCMDfortaobao,1000);
+            return;
+        }
+        l.innerHTML ='<div id="youkuCrazytaobaoAD_node" class="yk-AD-tong" style="position:absolute;top:0px;left:0;line-height:0px;z-index:1100;display:inline;text-align:center;height:470px"><object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="100%" height="470px" codebase="http://fpdownload.macromedia.com/get/flashplayer/current/swflash.cab"><param name="movie" value="http://static.atm.youku.com/idea/201601/0115/100678/shifusy1190470.swf?jsStart=&jsEnd=execHtmlEndCMDfortaobao&url=http://count.atm.youku.com/c?id=7948" /><param name="quality" value="high" /><param name="allowscriptaccess" value="always" /><param name="wmode" value="transparent" /><embed src="http://static.atm.youku.com/idea/201601/0115/100678/shifusy1190470.swf?jsStart=&jsEnd=execHtmlEndCMDfortaobao&url=http://count.atm.youku.com/c?id=7948" quality="high"     width="100%" height="470px" align="middle" play="true" loop="false" quality="high" allowscriptaccess="always" wmode="transparent" type="application/x-shockwave-flash" pluginspage="http://www.adobe.com/go/getflashplayer"></embed></object></div>';
+    }
+    
+	//-----main-start-----
+	//é¢æ¬¡æ§å¶
+	var youku_crazy_count = execGetYouKuCookie("_youku_ad_crazy_taobao_count");
+	if(typeof(youku_crazy_count)=="undefined"||youku_crazy_count==null){
+		youku_crazy_count = 0;
+	}
+	//å¤æ­é¢æ¬¡ 2+
+	if( youku_crazy_count < 2){
+		//++
+		youku_crazy_count++;
+		//set cookie count
+		execSetYouKuCookie("_youku_ad_crazy_taobao_count",youku_crazy_count);
+		
+		//start
+		execHtmlStartCMDfortaobao();
+		
+
+	}
+	//-----main-end-----
+	
+function ad_div_501(){var adcontent = "";adcontent = adcontent + "    <div id=\"ad_501_1\" style=\"position:relative;z-index:1050\">        <div id=\"youku_crazy_taobao_div\"><\/div>        <div id=\"youku_crazy_taobao_replay_div\"><\/div>    <\/div>";	var obj = document.getElementById('ab_501');	if( !obj || typeof(obj) != 'object' || typeof(adcontent) != 'string') return;	if( null != adcontent && 0 == adcontent.length ){		obj.style.display = 'none';	}else{		obj.style.display = 'block';		if( null != adcontent ){			obj.innerHTML = adcontent;		}	}}ad_div_501();function ad_div_827(){var adcontent = "";adcontent = adcontent + "<div class=\"AD_tipRT\"><div class=\"tip_cont\" style=\"top:0px; right:0px; width:150px;\"><a style=\"width:100px; height:25px; float:left; margin-left: 20px; margin-top: 4px;display:block; background:url(http:\/\/static.atm.youku.com\/idea\/201512\/1231\/100338\/10025.png) no-repeat; _background:none;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src=\'http:\/\/static.atm.youku.com\/idea\/201512\/1231\/100338\/10025.png\', sizingMethod=\'crop\');\" href=\"http:\/\/count.atm.youku.com\/c?id=7911\" target=\"_blank\" ><\/a><\/div><\/div>";	var obj = document.getElementById('ab_827');	if( !obj || typeof(obj) != 'object' || typeof(adcontent) != 'string') return;	if( null != adcontent && 0 == adcontent.length ){		obj.style.display = 'none';	}else{		obj.style.display = 'block';		if( null != adcontent ){			obj.innerHTML = adcontent;		}	}}ad_div_827();function ad_div_101543(){var adcontent = "";adcontent = adcontent + "    <div align=\"center\" class=\"mod\" id=\"s_h_554647\"><a href=\"http:\/\/html.atm.youku.com\/htmlclick?p=101543&pp=41018442&pg=5&&ca=650149&ie=554647&k=&u=http:\/\/news.youku.com\/xdt\/abbott&md5=32caf1c38066eaa9c279e79bb0024d4a&uri=-1&dc=0\" target=\"_blank\"><img src=\"http:\/\/static.atm.youku.com\/idea\/201508\/0803\/71799\/310-50.jpg\" border=\"0\"\/><\/a><div class=\"ad-flag\"><\/div><\/div>";	var obj = document.getElementById('ab_101543');	if( !obj || typeof(obj) != 'object' || typeof(adcontent) != 'string') return;	if( null != adcontent && 0 == adcontent.length ){		obj.style.display = 'none';	}else{		obj.style.display = 'block';		if( null != adcontent ){			obj.innerHTML = adcontent;		}	}}ad_div_101543();function ad_div_174(){var adcontent = "";adcontent = adcontent + "    <div align=\"center\" class=\"mod\" id=\"s_h_655904\"><a href=\"http:\/\/html.atm.youku.com\/htmlclick?p=174&pp=258&pg=5&&ca=933850&ie=655904&k=&u=http:\/\/i.youku.com\/u\/UMzExMDQ5MTYzNgequal_escequal_esc&md5=cdba4f48ab41681e6c21dd4f2f235b98&uri=-1&dc=0\" target=\"_blank\"><img src=\"http:\/\/static.atm.youku.com\/idea\/201511\/1102\/93979\/640-110.jpg\" border=\"0\"\/><\/a><div class=\"ad-flag\"><\/div><\/div>";	var obj = document.getElementById('ab_174');	if( !obj || typeof(obj) != 'object' || typeof(adcontent) != 'string') return;	if( null != adcontent && 0 == adcontent.length ){		obj.style.display = 'none';	}else{		obj.style.display = 'block';		if( null != adcontent ){			obj.innerHTML = adcontent;		}	}}ad_div_174();function ad_div_101544(){var adcontent = "";adcontent = adcontent + "    <div align=\"center\" class=\"mod\" id=\"s_h_554656\"><a href=\"http:\/\/html.atm.youku.com\/htmlclick?p=101544&pp=41018443&pg=5&&ca=631992&ie=554656&k=&u=http:\/\/gongyi.youku.com\/v1\/yxzg&md5=a76c4046f4fc59cb7c914ff5130e6ef4&uri=-1&dc=0\" target=\"_blank\"><img src=\"http:\/\/static.atm.youku.com\/idea\/201503\/0331\/71827\/310-50.jpg\" border=\"0\"\/><\/a><div class=\"ad-flag\"><\/div><\/div>";	var obj = document.getElementById('ab_101544');	if( !obj || typeof(obj) != 'object' || typeof(adcontent) != 'string') return;	if( null != adcontent && 0 == adcontent.length ){		obj.style.display = 'none';	}else{		obj.style.display = 'block';		if( null != adcontent ){			obj.innerHTML = adcontent;		}	}}ad_div_101544();function ad_div_716(){var adcontent = "";adcontent = adcontent + "    <div align=\"center\" class=\"mod\" id=\"s_h_692124\"><a href=\"http:\/\/html.atm.youku.com\/htmlclick?p=716&pp=1372&pg=5&&ca=1049972&ie=692124&k=&u=http:\/\/v.youku.com\/v_show\/id_XMTQ0MTkxMjM4MAequal_escequal_esc.html&md5=48b0b40a8292f7eeeafcbe9e3076c13b&uri=-1&dc=0\" target=\"_blank\"><img src=\"http:\/\/static.atm.youku.com\/idea\/201601\/0115\/102449\/640-110.jpg\" border=\"0\"\/><\/a><div class=\"ad-flag\"><\/div><\/div>";	var obj = document.getElementById('ab_716');	if( !obj || typeof(obj) != 'object' || typeof(adcontent) != 'string') return;	if( null != adcontent && 0 == adcontent.length ){		obj.style.display = 'none';	}else{		obj.style.display = 'block';		if( null != adcontent ){			obj.innerHTML = adcontent;		}	}}ad_div_716();function ad_div_24(){var adcontent = "";adcontent = adcontent + "<div id=\"\" class=\"yk-slide yk-slide-col6 b20 yk-slide-index\" pagesel=\"yk-col3\" perpage=\"2\" from=\"1\" loop=\"6\" random=\"random\">        <div id=\"\" class=\"yk-slide-pages\" style=\"width: 3000px;\">                <div class=\"yk-row\">                       <div class=\"yk-col3\">";
+adcontent = adcontent + "		<div class=\"yk-act-thumb\">			<div class=\"mod\">  	          	<a href=\"http:\/\/html.atm.youku.com\/htmlclick?p=24&pp=30&pg=5&ca=1023697&ie=684991&k=&u=http:\/\/170.youku.com&md5=33bf22e9c981aa896f1c149a72371112&uri=-1&dc=0\" target=\"_blank\"><img src=\"http:\/\/static.atm.youku.com\/idea\/201601\/0104\/100816\/145-80.jpg\" border=\"0\"\/><\/a>    		<div class=\"ad-flag\"><\/div>    		<\/div>		<\/div>				<div class=\"yk-act-link\">			<a href=\"http:\/\/html.atm.youku.com\/htmlclick?p=24&pp=30&pg=5&ca=1023697&ie=684991&k=&u=http:\/\/170.youku.com&md5=33bf22e9c981aa896f1c149a72371112&uri=-1&dc=0\" target=\"_blank\">ä¼é·ç§»å¨å¸¦ä½ å»é¿é<\/a>		<\/div>     ";adcontent = adcontent + "<\/div>                       <div class=\"yk-col3\">";
+adcontent = adcontent + "		<div class=\"yk-act-thumb\">			<div class=\"mod\">  	          	<a href=\"http:\/\/html.atm.youku.com\/htmlclick?p=24&pp=27&pg=5&ca=999097&ie=682461&k=&u=http:\/\/www.youku.com\/show_page\/id_z48a9d4d6aeea11e5a080.html&md5=5331c70c9696e607eff55b8ce307edcd&uri=-1&dc=0\" target=\"_blank\"><img src=\"http:\/\/static.atm.youku.com\/idea\/201512\/1231\/98937\/14580.jpg\" border=\"0\"\/><\/a>    		<div class=\"ad-flag\"><\/div>    		<\/div>		<\/div>				<div class=\"yk-act-link\">			<a href=\"http:\/\/html.atm.youku.com\/htmlclick?p=24&pp=27&pg=5&ca=999097&ie=682461&k=&u=http:\/\/www.youku.com\/show_page\/id_z48a9d4d6aeea11e5a080.html&md5=5331c70c9696e607eff55b8ce307edcd&uri=-1&dc=0\" target=\"_blank\">é£Youngæ ¡å­å¥½å£°é³<\/a>		<\/div>     ";adcontent = adcontent + "<\/div>                       <div class=\"yk-col3\">";
+adcontent = adcontent + "		<div class=\"yk-act-thumb\">			<div class=\"mod\">  	          	<a href=\"http:\/\/html.atm.youku.com\/htmlclick?p=24&pp=1038&pg=5&ca=517782&ie=508300&k=&u=http:\/\/yuanxian.youku.com\/Disney&md5=2674c9fafead0d2160690621bc089044&uri=-1&dc=0\" target=\"_blank\"><img src=\"http:\/\/static.atm.youku.com\/YouKu2014\/201407\/0718\/21942\/145-80.jpg\" border=\"0\"\/><\/a>    		<div class=\"ad-flag\"><\/div>    		<\/div>		<\/div>				<div class=\"yk-act-link\">			<a href=\"http:\/\/html.atm.youku.com\/htmlclick?p=24&pp=1038&pg=5&ca=517782&ie=508300&k=&u=http:\/\/yuanxian.youku.com\/Disney&md5=2674c9fafead0d2160690621bc089044&uri=-1&dc=0\" target=\"_blank\">ä¼é·ä¼åå°½äº«å¥½è±åå¤§ç<\/a>		<\/div>     ";adcontent = adcontent + "<\/div>                       <div class=\"yk-col3\">";
+adcontent = adcontent + "		<div class=\"yk-act-thumb\">			<div class=\"mod\">  	          	<a href=\"http:\/\/html.atm.youku.com\/htmlclick?p=24&pp=29&pg=5&ca=854256&ie=622608&k=&u=http:\/\/i.youku.com\/u\/UMTkxMDg4MzU5Mg&md5=1e2a26e8b725f8c34e6cd76e10080a3f&uri=-1&dc=0\" target=\"_blank\"><img src=\"http:\/\/static.atm.youku.com\/idea\/201508\/0819\/88166\/145-80.jpg\" border=\"0\"\/><\/a>    		<div class=\"ad-flag\"><\/div>    		<\/div>		<\/div>				<div class=\"yk-act-link\">			<a href=\"http:\/\/html.atm.youku.com\/htmlclick?p=24&pp=29&pg=5&ca=854256&ie=622608&k=&u=http:\/\/i.youku.com\/u\/UMTkxMDg4MzU5Mg&md5=1e2a26e8b725f8c34e6cd76e10080a3f&uri=-1&dc=0\" target=\"_blank\">ç¾å¾ä¸åº<\/a>		<\/div>     ";adcontent = adcontent + "<\/div>                       <div class=\"yk-col3\">";
+adcontent = adcontent + "		<div class=\"yk-act-thumb\">			<div class=\"mod\">  	          	<a href=\"http:\/\/html.atm.youku.com\/htmlclick?p=24&pp=24&pg=5&ca=584332&ie=532397&k=&u=http:\/\/news.youku.com\/xdt\/abbott&md5=32caf1c38066eaa9c279e79bb0024d4a&uri=-1&dc=0\" target=\"_blank\"><img src=\"http:\/\/static.atm.youku.com\/idea\/201507\/0706\/67827\/145-80.jpg\" border=\"0\"\/><\/a>    		<div class=\"ad-flag\"><\/div>    		<\/div>		<\/div>				<div class=\"yk-act-link\">			<a href=\"http:\/\/html.atm.youku.com\/htmlclick?p=24&pp=24&pg=5&ca=584332&ie=532397&k=&u=http:\/\/news.youku.com\/xdt\/abbott&md5=32caf1c38066eaa9c279e79bb0024d4a&uri=-1&dc=0\" target=\"_blank\">çå½â¢å¥é å¯è½<\/a>		<\/div>     ";adcontent = adcontent + "<\/div>                       <div class=\"yk-col3\">";
+adcontent = adcontent + "<\/div>                <\/div>        <\/div>        <div class=\"yk-slide-btnnext\" style=\"visibility:visible;\"><i><\/i><\/div>     <\/div>";
+	var obj = document.getElementById('ab_24');	if( !obj || typeof(obj) != 'object' || typeof(adcontent) != 'string') return;	if( null != adcontent && 0 == adcontent.length ){		obj.style.display = 'none';	}else{		obj.style.display = 'block';		if( null != adcontent ){			obj.innerHTML = adcontent;		}	}}ad_div_24();function ad_div_25(){var adcontent = "";adcontent = adcontent + "    <div align=\"center\" class=\"mod\" id=\"s_h_679445\"><a href=\"http:\/\/html.atm.youku.com\/htmlclick?p=25&pp=182&pg=5&&ca=1008362&ie=679445&k=&u=http:\/\/v.youku.com\/v_show\/id_XMTQxNzcxMTg5Ngequal_escequal_esc.html&md5=88e533b61cbd6bb29971b2cae86e030d&uri=-1&dc=0\" target=\"_blank\"><img src=\"http:\/\/static.atm.youku.com\/idea\/201511\/1110\/95445\/310-110.jpg\" border=\"0\"\/><\/a><div class=\"ad-flag\"><\/div><\/div>";	var obj = document.getElementById('ab_25');	if( !obj || typeof(obj) != 'object' || typeof(adcontent) != 'string') return;	if( null != adcontent && 0 == adcontent.length ){		obj.style.display = 'none';	}else{		obj.style.display = 'block';		if( null != adcontent ){			obj.innerHTML = adcontent;		}	}}ad_div_25();function ad_div_595(){var adcontent = "";adcontent = adcontent + "    <div align=\"center\" class=\"mod\" id=\"s_h_508201\"><a href=\"http:\/\/html.atm.youku.com\/htmlclick?p=595&pp=976&pg=5&&ca=517786&ie=508201&k=&u=http:\/\/v.youku.com\/v_show\/id_XMTQxMzY3Nzg5Mgequal_escequal_esc.html&md5=cf30a48ad2b2d3c8537808b7cb97b640&uri=-1&dc=0\" target=\"_blank\"><img src=\"http:\/\/static.atm.youku.com\/idea\/201511\/1120\/97002\/1190-100.jpg\" border=\"0\"\/><\/a><div class=\"ad-flag\"><\/div><\/div>";	var obj = document.getElementById('ab_595');	if( !obj || typeof(obj) != 'object' || typeof(adcontent) != 'string') return;	if( null != adcontent && 0 == adcontent.length ){		obj.style.display = 'none';	}else{		obj.style.display = 'block';		if( null != adcontent ){			obj.innerHTML = adcontent;		}	}}ad_div_595();

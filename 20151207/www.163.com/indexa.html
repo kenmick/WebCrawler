@@ -1,0 +1,159 @@
+ï»¿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src='js/move.js'></script>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<script type="text/javascript">
+		window.onload=function(){
+			var box = document.getElementById('box');
+			var logo = document.getElementById('logo');
+
+			var one = document.getElementById('diyibu');
+			var two = document.getElementById('dierbu');
+			var three = document.getElementById('disanbu');
+
+			var bg01 = document.getElementById('bg01');
+			var bg02 = document.getElementById('bg02');
+			var bg03 = document.getElementById('bg03');
+
+			var kindle = document.getElementById('kindle');
+			var kindle2 = document.getElementById('kindle2');
+			var kindle3 = document.getElementById('kindle3');
+			var kindle4 = document.getElementById('kindle4');
+
+			var text1 = document.getElementById('text1');
+			var text2 = document.getElementById('text2');
+			var text3 = document.getElementById('text3');
+			var text4 = document.getElementById('text4');
+
+			var btn = document.getElementById('btn');
+
+			var tiaowen01 = document.getElementById('tiaowen01');
+			var tiaowen02 = document.getElementById('tiaowen02');
+			var finger = document.getElementById('finger');
+			var kindle2_bg = document.getElementById('kindle2_bg');
+
+			anim();
+			function anim(){
+				startMove(bg01, {width: 640, height: 100, marginTop: -50, marginLeft: -320}, {time: 3000});
+				startMove(kindle, {opacity: 1}, {time: 800, type: 'linear'});
+				setTimeout(function(){
+					startMove(text1, {opacity: 1}, {time: 800, type: 'linear'});
+					setTimeout(function(){
+						startMove(kindle, {opacity: 0}, {time: 1000});
+						startMove(text1, {opacity: 0}, {time: 800, type: 'linear', end: function(){
+							startMove(kindle2, {opacity: 1}, {time: 800, type: 'linear'});
+							startMove(tiaowen02, {opacity: 1}, {time: 0})
+							setTimeout(function(){
+								startMove(text2, {opacity: 1}, {time: 800, type: 'linear'});
+								startMove(finger, {opacity: 1}, {time: 800, end: function(){
+									startMove(finger, {top: 49}, {time: 1000});
+									startMove(tiaowen02, {opacity: 0}, {time: 500});
+									startMove(tiaowen01, {opacity: 1}, {time: 800});
+									startMove(kindle2_bg, {opacity: .1}, {time: 1200});
+									setTimeout(function(){
+										startMove(one, {opacity: 0}, {time: 1000});
+										// å¤ä½
+										startMove(bg01, {width: 768, height: 120, marginTop: -60, marginLeft: -384});
+										startMove(kindle, {opacity: 0});
+										startMove(text2, {opacity: 0});
+										startMove(kindle2, {opacity: 0});
+										//end
+										startMove(bg02, {width: 640, height: 100, marginTop: -50, marginLeft: -320}, {time: 2000, type: 'linear'});
+										startMove(two, {opacity: 1}, {time: 800, end: function(){
+
+											startMove(kindle3, {opacity: 1}, {time: 800, type: 'linear'});
+											setTimeout(function(){
+												//å¤ä½
+												// startMove(finger, {opacity: 0, top: 72});
+												// startMove(tiaowen02, {opacity: 1});
+												// startMove(tiaowen01, {opacity: 0});
+												// startMove(kindle2_bg, {opacity: 0});
+												finger.style.top = 30 + 'px';
+												startMove(finger, {opacity: 0}, {time: 0});
+												startMove(tiaowen02, {opacity: 0}, {time: 0});
+												startMove(tiaowen01, {opacity: 0}, {time: 0});
+												startMove(kindle2_bg, {opacity: 0}, {time: 0});
+												//end
+												startMove(text3, {opacity: 1}, {time: 800, type: 'linear'});
+												setTimeout(function(){
+													startMove(text3, {opacity: 0}, {time: 800, type: 'linear', end: function(){
+														startMove(text4, {opacity: 1}, {time: 1000, type: 'linear', end:function(){
+															setTimeout(function(){
+																text4.style.filter = "alpha(opacity=0%)";
+																text4.style.opacity = '0';
+															},1000);
+														}});
+														setTimeout(function(){
+															startMove(two, {opacity: 0}, {time: 1000});
+															startMove(bg02, {width: 768, height: 120, marginTop: -60, marginLeft: -384}, {time: 0});
+															startMove(kindle3, {opacity: 0}, {time: 0});
+															startMove(text3, {opacity: 0}, {time: 0});
+															startMove(text4, {opacity: 0}, {time: 0});
+															startMove(three, {opacity: 1}, {time: 800});
+															startMove(bg03, {opacity: 1}, {time: 800});
+															// startMove(logo, {opacity: 0});
+															setTimeout(function(){
+																startMove(kindle4, {opacity: 1}, {time: 1000});
+																setTimeout(function(){
+																	startMove(btn, {opacity: 1}, {time: 1000});
+																	setTimeout(function(){
+																		startMove(three, {opacity: 0}, {time: 1000});
+																		startMove(bg03, {opacity: 0}, {time: 0});
+																		startMove(kindle4, {opacity: 0}, {time: 0});
+																		startMove(btn, {opacity: 0}, {time: 0});
+																		startMove(logo, {opacity: 1});
+																		startMove(one, {opacity: 1}, {time: 1000});
+																		anim();
+																	},3000);
+																},300);
+															},1000);
+														},2000);
+													}});
+												},2000)
+											},500);
+										}});
+									},2000);
+								}});
+							},800);
+						}});
+					},1500);
+				},1000);
+			}
+		}
+	</script>
+</head>
+<body>
+	<a class='A' href="http://g.163.com/a?CID=39443&Values=2900436338&Redirect=http://ad.doubleclick.net/ddm/trackclk/N9254.103378NETEASE/B9233816.125300774;dc_trk_aid=298225678;dc_trk_cid=66868865" target='_blank'>
+		<div id="box">
+			<div id="logo"></div>
+			<div class="logo2"></div>
+			<div id="diyibu">
+				<div class="bg1"><img src="images/bg1.jpg" alt="" id="bg01"></div>
+				<div id="kindle"></div>
+				<div id="text1"></div>
+				<div id="kindle2">
+					<div id="tiaowen01"></div>
+					<div id="tiaowen02"></div>
+					<div id="kindle2_bg"></div>
+					<div id="finger"></div>
+				</div>
+				<div id="text2"></div>
+			</div>
+			<div id="dierbu">
+				<div id="bg2"><img src="images/bg2.jpg" alt="" id="bg02"></div>
+				<div id="kindle3"></div>
+				<div id="text3"></div>
+				<div id="text4"></div>
+			</div>
+			<div id="disanbu">
+				<div id="bg3"><img src="images/bg3.jpg" alt="" id="bg03"></div>
+				<div id="kindle4"></div>
+				<div id="btn"></div>
+			</div>
+		</div>
+	</a>
+</body>
+</html>

@@ -1,0 +1,1393 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>html,body {margin:0;padding:0;}</style>
+  </head>
+<body>
+<script>
+//<![CDATA[
+
+(function(frameWindow) {
+
+var undefined;
+
+
+var _arrayProto = Array.prototype,
+    _objectProto = Object.prototype,
+    _slice = _arrayProto.slice,
+    _concat = _arrayProto.concat,
+    _push = _arrayProto.push,
+    _toString = _objectProto.toString,
+    _hasOwn = _objectProto.hasOwnProperty;
+
+var _eventListeners = {};
+var _guid = 1;
+var _domReady = false;
+
+
+var _randomId = function() {return ('2.1.0' + Math.random()).replace(/\D/g, '');};
+
+
+var _encode = function(str) {try {try {return encodeURIComponent(str);} catch(e) {return escape(str);}} catch(e) {} return str;};
+var _decode = function(str) {try {try {return decodeURIComponent(str);} catch(e) {return unescape(str);}} catch(e) {} return str;};
+
+
+var _extend = function() {
+    var options, name, src, copy, copyIsArray, clone,
+        target = arguments[0] || {},
+        i = 1,
+        length = arguments.length,
+        deep = false;
+    if (typeof target === 'boolean') {
+        deep = target;
+        target = arguments[i] || {};
+        i++;
+    }
+    for ( ; i < length; i++) {
+        if ((options = arguments[i]) != null) {
+            for (name in options) {
+                if (_hasOwn.call(options, name)) {
+                    src = target[name];
+                    copy = options[name];
+                    if (target === copy) {continue;}
+                    copyIsArray = false;
+                    if (deep && copy && (ADventori.utils.isPlainObject(copy) || (copyIsArray = ADventori.utils.isArray(copy)))) {
+                        clone = copyIsArray ? (ADventori.utils.isArray(src) ? src : []) : (ADventori.utils.isPlainObject(src) ? src : {});
+                        target[name] = _extend(deep, clone, copy);
+                    } else if (copy !== undefined) {
+                        target[name] = copy;
+                    }
+                }
+            }
+        }
+    }
+    return target;
+};
+
+var debug = {
+    log: function(o) {debug.queue.push(['log', arguments, debug.stack.slice(0)]); if (window.console && typeof window.console.log == 'function') {window.console.log(o);}},
+    error: function(o) {debug.queue.push(['error', arguments, debug.stack.slice(0)]); if (window.console && typeof window.console.error == 'function') {window.console.error(o);}},
+    queue: [],
+    stack: []
+};
+
+
+var ADventori = function(conf) {
+    if (!(this instanceof ADventori)) {return new ADventori(conf);}
+    ADventori.ads = ADventori.ads || []; ADventori.ads.push(this);
+    this.id = ADventori.id + '_' + ADventori.ads.length;
+    ADventori._ads = ADventori._ads || {}; ADventori._ads[this.id] = this;
+    this.conf = _extend(true, {}, conf || ADventori.conf);
+    this.conf.dom['targetId'] = null;
+    if (ADventori.Items) {this.conf.items = new ADventori.Items(this);}
+    if (ADventori.Viewability) {this.conf.viewability = new ADventori.Viewability(this);}
+};
+
+ADventori.fn = ADventori.prototype;
+ADventori.data={"request":{"scheme":"https","hostname":"f21.adventori.com"},"params":{"placementId":"SFR_Arena_FilRouge201601_RED-FR-TMGP_red-mobile_Yahoo_Yahoo-RG_CPM_IAB-300x250","format":"iframe","brandId":"16248107","YahooStrategy":"155634","YahooCreative":"$17288","YahooLine":"45871","cachebuster":"9176234201101328015","URL":"https://na.ads.yahoo.com/yax/clk?sn%3D20550f4e623820b15b87594ebb7c367aebdfe6f1%26es%3DdFOH8DfRVIOqE92vtrcEYZajcPLjpvTasnca3NiuYtohux2G2kCV6JFnRPN2PM2V76qaf0kIAp0VkY.2qiUjramF9fAagagRAmzQtdHHDP4ciYoMbyDxRishYqxe63.SOjJACUESdyRCpJqO9VG4lUZc0.BpGYgXZQBL70Tr4nIkAD2h01l8aIYsP5EvcwuITzpL90TO9thVdGrgRln6t1IQZMeeesNX8SQ96JG8vfONkKUad4ETr2LE0rrXKSpBW06T61ZZ_O18BqOHaH3jfzkGCZPwfeDQSzIf8rcqclHJaGjQKsrqWimXEc1kXJmApUJCblupiFwOdYiyVYePmQ--%26ve%3D2%26ty%3D0%26url%3Dhttp://pr.ybp.yahoo.com/cj/cd/WG-TuzSSJSLzMqaYfeLYmOAaOWL_zhxyHUicaKKvz36RtnOwWlRQd0Buj0O8_tdkS5Y6ia6vhwdkBnUTqlzOeOWspRO0y_y_7cCNIoMeTe0HurIyYdizSSjTH0CUCNEiwufjZPo-RvA/rurl/","_errors":null},"size":{"width":300,"height":250},"placement":{"placementId":"SFR_Arena_FilRouge201601_RED-FR-TMGP_red-mobile_Yahoo_Yahoo-RG_CPM_IAB-300x250","placesSelectStrategy":"HYBRID","redirectToRetailerUrlClick":false,"externalLandingPageUrl":null,"utm":null,"maxPlaces":4,"itemsFilename":"16248107_VenteFlash.xml","explicitItemsIds":null,"nbExplicitsItems":-1,"nbParamsItems":-1,"nbCookiesItems":-1,"nbRelatedItems":0,"nbPlacesItems":0,"nbRandomItems":-1,"nbItemAvailabilities":0,"usePlaces":false,"useItems":true,"useCookies":true,"useLiveWeather":false,"useUserLocation":false,"useUserData":true,"displayFormat":"HTML","size":{"width":300,"height":250},"displayTag":"[PROTOCOL]elr.sfr.fr/dynview/sfr-fr/pix.gif?ead-publisher=[EADPUBLISHER]&eseg-name=[R1STRAT]&eseg-item=[R1CREA]&ead-name=[EADNAME]&ead-location=[EADLOCATION]&ead-creative=[EADCREATIVE]&ead-creativetype=[EADCREATIVETYPE]&ead-mediaplan=[EADMEDIAPLAN]&ea-rnd=[RANDOM]","clickTag":"http://elr.sfr.fr/dynclick/sfr-fr/?ead-publisher=[EADPUBLISHER]&eseg-name=[R1STRAT]&eseg-item=[R1CREA]&ead-name=[EADNAME]&ead-location=[EADLOCATION]&ead-creative=[EADCREATIVE]&ead-creativetype=[EADCREATIVETYPE]&ead-mediaplan=[EADMEDIAPLAN]&eurl=","adUrl":"[PROTOCOL][HOSTNAME]/lp/dd/sfr/Crea/[AD]_[SIZE]/[AD]_[SIZE].html","imgUrl":"[PROTOCOL][HOSTNAME]/lp/dd/sfr/Crea/[AD]_[SIZE]/[AD]_[SIZE].gif","passbackUrl":null,"ieMinVersion":8,"autoStart":"WRITE","track":{"view":false,"errorCreative":true}},"track":{"tracker":{"type":"AdDisplay","campaignId":"SFR_Arena_Desktop_FilRouge201601","cartoucheId":"SFR_Arena_FilRouge201601_RED-FR-TMGP_red-mobile_Yahoo_Yahoo-RG_CPM_IAB-300x250","ui":"bDJ_IMOKEeWDYfNzXU12Sw","ip":"147.210.129.93","geoipAffiliationCityId":null,"geoipStatus":null,"context":"s.yimg.com|","clickTagDomaineName":"na.ads.yahoo.com","urlClick":"&format=300x250","mode":null,"affiliationCityId":null,"retailer_1":null,"retailer_2":null,"retailer_3":null,"retailer_4":null,"impressionId":"6c327f21-c38a-11e5-8361-f3735d4d764b"},"trackPrintUrl":"/tracker/trackPrint","trackClickUrl":"/tracker/trackClick","uiHash":3915591245,"referer":"https://s.yimg.com/rq/darla/2-9-1/html/r-sf.html","timestamp":1453743499308},"campaignData":{"sfrCampaignData":"{\"random\":{\"red_mobile\":{\"0\":{\"name\":\"RED-TMGP-3GO\",\"startDate\":\"1/1/16\",\"endDate\":\"9/1/16\",\"adUrl\":\"[PROTOCOL][HOSTNAME]/lp/dd/sfr/Crea/[AD]_[SIZE]/[AD]_[SIZE].html\",\"imgUrl\":\"[PROTOCOL][HOSTNAME]/lp/dd/sfr/Crea/[AD]_[SIZE]/[AD]_[SIZE].gif\",\"redirection\":\"http://red.sfr.fr/forfait-mobile-pas-cher.html\"},\"1\":{\"name\":\"RED-TMGP-24-24\",\"startDate\":\"1/1/16\",\"endDate\":\"9/1/16\",\"adUrl\":\"[PROTOCOL][HOSTNAME]/lp/dd/sfr/Crea/[AD]_[SIZE]/[AD]_[SIZE].html\",\"imgUrl\":\"[PROTOCOL][HOSTNAME]/lp/dd/sfr/Crea/[AD]_[SIZE]/[AD]_[SIZE].gif\",\"redirection\":\"http://red.sfr.fr/forfait-mobile-pas-cher.html\"}},\"sfr_mobile\":{\"0\":{\"name\":\"SFR-MOBILE-40GO-RENOEL\",\"startDate\":\"1/1/16\",\"endDate\":\"9/1/16\",\"adUrl\":\"[PROTOCOL][HOSTNAME]/lp/dd/sfr/Crea/[AD]_[SIZE]/[AD]_[SIZE].html\",\"imgUrl\":\"[PROTOCOL][HOSTNAME]/lp/dd/sfr/Crea/[AD]_[SIZE]/[AD]_[SIZE].gif\",\"redirection\":\"http://www.sfr.fr/forfait-mobile/offres/forfait-mobile\"},\"1\":{\"name\":\"SFR-MOBILE-10EUROS-RENOEL\",\"startDate\":\"1/1/16\",\"endDate\":\"9/1/16\",\"adUrl\":\"[PROTOCOL][HOSTNAME]/lp/dd/sfr/Crea/[AD]_[SIZE]/[AD]_[SIZE].html\",\"imgUrl\":\"[PROTOCOL][HOSTNAME]/lp/dd/sfr/Crea/[AD]_[SIZE]/[AD]_[SIZE].gif\",\"redirection\":\"http://www.sfr.fr/forfait-mobile/offres/forfait-mobile\"}},\"red_fixe\":{\"0\":{\"name\":\"RED-FIBRE-GEN1\",\"startDate\":\"1/1/16\",\"endDate\":\"9/1/16\",\"adUrl\":\"[PROTOCOL][HOSTNAME]/lp/dd/sfr/Crea/[AD]_[SIZE]/[AD]_[SIZE].html\",\"imgUrl\":\"[PROTOCOL][HOSTNAME]/lp/dd/sfr/Crea/[AD]_[SIZE]/[AD]_[SIZE].gif\",\"redirection\":\"http://red.sfr.fr/offre-fibre-optique-pas-cher.html\"}},\"sfr_fixe\":{\"0\":{\"name\":\"SFR-FIXE-FIBRE-RENOEL\",\"startDate\":\"1/1/16\",\"endDate\":\"9/1/16\",\"adUrl\":\"[PROTOCOL][HOSTNAME]/lp/dd/sfr/Crea/[AD]_[SIZE]/[AD]_[SIZE].html\",\"imgUrl\":\"[PROTOCOL][HOSTNAME]/lp/dd/sfr/Crea/[AD]_[SIZE]/[AD]_[SIZE].gif\",\"redirection\":\"http://www.sfr.fr/offre-internet/fibre-optique\"}}}}"},"medias":{},"results":{"cookies":{},"items":{"placement":{},"params":{},"cookies":{},"siteTrackers":null,"related":null,"places":null,"random":{"i_SAMSUNG-Galaxy-S6-edge-Reconditionne":{"id":"SAMSUNG-Galaxy-S6-edge-Reconditionne","data":{"name":"SAMSUNG - Galaxy S6 edge 32Go DorÃ© ReconditionnÃ©","url":"http://www.sfr.fr/forfait-mobile/telephone/SAMSUNG-Galaxy-S6-edge-Reconditionne/32Go/OR","venteFlash":"true","prix":"289.99","prixPromo":"219.99","img":"//s7.s-sfr.fr/mobile/uc/device/idpp9ljs/s6edge-dore-medium-front.png?ts=1440407221586"},"deleted":false,"date":null,"availability":null},"i_SAMSUNG-Galaxy-S6-edge":{"id":"SAMSUNG-Galaxy-S6-edge","data":{"name":"SAMSUNG - Galaxy S6 edge 32Go Vert Ãmeraude","url":"http://www.sfr.fr/forfait-mobile/telephone/SAMSUNG-Galaxy-S6-edge/32Go/VERT","venteFlash":"true","prix":"321.99","prixPromo":"193","img":"//s7.s-sfr.fr/mobile/uc/00/84/46/26/S6EdgeVert-medium-front.png"},"deleted":false,"date":null,"availability":null},"i_SAMSUNG-Galaxy-S6":{"id":"SAMSUNG-Galaxy-S6","data":{"name":"SAMSUNG - Galaxy S6 32Go Blanc Astral","url":"http://www.sfr.fr/forfait-mobile/telephone/SAMSUNG-Galaxy-S6/32Go/BLANC","venteFlash":"true","prix":"251.99","prixPromo":"193","img":"//s7.s-sfr.fr/mobile/uc/00/84/05/89/Samsung-Galaxy-S6-Blanc-medium-front.png"},"deleted":false,"date":null,"availability":null}}},"userData":{}}};
+
+_extend(ADventori.data.request, {
+    protocol: (ADventori.data.request.scheme + '://'),
+    hostname: ADventori.data.request.hostname
+});
+
+
+if (ADventori.data.params._alt) {ADventori.data.params._scn = 'alt';}
+
+
+_extend(ADventori, {
+
+version: '2.1.0',
+
+id: _randomId(),
+
+utils: {
+
+extend: _extend,
+
+
+isArray: Array.isArray || function(o) {
+    return _toString.call(o) === '[object Array]';
+},
+
+
+isPlainObject: function(o) {
+    if (!o || _toString.call(o) !== '[object Object]' || o.nodeType || o == o.window) {return false;}
+    try {if (o.constructor && !_hasOwn.call(o, 'constructor') && !_hasOwn.call(o.constructor.prototype, 'isPrototypeOf')) {return false;}} catch(e) {return false;}
+    for (var key in o) {if (!_hasOwn.call(o, key)) {return false;}}
+    return true;
+},
+
+
+each: function(obj, fn) {
+    if (obj == null) {return obj;}
+    var i;
+    if (ADventori.utils.isArray(obj)) {
+        for (i = 0; i < obj.length; i++) {
+            if (fn.call(obj[i], i, obj[i]) === false) {break;}
+        }
+    } else {
+        for (i in obj) {
+            if (_hasOwn.call(obj, i)) {
+                if (fn.call(obj[i], i, obj[i]) === false) {break;}
+            }
+        }
+    }
+    return obj;
+},
+
+
+map: function(obj, fn) {
+    var value, res = [];
+    ADventori.utils.each(obj, function(i) {
+        if ((value = fn(obj[i], i)) != null) {res.push(value);}
+    });
+    return _concat.apply([], res);
+},
+
+
+mapOneOrMore: function(obj, fn) {
+    return ADventori.utils.map([].concat(obj != null ? obj : []), fn);
+},
+
+
+proxy: function(fn, ctx, args) {
+    return (function() {return fn.apply(ctx || this, _slice.call(args || []).concat(_slice.call(arguments)));});
+},
+
+
+shuffle: function(o) {
+    for (var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+    return o;
+},
+
+
+random: function(n){n=n||2147483647; return Math.floor(Math.random()*n);},
+
+
+now: function(){return new Date().getTime();},
+
+
+time: ADventori.data.track.timestamp,
+
+
+setTimeout: function(fn, delay, debugStack, trackerType, trackerProps) {
+    return setTimeout(function() {return ADventori.track.attempt(fn, debugStack, trackerType, trackerProps);}, delay);
+},
+
+
+setInterval: function(fn, delay, debugStack, trackerType, trackerProps) {
+    var intervalID = setInterval(function() {return ADventori.track.attempt(fn, debugStack, trackerType, trackerProps, function() {clearInterval(intervalID);});}, delay);
+    return intervalID;
+},
+
+
+param: function(params) {
+    return ADventori.utils.map(params, function(value, key) {
+        if (key != null && value != null) {
+            return (_encode(key) + '=' + _encode(value));
+        }
+    }).join('&');
+},
+
+
+deparam: function(str) {
+    var params = {};
+    var pairs = str.replace(/\+/g, ' ').split('&');
+    ADventori.utils.each(pairs, function(i, value) {
+        var pair = value.split('='), key = _decode(pair[0]);
+        if (key) {params[key] = _decode(pair[1] || '');}
+    });
+    return params;
+},
+
+
+addQueryParams: function(url, params) {
+    params = params != null ? (ADventori.utils.isPlainObject(params) ? ADventori.utils.param(params) : (params + '')) : params;
+    if (url && params) {
+        var hashIndex = url.indexOf('#'), urlNoHash = hashIndex >= 0 ? url.slice(0, hashIndex) : url, hash = hashIndex >= 0 ? url.slice(hashIndex) : '';
+        url = urlNoHash + (urlNoHash.indexOf('?') >= 0 ? '&' : '?') + params + hash;
+    }
+    return url;
+}
+
+},
+
+track: {
+
+
+tracker2params: function(tracker) {
+    var params = {};
+    ADventori.utils.each(tracker, function(key, value) {
+        params['tk_' + key] = value;
+    });
+    return params;
+},
+
+
+url: function(trackerProps, params) {
+    var url = ADventori.data.request.protocol +
+        ADventori.data.request.hostname +
+        ADventori.data.track.trackPrintUrl;
+    var tracker = ADventori.data.track.tracker;
+    tracker = _extend({}, tracker, trackerProps);
+    return ADventori.utils.addQueryParams(url, _extend({}, ADventori.track.tracker2params(tracker), params));
+},
+
+
+urlNoop: function(trackerProps, params) {
+    return ADventori.track.url(trackerProps, _extend({"noop": true}, params));
+},
+
+
+urlRedirect: function(trackerProps, redirectUrl, params) {
+    return ADventori.track.url(_extend({}, trackerProps, {"urlClick": redirectUrl}), _extend({"redirect": true}, params));
+},
+
+
+urlRedirectStacked: function(trackerProps, redirectUrl, params) {
+    return ADventori.track.url(trackerProps, params) + '&URL=' + redirectUrl;
+},
+
+
+urlShow: function(trackerType, trackerProps) {
+    return trackerType ? ADventori.track.urlNoop(_extend({"type": trackerType, "urlClick": null, "clickTagDomaineName": null, "affiliationCityId": null, "retailer_1": null, "retailer_2": null, "retailer_3": null, "retailer_4": navigator.userAgent}, trackerProps)) : null;
+},
+
+
+urlClick: function(trackerType, trackerProps, redirectUrl) {
+    return trackerType ? ADventori.track.urlRedirectStacked(_extend({"type": trackerType, "urlClick": null, "context": null, "clickTagDomaineName": null, "retailer_1": null, "retailer_2": null, "retailer_3": null, "retailer_4": null}, trackerProps), redirectUrl).replace(ADventori.data.track.trackPrintUrl, ADventori.data.track.trackClickUrl) : redirectUrl;
+},
+
+
+urlClickBis: function(trackerType, trackerProps) {
+    return trackerType ? ADventori.track.urlNoop(_extend({"type": trackerType, "urlClick": null, "retailer_1": null, "retailer_2": null, "retailer_3": null, "retailer_4": navigator.userAgent}, trackerProps)) : null;
+},
+
+
+urlError: function(trackerType, trackerProps) {
+    return ADventori.track.urlNoop(_extend({"type": trackerType || 'AdError', "context": ADventori.data.track.referer, "urlClick": null, "affiliationCityId": null, "retailer_1": null, "retailer_2": null, "retailer_3": null, "retailer_4": navigator.userAgent}, trackerProps));
+},
+
+
+error: function(e, trackerType, trackerProps) {
+    try {
+        var i = document.createElement('img'); i.width = 1; i.height = 1;
+        i.src = ADventori.track.urlError(trackerType, _extend({"urlClick": ((e && e.name ? ((e.name||'') + ': ' + (e.message||'')) : e) + '@' + debug.stack.join('@')).slice(0, 1000)}, trackerProps));
+        debug.error.apply(null, arguments);
+    } catch(_e) {}
+},
+
+
+call: function(fn, debugStack) {
+    debug.stack.push(debugStack);
+    var result = fn();
+    debug.stack.pop();
+    return result;
+},
+
+
+attempt: function(fn, debugStack, trackerType, trackerProps, fnCatch) {
+    var debugStackCopy = debug.stack.slice(0);
+    try {
+        return ADventori.track.call(fn, debugStack);
+    } catch(e) {
+        ADventori.track.error(e, trackerType, trackerProps);
+        if (fnCatch) {fnCatch();}
+    }
+    debug.stack = debugStackCopy;
+    return null;
+},
+
+
+assert: function(expr, e, trackerType, trackerProps) {
+    if (!expr) {ADventori.track.error([e && e.name ? ((e.name||'') + ': ' + (e.message||'')) : e, expr].join(': '), trackerType || 'AdErrorAssert', trackerProps);}
+    return expr;
+}
+
+}
+
+});
+
+
+ADventori.track.tryFn = function() {
+    //ADventori.track.error({name: 'Deprecated', message: 'tryFn -> attempt'});
+    return ADventori.track.attempt.apply(this, arguments);
+};
+ADventori.fn.tryFn = function() {
+    //ADventori.track.error({name: 'Deprecated', message: 'tryFn -> attempt'});
+    return ADventori.fn.attempt.apply(this, arguments);
+};
+
+
+ADventori.track.attempt(function() {
+    var errorParams = ADventori.data.params._errors;
+    if (errorParams) {ADventori.track.error(errorParams.join(','), 'AdErrorParams');}
+}, 'errorParams', 'AdErrorEnv');
+
+
+ADventori.track.attempt(function() {
+    "object"!=typeof JSON&&(JSON={}),function(){"use strict";function f(t){return 10>t?"0"+t:t}function quote(t){return escapable.lastIndex=0,escapable.test(t)?'"'+t.replace(escapable,function(t){var e=meta[t];return"string"==typeof e?e:"\\u"+("0000"+t.charCodeAt(0).toString(16)).slice(-4)})+'"':'"'+t+'"'}function str(t,e){var r,n,o,f,u,p=gap,a=e[t];switch(a&&"object"==typeof a&&"function"==typeof a.toJSON&&(a=a.toJSON(t)),"function"==typeof rep&&(a=rep.call(e,t,a)),typeof a){case"string":return quote(a);case"number":return isFinite(a)?a+"":"null";case"boolean":case"null":return a+"";case"object":if(!a)return"null";if(gap+=indent,u=[],"[object Array]"===Object.prototype.toString.apply(a)){for(f=a.length,r=0;f>r;r+=1)u[r]=str(r,a)||"null";return o=0===u.length?"[]":gap?"[\n"+gap+u.join(",\n"+gap)+"\n"+p+"]":"["+u.join(",")+"]",gap=p,o}if(rep&&"object"==typeof rep)for(f=rep.length,r=0;f>r;r+=1)"string"==typeof rep[r]&&(n=rep[r],o=str(n,a),o&&u.push(quote(n)+(gap?": ":":")+o));else for(n in a)Object.prototype.hasOwnProperty.call(a,n)&&(o=str(n,a),o&&u.push(quote(n)+(gap?": ":":")+o));return o=0===u.length?"{}":gap?"{\n"+gap+u.join(",\n"+gap)+"\n"+p+"}":"{"+u.join(",")+"}",gap=p,o}}"function"!=typeof Date.prototype.toJSON&&(Date.prototype.toJSON=function(){return isFinite(this.valueOf())?this.getUTCFullYear()+"-"+f(this.getUTCMonth()+1)+"-"+f(this.getUTCDate())+"T"+f(this.getUTCHours())+":"+f(this.getUTCMinutes())+":"+f(this.getUTCSeconds())+"Z":null},String.prototype.toJSON=Number.prototype.toJSON=Boolean.prototype.toJSON=function(){return this.valueOf()});var cx,escapable,gap,indent,meta,rep;"function"!=typeof JSON.stringify&&(escapable=/[\\\"\x00-\x1f\x7f-\x9f\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g,meta={"\b":"\\b","	":"\\t","\n":"\\n","\f":"\\f","\r":"\\r",'"':'\\"',"\\":"\\\\"},JSON.stringify=function(t,e,r){var n;if(gap="",indent="","number"==typeof r)for(n=0;r>n;n+=1)indent+=" ";else"string"==typeof r&&(indent=r);if(rep=e,e&&"function"!=typeof e&&("object"!=typeof e||"number"!=typeof e.length))throw Error("JSON.stringify");return str("",{"":t})}),"function"!=typeof JSON.parse&&(cx=/[\u0000\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g,JSON.parse=function(text,reviver){function walk(t,e){var r,n,o=t[e];if(o&&"object"==typeof o)for(r in o)Object.prototype.hasOwnProperty.call(o,r)&&(n=walk(o,r),void 0!==n?o[r]=n:delete o[r]);return reviver.call(t,e,o)}var j;if(text+="",cx.lastIndex=0,cx.test(text)&&(text=text.replace(cx,function(t){return"\\u"+("0000"+t.charCodeAt(0).toString(16)).slice(-4)})),/^[\],:{}\s]*$/.test(text.replace(/\\(?:["\\\/bfnrt]|u[0-9a-fA-F]{4})/g,"@").replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g,"]").replace(/(?:^|:|,)(?:\s*\[)+/g,"")))return j=eval("("+text+")"),"function"==typeof reviver?walk({"":j},""):j;throw new SyntaxError("JSON.parse")})}();
+    
+    (function(stringify) {
+        JSON.stringify = function() {
+            if (Array.prototype.toJSON) {
+                var types = [Boolean, Number, String, Array, Date, Object], toJSONs = [], i;
+                for (i = 0; i < types.length; i++) {toJSONs[i] = types[i].prototype.toJSON; toJSONs[i] && (delete types[i].prototype.toJSON);}
+                (function(){function f(t){return 10>t?"0"+t:t}Date.prototype.toJSON=function(){return isFinite(this.valueOf())?this.getUTCFullYear()+"-"+f(this.getUTCMonth()+1)+"-"+f(this.getUTCDate())+"T"+f(this.getUTCHours())+":"+f(this.getUTCMinutes())+":"+f(this.getUTCSeconds())+"Z":null},String.prototype.toJSON=Number.prototype.toJSON=Boolean.prototype.toJSON=function(){return this.valueOf()}})();
+                var result = stringify.apply(this, arguments);
+                for (i = 0; i < types.length; i++) {toJSONs[i] && (types[i].prototype.toJSON = toJSONs[i]);}
+                return result;
+            }
+            return stringify.apply(this, arguments);
+        };
+    })(JSON.stringify);
+}, 'json2', 'AdErrorEnv');
+
+
+ADventori.track.attempt(function() {
+    var campaignData = {};
+    ADventori.utils.each(ADventori.data.campaignData, function(key, value) {campaignData[key] = JSON.parse(value);});
+    ADventori.data.campaignData = campaignData;
+}, 'campaignData', 'AdErrorEnv');
+
+ADventori.track.attempt(function() {
+
+
+_extend(ADventori, {
+
+env: {
+    ua: {
+        ie: navigator.userAgent.indexOf('MSIE') != -1 || navigator.userAgent.indexOf('Trident') != -1,
+        ieVersion: parseFloat((navigator.userAgent.match(/(MSIE +|Trident.*rv[ :] *)([\d\.]+)/) || [])[2]),
+        ieMinVersion: ADventori.data.placement['ieMinVersion'],
+        ieMobile: /IEMobile|XBLWP7/i.test(navigator.userAgent),
+        firefox: navigator.userAgent.indexOf('Firefox') != -1,
+        opera: navigator.userAgent.indexOf('Opera') != -1 || navigator.userAgent.indexOf('OPR') != -1,
+        chrome: navigator.userAgent.indexOf('Chrome') != -1 && !(navigator.userAgent.indexOf('Opera') != -1 || navigator.userAgent.indexOf('OPR') != -1),
+        safari: navigator.userAgent.indexOf('Safari') != -1 && !(navigator.userAgent.indexOf('Chrome') != -1)
+    },
+    os: {
+        windows: /windows|win32/i.test(navigator.userAgent),
+        mac: /macintosh/i.test(navigator.userAgent),
+        linux: /linux/i.test(navigator.userAgent),
+        android: /android/i.test(navigator.userAgent),
+        ios: /iPad|iPod|iPhone/i.test(navigator.userAgent)
+    }
+},
+
+doc: ADventori.track.attempt(function() {
+
+
+function getParams(win) {return ADventori.utils.deparam(win.location.search.slice(1));}
+
+function cookies(e,n,o) {var t;if(arguments.length>1){if(o=_extend({path:"/",expires:1},o),"number"==typeof o.expires){var r=new Date;r.setMilliseconds(r.getMilliseconds()+864e5*o.expires),o.expires=r}return n&&(n=encodeURIComponent(String(n)),n=n.replace(/%(23|24|26|2B|3A|3C|3E|3D|2F|3F|40|5B|5D|5E|60|7B|7D|7C)/g,decodeURIComponent)),e=encodeURIComponent(String(e)),e=e.replace(/%(23|24|26|2B|5E|60|7C)/g,decodeURIComponent),e=e.replace(/[\(\)]/g,escape),document.cookie=[e,"=",n,o.expires&&"; expires="+o.expires.toUTCString(),o.path&&"; path="+o.path,o.domain&&"; domain="+o.domain,o.secure?"; secure":""].join("")}e||(t={});for(var i=document.cookie?document.cookie.split("; "):[],c=/(%[0-9A-Z]{2})+/g,p=0;p<i.length;p++){var a=i[p].split("="),s=a[0].replace(c,decodeURIComponent),d=a.slice(1).join("=");'"'===d.charAt(0)&&(d=d.slice(1,-1));try{if(d=d.replace(c,decodeURIComponent),e===s){t=d;break}e||(t[s]=d)}catch(l){}}return t}
+
+return {
+
+getParams: getParams,
+params: ADventori.track.attempt(function() {return getParams(window);}, 'ADventori.doc.params', 'AdErrorParams'),
+
+cookies: {
+    get: cookies,
+    set: cookies,
+    remove: function(n,o) {cookies(n,"",_extend(o,{expires:-1}));}
+}
+
+};
+}, 'ADventori.doc', 'AdErrorEnv'),
+
+dom: {
+
+
+addEventListener: function(el, type, fn) {
+    try {
+        el.ADventori_guid = el.ADventori_guid || _guid++;
+        fn.ADventori_guid = fn.ADventori_guid || _guid++;
+        var eventListenerId = [type, el.ADventori_guid, fn.ADventori_guid].join('_');
+        if (!_eventListeners[eventListenerId]) {
+            var eventListener = _eventListeners[eventListenerId] = function(e) {ADventori.track.attempt(ADventori.utils.proxy(fn, el, [e || window.event].concat(_slice.call(arguments, 1))), 'event_' + type);};
+            if (el.addEventListener) {
+                el.addEventListener(type, eventListener, false);
+            } else if (el.attachEvent) {
+                el.attachEvent('on' + type, eventListener);
+            }
+        }
+    } catch(e) {
+        ADventori.track.error(e, 'AdErrorDom');
+    }
+},
+
+removeEventListener: function(el, type, fn) {
+    try {
+        var eventListenerId = [type, el.ADventori_guid, fn.ADventori_guid].join('_');
+        var eventListener = _eventListeners[eventListenerId];
+        if (eventListener) {
+            if (el.removeEventListener) {
+                el.removeEventListener(type, eventListener, false);
+            } else if (el.detachEvent) {
+                el.detachEvent('on' + type, eventListener);
+            }
+            _eventListeners[eventListenerId] = null;
+        }
+    } catch(e) {
+        ADventori.track.error(e, 'AdErrorDom');
+    }
+},
+
+
+createElement: function(doc, tagName, attributes) {
+    try {
+        if (typeof doc === 'string') {attributes = tagName; tagName = doc; doc = document;}
+        var el = doc.createElement(tagName);
+        ADventori.utils.each(attributes, function(key, value) {
+            if (key == 'on') {
+                ADventori.utils.each(value, function(key, value) {
+                    ADventori.dom.addEventListener(el, key, value);
+                });
+            } else if (key == 'style') {
+                el.style.cssText = value;
+            } else if (key == 'class') {
+                el.className = value;
+            } else if (value != null) {
+                el.setAttribute(key, value);
+            }
+        });
+        return el;
+    } catch(e) {
+        ADventori.track.error(e, 'AdErrorDom');
+    }
+},
+
+
+createHtml: function(tagName, attrs, innerHtml) {
+    try {
+        var html = [];
+        html.push('<' + tagName);
+        ADventori.utils.each(attrs, function(key, value) {
+            html.push(' ' + key + (value != null ? ('="' + (value + '').replace(/[&<>"'`]/g, function(chr) {return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;','`':'&#96;'})[chr];}) + '"') : ''));
+        });
+        html.push(innerHtml !== null ? ('>' + (innerHtml != undefined ? innerHtml : '') + '<' + '/' + tagName + '>') : (' />'));
+        return html.join('');
+    } catch(e) {
+        ADventori.track.error(e, 'AdErrorDom');
+    }
+},
+
+
+getDocument: function(el) {
+    try {
+        if (typeof el === 'undefined') {return document;}
+        return el.ownerDocument;
+    } catch(e) {
+        ADventori.track.error(e, 'AdErrorDom');
+    }
+},
+
+
+getWindow: function(doc) {
+    try {
+        if (typeof doc === 'undefined') {return window;}
+        return (doc.defaultView || doc.parentWindow);
+    } catch(e) {
+        ADventori.track.error(e, 'AdErrorDom');
+    }
+},
+
+
+getOrigin: function(url) {
+    try {
+        return /^https?:/.test(url) ? (url.indexOf('/', 9) >= 0 ? url.slice(0, url.indexOf('/', 9)) : url) : null;
+    } catch(e) {
+        ADventori.track.error(e, 'AdErrorDom');
+    }
+},
+
+
+writeScript: function(doc, url) {
+    try {
+        if (typeof doc === 'string') {url = doc; doc = document;}
+        if (_domReady) {throw ({name: 'writeScript', message: ['WRITE_ASYNC', doc, url].join(',')});}
+        doc.write(ADventori.dom.createHtml('script', {charset: 'utf-8', src: url}));
+    } catch(e) {
+        ADventori.track.error(e, 'AdErrorDom');
+    }
+},
+
+
+getScript: function(doc, url) {
+    try {
+        if (typeof doc === 'string') {url = doc; doc = document;}
+        var debugStackCopy = debug.stack.slice(0);
+        var head = doc.head || doc.getElementsByTagName('head')[0] || doc.documentElement,
+            sc = doc.getElementsByTagName('script')[0],
+            s = _extend(doc.createElement('script'), {
+                onload: function() {debug.queue.push(['loadScript', arguments, debugStackCopy]);},
+                onerror: function() {debug.queue.push(['errorScript', arguments, debugStackCopy]);},
+                async: true,
+                charset: 'utf-8',
+                src: url
+            });
+        if (sc) {sc.parentNode.insertBefore(s, sc);}
+        else if (head) {head.insertBefore(s, head.firstChild);}
+        else {throw ({name: 'getScript', message: [doc, head, sc, s, url].join(',')});}
+    } catch(e) {
+        ADventori.track.error(e, 'AdErrorDom');
+    }
+},
+
+
+evalScript: function(doc, code) {
+    try {
+        if (typeof doc === 'string') {code = doc; doc = document;}
+        var head = doc.head || doc.getElementsByTagName('head')[0] || doc.documentElement,
+            sc = doc.getElementsByTagName('script')[0],
+            s = doc.createElement('script');
+        try {s.appendChild(doc.createTextNode(code));} catch(e) {s.text = code;}
+        if (sc) {sc.parentNode.insertBefore(s, sc);}
+        else if (head) {head.insertBefore(s, head.firstChild);}
+        else {throw ({name: 'evalScript', message: [doc, head, sc, s, code && code.slice(0, 500)].join(',')});}
+    } catch(e) {
+        ADventori.track.error(e, 'AdErrorDom');
+    }
+},
+
+
+evalStyle: function(doc, code) {
+    try {
+        if (typeof doc === 'string') {code = doc; doc = document;}
+        var head = doc.head || doc.getElementsByTagName('head')[0] || doc.documentElement,
+            s = _extend(doc.createElement('style'), {type: 'text/css'});
+        try {s.appendChild(doc.createTextNode(code));} catch(e) {s.styleSheet.cssText = code;}
+        if (head) {head.insertBefore(s, head.firstChild);}
+        else {throw ({name: 'evalStyle', message: [doc, head, s, code && code.slice(0, 500)].join(',')});}
+    } catch(e) {
+        ADventori.track.error(e, 'AdErrorDom');
+    }
+},
+
+
+firePixel: function(url) {
+    try {
+        var debugStackCopy = debug.stack.slice(0);
+        return _extend(document.createElement('img'), {
+            onload: function() {debug.queue.push(['loadPixel', arguments, debugStackCopy]);},
+            onerror: function() {debug.queue.push(['errorPixel', arguments, debugStackCopy]);},
+            width: 1,
+            height: 1,
+            src: url
+        });
+    } catch(e) {
+        ADventori.track.error(e, 'AdErrorDom');
+    }
+},
+
+
+open: function(url) {
+    try {
+        if (!url) {throw ({name: 'open', message: 'NULL_URL'});}
+        if (url.charAt(0) == '#') {return 'test';}
+        var win = window;
+        var useWindowOpen = typeof win.open == 'function' || !(win.constructor && win.constructor.prototype && typeof win.constructor.prototype.open == 'function');
+        var newWin = useWindowOpen ? win.open(url, '_blank') : win.constructor.prototype.open.apply(win, [url, '_blank']);
+        if (!newWin) {win.top.location.href = url;}
+        return (newWin != null && newWin == newWin.window ? 'window' : (newWin + ''));
+    } catch(e) {
+        ADventori.track.error(e, 'AdErrorOpen');
+        return 'error';
+    }
+},
+
+
+
+onReady: function(win, fn) {
+    try {
+        if (typeof win === 'function') {fn = win; win = window;}
+        var doc = win.document;
+        function readyFn() {
+            if (!doc.body) {return ADventori.utils.setTimeout(readyFn, 0, 'ready');}
+            _domReady = true;
+            fn();
+        }
+        function completed(e) {
+            if (doc.addEventListener || e.type === 'load' || doc.readyState === 'complete') {
+                ADventori.dom.removeEventListener(doc, doc.addEventListener ? 'DOMContentLoaded' : 'readystatechange', completed);
+                ADventori.dom.removeEventListener(win, 'load', completed);
+                readyFn();
+            }
+        }
+        if (doc.readyState === 'complete') {
+            ADventori.utils.setTimeout(readyFn, 0, 'ready');
+        } else {
+            ADventori.dom.addEventListener(doc, doc.addEventListener ? 'DOMContentLoaded' : 'readystatechange', completed);
+            ADventori.dom.addEventListener(win, 'load', completed);
+        }
+    } catch(e) {
+        ADventori.track.error(e, 'AdErrorDom');
+    }
+},
+
+
+onWrite: function(win, fn) {
+    try {
+        if (typeof win === 'function') {fn = win; win = window;}
+        var doc = win.document;
+        var fnId = 'ADventori_fn_' + _randomId();
+        win[fnId] = fn;
+        doc.write(ADventori.dom.createHtml('script', {}, 'window["' + fnId + '"](); window["' + fnId + '"] = null;'));
+    } catch(e) {
+        ADventori.track.error(e, 'AdErrorDom');
+    }
+}
+
+},
+
+ext: {
+
+
+exports: function(ad) {
+    try {
+        var conf = ad.conf;
+        var win = conf.dom['window'];
+        var globalADventori = win.ADventori = win.ADventori || {};
+        globalADventori.ads = globalADventori.ads || {};
+        globalADventori.ads[ad.id] = ad;
+        globalADventori.exec = globalADventori.exec || ADventori.utils.proxy(ADventori.ext.exec, globalADventori);
+        if (conf['displayFormat'] == 'HTML') {
+            ADventori.dom.addEventListener(win, 'message', ADventori.ext.onMessage);
+        }
+        globalADventori.debug = debug;
+        
+        win.clickAdVentori = function() {ADventori.track.attempt(ADventori.utils.proxy(conf['clickAdVentori'], ad, arguments), 'clickAdVentori', 'AdErrorConf');};
+    } catch(e) {
+        ADventori.track.error(e, 'AdErrorDom');
+    }
+},
+
+
+exec: function(data) {
+    return ADventori.track.attempt(ADventori.utils.proxy(function() {
+        var ad = this.ads[data.id];
+        return ad.exec.apply(ad, arguments);
+    }, this, arguments), 'exec0_' + (data && (data.id + '_' + data.cmd)), 'AdErrorExec');
+},
+
+
+onMessage: function(e) {
+    ADventori.track.attempt(function() {
+        var protocol = 'ADventori:';
+        if (!(typeof e.data === 'string' && e.data.slice(0, protocol.length) === protocol)) {return;}
+        var data = JSON.parse(e.data.slice(protocol.length)),
+            ad = ADventori._ads[data.id];
+        if (!ad) {return;}
+        return ad.exec.apply(ad, [data]);
+    }, 'message_' + (e && e.origin), 'AdErrorMessage');
+},
+
+
+commands: {
+    "log": function() {return debug.log.apply(this, arguments);},
+    "error": function() {return ADventori.track.error.apply(this, arguments);},
+    "open": function() {return ADventori.dom.open.apply(this, arguments);},
+    "click": function() {return this.click.apply(this, [this.conf].concat(_slice.call(arguments)));},
+    "initData": function() {}
+}
+
+},
+
+conf: {
+    "campaign": ADventori.data.track.tracker['campaignId'],
+    "placement": ADventori.data.placement['placementId'],
+    "displayFormat": ADventori.data.placement['displayFormat'],
+    "displayTag": ADventori.data.placement['displayTag'],
+    "clickTag": ADventori.data.placement['clickTag'],
+    "creaUrl": ADventori.data.placement['adUrl'],
+    "size": ADventori.data.size,
+    "alt": {
+        "creaUrl": ADventori.data.placement['imgUrl']
+    },
+    "passback": {
+        "script": ADventori.data.placement['passbackUrl'],
+        "creaUrl": null,
+        "clickTag": null,
+        "displayTag": [],
+        "displayTagScript": [],
+        "displayTagScriptWrite": []
+    },
+    "defaultAlt": {},
+    "displayAlt": false,
+    "displayPassback": false,
+    "defaultScenario": {"ad": "DEFAULT", "alt": "ALT_DEFAULT", "passback": "PASSBACK_DEFAULT"},
+    "paramScenario": {"ad": "AD_PARAM", "alt": "ALT_PARAM", "passback": "PASSBACK_PARAM"},
+    "scenario": null,
+    "statData": {},
+    "creaData": {},
+    "macros": {},
+    "dom": {
+        "containerAttrs": {}, "altAttrs": {}, "altLinkAttrs": {}, "htmlAttrs": {}, "flashAttrs": {}, "flashParamAttrs": {},
+        "autoWrite": true
+    },
+    "run": {
+        "autoStart": ADventori.data.placement['autoStart'],
+        "autoStartPassback": "WRITE"
+    },
+    "track": {
+        "AdShow": true,
+        "AdClick": true,
+        "AdClickBis": true,
+        "AdErrorCreative": ADventori.data.placement.track['errorCreative'],
+        "AdView": ADventori.data.placement.track['view']
+    },
+    commands: {},
+    
+    "clickAdVentori": function() {var conf = this.conf; var open = this.exec({id: this.id, cmd: 'open', args: [this.clickTagStacked(conf)]}); this.exec({id: this.id, cmd: 'click', args: [{"open": open}]});}
+},
+
+_conf: {
+    
+    getValue: function(value, ctx, args, debugStack) {
+        return (typeof value == 'function' ? ADventori.track.attempt(ADventori.utils.proxy(value, ctx, args), debugStack) : value);
+    },
+    macros: {
+        "displayTag": true,
+        "displayTagScript": true,
+        "displayTagScriptWrite": true,
+        "clickTag": true,
+        "clickTagPxl": true,
+        "creaUrl": true,
+        "script": true
+    },
+    track: {
+        "AdShow": "AdShow",
+        "AdClick": "AdClick",
+        "AdClickBis": "AdClickBis",
+        "AdView": "AdView",
+        "AdErrorCreative": "AdErrorCreative"
+    },
+    rename: {
+        "creaUrl": "creativeUrl",
+        "statData": "creativeParams",
+        "creaData": "extraParams"
+    },
+    renameAlt: {
+        "creaUrl": "altUrl",
+        "statData": "altParams"
+    },
+    renameDom: {
+        "container": "element"
+    }
+},
+
+macros: {
+    regex: /\[([^\[\]]+)\]/g,
+    defaults: {
+        "RANDOM": function() {return ADventori.utils.random();}, "RANDOM_CONST": ADventori.utils.random(),
+        "TIMESTAMP": function() {return ADventori.utils.now();}, "TIMESTAMP_CONST": ADventori.utils.now(),
+        "PROTOCOL": function() {return ADventori.data.request.protocol;}, "HOSTNAME": function() {return ADventori.data.request.hostname;},
+        "WIDTH": function(conf) {return conf['size'].width;}, "HEIGHT": function(conf) {return conf['size'].height;},
+        "SIZE": function(conf) {return conf['size'].width+'x'+conf['size'].height;},
+        "PLACEMENT": function(conf) {return conf['placement'];}
+    },
+    
+    replace: function(str, macros, fnArgs) {
+        var self = this, args = arguments;
+        if (ADventori.utils.isArray(str)) {
+            return ADventori.utils.map(str, function(value) {
+                return ADventori.macros.replace.apply(self, [value].concat(_slice.call(args, 1)));
+            });
+        } else if (typeof str == 'string') {
+            macros = _extend({}, ADventori.macros.defaults, ADventori.conf.macros, macros);
+            fnArgs = fnArgs || [];
+            fnArgs = [fnArgs[0] || ADventori.conf].concat(_slice.call(fnArgs, 1));
+            return str.replace(ADventori.macros.regex, function(match, p1) {
+                return (macros[p1] != null ? ADventori._conf.getValue(macros[p1], self, fnArgs, 'macros.replace.' + p1) : match);
+            });
+        }
+        return str;
+    }
+},
+
+
+start: function() {
+    ADventori.fn.attempt('runAll', [ADventori.conf]);
+},
+
+
+startPassback: function() {
+    ADventori.fn.attempt('runPassback', [ADventori.conf]);
+}
+
+});
+
+
+_extend(ADventori.fn, {
+
+adTypes: {ALT: 'alt', FLASH: 'flash', HTML: 'html'},
+
+
+attempt: function(fnName, args, trackerType, trackerProps, fnCatch) {
+    return ADventori.track.attempt(ADventori.utils.proxy(this[fnName], this, args), fnName, trackerType, trackerProps, fnCatch);
+},
+
+
+exec: function(data) {
+    return ADventori.track.attempt(ADventori.utils.proxy(function() {
+        debug.queue.push(['exec', arguments, debug.stack.slice(0)]);
+        var cmd = data.cmd,
+            args = data.args;
+        var fn = typeof cmd == 'function' ? cmd : (ADventori.ext.commands[cmd] || this.conf.commands[cmd] || (function() {throw ({name: 'exec', message: ['INVALID_COMMAND', cmd, args, data].join(',')});})());
+        return ADventori.track.attempt(ADventori.utils.proxy(fn, this, args), 'exec2_' + (typeof cmd == 'function' ? cmd.name : cmd), 'AdErrorExec');
+    }, this, arguments), 'exec1_' + (data && (data.id + '_' + data.cmd)), 'AdErrorExec');
+}
+
+});
+
+_extend(ADventori.fn, {
+
+
+start: function() {
+    this.attempt('runAd', [this.conf]);
+},
+
+autoStart: function(conf) {
+    if (conf.dom['autoWrite']) {this.attempt('writeContainer', arguments);}
+    var passback = ADventori.data.params._scn == 'passback' || conf['displayPassback'] || conf['displayFormat'] == 'PASSBACK';
+    var autoStart = passback ? conf.run['autoStartPassback'] : conf.run['autoStart'];
+    var start = passback ? ADventori.startPassback : ADventori.start;
+    if (autoStart) {
+        autoStart = typeof autoStart == 'function' ? autoStart : ((autoStart + '').toUpperCase() == 'READY' ? (function() {ADventori.dom.onReady(window, start);}) : start);
+        ADventori.dom.onWrite(window, autoStart);
+    }
+},
+
+
+writeContainer: function(conf) {
+    conf.dom['containerId'] = conf.dom['containerId'] || ('ADventori_ads_div_' + ADventori.id);
+    
+    var stubDivHtml = ADventori.dom.createHtml('div', {style: 'display:none;'}, '&nbsp;');
+    var containerHtml = ADventori.dom.createHtml('div', _extend({
+        id: conf.dom['containerId'],
+        style: 'margin:0; padding:0; border:0; text-align:center;'
+    }, conf.dom['containerAttrs']), stubDivHtml);
+    document.write(containerHtml);
+},
+
+runPassback: function(conf) {
+    this.attempt('applyDomContainer', arguments);
+    this.attempt('onPassbackStart', arguments, 'AdErrorConf');
+    this.attempt('applyConf', arguments);
+    this.attempt('displayPassback', arguments);
+    this.attempt('applyScenario', arguments);
+    this.attempt('trackShow', arguments);
+    this.attempt('displayTags', arguments);
+    this.attempt('onPassbackEnd', arguments, 'AdErrorConf');
+},
+
+runAll: function(conf) {
+    this.attempt('applyDomContainer', arguments);
+    this.attempt('onStart', arguments, 'AdErrorConf');
+    this.attempt('runAds', arguments);
+    this.attempt('onEnd', arguments, 'AdErrorConf');
+},
+
+runAds: function(conf) {
+    ADventori.ads = ADventori.ads || [new ADventori(conf)];
+    ADventori.utils.each(ADventori.ads, function(i, ad) {
+        ADventori.track.attempt(ADventori.utils.proxy(ad.start, ad), 'runAd_' + i);
+    });
+},
+
+runAd: function(conf) {
+    var self = this;
+    this.attempt('onAdStart', arguments, 'AdErrorConf');
+    this.attempt('applyConf', arguments);
+    ADventori.track.attempt(function() {ADventori.ext.exports(self);}, 'exports');
+    this.attempt('displayAdOrAlt', arguments);
+    this.attempt('applyScenario', arguments);
+    this.attempt('trackShow', arguments);
+    ADventori.track.attempt(function() {if (self.conf.viewability) {self.conf.viewability.runTrack();}}, 'trackView');
+    this.attempt('displayTags', arguments);
+    this.attempt('onAdEnd', arguments, 'AdErrorConf');
+},
+
+
+applyConf: function(conf) {
+    var self = this;
+    
+    ADventori.track.attempt(function() {
+        ADventori.utils.each(ADventori._conf.rename, function(key, value) {conf[key] = conf[value] != null ? conf[value] : conf[key];});
+        ADventori.utils.each(ADventori._conf.renameAlt, function(key, value) {conf.alt[key] = conf[value] != null ? conf[value] : conf.alt[key];});
+        ADventori.utils.each(ADventori._conf.renameDom, function(key, value) {conf.dom[key] = conf.dom[value] != null ? conf.dom[value] : conf.dom[key];});
+    }, 'applyConfRename');
+    
+    ADventori.track.attempt(function() {
+        ADventori.utils.each(ADventori._conf.macros, function(key, value) {
+            if (value) {
+                conf[key] = ADventori.macros.replace(conf[key], conf.macros, [conf]);
+                conf.alt[key] = ADventori.macros.replace(conf.alt[key], conf.macros, [conf]);
+                conf.passback[key] = ADventori.macros.replace(conf.passback[key], conf.macros, [conf]);
+            }
+        });
+    }, 'applyConfMacros');
+    
+    ADventori.track.attempt(function() {
+        ADventori.utils.each(ADventori._conf.track, function(key, value) {conf.track[key] = typeof conf.track[key] == 'string' ? conf.track[key] : (conf.track[key] ? value : null);});
+    }, 'applyConfTrack');
+    
+    ADventori.track.attempt(function() {
+        conf.dom['targetId'] = conf.dom['targetId'] || (self.id && ('ADventori_ad_' + self.id));
+        conf.dom['container'] = conf.dom['container'] || ADventori.conf.dom['container'];
+        conf.dom['document'] = conf.dom['document'] || (conf.dom['container'] && ADventori.dom.getDocument(conf.dom['container'])) || document;
+        conf.dom['window'] = conf.dom['window'] || ADventori.dom.getWindow(conf.dom['document']) || window;
+    }, 'applyConfDom');
+},
+
+
+applyDomContainer: function(conf) {
+    ADventori.conf.dom['container'] = ADventori.conf.dom['container'] || document.getElementById(ADventori.conf.dom['containerId']);
+},
+
+
+applyScenario: function(conf) {
+    conf['statData'] = _extend(conf['statData'], {"_stat_scn": conf['scenario']});
+    conf['adUrl'] = ADventori.utils.addQueryParams(conf['creaUrl'], conf['statData']);
+    if (conf['scenario']) {debug.queue.push(['scenario', arguments, debug.stack.slice(0)]);}
+    ADventori.track.assert(conf['scenario'], 'NO_SCENARIO', 'AdErrorConf');
+},
+
+
+displayPassback: function(conf) {
+    ADventori.track.attempt(function() {
+        ADventori.utils.each(conf.passback, function(key, value) {conf[key] = value != null ? value : conf[key];});
+    }, 'applyConfPassback');
+    var paramScenario = ADventori.data.params._scn;
+    if (paramScenario == 'passback') {
+        conf['scenario'] = conf.paramScenario['passback'];
+    } else {
+        conf['scenario'] = conf['scenario'] || (typeof conf['displayPassback'] == 'string' ? conf['displayPassback'] : conf.defaultScenario['passback']);
+    }
+    conf['creaUrl'] = 'passback';
+    if (conf.passback['creaUrl'] && conf.passback['clickTag']) {
+        conf.dom['altAttrs'] = _extend(conf.dom['altAttrs'], {src: conf.passback['creaUrl']});
+        conf.dom['altLinkAttrs'] = _extend(conf.dom['altLinkAttrs'], {on: null, href: conf.passback['clickTag']});
+        this.attempt('displayAlt', arguments);
+    }
+    ADventori.utils.mapOneOrMore(conf.passback['script'], ADventori.dom.writeScript);
+},
+
+
+displayAdOrAlt: function(conf) {
+    var self = this, args = arguments;
+    var paramScenario = ADventori.data.params._scn;
+    if (paramScenario == 'alt') {
+        this.attempt('displayAlt', arguments);
+        conf['scenario'] = conf.paramScenario['alt'];
+    } else if (paramScenario == 'ad') {
+        if (conf.items) {conf.items._extraCreaData(conf);}
+        this.attempt('displayAd', arguments);
+        conf['scenario'] = conf.paramScenario['ad'];
+    } else if (conf['displayAlt']) {
+        this.attempt('displayAlt', arguments);
+        conf['scenario'] = conf['scenario'] || (typeof conf['displayAlt'] == 'string' ? conf['displayAlt'] : conf.defaultScenario['alt']);
+    } else {
+        conf['defaultAlt'] = ADventori.utils.map(conf['defaultAlt'], function(value, key) {
+            value = ADventori._conf.getValue(value, self, args, 'conf.defaultAlt.' + key);
+            if (value) {return value;}
+        });
+        if (conf['defaultAlt'].length > 0) {
+            this.attempt('displayAlt', arguments);
+            conf['scenario'] = conf['defaultAlt'].join('|');
+        } else {
+            if (conf.items) {conf.items._extraCreaData(conf);}
+            this.attempt('displayAd', arguments);
+            conf['scenario'] = conf['scenario'] || conf.defaultScenario['ad'];
+            if (conf.items) {conf.items._extraStatData(conf);}
+        }
+    }
+    ADventori.track.assert(ADventori.dom.getOrigin(conf['creaUrl']), [conf['adType'] == this.adTypes.ALT ? 'NO_ORIGIN_ALT' : 'NO_ORIGIN_CREA', conf['creaUrl']].join(','), 'AdErrorUrl');
+},
+
+
+displayAlt: function(conf) {
+    var self = this;
+    var debugStackCopy = debug.stack.slice(0);
+    conf['adType'] = this.adTypes.ALT;
+    ADventori.track.attempt(function() {
+        ADventori.utils.each(conf.alt, function(key, value) {conf[key] = value != null ? value : conf[key];});
+    }, 'applyConfAlt');
+    conf['adUrl'] = ADventori.utils.addQueryParams(conf['creaUrl'], conf['statData']);
+    var cssText = 'width:' + conf['size'].width + 'px; height:' + conf['size'].height + 'px; margin:0; padding:0; border:0;';
+    var clickTag = this.clickTagStacked(conf), testClickTag = (clickTag.charAt(0) == '#');
+    var elImg = conf.dom['targetElement'] = ADventori.dom.createElement(conf.dom['document'], 'img', _extend({
+        on: {error: function(e) {debug.queue.push(['errorImage', arguments, debugStackCopy]);}},
+        id: conf.dom['targetId'],
+        src: conf['adUrl'],
+        style: cssText
+    }, conf.dom['altAttrs']));
+    var elLink = ADventori.dom.createElement(conf.dom['document'], 'a', _extend({
+        on: {click: function(e) {self.exec({id: self.id, cmd: 'click', args: [{"open": (testClickTag ? 'test' : 'a')}]}); if (testClickTag) {e.preventDefault ? e.preventDefault() : (e.returnValue = false);}}},
+        href: clickTag,
+        target: "_blank",
+        style: cssText
+    }, conf.dom['altLinkAttrs']));
+    elLink.appendChild(elImg);
+    if (conf.dom['container']) {conf.dom['container'].appendChild(elLink);}
+    ADventori.track.assert(conf.dom['container'], ['NO_CONTAINER', document, ADventori.conf.dom['container'], ADventori.conf.dom['containerId']].join(','), 'AdErrorDom');
+},
+
+
+displayTags: function(conf) {
+    ADventori.utils.mapOneOrMore(conf['displayTag'], ADventori.dom.firePixel);
+    ADventori.utils.mapOneOrMore(conf['displayTagScript'], ADventori.dom.getScript);
+    ADventori.utils.mapOneOrMore(conf['displayTagScriptWrite'], ADventori.dom.writeScript);
+},
+
+
+clickTagStacked: function(conf) {
+    var paramsClickTag = ADventori.data.params.URL || ADventori.data.params.clickTag;
+    var clickTag = (paramsClickTag || '') + (conf['clickTag'] || '');
+    if (clickTag.charAt(0) == '#') {return clickTag;}
+    return ADventori.track.urlClick(conf.track['AdClick'], {"urlClick": null}, clickTag);
+},
+
+
+creaData: function(conf) {
+    return {
+        "conf": {
+            "version": ADventori.version,
+            "id": this.id,
+            "clickTag": this.clickTagStacked(conf),
+            "clickTagPxl": conf['clickTagPxl'],
+            "request": ADventori.data.request,
+            "track": {
+                "AdErrorCreative": conf.track['AdErrorCreative'],
+                "urlError": ADventori.track.urlError('AdErrorCreativeMessage'),
+                
+                "urlClick": ADventori.track.urlClickBis(conf.track['AdClickBis'], {"urlClick": conf['adUrl']})
+            }
+        },
+        "data": ADventori.data.params._initData ? null : (conf['creativeParams'] ? _extend({}, conf['creaData'], conf['statData']) : conf['creaData'])
+    };
+},
+
+
+trackShow: function(conf) {
+    if (conf.track['AdShow']) {ADventori.dom.firePixel(ADventori.track.urlShow(conf.track['AdShow'], {"urlClick": conf['adUrl']}));}
+},
+
+
+trackClick: function(conf, params) {
+    params = params || {};
+    if (conf.track['AdClickBis']) {ADventori.dom.firePixel(ADventori.track.urlClickBis(conf.track['AdClickBis'], {"urlClick": conf['adUrl'], "retailer_1": params["item"] && params["item"].id, "retailer_3": params["open"]}));}
+},
+
+
+click: function(conf) {
+    this.attempt('trackClick', arguments);
+    ADventori.utils.mapOneOrMore(conf['clickTagPxl'], ADventori.dom.firePixel);
+    this.attempt('onClick', arguments, 'AdErrorConf');
+},
+
+
+onPassbackStart: function(){},
+onPassbackEnd: function(){},
+onStart: function(){},
+onEnd: function(){},
+onAdStart: function(){},
+onAdEnd: function(){},
+onClick: function(){}
+
+});
+
+
+ADventori.fn.run = function() {
+    //ADventori.track.error({name: 'Deprecated', message: 'run -> runAd'});
+    return ADventori.fn.runAd.apply(this, arguments);
+};
+
+_extend(ADventori.fn, {
+
+
+displayAd: function(conf) {
+    conf['adType'] = this.adTypes.HTML;
+    conf['adUrl'] = ADventori.utils.addQueryParams(conf['creaUrl'], conf['statData']);
+    var elIframe = conf.dom['targetElement'] = ADventori.dom.createElement(conf.dom['document'], 'iframe', _extend({
+        id: conf.dom['targetId'],
+        name: JSON.stringify(this.creaData(conf)),
+        src: conf['adUrl'],
+        width: conf['size'].width,
+        height: conf['size'].height,
+        frameborder: 0,
+        scrolling: 'no',
+        marginwidth: 0,
+        marginheight: 0,
+        style: 'width:' + conf['size'].width + 'px; height:' + conf['size'].height + 'px; margin:0; padding:0; border:0;'
+    }, conf.dom['htmlAttrs']));
+    if (conf.dom['container']) {conf.dom['container'].appendChild(elIframe);}
+    ADventori.track.assert(conf.dom['container'], ['NO_CONTAINER', document, ADventori.conf.dom['container'], ADventori.conf.dom['containerId']].join(','), 'AdErrorDom');
+}
+
+});
+
+ADventori.conf.defaultAlt = {"html_ie": function() {if (ADventori.env.ua.ieVersion && ADventori.env.ua.ieVersion < ADventori.env.ua.ieMinVersion) {return 'ALT_HTML_IE(ie=' + ADventori.env.ua.ieVersion + ')';}}};
+
+ADventori.Items = function(_this) {
+    if (!(this instanceof ADventori.Items)) {return new ADventori.Items(_this);}
+    _extend(this, {
+        "_items": [],
+        "_scenarios": {},
+        "_enabled": false,
+        "creaDataKey": "items",
+        "displayAltIfNone": true,
+        "options": {},
+        "defaults": {
+            "utm": ADventori.data.placement.utm
+        }
+    });
+    _extend(true, this, _this.conf.items);
+    this._this = _this;
+};
+
+_extend(ADventori.Items.prototype, {
+
+related: function(items) {
+    var related = ADventori.data.results.items.related;
+    if (!ADventori.track.assert(related, 'NO_RELATED_ITEMS', 'AdErrorConf')) {return null;};
+    var relatedItems = {};
+    ADventori.utils.each(items, function(i, item) {if (item) {_extend(relatedItems, related['i_' + item.id]);}});
+    return relatedItems;
+},
+
+addAll: function() {
+    return ADventori.track.attempt(ADventori.utils.proxy(this._addAll, this, arguments), 'items.addAll');
+},
+
+toArray: function() {return this._items;},
+
+size: function() {return this._items.length;},
+
+_addAll: function(items, options) {
+    var self = this;
+    options = _extend({}, this.defaults, this.options, options);
+    var itemsMap = {};
+    ADventori.utils.each(this._items, function(i, item) {itemsMap[item.id] = item;});
+    items = ADventori.utils.map(items, function(item) {
+        if (item != null && item.id != null && !item.deleted && (!itemsMap[item.id] && (itemsMap[item.id] = item)) && (!options.map || (item = ADventori.track.attempt(ADventori.utils.proxy(options.map, self, arguments), 'items.options.map', 'AdErrorConf')))) {return item;}
+    });
+    if (options.sort) {ADventori.track.attempt(function() {items = items.slice(0).sort(options.sort);}, 'items.options.sort', 'AdErrorConf');}
+    else if (options.shuffle) {ADventori.utils.shuffle(items);}
+    var nbItemsToAdd = Math.max(0, Math.min(items.length, options.max != null ? options.max : items.length, options.maxTotal != null ? (options.maxTotal - this._items.length) : items.length));
+    if (nbItemsToAdd > 0) {
+        items.length = nbItemsToAdd;
+        ADventori.utils.each(items, function(i, item) {
+            if (item && item.data && item.data.url) {
+                if (options.utm) {self._addUtm(item, options.utm);}
+                item.data.url = ADventori.macros.replace(item.data.url, self._this.conf.macros, [self._this.conf, item]);
+            }
+        });
+        _push.apply(this._items, items);
+        this._scenarios[options.scenario] = (this._scenarios[options.scenario] || 0) + nbItemsToAdd;
+    }
+    this._enabled = true;
+    ADventori.track.assert(options.scenario, 'NO_SCENARIO_ITEM', 'AdErrorConf');
+    return nbItemsToAdd;
+},
+
+_addUtm: function(item, utm) {
+    var self = this;
+    if (item && item.data && item.data.url && utm) {
+        var url = item.data.url, hasUtm = false;
+        ADventori.utils.each(['utm_source', 'utm_campaign', 'utm_content', 'utm_medium', 'utm_term'], function(_i, utmKey) {if (url.indexOf(utmKey) != -1) {hasUtm = true; return false;}});
+        if (!hasUtm) {
+            var utmParams = {};
+            ADventori.utils.each(utm, function(key, value) {utmParams['utm_' + key] = ADventori.macros.replace(value, self._this.conf.macros, [self._this.conf, item]);});
+            item.data.url = ADventori.utils.addQueryParams(url, utmParams);
+        }
+    }
+},
+
+_extraCreaData: function(conf) {
+    if (this._enabled) {
+        var items = {};
+        items[this.creaDataKey] = this._items;
+        conf['creaData'] = _extend(conf['creaData'], items);
+    }
+},
+
+_extraStatData: function(conf) {
+    if (this._enabled) {
+        conf['statData'] = _extend(conf['statData'], {"_stat_ids": ADventori.utils.map(this._items, function(item) {return _encode(item != null && item.id != null ? (item.id + '') : '');}).join('|')});
+        conf['scenario'] = ADventori.utils.param(this._scenarios) || conf.defaultScenario['items'];
+    }
+}
+
+});
+
+
+ADventori.items = {
+related: function() {
+    //ADventori.track.error({name: 'Deprecated', message: 'ADventori.items.related -> ADventori.conf.items.related'});
+    return ADventori.conf.items.related.apply(ADventori.conf.items, arguments);
+},
+addItems: function() {
+    //ADventori.track.error({name: 'Deprecated', message: 'ADventori.items.addItems -> ADventori.conf.items.addAll'});
+    return ADventori.conf.items.addAll.apply(ADventori.conf.items, arguments);
+}
+};
+
+ADventori.conf.defaultAlt['items'] = function(conf) {if (conf.items && conf.items._enabled && conf.items.displayAltIfNone && conf.items.size() == 0) {return 'ALT_ITEMS';}};
+ADventori.conf.defaultScenario['items'] = 'ITEMS_DEFAULT';
+
+ADventori.conf.items = new ADventori.Items(ADventori);
+
+ADventori.track.attempt(function() {
+
+debug.stack.push('conf_campaign');
+// ****************** DÃ©but : DÃ©claration des variables  **********
+var sfrCampaignData = ADventori.data.campaignData.sfrCampaignData,
+    p = ADventori.data.params;
+ADventori.env.ua.ieMinVersion = 10;
+
+var placement = ADventori.data.placement.placementId,
+	format      = ADventori.data.size.width+'x'+ADventori.data.size.height,	
+	section = placement.split('_')[4].replace('-','_');
+
+var R1Line,
+    R1Strategy,
+    R1Creative;
+    
+var eadPublisher = placement.split('_')[5],
+	  eadMediaPlan = placement.split('_')[3],
+    eadName = 'Display-acquisition-'+(/android.+mobile|ip(hone|od)/i.test(navigator.userAgent) ? 'Mobile' : (/android|ipad/i.test(navigator.userAgent) ? 'Tablette' : 'Desktop'))+'-'+eadPublisher+'-'+eadMediaPlan,
+    eadLocation = placement.split('_')[6], 
+    eadCreativeType = placement.split('_')[8],
+    omniture= '?sfrcpid=t2_perf_Display-acquisition-Desktop-'+eadPublisher+'-'+eadMediaPlan;
+
+
+// Get 1 random among n
+function getRandom(obj) {
+	var keys = ADventori.utils.map(obj, function(value, key) {return key;});
+	var rand = ADventori.utils.random(keys.length);
+	return obj[keys[rand]];
+}
+
+// ****************** Fin: DÃ©claration des variables  ***************
+
+
+//************** DÃ©but : Choix de la piste crÃ©a en fonction des data user ***************
+/*if (ADventori.data.results.userData && ADventori.data.results.userData.brand_section && (ADventori.data.results.userData.brand_section === ('red_mobile'||'sfr_mobile'||'red_fixe'||'sfr_fixe'))){
+  ADventori.conf.scenario   = 'brand';
+	var brand = ADventori.data.results.userData.brand_section;
+	randomAd = window.ADventori_randomAd = window.ADventori_randomAd != null ? window.ADventori_randomAd : getRandom(sfrCampaignData['brand'][brand]);
+  ADventori.conf.creaUrl= randomAd.crea;
+	eadCreative               = randomAd.name + '_tk';
+	//ADventori.conf.displayTag = sfrCampaignData['brand'][brand][randomAd].displayTag;
+	ADventori.conf.clickTag   = ADventori.data.placement.clickTag + encodeURIComponent(randomAd.redirection + omniture);
+} else if (ADventori.data.results.userData && (ADventori.data.results.userData.flg_eli_thd || ADventori.data.results.userData.FLG_ELI_THD) && (ADventori.data.results.userData.flg_sfr_fix || ADventori.data.results.userData.FLG_SFR_FIX)) {
+  ADventori.conf.scenario   = 'eligibilite';
+	randomAd = window.ADventori_randomAd = window.ADventori_randomAd != null ? window.ADventori_randomAd : getRandom(sfrCampaignData['eligibilite']['flg_eli_thd']);
+	eadCreative               = randomAd.name;
+	//ADventori.conf.displayTag = sfrCampaignData['eligibilite']['flg_eli_thd'][randomAd].displayTag;
+	ADventori.conf.clickTag   = ADventori.data.placement.clickTag  + encodeURIComponent(randomAd.redirection + omniture);;		
+} else {/*/
+  ADventori.conf.scenario   = 'random';
+	randomAd = window.ADventori_randomAd = window.ADventori_randomAd != null ? window.ADventori_randomAd : getRandom(sfrCampaignData['random'][section]);
+	eadCreative               = randomAd.name;
+	//ADventori.conf.displayTag = sfrCampaignData['random'][section][randomAd].displayTag;
+	ADventori.conf.clickTag   = ADventori.data.placement.clickTag  + encodeURIComponent(randomAd.redirection + omniture);		
+//}
+ADventori.conf.creaUrl= randomAd.adUrl;
+ADventori.conf.altUrl = randomAd.adUrl
+//************** fin : Choix de la piste crÃ©a en fonction des data user ***************
+debug.stack.pop();
+
+debug.stack.push('conf_placement');
+var ADventoriPlacementID =ADventori.data.placement.placementId;
+
+
+
+var R1Strategy = p.YahooStrategy ? p.YahooStrategy : 'NO_STRATEGY',
+
+    R1Line = p.YahooLine ? p.YahooLine : 'NO_LINE',
+
+
+
+    R1Creative = p.YahooCreative ? p.YahooCreative : 'NO_CREATIVE';
+
+
+
+if (R1Strategy=='NO_STRATEGY') {
+
+  ADventori.track.error('NO_PARAM: YahooStrategy is undefined', 'AdErrorParam');
+
+} else if (R1Creative=='NO_CREATIVE') {
+
+  ADventori.track.error('NO_PARAM: YahooCreative is undefined', 'AdErrorParam');
+
+} else {
+
+   //Everything OK
+
+}
+debug.stack.pop();
+
+debug.stack.push('conf_campaign_after');
+ADventori.conf.macros = {
+  'R1LINE'    : R1Line, 
+  'R1STRAT'   : R1Strategy, 
+  'R1CREA'    : R1Creative,
+  'AD'        : eadCreative.replace('_tk',''),
+  'EADPUBLISHER'    : eadPublisher,
+  'EADNAME'         : eadName,
+  'EADLOCATION'     : eadLocation,
+  'EADCREATIVE'     : eadCreative,
+  'EADCREATIVETYPE' : eadCreativeType,
+  'EADMEDIAPLAN'    : eadMediaPlan,
+  'CAMPAIGNID'      : ADventori.conf.campaign
+};
+
+/*ADventori.conf.extraParams = {
+  data:{
+    'ad': ad,
+    'txt1':txt1
+  },
+  'items':itemParams
+};*/
+
+ADventori.conf.creativeParams = {
+  'ad'                   : eadCreative.replace('_tk',''), 
+  'ADventoriPlacementID' : ADventori.conf.placement.placementId, 
+  'R1Line'               : R1Line, 
+  'R1Strategy'           : R1Strategy, 
+  'R1Creative'           : R1Creative, 
+  //'brand_section'        : brand,
+  'ADVtimeStamp'         : ADventori.data.track.timestamp
+};
+
+debug.log('Brand Section : '+ ADventori.data.results.userData.brand_section || 'No Brand Section' );
+debug.log('EligibiltÃ© THD : '+ (((ADventori.data.results.userData.flg_eli_thd || ADventori.data.results.userData.FLG_ELI_THD) && (ADventori.data.results.userData.flg_sfr_fix || ADventori.data.results.userData.FLG_SFR_FIX)) ? 'true' : 'false' ));
+debug.log('Piste CrÃ©a     : '+ section);
+debug.log('CrÃ©a     : '+eadCreative);
+debug.log('randomAd : '+randomAd);
+debug.log('eadPublisher : '+eadPublisher);
+debug.log('eadName : '+eadName);
+debug.log('eadLocation : '+eadLocation);
+debug.log('eadCreative : '+eadCreative);
+debug.log('eadMediaPlan : '+eadMediaPlan);
+debug.log('eadCreativeType : '+eadCreativeType);
+debug.log('Url : '+ADventori.conf.clickTag);
+debug.stack.pop();
+
+}, 'conf', 'AdErrorConf');
+
+ADventori.fn.attempt('autoStart', [ADventori.conf]);
+}, 'init');
+})(window);
+
+//]]>
+</script>
+</body>
+</html>

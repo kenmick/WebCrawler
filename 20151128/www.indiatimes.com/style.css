@@ -1,0 +1,207 @@
+body {
+    margin:0;
+    padding:0;
+}
+canvas {
+    display: block;
+    
+}
+
+#wrapper{
+    position:absolute;
+    left:0;
+    top:0;
+    width: 728px;
+    height: 90px;
+    overflow:hidden;
+    cursor:pointer;
+    /*border:1px solid black;*/
+}
+
+#AnimBG{
+    position:absolute;
+    top:0;
+    left:0;
+}
+
+#bokeh{
+    position:absolute;
+    top:0;
+    left:0;
+}
+/*~~~~~~~~ecran01~~~~~~~~~~~~~*/
+#ecran01{
+    position: absolute;
+    top:0;
+    left:0;
+}
+
+
+#BG{
+    position:absolute;
+    top:0px;
+    left:0px;
+
+}
+
+#txt01{
+    position: absolute;
+    top: 18px;
+    left: 16px;
+    opacity: 0;
+    z-index:3;
+}
+#txt02{
+    position: absolute;
+    top: 0px;
+    left: 457px;
+    opacity: 0;
+    z-index:3;
+}
+
+
+
+/*~~~~~~~~ecran02~~~~~~~~~~~~~*/
+#ecran02{
+    position:absolute;
+    top:0;
+    left:0;
+}
+
+
+#box{
+    position: absolute;
+    top: 10px;
+    left: 300px;
+    opacity: 0;
+    z-index: 2;
+}
+
+#blur{
+    position: absolute;
+    top:10px;
+    left: 300px;
+    opacity: 0;
+    z-index: 3;
+}
+#jaune{
+     position: absolute;
+     top: 20px;
+     left: 580px;
+     opacity: 0;
+     z-index: 2;
+}
+
+#jauneblur{
+     position: absolute;
+     top: 20px;
+     left: 580px;
+     opacity: 0;
+     z-index: 3;
+}
+
+#cta{
+    position: absolute;
+    top: 34px;
+    left: 512px;
+    opacity:0;
+}
+
+#ml1{
+    position: absolute;
+    top: 71px;
+    left: 443px;
+    opacity:0;
+}
+
+/*Mention Legal*/
+#ml
+{
+    z-index: 59;
+    position: relative;
+    opacity: 0;
+    /*bottom:-20px;*/
+    top: 47px;
+    left: 552px;
+    animation: mlanim 0.3s linear 7s forwards;
+    -webkit-animation-name: mlanim;
+    -webkit-animation-duration: 0.3s;
+    -webkit-animation-delay: 7s;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-fill-mode: forwards;
+}
+#ml img
+{
+    margin: 10px 0px;
+    display: block;
+    cursor: pointer;
+}
+
+#ml:hover > #mention
+{
+    bottom: -76px;
+}
+
+#mention
+{
+    left: -552px;
+    position: absolute;
+    bottom: -125px;
+    width: 300px;
+    height: 77px;
+    z-index: 1;
+}
+
+.mention-anim
+{
+    bottom: 0px;
+    transition: all 0.2s linear;
+    -webkit-transition: all 0.2s linear;
+}
+
+.mention-anim2-out
+{
+    bottom: 0px
+
+}
+
+
+
+@keyframes mlanim {
+
+    0%{
+        bottom:0px;
+    }
+
+    100%{
+        bottom:22px;
+
+    }
+}
+
+
+
+
+
+
+
+#ml_partout{
+    z-index: 2;
+    position: absolute;
+    width: 100%;
+    top: 225px;
+    left: 5px;
+    opacity: 0;
+
+}
+
+#ml_web{
+    z-index: 2;
+    position: absolute;
+    width: 100%;
+    top: 215px;
+    left: 13px;
+    opacity: 0;
+
+}

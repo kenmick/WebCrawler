@@ -1,0 +1,386 @@
+/* ======== DEFAULT CSS ======== */
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+#container {
+    position: relative;
+    overflow: hidden;
+    background: #00a5d6;
+}
+
+#container div,
+#container img,
+button {
+    position: absolute;
+}
+.border {
+    border: 1px solid #000000;
+}
+
+.fat-border{
+    border: 9px solid #ffffff;
+    box-sizing: border-box;
+}
+
+#container,
+.curtain,
+.click-tag,
+.border,
+.fat-border {
+    width: 300px;
+    height: 250px;
+    box-sizing: border-box;
+}
+
+/* ======== CLICK TAG ======== */
+.click-tag {
+    cursor: pointer;
+    opacity: 0;
+}
+
+/* ======== STATIC ELLEMENTS ======== */
+/* ======== ANIMATED ELEMENTS ======== */
+
+.background{
+    width: 300px;
+    height: 250px;
+    left: 0;
+    top: 0;
+    background: url("picture.jpg");
+    box-sizing: border-box;
+}
+
+.txt-1,
+.txt-12,
+.txt-2,
+.txt-22,
+.txt-3{
+    left: 17px;
+    top: 25px;
+}
+
+.cta{
+    left: 17px;
+    top: 70px;
+}
+
+.logo{
+    left: 13px;
+    top: 209px;
+}
+
+.legal{
+    left: 12px;
+    top: 240px;
+}
+
+.txt-1,
+.txt-12,
+.txt-2,
+.txt-22,
+.txt-3,
+.cta,
+.legal{
+    opacity: 0;
+}
+
+/* ======== ANIMATIONS ======== */
+
+.txt-1-anim {
+    -webkit-animation: fade-in-bottom 0300ms ease-out forwards;
+    animation: fade-in-bottom 0300ms ease-out forwards;
+}
+
+.txt-12-anim {
+    -webkit-animation: fade-in-bottom 0300ms ease-out forwards;
+    animation: fade-in-bottom 0300ms ease-out forwards;
+}
+
+.txt-1-anim-2 {
+    -webkit-animation: fade-out-top 0300ms ease-out forwards;
+    animation: fade-out-top 0300ms ease-out forwards;
+}
+
+.txt-12-anim-2 {
+    -webkit-animation: fade-out-top 0300ms ease-out forwards;
+    animation: fade-out-top 0300ms ease-out forwards;
+}
+
+.txt-2-anim {
+    -webkit-animation: fade-in-bottom 0300ms ease-out forwards;
+    animation: fade-in-bottom 0300ms ease-out forwards;
+}
+
+.txt-22-anim {
+    -webkit-animation: fade-in-bottom 0300ms ease-out forwards;
+    animation: fade-in-bottom 0300ms ease-out forwards;
+}
+
+.legal-anim{
+    -webkit-animation: fade-in-2 0300ms ease-out forwards;
+    animation: fade-in-2 0300ms ease-out forwards;
+}
+
+.txt-2-anim-2 {
+    -webkit-animation: fade-out-top 0300ms ease-out forwards;
+    animation: fade-out-top 0300ms ease-out forwards;
+}
+
+.txt-22-anim-2 {
+    -webkit-animation: fade-out-top 0300ms ease-out forwards;
+    animation: fade-out-top 0300ms ease-out forwards;
+}
+
+.legal-anim-2{
+    -webkit-animation: fade-out 0500ms ease-out forwards;
+    animation: fade-out 0500ms ease-out forwards;
+}
+
+.txt-3-anim {
+    -webkit-animation: fade-in-bottom 0400ms ease-out forwards;
+    animation: fade-in-bottom 0400ms ease-out forwards;
+}
+
+.cta-anim{
+    -webkit-animation: fade-in-bottom 0400ms ease-out forwards;
+    animation: fade-in-bottom 0400ms ease-out forwards;
+}
+
+.cta-anim-2{
+    -webkit-animation: zoom-cta 1500ms forwards;
+    animation: zoom-cta 1500ms forwards;
+}
+
+
+
+/* ======== TIMING ======== */
+
+
+
+/* ======== @-WEBKIT-KEYFRAMES ======== */
+
+@-webkit-keyframes from-left {
+    0% {
+        -webkit-transform: translateX(-300px);
+        opacity: 1;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes from-right {
+    0% {
+        -webkit-transform: translateX(100px);
+        opacity: 1;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes to-right {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        -webkit-transform: translateX(300px);
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes fade-in-2 {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes fade-in-bottom {
+    0% {
+        -webkit-transform: translateY(15px);
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes fade-out-top {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        -webkit-transform: translateY(-15px);
+        opacity: 0;
+    }
+}
+
+@-webkit-keyframes fade-out {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@-webkit-keyframes zoom-cta {
+    0% {
+        opacity: 1;
+        -webkit-transform: scale(1);
+    }
+    30% {
+        -webkit-transform: scale(1);
+        opacity: 1;
+    }
+
+    40% {
+        -webkit-transform: scale(1.1);
+        opacity: 1;
+    }
+
+    50% {
+        -webkit-transform: scale(1);
+        opacity: 1;
+    }
+
+    70% {
+        -webkit-transform: scale(1);
+        opacity: 1;
+    }
+
+    80% {
+        -webkit-transform: scale(1.1);
+        opacity: 1;
+    }
+
+    90% {
+        -webkit-transform: scale(1);
+        opacity: 1;
+    }
+
+    100% {
+        -webkit-transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* ======== @KEYFRAMES ======== */
+
+
+@keyframes from-left {
+    0% {
+        transform: translateX(-300px);
+        opacity: 1;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes from-right {
+    0% {
+        transform: translateX(100px);
+        opacity: 1;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes to-right {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(300px);
+        opacity: 1;
+    }
+}
+
+@keyframes fade-in-2 {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fade-in-bottom {
+    0% {
+        transform: translateY(15px);
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fade-out-top {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-15px);
+        opacity: 0;
+    }
+}
+
+@keyframes fade-out {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+
+@keyframes zoom-cta {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    30% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    40% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    70% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    80% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+
+    90% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+

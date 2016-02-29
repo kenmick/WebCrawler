@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="ad.size" content="width=300,height=250">
+<style type="text/css">
+div, p, img { margin:0; padding:0; font-family:Arial; }
+a { width:100%; height:100%; position:absolute; }
+
+.anim { outline:1px solid transparent; }
+
+body, #container, #adventoriAd { position:relative; width:300px; height:250px; overflow:hidden; margin:0; padding:0; }
+#container { background:#ab0808; background:linear-gradient(#840100, #d11010); }
+#container * { position:absolute; box-sizing:border-box; }
+#logo { top:8px; left:8px; width:44px; height:44px; }
+#ml { bottom:2px; left:5px; font-size:10px; color:#edd; opacity:0; }
+
+#moins5euros { left:20px; top:70px; width:260px; height:130px; transform-origin: 50% 50%; transform:scale(1); }
+#moins5euros_a { left:0; top:0px; width:118px; opacity:0; }
+#moins5euros_b { left:118px; top:5px; width:142px; opacity:0; }
+#moins5euros_c { left:118px; top:50px; width:142px; opacity:0; }
+
+#txt_claim1 { left:50%; top:62px; width:260px; margin-left:-130px; opacity:0; }
+#txt_claim2 { left:50%; top:122px; width:28px; margin-left:-14px; opacity:0; }
+#txt_claim3 { left:50%; top:156px; width:260px; margin-left:-130px; opacity:0; }
+
+#txt_forfait { right:20px; top:20px; width:140px; opacity:0; }
+#prix { left:18px; top:100px; width:155px; opacity:0; }
+#moisoffert { left:186px; top:102px; width:92px; opacity:0; }
+
+#bt { left:50%; top:185px; width:180px; margin-left:-90px; border:#fff 1px solid; border-radius:3px; padding:6px 0 2px 0; text-align:center; opacity:0; }
+#bt_txt { position:relative; width:100px; }
+
+</style>
+<script src="/lp/enabler/ADventori-2.0.0.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="/lp/enabler/ADventori-2.0.0.css">
+</head>
+
+<body>
+
+<div id="container">
+	<div id="adventoriAd">
+	<a href='javascript:void(0);' onclick='ADventori.click();'>
+		
+		<p id="ml">*puis 33,99â¬/mois, voir conditions sur le site</p>
+		<img id="logo" src="img/logo.png">
+
+		<div id="moins5euros" class="anim">
+			<img id="moins5euros_a" class="anim" src="img/moins5euros_a.svg">
+			<img id="moins5euros_b" class="anim" src="img/moins5euros_b.svg">
+			<img id="moins5euros_c" class="anim" src="img/moins5euros_c.svg">
+		</div>
+		
+		<img id="txt_claim1" class="anim" src="img/txt_claim1.svg">
+		<img id="txt_claim2" class="anim" src="img/txt_claim2.svg">
+		<img id="txt_claim3" class="anim" src="img/txt_claim3.svg">
+		
+		<img id="txt_forfait" class="anim" src="img/txt_forfait.svg">
+		<img id="prix" class="anim" src="img/prix.svg">
+		<img id="moisoffert" class="anim" src="img/moisoffert.svg">
+		<div id="bt" class="anim"><img id="bt_txt" class="anim" src="img/bt_txt.svg"></div>
+  
+	</a>
+	</div>
+</div>
+
+<script type="text/javascript" src="js/velocity.min.js"></script>
+<script type="text/javascript" src="js/velocity.tada.min.js"></script>
+
+<script type="text/javascript">
+
+window.onload = function() {
+
+var moins5euros = document.getElementById("moins5euros");
+var moins5euros_a = document.getElementById("moins5euros_a");
+var moins5euros_b = document.getElementById("moins5euros_b");
+var moins5euros_c = document.getElementById("moins5euros_c");
+var txt_claim1 = document.getElementById("txt_claim1");
+var txt_claim2 = document.getElementById("txt_claim2");
+var txt_claim3 = document.getElementById("txt_claim3");
+var txt_forfait = document.getElementById("txt_forfait");
+var prix = document.getElementById("prix");
+var moisoffert = document.getElementById("moisoffert");
+var bt = document.getElementById("bt");
+
+// 1
+TadaWaouh (moins5euros_a, duree=400, delai=500 );
+TadaSlideLeft (moins5euros_b, duree=500, delai=800 );
+TadaSlideLeft (moins5euros_c, duree=500, delai=900 );
+
+var duree1 = 3200
+
+// 2
+TadaScaleOut (moins5euros, duree=500, delai=duree1 );
+TadaFlipY (txt_claim1, duree=500, delai=duree1+500 );
+TadaBounce (txt_claim2, duree=500, delai=duree1+700 );
+TadaFlipY (txt_claim3, duree=500, delai=duree1+800 );
+
+var duree2 = 7500
+
+// 3
+TadaBounceOut (txt_claim1, duree=500, delai=duree2+0 );
+TadaBounceOut (txt_claim2, duree=500, delai=duree2+100 );
+TadaBounceOut (txt_claim3, duree=500, delai=duree2+200 );
+TadaSlideLeft (txt_forfait, duree=400, delai=duree2+900 );
+TadaWaouh (prix, duree=400, delai=duree2+1200 );
+TadaSlideLeft (moisoffert, duree=400, delai=duree2+1600 );
+TadaFadeIn (ml, duree=200, delai=duree2+1200 );
+TadaFadeUpIn (bt, duree=400, delai=duree2+2000 );
+TadaShake (bt, duree=400, delai=duree2+3000 );
+
+}
+</script>
+</body>
+</html>

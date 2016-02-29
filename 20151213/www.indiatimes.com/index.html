@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+<html lang="fr">
+
+<head><script type="text/javascript">
+    
+      (function() {
+        var relegateNavigation = '';
+        var handleClickTagMessage = function(e) {
+          try {
+            var eventData = JSON.parse(e.data);
+          } catch (err) {
+            return;
+          }
+          if (eventData.isInitClickTag) {
+            if (eventData.clickTags) {
+              for (var i = 0; i < eventData.clickTags.length; i++) {
+                var clkTag = eventData.clickTags[i];
+                window[clkTag.name] = clkTag.url;
+              }
+            } else if (eventData.clickTag) {
+              window.clickTag = eventData.clickTag;
+            }
+            relegateNavigation = eventData.relegateNavigation;
+          }
+        };
+
+        if (open.call) {
+          window.open = function(open) {
+            return function(url, name, features) {
+              if (relegateNavigation === 'parent') {
+                var message = {'clickTag': url, 'isPostClickTag': true};
+                parent.postMessage(JSON.stringify(message), '*');
+              } else {
+                var args = [url, name];
+                if (features) {
+                  args.push(features);
+                }
+                open.apply(window, args);
+              }
+            };
+          }(window.open);
+        }
+
+        if (window.addEventListener) {
+          window.addEventListener(
+              'message', handleClickTagMessage, false);
+        } else {
+          window.attachEvent('onmessage', handleClickTagMessage);
+        }
+      })();
+    
+  </script>
+    <meta charset="utf-8">
+    <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+    <meta name="ad.size" content="width=728,height=90">
+    <title>Picard - BanniÃ¨re - ArriÃ¨re-plan nÂ°2 - 728x90</title>
+    <link href="style.min.css" rel="stylesheet" type="text/css">
+    <script src="script.min.js"></script>
+    <script>var clickTag = "https://www.google.fr/";</script>
+</head>
+
+<body>
+    <a href="javascript:window.open(window.clickTag, &#39;_blank&#39;);" id="conteneur">
+        <img height="88" id="produit" src="300x600-2.jpg" width="726">
+        <img height="77" id="logo" src="logo.png" width="110">
+        <img height="88" id="pastille" src="pastille.png" width="141">
+        <button id="cta" type="button">
+            <img height="23" id="cta_texte" src="cta_texte.png" width="70">
+            <img height="142" id="cta_flash" src="cta_flash.png" width="123">
+        </button>
+        <p id="asterisque">*Pour toute livraison entre<br>le 14 et le 17 DÃ©cembre</p>
+        <p id="mention">Suggestion de prÃ©sentation</p>
+        <p id="mention_alimentaire">Pour votre santÃ©,<br>Ã©vitez de grignoter<br>entre les repas.<br>www.mangerbouger.fr</p>
+    </a>
+</body>
+</html>

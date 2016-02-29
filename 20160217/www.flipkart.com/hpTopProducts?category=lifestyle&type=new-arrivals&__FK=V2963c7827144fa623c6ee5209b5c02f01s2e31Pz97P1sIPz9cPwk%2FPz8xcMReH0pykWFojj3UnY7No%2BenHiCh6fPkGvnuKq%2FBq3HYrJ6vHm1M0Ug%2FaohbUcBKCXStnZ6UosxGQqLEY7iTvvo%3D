@@ -1,0 +1,82 @@
+
+
+
+    <div class="fk-ui-ccarousel-supercontainer requirecss-HPS require-product-carousel required-tracking"
+         data-columns='4' data-columnsperslide='4'
+         data-buttonsonside='true' data-animatedload='false' data-autoload='false' data-tracking-id="mod_lifestyle_new-arrivals">
+        <div class="bpadding5 fk-ui-ccarousel-border">
+            <ul class="ccarousel nojs">
+                    <li class="ccarousel-item"  style="position:relative;">
+                    </li>
+                    <li class="ccarousel-item"  style="position:relative;">
+                    </li>
+                    <li class="ccarousel-item"  style="position:relative;">
+                    </li>
+                    <li class="ccarousel-item"  style="position:relative;">
+                    </li>
+                    <li class="ccarousel-item"  style="position:relative;">
+                    </li>
+                    <li class="ccarousel-item"  style="position:relative;">
+                    </li>
+                    <li class="ccarousel-item"  style="position:relative;">
+                    </li>
+                    <li class="ccarousel-item"  style="position:relative;">
+                    </li>
+                    <li class="ccarousel-item"  style="position:relative;">
+                    </li>
+                    <li class="ccarousel-item"  style="position:relative;">
+                    </li>
+                    <li class="ccarousel-item"  style="position:relative;">
+                    </li>
+                    <li class="ccarousel-item"  style="position:relative;">
+                    </li>
+                    <li class="ccarousel-item"  style="position:relative;">
+                    </li>
+                    <li class="ccarousel-item"  style="position:relative;">
+                    </li>
+                    <li class="ccarousel-item"  style="position:relative;">
+                    </li>
+                    <li class="ccarousel-item"  style="position:relative;">
+                    </li>
+                    <li class="ccarousel-item"  style="position:relative;">
+                    </li>
+                    <li class="ccarousel-item"  style="position:relative;">
+                    </li>
+                    <li class="ccarousel-item"  style="position:relative;">
+                    </li>
+                    <li class="ccarousel-item"  style="position:relative;">
+                    </li>
+                    <li class="ccarousel-item"  style="position:relative;">
+                    </li>
+            </ul>
+        </div>
+    </div>
+    <div style="clear:both;"></div>
+
+    <script type="text/javascript+fk-onload">
+        require_module.js("carousel", function() {
+            $(".require-product-carousel").each(function() {
+                var $this = $(this);
+                var params = {
+                    content:  $('.ccarousel', $this)
+                };
+                var parsed_params = $this.data();
+                $.extend(params, parsed_params);
+
+                var crossCarousel = new FKART.ui.LazyCarousel(params);
+
+                crossCarousel.carousel.bindEvent('error', function() {
+                    $('.fk-ui-ccarousel-title', $this).hide();
+                    $('.fk-ui-ccarousel-border', $this).hide();
+                });
+
+                crossCarousel.init();
+                $this.removeClass("require-product-carousel");
+                $this.data('instance', crossCarousel);
+            });
+        });
+
+
+    </script>
+
+

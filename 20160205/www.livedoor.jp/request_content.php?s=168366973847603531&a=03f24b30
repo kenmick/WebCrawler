@@ -1,0 +1,472 @@
+<html>
+	
+	<head>
+	
+		<meta name="robots" content="noindex,nofollow"> 
+	
+		<style type="text/css">
+
+			* {
+				margin:0px;
+				margin-left: auto;
+				margin-right: auto;
+				padding:0px;
+			}
+	
+			img {
+				border:0px;
+			}
+	
+			div.container {
+				width:300px;
+				height:250px;
+				-webkit-perspective: 400;
+				perspective: 400;
+			}
+	
+			#arrow1 {
+				position:absolute;
+				margin-left:0px;
+				margin-top:0px;
+			}
+	
+			#arrow2 {
+				position:absolute;
+				margin-left:264px;
+				margin-top:0px;
+			}
+			
+			#arrow1 img, #arrow2 img {
+				-moz-border-radius: 6px; 
+				-webkit-border-radius: 6px; 
+				-khtml-border-radius: 6px; 
+				border-radius: 6px;
+			}
+	
+			#distractor {
+				position:absolute;
+			}
+	
+			div.bgLink {
+			
+				position:absolute;
+	
+				margin-top:108px;			
+				width:300px;
+				
+				text-align:center;
+				-moz-align:center;
+	
+				filter:alpha(opacity=25);
+				-moz-opacity:0.25;
+				-khtml-opacity: 0.25;
+				opacity: 0.25;
+			}
+	
+			div.bgLink a {
+			
+				font-size:17px;
+				font-family:arial;
+				color:#ffffff;
+				font-weight:bold;
+				
+				line-height:26px;
+				
+				text-decoration:none;
+				letter-spacing:-1px;
+	
+				text-shadow: 2px 2px 2px rgba(0,0,0,.8);
+				
+			}
+	
+			div.bgLink a:hover {
+				position:relative;
+				top:-1px;
+				text-shadow: 3px 3px 2px #000;
+			}
+	
+			div.bgLink a span.big {
+				font-size:33px;
+				letter-spacing:-2px;
+			}
+		
+			@-webkit-keyframes bAnimWebkit {
+				0% {	-webkit-transform: rotate3d(0,0,0,0deg);	}
+				1.5% {	-webkit-transform: rotate3d(0,0,0,0deg);	}
+				3.5% {	-webkit-transform: rotate3d(1,0,0,180deg);	}
+				6% {	-webkit-transform: rotate3d(1,0,0,360deg);	}
+				100% {	-webkit-transform: rotate3d(1,0,0,360deg);	}
+			}
+		
+			@keyframes bAnim {
+				0% {	transform: rotate3d(0,0,0,0deg);	}
+				1.5% {	transform: rotate3d(0,0,0,0deg);	}
+				3.5% {	transform: rotate3d(1,0,0,180deg);	}
+				6% {	transform: rotate3d(1,0,0,360deg);	}
+				100% {	transform: rotate3d(1,0,0,360deg);	}
+			}
+		
+			div.anim {
+				-webkit-animation-name: bAnimWebkit;	-webkit-animation-duration: 20s;	-webkit-animation-iteration-count: infinite;	-webkit-animation-direction: normal;	-webkit-animation-timing-function: linear;
+				animation-name: bAnim;					animation-duration: 20s;			animation-iteration-count: infinite;			animation-direction: normal;			animation-timing-function: linear;
+			}
+		
+			@-webkit-keyframes bAnimWebkitStart {
+				0% {	-webkit-transform: rotate3d(0,0,0,0deg);	}
+				25% {	-webkit-transform: rotate3d(0,0,0,0deg);	}
+				60% {	-webkit-transform: rotate3d(1,0,0,180deg);	}
+				100% {	-webkit-transform: rotate3d(1,0,0,360deg);	}
+			}
+		
+			@keyframes bAnimStart {
+				0% {	transform: rotate3d(0,0,0,0deg);	}
+				25% {	transform: rotate3d(0,0,0,0deg);	}
+				60% {	transform: rotate3d(1,0,0,180deg);	}
+				100% {	transform: rotate3d(1,0,0,360deg);	}
+			}
+		
+			div.animStart {
+				-webkit-animation-name: bAnimWebkitStart;	-webkit-animation-duration: 1.2s;	-webkit-animation-iteration-count: 1;	-webkit-animation-direction: normal;	-webkit-animation-timing-function: linear;
+				animation-name: bAnimStart;					animation-duration: 1.2s;			animation-iteration-count: 1;			animation-direction: normal;			animation-timing-function: linear;
+			}
+		
+			div.b {
+			
+				position:absolute;
+				visibility:hidden;
+	
+				-moz-border-radius: 3px; 
+				-webkit-border-radius: 3px; 
+				-khtml-border-radius: 3px; 
+				border-radius: 3px;
+		
+				cursor:pointer;
+			}
+	
+			div.link {
+			
+				text-align:center;
+				border-top:1px dotted #ffffff;
+	
+				margin-left:2px;
+				margin-right:2px;
+	
+				width:234px;
+				height:15px;
+	
+				overflow:hidden;
+	
+			}
+	
+			div.link a {
+				color:#ffffff;
+				font-size:11px;
+				font-weight:bold;
+				font-family:arial;
+				line-height:15px;
+				text-decoration:none;
+				text-shadow: 1px 1px 1px rgba(0,0,0,.3);
+			}
+	
+			
+			div.c1 {
+				background-color:#0A0433;
+				filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0e0644', endColorstr='#0A0433');
+				background: -webkit-gradient(linear, left top, left bottom, from(#0e0644), to(#0A0433));
+				background: -moz-linear-gradient(top, #0e0644, #0A0433);
+			}
+			div.c1:hover {
+				filter:none;
+				background:none;
+				background-color:#0e0644;
+			}
+			
+			div.c2 {
+				background-color:#545451;
+				filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#70716c', endColorstr='#545451');
+				background: -webkit-gradient(linear, left top, left bottom, from(#70716c), to(#545451));
+				background: -moz-linear-gradient(top, #70716c, #545451);
+			}
+			div.c2:hover {
+				filter:none;
+				background:none;
+				background-color:#70716c;
+			}
+			
+			div.c3 {
+				background-color:#A0291B;
+				filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#d63724', endColorstr='#A0291B');
+				background: -webkit-gradient(linear, left top, left bottom, from(#d63724), to(#A0291B));
+				background: -moz-linear-gradient(top, #d63724, #A0291B);
+			}
+			div.c3:hover {
+				filter:none;
+				background:none;
+				background-color:#d63724;
+			}
+			
+	
+			div.b table {
+				width:238px;
+				height:64px;
+				clip:rect(0px 0px 0px 0px);
+			}
+	
+	
+			td.img {
+				width:124px;
+				text-align:center;
+				-moz-align:center;
+			}
+	
+			td.img div.bounding {
+				width:120px;
+				max-height:60px;
+				overflow:hidden;
+			}
+	
+			td.imgbig {
+				width:238px;
+				text-align:center;
+				-moz-align:center;
+			}
+	
+			td.imgbig div.bounding {
+				width:234px;
+				max-height:60px;
+				overflow:hidden;
+			}
+	
+			td.text div {
+				margin:0px;
+				margin-left:5px;
+				width:100px;
+				height:60px;
+				overflow:hidden;
+			}
+	
+			td.text div table {
+				width:100px;
+				height:60px;
+			}
+
+			td.text div table tr td {
+			}			
+	
+			a.link {
+				color:#ffffff;
+				font-family:arial;
+				font-size:11px;
+				text-decoration:none;
+				line-height:12px;
+				text-shadow: 1px 1px 1px rgba(0,0,0,.3);
+			}
+	
+		</style>
+		
+		<script src="https://cdn.contentspread.net/tp/adformats/triple/ad.js"></script>
+		
+	</head>
+	
+	<body>
+	
+		<script>
+
+			var currentTime = new Date();	
+
+			function handleMouseOver(id) {
+				if ( ! interactions[id].awaiting ) {
+					interactions[id].awaiting = true;
+					currentTime = new Date();	
+					interactions[id].awaitingSince = currentTime.getTime() / 1000;
+				} else {
+					currentTime = new Date();	
+					var timeNow = currentTime.getTime() / 1000;
+					if ( ( ( timeNow - interactions[id].awaitingSince ) > 1 ) && ( ! interactions[id].interacted ) ) {
+						interactions[id].interacted = true;
+						document.getElementById('mouseinteraction').src='https://ad.ad-srv.net/interaction.php?c='+interactions[id].c+'&h='+interactions[id].h;
+					}
+				}
+			}
+
+			var nonBranded = false;
+			
+				if (2631==2) {
+					nonBranded = true;
+				}
+			
+				if (21945==2) {
+					nonBranded = true;
+				}
+			
+				if (591==2) {
+					nonBranded = true;
+				}
+			
+
+		</script>
+
+		<div class="container">
+	
+			<div class="bgLink">
+				<script>
+					if ( ! nonBranded ) document.write('<a href="http://www.targetperformance.de" target="_blank"><span class="big">TARGET</span><br>PERFORMANCE</a>');
+				</script>
+			</div>
+	
+			<div id="b[0]" class="b c1" onClick="window.open('https://n31.ad.ad-srv.net/c/pojbauthkkzyd64')" onMouseMove="handleMouseOver(0)">
+	
+
+				
+				<table id="tmix[0]" cellspacing="0" cellpadding="0" border="0">
+					<tr>
+						<td class="img"><div class="bounding"><div id="is[0]" onClick="disabledEventPropagation(event)"><a onClick="disabledEventPropagation(event)" href="https://n31.ad.ad-srv.net/c/pojbauthkkzyd64" target="_blank"><img src="https://tracking.publicidees.com/banner.php?partid=25607&progid=1517&promoid=60301&noret=bf903dd0ab2bc0d0fc71b637571c3ae6&cb=168366973847603531"></a></div></div></td>
+						<td class="text"><div><table cellspacing="0" cellpadding="0" border="0"><tr><td><a onClick="disabledEventPropagation(event)" href="https://n31.ad.ad-srv.net/c/pojbauthkkzyd64" class="link" target="_blank">Profitez du parc d'attractions et de loisirs le Parc du Futuroscope.</a></td></tr></table></div></td>
+					</tr>
+				</table>
+				
+
+
+				
+
+
+				<div class="link"><a onClick="disabledEventPropagation(event)" href="https://n31.ad.ad-srv.net/c/pojbauthkkzyd64" target="_blank">futuroscope.com</a></div>
+	
+			</div><div id="b[1]" class="b c2" onClick="window.open('https://n31.ad.ad-srv.net/c/p0ok8mkkwucepgp')" onMouseMove="handleMouseOver(1)">
+	
+
+				
+
+
+				
+				<table id="tmix[1]" cellspacing="0" cellpadding="0" border="0">
+					<tr>
+						<td class="img"><div class="bounding"><div id="ib[1]" onClick="disabledEventPropagation(event)"><a onClick="disabledEventPropagation(event)" href="https://n31.ad.ad-srv.net/c/p0ok8mkkwucepgp" target="_blank"><img src="https://cdn.contentspread.net/tp/advertiser/21945/creativesup/eplaque_234x60.png"></a></div></div></td>
+						<td class="text"><div><table cellspacing="0" cellpadding="0" border="0"><tr><td><a onClick="disabledEventPropagation(event)" href="https://n31.ad.ad-srv.net/c/p0ok8mkkwucepgp" class="link" target="_blank">Recevez votre carte grise en 24h et vos plaques d'immatriculation sans vous dÃ©placer avec EPLAQUE !</a></td></tr></table></div></td>
+					</tr>
+				</table>
+	
+				<table id="tbig[1]" cellspacing="0" cellpadding="0" border="0">
+					<tr>
+						<td class="imgbig"><div class="bounding" onClick="disabledEventPropagation(event)"><a onClick="disabledEventPropagation(event)" href="https://n31.ad.ad-srv.net/c/p0ok8mkkwucepgp" target="_blank"><img src="https://cdn.contentspread.net/tp/advertiser/21945/creativesup/eplaque_234x60.png"></a></div></td>
+					</tr>
+				</table>
+				
+
+
+				<div class="link"><a onClick="disabledEventPropagation(event)" href="https://n31.ad.ad-srv.net/c/p0ok8mkkwucepgp" target="_blank">eplaque.fr</a></div>
+	
+			</div><div id="b[2]" class="b c3" onClick="window.open('https://n31.ad.ad-srv.net/c/pnkdz2moz0j81ki')" onMouseMove="handleMouseOver(2)">
+	
+
+				
+				<table id="tmix[2]" cellspacing="0" cellpadding="0" border="0">
+					<tr>
+						<td class="img"><div class="bounding"><div id="is[2]" onClick="disabledEventPropagation(event)"><a onClick="disabledEventPropagation(event)" href="https://n31.ad.ad-srv.net/c/pnkdz2moz0j81ki" target="_blank"><img src="https://track.effiliation.com/servlet/effi.show?id_compteur=13145741&effi_id=168366973847603531"></a></div></div></td>
+						<td class="text"><div><table cellspacing="0" cellpadding="0" border="0"><tr><td><a onClick="disabledEventPropagation(event)" href="https://n31.ad.ad-srv.net/c/pnkdz2moz0j81ki" class="link" target="_blank">Cadeaux nature maison et jardin : jouets, dÃ©co et bien plus Ã  dÃ©couvrir avec NATURE ET DÃCOUVERTE !</a></td></tr></table></div></td>
+					</tr>
+				</table>
+				
+
+
+				
+
+
+				<div class="link"><a onClick="disabledEventPropagation(event)" href="https://n31.ad.ad-srv.net/c/pnkdz2moz0j81ki" target="_blank">natureetdecouvertes.com</a></div>
+	
+			</div>
+	
+			<a id="arrow1" href="request.php?zone=xj76m83vgyi4&nw=1&namespace=1b0860e154&subid=&uid=a3a472c564360c16&screenSize=1920x1080&screenSizeAvail=1853x1056&clientSize=300x250&scrollPos=0x0&extData[0]=&envData=&redirectClick=https%3A%2F%2Fadclick.g.doubleclick.net%2Faclk%25253Fsa%25253DL%252526ai%25253DBjugfaeu0VruXN8O3WIO7tYAPzOji-gcAAAAQASDk1a0hOABY3Mjx3q8CYPuh64LoCbIBG2dvb2dsZWFkcy5nLmRvdWJsZWNsaWNrLm5ldLoBCWdmcF9pbWFnZcgBCdoB_wFodHRwczovL2dvb2dsZWFkcy5nLmRvdWJsZWNsaWNrLm5ldC9wYWdlYWQvYWRzP2NsaWVudD1jYS1wdWItNjk4ODY3NjQzMTE1NjgyNSZvdXRwdXQ9aHRtbCZoPTI1MCZzbG90bmFtZT02MzIxMjQ2Mjg3JmFkaz0zNDU0OTM5ODk2Jnc9MzAwJmxtdD0xNDU0Njk3MzIxJmZsYXNoPTExLjIuMjAyJnVybD1odHRwJTNBJTJGJTJGd3d3LmxpdmVkb29yLmNvbSUyRiZ3Z2w9MSZkdD0xNDU0Njk3MzIxMjYzJmJwcD0zJmJkdD01MjY0JmZkdD02JmlkdD00MSaYAqoBqQK7NhRxTKyyPsACAuACAOoCIi84Nzc0L2FkeGJ1eXNpZGUvTE9XX0NQTV9GUl9BRFhORVf4AvfRHpADjAaYA4wGqAMB4AQBkAYBoAYW2AcA%252526num%25253D0%252526cid%25253D5Gg7n1CcMI2-3eRl9sEbU7cO%252526sig%25253DAOD64_1IScdx1O0RZmZta1wPoJyGZsBPOw%252526client%25253Dca-pub-3037544676168084%252526adurl%25253Dhttps%3A%2F%2Fadclick.g.doubleclick.net%2Faclk%252525253Fsa%252525253Dl%2525252526ai%252525253DCJp15aeu0VoG8FsuCZfXjvOAG2Iiu1gjQ7baS1AGgq8CpWxABIABg-4GAgOgJggEXY2EtcHViLTY5ODg2NzY0MzExNTY4MjWgAZjrqeUDyAEJqQKycQ8NvK-yPqgDAaoEeU_QLN2bP4_p-jAnwSV2D4K5vG4qMkeil2cG_A50yy-cYIXtamEupkwRH7Kx5A5668RNc6wSqwPBKii7EYw9IQsVkJlw3foWHLNS5m9AbZkKjmtQEINNx_R6jcpbWkmC0NNplAiH4_RmcYYoYWm917onnu_OA2BrRu6gBiHYBwA%2525252526num%252525253D1%2525252526sig%252525253DAOD64_1gAGi4P4-qGrdcVpBWDe_8_83Q0A%2525252526client%252525253Dca-pub-6988676431156825%2525252526adurl%252525253D&documentReferer=http%3A%2F%2Fwww.livedoor.com%2F&ancestorOrigins=null&random=5558489213157&isIframe=1&container=&adPos=0x0&adPosCheck=1x1&adtagId=0&reload=1&renderingType=html"><img src="https://cdn.contentspread.net/tp/adformats/triple/300x250_arrow_left.png"></a>
+			<a id="arrow2" href="request.php?zone=xj76m83vgyi4&nw=1&namespace=1b0860e154&subid=&uid=a3a472c564360c16&screenSize=1920x1080&screenSizeAvail=1853x1056&clientSize=300x250&scrollPos=0x0&extData[0]=&envData=&redirectClick=https%3A%2F%2Fadclick.g.doubleclick.net%2Faclk%25253Fsa%25253DL%252526ai%25253DBjugfaeu0VruXN8O3WIO7tYAPzOji-gcAAAAQASDk1a0hOABY3Mjx3q8CYPuh64LoCbIBG2dvb2dsZWFkcy5nLmRvdWJsZWNsaWNrLm5ldLoBCWdmcF9pbWFnZcgBCdoB_wFodHRwczovL2dvb2dsZWFkcy5nLmRvdWJsZWNsaWNrLm5ldC9wYWdlYWQvYWRzP2NsaWVudD1jYS1wdWItNjk4ODY3NjQzMTE1NjgyNSZvdXRwdXQ9aHRtbCZoPTI1MCZzbG90bmFtZT02MzIxMjQ2Mjg3JmFkaz0zNDU0OTM5ODk2Jnc9MzAwJmxtdD0xNDU0Njk3MzIxJmZsYXNoPTExLjIuMjAyJnVybD1odHRwJTNBJTJGJTJGd3d3LmxpdmVkb29yLmNvbSUyRiZ3Z2w9MSZkdD0xNDU0Njk3MzIxMjYzJmJwcD0zJmJkdD01MjY0JmZkdD02JmlkdD00MSaYAqoBqQK7NhRxTKyyPsACAuACAOoCIi84Nzc0L2FkeGJ1eXNpZGUvTE9XX0NQTV9GUl9BRFhORVf4AvfRHpADjAaYA4wGqAMB4AQBkAYBoAYW2AcA%252526num%25253D0%252526cid%25253D5Gg7n1CcMI2-3eRl9sEbU7cO%252526sig%25253DAOD64_1IScdx1O0RZmZta1wPoJyGZsBPOw%252526client%25253Dca-pub-3037544676168084%252526adurl%25253Dhttps%3A%2F%2Fadclick.g.doubleclick.net%2Faclk%252525253Fsa%252525253Dl%2525252526ai%252525253DCJp15aeu0VoG8FsuCZfXjvOAG2Iiu1gjQ7baS1AGgq8CpWxABIABg-4GAgOgJggEXY2EtcHViLTY5ODg2NzY0MzExNTY4MjWgAZjrqeUDyAEJqQKycQ8NvK-yPqgDAaoEeU_QLN2bP4_p-jAnwSV2D4K5vG4qMkeil2cG_A50yy-cYIXtamEupkwRH7Kx5A5668RNc6wSqwPBKii7EYw9IQsVkJlw3foWHLNS5m9AbZkKjmtQEINNx_R6jcpbWkmC0NNplAiH4_RmcYYoYWm917onnu_OA2BrRu6gBiHYBwA%2525252526num%252525253D1%2525252526sig%252525253DAOD64_1gAGi4P4-qGrdcVpBWDe_8_83Q0A%2525252526client%252525253Dca-pub-6988676431156825%2525252526adurl%252525253D&documentReferer=http%3A%2F%2Fwww.livedoor.com%2F&ancestorOrigins=null&random=5558489213157&isIframe=1&container=&adPos=0x0&adPosCheck=1x1&adtagId=0&reload=1&renderingType=html"><img src="https://cdn.contentspread.net/tp/adformats/triple/300x250_arrow_right.png"></a>
+	
+			<img onMouseOver="djump()" id="distractor" src="https://cdn.contentspread.net/tp/adformats/triple/cursor.png">
+	
+		</div>
+
+		<img style="position:absolute;visibility:hidden" id="mouseinteraction" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" />
+			
+		<script>
+			
+			var interactions = new Array();
+			interactions.push({awaiting:false,awaitingSince:0,interacted:false,c:'14417',h:'f979782cd37c'});interactions.push({awaiting:false,awaitingSince:0,interacted:false,c:'317273',h:'fe1413e67621'});interactions.push({awaiting:false,awaitingSince:0,interacted:false,c:'309213',h:'21cbc9a0aa6e'});
+			
+			var items = new Array();
+			items.push({mode:'',id:0,s:0,iscroll:{active:true,x:0}});items.push({mode:'',id:1,s:0,iscroll:{active:true,x:0}});items.push({mode:'',id:2,s:0,iscroll:{active:true,x:0}});
+			
+			var itemConfig = {
+				width:238,
+				height:80
+			};
+			
+			var distractor = {
+				active: false,
+				pos: {x:0,y:0},
+				target: {x:0,y:0},
+				width:21,
+				height:27,
+				borderpadding:10,
+				jumpcounter:0
+			};
+			
+			if ( Math.random() < 0.4 ) distractor.active = true;
+
+			var adConfig = {
+				a:200,
+				showtime:8,
+				itemDifftime:0.15,
+				iscrollRoundtrip:8,
+				smallImgWidth:120,
+				bigImgWidth:234,
+				width:300,
+				height:250,
+				animStart:true,
+				animRunning:true
+			};
+			
+			var screenpositions = [
+				{x:31,y:2},
+				{x:31,y:84},
+				{x:31,y:166}
+			];
+			
+			if ( nonBranded ) {
+				adConfig.animStart = false;
+				adConfig.animRunning = false;
+				distractor.active = false;
+				screenpositions[0].y = 1;
+				screenpositions[2].y = 167;
+				
+					var eDS = document.getElementById('b[0]').style;
+					eDS.background = 'transparent';
+					eDS.backgroundColor = '#b0b0b3';
+					eDS.border= '1px dotted #888890';
+				
+					var eDS = document.getElementById('b[1]').style;
+					eDS.background = 'transparent';
+					eDS.backgroundColor = '#b0b0b3';
+					eDS.border= '1px dotted #888890';
+				
+					var eDS = document.getElementById('b[2]').style;
+					eDS.background = 'transparent';
+					eDS.backgroundColor = '#b0b0b3';
+					eDS.border= '1px dotted #888890';
+				
+			}
+
+			init();
+		
+		</script>
+	
+		<script>
+			if ( '' == '1' ) {
+				document.write('<sc'+'ript src="https://cdn.contentspread.net/tp/tools/js/addDoubleBorder.js"></sc'+'ript>');
+			}
+		</script>
+		<script>
+			if ( '' == '1') {
+				addDoubleBorder(300,250,"#000000","#ffffff");
+			}
+		</script>
+
+	</body>
+</html>

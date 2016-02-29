@@ -1,0 +1,404 @@
+@charset "UTF-8";
+/* line 1, ../sass/landing.sass */
+body {
+  background: #FDFCFA;
+  text-align: center;
+  font-family: Verdana, Helvetica, sans-serif;
+  height: 100%;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
+}
+/* line 12, ../sass/landing.sass */
+body.landing-page #contentSearch {
+  box-shadow: none;
+}
+/* line 14, ../sass/landing.sass */
+body.landing-page:before {
+  margin-top: inherit;
+  height: inherit;
+  float: inherit;
+  content: none;
+}
+
+/* line 20, ../sass/landing.sass */
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* line 25, ../sass/landing.sass */
+* {
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+}
+
+/* line 30, ../sass/landing.sass */
+input:focus, button:focus {
+  outline: none;
+}
+
+/* line 33, ../sass/landing.sass */
+a, button {
+  color: #A0A09F;
+  text-decoration: none;
+}
+
+/* line 37, ../sass/landing.sass */
+a:hover, button:hover {
+  color: #8e8e8e;
+}
+
+/* line 40, ../sass/landing.sass */
+.land-login {
+  background-color: #EDEBE6;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 1;
+}
+
+/* line 47, ../sass/landing.sass */
+.land-content {
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  display: -webkit-flex;
+  display: flex;
+  flex: 1;
+}
+
+/* line 58, ../sass/landing.sass */
+.land-logo-sign {
+  background-image: url(../images/logo/kat-logo-2x.png);
+  background-size: cover;
+  height: 41px;
+  width: 45px;
+  margin: 0 auto 1em auto;
+}
+
+/* line 65, ../sass/landing.sass */
+.land-logo-text {
+  background-image: url(../images/logo/logo_text_brown.png);
+  background-size: cover;
+  height: 28px;
+  width: 249px;
+  margin: 0 auto;
+}
+
+/* line 72, ../sass/landing.sass */
+.land-login a {
+  color: #787878;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 0 13px;
+  height: 48px;
+  line-height: 48px;
+  display: block;
+  text-transform: uppercase;
+}
+
+/* line 82, ../sass/landing.sass */
+.land-search-input {
+  text-align: left;
+  border: 1px solid #999;
+  width: 550px;
+  max-width: 95%;
+  vertical-align: middle;
+  white-space: nowrap;
+  margin: 2em auto 0 auto;
+  padding-right: 0.5em;
+  border-radius: 2px;
+  align-self: center;
+}
+/* line 93, ../sass/landing.sass */
+.land-search-input form {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+}
+
+/* line 98, ../sass/landing.sass */
+#searchTool {
+  float: right;
+  position: inherit;
+}
+/* line 101, ../sass/landing.sass */
+#searchTool i, #searchTool i:hover {
+  line-height: 200%;
+}
+/* line 103, ../sass/landing.sass */
+#searchTool .ka:before {
+  color: inherit;
+}
+
+/* line 107, ../sass/landing.sass */
+.land-search-input input#contentSearch {
+  border: none;
+  font-size: 16px;
+  padding: 0.7em 1em;
+}
+/* line 111, ../sass/landing.sass */
+.land-search-input button, .land-search-input input, .land-search-input a {
+  background: none;
+  display: inline-block;
+}
+/* line 114, ../sass/landing.sass */
+.land-search-input input {
+  flex-grow: 2;
+}
+/* line 116, ../sass/landing.sass */
+.land-search-input button, .land-search-input a {
+  width: 35px;
+  border: none;
+  flex-grow: 1;
+  cursor: pointer;
+  margin: 0;
+  padding: 3px 0;
+  font: inherit;
+  vertical-align: top;
+  text-align: center;
+  display: inline-block;
+}
+/* line 128, ../sass/landing.sass */
+.land-search-input button i, .land-search-input a i {
+  display: block;
+  position: relative;
+  vertical-align: bottom;
+  font-size: 1.5em;
+}
+/* line 133, ../sass/landing.sass */
+.land-search-input i.ka:before {
+  font-size: 18px;
+}
+
+/* line 136, ../sass/landing.sass */
+ul.land-nav {
+  white-space: nowrap;
+  display: flex;
+  justify-content: space-between;
+  padding: 0;
+  width: 500px;
+  max-width: 95%;
+  margin: 3em auto 4em auto;
+  font-size: 13px;
+  text-transform: uppercase;
+}
+/* line 146, ../sass/landing.sass */
+ul.land-nav li {
+  display: inline-block;
+  padding: 0 0.3em;
+  text-align: center;
+}
+/* line 150, ../sass/landing.sass */
+ul.land-nav li a i {
+  padding-right: 0.4em;
+}
+
+/*========== */
+/* line 155, ../sass/landing.sass */
+.bottom-menu-block {
+  /*text-align: center; */
+  /*align-self: flex-end; */
+  /*-webkit-align-self: flex-end; */
+  justify-content: space-between;
+  display: flex;
+  padding: 20px 13px;
+  font-size: 13px;
+}
+
+/* line 165, ../sass/landing.sass */
+ul.bottom-menu li {
+  display: inline-block;
+  padding: 0 10px;
+}
+/* line 169, ../sass/landing.sass */
+ul.social-buttons li {
+  display: inline-block;
+  vertical-align: top;
+}
+/* line 170, ../sass/landing.sass */
+ul.social-buttons li a {
+  margin-right: 20px;
+}
+/* line 174, ../sass/landing.sass */
+ul.social-buttons i {
+  z-index: 1;
+  background-size: cover;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  opacity: 0.4;
+  margin-top: -3px;
+  vertical-align: middle;
+}
+
+@media screen and (max-width: 500px) {
+  /* line 185, ../sass/landing.sass */
+  .bottom-menu-block {
+    display: block;
+  }
+
+  /* line 187, ../sass/landing.sass */
+  .bottom-menu li .ka {
+    display: none;
+  }
+
+  /* line 189, ../sass/landing.sass */
+  .social-buttons {
+    margin-bottom: 20px;
+  }
+}
+/*================================ */
+/* line 194, ../sass/landing.sass */
+.bottom-menu-block a:hover {
+  opacity: 0.7;
+}
+
+/* line 197, ../sass/landing.sass */
+.twitter-button {
+  background-image: url(../images/social-twitter-circular.svg);
+}
+
+/* line 200, ../sass/landing.sass */
+.facebook-button {
+  background-image: url(../images/social-facebook-circular.svg);
+}
+
+@font-face {
+  font-family: "katfont";
+  src: url(../fonts/katfont-Regular-v2.woff) format("woff"), url(../fonts/katfont-Regular-v2.svg) format("svg");
+}
+/* line 208, ../sass/landing.sass */
+[class*="ka-"]:before {
+  font-family: "katfont";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 13px;
+  speak: none;
+  display: inline-block;
+  text-decoration: none;
+  width: 1em;
+  margin-right: 0.6em;
+  text-align: center;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 16px;
+  margin-left: 0.2em;
+  -webkit-font-smoothing: antialiased;
+  cursor: pointer;
+}
+
+/* line 226, ../sass/landing.sass */
+.ka-settings:before {
+  content: "î ¡";
+}
+
+/* line 229, ../sass/landing.sass */
+.ka-star:before {
+  content: "î ±";
+}
+
+/* line 232, ../sass/landing.sass */
+.ka-search:before {
+  content: "î ·";
+}
+
+/* line 235, ../sass/landing.sass */
+.ka-torrent:before {
+  content: "î ";
+}
+
+/* line 238, ../sass/landing.sass */
+.ka-community:before {
+  content: "î «";
+}
+
+/* line 241, ../sass/landing.sass */
+.ka-rss:before {
+  content: "î¡";
+}
+
+/* line 244, ../sass/landing.sass */
+.ka-faq:before {
+  content: "î ";
+}
+
+/* line 247, ../sass/landing.sass */
+.ka-user:before {
+  content: "î ";
+}
+
+/* ========= drop menu ========== */
+/* line 252, ../sass/landing.sass */
+.ui-menu {
+  list-style: none;
+  padding: 0;
+  display: none;
+  float: left;
+  color: #666;
+  max-height: 300px;
+  overflow: auto;
+  position: fixed;
+  top: 38px;
+  width: 24.5%;
+  border: 1px solid #e7e7e7;
+  background-color: #fff1e5;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+/* line 267, ../sass/landing.sass */
+.ui-menu .ui-menu-item {
+  margin: 0;
+  padding: 0;
+  float: left;
+  clear: left;
+  width: 100%;
+  font-size: 12px;
+  text-shadow: 0 1px 0 white;
+  text-align: left;
+}
+/* line 276, ../sass/landing.sass */
+.ui-menu .ui-menu-item a {
+  text-decoration: none;
+  display: block;
+  line-height: 1.5;
+  white-space: nowrap;
+  overflow: hidden;
+  cursor: pointer;
+  padding: 6px 10px;
+  color: #594c2d;
+  text-shadow: -1px 1px 0 #fff;
+  border-bottom: 1px solid #dbdbcf;
+}
+/* line 287, ../sass/landing.sass */
+.ui-menu .ui-menu-item a:hover, .ui-menu .ui-menu-item a.ui-state-hover, .ui-menu .ui-menu-item a.ui-state-active {
+  text-shadow: -1px 1px 0 #917c38;
+  background: #a6904c;
+  background: -moz-linear-gradient(top, #a6904c 0%, #917c38 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #a6904c), color-stop(100%, #917c38));
+  background: -webkit-linear-gradient(top, #a6904c 0%, #917c38 100%);
+  background: linear-gradient(to bottom, #a6904c 0%, #917c38 100%);
+  background: -ms-linear-gradient(top, #a6904c 0%, #917c38 100%);
+  color: #fff8d3;
+  border-bottom: 1px solid #7e6c3a;
+}
+
+/* line 298, ../sass/landing.sass */
+#previewPopupContainer {
+  display: none;
+}
+
+/* line 301, ../sass/landing.sass */
+.previewPopupContainer {
+  position: absolute;
+  z-index: 2000;
+  width: 330px;
+}

@@ -1,0 +1,94 @@
+<doctype! html>
+<html>
+	<head><script type="text/javascript">
+    
+      (function() {
+        var relegateNavigation = '';
+        var handleClickTagMessage = function(e) {
+          try {
+            var eventData = JSON.parse(e.data);
+          } catch (err) {
+            return;
+          }
+          if (eventData.isInitClickTag) {
+            if (eventData.clickTags) {
+              for (var i = 0; i < eventData.clickTags.length; i++) {
+                var clkTag = eventData.clickTags[i];
+                window[clkTag.name] = clkTag.url;
+              }
+            } else if (eventData.clickTag) {
+              window.clickTag = eventData.clickTag;
+            }
+            relegateNavigation = eventData.relegateNavigation;
+          }
+        };
+
+        if (open.call) {
+          window.open = function(open) {
+            return function(url, name, features) {
+              if (relegateNavigation === 'parent') {
+                var message = {'clickTag': url, 'isPostClickTag': true};
+                parent.postMessage(JSON.stringify(message), '*');
+              } else {
+                var args = [url, name];
+                if (features) {
+                  args.push(features);
+                }
+                open.apply(window, args);
+              }
+            };
+          }(window.open);
+        }
+
+        if (window.addEventListener) {
+          window.addEventListener(
+              'message', handleClickTagMessage, false);
+        } else {
+          window.attachEvent('onmessage', handleClickTagMessage);
+        }
+      })();
+    
+  </script>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>AirBNB</title>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.17.0/TweenMax.min.js"></script>
+		<script type="text/javascript" src="Airbnb300x600.js"></script>
+		<link rel="stylesheet" href="Airbnb300x600.css" type="text/css">
+	<script type="text/javascript">
+	var clickTag ="";
+</script>
+</head>
+	
+	<body onload="initBanner();">
+		<div id="container">
+			<div id="preloadImgs">
+				<img src="button.png">
+				<img src="button_over.png">
+				<img src="treehouse_30.jpg">
+				<img src="endframe.png">
+				<img src="headline1.png">
+				<img src="headline2.png">
+				<img src="listingbottom.png">
+				<img src="logoCorner.png">
+			</div> 
+
+			<div id="introAnimation">
+				<div id="panImage" class="unblur"></div>
+				<div id="headline1"></div> 
+				<div id="headline2"></div>
+				<div id="logoCorner"></div>
+				<div id="listingbottom"></div>
+			</div>
+
+			<div id="offerCopy"></div>	
+			<div id="endFrameCopy"></div>
+			<div id="bgClick"></div>
+			<div id="cta" onmouseover="ctaOver();" onmouseout="ctaOut();">
+				<div id="buttonHover"></div>
+			</div>
+	
+		</div>		
+
+	</body>	
+<html>

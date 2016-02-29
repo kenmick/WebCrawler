@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>tmall</title>
+<style>
+	html,body{
+		margin:0;
+		padding: 0;
+	}
+</style>
+<script src="http://code.createjs.com/easeljs-0.6.0.min.js"></script>
+<script src="http://code.createjs.com/tweenjs-0.4.0.min.js"></script>
+<script src="http://code.createjs.com/movieclip-0.6.0.min.js"></script>
+<script src="http://code.createjs.com/preloadjs-0.3.0.min.js"></script>
+<script src="index.js"></script>
+
+<script>
+var canvas, stage, exportRoot;
+
+function init() {
+	createjs.MotionGuidePlugin.install();
+
+	canvas = document.getElementById("canvas");
+	images = images||{};
+
+	var manifest = [
+		{src:"images/_10.png", id:"_10"},
+		{src:"images/_11.png", id:"_11"},
+		{src:"images/_13.png", id:"_13"},
+		{src:"images/_14.png", id:"_14"},
+		{src:"images/_15.png", id:"_15"},
+		{src:"images/_16.png", id:"_16"},
+		{src:"images/_17.png", id:"_17"},
+		{src:"images/_18pngfuzhi2.png", id:"_18pngfuzhi2"},
+		{src:"images/_2.png", id:"_2"},
+		{src:"images/_20.png", id:"_20"},
+		{src:"images/_21.png", id:"_21"},
+		{src:"images/_22.png", id:"_22"},
+		{src:"images/_23.png", id:"_23"},
+		{src:"images/_26.png", id:"_26"},
+		{src:"images/_27.png", id:"_27"},
+		{src:"images/_28.png", id:"_28"},
+		{src:"images/_29.png", id:"_29"},
+		{src:"images/_3.png", id:"_3"},
+		{src:"images/_30.png", id:"_30"},
+		{src:"images/_31.png", id:"_31"},
+		{src:"images/_34.png", id:"_34"},
+		{src:"images/_35.png", id:"_35"},
+		{src:"images/_36.png", id:"_36"},
+		{src:"images/_37.png", id:"_37"},
+		{src:"images/_38.png", id:"_38"},
+		{src:"images/_39.png", id:"_39"},
+		{src:"images/_4.png", id:"_4"},
+		{src:"images/_41.png", id:"_41"},
+		{src:"images/_42.png", id:"_42"},
+		{src:"images/_43.png", id:"_43"},
+		{src:"images/_44.png", id:"_44"},
+		{src:"images/_48.png", id:"_48"},
+		{src:"images/_48pngfuzhi.png", id:"_48pngfuzhi"},
+		{src:"images/_49pngfuzhi.png", id:"_49pngfuzhi"},
+		{src:"images/_5.png", id:"_5"},
+		{src:"images/_50.png", id:"_50"},
+		{src:"images/_51.png", id:"_51"},
+		{src:"images/_52.png", id:"_52"},
+		{src:"images/_53.png", id:"_53"},
+		{src:"images/_54.png", id:"_54"},
+		{src:"images/_55.png", id:"_55"},
+		{src:"images/_56.png", id:"_56"},
+		{src:"images/_57.png", id:"_57"},
+		{src:"images/_58.png", id:"_58"},
+		{src:"images/_59.png", id:"_59"},
+		{src:"images/_6.png", id:"_6"},
+		{src:"images/_6pngfuzhi.png", id:"_6pngfuzhi"},
+		{src:"images/_60.png", id:"_60"},
+		{src:"images/_61.png", id:"_61"},
+		{src:"images/_62.png", id:"_62"},
+		{src:"images/_63.png", id:"_63"},
+		{src:"images/_7.png", id:"_7"},
+		{src:"images/_9.png", id:"_9"},
+		{src:"images/ww13.png", id:"ww13"},
+		{src:"images/ww14.png", id:"ww14"},
+		{src:"images/ww17.png", id:"ww17"},
+		{src:"images/ww19.png", id:"ww19"},
+		{src:"images/ww2.png", id:"ww2"},
+		{src:"images/ww20.png", id:"ww20"},
+		{src:"images/ww4.png", id:"ww4"},
+		{src:"images/ww5.png", id:"ww5"},
+		{src:"images/ww6.png", id:"ww6"},
+		{src:"images/ww7.png", id:"ww7"},
+		{src:"images/ww8.png", id:"ww8"},
+		{src:"images/ww9.png", id:"ww9"},
+		{src:"images/ww10.png", id:"ww10"},
+		{src:"images/ww11.png", id:"ww11"},
+		{src:"images/ww12.png", id:"ww12"}
+	];
+
+	var loader = new createjs.LoadQueue(false);
+	loader.addEventListener("fileload", handleFileLoad);
+	loader.addEventListener("complete", handleComplete);
+	loader.loadManifest(manifest);
+}
+
+function handleFileLoad(evt) {
+	if (evt.item.type == "image") { images[evt.item.id] = evt.result; }
+}
+
+function handleComplete() {
+	exportRoot = new lib.fcGame();
+
+	stage = new createjs.Stage(canvas);
+	stage.addChild(exportRoot);
+	stage.update();
+
+	createjs.Ticker.setFPS(32);
+	createjs.Ticker.addEventListener("tick", stage);
+}
+</script>
+</head>
+
+<body onload="init();">
+	<canvas id="canvas" width="1250" height="600"></canvas>
+</body>
+</html>

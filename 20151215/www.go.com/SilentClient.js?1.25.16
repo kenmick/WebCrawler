@@ -1,0 +1,68 @@
+/*global DisneyID, PostMessageTransport*/
+/**
+ * JavaScript Client API Silent Functions
+ * ---
+ * Application Entry Point
+ *
+ * The JavaScript Client API consists of two major components:
+ * The client website interface and the silent client functions.
+ * Business units may call interface methods on an instance
+ * of the DisneyID object, running within the context of the
+ * client website. The DisneyID instance forwards the request to
+ * a hidden iframe running this JavaScript Application. From here,
+ * we can make AJAX requests to the GuestController or read encrypted
+ * guest data from localStorage.
+ *
+ */
+
+requirejs.config({
+    baseUrl: 'public/silent-client/methods'
+});
+
+requirejs([
+        'getGuest',
+        'checkInfo',
+        'checkOrRequestActivities',
+        'doTealium',
+        'getInfo',
+        'logout',
+        'newProspect',
+        'validateToken',
+        'forceTokenRefresh',
+        'silentLogin'
+    ],
+    function (
+        getGuest,
+        checkInfo,
+        checkOrRequestActivities,
+        doTealium,
+        getInfo,
+        logout,
+        newProspect,
+        validateToken,
+        forceTokenRefresh,
+        silentLogin
+        ) {
+
+        DisneyID.postMessageTransport = new PostMessageTransport({
+            targetWindow: window.parent,
+            targetDomain: window.targetUrl
+        });
+        DisneyID.postMessageTransport.addAuthorizedOrigin(window.targetUrl);
+        DisneyID.postMessageTransport.setTargetLoaded(true);
+        DisneyID.postMessageTransport.setTargetReady(true);
+
+        // Attach a postMessage event handler and notify the client website
+        // that we are ready to receive API calls via postMessage
+        DisneyID.postMessageTransport
+            .on('getGuest', getGuest)
+            .on('checkInfo', checkInfo)
+            .on('checkOrRequestActivities', checkOrRequestActivities)
+            .on('doTealium', doTealium)
+            .on('getInfo', getInfo)
+            .on('logout', logout)
+            .on('newProspect', newProspect)
+            .on('validateToken', validateToken)
+            .on('forceTokenRefresh', forceTokenRefresh)
+            .on('silentLogin', silentLogin);
+    });

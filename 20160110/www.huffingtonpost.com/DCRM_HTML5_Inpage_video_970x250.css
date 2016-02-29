@@ -1,0 +1,132 @@
+@charset "UTF-8";
+/* CSS Document */
+
+/* Default style, feel free to remove if not needed. */
+body, body * {
+	vertical-align: baseline;
+	border: 0 none;
+	outline: 0;
+	padding: 0;
+	margin: 0;
+}
+/* Div layer for the entire banner. */
+#container_dc {
+	position: absolute;
+	width: 970px;
+	height: 250px;
+	top: 0px;
+	left: 0px;
+	margin: auto;
+}
+#fond {
+	position: absolute;
+	width: 970px;
+	height: 250px;
+	top: 0px;
+	left: 0px;
+	background-image: url('bg.jpg');
+    z-index:100;
+}
+#packshot {
+	position: absolute;
+	width: 970px;
+	height:250px;
+	top: 0px;
+	left: 0px;
+	background-image: url('packshot.jpg');
+	cursor: pointer;
+	z-index: 820;
+}
+#texte {
+	position: absolute;
+	width: 970px;
+	height: 250px;
+	top: 0px;
+	left: 0px;
+	background-image: url('txt.png');
+    z-index:100;
+}
+#cta {
+	position: absolute;
+	width: 970px;
+	height: 250px;
+	top: 0px;
+	left: 0px;
+	background-image: url('cta.png');
+    z-index:100;
+}
+#contour {
+	position: absolute;
+	width: 968px;
+	height: 248px;
+	top: 0px;
+	left: 0px;
+	border:1px solid #000;
+    z-index: 830;
+    pointer-events: none;
+}
+/* Invisible button for background clickthrough. */
+#background_exit_dc {
+	position: absolute;
+	width: 970px;
+	height: 250px;
+	top: 0px;
+	left: 0px;
+	cursor: pointer;
+	opacity: 0;
+	z-index: 300;
+}
+/* Div layer containing the video player and video controls. */
+#video1_container_dc {
+	position: absolute;
+	width: 372px;
+	height: 210px;
+	top: 20px;
+	left: 298px;
+	background-color: #FFF;
+	/*border: 1px solid #666666;*/
+	z-index: 500;
+    box-shadow: 1px 1px 12px #555;
+    overflow: hidden;
+}
+#video1_dc {
+	position: relative;
+    width: 376px;
+    height: 211px;
+    left: -2px;
+}
+.video_controls_dc {
+	position: absolute;
+	width: 20px;
+	height:20px;
+	top: 185px;
+	cursor: pointer;
+	z-index: 800;
+    background-color:transparent;
+}
+.video_controls_dc:hover {
+	opacity: 0.8;
+}
+#video1_control_unmute_dc {
+	right: 5px;
+	visibility: hidden;
+	background-image:url(Unmute.png);
+	background-repeat:no-repeat;
+}
+#video1_control_mute_dc {
+	right: 5px;
+	visibility: hidden;
+	background-image:url(Mute.png);
+	background-repeat:no-repeat;
+}
+#video1_control_replay_dc {	
+	top: 225px;
+	right: 5px;
+	background-image:url(Replay.png);
+	background-repeat:no-repeat;
+	width: 20px;
+	height:20px;
+	z-index: 820;
+}
+:focus {outline:none;}
+::-moz-focus-inner {border:0;}

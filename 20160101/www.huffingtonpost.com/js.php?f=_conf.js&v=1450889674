@@ -1,0 +1,58 @@
+/* From: production-mt-wfe-58-119-use1 : 4577 */
+huff.unit('conf', function(ready){
+
+	var data = {},
+		waiters = {},
+		conf = this;
+
+	conf.set = function(key, value){
+		if ('object' === typeof key){
+			for(var p in key)
+				conf.set(p, key[p]);
+		} else {
+			data[key] = value;
+			huff.emit('conf/set', key, value);
+
+			if (waiters[key])
+				for(var i=0, l=waiters[key].length; i<l; i++)
+					waiters[key][i](value);
+		}
+
+		return conf;
+	}
+
+	conf.get = function(){
+		arguments = Array.prototype.slice.call(arguments, 0);
+		if ('function' === typeof arguments[arguments.length-1]){
+			var callback = arguments.pop(),
+				count = arguments.length,
+				result = [], ret = function(i){
+					return function(val){
+						result[i] = val;
+						--count === 0 && callback.apply(null, result);
+					}
+				}
+
+			for(var i=0, l=arguments.length; i<l; i++)
+				data[arguments[i]] === undefined
+					? (waiters[arguments[i]] || (waiters[arguments[i]] = [])).push(ret(i))
+					: ret(i)(data[arguments[i]]);
+
+			return conf;
+		} else {
+			if (arguments.length === 1) return data[arguments[0]];
+
+			var result = {};
+			for(var i=0, l=arguments.length; i<l; i++)
+				result[arguments[i]] = data[arguments[i]];
+
+			return result;
+		}
+	}
+
+	ready(conf);
+
+});
+
+
+/* From: production-mt-wfe-58-119-use1 : 4577 *//* a79ac2d2669e872d452a120f7e0829e698d12129 */

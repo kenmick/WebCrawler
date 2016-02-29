@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>indexCanvas</title>
+<style>
+	*{
+		margin:0;
+		padding: 0;
+	}
+	canvas{
+		cursor: pointer;
+	}
+</style>
+<script src="http://code.createjs.com/easeljs-0.7.1.min.js"></script>
+<script src="http://code.createjs.com/tweenjs-0.5.1.min.js"></script>
+<script src="http://code.createjs.com/movieclip-0.7.1.min.js"></script>
+<script src="http://code.createjs.com/preloadjs-0.4.1.min.js"></script>
+<script src="indexCanvas.js"></script>
+
+<script>
+var canvas, stage, exportRoot;
+
+function init() {
+	createjs.MotionGuidePlugin.install();
+
+	canvas = document.getElementById("canvas");
+	images = images||{};
+
+	var loader = new createjs.LoadQueue(false);
+	loader.addEventListener("fileload", handleFileLoad);
+	loader.addEventListener("complete", handleComplete);
+	loader.loadManifest(lib.properties.manifest);
+}
+
+function handleFileLoad(evt) {
+	if (evt.item.type == "image") { images[evt.item.id] = evt.result; }
+}
+
+function handleComplete() {
+	exportRoot = new lib.indexCanvas();
+
+	stage = new createjs.Stage(canvas);
+	stage.addChild(exportRoot);
+	stage.update();
+
+	createjs.Ticker.setFPS(lib.properties.fps);
+	createjs.Ticker.addEventListener("tick", stage);
+}
+
+window.onload = function(){
+	var oCanvas = document.getElementById("canvas");
+	oCanvas.onclick = function(){
+		window.open("http://g.163.com/a?CID=39590&Values=545631416&Redirect=https://ju.mmstat.com/?url=https://1212.taobao.com/?02&spm=a1z15.22.4381.17553&ad_id=1001320932f275a9eeab&am_id=&cm_id=&pm_id=&campaign_id=570701","_blank");
+	};
+}
+</script>
+</head>
+
+<body onload="init();">
+	<canvas id="canvas" width="1680" height="700"></canvas>
+</body>
+</html>

@@ -1,0 +1,71 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>ad</title>
+  <style>
+    body {
+      margin: 0;
+    }
+
+    .discuss-ad {
+      color: #369;
+      display: block;
+      font-family: verdana, arial, sans-serif;
+      font-size: small;
+      text-decoration: none;
+      text-align: center;
+    }
+  </style>
+  <script>
+    window.ADS_GLOBALS = {"network": 5146, "site": 24950};
+    window.ados = window.ados || {};
+    window.ados.domain = "engine.a.redditmedia.com";
+    ados.run = ados.run || [];
+
+    var script = document.createElement('script');
+    script.src = '//s.zkcdn.net/ados.js';
+    script.async = true;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  </script>
+  <script type="text/javascript" src="//www.redditstatic.com/ad-dependencies.5O7sMdAReBw.js"></script>
+
+</head>
+<body>
+
+  <div id="main"></div>
+  <script type="text/javascript" src="//www.redditstatic.com/display.FuUFEnGlkuE.js"></script>
+
+  
+  <script>
+    (function() {
+      var timeout = setInterval(function() {
+        var frame = "ad_main";
+        var placement = "main";
+
+        if (window.parent.frames[frame].ados_ads) {
+          clearInterval(timeout);
+
+          var id = window.parent.frames[frame].ados_ads[placement].id;
+          var discussLink = document.createElement('a');
+          var adzerkPreview = 'https://preview.adzerk.com/preview/' + id;
+
+          discussLink.className = 'discuss-ad';
+          discussLink.target = 'top';
+          discussLink.href = '//reddit.com/r/ads/submit?url=' + encodeURIComponent(adzerkPreview);
+          discussLink.innerHTML = 'discuss this ad on reddit';
+
+          document.body.appendChild(discussLink);
+        }
+      }, 50);
+    })();
+  </script>
+
+
+</body>
+</html>
+
+
+

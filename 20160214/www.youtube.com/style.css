@@ -1,0 +1,95 @@
+
+body, body * {
+  vertical-align: baseline;
+  border: 0 none;
+  outline: 0;
+  padding: 0;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  font-size: 9pt;
+  color: #333;
+}
+
+#main-container {
+  position: absolute;
+  width: 970px;
+  height: 250px;
+  top: 0px;
+  left: 0px;
+  border: 1px solid black;
+  box-sizing: border-box;
+  background: #EEE url('./bg.jpg') top left no-repeat;
+}
+
+#exit {
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+}
+#yt-close {
+  z-index: 999;
+}
+
+.feature {
+  top: 20px;
+  left: 575px;
+  width: 374px;
+  height: 210px;
+  transition: opacity 0.8s ease-out;
+}
+#ytp-0 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 500;
+}
+
+:focus {
+  outline:none;
+}
+::-moz-focus-inner {
+  border:0;
+}
+.elt{
+    position: absolute;
+}
+#btn-pan {
+    background: #e4242e url('fin.jpg') top left no-repeat;
+    top: 20px;
+    left: 575px;
+    width: 374px;
+    height: 210px;
+    z-index: 20;
+    display:none;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    transition: opacity 0.8s ease-out;
+}
+#btn-pan > a{
+    position: absolute;
+    display: block;
+    width: 170px;
+    height: 97px;
+    z-index: 50;
+    left: 187px;
+    top: 6px;
+    text-decoration: none;
+    overflow: hidden;
+}
+#btn-pan > a#vid2{
+    top: 108px;
+}
+#btn-pan > a > img{
+    transition: all .2s ease-in-out;
+}
+#btn-pan > a:hover > img{
+    transform: scale(1.1);
+}
+#call{
+    cursor: pointer;
+    position: absolute;
+    top: 197px;
+    left: 27px;
+}

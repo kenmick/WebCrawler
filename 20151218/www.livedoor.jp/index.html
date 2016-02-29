@@ -1,0 +1,90 @@
+<!DOCTYPE HTML>
+<html>
+<head><script type="text/javascript">
+    
+      (function() {
+        var relegateNavigation = '';
+        var handleClickTagMessage = function(e) {
+          try {
+            var eventData = JSON.parse(e.data);
+          } catch (err) {
+            return;
+          }
+          if (eventData.isInitClickTag) {
+            if (eventData.clickTags) {
+              for (var i = 0; i < eventData.clickTags.length; i++) {
+                var clkTag = eventData.clickTags[i];
+                window[clkTag.name] = clkTag.url;
+              }
+            } else if (eventData.clickTag) {
+              window.clickTag = eventData.clickTag;
+            }
+            relegateNavigation = eventData.relegateNavigation;
+          }
+        };
+
+        if (open.call) {
+          window.open = function(open) {
+            return function(url, name, features) {
+              if (relegateNavigation === 'parent') {
+                var message = {'clickTag': url, 'isPostClickTag': true};
+                parent.postMessage(JSON.stringify(message), '*');
+              } else {
+                var args = [url, name];
+                if (features) {
+                  args.push(features);
+                }
+                open.apply(window, args);
+              }
+            };
+          }(window.open);
+        }
+
+        if (window.addEventListener) {
+          window.addEventListener(
+              'message', handleClickTagMessage, false);
+        } else {
+          window.attachEvent('onmessage', handleClickTagMessage);
+        }
+      })();
+    
+  </script>
+<title>banner</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="ad.size" content="height=250,width=300">
+<link rel="stylesheet" media="all" href="style.css">
+<script type="text/javascript">
+	var clickTag = "http://www.google.com"; 
+</script>
+</head>
+<body onload="init()">
+	<div id="content">
+		<div id="wrapper">
+
+			<div class="animClass">
+				
+				<div id="flash"></div>
+				<div id="chip"></div>
+				<div id="run-1"></div>
+				<div id="run-2"></div>
+				<div id="run-3"></div>
+				<div id="frame-1"></div>
+                <div id="frame-1b"></div>
+				<div id="frame-2"></div>
+				<div id="frame-3"></div>
+				<div id="watch"></div>
+				<div id="logo"></div>
+				<div id="cta"></div>	
+				<div id="legal-2"></div>
+                
+			</div>
+
+			<a class="click-through" href="javascript:window.open(window.clickTag)"></a>â
+		
+		</div><!-- #wrapper -->			
+	</div><!-- #content -->
+
+	
+    <script type="text/javascript" src="scripts.js"></script>
+</body>
+</html>

@@ -1,0 +1,349 @@
+body {
+  margin: 0;
+}
+
+a {
+  cursor: pointer;
+  position: absolute;
+}
+
+.ml-txt
+{
+  color:#000;
+}
+
+.wrapper {
+  width: 298px;
+  height: 248px;
+  overflow: hidden;
+  background: #d9dada;
+  border: 1px solid #000;
+  position: relative;
+}
+.wrapper #banner {
+  width: 100%;
+  height: 100%;
+  background: url("../images/bg.jpg") no-repeat center center;
+}
+/*SLIDE 1*/
+
+.wrapper #banner .logo {
+
+  position: absolute;
+  padding:4px;
+}
+
+
+.thermo-wrap
+{
+  position: absolute;
+    width:100%;
+  height:100%;
+  opacity: 0;
+}
+
+.thermo
+{
+  position: absolute;
+    width:100%;
+  height:100%;
+}
+
+
+
+
+.thermo img
+{
+  position: absolute;
+  display: block;
+  margin: auto;
+  top:0;
+  bottom:0;
+  right:0;
+  padding-right:15px; 
+}
+
+.thermo-mask
+{
+    position: absolute;
+    width: auto;
+    height: auto;
+    right: 0;
+    top: 63px;
+    padding-right: 38px;
+    overflow:hidden;
+}
+
+.thermo-mask-img
+{
+  position: relative;
+  top: -65px;
+}
+
+.care-wrap
+{
+  position: absolute;
+  width: 100%;
+  height:100%;
+  left:-200px;
+  opacity: 0;
+  top:-10px;
+
+
+       transition: all 0.2s linear;
+    -webkit-transition: all 0.2s linear;
+}
+
+.cadre
+{
+  position: absolute;
+  width: 100%;
+  height: 100%
+}
+
+.cadre img
+{
+  position: absolute;
+  padding: 50px 25px;
+}
+
+.txt-1, .txt-2
+{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.txt-1 img
+{
+  padding: 90px 57px;
+}
+
+
+.txt-2
+{
+  opacity:0;
+
+}
+
+.txt-2 img
+{
+  position: absolute;
+  display: block;
+  padding: 107px 51px;
+}
+
+
+.txt-3
+{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+
+.txt-3 img
+{
+  position: absolute;
+  padding: 160px 60px;
+}
+
+.btn
+{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top:50px;
+}
+
+.btn img
+{
+  position: absolute;
+  bottom:0;
+  padding: 8px 47px;
+
+}
+
+
+.txt-4
+{
+  position: absolute;
+  width:100%;
+  height:100%;
+  top:55px;
+}
+
+.txt-4 img
+{
+  position: absolute;
+  bottom:0;
+  padding: 35px 7px;
+}
+
+
+
+
+.wrapper #banner .VoirConditions {
+  position: absolute;
+  top: 232px;
+  opacity: 0;
+  width:100%;
+  height:100%;
+}
+
+.VoirConditions img
+{
+  display: block;
+  position: absolute;
+  right: 0;
+  padding: 0px 12px;
+}
+
+
+.ml_btn
+{
+  display: block;
+  position: absolute;
+  margin: auto;
+  left:0;
+  right:0;
+}
+
+.ml-txt
+{
+    position: absolute;
+    width: 100%;
+    height: auto;
+    top: 30px;
+    background: #ffffff;
+    font-family: arial;
+    font-size: 10px;
+    text-align: center;
+    padding: 12px 10px;
+    box-sizing: border-box;
+
+     transition: all 0.2s linear;
+    -webkit-transition: all 0.2s linear;
+
+}
+
+.ml_btn:hover > .ml-txt
+{
+  top:-30px;
+
+}
+
+
+
+
+
+
+
+@keyframes scaleAnimD {
+  
+    0%{transform:scale(1);}
+  
+/*    20%{transform:scale(1.15)}
+
+    40%{transform:scale(1);}
+
+    75%{transform:scale(1);}*/
+
+    100%{transform:scale(0.76);}
+  
+    
+}
+
+
+@-webkit-keyframes scaleAnimD {
+  
+    0%{-webkit-transform:scale(1);}
+  
+    20%{-webkit-transform:scale(1.15)}
+
+    40%{-webkit-transform:scale(1);}
+
+    75%{-webkit-transform:scale(1);}
+
+    100%{-webkit-transform:scale(0.76);}
+  
+    
+}
+
+
+@-moz-keyframes scaleAnimD {
+  
+    0%{-moz-transform:scale(1);}
+  
+    20%{-moz-transform:scale(1.15)}
+
+    40%{-moz-transform:scale(1);}
+
+    75%{-moz-transform:scale(1);}
+
+    100%{-moz-transform:scale(0.76);}
+  
+    
+}
+
+
+@-ms-keyframes scaleAnimD {
+  
+    0%{transform:scale(1);}
+  
+    20%{transform:scale(1.15)}
+
+    40%{transform:scale(1);}
+
+    75%{transform:scale(1);}
+
+    100%{transform:scale(0.76);}
+    
+}
+
+
+/**** SCALE TXT 2 ***/
+
+@keyframes scaleAnimTxt2 {
+  
+    0%{transform:scale(1);}
+  
+    50%{transform:scale(1.1)}
+
+    100%{transform:scale(1); 
+}
+
+
+@-webkit-keyframes scaleAnimTxt2 {
+  
+    0%{-webkit-transform:scale(1);}
+  
+    50%{-webkit-transform:scale(1.1)}
+
+    100%{-webkit-transform:scale(1); 
+  
+    
+}
+
+
+@-moz-keyframes scaleAnimTxt2 {
+  
+    0%{-moz-transform:scale(1);}
+  
+    50%{-moz-transform:scale(1.1)}
+
+    100%{-moz-transform:scale(1); 
+  
+    
+}
+
+
+@-ms-keyframes scaleAnimTxt2 {
+  
+    0%{transform:scale(1);}
+  
+    50%{transform:scale(1.1)}
+
+    100%{transform:scale(1); 
+    
+}

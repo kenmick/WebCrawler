@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TMALL</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        html,body{
+            width: 100%;
+            height: 100%;
+        }
+        .wrapper{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 620px;
+            height: 100px;
+            overflow: hidden;
+            background: url("image/bg.jpg") center;
+        }
+        .cloud-1{
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 46px;
+            background: url("image/cloud-2.png") no-repeat center;
+            -webkit-animation: cloud-ani 2s infinite ease-in-out;
+            -moz-animation: cloud-ani 2s infinite ease-in-out;
+            -ms-animation: cloud-ani 2s infinite ease-in-out;
+            -o-animation: cloud-ani 2s infinite ease-in-out;
+            animation: cloud-ani 2s infinite ease-in-out;
+        }
+        .cloud-2{
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 36px;
+            background: url("image/cloud-1.png") no-repeat center;
+            -webkit-animation: cloud-ani 2.5s infinite ease-in-out;
+            -moz-animation: cloud-ani 2.5s infinite ease-in-out;
+            -ms-animation: cloud-ani 2.5s infinite ease-in-out;
+            -o-animation: cloud-ani 2.5s infinite ease-in-out;
+            animation: cloud-ani 2.5s infinite ease-in-out;
+        }
+        .tmall{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 243px;
+            height: 107px;
+            margin-left: -121px;
+            margin-top: -53px;
+            background: url("image/tmall.png") no-repeat center;
+            -webkit-animation: tmall-ani 4s infinite ease-in-out;
+            -moz-animation: tmall-ani 4s infinite ease-in-out;
+            -ms-animation: tmall-ani 4s infinite ease-in-out;
+            -o-animation: tmall-ani 4s infinite ease-in-out;
+            animation: tmall-ani 4s infinite ease-in-out;
+        }
+        .money-1{
+            position: absolute;
+            left: 78%;
+            top: 30%;
+            width: 51px;
+            height: 57px;
+            background: url("image/money.png") no-repeat center;
+            -webkit-animation: cloud-ani 1.5s infinite ease-in-out;
+            -moz-animation: cloud-ani 1.5s infinite ease-in-out;
+            -ms-animation: cloud-ani 1.5s infinite ease-in-out;
+            -o-animation: cloud-ani 1.5s infinite ease-in-out;
+            animation: cloud-ani 1.5s infinite ease-in-out;
+        }
+        .money-2{
+            position: absolute;
+            left: 21%;
+            top: 57%;
+            width: 34px;
+            height: 38px;
+            background: url("image/money2.png") no-repeat center;
+            -webkit-animation: cloud-ani 2.3s infinite ease-in-out;
+            -moz-animation: cloud-ani 2.3s infinite ease-in-out;
+            -ms-animation: cloud-ani 2.3s infinite ease-in-out;
+            -o-animation: cloud-ani 2.3s infinite ease-in-out;
+            animation: cloud-ani 2.3s infinite ease-in-out;
+        }
+        .money-3{
+            position: absolute;
+            left: 10%;
+            top: 32%;
+            width: 35px;
+            height: 39px;
+            background: url("image/money3.png") no-repeat center;
+            -webkit-animation: cloud-ani 1.8s infinite ease-in-out;
+            -moz-animation: cloud-ani 1.8s infinite ease-in-out;
+            -ms-animation: cloud-ani 1.8s infinite ease-in-out;
+            -o-animation: cloud-ani 1.8s infinite ease-in-out;
+            animation: cloud-ani 1.8s infinite ease-in-out;
+        }
+        @-webkit-keyframes cloud-ani {
+            50%{
+                -webkit-transform: translateY(8px);
+                -moz-transform: translateY(8px);
+                -ms-transform: translateY(8px);
+                -o-transform: translateY(8px);
+                transform: translateY(8px);
+            }
+        }
+        @-o-keyframes cloud-ani {
+            50%{
+                -webkit-transform: translateY(8px);
+                -moz-transform: translateY(8px);
+                -ms-transform: translateY(8px);
+                -o-transform: translateY(8px);
+                transform: translateY(8px);
+            }
+        }
+        @keyframes cloud-ani {
+            50%{
+                -webkit-transform: translateY(8px);
+                -moz-transform: translateY(8px);
+                -ms-transform: translateY(8px);
+                -o-transform: translateY(8px);
+                transform: translateY(8px);
+            }
+        }
+        @-webkit-keyframes tmall-ani {
+            0%,80%,90%,100%{
+                -webkit-transform: scale(1);
+                -moz-transform: scale(1);
+                -ms-transform: scale(1);
+                -o-transform: scale(1);
+                transform: scale(1);
+            }
+            85%,95%{
+                -webkit-transform: scale(1.1);
+                -moz-transform: scale(1.1);
+                -ms-transform: scale(1.1);
+                -o-transform: scale(1.1);
+                transform: scale(1.1);
+            }
+        }
+        @-o-keyframes tmall-ani {
+            0%,80%,90%,100%{
+                -webkit-transform: scale(1);
+                -moz-transform: scale(1);
+                -ms-transform: scale(1);
+                -o-transform: scale(1);
+                transform: scale(1);
+            }
+            85%,95%{
+                -webkit-transform: scale(1.1);
+                -moz-transform: scale(1.1);
+                -ms-transform: scale(1.1);
+                -o-transform: scale(1.1);
+                transform: scale(1.1);
+            }
+        }
+        @keyframes tmall-ani {
+            0%,80%,90%,100%{
+                -webkit-transform: scale(1);
+                -moz-transform: scale(1);
+                -ms-transform: scale(1);
+                -o-transform: scale(1);
+                transform: scale(1);
+            }
+            85%,95%{
+                -webkit-transform: scale(1.1);
+                -moz-transform: scale(1.1);
+                -ms-transform: scale(1.1);
+                -o-transform: scale(1.1);
+                transform: scale(1.1);
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <a href="http://g.163.com/a?CID=38980&Values=3896888791&Redirect=http://ju.mmstat.com/?url=https://1111.tmall.com/?spm=a1z15.22.4381.17553&ad_id=1001319615ef4d34bf47&am_id=&cm_id=&pm_id=&campaign_id=543711" target="_blank">
+        <div class="wrapper">
+            <div class="cloud-1"></div>
+            <div class="cloud-2"></div>
+            <div class="tmall"></div>
+            <div class="money-1"></div>
+            <div class="money-2"></div>
+            <div class="money-3"></div>
+        </div>
+    </a>
+</body>
+</html>

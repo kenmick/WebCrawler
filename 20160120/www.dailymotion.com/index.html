@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+	<meta charset="UTF-8" />
+
+	<title>Masthead</title>
+
+	<style>
+
+		body{margin: 0;}
+
+		#topbanner{
+			display:block;
+			width:970px;
+			height:270px;
+			background-color:transparent;
+		}
+
+		#player{
+			position:absolute;
+			/* Change player size */
+			width:416px;
+			height:234px;
+			/* Change player position */
+			left:14px;
+			top:8px;
+		}
+
+	</style>
+
+</head>
+
+<body>
+
+	<!-- Replace the redirection url in the "href" attribute -->
+	<a id="topbanner" href="https://www.facebook.com/LeConvoi/" target="_blank">
+
+		<!--
+
+			PARAMS
+
+			html=1 -> force HTML player (DON'T REMOVE)
+			controls=0 -> hide controls
+			autoplay=1 -> autoplay video
+			mute=1 -> mutes the player's volume
+
+		-->
+
+		<div id="player">
+			<!-- Replace the video ID in the iframe "src" attribute -->
+			<iframe frameborder="0" width="100%" height="100%" src="http://www.dailymotion.com/embed/video/x3hdda8?html=1&controls=1&autoplay=1&mute=1" allowfullscreen></iframe>
+		</div> <!-- #player -->
+
+	</a> <!-- topbanner -->
+
+</body>
+</html>

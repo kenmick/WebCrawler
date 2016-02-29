@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        
+        <script src="/879366/Enabler_01_99.js"> </script>
+        <script src="https://www.gstatic.com/external_hosted/polymer/custom.elements.min.js"></script>
+        <script src="https://www.gstatic.com/ads/ci/ytclosebutton/1/ytclosebutton_min.js"></script>
+
+        <link rel="stylesheet" type="text/css" href="style.min.css">
+        
+    </head>
+    <body>
+        <div id="main-container">
+            <div id="close-button"><ci-ytclosebutton lang="fr" theme="white" shadow="false" id="ytClose" /></div>
+            
+            <div id="navigation">
+                <ul>
+                    <li><a href="#" data-id="home" class="first active"></a></li>
+                    <li><a href="#" data-id="video"><span>VidÃ©os</span></a></li>
+                    <li><a href="#" data-id="photo"><span>Photos</span></a></li>
+                    <li><a href="#" data-id="social"><span>Revue<br />de presse</span></a></li>
+                </ul>
+            </div>
+            
+            <div id="sections">
+            
+                <div id="index" class="section active">
+                    <a class="skip" href="#"><span>Passer l&#39;intro</span></a>
+                    <img class="logo" src="index-logo.png" alt="">
+                    <div class="video"></div>
+                </div>
+            
+                <div id="home" class="section">
+                    <div class="inner-section">
+                        <div class="video"></div>
+                        
+                        <div class="info">
+                            <div class="release">AUJOURD&#39;HUI<br />AU CINÃMA</div>
+                            <a class="see" href="#"><span>VOIR LES SÃANCES</span></a>
+                        </div>
+                    </div>
+                    <div class="exit"></div>
+                </div>
+            
+                <div id="social" class="section">
+                    <div class="inner-section">
+                        
+                        <div class="tweets">
+                            <span class="tweet-number"><span class="current-tweet">0</span>/<span class="total-tweet">0</span></span>
+                            <div class="dots"></div>
+                            
+                            <div class="prev-next"><!--
+                                --><a class="prev" href="#"><img src="prev-arrow.gif" alt=""></a><!--
+                                --><div></div><!--
+                                --><a class="next" href="#"><img src="next-arrow.gif" alt=""></a><!--
+                            --></div>
+                        
+                            <div id="tweets">
+                            </div>
+                        
+                            <div class="links">
+                                <a class="facebook" href="#"><img src="fb-ico.png" alt=""></a>
+                                <a class="twitter" href="#"><img src="tw-ico.png" alt=""></a>
+                                <a class="instagram" href="#"><img src="ins-ico.png" alt=""></a>
+                                <a class="gplus" href="#"><img src="gp-ico.png" alt=""></a>
+                            </div>
+                        </div>
+
+                        <div class="info">
+                            <div class="release">AUJOURD&#39;HUI<br />AU CINÃMA</div>
+                            <a class="see" href="#"><span>VOIR LES SÃANCES</span></a>
+                        </div>
+                    </div>
+                    <div class="exit"></div>
+                </div>
+                
+                <div id="video" class="section">
+                    <div class="inner-section">
+                        
+                        <div class="pagination">
+                            <a class="prev" href="#"><img src="prev-top-arrow.gif" alt=""></a>
+                            <div class="pages"></div>
+                            <a class="next" href="#"><img src="next-top-arrow.gif" alt=""></a>
+                        </div>
+                        
+                        <div class="video"></div>
+
+                        <div class="info">
+                            <div class="release">AUJOURD&#39;HUI<br />AU CINÃMA</div>
+                            <a class="see" href="#"><span>VOIR LES SÃANCES</span></a>
+                        </div>
+                    </div>
+                    <div class="exit"></div>
+                </div>
+                
+                <div id="photo" class="section">
+                    <div class="inner-section">
+                        
+                        <div class="pagination">
+                            <a class="prev" href="#"><img src="prev-top-arrow.gif" alt=""></a>
+                            <div class="pages"></div>
+                            <a class="next" href="#"><img src="next-top-arrow.gif" alt=""></a>
+                        </div>
+                        
+                        <div class="photo"></div>
+
+                        <div class="info">
+                            <div class="release">AUJOURD&#39;HUI<br />AU CINÃMA</div>
+                            <a class="see" href="#"><span>VOIR LES SÃANCES</span></a>
+                        </div>
+                    </div>
+                    <div class="exit"></div>
+                </div>
+                
+            </div>
+            
+            <div id="transition"></div>
+
+
+        </div>
+
+
+
+        <script src="carbon.min.js"></script>
+        
+        <script type="text/javascript">
+        	var FORMAT_NAME = 'Masthead';
+        	var VENDORS_RESOURCES = ['https://www.youtube.com/iframe_api'];
+
+        	Carbon.run();
+        </script>
+    </body>
+</html>

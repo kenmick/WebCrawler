@@ -1,0 +1,176 @@
+/* From: production-mt-wfe-58-70-use1 : 16756 */
+/**
+*** The SockJS Object ***
+**/
+
+huff.unit('fiji_socket', function(ready) {
+
+    var w = this,
+        manually_closed = false,
+        reconnect_after_ms = 30000,
+        close_inactive_connection_after_min = 1,
+        close_idle_connection_after_min = 20,
+        subscriptions = {};
+
+    huff.use('sockjs', 'conf', 'jquery', function(sockjs, c, $) {
+        
+        var message_handlers = {};
+        w.init = function() {
+            c.get('websocket/url', 'websocket/init', function(url, is_init) {
+                if ( is_init ) return;
+
+                var sjs = new sockjs('http://' + url + '/socket/',undefined,{devel: false, debug: false, protocols_whitelist: [],
+                    persist: true, persistentDuration: 90});
+
+                sjs.onopen = function() {
+                    c.set('websocket/sockjs', sjs);
+                    c.set('websocket/open', true);
+                    huff.emit('_internal_websocket/open', arguments);
+                    $.isEmptyObject(subscriptions) && huff.emit('websocket/open', arguments);
+                };
+
+                sjs.onmessage = function(e) {
+                	var msg = JSON.parse(e.data);
+                	msg.hasOwnProperty('message_type') && message_handlers[msg.channel].apply(this, [msg]);
+                	msg.hasOwnProperty('snapshot') && huff.emit('websocket/snapshot', msg, message_handlers[msg.channel]);
+                };
+
+                sjs.onerror = function() {
+                    reconnect_after_ms = reconnect_after_ms * 2;
+                    window.setTimeout(w.init, reconnect_after_ms);
+                };
+
+                sjs.onclose = function() {
+                    c.set('websocket/open', false);
+                    c.set('websocket/init', false);
+                    c.set('websocket/sockjs', false);
+                    huff.emit('websocket/close');
+                    if ( !manually_closed ) {
+                        reconnect_after_ms = reconnect_after_ms * 4;
+                        window.setTimeout(w.init, reconnect_after_ms);
+                    }
+                };
+
+                c.set('websocket/init', true);
+            });
+        };
+
+        w.subscribe = function(channel, id, snapshot, callback) {
+            c.get('websocket/open', 'websocket/sockjs', function(is_open, sjs) {
+                if ( !is_open ) return null;
+                /** Register message handler **/
+                message_handlers[channel] = callback
+                var message = build_message('sub', channel, id, snapshot);
+                'function' === typeof callback && huff.on('websocket/subscribe' + channel + id, function() {
+                    callback.apply(this, arguments);
+                    huff.off('websocket/subscribe' + channel + id);
+                });
+                sjs.send(message);
+            });
+        };
+
+        w.unsubscribe = function(channel, id) {
+            c.get('websocket/open', function(is_open) {
+                if ( !is_open ) return null;
+                var message = build_message('unsub', channel, id);
+                w.sockjs.send(message);
+            });
+        };
+
+        w.close = function() {
+            c.get('websocket/open', 'websocket/sockjs', function(is_open, sjs) {
+                manually_closed = is_open && sjs.close();
+            });
+        };
+
+        w.onmessage = function(callback) {
+            huff.on('websocket/message', callback);
+        };
+
+        w.onsnapshot = function(callback) {
+            huff.on('websocket/snapshot', callback);
+        };
+        
+        w.onopen = function(callback) {
+            huff.on('websocket/open', callback);
+        };
+
+        w.onclose = function(callback) {
+            huff.on('websocket/close', callback);
+        };
+
+        /* private */
+
+        var build_message = function(action, channel, id, snapshot) {
+            return JSON.stringify({'action': action, 'channel': channel, 'id': id, 'snapshot': snapshot});
+        };
+
+        var trigger_onsubscribe = function(message) {
+            var msg = JSON.parse(message);
+            var s = subscriptions;
+            if ( msg && msg.action && msg.action == 'sub' ) {
+                var channel = msg.channel;
+                var id = msg.id;
+                !s.hasOwnProperty(channel) && ( s[channel] = [] );
+                $.inArray(id, s[channel]) == -1 && s[channel].push(id);
+                huff.emit('websocket/subscribe' + msg.channel + msg.id, msg.channel, msg.id);
+            }
+        };
+
+        var resubscribe = function() {
+            var s = subscriptions;
+            for ( var ch in s ) {
+                for ( var i = 0, len = s[ch].length; i < len; i++ ) {
+                    var id = s[ch][i];
+                    w.subscribe(ch, id);
+                }
+            }
+        };
+
+        var start_inactivity_handler = function() {
+            c.get('websocket/sockjs', function(sjs) {
+                var timeout;
+                $(document).bind('mousemove', function(e) {
+                    c.get('websocket/open', function(is_open) {
+                        window.clearTimeout(timeout);
+                        timeout = window.setTimeout(function() {
+                            is_open && w.close();
+                        }, close_inactive_connection_after_min*1000*60);
+                        !manually_closed && w.init();
+                    });
+                });
+            });
+        };
+
+        var start_idle_timeout = function () {
+          c.get('websocket/open', function(is_open) {
+            window.setTimeout(function() {
+              if (is_open) {
+                manually_closed = true;
+                w.close();
+              }
+             }, close_idle_connection_after_min*1000*60)
+          })
+        }
+
+        var onopen = function(callback) {
+            huff.on('_internal_websocket/open', callback);
+            start_idle_timeout();
+        };
+
+        start_inactivity_handler();
+
+        onopen(resubscribe);
+
+        w.onmessage(trigger_onsubscribe);
+
+        w.init();
+
+        ready(w);
+
+    });
+
+});
+
+
+/* From: production-mt-wfe-58-70-use1 : 16756 *//* d46470a66384aab51872df9ebc089fc9cd6a886a */

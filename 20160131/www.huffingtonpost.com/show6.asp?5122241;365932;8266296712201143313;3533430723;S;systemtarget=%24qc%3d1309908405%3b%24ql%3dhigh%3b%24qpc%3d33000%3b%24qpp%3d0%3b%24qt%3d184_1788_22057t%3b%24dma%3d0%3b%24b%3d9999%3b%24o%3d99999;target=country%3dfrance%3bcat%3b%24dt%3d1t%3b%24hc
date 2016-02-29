@@ -1,0 +1,35 @@
+(function(w, d){
+	if (typeof(sas_ajax) != 'undefined' && sas_ajax) {
+		var getDomElem = function(id) {
+			return d.getElementById(id).contentDocument || d.frames[id].document;
+		}
+
+		var i = d.createElement('iframe');
+		i.id = 'sas_5122241_iframe';
+		i.scrolling = 'no';
+		i.frameBorder = 0;
+		i.width = 300;
+		i.height = 600;
+		i.style.margin = 0;
+		i.style.padding = 0;
+		i.style.width = '300px';
+		i.style.height = '600px';
+		sas_appendToContainer(21483, i);
+
+		i.doc = getDomElem(i.id);
+		i.doc.write(
+			'<!doctype html><html><head><title></title></head><body style="margin:0;padding:0">'+
+			'<scr'+'ipt type="text/javascript">var inDapIF=inDapMgrIf=true;</scr'+'ipt>'+
+			'<scr'+'ipt type=\'text/javascript\'>(function(){var pixel=new Image();var cb=Math.floor(Math.random()*10e12 );pixel.width=\'1px\';pixel.height=\'1px\';pixel.border=\'0\';pixel.style.display=\'none\';pixel.src = \'https://d2p5xdujbs2vv2.cloudfront.net/__k.gif?cs_s_ft=filmstrip&cs_s_kid=2812460&cs_s_cat=PRINT&cs_s_a=PRINT&cs_s_aid=2812594&cs_s_ctx=banner&cs_n_ts=\'+cb;})();</scr'+'ipt><scr'+'ipt type=\'text/javascript\'>(function(){window._data=window._data||[];window._data.push({cache_buster:\'%%CACHEBUSTER%%\',click_url:\'%%CLICK_URL%%\',ad_id:\'2812594\',frameBusting:true, np:true})})()</scr'+'ipt><scr'+'ipt id=\'kpsuleAd_filmstrip_2812594\' type=\'text/javascript\' src=\'https://d21tec5jaiy815.cloudfront.net/vwtouranjanvier2016/vwtouranjanvier2016_2812594.js\'></scr'+'ipt>\r\n'+'                                                      \r\n'+'<img src="https://secure-gl.imrworldwide.com/cgi-bin/m?ci=nlsnci1099&am=3&at=view&rt=banner&st=image&ca=nlsn33037&cr=crtve&pc=huffingtonpost_plc0002&ce=huffingtonpost&r=3533430723" style="display:none"/> \r\n'+'  \r\n'+
+			'</body></html>'
+		);
+
+		if (navigator.userAgent.indexOf('MSIE') == -1 && navigator.userAgent.indexOf('Opera') == -1) i.doc.close();
+	} else {
+		d.write('<scr'+'ipt type=\'text/javascript\'>(function(){var pixel=new Image();var cb=Math.floor(Math.random()*10e12 );pixel.width=\'1px\';pixel.height=\'1px\';pixel.border=\'0\';pixel.style.display=\'none\';pixel.src = \'https://d2p5xdujbs2vv2.cloudfront.net/__k.gif?cs_s_ft=filmstrip&cs_s_kid=2812460&cs_s_cat=PRINT&cs_s_a=PRINT&cs_s_aid=2812594&cs_s_ctx=banner&cs_n_ts=\'+cb;})();</scr'+'ipt><scr'+'ipt type=\'text/javascript\'>(function(){window._data=window._data||[];window._data.push({cache_buster:\'%%CACHEBUSTER%%\',click_url:\'%%CLICK_URL%%\',ad_id:\'2812594\',frameBusting:true, np:true})})()</scr'+'ipt><scr'+'ipt id=\'kpsuleAd_filmstrip_2812594\' type=\'text/javascript\' src=\'https://d21tec5jaiy815.cloudfront.net/vwtouranjanvier2016/vwtouranjanvier2016_2812594.js\'></scr'+'ipt>\r\n'+'                                                      \r\n'+'<img src="https://secure-gl.imrworldwide.com/cgi-bin/m?ci=nlsnci1099&am=3&at=view&rt=banner&st=image&ca=nlsn33037&cr=crtve&pc=huffingtonpost_plc0002&ce=huffingtonpost&r=3533430723" style="display:none"/> \r\n'+'  \r\n');
+	}
+})(window, document);
+
+
+
+

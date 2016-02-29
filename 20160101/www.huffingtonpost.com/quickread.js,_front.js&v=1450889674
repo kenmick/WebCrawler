@@ -1,0 +1,979 @@
+/* From: production-mt-wfe-50-87-use1 : 13113 */
+window._ || (window._ = function(str){return str;});
+window.ngettext || (window.ngettext = function(str){return str;});
+window.sprintf || (window.sprintf = function(str){return str;});
+huff.unit('app-feeds', function(ready) {
+
+		var af = this;
+
+		huff.use('jquery', 'conf', function ($, c) {
+			c.get('vertical-id', function(vertical_id) { 
+                switch (vertical_id) {
+                case 33:
+                    HPConfig.app_feed_path = '/divorce/';
+                    HPConfig.twitter_name = 'huffpostdivorce';
+                break;
+                case 34:
+                case 39:
+                case 40:
+                case 41:
+                    HPConfig.app_feed_path = '/';
+                    HPConfig.twitter_name = 'huffpostcanada';
+                break;
+                case 46:
+                    HPConfig.app_feed_path = '/women/';
+                    HPConfig.twitter_name = 'huffpostwomen';
+                break;
+                case 122:
+                    HPConfig.app_feed_path = '/cest-la-vie/';
+                    HPConfig.twitter_name = 'HuffPost_CLaVie';
+                break;
+                case 111:
+                    HPConfig.app_feed_path = '/own/';
+                    HPConfig.twitter_name = 'HuffPostOWN';
+                break;		
+                case 48:
+                    HPConfig.app_feed_path = '/parents/';
+                    HPConfig.twitter_name = 'huffpostparents';
+                break;
+                case 47:	
+                case 51:
+                case 52:
+                case 53:
+                case 54:
+                case 55:
+                case 58:
+                case 59:
+                    HPConfig.app_feed_path = '/';
+                    HPConfig.twitter_name = 'huffpostuk';
+                break;
+                case 35:
+                    HPConfig.app_feed_path = '/';
+                    HPConfig.twitter_name = 'AOLWeirdNews';
+                break;
+                case 71:
+                    HPConfig.app_feed_path = '/weddings/';
+                    HPConfig.twitter_name = 'huffpostwedding';
+                break;
+                case 77:
+                    HPConfig.app_feed_path = '/fifty/';
+                    HPConfig.twitter_name = 'huffpost50';
+                break;
+                case 80:
+                    HPConfig.app_feed_path = '/';
+                    HPConfig.twitter_name = 'LeHuffPost';
+                break;
+                case 99:
+                    HPConfig.app_feed_path = '/';
+                    HPConfig.twitter_name = 'ElHuffPost';
+                break;
+                case 114:
+                    HPConfig.app_feed_path = '/live321/';
+                    HPConfig.twitter_name = 'huffpostlive';
+                break;
+                case 129:
+                    HPConfig.app_feed_path = '/';
+                    HPConfig.twitter_name = 'huffpostjapan';
+                break;
+                default:
+                    HPConfig.app_feed_path = '/';
+                    HPConfig.twitter_name = 'huffingtonpost';
+                }
+
+            var tracker = HPTrack.Module('follow', 'Follow Us');	
+            tracker.impression();	
+
+
+            af = {
+                bubble_ajax_url: {
+                    "af-facebook":"facebook-bubble.php",
+                    "af-twitter":"twitter-bubble.php?v7",
+                    "af-apple":"iphone-bubble.php",
+                    "af-android":"android-bubble.php",
+                    "af-blackberry":"blackberry-bubble.php"
+                },
+                
+                load_bubble_content: function(afb_id) {
+                    var div = $( '<div></div>' );
+                    
+                    $.ajax({url: HPConfig.app_feed_path + "ajax/app-feed/" + af.bubble_ajax_url[afb_id],
+                            context: {div: div, afb_id: afb_id},
+                            success: function (data) {
+                                
+                                this.div.html( data );
+                                
+                                // check facebook
+                                if ( this.afb_id == 'af-facebook' && HuffPrefs.get("facebook") ) {
+                                    $('#af-facebook-friends').html('');
+                                }
+                                
+                                if ( this.afb_id == 'af-twitter' ) {
+                                    if ( HuffPrefs.get("twitter") ) {
+                                        
+                                        $('#af-twitter-friends').html('');
+                                        var default_status_html = $('#af-tw-follow-status').html();
+                                        $('#af-tw-follow-status').html ('');
+                                        
+                                        HPTwitter.getFollowStatus(HPConfig.twitter_name, function(data) {
+                                            if ( data == 'true' ) {
+                                                af.followed_twitter();
+                                            } else {
+                                                $('#af-tw-follow-status').html( default_status_html );
+                                            }
+                                        });
+                                    }
+                                    
+                                    HPTwitter.getPublicInfo(HPConfig.twitter_name, function(data) {
+                                        var info = JSON.parse(data);
+                                        if ( info ) {
+                                            $('#af-followers-count').html( HuffPoUtil.number_format(info.followers_count) );
+                                            $('#af-listed-count').html( HuffPoUtil.number_format(info.listed_count) );
+                                        }
+                                    });
+                                    
+                                    div.delegate( 'button', 'click', af.follow_twitter );
+                                }
+                            }                    
+                           });
+                    
+                    div.addClass("absolute");
+                    div.addClass("bubble");		
+                    $('body').append(div);
+                    
+                    return div;
+                    
+                },
+                
+                apply_bubble: function( afb_id ){
+                    
+                    var bubble_ol = null;
+                    var first_show = true;
+                    var hide_timeout = null;
+                    var hide_bubble = function() {
+                        hide_timeout = setTimeout(function() {
+                            hide_timeout = null;
+                            bubble_ol.addClass( "hidden");			
+                        },100);
+                    };
+                    
+                    var show_bubble = function(){
+                        
+                        if ( hide_timeout!=null ) {
+                            clearTimeout(hide_timeout);
+                            hide_timeout = null;
+                        }
+                        
+                        if ( first_show ) {
+                            first_show = false;
+                            huff.css('s2c',function(){
+		                        return true;
+                            });
+                            bubble_ol = af.load_bubble_content( afb_id );			    
+                            bubble_ol.hover( show_bubble, hide_bubble);	
+                        }
+                        
+                        var afb = $( '#' + afb_id );
+                        var bubble_pos = afb && afb.children('.af-bubble-position');
+                        
+                        bubble_ol.removeClass("hidden");
+                        bubble_ol.offset( bubble_pos.offset() );
+                        
+                    };
+                    
+                    $('#' + afb_id ).live( 'mouseover', show_bubble );
+                    $('#' + afb_id ).live( 'mouseout', hide_bubble );	
+                },
+                
+                followed_twitter : function(){ 
+                    $('#af-tw-follow-status').html( '<span class="tw-following">' + _("Following") + '<span>' ); 
+                }, 
+                
+                follow_twitter : function(){ 
+                    if(HuffPrefs.get("twitter")){ 
+                        HPTwitter.createFriendship(HPConfig.twitter_name, af.followed_twitter); 
+                    }else{ 
+                        jimAuld.utils.cookies.set("af_pending_follow_twitter", 'true'); 
+                        linkSocialAccount.checkLoginStatus('twitter'); 
+                    } 
+                    // fix #7958 
+                    if($('#af-twitter_bubble').length)
+                        $('#af-twitter_bubble').parent().addClass('hidden');
+                }
+            };
+            
+            //find and apply bubble
+            for ( var af_id in af.bubble_ajax_url ) {
+                af.apply_bubble( af_id );
+            }
+            
+            if (jimAuld.utils.cookies.get("af_pending_follow_twitter")=='true') {
+                jimAuld.utils.cookies.del("af_pending_follow_twitter");
+                if(HuffPrefs.get("twitter")){
+                    HPTwitter.createFriendship(HPConfig.twitter_name);
+                }
+            }
+        
+            ready(af);
+        });
+    });
+});
+
+
+huff.unit('front/balance', function(ready){
+
+	var balance = this;
+
+	huff.use('jquery', 'layout', function($, layout){
+
+		balance.init = function(params){
+			var loading, source,
+				height = $(document).height() / 4,
+				url = '/ajax/frontpage/balance_columns/get_buffer_entries.php?vertical=',
+				reflow = function(){
+					if (!source) return;
+
+					var columns = $.map(params.columns, function(c){
+							return (c = $(c), c.top = c.offset().top, c);
+						}).sort(function(a, b){
+							return a.top - b.top;
+						}),
+						longest = columns.pop();
+
+					longest.html('').parent().find('div.entry').
+						removeClass('no_border').
+						last().addClass('no_border');
+
+					for(var i=0, l=columns.length; i<l; i++){
+						var height = columns[i].height();
+
+						columns[i].html(source).children().each(function(i, el){
+							el = $(this);
+							el.offset().top + el.outerHeight() >= longest.top && el.remove();
+						});
+
+						columns[i].parent().find('div.entry').
+							removeClass('no_border').
+							last().addClass('no_border');
+
+						height !== columns[i].height() && columns[i].children().each(function(i, el){
+							el = $(this);
+							el.css('opacity', 0) && setTimeout(function(){
+								el.animate({ opacity: 1 }, 'slow')
+							}, i * 100);
+						});
+					}
+
+					huff.emit('balance/reflow', columns);
+				}
+
+			// load entries to fill overflow containers
+			params.columns && layout.seeable(params.columns.join(', '), [0, height], function(){
+				if (loading) return;
+
+				params.vertical && $.get(url + params.vertical, function(data){
+					reflow(source = data);
+				});
+
+				loading = true;
+			});
+
+			huff.on('content/update', reflow);
+		}
+
+		ready(balance);
+
+	});
+
+});
+
+huff.unit('front/blogroll', function(ready){
+
+	huff.use('dom/ready', function($){
+
+		// Settings
+		var _stabsSelector 		= '.blogroll_tab .blogroll_tab_link',
+			_sresponseHolder 	= '#blogroll',
+			_reqestPath			= '/blogrolls2.php',
+			_idelay				= 150,
+			_shideOpacity		= 0.3;
+
+		// start animation 
+		var hideResponseHolder = function(){
+			$(_sresponseHolder).css({'opacity':_shideOpacity});
+		}
+
+		// finish animation 
+		var showResponseHolder = function(){
+			$(_sresponseHolder).animate({'opacity':1}, _idelay);
+		}
+
+		// request function
+		var updetaBlogroll = function(v){
+			hideResponseHolder();
+			$.get(_reqestPath, { 'vertical': v },
+			function(data){ // success
+				$(_sresponseHolder).html(data);
+				showResponseHolder();
+			});
+		}
+
+		// set event
+		$(_stabsSelector).bind('click', function(e){
+			$(_stabsSelector).removeClass('active');
+			var _sparam = $(this).addClass('active').attr('rel');
+			if (_sparam != undefined && _sparam != '') {
+				updetaBlogroll(_sparam);
+			}
+
+			return false;
+		});
+
+		ready();
+
+	});
+
+});
+
+huff.unit('front/geopromo', function(ready){
+
+	huff.use('dom/ready', 'cookies', 'user', 'conf', function($, cookies, user, conf){
+
+		var geocity = cookies.get('geocity'),
+			geostate = cookies.get('geostate'),
+			url = geocity && geostate && !/geocity/.test(location.search)
+				? '/geopromo/index.php?geocity=' + geocity + '&geostate=' + geostate
+				: '/include/geopromo.php' + window.location.search;
+
+		conf.get('vertical', function(vertical){
+			// load geopromo data
+			$.get(url, function(data){
+
+				var num2hide = 0,
+					// check comment for location (@bottom, @center or default to @right)
+					geoloc = (/-@bottom-/.test(data) && 'bottom') ||
+						(/-@center-/.test(data) && 'center') || 'right',
+					// fill container
+					container = $('#geopromo-' + geoloc).html(data);
+
+				if (/href/.test(data)){
+					container.hasClass('rc_geopromo') && num2hide++;
+					container.hasClass('cc_geopromo') && $('#center_entries div.no_border:last').hide();
+				}
+
+				user.logged && vertical == 'homepage' && (num2hide += 2);
+
+				$('#ad_right_rail_flex').outerHeight() >= 400 && num2hide++;
+
+				num2hide && $('#rc_lower div.entry').slice(-num2hide).hide();
+
+				huff.emit('content/update', '#rc_lower');
+				huff.emit('content/update', container);
+			});
+
+			huff.on('refresh/content/after', function(block, frame){
+				if (block == 'rc_lower'){
+					var num2hide = 0;
+
+					if ($("#geopromo-right").html().match("href") || 
+						$("#geopromo-bottom").html().match("href")) num2hide++;
+
+					user.logged && vertical == 'homepage' && (num2hide += 2);
+
+					$('#ad_right_rail_flex').outerHeight() >= 400 && num2hide++;
+
+					num2hide && frame.find('div.entry').slice(-num2hide).hide();
+				} else if (block == "center_entries"){
+					$("#geopromo-center").html().match("href") && frame.find('div.no_border:last').hide();
+				}
+			});
+		});
+
+		ready();
+
+	});
+
+});
+
+huff.unit('front/quickread', function(ready){ 
+
+	var quickread = this;
+	
+	quickread.mp = false;
+
+	huff.use('dom/ready', 'modal', 'image', function($, m, im){
+
+		var hint, highlighted, hold;
+		quickread.hint = function(selector, action){
+			hint = $('<div></div>').hide().addClass('quickread_hover').
+				prependTo('body').click(function(){
+					// this code fixes selection bug in FF/windows
+					if (window.getSelection && window.getSelection ().removeAllRanges)
+						window.getSelection ().removeAllRanges ();
+
+					'function' === typeof action && action(highlighted);
+				});
+
+			hint.css({
+				'z-index':		'100',
+				'position':		'absolute'
+			});
+			hint.html(__('Quickread'));
+			var mouseover = function(event){
+					if (hint[0] === event.currentTarget && (highlighted && highlighted[0] === event.target))
+						return;
+
+					var e = highlighted = $(event.target),
+						o = e.offset();
+
+                                        var borderOffset = {
+                                            top: parseInt(e.css('border-top-width')) + parseInt(e.css('padding-top')),
+                                            left: parseInt(e.css('border-left-width')) + parseInt(e.css('padding-left'))
+                                        };
+
+					hint.css({
+						top:	o.top + borderOffset.top,
+						left:	o.left + e.width() + borderOffset.left
+					}).mouseout(mouseout).show();
+				},
+
+				mouseout = function(event){
+					if (hint[0] === event.relatedTarget || (highlighted && highlighted[0] === event.relatedTarget))
+						return;
+
+					hint.unbind('mouseout').hide();
+				};
+			if (!navigator.userAgent.match(/iPad/i)) {
+				$(document).delegate(selector, 'hover', function(event){
+					event.type === 'mouseout' ? mouseout(event) : mouseover(event);
+				});
+			}
+		}
+
+		quickread.show = function(entry){
+			if (!entry) return;
+
+			qr_width = (document.body.clientWidth > 1024) ? 662 : 785;
+
+			if (!quickread.window) quickread.window = m.show({
+				'theme': 'quickreads',
+				'class':	'quickread' + ((qr_width == 662 && document.documentElement.clientHeight > 780) ? '' : ' wide'),
+				'content':	false,
+				'width':	qr_width,
+				'onclose':	function(){
+								quickread.frame = undefined;
+								quickread.window = undefined;
+							}
+			});
+
+			if (!quickread.frame)
+				HPTrack.trackPageview("/t/a/quickread/" + document.body.id + "/internal");
+			else
+				HPTrack.trackPageview("/t/a/quickread/" + document.body.id);
+			
+			if ( window.location.search.match( 'tigertail' ) ) {	
+				huff.css('buttons', function(){
+					return true;
+				});
+				huff.css('badges_v2', function(){
+					return true;
+				});
+				huff.css('_quickread', function(){
+					return true;
+				});
+			}
+
+			entry = String(entry);
+
+			var entry, 
+				related,
+				count = 1;
+
+			var slides = function(category){
+				
+				var link = entry.entry_permalink;
+				
+				if (quickread.mp) { 
+				 	link += '?utm_hp_ref=mostpopular'; 
+                } 
+				
+				var image, footer = '<div id="' + entry.entry_id + '" ' + 'class="slide ';
+
+				if (entry.entry_image && (image = entry.thumbnail_picture)){
+					footer += 
+						'selected"><div class="wrap"><div class="frame"><a class="' + category + '" href="' +
+						link + '"><img src="' + image +
+						'" width="112" height="82" class="img_border" /></a><a class="caption" '+
+						'href="' + link + '">' + entry.entry_teaser + '</a></div></div>' +
+						'</div>';
+				} else if (entry.entry_blog_id == 3){
+					footer +=
+						'slide headshot selected"><div class="wrap"><div class="frame"><a class="' + category + '" href="' +
+						link + '"><img src="' + 'http://s.huffpost.com/contributors/' +
+						entry.entry_author_nickname + '/headshot.jpg" class="img_border" /></a>' +
+						'<a class="caption" href="' + link + '">' + entry.entry_author +
+						': ' + entry.entry_teaser + '</a></div></div></div>';
+				} else {
+					footer +=
+						'slide spacer selected"><div class="wrap"><a class="' + category + '" href="' +
+						link + '"><img src="' + '/images/quickview/dummy.gif" ' +
+						'width="112" height="82" /></a><a class="' + 'caption" href="' +
+						link + '">' + entry.entry_teaser + '</a></div></div>';
+				}
+
+				if ('object' === typeof related && related.News && related.News.length){
+					for (var i=0, l=related.News.length; i < l && i < 14; i++){
+						if (!related.News[i].entry_id) continue;
+						related.News[i].vertical = related.News[i].vertical || 'Generic';
+						related.News[i].teaser = related.News[i].entry_title.substr(0,65);
+
+						footer +=
+							'<div id="' + related.News[i].entry_id + '" class="slide unselected">'+
+							'<div class="wrap"><div class="frame"><a class="' + related.News[i].vertical.toLowerCase().replace(/ /g, '-') +
+							'" href="' + related.News[i].link + '"><img src="' + related.News[i].image +
+							'" class="img_border" '+ 'width="112" height="82" /></a><a class="caption" href="' + 
+							related.News[i].link + '">' + related.News[i].teaser + 
+							'</a></div></div></div>';
+					}
+				}
+
+				return footer;
+			}
+			            
+			var construct = function(){
+				if (!entry) quickread.failed();
+
+				huff.use('conf', function(conf) {
+					if ( "object" === typeof entry ) {
+						var cache_quick_read = {};
+						for ( var key in entry ) {
+							cache_quick_read["quickread_" + key] = entry[key];
+						}
+						conf.set(cache_quick_read);
+					}
+				});
+
+				var entry_expired = entry.entry_expired || false;
+				if ( entry_expired ) {
+					quickread.failed(entry.entry_expired_msg);
+					return;
+				}
+                
+				var fb_action = "like";
+				for (var tag in entry.entry_tags) {
+					if(entry.entry_tags[tag].tag_name == "@recommend") {
+						fb_action = "recommend";
+						break;
+					}
+				}
+                
+				var category = (entry.entry_category)
+					? entry.entry_category.toLowerCase().replace(/ /g, '-')
+					: 'home';
+
+				entry.entry_teaser = entry.entry_title;
+
+				var	footer = quickread.frame
+					? quickread.frame.find('div.footer div.container > div').html()
+					: slides(category);	
+			    		    
+			    var link = entry.entry_permalink;
+                if (entry.entry_source_link && entry.entry_source_link.indexOf('huff-wires') > 0) {
+                   link = entry.entry_source_link;
+				} else if ( (entry.entry_permalink == entry.entry_source_link) || (entry.entry_source_link == '') ) {
+				  // if not linkout, reuse frontpage link to maintain ?ir parameters
+				  var frontPageLink = jQuery('#entry_' + entry.entry_id + ' .image_wrapper a').attr('href');
+				  if (frontPageLink) link = frontPageLink;
+				}
+               
+				if (quickread.mp) { 
+				 	link += '?utm_hp_ref=mostpopular'; 
+                }                                 
+				 
+				if (entry.entry_brief) entry.entry_body = entry.entry_brief.replace(/(<br>|<br\/>|<br \/)/g,"");
+
+				entry.entry_body = entry.entry_body.replace(/<object width="\d+" height="\d+"><param name="movie" value="([^"]*)">.*<\/object>/g, "<center><iframe marginwidth=\"0\" marginheight=\"0\" frameborder=\"0\" scrolling=\"no\" style=\"visibility: visible; z-index: 15;\" width='425' height='350' src=\"/include/youtubeloader.php?path=$1\"><\/iframe></center>");
+				entry.entry_body = entry.entry_body.replace(/<(object|embed)/g, "<$1 belongs_modal='1' ");
+				entry.entry_body = entry.entry_body.replace(/<img[^>]+>/ig, '');
+
+				var video = entry.entry_body.match(/<HH--HUFFPOSTVIDEO--/) || entry.entry_body.match(/youtube.com\/v\//),
+					bcid = entry.entry_body.match(/<iframe[^>]+src="http:\/\/link.brightcove.com\/services\/player\/bcpid(\d+)"[^>]+><\/iframe>/,'');
+
+				if (bcid){
+					entry.entry_body = entry.entry_body.replace(/<iframe[^>]+src="http:\/\/link.brightcove.com\/services\/player\/bcpid(\d+)"[^>]+><\/iframe>/,'');
+					entry.entry_body = entry.entry_body.replace(/<iframe[^>]+src="http:\/\/link.brightcove.com\/services\/player\/bcpid(\d+)"[^>]+><\/iframe>/g,'<p><a href="' + entry_link + '" onclick="HPTrack.trackPageview(\'/t/a/quick/\' + document.body.id + \'/whole\');">' + _("See the whole post for another video") + '</a></p>');
+				}
+
+				var content;
+				if (!video)
+					content = '<div id="qr_tab_read_col1" class="column first">';
+				else
+					content = '<div id="qr_tab_read_col_only" class="column first">';
+
+				content += '<div id="qr_tab_read_header"><h1><a href="' + link + '" id="title_permalink" onclick="HPTrack.trackPageview(\'/t/a/quick/\' ' +
+						  '+ document.body.id + \'/whole/head\');">' + entry.entry_title + ' &raquo;<\/a><\/h1><\/div>'; 
+
+				content += '<div class="read_more_top"></div><div class="comments_datetime"><p><span>';
+
+				if (entry.entry_source_org)
+					content += "<b>" + entry.entry_source_org + "<\/b>&nbsp; |<\/span><span> &nbsp;";
+				if (entry.entry_source_author)
+					content += ((entry.entry_reporter_piece == 1) ? (entry.entry_author + "&nbsp; |<\/span><span> &nbsp;" ) : (entry.entry_extra_author ? (entry.entry_extra_author + "&nbsp; | <\/span><span> &nbsp;") : ''));
+				if (entry.entry_ap_date_issued)
+					content += entry.entry_ap_date_issued;
+				else
+					content += entry.entry_created_on;
+
+				content += '<\/span><\/p><\/div><div class="entry_content qr_entry_content">';
+
+				// replace vidavee video tag with iframe, script tags won't work in innerHTML
+				var	body_video;
+
+				if (body_video = entry.entry_body.match(/.*<HH--HUFFPOSTVIDEO--(\d+)--HH>.*/m))
+					content +=
+						'<div class="videowrapper vid320"  style="width: 350px"><div class="videoinner">' + 
+						'<iframe  marginwidth="0" marginheight="0" frameborder="0" scrolling="no" ' + 
+						'style="visibility: visible; z-index: 2;" width="320" height="310" src="/include/adloader.php?id=' +
+						body_video.pop() + '&ads=' + (entry.show_video_ads ? 'on' : 'off') + '"><\/iframe><\/div><\/div>';
+				else
+					content += entry.entry_body;
+
+				content +=
+					'<\/div><div class="qr_entry_meta clearfix"><a class="button ' + category + ' bullet" ' +
+					'href="' + link + '" onclick="HPTrack.trackPageview(\'/t/a/quick/\' + document.body.id + \'/whole\');" ' +
+					'id="qr_read"><span class="white float_left">' + _('Read Whole Post') + '</span><span class="right-arrow float_left">&nbsp;' +
+					'</span><\/a><\/div><\/div>';
+				
+				var currentLocale = jQuery.I18N.getLocale() || 'en_US';	
+				if(currentLocale == 'ar_SA')
+				   currentLocale = 'ar_AR';
+				
+				if (!video && !bcid)
+					content +=
+						'<div class="column last">' + quickread.ad() + '<div class="facebook-like-box float_left">' +
+						'<div class="padding_5"><iframe src="http://www.facebook.com/plugins/like.php?href=' +
+						encodeURIComponent(link) + '&amp;layout=standard&amp;show_faces=false&amp;width=187&amp;' +
+						'action=' + fb_action  + '&amp;font=lucida+grande&amp;colorscheme=light&amp;height=35&amp;locale=' + currentLocale + '" scrolling="no" ' +
+						'frameborder="0" style="border:none; overflow:hidden;' + (fb_action=="recommend" ? ' width:280px; height:40px;" ' :  ' width:230px; height:40px;" ') +
+						'allowTransparency="true"></iframe></div></div>' +
+						'<style>.badges_v2 .badge_v2_facebook_ipad_app, .badges_v2 .badge_v2_email_ipad_app, .badges_v2 .badge_v2_comments_ipad_app, .badges_v2 .badge_v2_retweet_ipad_app {position:relative;}.badges_v2 .badge_v2_facebook_ipad_app:after, .badges_v2 .badge_v2_email_ipad_app:after, .badges_v2 .badge_v2_comments_ipad_app:after, .badges_v2 .badge_v2_retweet_ipad_app:after {color: #fff;font-size: 9px;bottom: 6px;left: 0;position: absolute;font-weight: normal;max-width:39px;line-height:1;height:auto;}.badges_v2 .badge_v2_facebook_ipad_app:after {content:"' +
+						 _("Share") +
+						 '";padding-left: 14px;text-align: center; width: 39px;}.badges_v2 .badge_v2_email_ipad_app:after{content:"' +
+						 _("Email") +
+						 '";padding-left: 22px;}.badges_v2 .badge_v2_comments_ipad_app:after {content:"' +
+						 _("Comment") +
+						 '";padding-left: 11px;}.badges_v2 .badge_v2_retweet_ipad_app:after {content:"' +
+						 _("Tweet") +
+						 '";padding-left: 20px;}.fr_FR .badges_v2 .badge_v2_comments_ipad_app:after, .fr_CA .badges_v2 .badge_v2_comments_ipad_app:after, .fr_MB .badges_v2 .badge_v2_comments_ipad_app:after {padding-left:8px;}.it_IT .badges_v2 .badge_v2_comments_ipad_app:after {padding-left:9px;}.it_IT .badges_v2 .badge_v2_email_ipad_app:after {bottom:6px;}.es_ES .badges_v2 .badge_v2_facebook_ipad_app:after, .es_ES .badges_v2 .badge_v2_facebook_ipad_app:after {padding-left: 14px;}.es_ES .badges_v2 .badge_v2_comments_ipad_app:after, .es_ES .badges_v2 .badge_v2_comments_ipad_app:after {padding-left: 8px;}.el_GR .badges_v2 .badge_v2_facebook_ipad_app:after {padding-left: 20px;}</style>' +
+						'<div id="quickread_badges"><\/div>' + 
+						'<\/div>';
+
+				if (bcid)
+					content +=
+						'<div class="column last" id="qr_vid_col"><iframe src="/include/brightcove_qr.php?pid=' + bcid[1] +
+						'" width="300" height="250" frameborder="0" scrolling="no"></iframe><\/div>';
+
+                var frontVertical = (HPConfig && HPConfig.current_vertical_name && HPConfig.current_vertical_name.toLowerCase() != 'homepage') ? HPConfig.current_vertical_name.replace(/\-/g, ' ') : '';
+
+                if (frontVertical.toLowerCase() == 'technology') {
+                    frontVertical = 'Tech';
+                } else if (frontVertical.toLowerCase() == 'uk universities education') {
+                    frontVertical = 'UK Students';
+                }
+                
+                var headerText = sprintf(_("HuffPost %s QuickRead"), frontVertical);
+                var footerText = sprintf(_("Part of HuffPost %s"), ' <span>' + frontVertical + '</span>');
+                
+                if (frontVertical.toLowerCase() == 'world')
+                	headerText = "WorldPost QuickRead";
+                
+                try {
+                    var parent_comscore = jQuery('#footer_nav_4').html().replace(/<\/?[^>]+>/gi, '');
+                    if (parent_comscore) {
+                        footerText = parent_comscore;
+                    }
+                } catch (ignored) {}
+
+                qr_class = ((qr_width == 662 && document.documentElement.clientHeight > 780) ? '' : ' wide');
+
+                quickread.window.update({
+                    'class':    'quickread ' + category + qr_class,
+                    'width':    qr_width,
+
+                    'content':  '<div id="quickread_head_tip" class="hp-qread uppercase arial_11 bold">' + headerText + '...</div>' +
+                                '<div id="qr_tab_read" class="qr_tab">' + content + '</div><div id="qr_tab_news" class="qr_tab">' +
+                                '</div><div class="clear border_quickread"></div>' +
+                                '<div class="footer"><div class="prev"><div><span></span></div></div>' +
+                                '<div class="container"><div>' + footer + '</div></div>' +
+                                '<div class="next"><div><span></span></div></div></span></div>' +
+                                '<span class="center arial_10 part">' + footerText,
+
+					'onshow':	function(frame){
+									quickread.frame = frame;
+
+									frame.find('div.footer div.prev').unbind('click').click(quickread.prev);
+									frame.find('div.footer div.next').unbind('click').click(quickread.next);
+									frame.undelegate('.slide.unselected', 'click').
+										delegate('.slide.unselected', 'click', function(e){
+											var t = $(this);
+
+											quickread.frame.find('div.quickread').
+												removeClass(category).addClass(t.find('a:first').attr('class'));
+
+											quickread.frame.find('div.slide').
+												removeClass().addClass('slide unselected');
+
+											t.removeClass().addClass('slide selected').
+												find('a:first').append(' ');
+
+											quickread.show(t.attr('id'));
+
+											e.preventDefault();
+										});
+
+									if (!video && !bcid){
+										HPAds.ad_reload((quickread.mp)?'quickread_most_popular':'quickread', 'qr_ad');
+                                        var badges = ['facebook_glamorous', 'retweet_glamorous', 'email_glamorous'];
+                                        var linkedin_categories = ['money', 'business', 'small-business'];
+                                        if ( $.inArray(category, linkedin_categories) != -1 ) {
+                                            badges.push('linkedin_glamorous');
+                                        } else if ('japan' === HPConfig.site) {
+                                            badges.push('hatena_glamorous');
+                                        } else {
+                                            badges.push('google_plusone_glamorous');
+                                        }
+
+										Badges.getInstance({
+											badge_div_id:	"quickread_badges",
+											entry_id:		entry.entry_id,
+											entry_url:		link,
+											entry_title:	entry.entry_title,
+											entry_vertical:	category,
+
+											is_glamorous:	true,
+											active_badges:	badges,
+											force_class:	"glamorous_4"
+										});
+									}
+
+									$('<img src="http://entry-stats.huffpost.com/?' + entry.entry_id + '&' +
+										Math.random().toString(16).replace('0.','') + '&' + escape(location.href.replace(/#.*/, '')) +
+										'&false" />').appendTo('#_snp_tracking');
+
+                                    if (typeof(s_265) != 'undefined') {
+                                        try {
+                                            // Temporarily steal the Omniture object to fire a pageview, then reset it
+                                            var origPageName = s_265.pageName;
+                                            var origProp1 = s_265.prop1;
+                                            var origProp16 = s_265.prop16;
+                                            var origProp22 = s_265.prop22;
+                                            var origProp23 = s_265.prop23;
+                                            s_265.pageName = entry.entry_title;
+                                            s_265.prop1 = 'quick_read';
+                                            s_265.prop16 = (entry.blog_id == 3) ? 'blog' : 'news';
+                                            s_265.prop22 = entry.entry_author_nickname;
+                                            var d = new Date(entry.entry_created_on.replace(/at/,''));
+                                            var dstr = (d.getMonth() < 9 ? '0' : '') + (d.getMonth() + 1) + '-';
+                                            dstr += (d.getDate() < 10 ? '0' : '') + d.getDate() + '-';
+                                            dstr += d.getFullYear();
+                                            s_265.prop23 = dstr;
+                                            s_265.t();
+                                            // reset
+                                            if (typeof(origPageName) == 'undefined') delete s_265.pageName; else s_265.pageName = origPageName;
+                                            if (typeof(origProp1) == 'undefined') delete s_265.prop1; else s_265.prop1 = origProp1;
+                                            if (typeof(origProp16) == 'undefined') delete s_265.prop16; else s_265.prop16 = origProp16;
+                                            if (typeof(origProp22) == 'undefined') delete s_265.prop22; else s_265.prop22 = origProp22;
+                                            if (typeof(origProp23) == 'undefined') delete s_265.prop23; else s_265.prop23 = origProp23;
+                                        } catch (ignored) { } 
+                                    }
+                                    if (window.HPTrack) {
+                                        HPTrack.Services.trackTo(['Comscore'], {'add_comscore_noop':true});
+                                    }
+
+                                    var a = frame.find('div:first');
+
+									onresize = function(){
+										var frame_width = ((document.body.clientWidth >= 1025) ? 662 : 785);
+										var frame_left = '-' + (frame_width + 60)/2;
+										var window_h = document.documentElement.clientHeight;
+
+										if(document.body.clientWidth >= 1025){
+											if( (window_h > 780) && ($('#frame_qr').has('.wide')) ){
+												$('#frame_qr').removeClass('wide');
+											} else {
+												$('#frame_qr').addClass('wide');
+												frame_width = 785;
+												frame_left = '-' + (frame_width + 60)/2;
+											}
+										} else {
+											$('#frame_qr').addClass('wide');
+										}
+
+										$('#frame_qr').css({
+											'width': frame_width + 'px',
+											'margin-left':   frame_left + 'px' 
+										});
+									}
+
+									document.body.style.overflow = 'hidden';
+                                   	document.frame_qr.style.overflow = 'auto';
+                                    
+                                    huff.emit('quickread/show');
+								},
+
+					'onclose':	function(){
+									quickread.frame = undefined;
+									quickread.window = undefined;
+									quickread.mp = false;
+									huff.emit('quickread/hide');
+									document.body.style.overflow = 'auto';
+								}
+				});
+			}
+
+			$.ajax({
+                url:        '/entries_js/' + entry.substr(0,2) + '/' + entry + '.json',
+				success:	function(data){
+								entry = data;
+								if (--count === 0) construct();
+							},
+				error:		function(){
+								quickread.failed();
+							},
+				dataType:	'json'
+			});
+
+			if (!quickread.frame) count++, $.ajax({
+				url:		'/include/just_related.php?format=json&need_images=1&entry_id=' + entry + '&lastn=14',
+				success:	function(data){
+								related = data;
+								if (--count === 0) construct();
+							},
+				error:		function(){
+								quickread.failed();
+							},
+				dataType:	'json'
+			});
+
+		}
+
+		quickread.next = function(){
+			if (quickread.frame && !hold){
+				var	container = quickread.frame.find('div.footer div.container > div'),
+					element = container.find('div.slide:first');
+
+				hold = true;
+
+				container.
+					animate({ 'margin-left': -element.outerWidth() }, 500, function(){
+						element.remove().appendTo(container);
+						container.css('margin-left', '0px');
+						hold = false;
+					});
+
+				huff.emit('quickread/next');
+			}
+		}
+
+		quickread.prev = function(){
+			if (quickread.frame && !hold){
+				var	container = quickread.frame.find('div.footer div.container > div'),
+					element = container.find('div.slide:last');
+
+				element.remove().prependTo(container);
+
+				hold = true;
+
+				container.
+					css('margin-left', '-' + element.outerWidth() + 'px').
+					animate({ 'margin-left': 0 }, 500, function(){
+						hold = false;
+					});
+
+				huff.emit('quickread/prev');
+			}
+		}
+
+		quickread.hide = function(){
+			quickread.window.hide();
+		}
+
+		quickread.ad = function(){
+			return '<div class="ad_block ad_wide top visible_frame" id="qr_ad"></div>';
+		}
+
+		quickread.failed = function(error_msg){
+
+			var head = __("Problem loading Quick View");
+			var text = error_msg || __("We encountered a problem loading the Quick View for this story. If you would like more information, please close this view and click the headline or comments link for the story.");
+
+			quickread.window && quickread.window.update({
+				'class':	'quickread',
+				'content':	'<h2 style="margin-top: 5px;">' + head + '</h2><p ' +
+							'style="margin-top: 20px;">' + text + '</p>',
+				'width':	400
+			});
+			
+		}
+
+		if ( !window.location.search.match( 'tigertail' ) ) {
+			huff.css('_quickread', function(){
+				ready(quickread);
+			});
+		} else {
+			ready(quickread);
+		}
+
+	});
+
+});
+
+huff.unit('front', function(ready){
+
+	// preload
+	huff.use(
+		'common', 'front/balance', 'front/bignews', 'front/blogroll',
+		'front/geopromo'
+	);
+
+	huff.use('jquery', 'conf', function($, c){
+
+		// bignews
+		c.get('vertical/bignews', function(vertical){
+			huff.use('front/bignews', function(b){
+				b.interval(vertical, 60);
+			});
+		});
+
+		// balance news columns
+		c.get('vertical', function(vertical){
+			huff.use('front/balance', 'dom/ready', function(b){
+				b.init({
+					vertical:	vertical,
+					columns:	[
+						'#recent-blogs-overflow-container-left',
+						'#recent-blogs-overflow-container-right'
+					]
+				});
+			});
+		});
+
+        // twitter splash module
+        c.get('twitter/splash', function(config) {
+            huff.use('twitter/splash', function(s) {
+                s.init(config);
+            });
+        });
+
+        c.get('social_tracking', function() {
+            typeof(HPTrack) == 'object'
+            && HPTrack.TwitterEvents.track();
+        });
+
+		ready();
+
+	});
+
+});
+
+
+/* From: production-mt-wfe-50-87-use1 : 13113 *//* d46470a66384aab51872df9ebc089fc9cd6a886a */

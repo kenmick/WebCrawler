@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<style type="text/css">
+					body, body * {
+		vertical-align: baseline;
+		border: 0;
+		outline: 0;
+		padding: 0;
+		margin: 0;
+
+		}
+		/* Div layer for the entire banner. */
+		#container {
+		position: absolute;
+		width: 298px;
+		height: 248px;
+		border:1px solid #666666;
+
+		display:none;
+		overflow: hidden;
+		}
+		#content {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		top: 0px;
+		left: 0px;
+		background-color: #BBC5E2;
+		z-index: 100;
+		background-repeat:no-repeat;
+		}
+		/* Invisible button for background clickthrough. */
+		#exit {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		top: 0px;background-color: #BBC5E2;
+		left: 0px;
+		cursor: pointer;
+		opacity: 0;
+		z-index: 400;
+		}
+
+		#logo {
+		position: absolute;
+		z-index: 400;
+
+		top: 10px;
+		left: 10px;
+
+		}
+		.step{
+			position: absolute;
+			width: 100%;
+			margin: auto;
+  top: 0; left: 0; bottom: 0; right: 0;
+		}
+		#step1{height: 250px;}
+
+		#flash{
+			position: absolute;
+			background-color: #fff;
+			width: 100%;
+			height: 100%;
+			z-index: 10;
+		}
+		#step2{height: 120px;}
+		#step3{height: 90px;}
+		#step2 p,#step3 p {
+			text-align: center;
+			font-size: 36px;
+			font-family: Arial;
+			color: #fff;
+			font-weight: bold;
+			text-transform: uppercase;
+		}
+		#step3 p {
+			font-size: 22px;
+		}
+#step2 .avion {position:absolute;}
+		#step2 .light,#step3 .light{
+			font-weight: 400;
+		}
+		#step3 li {
+			line-height: 22px;
+			text-align: center;
+			font-size: 20px;
+			font-family: Arial;
+			color: #f2960d;
+			font-weight: bold;
+			text-transform: uppercase;
+			text-decoration: none;
+			list-style: none;
+		}
+		#step3 li.title {
+			line-height: 20px;
+			font-size: 18px;
+			color: #fff;
+		}
+		#step4 .offre{
+			position: absolute;
+			top:55px;
+			left:20px;
+			z-index: 20;
+		}
+
+		.offre-top{
+			position: absolute;
+			height:80px;
+			overflow: hidden;
+		}
+		.offre-bottom{
+			position: absolute;
+			height:80px;
+			overflow: hidden;
+			top:80px;
+			width: 160px;
+		}
+		.offre-bottom img{
+			position: absolute;
+			top: -80px;
+		}
+		#step4 .promo{
+			position: absolute;
+			top:-5px;
+			right:15px;
+			z-index: 21;
+
+		}
+		#step4 .cta {
+			position: absolute;
+			width: 100%;
+			text-align: center;
+			bottom:20px;
+		}
+		#step4 .cta span{
+			display: inline-block;
+			width: 220px;
+			line-height: 14px;
+			padding: 10px 10px;
+			text-align: center;
+			font-size: 16px;
+			font-family: Arial;
+			color: #fff;
+			font-weight: bold;
+			text-transform: uppercase;
+			background-color: #ef0f07;
+		}
+		#step4 .cta span.arrow{
+			display: inline-block;
+			width: 20px;
+			padding: 10px 5px;
+			background-color: #ff6f6f;
+			line-height: 14px;
+
+		}
+		#step4 .cta span.arrow img{
+			position: absolute;
+
+		}
+		.ml {
+			color:#fff;
+			font-family: arial;
+			font-size: 10px;
+			position: absolute;
+			width: 100%;
+			text-align: center;
+			bottom:5px;
+		}
+		#step4 img.background{
+			position: absolute;
+			top: -8px;
+			width: 250px;
+			height: auto;
+			right:-40px;
+
+		}
+		:focus {outline:none;}
+		::-moz-focus-inner {border:0;}
+		</style>
+		<script language="javascript">
+		var tl,container,content,exit;
+		//Function to run with any animations starting on load, or bringing in images etc
+		init = function(){
+			//Assign All the elements to the element on the page
+			container = document.getElementById('container');
+			content = document.getElementById('content');
+			exit = document.getElementById('exit');
+			//Bring in listeners i.e. if a user clicks or rollovers
+			addEventListeners();
+			//Show Ad
+			container.style.display = "block";
+			createTimeline();
+		}
+		//Add Event Listeners
+		addEventListeners = function() {
+			exit.addEventListener('click', onExitClick, false);
+		}
+		onExitClick = function(e) {
+			console.log("click")
+		}
+		createTimeline = function(){
+			tl = new TimelineMax({repeat:0,onComplete:showPackshot});
+			tl.to("#step4 .background", 0, {scale:.91});
+			tl.to("#flash", 0, {alpha:0});
+			tl.to("#step4 .offre", 0, {scale:.8});
+			tl.to("#step4 .promo", 0, {scale:.8});
+			tl.from("#step1", .3, {x:-100,alpha:0, ease:Power2.easeIn});
+			
+			tl.from("#logo", .3, {x:-100,alpha:0, ease:Power2.easeIn},"-=.2");
+			tl.to("#flash", 0, {alpha:1});
+			tl.to("#flash", .4, {alpha:0});
+			tl.to("#flash", 0, {alpha:1},"+=1.5");
+			tl.to("#flash", .3, {alpha:0});
+			tl.to("#step1", .2, {alpha:0});
+
+			tl.staggerFrom("#step2 p", .2, {x:-300, ease:Power2.easeOut}, 0.1);
+			//tl.to("#step2 p", .2, {alpha:0,delay:2});
+			tl.staggerTo("#step2 p", .2, {x:300, ease:Power2.easeOut,alpha:0,delay:2}, 0.1);
+			/*tl.to("#step2 .avion", .01, {x:350,y:60,rotation:10,scaleX:-1},"-=2.5")
+			tl.to("#step2 .avion", 1.2, {x:-300,y:20, ease:Power2.easeIn});*/
+			tl.staggerFrom("#step3 p", .2, {x:600, ease:Power2.easeOut}, 0.1);
+			/*tl.fromTo("#step3 .avion1", 2, {x:-300,y:-20,rotation:-8},{x:300,y:-70, ease:Linear.easeNone},"avion");
+			tl.fromTo("#step3 .avion2",2, {x:300,y:-10,scaleX:-1,rotation:-8},{x:-300,y:0, ease:Linear.easeNone},"avion");*/
+			tl.fromTo("#step3 .avion1", 3, {x:-300,y:-25},{x:300, ease:Linear.easeNone},"-=1.5");
+			tl.fromTo("#step3 .avion2",3, {x:300,y:-15,scaleX:-1},{x:-300, ease:Linear.easeNone},"-=.2");
+			//tl.staggerTo("#step3 p",.3, {y:"-=50"},0.1);
+			tl.from(".ml", .3, {alpha:0, ease:Power2.easeIn});
+			tl.to("#step3", .5, {alpha:0,delay:1});
+			tl.from("#step4", .2, {alpha:0, ease:Power2.easeOut});
+
+			tl.from("#step4 .background", .3, {x:-50,alpha:0, ease:Power2.easeIn});
+			tl.from("#step4 .offre", 1, {alpha:0},"open");
+			tl.from("#step4 .offre-top", 1, {alpha:0, ease:Power2.easeOut},"open");
+			tl.from("#step4 .offre-bottom", 1, {rotationX:-180,transformOrigin:"left top",  ease:Power2.easeOut },"open");
+			tl.to(".blur", .3, {alpha:0,delay:.2},"open");
+			tl.from("#step4 .promo", .6, {alpha:0,scale:2, ease:Back.easeOut},"-=.5");
+			tl.from("#step4 .cta", .5, {alpha:0,scale:.5, ease:Back.easeOut},"-=.2");
+			tl.to("#step4 .cta", .3, {scale:1.1,delay:1});
+			tl.to("#step4 .cta", .5, {scale:1});
+			tl.addLabel("packshot");
+			//tl.to("#step4", .5, {alpha:0,delay:2});
+			tl.play(0);
+		}
+		showPackshot=function(){
+			tl.pause("packshot");
+		}
+		</script>
+	</head>
+	<body onload="init()">
+		<div id="container">
+			<div id="content">
+				<span class="ml">*Voir conditions sur le site.</span>
+				<div class="step" id="step1"><div id="flash"></div><img src="300x250.png"/></div>
+				<div class="step" id="step2">
+					<p>130</p><p>destinations</p><p class="light">Ã  moins de 2H</p>
+				</div>
+				<div class="step" id="step3">
+					<img src="avion.png" class="avion1"/>
+					<img src="avion.png" class="avion2"/>
+					<p>jusqu'Ã </p><p>25 allers-retours</p><p class="light">par jour*</p>
+
+				</div>
+				<div class="step" id="step4">
+					<img class="background" src="300x250.png" />
+					<div class="offre"><div class="offre-top"><img src="offre.png" /></div><div class="offre-bottom"><img src="offre.png"/><img src="offreblur.png" class="blur"/></div></div>
+
+
+					<div class="cta"><span>RÃ©servez votre billet</span><span class="arrow"><img src="arrow.png" />&nbsp;</span></div>
+
+				</div>
+			</div>
+
+			<img id="logo" src="logo.png"/>
+
+			<button id="exit"></button>
+		</div>
+	</body>
+</html>

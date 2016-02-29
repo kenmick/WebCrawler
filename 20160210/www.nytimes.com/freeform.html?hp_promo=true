@@ -1,0 +1,1984 @@
+<!--
+
+======================================================
+
+THIS IS A GENERATED TEMPLATE FILE. DO NOT EDIT.
+
+======================================================
+
+-->
+<!DOCTYPE html>
+<!--[if (gt IE 9)|!(IE)]> <!--> <html lang="en" class="no-js page-interactive section- page-theme-standard template-minimal tone-news page-interactive-default  limit-small layout-xlarge app-interactive"  itemscope xmlns:og="http://opengraphprotocol.org/schema/"> <!--<![endif]-->
+<!--[if IE 9]> <html lang="en" class="no-js ie9 lt-ie10 page-interactive section- page-theme-standard template-minimal tone-news page-interactive-default  limit-small layout-xlarge app-interactive" xmlns:og="http://opengraphprotocol.org/schema/"> <![endif]-->
+<!--[if IE 8]> <html lang="en" class="no-js ie8 lt-ie10 lt-ie9 page-interactive section- page-theme-standard template-minimal tone-news page-interactive-default  limit-small layout-xlarge app-interactive" xmlns:og="http://opengraphprotocol.org/schema/"> <![endif]-->
+<!--[if (lt IE 8)]> <html lang="en" class="no-js lt-ie10 lt-ie9 lt-ie8 page-interactive section- page-theme-standard template-minimal tone-news page-interactive-default  limit-small layout-xlarge app-interactive" xmlns:og="http://opengraphprotocol.org/schema/"> <![endif]-->
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta charset="utf-8" />
+
+<script>
+var require = {
+    baseUrl: 'http://graphics8.nytimes.com/newsgraphics/2016/02/04/new-hampshire-mobile-swiper/assets/',
+    waitSeconds: 20,
+    paths: {
+        'foundation': 'interactive/20160114-102407/js/foundation',
+        'shared': 'interactive/20160114-102407/js/shared',
+        'interactive': 'interactive/20160114-102407/js/interactive',
+        'application': 'interactive/20160114-102407/js/interactive/',
+        'videoFactory': 'http://static01.nyt.com/js2/build/video/2.0/videofactoryrequire',
+        'videoPlaylist': 'http://static01.nyt.com/js2/build/video/players/extended/2.0/appRequire',
+        'auth/mtr': 'http://static01.nyt.com/js/mtr',
+        'auth/growl': 'http://static01.nyt.com/js/auth/growl/default',
+        'vhs': 'http://static01.nyt.com/video/vhs/build/vhs-2.x.min'
+    }
+};
+</script>
+<!--[if (gte IE 9)|!(IE)]> <!-->
+<script src="http://graphics8.nytimes.com/newsgraphics/2016/02/04/new-hampshire-mobile-swiper/assets/interactive/20160114-102407/js/foundation/lib/framework.js"></script>
+<!--<![endif]-->
+<!--[if lt IE 9]>
+<script>
+require.map = { '*': { 'foundation/main': 'foundation/legacy_main' } };
+</script>
+<script data-main="foundation/legacy_main" src="http://graphics8.nytimes.com/newsgraphics/2016/02/04/new-hampshire-mobile-swiper/assets/interactive/20160114-102407/js/foundation/lib/framework.js"></script>
+<![endif]-->
+</head>
+<body>
+
+
+<script type="text/javascript">
+try {
+  // must set for Mobile Web to resize iframe
+  document.domain = "nytimes.com";
+} catch(e) {
+  console.log(e);
+}
+// NYT iPhone App WebView
+var isNYTiPhone = /iphone/i.test(navigator.userAgent) && window.location.search.indexOf("nytapp=true&homepage=true") > -1;
+if (isNYTiPhone) document.querySelector("html").className += " nyt-iphone";
+// NYT Android App WebView
+var isNYTAndroid = /android/i.test(navigator.userAgent) && window.location.search.indexOf("nytapp=true&homepage=true") > -1;
+if (isNYTAndroid) document.querySelector("html").className += " nyt-android";
+// NYT iPad App WebView
+var isNYTiPad = /ipad/i.test(navigator.userAgent) && window.location.search.indexOf("nytapp=true&homepage=true") > -1;
+if (isNYTiPad) document.querySelector("html").className += " nyt-ipad";
+// Mobile Web
+var isMobileWeb = !isNYTiPhone && !isNYTAndroid && !isNYTiPad;
+if (isMobileWeb) document.querySelector("html").className += " mobile-web";
+document.body.style.overflow = 'hidden';
+
+var isHPPromo = window.location.search.indexOf("hp_promo=true") > -1;
+
+if (isHPPromo) document.querySelector("html").className += " nyt-hp-promo";
+
+if (!isNYTiPhone && !isNYTAndroid && !isNYTiPad && !isMobileWeb) {
+	var isWeb = true;
+}
+
+</script>
+
+<style>/* Center headlines for standalone and embedded interactives */
+/* @import url("nyt5/centered-headline.css"); */
+/* Fullbleed interactive-graphic container */
+/* @import url("nyt5/fullbleed.css"); */
+/* Fix spacing at top of story */
+.has-top-ad .story.theme-interactive,
+.has-ribbon .story.theme-interactive {
+  margin-top: 10px;
+}
+/* Fix comments button margin */
+.story.theme-interactive .comments-button.theme-kicker {
+  margin-top: 0;
+}
+/* Get rid of border under intro and share tools on mobile */
+.page-interactive-default .story.theme-main .story-header {
+  border-bottom: none;
+}
+/* Pad out the kicker/sharetool space */
+.story.theme-interactive .story-meta .kicker {
+  margin-bottom: 22px;
+}
+.viewport-medium-10 .story.theme-interactive .story-meta .kicker {
+  margin-bottom: 24px;
+}
+/* Override the moving sharetools on mobile */
+.story.theme-interactive .story-header .story-meta .kicker-container .sharetools {
+  position: relative;
+  left: auto;
+  bottom: auto;
+  width: auto;
+  margin-top: -6px;
+  float: right;
+  clear: none;
+}
+/* Maintain the proper space with the section name and kicker next to share tools */
+.story.theme-interactive .story-header .story-meta .interactive-kicker {
+  float: left;
+  width: 65%;
+  display: inline-block;
+}
+/* Gets rid of the extra space under the intro that puts too much space there in mobile and desktop */
+.page-interactive-default .story.theme-main .story-header {
+  margin-bottom: 0;
+}
+.page-interactive-default .story.theme-main .story-header .story-meta {
+  margin-bottom: 10px;
+}
+/*Fixes styling on share tools at bottom of minimal interactives*/
+.story.theme-minimal .sharetools.layout-horizontal {
+  width: auto;
+  margin-top: 11px;
+}
+.story.theme-minimal .sharetools.layout-horizontal .sharetool {
+  display: inline-block;
+  border-top: 0;
+}
+.story.theme-minimal .sharetools.layout-horizontal .sharetool:first-child a {
+  margin-left: 0;
+  padding-left: 0;
+  border-left: none;
+}
+.story.theme-minimal .sharetools.layout-horizontal .sharetool a {
+  padding-left: 15px;
+  padding-right: 5px;
+  height: 20px;
+  border-left: 1px solid #e2e2e2;
+}
+.story.theme-minimal .sharetools.layout-horizontal .sharetool a:hover {
+  background-color: transparent;
+}
+/* uncomment to fix related content and footer layout on max_width: 720 pages */
+/*
+.related-coverage {
+  max-width: 720px;
+}
+
+.viewport-medium-30 .page-footer nav ul,
+.viewport-medium-50 .page-footer nav ul {
+  margin-left: 28px;
+}
+
+.viewport-medium-30 .page-footer nav.last-nav {
+  float: none;
+}
+
+.viewport-medium-30 .page-footer nav.last-nav ul {
+  margin-left: 239px;
+}
+*/
+/**
+ * Swiper 3.0.4
+ * Most modern mobile touch slider and framework with hardware accelerated transitions
+ * 
+ * http://www.idangero.us/swiper/
+ * 
+ * Copyright 2015, Vladimir Kharlampidi
+ * The iDangero.us
+ * http://www.idangero.us/
+ * 
+ * Licensed under MIT
+ * 
+ * Released on: March 6, 2015
+ */
+.swiper-container {
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+  /* Fix of Webkit flickering */
+  z-index: 1;
+}
+.swiper-container-vertical > .swiper-wrapper {
+  -webkit-box-orient: vertical;
+  -ms-flex-direction: column;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+}
+.swiper-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-transform-style: preserve-3d;
+  -ms-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-transition-property: -webkit-transform;
+  transition-property: transform;
+  -webkit-transform: translate3d(0px, 0, 0);
+  transform: translate3d(0px, 0, 0);
+  box-sizing: content-box;
+}
+.swiper-container-multirow > .swiper-wrapper {
+  -webkit-box-lines: multiple;
+  -moz-box-lines: multiple;
+  -ms-fles-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+.swiper-container-free-mode > .swiper-wrapper {
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+  margin: 0 auto;
+}
+.swiper-slide {
+  -webkit-transform-style: preserve-3d;
+  -ms-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-flex-shrink: 0;
+  -ms-flex: 0 0 auto;
+  -webkit-flex-shrink: 0;
+      -ms-flex-negative: 0;
+          flex-shrink: 0;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+/* IE10 Windows Phone 8 Fixes */
+.swiper-wp8-horizontal {
+  -ms-touch-action: pan-y;
+  touch-action: pan-y;
+}
+.swiper-wp8-vertical {
+  -ms-touch-action: pan-x;
+  touch-action: pan-x;
+}
+/* Arrows */
+.swiper-button-prev,
+.swiper-button-next {
+  position: absolute;
+  top: 50%;
+  width: 27px;
+  height: 44px;
+  margin-top: -22px;
+  z-index: 10;
+  cursor: pointer;
+  background-size: 27px 44px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.swiper-button-prev.swiper-button-disabled,
+.swiper-button-next.swiper-button-disabled {
+  opacity: 0.35;
+  cursor: auto;
+}
+.swiper-button-prev,
+.swiper-container-rtl .swiper-button-next {
+  background-image: url(http://graphics8.nytimes.com/newsgraphics/2016/02/04/new-hampshire-mobile-swiper/367660121c1affc38cff930097d48c778841da99/arrows/left-arrow.svg);
+  left: 10px;
+  right: auto;
+}
+.swiper-button-prev.swiper-button-black,
+.swiper-container-rtl .swiper-button-next.swiper-button-black {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2027%2044'%3E%3Cpath%20d%3D'M0%2C22L22%2C0l2.1%2C2.1L4.2%2C22l19.9%2C19.9L22%2C44L0%2C22L0%2C22L0%2C22z'%20fill%3D'%23000000'%2F%3E%3C%2Fsvg%3E");
+}
+.swiper-button-prev.swiper-button-white,
+.swiper-container-rtl .swiper-button-next.swiper-button-white {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2027%2044'%3E%3Cpath%20d%3D'M0%2C22L22%2C0l2.1%2C2.1L4.2%2C22l19.9%2C19.9L22%2C44L0%2C22L0%2C22L0%2C22z'%20fill%3D'%23ffffff'%2F%3E%3C%2Fsvg%3E");
+}
+.swiper-button-next,
+.swiper-container-rtl .swiper-button-prev {
+  background-image: url(http://graphics8.nytimes.com/newsgraphics/2016/02/04/new-hampshire-mobile-swiper/367660121c1affc38cff930097d48c778841da99/arrows/right-arrow.svg);
+  right: 10px;
+  left: auto;
+}
+.swiper-button-next.swiper-button-black,
+.swiper-container-rtl .swiper-button-prev.swiper-button-black {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2027%2044'%3E%3Cpath%20d%3D'M27%2C22L27%2C22L5%2C44l-2.1-2.1L22.8%2C22L2.9%2C2.1L5%2C0L27%2C22L27%2C22z'%20fill%3D'%23000000'%2F%3E%3C%2Fsvg%3E");
+}
+.swiper-button-next.swiper-button-white,
+.swiper-container-rtl .swiper-button-prev.swiper-button-white {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2027%2044'%3E%3Cpath%20d%3D'M27%2C22L27%2C22L5%2C44l-2.1-2.1L22.8%2C22L2.9%2C2.1L5%2C0L27%2C22L27%2C22z'%20fill%3D'%23ffffff'%2F%3E%3C%2Fsvg%3E");
+}
+/* Pagination Styles */
+.swiper-pagination {
+  position: absolute;
+  text-align: center;
+  -webkit-transition: 300ms;
+  transition: 300ms;
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  z-index: 10;
+}
+.swiper-pagination.swiper-pagination-hidden {
+  opacity: 0;
+}
+.swiper-pagination-bullet {
+  width: 8px;
+  height: 8px;
+  display: inline-block;
+  border-radius: 100%;
+  background: #000;
+  opacity: 0.2;
+}
+.swiper-pagination-clickable .swiper-pagination-bullet {
+  cursor: pointer;
+}
+.swiper-pagination-white .swiper-pagination-bullet {
+  background: #fff;
+}
+.swiper-pagination-bullet-active {
+  opacity: 1;
+  background: #007aff;
+}
+.swiper-pagination-white .swiper-pagination-bullet-active {
+  background: #fff;
+}
+.swiper-pagination-black .swiper-pagination-bullet-active {
+  background: #000;
+}
+.swiper-container-vertical > .swiper-pagination {
+  right: 10px;
+  top: 50%;
+  -webkit-transform: translate3d(0px, -50%, 0);
+  transform: translate3d(0px, -50%, 0);
+}
+.swiper-container-vertical > .swiper-pagination .swiper-pagination-bullet {
+  margin: 5px 0;
+  display: block;
+}
+.swiper-container-horizontal > .swiper-pagination {
+  bottom: 10px;
+  left: 0;
+  width: 100%;
+}
+.swiper-pagination .swiper-pagination-bullet {
+  margin: 0 5px;
+}
+/* 3D Container */
+.swiper-container-3d {
+  -webkit-perspective: 1200px;
+  -o-perspective: 1200px;
+  perspective: 1200px;
+}
+.swiper-container-3d .swiper-wrapper,
+.swiper-container-3d .swiper-slide,
+.swiper-container-3d .swiper-slide-shadow-left,
+.swiper-container-3d .swiper-slide-shadow-right,
+.swiper-container-3d .swiper-slide-shadow-top,
+.swiper-container-3d .swiper-slide-shadow-bottom,
+.swiper-container-3d .swiper-cube-shadow {
+  -webkit-transform-style: preserve-3d;
+  -ms-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+}
+.swiper-container-3d .swiper-slide-shadow-left,
+.swiper-container-3d .swiper-slide-shadow-right,
+.swiper-container-3d .swiper-slide-shadow-top,
+.swiper-container-3d .swiper-slide-shadow-bottom {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 10;
+}
+.swiper-container-3d .swiper-slide-shadow-left {
+  background-image: -webkit-gradient(linear, left top, right top, from(rgba(0, 0, 0, 0.5)), to(rgba(0, 0, 0, 0)));
+  /* Safari 4+, Chrome */
+  background-image: -webkit-linear-gradient(right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
+  /* Chrome 10+, Safari 5.1+, iOS 5+ */
+  /* Firefox 3.6-15 */
+  /* Opera 11.10-12.00 */
+  background-image: linear-gradient(to left, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
+  /* Firefox 16+, IE10, Opera 12.50+ */
+}
+.swiper-container-3d .swiper-slide-shadow-right {
+  background-image: -webkit-gradient(linear, right top, left top, from(rgba(0, 0, 0, 0.5)), to(rgba(0, 0, 0, 0)));
+  /* Safari 4+, Chrome */
+  background-image: -webkit-linear-gradient(left, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
+  /* Chrome 10+, Safari 5.1+, iOS 5+ */
+  /* Firefox 3.6-15 */
+  /* Opera 11.10-12.00 */
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
+  /* Firefox 16+, IE10, Opera 12.50+ */
+}
+.swiper-container-3d .swiper-slide-shadow-top {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.5)), to(rgba(0, 0, 0, 0)));
+  /* Safari 4+, Chrome */
+  background-image: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
+  /* Chrome 10+, Safari 5.1+, iOS 5+ */
+  /* Firefox 3.6-15 */
+  /* Opera 11.10-12.00 */
+  background-image: linear-gradient(to top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
+  /* Firefox 16+, IE10, Opera 12.50+ */
+}
+.swiper-container-3d .swiper-slide-shadow-bottom {
+  background-image: -webkit-gradient(linear, left bottom, left top, from(rgba(0, 0, 0, 0.5)), to(rgba(0, 0, 0, 0)));
+  /* Safari 4+, Chrome */
+  background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
+  /* Chrome 10+, Safari 5.1+, iOS 5+ */
+  /* Firefox 3.6-15 */
+  /* Opera 11.10-12.00 */
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
+  /* Firefox 16+, IE10, Opera 12.50+ */
+}
+/* Coverflow */
+.swiper-container-coverflow .swiper-wrapper {
+  /* Windows 8 IE 10 fix */
+  -ms-perspective: 1200px;
+}
+/* Fade */
+.swiper-container-fade.swiper-container-free-mode .swiper-slide {
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+}
+.swiper-container-fade .swiper-slide {
+  pointer-events: none;
+}
+.swiper-container-fade .swiper-slide-active {
+  pointer-events: auto;
+}
+/* Cube */
+.swiper-container-cube {
+  overflow: visible;
+}
+.swiper-container-cube .swiper-slide {
+  pointer-events: none;
+  visibility: hidden;
+  -webkit-transform-origin: 0 0;
+  transform-origin: 0 0;
+  -webkit-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  backface-visibility: hidden;
+  width: 100%;
+  height: 100%;
+}
+.swiper-container-cube.swiper-container-rtl .swiper-slide {
+  -webkit-transform-origin: 100% 0;
+  transform-origin: 100% 0;
+}
+.swiper-container-cube .swiper-slide-active,
+.swiper-container-cube .swiper-slide-next,
+.swiper-container-cube .swiper-slide-prev,
+.swiper-container-cube .swiper-slide-next + .swiper-slide {
+  pointer-events: auto;
+  visibility: visible;
+}
+.swiper-container-cube .swiper-cube-shadow {
+  position: absolute;
+  left: 0;
+  bottom: 0px;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  opacity: 0.6;
+  -webkit-filter: blur(50px);
+  filter: blur(50px);
+}
+.swiper-container-cube.swiper-container-vertical .swiper-cube-shadow {
+  z-index: 0;
+}
+/* Scrollbar */
+.swiper-scrollbar {
+  border-radius: 10px;
+  position: relative;
+  -ms-touch-action: none;
+  background: rgba(0, 0, 0, 0.1);
+}
+.swiper-container-horizontal > .swiper-scrollbar {
+  position: absolute;
+  left: 1%;
+  bottom: 3px;
+  z-index: 50;
+  height: 5px;
+  width: 98%;
+}
+.swiper-container-vertical > .swiper-scrollbar {
+  position: absolute;
+  right: 3px;
+  top: 1%;
+  z-index: 50;
+  width: 5px;
+  height: 98%;
+}
+.swiper-scrollbar-drag {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  left: 0;
+  top: 0;
+}
+.swiper-scrollbar-cursor-drag {
+  cursor: move;
+}
+/* Preloader */
+.swiper-lazy-preloader {
+  width: 42px;
+  height: 42px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -21px;
+  margin-top: -21px;
+  z-index: 10;
+  -webkit-transform-origin: 50%;
+  transform-origin: 50%;
+  -webkit-animation: swiper-preloader-spin 1s step-end infinite;
+  animation: swiper-preloader-spin 1s step-end infinite;
+}
+.swiper-lazy-preloader:after {
+  display: block;
+  content: "";
+  width: 100%;
+  height: 100%;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20viewBox%3D'0%200%20120%20120'%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20xmlns%3Axlink%3D'http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink'%3E%3Cdefs%3E%3Cline%20id%3D'l'%20x1%3D'60'%20x2%3D'60'%20y1%3D'7'%20y2%3D'27'%20stroke%3D'%236c6c6c'%20stroke-width%3D'11'%20stroke-linecap%3D'round'%2F%3E%3C%2Fdefs%3E%3Cg%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.27'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.27'%20transform%3D'rotate(30%2060%2C60)'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.27'%20transform%3D'rotate(60%2060%2C60)'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.27'%20transform%3D'rotate(90%2060%2C60)'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.27'%20transform%3D'rotate(120%2060%2C60)'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.27'%20transform%3D'rotate(150%2060%2C60)'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.37'%20transform%3D'rotate(180%2060%2C60)'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.46'%20transform%3D'rotate(210%2060%2C60)'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.56'%20transform%3D'rotate(240%2060%2C60)'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.66'%20transform%3D'rotate(270%2060%2C60)'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.75'%20transform%3D'rotate(300%2060%2C60)'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.85'%20transform%3D'rotate(330%2060%2C60)'%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+  background-position: 50%;
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+.swiper-lazy-preloader-white:after {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20viewBox%3D'0%200%20120%20120'%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20xmlns%3Axlink%3D'http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink'%3E%3Cdefs%3E%3Cline%20id%3D'l'%20x1%3D'60'%20x2%3D'60'%20y1%3D'7'%20y2%3D'27'%20stroke%3D'%23fff'%20stroke-width%3D'11'%20stroke-linecap%3D'round'%2F%3E%3C%2Fdefs%3E%3Cg%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.27'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.27'%20transform%3D'rotate(30%2060%2C60)'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.27'%20transform%3D'rotate(60%2060%2C60)'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.27'%20transform%3D'rotate(90%2060%2C60)'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.27'%20transform%3D'rotate(120%2060%2C60)'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.27'%20transform%3D'rotate(150%2060%2C60)'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.37'%20transform%3D'rotate(180%2060%2C60)'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.46'%20transform%3D'rotate(210%2060%2C60)'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.56'%20transform%3D'rotate(240%2060%2C60)'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.66'%20transform%3D'rotate(270%2060%2C60)'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.75'%20transform%3D'rotate(300%2060%2C60)'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.85'%20transform%3D'rotate(330%2060%2C60)'%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+}
+@-webkit-keyframes swiper-preloader-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  8.33333333% {
+    -webkit-transform: rotate(30deg);
+  }
+  16.66666667% {
+    -webkit-transform: rotate(60deg);
+  }
+  25% {
+    -webkit-transform: rotate(90deg);
+  }
+  33.33333333% {
+    -webkit-transform: rotate(120deg);
+  }
+  41.66666667% {
+    -webkit-transform: rotate(150deg);
+  }
+  50% {
+    -webkit-transform: rotate(180deg);
+  }
+  58.33333333% {
+    -webkit-transform: rotate(210deg);
+  }
+  66.66666667% {
+    -webkit-transform: rotate(240deg);
+  }
+  75% {
+    -webkit-transform: rotate(270deg);
+  }
+  83.33333333% {
+    -webkit-transform: rotate(300deg);
+  }
+  91.66666667% {
+    -webkit-transform: rotate(330deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@keyframes swiper-preloader-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  8.33333333% {
+    -webkit-transform: rotate(30deg);
+            transform: rotate(30deg);
+  }
+  16.66666667% {
+    -webkit-transform: rotate(60deg);
+            transform: rotate(60deg);
+  }
+  25% {
+    -webkit-transform: rotate(90deg);
+            transform: rotate(90deg);
+  }
+  33.33333333% {
+    -webkit-transform: rotate(120deg);
+            transform: rotate(120deg);
+  }
+  41.66666667% {
+    -webkit-transform: rotate(150deg);
+            transform: rotate(150deg);
+  }
+  50% {
+    -webkit-transform: rotate(180deg);
+            transform: rotate(180deg);
+  }
+  58.33333333% {
+    -webkit-transform: rotate(210deg);
+            transform: rotate(210deg);
+  }
+  66.66666667% {
+    -webkit-transform: rotate(240deg);
+            transform: rotate(240deg);
+  }
+  75% {
+    -webkit-transform: rotate(270deg);
+            transform: rotate(270deg);
+  }
+  83.33333333% {
+    -webkit-transform: rotate(300deg);
+            transform: rotate(300deg);
+  }
+  91.66666667% {
+    -webkit-transform: rotate(330deg);
+            transform: rotate(330deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+.g-slide .g-two-maps .ai2html {
+  position: absolute;
+  top: 10px;
+}
+.g-two-maps .ai2html svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.g-two-maps .ai2html svg circle {
+  opacity: 0.7;
+}
+.g-two-maps .ai2html svg g.names text {
+  font: bold 14px / 1.2 'nyt-franklin', Arial, sans-serif;
+}
+.nyt-iphone #g-nh-map-wide {
+  max-width: 300px;
+}
+.nyt-mobile-web #g-nh-map-wide {
+  max-width: 300px;
+}
+.nyt-hp-promo #g-nh-map-wide {
+  max-width: 100%;
+}
+#g-iowa-map-gop-wide {
+  overflow: visible!important;
+}
+#g-iowa-map-gop-wide svg {
+  overflow: visible;
+}
+.g-slide.g-slide-gop-cruz-map h2 {
+  margin-right: 80px;
+}
+.g-caption {
+  font: 700 16px / 1.2 'nyt-franklin', Arial, sans-serif;
+}
+.g-barchart svg text {
+  font: 300 15px / 1.2 'nyt-franklin', Arial, sans-serif;
+}
+.g-barchart svg text.pct {
+  text-anchor: end;
+}
+.g-barchart svg rect {
+  fill: #F9A97F;
+  -webkit-transition: fill 0.3s ease-in-out;
+          transition: fill 0.3s ease-in-out;
+}
+.g-barchart svg rect.highlight {
+  fill: #F15A22;
+}
+.sanders-exit-polls.g-barchart svg text.highlight {
+  font-weight: bold;
+  font-size: 16px;
+}
+.g-barchart.party-dem rect {
+  fill: #9FCCF9;
+}
+.g-barchart.party-dem rect.highlight {
+  fill: #1E78D2;
+}
+.g-polls-vs-results path,
+.g-polls-vs-results line {
+  fill: none;
+}
+.g-polls-vs-results path.carson,
+.g-polls-vs-results line.carson {
+  stroke: #79d4ae;
+}
+.g-polls-vs-results path.cruz,
+.g-polls-vs-results line.cruz {
+  stroke: #e7ba52;
+}
+.g-polls-vs-results path.rubio,
+.g-polls-vs-results line.rubio {
+  stroke: #8a497e;
+}
+.g-polls-vs-results path.trump,
+.g-polls-vs-results line.trump {
+  stroke: #d65454;
+}
+.g-polls-vs-results path.bush,
+.g-polls-vs-results line.bush {
+  stroke: #de7862;
+}
+.g-polls-vs-results path.kasich,
+.g-polls-vs-results line.kasich {
+  stroke: #3ca0a0;
+}
+.g-polls-vs-results path.christie,
+.g-polls-vs-results line.christie {
+  stroke: #62add4;
+}
+.g-polls-vs-results path.sanders,
+.g-polls-vs-results line.sanders {
+  stroke: #8ecc64;
+}
+.g-polls-vs-results path.clinton,
+.g-polls-vs-results line.clinton {
+  stroke: #4a8fd3;
+}
+.g-polls-vs-results circle,
+.g-polls-vs-results text.diff {
+  stroke: none;
+}
+.g-polls-vs-results circle.carson,
+.g-polls-vs-results text.diff.carson {
+  fill: #79d4ae;
+}
+.g-polls-vs-results circle.cruz,
+.g-polls-vs-results text.diff.cruz {
+  fill: #e7ba52;
+}
+.g-polls-vs-results circle.rubio,
+.g-polls-vs-results text.diff.rubio {
+  fill: #8a497e;
+}
+.g-polls-vs-results circle.trump,
+.g-polls-vs-results text.diff.trump {
+  fill: #d65454;
+}
+.g-polls-vs-results circle.bush,
+.g-polls-vs-results text.diff.bush {
+  fill: #de7862;
+}
+.g-polls-vs-results circle.kasich,
+.g-polls-vs-results text.diff.kasich {
+  fill: #3ca0a0;
+}
+.g-polls-vs-results circle.christie,
+.g-polls-vs-results text.diff.christie {
+  fill: #62add4;
+}
+.g-polls-vs-results circle.sanders,
+.g-polls-vs-results text.diff.sanders {
+  fill: #8ecc64;
+}
+.g-polls-vs-results circle.clinton,
+.g-polls-vs-results text.diff.clinton {
+  fill: #4a8fd3;
+}
+.g-polls-vs-results svg.g-linechart {
+  overflow: visible;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+.g-polls-vs-results svg.g-linechart .last-tick {
+  display: none;
+}
+.g-polls-vs-results svg.g-linechart .candidate-line path,
+.g-polls-vs-results svg.g-linechart .candidate-line line {
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+}
+.g-polls-vs-results svg.g-linechart .candidate-line path.bg,
+.g-polls-vs-results svg.g-linechart .candidate-line line.bg {
+  stroke: white;
+  stroke-width: 6;
+  stroke-dasharray: none;
+}
+.g-polls-vs-results svg.g-linechart .candidate-line.faded.hover path {
+  stroke: #777!important;
+}
+.g-polls-vs-results svg.g-linechart .candidate-line text {
+  font: 400 13px / 1.2 'nyt-franklin', Arial, sans-serif;
+}
+.g-polls-vs-results svg.g-linechart .candidate-line text.diff {
+  text-anchor: middle;
+  font: 400 14px / 1.2 'nyt-franklin', Arial, sans-serif;
+}
+.g-polls-vs-results svg.g-linechart .candidate-line text.bush,
+.g-polls-vs-results svg.g-linechart .candidate-line text.cruz {
+  display: none;
+}
+.g-polls-vs-results svg.g-linechart .candidate-line.highlight text {
+  font-weight: bold;
+  font-size: 14px;
+}
+.g-polls-vs-results svg.g-linechart text.note {
+  font: 400 13px / 1.2 'nyt-franklin', Arial, sans-serif;
+  text-anchor: end;
+}
+.g-polls-vs-results svg.g-linechart g.labels text {
+  font: 500 13px / 1.2 'nyt-franklin', Arial, sans-serif;
+}
+.g-polls-vs-results svg.g-linechart g.labels text.highlight {
+  font-weight: bold;
+  font-size: 14px;
+}
+.g-polls-vs-results svg.g-linechart .x-axis text,
+.g-polls-vs-results svg.g-linechart .y-axis text {
+  text-anchor: end;
+  font: 500 12px / 1.2 'nyt-franklin', Arial, sans-serif;
+  fill: #999;
+}
+.g-polls-vs-results svg.g-linechart .x-axis line,
+.g-polls-vs-results svg.g-linechart .y-axis line {
+  stroke: #ddd;
+  shape-rendering: crispEdges;
+}
+.g-polls-vs-results svg.g-linechart .y-axis text {
+  dominant-baseline: text-after-edge;
+  text-anchor: start;
+}
+.g-polls-vs-results svg.g-linechart .y-axis line {
+  stroke-dasharray: none;
+  stroke: #ddd;
+}
+.g-polls-vs-results svg.g-linechart .y-axis line.zero-line {
+  stroke: none;
+}
+#iowa_rep_2016 .g-polls-vs-results svg.g-linechart .y-axis .tick:last-child {
+  display: none;
+}
+.g-polls-vs-results svg.g-linechart line.jan24,
+.g-polls-vs-results svg.g-linechart line.election {
+  stroke: #999;
+  stroke-dasharray: 4,4;
+  shape-rendering: crispEdges;
+}
+.g-polls-vs-results svg.g-linechart .time-left {
+  fill: rgba(0, 0, 0, 0.03);
+}
+.g-polls-vs-results svg.g-linechart text.jan24 {
+  text-anchor: end;
+}
+.g-polls-vs-results svg.g-linechart text.final-polling {
+  text-anchor: start;
+}
+.g-polls-vs-results svg.g-linechart text.jan24,
+.g-polls-vs-results svg.g-linechart text.final-polling {
+  font: 400 14px / 1.2 'nyt-franklin', Arial, sans-serif;
+  fill: #777;
+}
+.g-polls-vs-results svg.g-linechart rect.bg {
+  fill: white;
+  fill-opacity: 0;
+}
+.g-poll-table table {
+  width: 100%;
+  border-spacing: 0;
+}
+.g-poll-table td,
+.g-poll-table th {
+  font: 300 15px / 1.2 'nyt-franklin', Arial, sans-serif;
+}
+.g-poll-table th.clinton {
+  color: #4a8fd3;
+}
+.g-poll-table th.omalley {
+  color: #897ddb;
+}
+.g-poll-table th.sanders {
+  color: #8ecc64;
+}
+.g-poll-table th.bush {
+  color: #de7862;
+}
+.g-poll-table th.gilmore {
+  color: #de7862;
+}
+.g-poll-table th.santorum {
+  color: #de7862;
+}
+.g-poll-table th.carson {
+  color: #79d4ae;
+}
+.g-poll-table th.christie {
+  color: #62add4;
+}
+.g-poll-table th.cruz {
+  color: #e7ba52;
+}
+.g-poll-table th.fiorina {
+  color: #de7862;
+}
+.g-poll-table th.huckabee {
+  color: #638755;
+}
+.g-poll-table th.kasich {
+  color: #3ca0a0;
+}
+.g-poll-table th.paul {
+  color: #e3689a;
+}
+.g-poll-table th.rubio {
+  color: #8a497e;
+}
+.g-poll-table th.trump {
+  color: #d65454;
+}
+.g-poll-table thead th {
+  border-bottom: 1px solid #222;
+}
+.g-poll-table thead th {
+  font-weight: bold;
+  text-align: center;
+}
+.g-poll-table thead th.sanders {
+  padding-right: 10px;
+}
+.g-poll-table tbody td,
+.g-poll-table tbody th {
+  padding-top: 8px;
+}
+.g-poll-table tbody th {
+  text-align: left;
+}
+.g-poll-table td {
+  text-align: right;
+}
+.g-poll-table td span.pct {
+  visibility: hidden;
+}
+.g-poll-table td.highlight {
+  font-weight: bold;
+}
+.g-poll-table tbody tr:first-child td span.pct {
+  visibility: visible;
+}
+.g-tweet {
+  background: #f6f9fa;
+  border: 1px solid #b8d3c7;
+  padding: 12px;
+  font-family: 'Helvetica Neue', Helvetica;
+}
+.g-tweet-head img {
+  width: 40px;
+  border-radius: 3px;
+  float: left;
+  margin-right: 9px;
+}
+.g-twitter-name {
+  font-weight: bold;
+  font-size: 16px;
+}
+.g-twitter-handle {
+  font-weight: normal;
+  color: #697882;
+  font-size: 15px;
+}
+.g-tweet-text {
+  clear: both;
+  font-weight: normal;
+  color: #1a1a1a;
+  font-size: 16px;
+  line-height: 22px;
+  margin-top: 8px;
+}
+.g-tweet-text u {
+  color: #697882;
+  text-decoration: none;
+}
+.g-tweet-footer {
+  margin-top: 4px;
+  font-size: 13px;
+  font-weight: bold;
+  color: #a8b8c2;
+}
+.g-tweet-footer > div {
+  display: inline-block;
+  margin-right: 20px;
+  padding-left: 25px;
+}
+.g-tweet-rt-count {
+  background: url('data:image/png;base64,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') no-repeat;
+  background-size: 22px;
+}
+.g-tweet-fav-count {
+  background: url('data:image/png;base64,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') no-repeat;
+  background-size: 22px;
+}
+.nyt-hp-promo .g-slide.g-slide-opener h2 {
+  font-family: nyt-franklin, arial, sans-serif;
+  font-size: 18px;
+  font-weight: 800;
+}
+.g-opener-max-width {
+  max-width: 280px;
+  display: block;
+}
+.candidate-silo {
+  position: fixed;
+  bottom: 0px;
+  height: 500px;
+  width: 300px;
+  z-index: 0;
+  left: 10px;
+  -webkit-transition: left 0.6s cubic-bezier(0.02, 1.09, 0.57, 0.985);
+          transition: left 0.6s cubic-bezier(0.02, 1.09, 0.57, 0.985);
+}
+.candidate-silo.sanders-silo {
+  left: -7%;
+  background: url(http://graphics8.nytimes.com/newsgraphics/2016/02/04/new-hampshire-mobile-swiper/assets/opener-silo/sanders-sign-2.png) left bottom no-repeat;
+  background-size: 68%;
+  -webkit-transition-delay: 2.1s;
+          transition-delay: 2.1s;
+  bottom: 22%;
+}
+.nyt-hp-promo .candidate-silo.sanders-silo {
+  background-size: 73%;
+  left: -3%;
+  bottom: 32%;
+}
+.candidate-silo.sanders-silo.off-stage {
+  left: 400px;
+}
+.candidate-silo.trump-silo {
+  left: 37%;
+  background: url(http://graphics8.nytimes.com/newsgraphics/2016/02/04/new-hampshire-mobile-swiper/assets/opener-silo/trump-sign-2.png) left bottom no-repeat;
+  background-size: 68%;
+  -webkit-transition-delay: 1.8s;
+          transition-delay: 1.8s;
+  bottom: 28%;
+}
+.nyt-hp-promo .candidate-silo.trump-silo {
+  background-size: 74%;
+  left: 40%;
+  bottom: 42%;
+}
+.candidate-silo.trump-silo.off-stage {
+  left: -250px;
+}
+.candidate-silo.trump-2-silo {
+  left: 33%;
+  background: url(http://graphics8.nytimes.com/newsgraphics/2016/02/04/new-hampshire-mobile-swiper/assets/opener-silo/trump-sign.png) left bottom no-repeat;
+  background-size: 31%;
+  -webkit-transition-delay: 1.5s;
+          transition-delay: 1.5s;
+  bottom: 13%;
+}
+.nyt-hp-promo .candidate-silo.trump-2-silo {
+  background-size: 41%;
+  bottom: 21%;
+  left: 36%;
+}
+.candidate-silo.trump-2-silo.off-stage {
+  left: -250px;
+}
+.candidate-silo.sanders-2-silo {
+  left: 31%;
+  background: url(http://graphics8.nytimes.com/newsgraphics/2016/02/04/new-hampshire-mobile-swiper/assets/opener-silo/sanders-sign.png) left bottom no-repeat;
+  background-size: 30%;
+  -webkit-transition-delay: 1.2s;
+          transition-delay: 1.2s;
+  bottom: -5%;
+}
+.nyt-hp-promo .candidate-silo.sanders-2-silo {
+  background-size: 46%;
+  bottom: 1%;
+  left: 35%;
+}
+.candidate-silo.sanders-2-silo.off-stage {
+  left: 400px;
+}
+.candidate-silo.kasich-silo {
+  left: 60%;
+  background: url(http://graphics8.nytimes.com/newsgraphics/2016/02/04/new-hampshire-mobile-swiper/assets/opener-silo/kasich-sign-2.png) left bottom no-repeat;
+  background-size: 34%;
+  -webkit-transition-delay: 0.9s;
+          transition-delay: 0.9s;
+  bottom: -18%;
+}
+.nyt-hp-promo .candidate-silo.kasich-silo {
+  background-size: 37%;
+  left: 68%;
+  bottom: -8%;
+}
+.candidate-silo.kasich-silo.off-stage {
+  left: -250px;
+}
+.candidate-silo.clinton-silo {
+  background: url(http://graphics8.nytimes.com/newsgraphics/2016/02/04/new-hampshire-mobile-swiper/assets/opener-silo/hillary-sign.png) left bottom no-repeat;
+  bottom: -1%;
+  background-size: 40%;
+  left: -1%;
+  -webkit-transition-delay: 0.6s;
+          transition-delay: 0.6s;
+}
+.nyt-hp-promo .candidate-silo.clinton-silo {
+  background-size: 50%;
+  left: 0%;
+  bottom: 1%;
+}
+.candidate-silo.clinton-silo.off-stage {
+  left: 400px;
+}
+.g-slide.g-slide-opener h2 {
+  font-family: nyt-cheltenham, georgia, 'times new roman', times, serif;
+  font-size: 33px;
+  line-height: 37px;
+  font-weight: 200;
+  color: #000;
+}
+html.nyt-iphone .g-slide.g-slide-opener h2 {
+  font-size: 33px;
+}
+.g-slide-0 .g-slide-content {
+  overflow: visible;
+}
+.phone {
+  text-align: left;
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 20px 30px;
+  position: relative;
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+.phone .display {
+  position: absolute;
+  background: white;
+  mix-blend-mode: multiply;
+  overflow-y: scroll;
+}
+.phone .display > img {
+  display: block;
+  width: 100%;
+  pointer-events: none;
+}
+.phone .display .nyt-head {
+  height: 50px;
+  background: #ffffff url(http://graphics8.nytimes.com/newsgraphics/2016/02/04/new-hampshire-mobile-swiper/367660121c1affc38cff930097d48c778841da99/frames/nyt-head.png) center center no-repeat;
+  background-size: 200px;
+  border-bottom: 1px solid #eee;
+}
+.iphone-5 {
+  background-image: url(http://graphics8.nytimes.com/newsgraphics/2016/02/04/new-hampshire-mobile-swiper/367660121c1affc38cff930097d48c778841da99/frames/iphone_5.png);
+  width: 376px;
+  height: 789px;
+}
+.iphone-5 .display {
+  width: 320px;
+  left: 30px;
+  top: 115px;
+  height: 565px;
+}
+.iphone-6 {
+  background-image: url(http://graphics8.nytimes.com/newsgraphics/2016/02/04/new-hampshire-mobile-swiper/367660121c1affc38cff930097d48c778841da99/frames/iphone_6.png);
+  width: 430px;
+  height: 838px;
+}
+.iphone-6 .display {
+  left: 28px;
+  top: 107px;
+  width: 375px;
+  height: 627px;
+}
+.iphone-6-plus {
+  background-image: url(http://graphics8.nytimes.com/newsgraphics/2016/02/04/new-hampshire-mobile-swiper/367660121c1affc38cff930097d48c778841da99/frames/iphone_6-plus.png);
+  width: 473px;
+  height: 959px;
+}
+.iphone-6-plus .display {
+  left: 28px;
+  top: 107px;
+  width: 414px;
+  height: 736px;
+}
+.clinton-1746 {
+  fill: #4a8fd3;
+}
+.sanders-1445 {
+  fill: #8ecc64;
+}
+.bush-1239 {
+  fill: #de7862;
+}
+.gilmore-45650 {
+  fill: #de7862;
+}
+.santorum-22336 {
+  fill: #de7862;
+}
+.carson-64509 {
+  fill: #79d4ae;
+}
+.christie-60051 {
+  fill: #62add4;
+}
+.cruz-61815 {
+  fill: #e7ba52;
+}
+.fiorina-60339 {
+  fill: #de7862;
+}
+.huckabee-1187 {
+  fill: #638755;
+}
+.kasich-36679 {
+  fill: #3ca0a0;
+}
+.paul-22333 {
+  fill: #e3689a;
+}
+.rubio-53044 {
+  fill: #8a497e;
+}
+.trump-8639 {
+  fill: #d65454;
+}
+.other {
+  fill: none;
+}
+html.mobile-web body {
+  min-height: 350px;
+  margin: 0;
+}
+#g-new-hampshire-mobile-swiper {
+  text-align: center;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-tap-highlight-color: transparent;
+  /* For some Androids */
+}
+#g-new-hampshire-mobile-swiper > * {
+  text-align: left;
+}
+#g-new-hampshire-mobile-swiper h1 {
+  font: 100 46px / 1.2 'nyt-franklin', Arial, sans-serif;
+  margin-bottom: 50px;
+  text-align: center;
+}
+.user-agent {
+  font: 300 12px / 1.2 'nyt-franklin', Arial, sans-serif;
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  z-index: 100;
+  background: #000;
+  color: #90EE90;
+  padding: 3px;
+}
+.g-slide {
+  background: white;
+}
+.g-slide-content {
+  margin: 0 10px;
+}
+.nyt-android .g-slide-content {
+  margin: 0px;
+}
+.animate-text span {
+  -webkit-transition: opacity 0.1s ease-in-out;
+          transition: opacity 0.1s ease-in-out;
+}
+.animate-text span.off {
+  opacity: 0;
+}
+.animate-text[data-animate-text] {
+  visibility: hidden;
+}
+.g-swiper-test {
+  background: #fff;
+  width: calc(100% - 1px);
+  margin: 0px auto;
+  max-width: 600px;
+  height: 100vh;
+}
+@media only screen and (max-width: 540px) {
+  .g-swiper-test {
+    max-width: 530px;
+  }
+}
+@media only screen and (max-width: 420px) {
+  .g-swiper-test {
+    max-width: 410px;
+  }
+}
+@media only screen and (max-width: 380px) {
+  .g-swiper-test {
+    max-width: 370px;
+  }
+}
+@media only screen and (max-width: 370px) {
+  .g-swiper-test {
+    max-width: 360px;
+  }
+}
+@media only screen and (max-width: 360px) {
+  .g-swiper-test {
+    max-width: 350px;
+  }
+}
+@media only screen and (max-width: 350px) {
+  .g-swiper-test {
+    max-width: 340px;
+  }
+}
+@media only screen and (max-width: 340px) {
+  .g-swiper-test {
+    max-width: 330px;
+  }
+}
+@media only screen and (max-width: 330px) {
+  .g-swiper-test {
+    max-width: 320px;
+  }
+}
+@media only screen and (max-width: 320px) {
+  .g-swiper-test {
+    max-width: 310px;
+  }
+}
+@media only screen and (max-width: 310px) {
+  .g-swiper-test {
+    max-width: 300px;
+  }
+}
+html.nyt-android .g-swiper-test {
+  height: 300px;
+}
+.g-slide h2 {
+  font: 300 18px / 1.3 'nyt-franklin', Arial, sans-serif;
+  margin: 10px 10px 10px;
+  pointer-events: none;
+  text-align: left;
+}
+html.nyt-android .g-slide h2 {
+  margin-left: 0;
+}
+html.nyt-iphone .g-slide h2 {
+  font-size: 16px;
+}
+.g-slide .g-missing-asset {
+  border: 1px solid red;
+  color: red;
+  font: 300 14px / 1.2 'nyt-franklin', Arial, sans-serif;
+  padding: 20px;
+}
+.g-slide .ai2html {
+  position: relative;
+  top: 0px;
+  z-index: -1;
+  max-width: 340px;
+  margin: 0 auto;
+}
+.nyt-hp-promo .g-slide .ai2html {
+  max-width: 305px;
+  margin-left: 25px;
+}
+.swiper-pagination {
+  position: fixed;
+  bottom: 15px;
+  width: auto;
+  left: 13px;
+  -webkit-transition: opacity 0.3s linear;
+          transition: opacity 0.3s linear;
+}
+html.nyt-iphone .swiper-pagination {
+  left: 20px;
+}
+.swiper-pagination .swiper-pagination-bullet {
+  border: 1px solid #000;
+  background: white;
+}
+.swiper-pagination .swiper-pagination-bullet-active {
+  background: #ccc;
+  border: 1px solid #bbb;
+}
+#g-new-hampshire-mobile-swiper[data-active='0'] .swiper-pagination,
+#g-new-hampshire-mobile-swiper[data-active='7'] .swiper-pagination {
+  opacity: 0;
+}
+.swiper-next-button {
+  position: fixed;
+  right: 10px;
+  width: 11px;
+  white-space: nowrap;
+  overflow: hidden;
+  -webkit-transition: width 0.2s ease-in-out;
+          transition: width 0.2s ease-in-out;
+  border: 1px solid #b2b2b2;
+  -webkit-transition: opacity 0.5s ease-in-out;
+          transition: opacity 0.5s ease-in-out;
+  bottom: 10px;
+  background: white;
+  border-radius: 4px;
+  color: #333;
+  padding: 10px 11px 9px 13px;
+  font: 400 13px / 1.2 'nyt-franklin', Arial, sans-serif;
+  text-transform: uppercase;
+  z-index: 1020;
+  box-shadow: none;
+  cursor: pointer;
+}
+.swiper-next-button svg path {
+  fill: #b2b2b2;
+  -webkit-transition: fill 0.3s linear;
+          transition: fill 0.3s linear;
+}
+.swiper-next-button.hidden {
+  opacity: 0;
+}
+#g-new-hampshire-mobile-swiper[data-active='0'] .swiper-next-button,
+#g-new-hampshire-mobile-swiper[data-active='7'] .swiper-next-button {
+  width: 109px;
+  border: 1px solid #35698d;
+  box-shadow: inset 0 0 9px rgba(0, 30, 80, 0.1);
+}
+#g-new-hampshire-mobile-swiper[data-active='0'] .swiper-next-button svg path,
+#g-new-hampshire-mobile-swiper[data-active='7'] .swiper-next-button svg path {
+  fill: #35698d;
+}
+#g-new-hampshire-mobile-swiper[data-active='7'] .swiper-next-button {
+  width: 68px;
+}
+html.nyt-iphone .swiper-next-button {
+  right: 20px;
+}
+html:not(.nyt-hp-promo) .swiper-next-button {
+  background: #FFF3C1;
+}
+html.nyt-android .swiper-next-button {
+  bottom: 10px;
+}
+.swiper-next-button svg {
+  display: inline-block;
+  vertical-align: middle;
+}
+.swiper-next-button span.tap-to-start {
+  color: #35698d;
+  font-weight: bold;
+  vertical-align: middle;
+  margin-right: 4px;
+  display: none;
+}
+#g-new-hampshire-mobile-swiper[data-active='0'] .swiper-next-button span.tap-to-start {
+  display: inline-block;
+}
+.swiper-next-button span.replay {
+  color: #35698d;
+  font-weight: bold;
+  vertical-align: middle;
+  margin-right: 4px;
+  display: none;
+}
+#g-new-hampshire-mobile-swiper[data-active='7'] .swiper-next-button span.replay {
+  display: inline-block;
+}
+.swiper-next-button:active {
+  bottom: 9px;
+}
+.g-credits {
+  font: 300 14px / 1.3 'nyt-franklin', Arial, sans-serif;
+  color: #333;
+}
+.g-slide-credits .g-slide-content {
+  margin-top: 20px;
+}
+.g-slide-credits .g-caption {
+  font: 500 15px / 1.2 'nyt-franklin', Arial, sans-serif;
+  margin-top: 10px;
+  color: #000;
+}
+</style>
+
+<style type="text/css">
+	@font-face {
+	    font-family: myFirstFont;
+	    src: url(NYTFranklinMedium-Regular.woff);
+	}
+
+	@font-face url('')
+</style>
+
+
+<div id="g-new-hampshire-mobile-swiper" data-active="0" data-preview-slug="2016-01-25-new-hampshire-mobile-swiper">
+	<div class="g-swiper-test swiper-container">
+    <div class="swiper-wrapper">
+        
+        <div class="swiper-slide g-slide g-slide-0 g-slide-opener" data-slide="0">
+            
+                <h2><span class="g-opener-max-width">What Happened in New Hampshire</span></h2>
+                    
+                        <script>if (isHPPromo) { document.querySelector(".g-opener-max-width").innerHTML = "What Happened in the Primary"; } </script>
+                    
+                
+            <div class="g-slide-content">
+	<!-- <button class="g-button">Swipe or tap to start â</button> -->
+	<!-- <div class="rubio-silo candidate-silo off-stage"></div> -->
+	<div class="clinton-silo candidate-silo off-stage"></div>
+  <div class="kasich-silo candidate-silo off-stage"></div>
+  <div class="sanders-2-silo candidate-silo off-stage"></div>
+  <div class="trump-2-silo candidate-silo off-stage"></div>
+  <div class="trump-silo candidate-silo off-stage"></div>
+  <div class="sanders-silo candidate-silo off-stage"></div>
+</div>
+
+        </div>
+        
+        <div class="swiper-slide g-slide g-slide-1 g-slide-side-by-side-maps" data-slide="1">
+            
+                <h2 class="animate-text" data-animate-text="<b>Donald J. Trump</b> and <b>Bernie Sanders</b> won nearly every town."><strong>Donald J. Trump</strong> and <strong>Bernie Sanders</strong> won nearly every town.</h2>
+                
+            <div 
+    class="g-slide-content gop-result-map g-two-maps"
+    data-id="_nytg/2016-02-04-new-hampshire-mobile-swiper/gop-result-map">
+    <div id='g-nh-map-box' class='ai2html'>
+	<!-- Generated by ai2html v0.56 - 2016-02-10 - 12:54 -->
+	<!-- ai file: nh-map -->
+	<!-- preview: 2016-02-04-new-hampshire-mobile-swiper -->
+	<!-- scoop  : new-hampshire-analysis-hp-promo -->
+
+	<style type='text/css' media='screen,print'>
+		.g-artboard {
+			margin:0 auto;
+		}
+	</style>
+
+
+	<!-- Artboard: wide -->
+	<div id='g-nh-map-wide' class='g-artboard g-show-smallplus g-show-submedium g-show-medium g-show-large g-show-xlarge'>
+		<style type='text/css' media='screen,print'>
+			#g-nh-map-wide{
+				position:relative;
+				overflow:hidden;
+			}
+			.g-aiAbs{
+				position:absolute;
+			}
+			.g-aiImg{
+				display:block;
+				width:100% !important;
+			}
+			#g-nh-map-wide p{
+				font-family:nyt-franklin,arial,helvetica,sans-serif;
+				font-size:13px;
+				line-height:18px;
+				margin:0;
+			}
+			#g-nh-map-wide .g-aiPstyle0 {
+				font-size:11px;
+				line-height:16px;
+				font-weight:500;
+				color:#828282;
+			}
+			#g-nh-map-wide .g-aiPstyle1 {
+				line-height:16px;
+				font-weight:700;
+				color:#d85351;
+			}
+			#g-nh-map-wide .g-aiPstyle2 {
+				line-height:16px;
+				font-weight:700;
+				color:#36a0a1;
+			}
+			#g-nh-map-wide .g-aiPstyle3 {
+				line-height:16px;
+				font-weight:700;
+				color:#e8bb48;
+			}
+			#g-nh-map-wide .g-aiPstyle4 {
+				line-height:16px;
+				font-weight:700;
+				color:#af4848;
+			}
+			#g-nh-map-wide .g-aiPstyle5 {
+				line-height:16px;
+				font-weight:700;
+				color:#8cce5e;
+			}
+			#g-nh-map-wide .g-aiPstyle6 {
+				line-height:16px;
+				font-weight:700;
+				color:#468ed6;
+			}
+			#g-nh-map-wide .g-aiPstyle7 {
+				font-size:11px;
+				line-height:13px;
+				font-weight:500;
+				text-align:center;
+				color:#000000;
+			}
+			.g-aiPtransformed p { white-space: nowrap; }
+		</style>
+		<div id='g-nh-map-wide-graphic'>
+			<img id='g-ai0-0'
+				class='g-aiImg'
+				src='http://graphics8.nytimes.com/newsgraphics/2016/02/04/new-hampshire-mobile-swiper/367660121c1affc38cff930097d48c778841da99/nh-map-wide.png'
+				/>
+			<div id='g-ai0-1' class='g-rep g-aiAbs' style='top:20.5634%;left:0.9687%;'>
+				<p class='g-aiPstyle0'>REPUBLICANS</p>
+			</div>
+			<div id='g-ai0-2' class='g-rep g-aiAbs' style='top:20.5634%;left:50.2082%;'>
+				<p class='g-aiPstyle0'>DEMOCRATS</p>
+			</div>
+			<div id='g-ai0-3' class='g-rep g-aiAbs' style='top:26.4789%;left:0.9654%;'>
+				<p class='g-aiPstyle1'>Trump</p>
+				<p class='g-aiPstyle2'>Kasich</p>
+				<p class='g-aiPstyle3'>Cruz</p>
+				<p class='g-aiPstyle4'>Bush</p>
+			</div>
+			<div id='g-ai0-4' class='g-dem g-aiAbs' style='top:26.4789%;left:50.2082%;'>
+				<p class='g-aiPstyle5'>Sanders</p>
+				<p class='g-aiPstyle6'>Clinton</p>
+			</div>
+			<div id='g-ai0-5' class='g-Isolation_Mode g-aiAbs' style='top:81.9718%;left:31.5347%;width:27.7616%;margin-left:-13.8808%;'>
+				<p class='g-aiPstyle7'>Manchester</p>
+			</div>
+			<div id='g-ai0-6' class='g-Isolation_Mode g-aiAbs' style='top:81.9718%;left:76.1926%;width:27.7616%;margin-left:-13.8808%;'>
+				<p class='g-aiPstyle7'>Manchester</p>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- End ai2html - 2016-02-10 - 12:54 -->
+</div>
+
+    </div>
+
+<script type="text/javascript">
+    
+    define('_nytg/2016-02-04-new-hampshire-mobile-swiper/gop-result-map', function() {
+        return {
+            left: {
+                results: {"candidates":{"sanders-1445":"Sanders","clinton-1746":"Clinton","other-999999":"Other"},"counties":{"33001":{"winner":"sanders-1445","lead":2251},"33003":{"winner":"sanders-1445","lead":2371},"33005":{"winner":"sanders-1445","lead":6484},"33007":{"winner":"sanders-1445","lead":1381},"33009":{"winner":"sanders-1445","lead":7037},"33011":{"winner":"sanders-1445","lead":10406},"33013":{"winner":"sanders-1445","lead":5696},"33015":{"winner":"sanders-1445","lead":8210},"33017":{"winner":"sanders-1445","lead":4826},"33019":{"winner":"sanders-1445","lead":3267}},"townships":{"11005":{"winner":"sanders-1445","lead":140},"11010":{"winner":"sanders-1445","lead":248},"11015":{"winner":"clinton-1746","lead":48},"11020":{"winner":"sanders-1445","lead":122},"11025":{"winner":"sanders-1445","lead":259},"11030":{"winner":"sanders-1445","lead":101},"11035":{"winner":"sanders-1445","lead":77},"11040":{"winner":"sanders-1445","lead":101},"11045":{"winner":"sanders-1445","lead":150},"11050":{"winner":"sanders-1445","lead":127},"11055":{"winner":"sanders-1445","lead":156},"11060":{"winner":"sanders-1445","lead":380},"11065":{"winner":"sanders-1445","lead":132},"11070":{"winner":"sanders-1445","lead":481},"11075":{"winner":"sanders-1445","lead":265},"11080":{"winner":"sanders-1445","lead":141},"11085":{"winner":"sanders-1445","lead":2539},"11090":{"winner":"sanders-1445","lead":103},"11095":{"winner":"sanders-1445","lead":549},"11100":{"winner":"sanders-1445","lead":874},"11105":{"winner":"sanders-1445","lead":102},"11110":{"winner":"sanders-1445","lead":1239},"11115":{"winner":"sanders-1445","lead":248},"11120":{"winner":"sanders-1445","lead":254},"11125":{"winner":"sanders-1445","lead":278},"11130":{"winner":"sanders-1445","lead":472},"11135":{"winner":"sanders-1445","lead":29},"11140":{"winner":"sanders-1445","lead":149},"11145":{"winner":"sanders-1445","lead":549},"11150":{"winner":"sanders-1445","lead":311},"11155":{"winner":"sanders-1445","lead":18},"13005":{"winner":"sanders-1445","lead":171},"13010":{"winner":"sanders-1445","lead":215},"13015":{"winner":"sanders-1445","lead":188},"13020":{"winner":"sanders-1445","lead":64},"13025":{"winner":"sanders-1445","lead":134},"13030":{"winner":"sanders-1445","lead":122},"13035":{"winner":"sanders-1445","lead":160},"13040":{"winner":"sanders-1445","lead":1260},"13045":{"winner":"sanders-1445","lead":59},"13050":{"winner":"sanders-1445","lead":98},"13055":{"winner":"sanders-1445","lead":178},"13060":{"winner":"sanders-1445","lead":415},"13065":{"winner":"sanders-1445","lead":310},"13070":{"winner":"sanders-1445","lead":58},"13075":{"winner":"sanders-1445","lead":344},"13080":{"winner":"sanders-1445","lead":182},"13085":{"winner":"sanders-1445","lead":179},"13090":{"winner":"sanders-1445","lead":158},"13095":{"winner":"sanders-1445","lead":194},"13100":{"winner":"sanders-1445","lead":268},"13105":{"winner":"sanders-1445","lead":205},"13110":{"winner":"sanders-1445","lead":176},"13115":{"winner":"sanders-1445","lead":87},"13120":{"winner":"sanders-1445","lead":156},"13125":{"winner":"sanders-1445","lead":280},"13130":{"winner":"sanders-1445","lead":126},"13135":{"winner":"sanders-1445","lead":80},"15005":{"winner":"sanders-1445","lead":41},"15010":{"winner":"sanders-1445","lead":143},"15015":{"winner":"sanders-1445","lead":134},"15020":{"winner":"sanders-1445","lead":132},"15025":{"winner":"sanders-1445","lead":200},"15030":{"winner":"sanders-1445","lead":164},"15035":{"winner":"sanders-1445","lead":282},"15040":{"winner":"sanders-1445","lead":1086},"15045":{"winner":"sanders-1445","lead":78},"15050":{"winner":"sanders-1445","lead":341},"15055":{"winner":"sanders-1445","lead":267},"15060":{"winner":"sanders-1445","lead":165},"15065":{"winner":"sanders-1445","lead":176},"15070":{"winner":"sanders-1445","lead":206},"15073":{"winner":"sanders-1445","lead":30},"15075":{"winner":"sanders-1445","lead":62},"15085":{"winner":"sanders-1445","lead":99},"15090":{"winner":"sanders-1445","lead":252},"15095":{"winner":"sanders-1445","lead":487},"15100":{"winner":"clinton-1746","lead":39},"15105":{"winner":"sanders-1445","lead":41},"15110":{"winner":"sanders-1445","lead":63},"15115":{"winner":"sanders-1445","lead":734},"15120":{"winner":"sanders-1445","lead":181},"15125":{"winner":"sanders-1445","lead":62},"15130":{"winner":"sanders-1445","lead":311},"15135":{"winner":"sanders-1445","lead":252},"15140":{"winner":"sanders-1445","lead":232},"15145":{"winner":"sanders-1445","lead":821},"15150":{"winner":"sanders-1445","lead":415},"15155":{"winner":"sanders-1445","lead":73},"15160":{"winner":"sanders-1445","lead":287},"15165":{"winner":"sanders-1445","lead":260},"15170":{"winner":"sanders-1445","lead":117},"15175":{"winner":"sanders-1445","lead":43},"15180":{"winner":"sanders-1445","lead":112},"15185":{"winner":"clinton-1746","lead":59},"17005":{"winner":"sanders-1445","lead":543},"17010":{"winner":"sanders-1445","lead":1895},"17015":{"winner":"clinton-1746","lead":0},"17020":{"winner":"sanders-1445","lead":305},"17025":{"winner":"sanders-1445","lead":247},"17030":{"winner":"sanders-1445","lead":118},"17035":{"winner":"sanders-1445","lead":68},"17040":{"winner":"sanders-1445","lead":186},"17045":{"winner":"sanders-1445","lead":158},"17050":{"winner":"sanders-1445","lead":985},"17055":{"winner":"sanders-1445","lead":219},"17060":{"winner":"sanders-1445","lead":406},"17065":{"winner":"sanders-1445","lead":239},"19005":{"winner":"sanders-1445","lead":142},"19010":{"winner":"sanders-1445","lead":450},"19015":{"winner":"sanders-1445","lead":924},"19020":{"winner":"sanders-1445","lead":228},"19025":{"winner":"sanders-1445","lead":90},"19030":{"winner":"sanders-1445","lead":40},"19035":{"winner":"sanders-1445","lead":145},"19040":{"winner":"sanders-1445","lead":54},"19045":{"winner":"sanders-1445","lead":113},"19050":{"winner":"sanders-1445","lead":354},"19055":{"winner":"sanders-1445","lead":346},"19060":{"winner":"sanders-1445","lead":85},"19065":{"winner":"sanders-1445","lead":201},"19070":{"winner":"sanders-1445","lead":134},"19075":{"winner":"sanders-1445","lead":103},"03005":{"winner":"sanders-1445","lead":54},"09005":{"winner":"sanders-1445","lead":98},"05005":{"winner":"sanders-1445","lead":238},"01005":{"winner":"sanders-1445","lead":249},"09010":{"winner":"sanders-1445","lead":169},"01010":{"winner":"sanders-1445","lead":307},"03010":{"winner":"sanders-1445","lead":174},"09015":{"winner":"sanders-1445","lead":122},"01015":{"winner":"sanders-1445","lead":340},"09020":{"winner":"sanders-1445","lead":28},"07020":{"winner":"sanders-1445","lead":243},"09025":{"winner":"sanders-1445","lead":341},"09030":{"winner":"sanders-1445","lead":65},"09035":{"winner":"sanders-1445","lead":142},"03015":{"winner":"sanders-1445","lead":53},"09040":{"winner":"sanders-1445","lead":276},"09045":{"winner":"sanders-1445","lead":359},"07030":{"winner":"sanders-1445","lead":49},"01020":{"winner":"sanders-1445","lead":49},"03020":{"winner":"sanders-1445","lead":29},"05010":{"winner":"clinton-1746","lead":0},"07040":{"winner":"sanders-1445","lead":27},"07045":{"winner":"sanders-1445","lead":122},"07050":{"winner":"sanders-1445","lead":41},"03025":{"winner":"sanders-1445","lead":563},"07065":{"winner":"sanders-1445","lead":75},"07075":{"winner":"sanders-1445","lead":4},"09050":{"winner":"clinton-1746","lead":0},"05015":{"winner":"sanders-1445","lead":123},"07080":{"winner":"sanders-1445","lead":11},"09055":{"winner":"clinton-1746","lead":0},"03030":{"winner":"sanders-1445","lead":45},"03035":{"winner":"sanders-1445","lead":75},"09060":{"winner":"sanders-1445","lead":8},"09065":{"winner":"sanders-1445","lead":365},"07085":{"winner":"sanders-1445","lead":11},"05020":{"winner":"sanders-1445","lead":154},"09070":{"winner":"sanders-1445","lead":109},"03040":{"winner":"sanders-1445","lead":61},"01025":{"winner":"sanders-1445","lead":171},"01030":{"winner":"sanders-1445","lead":231},"05025":{"winner":"sanders-1445","lead":102},"07095":{"winner":"sanders-1445","lead":78},"09075":{"winner":"sanders-1445","lead":89},"09080":{"winner":"sanders-1445","lead":52},"09085":{"winner":"sanders-1445","lead":281},"05030":{"winner":"clinton-1746","lead":0},"03050":{"winner":"sanders-1445","lead":5},"09090":{"winner":"sanders-1445","lead":385},"09095":{"winner":"sanders-1445","lead":35},"05035":{"winner":"sanders-1445","lead":333},"09100":{"winner":"sanders-1445","lead":85},"03055":{"winner":"sanders-1445","lead":26},"05040":{"winner":"sanders-1445","lead":284},"07110":{"winner":"sanders-1445","lead":52},"05045":{"winner":"sanders-1445","lead":2919},"01035":{"winner":"sanders-1445","lead":401},"07120":{"winner":"sanders-1445","lead":218},"09105":{"winner":"clinton-1746","lead":0},"09110":{"winner":"sanders-1445","lead":1135},"09115":{"winner":"sanders-1445","lead":112},"09120":{"winner":"sanders-1445","lead":138},"09125":{"winner":"sanders-1445","lead":500},"09130":{"winner":"sanders-1445","lead":59},"09135":{"winner":"sanders-1445","lead":193},"03060":{"winner":"sanders-1445","lead":174},"05050":{"winner":"sanders-1445","lead":300},"05055":{"winner":"sanders-1445","lead":98},"01040":{"winner":"sanders-1445","lead":280},"07135":{"winner":"sanders-1445","lead":100},"07140":{"winner":"clinton-1746","lead":1},"09140":{"winner":"sanders-1445","lead":79},"03065":{"winner":"sanders-1445","lead":162},"05060":{"winner":"sanders-1445","lead":124},"01045":{"winner":"sanders-1445","lead":127},"07145":{"winner":"sanders-1445","lead":159},"09145":{"winner":"clinton-1746","lead":0},"09150":{"winner":"sanders-1445","lead":162},"03070":{"winner":"sanders-1445","lead":157},"09155":{"winner":"sanders-1445","lead":84},"07160":{"winner":"sanders-1445","lead":32},"09160":{"winner":"sanders-1445","lead":971},"07165":{"winner":"sanders-1445","lead":43},"05065":{"winner":"sanders-1445","lead":88},"05070":{"winner":"sanders-1445","lead":500},"05075":{"winner":"sanders-1445","lead":30},"09165":{"winner":"sanders-1445","lead":152},"01050":{"winner":"sanders-1445","lead":219},"03075":{"winner":"sanders-1445","lead":108},"07180":{"winner":"sanders-1445","lead":23},"07185":{"winner":"sanders-1445","lead":52},"07190":{"winner":"sanders-1445","lead":26},"05080":{"winner":"clinton-1746","lead":0},"07195":{"winner":"sanders-1445","lead":33},"09167":{"winner":"sanders-1445","lead":69},"05085":{"winner":"sanders-1445","lead":67},"05090":{"winner":"clinton-1746","lead":0},"05095":{"winner":"sanders-1445","lead":410},"03080":{"winner":"sanders-1445","lead":242},"09170":{"winner":"sanders-1445","lead":213},"01055":{"winner":"sanders-1445","lead":126},"05100":{"winner":"sanders-1445","lead":119},"03085":{"winner":"sanders-1445","lead":109},"03090":{"winner":"sanders-1445","lead":191},"05105":{"winner":"sanders-1445","lead":432},"09175":{"winner":"sanders-1445","lead":71},"09181":{"winner":"clinton-1746","lead":1},"09185":{"winner":"sanders-1445","lead":71},"05110":{"winner":"sanders-1445","lead":185},"07215":{"winner":"sanders-1445","lead":221},"05115":{"winner":"sanders-1445","lead":216},"03095":{"winner":"sanders-1445","lead":197},"09190":{"winner":"sanders-1445","lead":118},"07210":{"winner":"sanders-1445","lead":5}}},
+                highlight: ['sanders-1445']
+            },
+            right: {
+                results: {"candidates":{"trump-8639":"Trump","kasich-36679":"Kasich","cruz-61815":"Cruz","bush-1239":"Bush","rubio-53044":"Rubio","christie-60051":"Christie","fiorina-60339":"Fiorina","carson-64509":"Carson","gilmore-45650":"Gilmore","other-999999":"Other"},"counties":{"33001":{"winner":"trump-8639","lead":2597},"33003":{"winner":"trump-8639","lead":1871},"33005":{"winner":"trump-8639","lead":2107},"33007":{"winner":"trump-8639","lead":963},"33009":{"winner":"trump-8639","lead":1198},"33011":{"winner":"trump-8639","lead":16415},"33013":{"winner":"trump-8639","lead":4559},"33015":{"winner":"trump-8639","lead":17707},"33017":{"winner":"trump-8639","lead":3481},"33019":{"winner":"trump-8639","lead":1715}},"townships":{"11005":{"winner":"trump-8639","lead":60},"11010":{"winner":"trump-8639","lead":142},"11015":{"winner":"trump-8639","lead":859},"11020":{"winner":"trump-8639","lead":86},"11025":{"winner":"trump-8639","lead":244},"11030":{"winner":"trump-8639","lead":116},"11035":{"winner":"trump-8639","lead":37},"11040":{"winner":"trump-8639","lead":895},"11045":{"winner":"trump-8639","lead":76},"11050":{"winner":"trump-8639","lead":83},"11055":{"winner":"kasich-36679","lead":12},"11060":{"winner":"trump-8639","lead":292},"11065":{"winner":"trump-8639","lead":80},"11070":{"winner":"trump-8639","lead":1617},"11075":{"winner":"trump-8639","lead":233},"11080":{"winner":"trump-8639","lead":73},"11085":{"winner":"trump-8639","lead":4076},"11090":{"winner":"trump-8639","lead":91},"11095":{"winner":"trump-8639","lead":1020},"11100":{"winner":"trump-8639","lead":647},"11105":{"winner":"trump-8639","lead":76},"11110":{"winner":"trump-8639","lead":2622},"11115":{"winner":"trump-8639","lead":269},"11120":{"winner":"trump-8639","lead":252},"11125":{"winner":"trump-8639","lead":1301},"11130":{"winner":"kasich-36679","lead":5},"11135":{"winner":"kasich-36679","lead":7},"11140":{"winner":"trump-8639","lead":57},"11145":{"winner":"trump-8639","lead":497},"11150":{"winner":"trump-8639","lead":203},"11155":{"winner":"trump-8639","lead":7},"13005":{"winner":"trump-8639","lead":233},"13010":{"winner":"trump-8639","lead":120},"13015":{"winner":"trump-8639","lead":188},"13020":{"winner":"trump-8639","lead":29},"13025":{"winner":"trump-8639","lead":138},"13030":{"winner":"trump-8639","lead":75},"13035":{"winner":"trump-8639","lead":116},"13040":{"winner":"trump-8639","lead":458},"13045":{"winner":"trump-8639","lead":110},"13050":{"winner":"trump-8639","lead":146},"13055":{"winner":"trump-8639","lead":316},"13060":{"winner":"trump-8639","lead":405},"13065":{"winner":"trump-8639","lead":104},"13070":{"winner":"trump-8639","lead":84},"13075":{"winner":"trump-8639","lead":616},"13080":{"winner":"trump-8639","lead":11},"13085":{"winner":"trump-8639","lead":361},"13090":{"winner":"trump-8639","lead":89},"13095":{"winner":"kasich-36679","lead":41},"13100":{"winner":"trump-8639","lead":278},"13105":{"winner":"trump-8639","lead":283},"13110":{"winner":"trump-8639","lead":144},"13115":{"winner":"trump-8639","lead":138},"13120":{"winner":"trump-8639","lead":84},"13125":{"winner":"trump-8639","lead":131},"13130":{"winner":"trump-8639","lead":76},"13135":{"winner":"trump-8639","lead":20},"15005":{"winner":"trump-8639","lead":660},"15010":{"winner":"trump-8639","lead":424},"15015":{"winner":"trump-8639","lead":240},"15020":{"winner":"trump-8639","lead":261},"15025":{"winner":"trump-8639","lead":353},"15030":{"winner":"trump-8639","lead":458},"15035":{"winner":"trump-8639","lead":321},"15040":{"winner":"trump-8639","lead":2004},"15045":{"winner":"trump-8639","lead":159},"15050":{"winner":"trump-8639","lead":366},"15055":{"winner":"trump-8639","lead":276},"15060":{"winner":"trump-8639","lead":359},"15065":{"winner":"trump-8639","lead":73},"15070":{"winner":"trump-8639","lead":719},"15073":{"winner":"trump-8639","lead":158},"15075":{"winner":"trump-8639","lead":846},"15085":{"winner":"trump-8639","lead":140},"15090":{"winner":"trump-8639","lead":470},"15095":{"winner":"trump-8639","lead":1433},"15100":{"winner":"cruz-61815","lead":0},"15105":{"winner":"trump-8639","lead":60},"15110":{"winner":"trump-8639","lead":38},"15115":{"winner":"trump-8639","lead":141},"15120":{"winner":"trump-8639","lead":431},"15125":{"winner":"trump-8639","lead":187},"15130":{"winner":"trump-8639","lead":235},"15135":{"winner":"trump-8639","lead":207},"15140":{"winner":"trump-8639","lead":690},"15145":{"winner":"trump-8639","lead":142},"15150":{"winner":"trump-8639","lead":632},"15155":{"winner":"trump-8639","lead":92},"15160":{"winner":"trump-8639","lead":2414},"15165":{"winner":"trump-8639","lead":572},"15170":{"winner":"trump-8639","lead":728},"15175":{"winner":"trump-8639","lead":91},"15180":{"winner":"trump-8639","lead":113},"15185":{"winner":"trump-8639","lead":1181},"17005":{"winner":"trump-8639","lead":267},"17010":{"winner":"trump-8639","lead":579},"17015":{"winner":"cruz-61815","lead":0},"17020":{"winner":"trump-8639","lead":299},"17025":{"winner":"trump-8639","lead":60},"17030":{"winner":"trump-8639","lead":47},"17035":{"winner":"trump-8639","lead":78},"17040":{"winner":"trump-8639","lead":211},"17045":{"winner":"trump-8639","lead":154},"17050":{"winner":"trump-8639","lead":1082},"17055":{"winner":"trump-8639","lead":107},"17060":{"winner":"trump-8639","lead":289},"17065":{"winner":"trump-8639","lead":182},"19005":{"winner":"trump-8639","lead":31},"19010":{"winner":"trump-8639","lead":183},"19015":{"winner":"trump-8639","lead":489},"19020":{"winner":"trump-8639","lead":24},"19025":{"winner":"trump-8639","lead":57},"19030":{"winner":"trump-8639","lead":39},"19035":{"winner":"trump-8639","lead":36},"19040":{"winner":"trump-8639","lead":15},"19045":{"winner":"trump-8639","lead":63},"19050":{"winner":"trump-8639","lead":323},"19055":{"winner":"trump-8639","lead":18},"19060":{"winner":"trump-8639","lead":75},"19065":{"winner":"trump-8639","lead":167},"19070":{"winner":"trump-8639","lead":112},"19075":{"winner":"trump-8639","lead":81},"03005":{"winner":"trump-8639","lead":30},"09005":{"winner":"trump-8639","lead":131},"05005":{"winner":"trump-8639","lead":77},"01005":{"winner":"trump-8639","lead":376},"09010":{"winner":"trump-8639","lead":89},"01010":{"winner":"trump-8639","lead":223},"03010":{"winner":"kasich-36679","lead":3},"09015":{"winner":"trump-8639","lead":24},"01015":{"winner":"trump-8639","lead":450},"09020":{"winner":"trump-8639","lead":2},"07020":{"winner":"trump-8639","lead":278},"09025":{"winner":"trump-8639","lead":82},"09030":{"winner":"trump-8639","lead":77},"09035":{"winner":"trump-8639","lead":192},"03015":{"winner":"trump-8639","lead":31},"09040":{"winner":"trump-8639","lead":123},"09045":{"winner":"trump-8639","lead":114},"07030":{"winner":"trump-8639","lead":38},"01020":{"winner":"trump-8639","lead":36},"03020":{"winner":"trump-8639","lead":26},"05010":{"winner":"cruz-61815","lead":0},"07040":{"winner":"trump-8639","lead":22},"07045":{"winner":"trump-8639","lead":126},"07050":{"winner":"trump-8639","lead":40},"03025":{"winner":"trump-8639","lead":192},"07065":{"winner":"trump-8639","lead":14},"07075":{"winner":"kasich-36679","lead":1},"09050":{"winner":"cruz-61815","lead":0},"05015":{"winner":"trump-8639","lead":16},"07080":{"winner":"trump-8639","lead":16},"09055":{"winner":"cruz-61815","lead":0},"03030":{"winner":"trump-8639","lead":11},"03035":{"winner":"trump-8639","lead":120},"09060":{"winner":"trump-8639","lead":11},"09065":{"winner":"trump-8639","lead":77},"07085":{"winner":"trump-8639","lead":23},"05020":{"winner":"trump-8639","lead":99},"09070":{"winner":"trump-8639","lead":15},"03040":{"winner":"trump-8639","lead":48},"01025":{"winner":"trump-8639","lead":279},"01030":{"winner":"trump-8639","lead":251},"05025":{"winner":"trump-8639","lead":46},"07095":{"winner":"trump-8639","lead":102},"09075":{"winner":"trump-8639","lead":88},"09080":{"winner":"trump-8639","lead":51},"09085":{"winner":"kasich-36679","lead":392},"05030":{"winner":"cruz-61815","lead":0},"03050":{"winner":"kasich-36679","lead":1},"09090":{"winner":"trump-8639","lead":96},"09095":{"winner":"trump-8639","lead":24},"05035":{"winner":"trump-8639","lead":114},"09100":{"winner":"trump-8639","lead":30},"03055":{"winner":"kasich-36679","lead":32},"05040":{"winner":"trump-8639","lead":160},"07110":{"winner":"trump-8639","lead":68},"05045":{"winner":"trump-8639","lead":321},"01035":{"winner":"trump-8639","lead":527},"07120":{"winner":"trump-8639","lead":81},"09105":{"winner":"cruz-61815","lead":0},"09110":{"winner":"kasich-36679","lead":44},"09115":{"winner":"trump-8639","lead":33},"09120":{"winner":"trump-8639","lead":27},"09125":{"winner":"trump-8639","lead":122},"09130":{"winner":"trump-8639","lead":19},"09135":{"winner":"kasich-36679","lead":38},"03060":{"winner":"trump-8639","lead":73},"05050":{"winner":"trump-8639","lead":53},"05055":{"winner":"trump-8639","lead":28},"01040":{"winner":"trump-8639","lead":226},"07135":{"winner":"trump-8639","lead":63},"07140":{"winner":"cruz-61815","lead":6},"09140":{"winner":"trump-8639","lead":16},"03065":{"winner":"trump-8639","lead":354},"05060":{"winner":"trump-8639","lead":23},"01045":{"winner":"trump-8639","lead":118},"07145":{"winner":"trump-8639","lead":56},"09145":{"winner":"cruz-61815","lead":0},"09150":{"winner":"kasich-36679","lead":9},"03070":{"winner":"trump-8639","lead":262},"09155":{"winner":"trump-8639","lead":12},"07160":{"winner":"trump-8639","lead":54},"09160":{"winner":"trump-8639","lead":189},"07165":{"winner":"trump-8639","lead":1},"05065":{"winner":"trump-8639","lead":57},"05070":{"winner":"trump-8639","lead":325},"05075":{"winner":"trump-8639","lead":3},"09165":{"winner":"trump-8639","lead":44},"01050":{"winner":"trump-8639","lead":185},"03075":{"winner":"trump-8639","lead":13},"07180":{"winner":"trump-8639","lead":24},"07185":{"winner":"trump-8639","lead":52},"07190":{"winner":"trump-8639","lead":40},"05080":{"winner":"cruz-61815","lead":0},"07195":{"winner":"trump-8639","lead":29},"09167":{"winner":"kasich-36679","lead":19},"05085":{"winner":"trump-8639","lead":26},"05090":{"winner":"cruz-61815","lead":0},"05095":{"winner":"trump-8639","lead":314},"03080":{"winner":"trump-8639","lead":112},"09170":{"winner":"trump-8639","lead":49},"01055":{"winner":"trump-8639","lead":168},"05100":{"winner":"trump-8639","lead":113},"03085":{"winner":"trump-8639","lead":73},"03090":{"winner":"trump-8639","lead":310},"05105":{"winner":"trump-8639","lead":51},"09175":{"winner":"trump-8639","lead":60},"09181":{"winner":"trump-8639","lead":7},"09185":{"winner":"trump-8639","lead":61},"05110":{"winner":"trump-8639","lead":32},"07215":{"winner":"trump-8639","lead":93},"05115":{"winner":"trump-8639","lead":117},"03095":{"winner":"trump-8639","lead":251},"09190":{"winner":"trump-8639","lead":34},"07210":{"winner":"trump-8639","lead":1}}},
+                highlight: ['trump-8639']
+            }
+        };
+    });
+
+</script>
+
+        </div>
+        
+        <div class="swiper-slide g-slide g-slide-2 g-slide-dem-split-age-ind" data-slide="2">
+            
+                <h2 class="animate-text" data-animate-text="<b>Mr. Sanders</b> received his strongest support from young people and independents."><strong>Mr. Sanders</strong> received his strongest support from young people and independents.</h2>
+                
+            <div class="g-slide-content">
+    <div class="g-caption">Ages 18-29</div>
+    <div class="dem-exit-poll g-barchart party-dem" data-id="_nytg/2016-02-04-new-hampshire-mobile-swiper/dem-economy-split-1"></div>
+
+    <div class="g-caption">Independents</div>
+    <div class="dem-exit-poll g-barchart party-dem" data-id="_nytg/2016-02-04-new-hampshire-mobile-swiper/dem-economy-split-2"></div>
+</div>
+
+
+<script type="text/javascript">
+    /* worried about economy */
+    define('_nytg/2016-02-04-new-hampshire-mobile-swiper/dem-economy-split-1', function() {
+        return { data: { Sanders: 0.83, Clinton: 0.16 }, highlight: 'Sanders' };  
+    });
+    /* not worried about economy */
+    define('_nytg/2016-02-04-new-hampshire-mobile-swiper/dem-economy-split-2', function() {
+        return { data: { Sanders: 0.72, Clinton: 0.27 }, highlight: 'Sanders' };
+    });
+
+</script>
+
+        </div>
+        
+        <div class="swiper-slide g-slide g-slide-3 g-slide-trump-exit-polls" data-slide="3">
+            
+                <h2 class="animate-text" data-animate-text="<b>Mr. Trump</b> received outsize support from voters who favor:"><strong>Mr. Trump</strong> received outsize support from voters who favor:</h2>
+                
+            <div class="g-slide-content">
+    <div class="g-caption">A temporary ban on noncitizen Muslims</div>
+    <div class="dem-exit-poll g-barchart party-gop" data-id="_nytg/2016-02-04-new-hampshire-mobile-swiper/gop-exit-polls-1"></div>
+
+    <div class="g-caption">Deporting illegal immigrants</div>
+    <div class="dem-exit-poll g-barchart party-gop" data-id="_nytg/2016-02-04-new-hampshire-mobile-swiper/gop-exit-polls-2"></div>
+</div>
+
+
+<script type="text/javascript">
+
+    define('_nytg/2016-02-04-new-hampshire-mobile-swiper/gop-exit-polls-1', function() {
+        return { data: { Trump: 0.44, Cruz: 0.14, Kasich: 0.11 }, highlight: 'Trump', compact: true };
+    });
+    define('_nytg/2016-02-04-new-hampshire-mobile-swiper/gop-exit-polls-2', function() {
+        return { data: { Trump: 0.50, Cruz: 0.19,  Rubio: 0.08 }, highlight: 'Trump', compact: true };
+    });
+
+</script>
+
+        </div>
+        
+        <div class="swiper-slide g-slide g-slide-4 g-slide-gop-polls-vs-results-1" data-slide="4">
+            
+                <h2 class="animate-text" data-animate-text="<b>Mr. Trump</b> won more than 30 percent of the vote, improving on his most recent polls."><strong>Mr. Trump</strong> won more than 30 percent of the vote, improving on his most recent polls.</h2>
+                
+            <div class="g-slide-content g-polls-vs-results" data-id="_nytg/2016-02-04-new-hampshire-mobile-swiper/gop-nh-polls"
+    data-config="_nytg/2016-02-04-new-hampshire-mobile-swiper/gop-nh-polls-1"></div>
+
+<script type="text/javascript">
+
+    define('_nytg/2016-02-04-new-hampshire-mobile-swiper/gop-nh-polls', function() {
+        return {
+            polls: {"candidates":["trump","cruz","rubio","sanders","clinton","kasich","bush"],"min_date":"2016-01-26","data":{"trump":[0.328,0.306,0.306,0.306,0.314,0.312,0.334,0.352,0.336,0.312,0.312,0.298,0.31,0.314,0.314],"rubio":[0.102,0.102,0.102,0.102,0.11,0.114,0.104,0.114,0.126,0.156,0.156,0.166,0.136,0.142,0.142],"kasich":[0.128,0.132,0.132,0.132,0.108,0.112,0.106,0.114,0.116,0.114,0.114,0.136,0.13,0.134,0.134],"cruz":[0.124,0.118,0.118,0.118,0.116,0.12,0.124,0.108,0.114,0.132,0.132,0.118,0.126,0.118,0.118],"bush":[0.1,0.116,0.116,0.116,0.114,0.096,0.092,0.092,0.098,0.084,0.084,0.1,0.126,0.112,0.112]}},
+            results: {"trump":{"votes":99268,"percent":35.4},"kasich":{"votes":44081,"percent":15.7},"cruz":{"votes":32847,"percent":11.7},"bush":{"votes":30856,"percent":11},"rubio":{"votes":29446,"percent":10.5},"christie":{"votes":20803,"percent":7.4},"fiorina":{"votes":11574,"percent":4.1},"carson":{"votes":6413,"percent":2.3},"gilmore":{"votes":133,"percent":0},"other":{"votes":4122,"percent":1.7},"sanders":{"votes":147291,"percent":60.2},"clinton":{"votes":93443,"percent":38.2}}
+        };
+    });
+
+    define('_nytg/2016-02-04-new-hampshire-mobile-swiper/gop-nh-polls-1', function() {
+        return {
+            candidates: ['trump'],
+            range: [0.20, 0.37],
+            diff_lbl_o: {trump: [0,-10] },
+            labels: [
+                { d: '2016-01-27', v: 0.25, l: 'POLLING\nAVERAGE' },
+                { d: '2016-02-25', v: 0.30, l: 'ELECTION\nRESULT' },
+                // { d: '2015-11-22', v: 0.26, l: 'Trump' },
+                // { d: '2015-11-22', v: 0.16, l: 'Cruz' },
+                // { d: '2015-12-17', v: 0.14, l: 'Rubio' },
+            ]
+        };
+    });
+
+</script>
+
+        </div>
+        
+        <div class="swiper-slide g-slide g-slide-5 g-slide-gop-polls-vs-results-2" data-slide="5">
+            
+                <h2 class="animate-text" data-animate-text="In the race for second, <b>John R. Kasich</b> jumped into the lead, while <b>Marco Rubio </b>dropped.">In the race for second, <strong>John R. Kasich</strong> jumped into the lead, while <strong>Marco Rubio </strong>dropped.</h2>
+                
+            <div class="g-slide-content g-polls-vs-results" data-id="_nytg/2016-02-04-new-hampshire-mobile-swiper/gop-nh-polls"
+    data-config="_nytg/2016-02-04-new-hampshire-mobile-swiper/gop-nh-polls-2"></div>
+
+<script type="text/javascript">
+
+    define('_nytg/2016-02-04-new-hampshire-mobile-swiper/gop-nh-polls-2', function() {
+        return {
+            candidates: ['rubio', 'kasich', 'bush', 'cruz'],// 'cruz',
+            range: [0.07, 0.20],
+            highlight: 'kasich',
+            diff_lbl_o: {cruz: [0,15], rubio: [0,-6], kasich: [0,-8], bush:[-20,-5]},
+            labels: [
+                { d: '2016-01-27', v: 0.185, l: 'POLLING\nAVERAGE' },
+                { d: '2016-02-25', v: 0.185, l: 'ELECTION\nRESULT' },
+                // { d: '2015-11-22', v: 0.26, l: 'Trump' },
+                // { d: '2015-11-22', v: 0.16, l: 'Cruz' },
+                // { d: '2015-12-17', v: 0.14, l: 'Rubio' },
+            ]
+        };
+    });
+
+</script>
+
+        </div>
+        
+        <div class="swiper-slide g-slide g-slide-6 g-slide-gop-exit-polls" data-slide="6">
+            
+                <h2 class="animate-text" data-animate-text="<b>Mr. Kasich</b> beat other establishment candidates with support from moderates."><strong>Mr. Kasich</strong> beat other establishment candidates with support from moderates.</h2>
+                
+            <div class="g-slide-content">
+    <div class="g-caption">Moderate voters</div>
+    <div class="dem-exit-poll g-barchart party-gop" data-id="_nytg/2016-02-04-new-hampshire-mobile-swiper/gop-exit-polls"></div>
+
+    <!-- <div class="g-caption"></div>
+    <div class="dem-exit-poll g-barchart party-gop" data-id="_nytg/2016-02-04-new-hampshire-mobile-swiper/gop-exit-polls-2"></div> -->
+</div>
+
+
+<script type="text/javascript">
+    
+    define('_nytg/2016-02-04-new-hampshire-mobile-swiper/gop-exit-polls', function() {
+        return { data: {
+            Trump: 0.32,
+            Kasich: 0.28,
+            Bush: 0.14,
+            Rubio: 0.08,
+            Christie: 0.08
+        }, highlight: 'Kasich',
+        compact: !true };  
+    });
+    // define('_nytg/2016-02-04-new-hampshire-mobile-swiper/gop-exit-polls-2', function() {
+    //     return { data: { Cruz: 0.22, Trump: 0.25, Rubio: 0.43 }, highlight: 'Rubio', compact: true };
+    // });
+
+</script>
+
+        </div>
+        
+        <div class="swiper-slide g-slide g-slide-7 g-slide-credits" data-slide="7">
+            
+            <div class="g-slide-content" id="g-last-slide">
+
+	<div class="g-promo-box">
+		<img src="http://int.nyt.com/applications/elections/2016/assets/7feac19cd8bb/img/promo-ia-exitpolls.png">
+		<span class="g-promo-text g-promo-kicker g-promo-kicker-first g-app-links">
+			<a href="nytinteractive://www.nytimes.com/elections/2016/primaries/new-hampshire">Full Results</a>
+		</span>
+
+		<span class="g-promo-text g-promo-kicker g-promo-kicker-first g-hp-links">
+			<a href="http://www.nytimes.com/elections/2016/primaries/new-hampshire" target="_top">Full Results</a>
+		</span>
+	</div>
+
+	<div class="g-promo-box">
+
+		<span class="g-promo-text">
+      <span class="g-promo-kicker">Exit Polls: </span>
+
+      <span class="g-promo-links g-app-links">
+      	<a href="nytinteractive://www.nytimes.com/interactive/2016/02/09/us/elections/new-hampshire-republican-poll.html">Republicans</a> |
+      	<a href="nytinteractive://www.nytimes.com/interactive/2016/02/09/us/elections/new-hampshire-democrat-poll.html">Democrats</a>
+      </span>
+
+      <span class="g-promo-links g-hp-links">
+	      <a href="http://www.nytimes.com/interactive/2016/02/09/us/elections/new-hampshire-republican-poll.html" target="_top">Republicans</a> |
+	      <a href="http://www.nytimes.com/interactive/2016/02/09/us/elections/new-hampshire-democrat-poll.html" target="_top">Democrats</a>
+	    </span>
+    </span>
+	</div>
+
+	<div class="g-promo-box g-promo-box-share">
+		<span class="g-promo-text">
+		<span class="g-promo-kicker">Share:</span>
+			<span class="g-promo-links">
+				<a href="https://twitter.com/intent/tweet?text=What Happened in New Hampshire&via=nytimes&url=http://nytimes.com" target="_blank">Twitter</a>  |
+				<a href="https://www.facebook.com/dialog/share?app_id=9869919170&caption=What Happened in New Hampshire&href=http://nytimes.com" target="_blank">Facebook</a>
+			</span>
+		</span>
+	</div>
+
+
+	<div class="g-credits">Sources: Election results from The Associated Press, exit polls conducted by Edison Research, pre-election polls compiled from The Huffington Postâs Pollster</div>
+
+</div>
+
+
+<style type="text/css">
+	#g-last-slide .g-slide-title {
+		font-family: "nyt-franklin", arial, sans-serif;
+		font-weight: 700;
+		margin-bottom: 10px;
+	}
+
+	#g-last-slide a {
+		color: #326891;
+		text-decoration: none;
+	}
+
+	#g-last-slide a:hover {
+		opacity: 0.7;
+	}
+
+	#g-last-slide .g-promo-box {
+		margin-top: 15px;
+		margin-bottom: 15px;
+		margin-right: 20px;
+		text-align: center;
+		color: #414141;
+	}
+	#g-last-slide .g-promo-box:nth-child(3) {
+		margin-right: 0;
+	}
+
+	#g-last-slide .g-promo-box img {
+	    width: 45px;
+	}
+	#g-last-slide span.g-promo-text {
+		font-family: "nyt-franklin", arial, sans-serif;
+		padding-left: 5px;
+		font-size: 14px;
+		display: block;
+		text-align: center;
+	}
+
+	#g-last-slide span.g-promo-links {
+	    display: block;
+	    margin-top: 2px;
+	    display: inline;
+	}
+	#g-last-slide span.g-promo-kicker {
+		font-weight: 700;
+		display: inline;
+	}
+
+	#g-last-slide span.g-promo-kicker-first {
+		display: block;
+		margin-top: 15px;
+	}
+
+	#g-last-slide .g-promo-box-share {
+		float:none;
+		clear:both;
+	}
+
+	#g-last-slide .g-promo-box-share .g-promo-text {
+		padding-left: 0;
+	}
+	#g-last-slide .g-promo-box-share .g-promo-links {
+		display: inline;
+	}
+
+
+	.nyt-hp-promo #g-last-slide span.g-app-links, .mobile-web #g-last-slide span.g-app-links, .nyt-desktop #g-last-slide span.g-app-links {
+		display: none;
+	}
+
+	.nyt-iphone #g-last-slide span.g-hp-links, .nyt-android #g-last-slide span.g-hp-links, .nyt-ipad #g-last-slide span.g-hp-links {
+		display: none;
+	}
+
+</style>
+        </div>
+        
+    </div>
+</div>
+
+<div class="swiper-pagination"></div>
+<div class="swiper-next-button hidden">
+    <span class="tap-to-start">TAP TO START</span>
+    <span class="replay">REPLAY</span>
+    <svg width="12" height="16" style="transform:scale(1.3)"><path d="M10.818,8.198c0,0,0.897-0.601,0-1.203L0.62,0.176c0,0-0.898-0.6-0.532,0.419L2.241,6.58
+        c0,0,0.366,1.017,0.001,2.034L0.088,14.6c0,0-0.366,1.017,0.532,0.416L10.818,8.198z"/></svg></div>
+
+
+<!-- â©â«â¦ââº â£â¹ -->
+
+</div>
+
+<script>
+  var _gaq = _gaq || [];
+  define('_nytg/2016-02-04-new-hampshire-mobile-swiper/assets', function() { return 'http://graphics8.nytimes.com/newsgraphics/2016/02/04/new-hampshire-mobile-swiper/367660121c1affc38cff930097d48c778841da99/'; });
+  define('_nytg/2016-02-04-new-hampshire-mobile-swiper/big-assets', function() { return 'http://graphics8.nytimes.com/newsgraphics/2016/02/04/new-hampshire-mobile-swiper/assets/'; });
+
+  // require(['foundation/main'], function() {
+    require(['http://graphics8.nytimes.com/newsgraphics/2016/02/04/new-hampshire-mobile-swiper/367660121c1affc38cff930097d48c778841da99/build.js']); // generated from src/script.js
+  // });
+
+  define('_nytg/2016-02-04-new-hampshire-mobile-swiper/nh-townships', function() {
+      return {
+      	left: {"11005":[0.294,0.907],"11010":[0.214,0.85],"11015":[0.31,0.885],"11020":[0.23,0.863],"11025":[0.281,0.946],"11030":[0.242,0.844],"11035":[0.25,0.868],"11040":[0.302,0.861],"11045":[0.238,0.885],"11050":[0.253,0.942],"11055":[0.212,0.874],"11060":[0.222,0.82],"11065":[0.299,0.945],"11070":[0.337,0.94],"11075":[0.326,0.916],"11080":[0.259,0.897],"11085":[0.329,0.871],"11090":[0.264,0.945],"11095":[0.313,0.912],"11100":[0.28,0.923],"11105":[0.278,0.897],"11110":[0.319,0.945],"11115":[0.277,0.874],"11120":[0.237,0.945],"11125":[0.355,0.95],"11130":[0.223,0.901],"11135":[0.224,0.924],"11140":[0.241,0.92],"11145":[0.27,0.842],"11150":[0.259,0.919],"11155":[0.207,0.832],"13005":[0.342,0.824],"13010":[0.255,0.728],"13015":[0.284,0.766],"13020":[0.31,0.826],"13025":[0.218,0.794],"13030":[0.307,0.757],"13035":[0.338,0.787],"13040":[0.304,0.795],"13045":[0.24,0.703],"13050":[0.294,0.835],"13055":[0.351,0.8],"13060":[0.281,0.727],"13065":[0.249,0.813],"13070":[0.261,0.704],"13075":[0.33,0.845],"13080":[0.275,0.805],"13085":[0.329,0.767],"13090":[0.205,0.769],"13095":[0.213,0.737],"13100":[0.301,0.739],"13105":[0.327,0.811],"13110":[0.357,0.775],"13115":[0.261,0.748],"13120":[0.226,0.761],"13125":[0.247,0.779],"13130":[0.27,0.774],"13135":[0.229,0.726],"15005":[0.389,0.917],"15010":[0.35,0.87],"15015":[0.414,0.87],"15020":[0.357,0.848],"15025":[0.37,0.877],"15030":[0.397,0.889],"15035":[0.368,0.824],"15040":[0.364,0.901],"15045":[0.422,0.89],"15050":[0.407,0.851],"15055":[0.431,0.869],"15060":[0.397,0.87],"15065":[0.455,0.854],"15070":[0.387,0.903],"15073":[0.447,0.889],"15075":[0.458,0.885],"15085":[0.434,0.888],"15090":[0.409,0.893],"15095":[0.341,0.904],"15100":[0.482,0.846],"15105":[0.43,0.854],"15110":[0.458,0.837],"15115":[0.433,0.845],"15120":[0.414,0.907],"15125":[0.459,0.873],"15130":[0.378,0.8],"15135":[0.397,0.828],"15140":[0.403,0.916],"15145":[0.469,0.848],"15150":[0.381,0.857],"15155":[0.473,0.862],"15160":[0.377,0.932],"15165":[0.384,0.887],"15170":[0.453,0.901],"15175":[0.43,0.902],"15180":[0.444,0.861],"15185":[0.36,0.927],"17005":[0.414,0.8],"17010":[0.447,0.807],"17015":[0.44,0.83],"17020":[0.406,0.754],"17025":[0.421,0.829],"17030":[0.435,0.812],"17035":[0.407,0.716],"17040":[0.42,0.727],"17045":[0.392,0.723],"17050":[0.427,0.773],"17055":[0.456,0.797],"17060":[0.447,0.787],"17065":[0.391,0.779],"19005":[0.15,0.799],"19010":[0.128,0.789],"19015":[0.14,0.748],"19020":[0.144,0.719],"19025":[0.171,0.728],"19030":[0.187,0.777],"19035":[0.18,0.706],"19040":[0.13,0.814],"19045":[0.173,0.796],"19050":[0.169,0.753],"19055":[0.152,0.695],"19060":[0.204,0.713],"19065":[0.192,0.745],"19070":[0.154,0.774],"19075":[0.192,0.81],"05070":[0.208,0.944],"05020":[0.179,0.941],"05065":[0.152,0.939],"05115":[0.125,0.932],"05035":[0.104,0.925],"05100":[0.17,0.92],"05040":[0.198,0.92],"05095":[0.148,0.909],"05015":[0.195,0.899],"05050":[0.171,0.9],"05010":[0.114,0.9],"05030":[0.191,0.885],"05075":[0.168,0.881],"05045":[0.147,0.882],"05110":[0.119,0.876],"05060":[0.185,0.868],"05085":[0.165,0.861],"05090":[0.141,0.86],"05025":[0.155,0.854],"05080":[0.186,0.842],"05105":[0.124,0.843],"05005":[0.145,0.831],"05055":[0.165,0.826],"01010":[0.368,0.757],"01055":[0.301,0.722],"01030":[0.345,0.734],"01015":[0.322,0.721],"01050":[0.295,0.703],"09075":[0.217,0.688],"01005":[0.37,0.714],"01035":[0.321,0.689],"03015":[0.404,0.692],"01025":[0.341,0.693],"09065":[0.187,0.681],"09035":[0.268,0.674],"03095":[0.386,0.676],"01045":[0.288,0.673],"09110":[0.158,0.669],"03090":[0.42,0.682],"09005":[0.247,0.673],"01040":[0.316,0.671],"09145":[0.225,0.663],"09030":[0.276,0.659],"09095":[0.255,0.651],"09045":[0.201,0.656],"09010":[0.289,0.645],"01020":[0.314,0.648],"03085":[0.366,0.657],"09085":[0.172,0.644],"03065":[0.342,0.641],"09100":[0.298,0.634],"03035":[0.413,0.635],"09160":[0.27,0.636],"09080":[0.241,0.635],"03070":[0.39,0.638],"09050":[0.215,0.627],"09135":[0.187,0.616],"03040":[0.406,0.61],"09040":[0.286,0.61],"09165":[0.252,0.61],"03075":[0.328,0.606],"09185":[0.227,0.599],"03080":[0.363,0.6],"09060":[0.26,0.586],"09150":[0.198,0.588],"03060":[0.39,0.587],"03030":[0.411,0.586],"09175":[0.236,0.573],"09181":[0.321,0.573],"03005":[0.364,0.564],"09170":[0.286,0.58],"09155":[0.206,0.564],"03045":[0.385,0.544],"03025":[0.406,0.553],"09190":[0.267,0.557],"09020":[0.238,0.543],"03010":[0.372,0.531],"09090":[0.213,0.533],"09200":[0.325,0.542],"07105":[0.351,0.517],"09055":[0.255,0.517],"09115":[0.3,0.526],"09105":[0.237,0.508],"03050":[0.343,0.514],"09015":[0.215,0.5],"07060":[0.35,0.492],"03055":[0.381,0.499],"09070":[0.283,0.499],"09167":[0.255,0.487],"07010":[0.342,0.487],"07170":[0.358,0.488],"03020":[0.41,0.504],"07155":[0.369,0.475],"09120":[0.241,0.481],"07055":[0.337,0.474],"07035":[0.346,0.475],"07100":[0.374,0.463],"09130":[0.225,0.474],"09140":[0.21,0.468],"09025":[0.296,0.477],"07205":[0.359,0.463],"07130":[0.376,0.454],"07015":[0.396,0.466],"07125":[0.344,0.456],"07030":[0.315,0.463],"09125":[0.252,0.453],"07065":[0.278,0.436],"07180":[0.402,0.435],"07215":[0.297,0.44],"07165":[0.355,0.432],"07095":[0.378,0.433],"07110":[0.324,0.433],"07020":[0.366,0.405],"07120":[0.306,0.408],"07115":[0.338,0.402],"07135":[0.375,0.38],"07200":[0.404,0.397],"07145":[0.312,0.377],"07185":[0.336,0.37],"07080":[0.367,0.352],"07025":[0.397,0.351],"07195":[0.313,0.334],"07150":[0.341,0.33],"07090":[0.348,0.307],"07140":[0.363,0.318],"07085":[0.393,0.317],"07210":[0.392,0.294],"07050":[0.323,0.299],"07045":[0.333,0.277],"07070":[0.379,0.272],"07075":[0.363,0.28],"07175":[0.397,0.272],"07190":[0.334,0.257],"07005":[0.393,0.248],"07040":[0.354,0.242],"07160":[0.367,0.201]},
+      	right: {"11005":[0.767,0.907],"11010":[0.687,0.85],"11015":[0.783,0.885],"11020":[0.703,0.863],"11025":[0.753,0.946],"11030":[0.715,0.844],"11035":[0.722,0.868],"11040":[0.775,0.861],"11045":[0.711,0.885],"11050":[0.726,0.942],"11055":[0.684,0.874],"11060":[0.695,0.82],"11065":[0.772,0.945],"11070":[0.809,0.94],"11075":[0.799,0.916],"11080":[0.731,0.897],"11085":[0.801,0.871],"11090":[0.736,0.945],"11095":[0.785,0.912],"11100":[0.752,0.923],"11105":[0.75,0.897],"11110":[0.791,0.945],"11115":[0.75,0.874],"11120":[0.709,0.945],"11125":[0.827,0.95],"11130":[0.696,0.901],"11135":[0.697,0.924],"11140":[0.714,0.92],"11145":[0.742,0.842],"11150":[0.731,0.919],"11155":[0.679,0.832],"13005":[0.814,0.824],"13010":[0.727,0.728],"13015":[0.757,0.766],"13020":[0.783,0.826],"13025":[0.69,0.794],"13030":[0.78,0.757],"13035":[0.81,0.787],"13040":[0.777,0.795],"13045":[0.712,0.703],"13050":[0.767,0.835],"13055":[0.823,0.8],"13060":[0.753,0.727],"13065":[0.721,0.813],"13070":[0.733,0.704],"13075":[0.803,0.845],"13080":[0.748,0.805],"13085":[0.802,0.767],"13090":[0.678,0.769],"13095":[0.686,0.737],"13100":[0.773,0.739],"13105":[0.8,0.811],"13110":[0.829,0.775],"13115":[0.734,0.748],"13120":[0.698,0.761],"13125":[0.72,0.779],"13130":[0.743,0.774],"13135":[0.701,0.726],"15005":[0.862,0.917],"15010":[0.822,0.87],"15015":[0.886,0.87],"15020":[0.83,0.848],"15025":[0.842,0.877],"15030":[0.87,0.889],"15035":[0.841,0.824],"15040":[0.836,0.901],"15045":[0.895,0.89],"15050":[0.879,0.851],"15055":[0.903,0.869],"15060":[0.869,0.87],"15065":[0.928,0.854],"15070":[0.859,0.903],"15073":[0.92,0.889],"15075":[0.93,0.885],"15085":[0.906,0.888],"15090":[0.881,0.893],"15095":[0.813,0.904],"15100":[0.955,0.846],"15105":[0.902,0.854],"15110":[0.93,0.837],"15115":[0.906,0.845],"15120":[0.886,0.907],"15125":[0.932,0.873],"15130":[0.851,0.8],"15135":[0.87,0.828],"15140":[0.875,0.916],"15145":[0.941,0.848],"15150":[0.853,0.857],"15155":[0.946,0.862],"15160":[0.849,0.932],"15165":[0.857,0.887],"15170":[0.925,0.901],"15175":[0.902,0.902],"15180":[0.916,0.861],"15185":[0.832,0.927],"17005":[0.886,0.8],"17010":[0.919,0.807],"17015":[0.912,0.83],"17020":[0.879,0.754],"17025":[0.894,0.829],"17030":[0.908,0.812],"17035":[0.88,0.716],"17040":[0.893,0.727],"17045":[0.865,0.723],"17050":[0.899,0.773],"17055":[0.928,0.797],"17060":[0.919,0.787],"17065":[0.863,0.779],"19005":[0.623,0.799],"19010":[0.6,0.789],"19015":[0.613,0.748],"19020":[0.616,0.719],"19025":[0.643,0.728],"19030":[0.659,0.777],"19035":[0.652,0.706],"19040":[0.603,0.814],"19045":[0.645,0.796],"19050":[0.641,0.753],"19055":[0.624,0.695],"19060":[0.676,0.713],"19065":[0.665,0.745],"19070":[0.626,0.774],"19075":[0.664,0.81],"05070":[0.681,0.944],"05020":[0.651,0.941],"05065":[0.625,0.939],"05115":[0.597,0.932],"05035":[0.576,0.925],"05100":[0.642,0.92],"05040":[0.67,0.92],"05095":[0.62,0.909],"05015":[0.668,0.899],"05050":[0.644,0.9],"05010":[0.587,0.9],"05030":[0.664,0.885],"05075":[0.64,0.881],"05045":[0.619,0.882],"05110":[0.591,0.876],"05060":[0.657,0.868],"05085":[0.638,0.861],"05090":[0.613,0.86],"05025":[0.627,0.854],"05080":[0.659,0.842],"05105":[0.597,0.843],"05005":[0.618,0.831],"05055":[0.638,0.826],"01010":[0.841,0.757],"01055":[0.773,0.722],"01030":[0.818,0.734],"01015":[0.794,0.721],"01050":[0.768,0.703],"09075":[0.69,0.688],"01005":[0.842,0.714],"01035":[0.794,0.689],"03015":[0.877,0.692],"01025":[0.813,0.693],"09065":[0.659,0.681],"09035":[0.741,0.674],"03095":[0.858,0.676],"01045":[0.761,0.673],"09110":[0.631,0.669],"03090":[0.892,0.682],"09005":[0.719,0.673],"01040":[0.789,0.671],"09145":[0.697,0.663],"09030":[0.748,0.659],"09095":[0.728,0.651],"09045":[0.674,0.656],"09010":[0.762,0.645],"01020":[0.787,0.648],"03085":[0.839,0.657],"09085":[0.644,0.644],"03065":[0.814,0.641],"09100":[0.77,0.634],"03035":[0.885,0.635],"09160":[0.742,0.636],"09080":[0.713,0.635],"03070":[0.862,0.638],"09050":[0.688,0.627],"09135":[0.66,0.616],"03040":[0.879,0.61],"09040":[0.759,0.61],"09165":[0.724,0.61],"03075":[0.8,0.606],"09185":[0.699,0.599],"03080":[0.836,0.6],"09060":[0.732,0.586],"09150":[0.67,0.588],"03060":[0.862,0.587],"03030":[0.883,0.586],"09175":[0.709,0.573],"09181":[0.793,0.573],"03005":[0.837,0.564],"09170":[0.759,0.58],"09155":[0.678,0.564],"03045":[0.857,0.544],"03025":[0.878,0.553],"09190":[0.74,0.557],"09020":[0.71,0.543],"03010":[0.844,0.531],"09090":[0.685,0.533],"09200":[0.797,0.542],"07105":[0.824,0.517],"09055":[0.727,0.517],"09115":[0.772,0.526],"09105":[0.71,0.508],"03050":[0.816,0.514],"09015":[0.687,0.5],"07060":[0.823,0.492],"03055":[0.854,0.499],"09070":[0.755,0.499],"09167":[0.727,0.487],"07010":[0.814,0.487],"07170":[0.83,0.488],"03020":[0.883,0.504],"07155":[0.842,0.475],"09120":[0.713,0.481],"07055":[0.809,0.474],"07035":[0.818,0.475],"07100":[0.847,0.463],"09130":[0.697,0.474],"09140":[0.683,0.468],"09025":[0.768,0.477],"07205":[0.832,0.463],"07130":[0.848,0.454],"07015":[0.868,0.466],"07125":[0.817,0.456],"07030":[0.788,0.463],"09125":[0.724,0.453],"07065":[0.751,0.436],"07180":[0.874,0.435],"07215":[0.77,0.44],"07165":[0.827,0.432],"07095":[0.85,0.433],"07110":[0.796,0.433],"07020":[0.838,0.405],"07120":[0.779,0.408],"07115":[0.81,0.402],"07135":[0.847,0.38],"07200":[0.876,0.397],"07145":[0.785,0.377],"07185":[0.808,0.37],"07080":[0.84,0.352],"07025":[0.87,0.351],"07195":[0.785,0.334],"07150":[0.813,0.33],"07090":[0.821,0.307],"07140":[0.836,0.318],"07085":[0.866,0.317],"07210":[0.865,0.294],"07050":[0.795,0.299],"07045":[0.806,0.277],"07070":[0.852,0.272],"07075":[0.835,0.28],"07175":[0.869,0.272],"07190":[0.806,0.257],"07005":[0.866,0.248],"07040":[0.826,0.242],"07160":[0.839,0.201]}
+      };
+  });
+</script>
+
+
+
+ <script>
+  (function(k){var e=function(e,f,c){function l(a){if(b.body)return a();setTimeout(function(){l(a)})}var b=k.document,a=b.createElement("link"),g=c||"all",d;f?d=f:(c=(b.body||b.getElementsByTagName("head")[0]).childNodes,d=c[c.length-1]);var m=b.styleSheets;a.rel="stylesheet";a.href=e;a.media="only x";l(function(){d.parentNode.insertBefore(a,f?d:d.nextSibling)});var h=function(b){for(var d=a.href,c=m.length;c--;)if(m[c].href===d)return b();setTimeout(function(){h(b)})};a.addEventListener&&a.addEventListener("load",
+function(){this.media=g});a.onloadcssdefined=h;h(function(){a.media!==g&&(a.media=g)});return a};"undefined"!==typeof exports?exports.loadCSS=e:k.loadCSS=e})("undefined"!==typeof global?global:this);
+
+    loadCSS("http://graphics8.nytimes.com/newsgraphics/2016/02/04/new-hampshire-mobile-swiper/assets/font-embeds-v2.css");
+  </script>
+
+</body>
+</html>
+
+<!-- Pipeline: 2016-02-04-new-hampshire-mobile-swiper February 10, 2016, 05:55PM 367660121c1affc38cff930097d48c778841da99 -->

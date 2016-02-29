@@ -1,0 +1,68 @@
+<!doctype html> 
+<html> 
+	<head>
+        <script src="//code.jquery.com/jquery-2.1.4.min.js" type="text/javascript"></script>
+        <script data-source="//playtime.tubemogul.com/mobile/asset_include/iframe_api_min.js" type="text/javascript" src="//playtime.tubemogul.com/mobile/asset_include/iframe_api_min.js"></script>
+        <script data-source="//cdnjs.cloudflare.com/ajax/libs/gsap/1.17.0/TweenLite.min.js" type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.17.0/TweenLite.min.js"></script>
+        <script data-source="//cdnjs.cloudflare.com/ajax/libs/gsap/1.17.0/plugins/CSSPlugin.min.js" type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.17.0/plugins/CSSPlugin.min.js"></script>
+        <script data-source="//cdnjs.cloudflare.com/ajax/libs/gsap/1.17.0/easing/EasePack.min.js" type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.17.0/easing/EasePack.min.js"></script>
+        <script data-source="//cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js" type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
+        <script data-source="script.js" type="text/javascript" src="script.js"></script>
+        <link href="styles.css" rel="stylesheet">
+
+        <meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<title>WarnerBros - Hero Girls</title>
+		<script language="javascript">
+
+            $(window).load(function() {
+
+                $("#banner").click(function() {
+                    tm_openClickThrough();
+                    console.log("banner click!");
+                });
+
+                Banner.init();
+                tm_sendHandshake();
+
+            });
+
+		</script>
+		<style>
+		html, body{ margin: 0; padding: 0; }
+		html { box-sizing: border-box; }
+		*, *:before, *:after { box-sizing: inherit; }
+		.size { width: 300px; height: 250px; }
+
+
+		</style>
+	</head> 
+	<body>
+
+		<div id="banner" class="size" >
+
+            <img id="bg" class="absolute " src="bg.jpg">
+            <img id="logo" class="absolute " src="logo.png">
+            <img id="character2" class="absolute " src="character2.png">
+            <img id="character1" class="absolute " src="character1.png">
+            <img id="textblock1" class="absolute " src="textblock1-french.png">
+
+            <img id="character4" class="absolute " src="character4.png">
+            <img id="character3" class="absolute " src="character3.png">
+            <img id="textblock2" class="absolute " src="textblock2-french.png">
+
+            <img id="character5" class="absolute " src="character5.png">
+            <img id="character6" class="absolute " src="character6.png">
+            <img id="textblock3" class="absolute " src="textblock3.png">
+
+            <img id="character7" class="absolute " src="character7.png">
+            <img id="logo2" class="absolute " src="logo2.png">
+
+            <div id="cta_block">
+                <img id="textblock4" class="absolute " src="textblock4-french-v2.png">
+            </div>
+
+		</div>
+	</body>
+
+</html> 

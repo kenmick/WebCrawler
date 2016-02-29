@@ -1,0 +1,162 @@
+
+(function() {
+	var ai = (navigator.appVersion.indexOf("MSIE") != -1) ? true : false;
+	var ah = (navigator.appVersion.toLowerCase().indexOf("win") != -1) ? true : false;
+	var V = (navigator.userAgent.indexOf("Opera") != -1) ? true : false;
+
+	function at(i) {
+		var P, w;
+		w = 0;
+		try {
+			var P = new ActiveXObject("Shockwaveflash.Shockwaveflash." + i);
+		} catch (e) {
+			return w;
+		}
+		w = P.GetVariable("$version");
+		return w;
+	};
+
+	function au(i) {
+		var o, v, m, af, A, k, g, j;
+		if (navigator.plugins != null && navigator.plugins.length > 0) {
+			if (navigator.plugins["Shockwave Flash 2.0"] || navigator.plugins["Shockwave Flash"]) {
+				af = navigator.plugins["Shockwave Flash 2.0"] ? " 2.0" : "";
+				v = navigator.plugins["Shockwave Flash" + af].description;
+				o = v.split(" ");
+				A = o[2].split(".");
+				g = A[0];
+				if (o[3] != "") {
+					k = o[3].split("r");
+				} else {
+					k = o[4].split("r");
+				}
+				j = k[1] > 0 ? k[1] : 0;
+				m = parseFloat(g + "." + j);
+			} else {
+				m = -1;
+			}
+		} else if (navigator.userAgent.toLowerCase().indexOf("webtv/2.6") != -1) m = 4;
+		else if (navigator.userAgent.toLowerCase().indexOf("webtv/2.5") != -1) m = 3;
+		else if (navigator.userAgent.toLowerCase().indexOf("webtv") != -1) m = 2;
+		else {
+			m = -1;
+		}
+
+		return m;
+	};
+
+	function ar(U, T) {
+		var al, Q, M, t, g, j, r, l, C;
+		al = parseFloat(U + "." + T);
+		for (i = 25; i > 0; i--) {
+			if (ai && ah && !V) {
+				l = at(i);
+			} //IE
+			else {
+				l = au(i);
+			} //other browser || webtv
+			if (l == -1) {
+				return false;
+			} else if (l != 0) {
+				if (ai && ah && !V) { //IE
+					Q = l.split(" ");
+					M = Q[1];
+					t = M.split(",");
+					g = t[0];
+					j = t[2];
+					C = g + "." + j;
+					r = parseFloat(C);
+				} else { //other browser || webtv
+					r = l;
+				}
+				return r;
+			}
+		}
+
+		return (r ? false : 0.0);
+
+	};
+
+	//ç»è®¡æ è¯
+	var ab = "ab_173";
+	var file_flash = "http://static.atm.youku.com/idea/201511/1113/94339/crazy/1190-470-1.swf?imglogo=http://static.atm.youku.com/idea/201511/1113/94339/crazy/310-205.jpg&url=http://count.atm.youku.com/c?id=7518"; //å¹¿åflashæä»¶		
+
+	var version_player = 8; //flashå¹¿åææ¾è¦æ±çflashplayeræä½çæ¬
+	/*å¹¿åè·³è½¬url*/
+
+	var width = "1190px"; //å¹¿åå®éå®½åº¦	
+	var height = "470px"; //å¹¿åå®éé«åº¦
+	var width_initialize = "310px"; //å¹¿ååå§åå®½åº¦
+	var height_initialize = "220px"; //å¹¿ååå§åé« 
+	var top_offset = "140px"; //åå§ååç§»é¤åºä¸ä¾§çè·ç¦» 
+	//var left_offset = "1035px"; //åå§ååç§»é¤åºå·¦ä¾§çè·ç¦»
+
+	var B = ar();
+	//å¯è§åºå
+	//var rect_area = "rect(" + top_offset + " " + (parseInt(left_offset, 10) + parseInt(width_initialize) + "px") + " " + (parseInt(top_offset, 10) + parseInt(height_initialize) + "px") + " " + left_offset + ")";
+	var H = '<div id="youkuCrazyAD_node" class="box_border mod" style="height:530px;position:absolute;right:-155px;top:-154px;overflow:hidden;"><div class="abfoucs" style="position:absolute;right:0;top:150px;width:310px;"><div class="abfocus_box" style="height:220px;"><div id="youkuCrazyAD_container" style="width:1190px;height:' + height + ';position:absolute;right:0;top:-' + top_offset + ';z-index:1020;">';
+	var J = '</div></div><div class="abfoucs_bar" style="height: 23px;width: 310px;background:#888888;z-index:1030;position:relative;margin-top: 3px;"><span class="abtitle" style="float:left;margin-left:3px;margin-top: 11px;"><a href="http://v.youku.com/v_show/id_XMTM4NDk1OTcwNA==.html" target="_blank" class="white">å¼å¯âæºè½âæºæ´æ¶ä»£</a></span><span class="abmore" style="float:right;margin-right:3px;margin-top: 11px;"><a href="http://count.atm.youku.com/c?id=7518" target="_blank" class="white">è¯¦ç»ä¿¡æ¯>></a></span></div></div></div>';
+  var S = '<style>.yk-w970 #youkuCrazyAD_node{width:970px}.yk-w1190 #youkuCrazyAD_node{width:1190px}</style>';
+
+	window.execConstructCMD = function() {
+		var nodeCrazyAD = document.getElementById("youkuCrazyAD_node");
+		strFlash = H + '<object name="youkuCrazyAD_player" id="youkuCrazyAD_player" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,19,0" width="' + width + '" height="' + height + '">' 
+			+ '<param name="movie" value="' + file_flash + '" />' 
+			+ '<param name="quality" value="high" />' 
+			+ '<param name="wmode" value="transparent" />' 
+			+ '<param name="menu" value="false" />' 
+			+ '<param name="allowscriptaccess" value="always" />' 
+			+ '<embed name="youkuCrazyAD_player" id="youkuCrazyAD_player" menu="false" allowscriptaccess="always" wmode="transparent" src="' + file_flash + '" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" width="' + width + '" height="' + height + '"></embed>' 
+			+ '</object>' + J + S;
+
+		if (nodeCrazyAD) {
+			//flashplayeræ»¡è¶³æ­æ¾è¦æ± ææ¾ flash
+			if (B && parseInt(B) >= version_player) {
+				nodeCrazyAD.innerHTML = strFlash;
+			}
+                        nodeCrazyAD.parentNode.style.display="block";
+                        nodeCrazyAD.parentNode.parentNode.style.width="0%";
+			//flashplayerçæ¬è¿ä½ æ webtv ææ¾ image
+
+		} else {
+			//flashplayeræ»¡è¶³æ­æ¾è¦æ± ææ¾ flash 
+			var abNode = document.getElementById(ab);
+			//abNode.style.height = "1px";
+			//abNode.style.overflow = "hidden";
+			if (B && parseInt(B) >= version_player) {
+				//var htmlNode = document.createElement("DIV");
+				//htmlNode.innerHTML = strFlash;
+				//abNode.parentNode.insertBefore(htmlNode, abNode);
+				abNode.innerHTML = strFlash;
+                                abNode.style.display="";
+                                abNode.parentNode.style.width="0%";
+			}
+			//flashplayerçæ¬è¿ä½ æ webtv ææ¾ image
+
+		}
+	};
+	window.execStartCMD = function() {
+		var c = document.getElementById(ab);
+		if (c) {
+			c.parentNode.parentNode.parentNode.style.overflow=c.parentNode.parentNode.style.overflow="visible";
+			//c.style.clip = "rect(auto auto auto auto)";
+			return true;
+		}
+	};
+
+	window.execEndCMD = function() {
+		var c = document.getElementById(ab);
+		if (c) {
+			c.parentNode.parentNode.style.overflow="hidden";
+			//c.style.clip = rect_area;
+			//c.parentNode.style.height = height_initialize;
+			return true;
+		}
+	};
+
+	//execConstructCMD();
+        setTimeout(execConstructCMD,1000);
+
+})();
+
+function ad_div_173(){var adcontent = "";adcontent = adcontent + "<div><\/div>";	var obj = document.getElementById('ab_173');	if( !obj || typeof(obj) != 'object' || typeof(adcontent) != 'string') return;	if( null != adcontent && 0 == adcontent.length ){		obj.style.display = 'none';	}else{		obj.style.display = 'block';		if( null != adcontent ){			obj.innerHTML = adcontent;		}	}}ad_div_173();

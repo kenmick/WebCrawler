@@ -1,0 +1,35 @@
+(function(g){var window=this;var wJa=function(a,b,c){g.Jm(a,b,c,null)||g.nb(g.ra(b,a))},xJa=function(){var a=H3;
+return new g.vm(function(b,c){var d=a.length,e=[];if(d)for(var f=function(a,c){d--;e[a]=c;0==d&&b(e)},k=function(a){c(a)},p=0,r;p<a.length;p++)r=a[p],wJa(r,g.ra(f,p),k);
+else b(e)})},I3=function(a){var b=g.t("YPC_LOADER_CSS",void 0),c=g.t("YPC_LOADER_JS",void 0);
+yJa&&(c="www/ypc_core");H3.length||(H3.push(new g.vm(function(a){g.Af(b,a)})),H3.push(new g.vm(function(a){g.Cc(c,a)})));
+xJa().then(function(){a&&a()})},K3=function(a,b,c,d,e){if(g.tr())I3(function(){g.m("yt.www.ypc.checkout.showYpcOverlay")(a,b,c,d,e)});
+else{var f={ypc_it:a,ypc_ii:b,ypc_ft:c};d&&(f.ypc_irp=d);e&&(f.ypc_cc=e);f=J3(f);g.ve(f)}},zJa=function(a,b){if(g.tr())I3(function(){g.m("yt.www.ypc.checkout.showYpcOverlayForInnertubeRequestParams")(a,b)});
+else{var c=J3({ypc_ft:a,ypc_irp:b});g.ve(c)}},AJa=function(a,b,c,d,e){if(g.tr())I3(function(){g.m("yt.www.ypc.checkout.offerpurchaser.purchaseOffer")(a,b,c,"D",d,e)});
+else{var f={ypc_it:b,ypc_ii:c,ypc_ft:"D"};e&&(f.ypc_irp=e);f=J3(f);g.ve(f)}},BJa=function(a,b){if(g.tr())I3(function(){g.m("yt.www.ypc.subscription.openUnsubscribeOverlay")(a,b)});
+else throw Error("Unsubscribe triggered when user not signed in.");},J3=function(a){a=g.Hk(window.location.href,a);
+var b=g.t("YPC_SIGNIN_URL",void 0),c=g.Ik(b)["continue"],c=g.Hk(c,{next:a});return g.Hk(b,{"continue":c})},CJa=function(a){if(a=a.currentTarget){var b=g.w(a,"ypc-offer-id"),c=g.w(a,"ypc-item-type"),d=g.w(a,"ypc-item-id"),e=g.w(a,"ypc-offer-jwt"),f=g.w(a,"ypc-irp");
+try{var k=g.w(a,"innertube-clicktracking");k&&!g.t("SERVICE_CLICKTRACKING_ENABLED")&&g.uo(g.t("EVENT_ID",void 0),new g.le(k))}catch(p){L3("offer-button-click-logging-failed")}AJa(b,c,d,e,f)}},EJa=function(a){(a=a.currentTarget)&&DJa(a)},FJa=function(a){I3(a.sc)},GJa=function(a){L3("container-button-click-attempt");
+(a=g.z("ypc-checkout-button",a.A))&&DJa(a)},HJa=function(a){var b=a.A;
+a=b.itemId;var c=b.itemType,b=b.flowType;L3("paid-subscribe-button-click",{itemType:c,itemId:a});K3(c,a,b)},DJa=function(a){var b=g.w(a,"ypc-item-type"),c=g.w(a,"ypc-item-id"),d=g.w(a,"ypc-flow-type");
+a=g.w(a,"ypc-irp")||void 0;g.tr()?L3("purchase-button-click",{itemId:c,itemType:b}):L3("signin-button-click");K3(b,c,d,a)},IJa=function(a){var b=a.currentTarget;
+a=g.w(b,"ypc-item-type");b=g.w(b,"ypc-item-id");a&&b&&(L3("unsubscribe-button-click",{itemId:b,itemType:a}),BJa(a,b))},JJa=function(a){var b=a.A;
+a=b.itemType;b=b.itemId;L3("paid-unsubscribe-button-click",{itemType:a,itemId:b});BJa(a,b)},L3=function(a,b){var c={};
+g.Ya(c,{label:a,pageName:g.t("PAGE_NAME")});b&&g.Ya(c,b);c=g.pd(c);g.gj("ypc-checkout",c,void 0)},N3=function(a,b,c){this.D=this.C=this.A=null;
+this.B=a;this.H=M3?b:null;this.P=c||window;this.G=this.P.location;this.K=this.G.href.split("#")[0];this.F=(0,g.n)(this.O,this)},O3=function(a){a=a.G.href;
+var b=a.indexOf("#");return 0>b?"":a.substring(b+1)},KJa=function(a,b){var c=a.K+"#"+b,d=a.G.href;
+d!=c&&d+"#"!=c&&g.xc(a.G,c)},P3=function(a,b){var c=a.H.contentWindow.document,d="#"+g.wa(b);
+if((c.body?c.body.innerHTML:"")!=d){var e=g.vc(g.uc("title",{},window.document.title||""),g.uc("body"));c.open("text/html");c.write(g.pc(e));g.Ah(c.body,d);c.close()}},Q3=function(a,b){this.B=this.H=this.A=null;
+this.D=a;this.G=b||window;this.C=this.G.location;this.F=(0,g.n)(this.P,this)},MJa=function(){var a=LJa("state");
+a.setEnabled.call(a,!0,!0)},NJa=function(a){var b=LJa();
+b.replace.call(b,a,window.history&&window.history.state,!0)},LJa=function(a){a=a||"hash";
+var b=g.m("yt.history.instance_");b||("state"==a?(b=new Q3(OJa),Q3.prototype.setEnabled=Q3.prototype.Db,Q3.prototype.add=Q3.prototype.X,Q3.prototype.replace=Q3.prototype.replace):(b=new N3(OJa,g.y("legacy-history-iframe")),N3.prototype.setEnabled=N3.prototype.Db,N3.prototype.add=N3.prototype.X,N3.prototype.replace=N3.prototype.X),PJa=b,g.l("yt.history.instance_",PJa,void 0));return b},OJa=function(a,b){g.v("navigate",a,b)},SJa=function(){var a=g.Ik(window.location.href);
+if(QJa){g.Ra(RJa,function(b){g.Ua(a,b)});
+var b=g.qd(window.location.href.split("?",2)[0],a);MJa();NJa(b)}},H3=[],yJa=!1;var R3=[],S3=[];var PJa,TJa=g.x&&8<=window.document.documentMode||g.Gc&&g.Mc("1.9.2")||g.Ic&&g.Mc("532.1"),M3=g.x&&!TJa;N3.prototype.Db=function(a,b){this.C&&(g.be(this.C),delete this.C);this.D&&(g.Cb(this.D),delete this.D);if(a){this.A=O3(this);if(M3){var c=this.H.contentWindow.document.body;c&&c.innerHTML||P3(this,this.A)}b||this.B(this.A);TJa?this.C=g.F(this.P,"hashchange",this.F):this.D=g.Ab(this.F,200)}};
+N3.prototype.O=function(){if(M3){var a;a=(a=this.H.contentWindow.document.body)?g.Rh(g.Xk(a).substring(1)):"";a!=this.A?(this.A=a,KJa(this,a),this.B(a)):(a=O3(this),a!=this.A&&(this.A=a,P3(this,a),this.B(a)))}else a=O3(this),a!=this.A&&(this.A=a,this.B(a))};
+N3.prototype.X=function(a,b,c){this.A=""+a;M3&&P3(this,a);KJa(this,a);c||this.B(this.A)};var QJa=!!window.history.pushState&&(!g.Ic||g.Ic&&g.Mc("534.11"));Q3.prototype.Db=function(a,b){this.B&&(g.be(this.B),delete this.B);this.H&&(g.Cb(this.H),delete this.H);a&&QJa&&(this.A=this.C.href,b||this.D(this.A),this.B=g.F(this.G,"popstate",this.F))};
+Q3.prototype.P=function(a){var b=this.C.href;if((a=a.state)||b!=this.A)this.A=b,this.D(b,a)};
+Q3.prototype.X=function(a,b,c){if(a||b)a=a||this.C.href,this.G.history.pushState(b,"",a),this.A=a,c||this.D(a,b)};
+Q3.prototype.replace=function(a,b,c){if(a||b)a=a||this.C.href,this.G.history.replaceState(b,"",a),this.A=a,c||this.D(a,b)};var RJa={wP:"ypc_cc",IP:"ypc_ft",dQ:"ypc_irp",lQ:"ypc_ii",mQ:"ypc_it"};g.Yb(g.kl({name:"www/ypc_bootstrap",deps:["www/common"],page:"feed index results watch channel playlist subscription_manager unlimited".split(" "),init:function(){yJa=!0;g.z("ypc-delayedloader-target")&&I3();var a=g.Ik(window.location.href),b=a.ypc_it,c=a.ypc_ii,d=a.ypc_ft||"D",e=a.ypc_irp,f=a.ypc_cc;"channel"==g.t("PAGE_NAME")&&"fan_fund"in a&&(d="T",b="U",c=g.t("CHANNEL_ID",void 0));"channel"==g.t("PAGE_NAME")&&"ypc_cc"in a&&(b="U",c=g.t("CHANNEL_ID",void 0));if(e||c&&b)SJa(),c&&b?K3(b,c,d,e,f):
+zJa(d,e);R3.push(g.ok(window.document.body,"click",EJa,"ypc-checkout-button"),g.ok(window.document.body,"click",CJa,"ypc-offer-button"),g.ok(window.document.documentElement,"click",IJa,"ypc-unsubscribe-link"),g.ok(window.document.documentElement,"click",IJa,"ypc-unsubscribe-button"));S3.push(g.Lk(g.Eu,FJa),g.Lk(g.qla,GJa),g.Lk(g.Fu,HJa),g.Lk(g.Iu,JJa))},
+dispose:function(){H3.length=0;g.be(R3);R3.length=0;g.Kk(S3);S3.length=0}}));
+g.l("yt.www.ypc.bootstrap.api.loadOffers",K3,void 0);g.l("yt.www.ypc.bootstrap.api.loadOffersForInnertubeRequestParams",zJa,void 0);})(_yt_www);

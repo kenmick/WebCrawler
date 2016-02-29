@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=euc-kr" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<title>NAVER</title>
+<link rel="stylesheet" type="text/css" href="http://nv1.tveta.naver.net/libs/assets/css/min/timeboard_v1.min.css?20160113"/>
+</head>
+<body onload="lazyLoading()">
+<div id="da_timeboard">
+	<div class="content">
+		<div id="addiv" class="ad">
+			<a href="http://nv.veta.naver.com/dc?unit=002AN&ac=6797025&src=2746308&br=2190131&rk=VpfmIQpizWoAABJxJHAAAAVM&eltts=0fCLGc3PVtGv2Z1eZXujWg%3D%3D" id="ac_banner_a" target="_blank">
+				<img id="ac_banner_i" src="http://nv1.tveta.naver.net/libs/1123/1123441/20160108045505-uwgY5Uhf.jpg" width="635" height="100" title="" alt="ë¤ì´ë²íì´ ì¸í°íí¬ëì í¬ì¸í¸ 2ì²ì ì ë¦½ " border="0" />
+			</a>
+		</div>
+		<a id="link" name="link" href="javascript:void(0)"></a>
+	</div>
+</div>
+<script type="text/javascript">
+//<![CDATA[
+document.domain = "naver.com";
+
+function lazyLoading() {
+	setTimeout(function() {
+		loadScript("http://nv1.tveta.naver.net/libs/assets/js/min/it.min.js?20160113", initAd);
+				
+		function loadScript(url, callback) {
+			var script = document.createElement("script");
+			script.type = "text/javascript";
+			script.src = url;
+			if(script.readyState) { // IE
+				(function(script){
+					script.onreadystatechange = function() {
+						if(script.readyState == "loaded" || script.readyState == "complete") {
+							script.onreadystatechange = null;	
+							callback();
+						}
+					};
+				})(script);
+			} else { // IE ì¸
+				(function(script){
+					script.onload = function() {
+						callback();
+					};
+				})(script);
+			}
+			document.getElementsByTagName("head")[0].appendChild(script);
+	    }
+	}, 50);
+}
+
+function initAd() {
+	setTimeout(function(){
+		new Nimp(["http://nv.veta.naver.com/dv?unit=002AN&ac=6797025&src=2746308&eid=V803&rk=VpfmIQpizWoAABJxJHAAAAVM&eltts=0fCLGc3PVtGv2Z1eZXujWg%3D%3D"]).log(1);
+	}, 0);
+
+	initAltForImage();
+}
+
+function initAltForImage() {
+	// DA Alternative - Create Access Layer
+	var accessLayer = document.createElement('div');
+	accessLayer.setAttribute('id','da_access');
+	accessLayer.style.cssText = 'position:absolute;top:50%;left:50%;width:154px;height:58px;margin:-29px 0 0 -77px;background:url(http://img.naver.net/static/common/da/da_access.png)';
+	accessLayer.style.display = "none";
+	var oAdDiv = document.getElementById("ac_banner_a");
+	oAdDiv.appendChild(accessLayer);
+	
+	// DA Alternative - Focus Action
+	var altLink = document.getElementById("ac_banner_a");
+	var bMousedown = false;
+	altLink.onmousedown = function() {
+		bMousedown = true;
+	};
+	altLink.onfocus = function() {
+		if(!bMousedown){accessLayer.style.display = "block";}
+	};
+	altLink.onblur = function() {
+		accessLayer.style.display = "none";
+	};
+}
+//]]>
+</script></body></html>

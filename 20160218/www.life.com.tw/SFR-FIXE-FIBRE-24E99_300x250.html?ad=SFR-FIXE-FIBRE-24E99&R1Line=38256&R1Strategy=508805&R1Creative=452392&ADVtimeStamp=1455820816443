@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="ad.size" content="width=300,height=250">
+    <title>SFR TF FEVRIER</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/lp/enabler/ADventori-2.0.0.css"> 
+    <script src="/lp/enabler/ADventori-2.0.0.js" type="text/javascript"></script>
+
+
+
+<!-- PRELOAD IMAGES-->
+     <script>
+
+        var images = new Array()
+        
+        function preload() {
+            for (i = 0; i < preload.arguments.length; i++) {
+                images[i] = new Image();
+                images[i].src = preload.arguments[i];
+                images[i].onerror = function (evt) {
+                    alert(this.src + " can't be loaded.");
+                }
+            }
+        }
+        preload
+        (   
+          "assets/images/BG_2.jpg",
+          "assets/images/CarreEnergie.png",
+          "assets/images/CTA.png",     
+          "assets/images/LogoHalo.png",    
+          "assets/images/Offre.png",
+          "assets/images/txt-01.png",
+          "assets/images/txtLaFibre.png",
+          "assets/images/txtOffre.png",
+          "assets/images/txtVoir.png"
+          
+        )
+ 
+    </script>
+<!-- -->
+
+
+</head>
+
+
+<body>
+
+      <a href='javascript:void(0);' onclick='ADventori.click();'>
+        <div class="wrapper">
+
+            <div id="banner">
+
+    <!-- SNOWFLAKES         -->
+
+            <div class="SnowContainer">
+
+    </div>
+    
+
+
+         <!-- BANNER -->
+
+                <div class="BG2"><img src="assets/images/BG_2.jpg"></div>               
+                <div class="LogoHalo"><img src="assets/images/LogoHalo.png"></div>
+                <div class="CarreBG"><img src="assets/images/CarreEnergie.png"></div>
+
+                <div class="Ecran01">
+                    <div class="txt01"><img src="assets/images/txt-01.png"></div>
+                    <div class="Offre"><img src="assets/images/Offre.png"></div>
+                </div>
+
+                <div class="Ecran02">
+                    <div class="txtFibre"><img src="assets/images/txtLaFibre.png"></div>                   
+                </div>
+
+                  <div class="Ecran03">
+                    <div class="OffreFin"><img src="assets/images/txtOffre.png"></div> 
+                    <div class="CTA"><img src="assets/images/CTA.png"></div>                  
+                </div>
+
+
+                <div class="VoirConditions">
+                <div class="ml_btn">
+                    <img src="assets/images/txtVoir.png">
+                    <div class="ml-txt">
+                       Offre soumise Ã  conditions, sous rÃ©serve dâÃ©ligibilitÃ©, jusquâau 29/03/2016. Location de la box +3â¬. 
+                    </div>
+                </div>
+                </div>
+                   
+            </div>
+            
+        </div>
+    </a>
+
+
+
+
+    <!-- jquery library -->
+    <script src="/lp/dd/sfr/jquery-1.11.3.min.js"></script>
+	<script src="assets/js/jquery.easing.1.3.js"></script>
+    <script src="assets/js/jquery.banner.js" type="text/javascript"></script>
+     
+
+
+        <script type="text/javascript">
+            $(function() {
+
+                $('#banner').banner({
+
+                steps : [                           
+
+                            [
+                                [{"el" : "Ecran01"},{"delay" : "3000"}, {"effect": "fadeOut"},{"ease":"linear"},{"customValue":"0"},{"AnimTime":"500"}]
+                            ],
+
+                            [
+                                [{"el" : "BG"},{"delay" : "3000"}, {"effect": "fadeOut"},{"ease":"linear"},{"customValue":"0"},{"AnimTime":"500"}]
+                            ],
+
+                            [
+                                [{"el" : "SnowContainer"},{"delay" : "3000"}, {"effect": "fadeOut"},{"ease":"linear"},{"customValue":"0"},{"AnimTime":"500"}]
+                            ],
+
+                            [
+                                [{"el" : "BG2"},{"delay" : "3000"}, {"effect": "fadeIn"},{"ease":"linear"},{"customValue":"0"},{"AnimTime":"500"}]
+                            ],                            
+                            
+
+                            [
+                                [{"el" : "txtFibre"},{"delay" : "3700"}, {"effect": "scaleFibre"},{"ease":"linear"},{"customValue":"1"},{"AnimTime":"300"}]
+                            ],
+
+                            [
+                                [{"el" : "OffreFin"},{"delay" : "5600"}, {"effect": "scaleOffre"},{"ease":"linear"},{"customValue":"1"},{"AnimTime":"300"}]
+                            ],
+
+
+                            [
+                                [{"el" : "CTA"},{"delay" : "6500"}, {"effect": "customTop"},{"ease":"linear"},{"customValue":"210"},{"AnimTime":"500"}]
+                            ],
+
+                             [
+                                [{"el" : "VoirConditions"},{"delay" : "6500"}, {"effect": "fadeIn"},{"ease":"linear"},{"customValue":"0"},{"AnimTime":"500"}]
+                            ]                    
+
+                        ],
+
+                    total_steps :8
+                
+                });
+            });
+
+            $(".VoirConditions").mouseenter(function(){
+                $(".Mention").animate({top:230}, 500);
+            });
+
+            $(".Mention").mouseleave(function(){
+                $(".Mention").animate({top:250},500);
+            })
+
+        </script>
+
+        <!-- SNOWFLAKES 
+
+        <script type='text/javascript'>     
+        var collectOnMe = document.querySelectorAll('.collectonme'),
+            buttons = document.getElementsByTagName("input");
+        
+        for(var i = 0; i < collectOnMe.length; i++){
+            collectOnMe[i].style.display = "none";
+        }
+        
+      
+        snowFall.snow(document.body);
+
+        var SnowContainer = document.querySelector('.SnowContainer'),
+            testContainerIsSnowing = true;
+
+
+        window.onload = function() 
+        {
+            document.body.className  = "darkBg";
+            snowFall.snow(document.body, "clear");
+           
+               snowFall.snow(SnowContainer, {image : "assets/images/Flake-01.png", minSize: 15, maxSize:20});
+               snowFall.snow(SnowContainer, {image : "assets/images/Flake-02.png", minSize: 15, maxSize:20});
+               snowFall.snow(SnowContainer, {image : "assets/images/Flake-03.png", minSize: 15, maxSize:20});
+               snowFall.snow(SnowContainer, {image : "assets/images/Flake-04.png", minSize: 15, maxSize:20});
+               snowFall.snow(SnowContainer, {image : "assets/images/Flake-05.png", minSize: 15, maxSize:20});
+               snowFall.snow(SnowContainer, {image : "assets/images/Flake-06.png", minSize: 15, maxSize:20});
+               snowFall.snow(SnowContainer, {image : "assets/images/Flake-07.png", minSize: 15, maxSize:20});
+
+        }
+    
+         </script>
+-->
+
+</body>
+
+</html>

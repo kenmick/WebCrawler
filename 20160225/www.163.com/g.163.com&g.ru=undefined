@@ -1,0 +1,56 @@
+/*
+(c) Copyright Weborama SA - France. All rights reserved.
+It is illegal to modify, disassemble, sell, copy or publish this software
+or any part thereof. The use of this software is only permitted with the
+prior and express written permission of Weborama SA - France.
+More information: http://www.weborama.com/contacts/
+*/
+function x17() {
+    var x1cl, x1ey = x1bb.x1cj();
+    x1ey.x1ie = x1bb.x1nn(x1ey.x1ie,'wuid=&retargeting=&');
+    x1ey.x1fN = 'http://cstatic.weborama.fr/advertiser/1215/68/846/1300/';
+    x1ey.x1lp = '6966';
+
+
+
+    x1ey.conf_oba = false;
+    adperfobj.zindex = adperfobj.zindex || 0 || 214748360;
+
+    adperfobj.clicks = new Array();
+    adperfobj.clicks[0] = 'http://googleads.g.doubleclick.net/dbm/clk?sa=L&ai=C4IS7o0TPVt3bIszMWM3mvagNso6R-0OqtI6r3ALwLhABINGyqiRg-6HrgugJoAGO4qHNA8gBCakCN8JbTcJ4sj6oAwGqBNcBT9D8h3KDet1xHDrBMqUIpJfybCdE9BIG29JOB0j_0qsygeYJ7aFCtbnPaQUw_8ONGvNiSSGl7PoBlx003XRxew9_g39yUz_9HpIiyaAIhyljTMuV9wDZrGk4kALOwVN619rhHYaBndHwPsRS4NTYVgbkg1hpQy_Ti_jaiXJnfr8_GmU3YBDMSOZmypJQo4ljkwiE4sbsVA2vdeYGtcdlMOIbTZGCjbW-kjvNwwPGOQoRNYxB3b8hFB89XqxJMKGxOKEmmIKIsKC5-a6H4wYoryKFPWwafnfgBAOgBk2AB9qd3jKoB5kFqAemvhvYBwDIE4y3uAHYEwM&num=1&sig=AOD64_1imKkMLwcSsIXR1sAfCkhIRClJVg&client=ca-pub-7584293239613139&dbm_c=AKAmf-BbquKKjjBCr7oVRBs9ayHFCuul1ltuG2M6BKfMbK9vblG-_feGtn8S4WBnBNLNnONiA9BM&adurl=http://bouyguestelecomfr.solution.weborama.fr/fcgi-bin/dispatch.fcgi?a.A=cl&a.si=1215&a.te=1383&a.aap=6966&a.agi=146&g.lu=' + (adperfobj.landing_urls[0] || '');
+
+
+    try{
+        adperfobj.imptrackers = new Array(
+                
+        );
+
+        adperfobj.clicktrackers = (new Array(
+                
+        ).concat(adperfobj.clicktrackers));
+
+        adperfobj.eventtrackers = (new Array(
+                
+        ).concat(adperfobj.eventtrackers));
+    }catch(scr_e){}
+
+
+
+    x1ey.addTrackers(adperfobj);
+    x1ey.addClicks(adperfobj);
+
+    x1cl = new x1bb.x1ig();
+x1cl.x1c(x1ey, 11631, '300x250.html', adperfobj.width, adperfobj.height, '', '', '');
+x1ey.x1gG(x1cl, '', 2, '');
+x1cl = new x1bb.x1hW();
+x1cl.x1c(x1ey, 11648, '300x250.jpg', adperfobj.width, adperfobj.height, '', '', '');
+x1ey.x1gG(x1cl, '', 2, '');
+
+
+
+
+    x1ey.x1gQ();
+
+
+}
+x1L('adperf_core_' + adperf_version + '_scrambled.js');

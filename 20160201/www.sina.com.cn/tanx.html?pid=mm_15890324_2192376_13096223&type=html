@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>UNION-tanx</title>
+<style type="text/css">
+html,body{
+    margin:0;
+    padding:0;
+}
+</style>
+</head>
+<body>
+<script type="text/javascript">
+document.domain = "sina.com.cn";
+var queryString = window.location.search.split("?")[1] || "";
+var queryList = {};
+for(var i = 0,ilist = queryString.split("&"), il = ilist.length; i < il; i++){
+    var ikey = ilist[i].split("=")[0];
+    var ivalue = ilist[i].split("=")[1];
+    queryList[ikey] = ivalue;
+}
+var tanx = document.createElement("div");
+tanx.id = "tanx-a-" +queryList.pid;
+tanx.style.cssText += ";display:none;";
+document.body.insertBefore(tanx, document.body.firstChild);
+var tanxscr = document.createElement("script");
+tanxscr.charset = "gbk";
+tanxscr.src = "http://p.tanx.com/ex?i=" + queryList.pid;
+document.body.insertBefore(tanxscr, document.body.firstChild);
+function addBlank(pid){
+    var tanxleft = document.createElement("div");
+    tanxleft.id = "tanx-a-" + pid;
+    tanxleft.style.cssText += ";display:none;";
+    document.body.insertBefore(tanxleft, document.body.firstChild);
+    var tanxscrleft = document.createElement("script");
+    tanxscrleft.charset = "gbk";
+    tanxscrleft.src = "http://p.tanx.com/ex?i=" + pid;
+    document.body.insertBefore(tanxscrleft, document.body.firstChild);
+}
+if(queryList.pid == "mm_15890324_2192376_9027674"){
+    addBlank("mm_15890324_2192376_8654451");
+}
+if(queryList.pid == "mm_15890324_2192376_11153358"){
+    addBlank("mm_15890324_2192376_13376812");
+}
+if(queryList.blank == "weibobottom"){
+    addBlank("mm_15890324_3509534_13066133");
+}
+</script>
+</body>
+</html>

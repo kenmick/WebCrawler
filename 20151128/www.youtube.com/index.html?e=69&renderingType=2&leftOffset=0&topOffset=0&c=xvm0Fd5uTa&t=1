@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+  <head>
+    <title>YouTube Masthead</title>
+    <script src="/879366/Enabler_01_91.js"></script>
+    <script src="//www.gstatic.com/external_hosted/polymer/custom.elements.min.js"></script>
+    <script>
+      var scriptUrl = 'masthead_compiled.js';
+      var enabler;
+      window.onload = function() {
+         studio.utils.EnablerAccessor.loadModuleWhenReady(
+          studio.module.ModuleId.CONFIGURABLE, loadModuleHandler);
+      }
+
+      function loadModuleHandler() {
+        var enabler = studio.Enabler.getInstance();
+        enabler.loadScript(enabler.getUrl(scriptUrl),
+          function() {
+              new studioinnovation.layouts.ihb.Masthead();
+          });
+      }
+    </script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="container">
+      <div id="backgroundView">
+         <div id="background" class="view-container"></div>
+         <div id="button" class="view-container"></div>
+         <div id="video" class="view-container"></div>
+         <div id="border" class="view-container"></div>
+         <div id="ytclosebutton"></div>
+      </div>
+    </div>
+  </body>
+</html>

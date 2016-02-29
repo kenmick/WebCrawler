@@ -1,0 +1,232 @@
+ï»¿ /*ie6 needs width - hack by adding an _underscore for ie6 and *star for 7 */
+
+/* RibbonBar Header and Content */
+
+.ControlPanel
+{
+    width:100%;
+    white-space: nowrap; background-image: url(RibbonBar/bg.gif); background-position:0 -4px; font-size:12px;
+    min-height:24px;
+    font-family:"å®ä½", Arial, Helvetica, sans-serif;
+    min-width:920px;
+}
+
+.essRibbonBarHeader   
+{
+    white-space: nowrap; 
+    font-size:12px; 
+    background-image:url(RibbonBar/headerrightbg.gif);
+    background-position:right 0;
+    text-align:right;
+    float:right;
+    width:400px;
+}
+.essRibbonBarHeader table { white-space: nowrap; font-size:12px;font-family:"å®ä½", Arial, Helvetica, sans-serif;}
+
+.essRibbonBar { white-space: nowrap; font-size:12px; }
+.essRibbonBarCol1 { text-align:left; vertical-align:top;  white-space: nowrap; }
+.essRibbonBarCol2 { text-align:center; vertical-align:top; }
+.essRibbonBarCol3 { padding:2px 0 0 20px; text-align:right; vertical-align:top; white-space: nowrap; width:230px; }	
+.essRibbonBarCol1 * { font-size:12px;line-height:16px; }
+.essRibbonBarCol2 * { font-size:12px;line-height:16px; }
+.essRibbonBarCol1 input { margin-left:5px; vertical-align:middle; color:Black; }
+.essRibbonBarCol1 label { position:relative; top:2px; }
+.essRibbonBarCol3 img { vertical-align:top;margin-right:2px; }
+.essRibbonBarCol3 a:link { color:Black; text-decoration:none;}
+.essRibbonBarCol3 a:hover { color:Blue; }
+.essRibbonBarCol3 a:active { color:Black; }
+.essRibbonBarCol3 a:visited { color:Black; }
+
+
+.essRibbonBarCol3 a { font-size:12px;line-height:16px; }
+.essRibbonBarCol3 a:link { font-size:12px;line-height:16px; }
+.essRibbonBarCol3 a:hove { font-size:12px;line-height:16px; }
+.essRibbonBarCol3 a:active { font-size:12px;line-height:16px; }
+.essRibbonBarCol3 a:visited { font-size:12px;line-height:16px; }
+
+.essRibbon { white-space:nowrap; width:100%;padding:0px; }
+.essRibbon .barContent { white-space:nowrap;padding:0; }
+.essRibbon .barBottomLeft { display:none; }
+.essRibbon .barBottomRight { display:none; }
+.essRibbon .essLabel { font-size:12px; font-weight: normal; color:Black; }
+
+/* RibbonBar Group Styles */
+.essRibbonGroup { margin:0px;border:none; background-image:url(RibbonBar/groupborder.gif); background-position:bottom right; background-repeat:no-repeat;padding-right:5px;padding-left:1px;height:102px; }
+.essRibbonGroupFirst { border-left-style:none; }
+.essRibbonGroupLast { }
+
+.essRibbonGroup .topLeft { display:none; }
+.essRibbonGroup .topRight { display:none; }
+.essRibbonGroup .bottomLeft { display:none; }
+.essRibbonGroup .bottomRight { display:none; }
+
+.essRibbonGroup .content { height:80px; padding:5px 5px 0px 5px; text-align:left;font-family:"å®ä½", Arial, Helvetica, sans-serif; }
+.essRibbonGroup .footer { text-align:center; vertical-align:bottom; margin:0px;font-size:12px; padding:0px 2px; white-space:nowrap; color:Gray; }
+
+.essRibbonGroup .content td {font-family:"å®ä½", Arial, Helvetica, sans-serif;}
+.essRibbonGroup .content input {padding:1px 3px; font-family: Arial, Helvetica, sans-serif; font-size:12px;}
+
+/* RibbonBar Image Link Styles */
+.essRibbonGroup .IconLeft { margin:5px 0px 0px 0px;padding:3px 3px 3px 3px;display:block;border:solid 1px Transparent;_border:solid 1px #f0f6fc; }
+.essRibbonGroup .IconLeft img { vertical-align:middle;padding-right:4px;border-width:0px; }
+.essRibbonGroup .IconLeft input { vertical-align:middle;padding-right:4px;border-width:0px; }
+.essRibbonGroup .IconLeft a { font-size:12px;margin:0px;padding:0px;color:#1c395a; text-decoration:none;line-height:15px; }
+.essRibbonGroup .IconLeft a:Link { font-size:12px;color:#1c395a; }
+.essRibbonGroup .IconLeft a:Visited { font-size:12px;color:#1c395a; }
+.essRibbonGroup .IconLeft a:Hover { font-size:12px;color:Red;text-decoration:none; }
+.essRibbonGroup .IconLeft a:Active { font-size:12px; }
+
+.essRibbonGroup .MiddleIconLeft { margin:5px 0px 0px 0px;padding:3px 3px 3px 3px;display:block;border:solid 1px Transparent;_border:solid 1px #f0f6fc; }
+.essRibbonGroup .MiddleIconLeft img { vertical-align:middle;padding-right:4px;border-width:0px; width:24px; height:24px; }
+.essRibbonGroup .MiddleIconLeft input { vertical-align:middle;padding-right:4px;border-width:0px; }
+.essRibbonGroup .MiddleIconLeft a { font-size:12px;margin:0px;padding:0px;color:#1c395a; text-decoration:none;line-height:15px; }
+.essRibbonGroup .MiddleIconLeft a:Link { font-size:12px;color:#1c395a; }
+.essRibbonGroup .MiddleIconLeft a:Visited { font-size:12px;color:#1c395a; }
+.essRibbonGroup .MiddleIconLeft a:Hover { font-size:12px;color:Red;text-decoration:none; }
+.essRibbonGroup .MiddleIconLeft a:Active { font-size:12px; }
+
+.essRibbonGroup .IconTop { text-align:center;margin:0px;padding:3px 3px 10px 3px;display:block;border:solid 1px Transparent;_border:solid 1px #f0f6fc; }
+.essRibbonGroup .IconTop img { border-width:0px; margin-bottom:3px; }
+.essRibbonGroup .IconTop input { border-width:0px; margin-bottom:3px; }
+.essRibbonGroup .IconTop a { font-size:12px;margin:0px;padding: 0px 0px 0px 0px; display:block;color:#1c395a; text-decoration:none;line-height:15px; }
+.essRibbonGroup .IconTop a:Link { font-size:12px; color:#1c395a;}
+.essRibbonGroup .IconTop a:Visited { font-size:12px; color:#1c395a;}
+.essRibbonGroup .IconTop a:Hover { font-size:12px;color:Red;text-decoration:none; }
+.essRibbonGroup .IconTop a:Active { font-size:12px; }
+
+.essRibbonGroup .BigIconTop { text-align:center;margin:0px;padding:8px 5px 10px 5px;display:block;border:solid 1px Transparent;_border:solid 1px #f0f6fc; }
+.essRibbonGroup .BigIconTop img { border-width:0px; margin-bottom:7px; width:32px; height:32px; }
+.essRibbonGroup .BigIconTop input { border-width:0px; margin-bottom:7px;  width:32px; height:32px; }
+.essRibbonGroup .BigIconTop a { font-size:12px;margin:0px;padding: 0px 0px 0px 0px; display:block;color:#1c395a;text-decoration:none;line-height:15px; }
+.essRibbonGroup .BigIconTop a:Link { font-size:12px; color:#1c395a;}
+.essRibbonGroup .BigIconTop a:Visited { font-size:12px; color:#1c395a;}
+.essRibbonGroup .BigIconTop a:Hover { font-size:12px;color:Red;text-decoration:none; }
+.essRibbonGroup .BigIconTop a:Active { font-size:12px; }
+
+.essRibbonGroup .MouseOver { border:solid 1px #f1c43f; background-color:#fdeeb3; color:Red;text-decoration:none; }
+.essRibbonBar .essRibbonGroup .MouseOver a:link { color:Red; }
+.essRibbonBar .essRibbonGroup .MouseOver a:Visited { color:Red; }
+
+
+
+.essRibbonGroup .rgIconDisabled { color:Gray;font-size:12px; }
+.essRibbonGroup .rgIconDisabled input { color:Gray;font-size:12px;}
+.essRibbonGroup .rgIconDisabled a { color:Gray;font-size:12px;text-decoration:none;line-height:15px; }
+.essRibbonGroup .rgIconDisabled a:Link { color:Gray;font-size:12px; }
+.essRibbonGroup .rgIconDisabled a:Visited { color:Gray;font-size:12px; }
+.essRibbonGroup .rgIconDisabled a:Hover { color:Gray; text-decoration:none; font-size:12px; }
+.essRibbonGroup .rgIconDisabled a:Active { color:Gray;font-size:12px; }
+
+.essRibbon .barContent .essRibbonGroup .content .essLabel
+{
+	font-size:12px;
+}
+
+.normalinput { border-top:solid 1px #abadb3; border-right:solid 1px #dbdfe6; border-bottom:solid 1px #e3e9ef; border-left:solid 1px #e2e3ea; height:18px; }
+
+.essRibbonActionsStart { vertical-align:middle; white-space:nowrap; }
+.essRibbonActions { vertical-align:middle; white-space:nowrap; }
+
+.essRibbonBar .LabelCell { text-align:right; white-space:nowrap; }
+
+.essRibbonBar .CommandButton,
+.essRibbonBar .CommandButton:Link,
+.essRibbonBar .CommandButton:Hover,
+.essRibbonBar .CommandButton:Visited
+{ font-size:12px; margin:0px; padding: 4px 5px 2px 5px; text-decoration:none; font-weight: normal; font-style:normal; background-image:url(RibbonBar/buttonbg.gif);border:solid 1px #b3bfd7; }
+
+.essRibbonBar .CommandButton:Active
+{ border-style: none; }
+
+.essRibbonBar .CommandButtonDisabled,
+.essRibbonBar .CommandButtonDisabled:Link,
+.essRibbonBar .CommandButtonDisabled:Hover,
+.essRibbonBar .CommandButtonDisabled:Active,
+.essRibbonBar .CommandButtonDisabled:Visited
+{ font-size:12px; padding: 4px 5px 2px 5px; text-decoration:none; font-weight: normal; background-image:url(RibbonBar/buttondisabledbg.gif);border:solid 1px #c3bfe7;}
+
+/* Tab 1 Styles */
+.Tab1_Actions { text-align:center; white-space:nowrap; }
+
+.Tab1_AddMod { _width:475px;white-space:nowrap; }
+
+.Tab1_AddMod .AddMod1 { padding-top:5px;white-space:nowrap;}
+.Tab1_AddMod .AddMod2,
+.Tab1_AddMod .AddMod3 
+{ padding-left:5px;white-space:nowrap;}
+.Tab1_AddMod .AddMod2 td,
+.Tab1_AddMod .AddMod3 td
+{ padding: 1px 2px 1px 0px;}
+
+.Tab1_AddPage { _width:358px;white-space:nowrap; }
+.Tab1_AddPage td { padding: 1px 2px 1px 0px; }
+
+/* Tab 2 Styles */
+.Tab2_Settings { text-align:center; white-space:nowrap;}
+.Tab2_Actions { _width:99px; white-space:nowrap; }
+.Tab2_Actions .content { _height:75px;_overflow:hidden; }
+ 
+.Tab2_EditPage { _width:445px; white-space:nowrap;}
+.Tab2_EditPage .content { _height:80px;_overflow:hidden;}
+.Tab2_EditPage .SkinListHeader { font-weight:bold; border-bottom: solid 1px #dcdcdc; }
+.Tab2_EditPage .SkinListSeparator { font-weight:bold; border-bottom: solid 1px #dcdcdc; }
+.Tab2_EditPage .EditPage1 { }
+.Tab2_EditPage .EditPage2 { padding-left:10px; }
+
+.Tab2_EditPage .EditPage1 td,
+.Tab2_EditPage .EditPage2 td 
+{ padding: 1px 2px 1px 0px; }
+
+.Tab2_Copy { _width:202px; white-space:nowrap;}
+.Tab2_Help { _width:45px; white-space:nowrap;}
+
+/* Tab 3 Styles */
+.Tab3_Settings { _width:80px;white-space:nowrap;}
+.Tab3_Settings .content { _height:75px;_overflow:hidden;}
+.Tab3_Manage { _width:155px; white-space:nowrap; }
+.Tab3_Manage .content { _height:75px;_overflow:hidden; }
+
+.Tab3_AddPage { _width:445px;white-space:nowrap;}
+.Tab3_AddPage .content { _height:75px;_overflow:hidden;}
+
+.Tab3_AddPage .AddPage1 { }
+.Tab3_AddPage .AddPage2 { padding-left:10px; }
+
+.Tab3_AddPage .AddPage1 td,
+.Tab3_AddPage .AddPage2 td 
+{ padding: 1px 2px 1px 0px; }
+
+.Tab3_Features { _width:154px; white-space:nowrap; }
+.Tab3_Features .content { _height:75px;_overflow:hidden; }
+.Tab3_Restore { _width:72px;white-space:nowrap;}
+
+/* Tab 4 Styles */
+.Tab4_Settings { white-space:nowrap;}
+.Tab4_Manage { _width:160px; white-space:nowrap; }
+
+.Tab4_Info { _width:80px;white-space:nowrap; }
+.Tab4_SwitchSite { _width:280px;white-space:nowrap; }
+.SwitchSiteFields  { padding-top:10px; height:80px; }
+.SwitchSiteFields .row { padding:2px; }
+
+.Tab4_Tools { _width:75px;white-space:nowrap;}
+.Tab4_Marketplace { _width:80px;white-space:nowrap;}
+
+/* **************************************************************************************** */
+/* Generic ImageTextButton style : todo - move to portal.css */
+.essImageTextButton { font-size:12px; }
+.essImageTextButton .Disabled a { color:Gray; text-decoration:none;font-size:12px; }
+.essImageTextButton .Disabled a:Link { color:Gray; text-decoration:none;font-size:12px; }
+.essImageTextButton .Disabled a:Active { color:Gray; text-decoration:none;font-size:12px; }
+.essImageTextButton .Disabled a:Hover { color:Gray; text-decoration:none;font-size:12px; }
+.essImageTextButton .Disabled a:Visited { color:Gray; text-decoration:none;font-size:12px; }
+
+.essImageTextLink { font-size:12px; }
+.essImageTextLink .Disabled a { color:Gray; text-decoration:none;font-size:12px; }
+.essImageTextLink .Disabled a:Link { color:Gray; text-decoration:none;font-size:12px; }
+.essImageTextLink .Disabled a:Active { color:Gray; text-decoration:none;font-size:12px; }
+.essImageTextLink .Disabled a:Hover { color:Gray; text-decoration:none;font-size:12px; }
+.essImageTextLink .Disabled a:Visited { color:Gray; text-decoration:none;font-size:12px; }
+
+
+

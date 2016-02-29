@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Sofinco</title>
+  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="ad.size" content="width=728,height=90">
+    <style type="text/css">
+        html,
+        body {
+            margin: 0;
+            height: 100%;
+            width: 100%;
+            font-size: 12px;
+            background: #fff;
+        }
+        * {
+            -webkit-box-sizing: border-box;
+               -moz-box-sizing: border-box;
+                    box-sizing: border-box;
+        }
+        #ad {
+            width: 728px;
+            height: 90px;
+            display: block;
+            background: #c2001b;
+            position: relative;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+            border: solid 1px #000;
+            -webkit-box-sizing: border-box;
+               -moz-box-sizing: border-box;
+                    box-sizing: border-box;
+        }
+        #ad img {
+            display: block;
+            margin: 0;
+        }
+        #content {
+            position: relative;
+            top: 0;
+            left: 0;
+            z-index: 10;
+            width: 100%;
+            overflow: hidden;
+            height: 100%;
+        }
+        #content > div {
+            position: absolute;
+            opacity: 0;
+            -webkit-animation-fill-mode: forwards;
+            -moz-animation-fill-mode: forwards;
+            -o-animation-fill-mode: forwards;
+            animation-fill-mode: forwards;
+        }
+        #button {
+            top: 0;
+            left: 0;
+            position: absolute;
+            z-index: 1000;
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+        #button.simulator {
+            z-index: 100;
+        }
+        #ad .bottom {
+            position: absolute;
+            right: -175px;
+            width: 175px;
+            height: 90px;
+            display: block;
+            background: #fff;
+            z-index: 20;
+            opacity: 0;
+        }
+        #bottom1.show,
+        #bottom2.show {
+            -webkit-animation: showBottom 1s ease-in-out;
+            -moz-animation: showBottom 1s ease-in-out;
+            -o-animation: showBottom 1s ease-in-out;
+            animation: showBottom 1s ease-in-out;
+            right: -175px;
+        }
+        #bottom1.end,
+        #bottom2.end {
+            right: 0;
+            opacity: 1;
+        }
+        #bottom2.hide {
+            -webkit-animation: hideBottom 1s ease-in-out;
+            -moz-animation: hideBottom 1s ease-in-out;
+            -o-animation: hideBottom 1s ease-in-out;
+            animation: hideBottom 1s ease-in-out;
+            right: -175px;
+        }
+        #bottom2.end2 {
+            right: -175px;
+        }
+        #logo {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 146px;
+            display: block;
+            margin-left: -73px;
+            margin-top: -30px;
+        }
+        #logo img {
+            width: 100%;
+            height: auto;
+        }
+        #ml {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            display: block;
+            margin-left: -74px;
+            margin-top: -35px;
+        }
+        #text01 {
+            top: 22px;
+            left: 100px;
+            z-index: 10;
+            opacity: 0;
+        }
+        #text01.show {
+            -webkit-animation: showScale 0.5s ease-out;
+            -moz-animation: showScale 0.5s ease-out;
+            -o-animation: showScale 0.5s ease-out;
+            animation: showScale 0.5s ease-out;
+            opacity: 0;
+        }
+        #text01.end {
+            opacity: 1;
+        }
+        #text02 {
+            top: 46px;
+            left: 100px;
+            z-index: 10;
+            opacity: 0;
+        }
+        #text02.show {
+            -webkit-animation: showAlpha 0.5s ease-out;
+            -moz-animation: showAlpha 0.5s ease-out;
+            -o-animation: showAlpha 0.5s ease-out;
+            animation: showAlpha 0.5s ease-out;
+            opacity: 0;
+        }
+        #text02.end {
+            opacity: 1;
+        }
+        #text01.hide,
+        #text02.hide {
+            -webkit-animation: hideScale 0.5s ease-out;
+            -moz-animation: hideScale 0.5s ease-out;
+            -o-animation: hideScale 0.5s ease-out;
+            animation: hideScale 0.5s ease-out;
+            opacity: 1;
+        }
+        #text01.last,
+        #text02.last {
+            opacity: 0;
+        }
+        #step2 {
+            color: #fff;
+            font-family: Arial, sans-serif;
+            font-size: 11px;
+            line-height: 15px;
+            width: 543px;
+            height: 100%;
+            padding: 5px;
+			padding-left: 9px;
+
+        }
+        #step2 span {
+            font-size: 13px;
+            font-weight: bold;
+        }
+        #step2.show {
+            -webkit-animation: showAlpha 0.5s ease-out;
+            -moz-animation: showAlpha 0.5s ease-out;
+            -o-animation: showAlpha 0.5s ease-out;
+            animation: showAlpha 0.5s ease-out;
+            opacity: 0;
+        }
+        #step2.end {
+            opacity: 1;
+        }
+        #step2.hide {
+            -webkit-animation: hideScale 0.5s ease-out;
+            -moz-animation: hideScale 0.5s ease-out;
+            -o-animation: hideScale 0.5s ease-out;
+            animation: hideScale 0.5s ease-out;
+            opacity: 1;
+        }
+        #step2.last {
+            opacity: 0;
+        }
+        #star {
+            top: 0;
+            left: 0;
+            z-index: 50;
+            opacity: 0;
+        }
+        #star.show {
+            -webkit-animation: showStar 0.75s ease-in-out;
+            -moz-animation: showStar 0.75s ease-in;
+            -o-animation: showStar 0.75s ease-in;
+            animation: showStar 0.75s ease-in-out;
+            -webkit-transform: 50% 50%;
+            -moz-transform: 50% 50%;
+            -o-transform: 50% 50%;
+            transform: 50% 50%;
+        }
+        #star.end {
+            opacity: 1;
+        }
+        #text11 {
+            top: 8px;
+            left: 170px;
+            z-index: 10;
+            opacity: 0;
+        }
+        #text12 {
+            top: 23px;
+            left: 170px;
+            z-index: 10;
+            opacity: 0;
+        }
+        #text11.show,
+        #text12.show {
+            -webkit-animation: showLeft 0.5s ease-in-out;
+            -moz-animation: showLeft 0.5s ease-in-out;
+            -o-animation: showLeft 0.5s ease-in-out;
+            animation: showLeft 0.5s ease-in-out;
+            opacity: 1;
+            left: 170px;
+        }
+        #text11.end {
+            left: 170px;
+            opacity: 1;
+        }
+        #text12.end {
+            left: 170px;
+            opacity: 1;
+        }
+        #text13 {
+            top: 43px;
+            left: 170px;
+            z-index: 10;
+            opacity: 0;
+        }
+        #text14 {
+            top: 44px;
+            left: 300px;
+            z-index: 10;
+            opacity: 0;
+        }
+        #text15 {
+            top: 41px;
+            left: 334px;
+            z-index: 10;
+            opacity: 0;
+        }
+        #text16 {
+            top: 43px;
+            left: 388px;
+            z-index: 10;
+            opacity: 0;
+        }
+        #text13.show,
+        #text14.show,
+        #text16.show {
+            -webkit-animation: showAlpha 0.5s ease-out;
+            -moz-animation: showAlpha 0.5s ease-out;
+            -o-animation: showAlpha 0.5s ease-out;
+            animation: showAlpha 0.5s ease-out;
+            opacity: 0;
+        }
+        #text13.end,
+        #text14.end,
+        #text16.end {
+            opacity: 1;
+        }
+        #text15.show {
+            -webkit-animation: showScale 0.5s ease-out;
+            -moz-animation: showScale 0.5s ease-out;
+            -o-animation: showScale 0.5s ease-out;
+            animation: showScale 0.5s ease-out;
+            opacity: 0;
+        }
+        #text15.end {
+            opacity: 1;
+        }
+        #cta {
+            bottom: 6px;
+            left: 170px;
+            z-index: 20;
+        }
+        #cta.show {
+            -webkit-animation: showCTA 0.5s ease-in;
+            -moz-animation: showCTA 0.5s ease-in;
+            -o-animation: showCTA 0.5s ease-in;
+            animation: showCTA 0.5s ease-in;
+            -webkit-transform: 50% 50%;
+            -moz-transform: 50% 50%;
+            -o-transform: 50% 50%;
+            transform: 50% 50%;
+            opacity: 0;
+        }
+        #cta.end {
+            opacity: 1;
+        }
+        #arrow01 {
+            top: 65px;
+            left: 175px;
+            z-index: 30;
+            opacity: 0;
+        }
+        #arrow02 {
+            top: 65px;
+            left: 250px;
+            z-index: 30;
+            opacity: 0;
+        }
+        #arrow01.show,
+        #arrow02.show {
+            -webkit-animation: showAlpha 0.5s ease-out;
+            -moz-animation: showAlpha 0.5s ease-out;
+            -o-animation: showAlpha 0.5s ease-out;
+            animation: showAlpha 0.5s ease-out;
+            opacity: 0;
+        }
+        #arrow01.end,
+        #arrow02.end {
+            opacity: 1;
+        }
+        #arrow01.active {
+            -webkit-animation: arrow01 2s ease-out;
+            -moz-animation: arrow01 2s ease-out;
+            -o-animation: arrow01 2s ease-out;
+            animation: arrow01 2s ease-out;
+            left: 55px;
+        }
+        #arrow02.active {
+            -webkit-animation: arrow02 2s ease-out;
+            -moz-animation: arrow02 2s ease-out;
+            -o-animation: arrow02 2s ease-out;
+            animation: arrow02 2s ease-out;
+            right: 55px;
+        }
+
+ @-webkit-keyframes showLeft { 0% { left:305px; } 100% { left:170px; }}
+    @-moz-keyframes showLeft { 0% { left:305px; } 100% { left:170px; }}
+      @-o-keyframes showLeft { 0% { left:305px; } 100% { left:170px; }}
+         @keyframes showLeft { 0% { left:305px; } 100% { left:170px; }}
+
+ @-webkit-keyframes arrow01 { 0% { left:175px; } 15% { left:173px; } 30% { left:175px; } 45% { left:173px; } 60% { left:175px; } 75% { left:173px; } 90% { left:175px; } 100% { left:175px; }}
+    @-moz-keyframes arrow01 { 0% { left:175px; } 15% { left:173px; } 30% { left:175px; } 45% { left:173px; } 60% { left:175px; } 75% { left:173px; } 90% { left:175px; } 100% { left:175px; }}
+      @-o-keyframes arrow01 { 0% { left:175px; } 15% { left:173px; } 30% { left:175px; } 45% { left:173px; } 60% { left:175px; } 75% { left:173px; } 90% { left:175px; } 100% { left:175px; }}
+         @keyframes arrow01 { 0% { left:175px; } 15% { left:173px; } 30% { left:175px; } 45% { left:173px; } 60% { left:175px; } 75% { left:173px; } 90% { left:175px; } 100% { left:175px; }}
+
+ @-webkit-keyframes arrow02 { 0% { left:250px; } 15% { left:252px; } 30% { left:250px; } 45% { left:252px; } 60% { left:250px; } 75% { left:252px; } 90% { left:250px; } 100% { left:250px; }}
+    @-moz-keyframes arrow02 { 0% { left:250px; } 15% { left:252px; } 30% { left:250px; } 45% { left:252px; } 60% { left:250px; } 75% { left:252px; } 90% { left:250px; } 100% { left:250px; }}
+      @-o-keyframes arrow02 { 0% { left:250px; } 15% { left:252px; } 30% { left:250px; } 45% { left:252px; } 60% { left:250px; } 75% { left:252px; } 90% { left:250px; } 100% { left:250px; }}
+         @keyframes arrow02 { 0% { left:250px; } 15% { left:252px; } 30% { left:250px; } 45% { left:252px; } 60% { left:250px; } 75% { left:252px; } 90% { left:250px; } 100% { left:250px; }}
+
+ @-webkit-keyframes showScale {
+     0% { -webkit-transform:scale(1.1); opacity:0; }
+     80% { -webkit-transform:scale(1); opacity:1; }
+     90% { -webkit-transform:scale(1.1); opacity:1; }
+     100% { -webkit-transform:scale(1); opacity:1; }
+ }
+ @-moz-keyframes showScale {
+     0% { -moz-transform:scale(1.1); opacity:0; }
+     80% { -moz-transform:scale(1); opacity:1; }
+     90% { -moz-transform:scale(1.1); opacity:1; }
+     100% { -moz-transform:scale(1); opacity:1; }
+ }
+ @-o-keyframes showScale {
+     0% { -o-transform:scale(1.1); opacity:0; }
+     80% { -o-transform:scale(1); opacity:1; }
+     90% { -o-transform:scale(1.1); opacity:1; }
+     100% { -o-transform:scale(1); opacity:1; }
+ }
+ @keyframes showScale {
+     0% { transform:scale(1.1); opacity:0; }
+     80% { transform:scale(1); opacity:1; }
+     90% { transform:scale(1.1); opacity:1; }
+     100% { transform:scale(1); opacity:1; }
+ }
+
+
+ @-webkit-keyframes showStar {
+     0% { -webkit-transform:scale(0.5); opacity:0; }
+     80% { -webkit-transform:scale(1.1); opacity:1; }
+     90% { -webkit-transform:scale(0.9); opacity:1; }
+     100% { -webkit-transform:scale(1); opacity:1; }
+ }
+  @-moz-keyframes showStar {
+     0% { -moz-transform:scale(0.5); opacity:0; }
+     80% { -moz-transform:scale(1.1); opacity:1; }
+     90% { -moz-transform:scale(0.9); opacity:1; }
+     100% { -moz-transform:scale(1); opacity:1; }
+ }
+  @-o-keyframes showStar {
+     0% { -o-transform:scale(0.5); opacity:0; }
+     80% { -o-transform:scale(1.1); opacity:1; }
+     90% { -o-transform:scale(0.9); opacity:1; }
+     100% { -o-transform:scale(1); opacity:1; }
+ } 
+ @keyframes showStar {
+     0% { transform:scale(0.5); opacity:0; }
+     80% { transform:scale(1.1); opacity:1; }
+     90% { transform:scale(0.9); opacity:1; }
+     100% { transform:scale(1); opacity:1; }
+ }
+
+ @-webkit-keyframes showCTA {
+     0% { -webkit-transform:scale(0); opacity:0; }
+     80% { -webkit-transform:scale(1.2); opacity:1; }
+     90% { -webkit-transform:scale(0.9); opacity:1; }
+     100% { -webkit-transform:scale(1); opacity:1; }
+ }
+ @-moz-keyframes showCTA {
+     0% { -moz-transform:scale(0); opacity:0; }
+     80% { -moz-transform:scale(1.2); opacity:1; }
+     90% { -moz-transform:scale(0.9); opacity:1; }
+     100% { -moz-transform:scale(1); opacity:1; }
+ }
+ @-o-keyframes showCTA {
+     0% { -o-transform:scale(0); opacity:0; }
+     80% { -o-transform:scale(1.2); opacity:1; }
+     90% { -o-transform:scale(0.9); opacity:1; }
+     100% { -o-transform:scale(1); opacity:1; }
+ }
+ @keyframes showCTA {
+     0% { transform:scale(0); opacity:0; }
+     80% { transform:scale(1.2); opacity:1; }
+     90% { transform:scale(0.9); opacity:1; }
+     100% { transform:scale(1); opacity:1; }
+ }
+
+
+ @-webkit-keyframes showBottom {0% { right:-175px; opacity:1; } 100% { right:0; opacity:1; }}
+    @-moz-keyframes showBottom {0% { right:-175px; opacity:1; } 100% { right:0; opacity:1; }}
+      @-o-keyframes showBottom {0% { right:-175px; opacity:1; } 100% { right:0; opacity:1; }}
+         @keyframes showBottom {0% { right:-175px; opacity:1; } 100% { right:0; opacity:1; }}
+
+ @-webkit-keyframes hideBottom { 0% { right:0; opacity:1; } 100% { right:-175px; opacity:1; }}
+    @-moz-keyframes hideBottom { 0% { right:0; opacity:1; } 100% { right:-175px; opacity:1; }}
+      @-o-keyframes hideBottom { 0% { right:0; opacity:1; } 100% { right:-175px; opacity:1; }}
+         @keyframes hideBottom { 0% { right:0; opacity:1; } 100% { right:-175px; opacity:1; }}
+
+ @-webkit-keyframes showAlpha {0% { opacity:0; } 100% { opacity:1; }}
+    @-moz-keyframes showAlpha {0% { opacity:0; } 100% { opacity:1; }}
+      @-o-keyframes showAlpha {0% { opacity:0; } 100% { opacity:1; }}
+         @keyframes showAlpha {0% { opacity:0; } 100% { opacity:1; }}
+
+ @-webkit-keyframes hideAlpha {0% { opacity:1; } 100% { opacity:0; }}
+    @-moz-keyframes hideAlpha {0% { opacity:1; } 100% { opacity:0; }}
+      @-o-keyframes hideAlpha {0% { opacity:1; } 100% { opacity:0; }}
+         @keyframes hideAlpha {0% { opacity:1; } 100% { opacity:0; }}
+</style>
+</head>
+<body>
+    <div id="ad">
+        <div id="content">
+            <a id="button" href="{{PUB_CLICKTHROUGH}}" target="_blank"></a>
+            <div id="bottom1" class="bottom">
+                <div id="logo"><img src="logo.svg" alt="" />
+                </div>
+            </div>
+            <div id="bottom2" class="bottom">
+                <div id="ml"><img src="ml17.png" alt="" />
+                </div>
+            </div>
+            <div id="text01"><img src="text01.png" alt="" />
+            </div>
+            <div id="text02"><img src="text02.png" alt="" />
+            </div>
+            <div id="step2">
+                Par exemple : pour un prÃªt personnel de 
+                8&nbsp;000&nbsp;â¬ sur 48 mois, vous remboursez 
+                48 <span class="strong">mensualitÃ©s de 180,03&nbsp;â¬</span> hors 
+                assurance facultative. <span class="strong">Taux Annuel Effectif Global (TAEG) fixe de 
+                3,90&nbsp;%</span> - taux dÃ©biteur fixe 3,832%.
+                <span class="strong">Montant total dÃ» : 8 641.44&nbsp;â¬.</span>
+                Le coÃ»t mensuel de l'assurance 
+                facultative est de 10,35&nbsp;â¬/mois et s'ajoute 
+                aux mensualitÃ©s ci-dessus. Le Taux Annuel Effectif de l'Assurance est de 2.987&nbsp;%.
+                Le montant total dÃ» au titre de l'assurance est de 496,80&nbsp;â¬.
+            </div>
+            <div id="star"><img src="star.png" alt="" />
+            </div>
+            <div id="text11"><img src="text11.png" alt="" />
+            </div>
+            <div id="text12"><img src="text12.png" alt="" />
+            </div>
+            <div id="text13"><img src="text13.png" alt="" />
+            </div>
+<!--             <div id="text14"><img src="text14.png" alt="" /></div> -->
+            <div id="text15"><img src="text15.png" alt="" />
+            </div>
+            <div id="text16"><img src="text16.png" alt="" /></div>
+            <div id="cta"><img src="cta.png" alt="" />
+            </div>
+            <div id="arrow01"><img src="arrow01.png" alt="" />
+            </div>
+            <div id="arrow02"><img src="arrow02.png" alt="" />
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+
+        function addEvent(evnt, elem, func) {
+            if (elem.addEventListener)
+                elem.addEventListener(evnt, func, false);
+            else if (elem.attachEvent) {
+                elem.attachEvent("on" + evnt, func);
+            } else {
+                elem[evnt] = func;
+            }
+        }
+
+        function wait(_id, _begin, _end, _duration, _delay) {
+            setTimeout(function() {
+                start(_id, _begin, _end, _duration)
+            }, _delay);
+        }
+
+        function start(_id, _begin, _end, _duration) {
+            document.getElementById(_id).className += ' ' + _begin;
+            setTimeout(function() {
+                if (_id == 'bottom2') removeClass(_id, 'end');
+                document.getElementById(_id).className += ' ' + _end;
+                removeClass(_id, _begin);
+            }, _duration);
+        }
+
+        function removeClass(_id, _class) {
+            var classes = document.getElementById(_id).className.split(' ');
+            var _classes = '';
+            for (var i = 0; i < classes.length; i++) {
+                if (classes[i] != _class) {
+                    if (i > 0) _classes += ' ';
+                    _classes += classes[i];
+                }
+            }
+            document.getElementById(_id).className = _classes;
+        }
+
+        var cta = document.getElementById("cta");
+        var mask = document.getElementById("mask");
+        var ad = document.getElementById("ad");
+        var button = document.getElementById("button");
+
+        var delay = 0;
+        wait('bottom1', 'show', 'end', 1000, delay);
+        delay += 250;
+        wait('text01', 'show', 'end', 500, delay);
+        delay += 250;
+        wait('text02', 'show', 'end', 500, delay);
+        delay += 2000;
+        wait('text01', 'hide', 'last', 500, delay);
+        wait('text02', 'hide', 'last', 500, delay);
+        delay += 500;
+        wait('step2', 'show', 'end', 500, delay);
+        wait('bottom2', 'show', 'end', 1000, delay);
+
+        delay += 3000;
+        wait('step2', 'hide', 'last', 500, delay);
+
+        delay += 250;
+        wait('star', 'show', 'end', 750, delay);
+
+        // delay -= 250;
+        // wait('bottom2', 'show', 'end', 1000, delay);
+        // delay += 250;
+
+        delay += 350;
+        wait('text11', 'show', 'end', 500, delay);
+        delay += 500;
+        wait('text12', 'show', 'end', 500, delay);
+        delay += 1000;
+        wait('text13', 'show', 'end', 500, delay);
+        delay += 250;
+        wait('text14', 'show', 'end', 500, delay);
+        delay += 250;
+        wait('text15', 'show', 'end', 500, delay);
+        delay += 250;
+        wait('text16', 'show', 'end', 500, delay);
+        delay += 1000;
+        wait('cta', 'show', 'end', 500, delay);
+        delay += 500;
+        wait('arrow01', 'show', 'end', 500, delay);
+        wait('arrow02', 'show', 'end', 500, delay);
+
+        delay += 1000;
+        wait('arrow01', 'active', 'last', 2000, delay);
+        wait('arrow02', 'active', 'last', 2000, delay);
+
+        delay += 3000;
+        wait('bottom2', 'hide', 'end2', 1000, delay);
+
+        delay += 1500;
+        wait('arrow01', 'active', 'last', 2000, delay);
+        wait('arrow02', 'active', 'last', 2000, delay);
+    </script>
+</body>
+</html>

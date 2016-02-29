@@ -1,0 +1,120 @@
+(function () {
+    //19955
+    var wrapper = document.getElementById('b2d2e10c66');
+    if (!wrapper) {
+        document.write('<div id="b2d2e10c66"></div>');
+        wrapper = document.getElementById('b2d2e10c66');
+    }
+
+    if (wrapper) {
+        wrapper.style.display = 'block';
+        wrapper.style.width = '160px';
+        wrapper.style.height = '600px';
+        if ('0px' != '0px') {
+            wrapper.style.margin = '0px';
+        } else {
+            wrapper.style.marginLeft = 'auto';
+            wrapper.style.marginRight = 'auto';
+        }
+        wrapper.innerHTML = '<iframe src="'
+        + (document.location.protocol == 'https' || document.location.protocol == 'https:' ? 'https' : 'http')
+        + '://cdn.onedmp.com/iframeH/19955/JTJGJTJGYWRzZXJ2b25lLmNvbSUyRmNrJTJGYm4lMkY2NDQlMkYxOTk1NSUyRjAlMkYwJTJGMTYweDYwMCU3QyU3QyU3QyU3Q21lZGlhJTJGaHRtbDUlMkY0JTJGNCUyRjM1MDg3NmI5LTY2NjUtNDAzZi05MTU1LWQxMjQyZWU2ZGU4YiUyRmxlZ3NfMTYweDYwMC5odG1s"'
+        + 'width="160" height="600" marginwidth="0" marginheight="0" frameborder="0" vspace="0" hspace="0"'
+        + 'scrolling="no" style="padding:0!important;margin:0!important;"></ifr' + 'ame>';
+    }
+
+    this.logo = {position: "TOP_RIGHT",out: 36,text: "Adwise", text_position: "SIDE"};
+this.logo.el = document.createElement('a');
+this.logo.el.href = 'https://adwise.agency/#contacts-sect';
+this.logo.el.target = '_blank';
+this.logo.el.style.display = 'block';
+this.logo.el.style.position = 'absolute';
+this.logo.el.style.zIndex = '999';
+this.logo.el.style.transition = '0.5s';
+this.logo.el.style.padding = '3px 0';
+this.logo.el.style.textDecoration = 'none';
+this.logo.el.style.background = 'none';
+this.logo.el.style.margin = '0';
+this.logo.el.style.height = 'auto';
+this.logo.el.style.width = 'auto';
+this.logo.el.style.textIndent = '0';
+this.logo.el.style.textShadow = 'none';
+this.logo.el.style.lineHeight = '20px';
+
+var outerAttr;
+if (this.logo.position == 'TOP_RIGHT') {
+    outerAttr = 'right';
+    this.logo.el.style.top = '0';
+} else if (this.logo.position == 'TOP_LEFT') {
+    outerAttr = 'left';
+    this.logo.el.style.top = '0';
+} else if (this.logo.position == 'BOTTOM_RIGHT') {
+    outerAttr = 'right';
+    this.logo.el.style.bottom = '0';
+} else if (this.logo.position == 'BOTTOM_LEFT') {
+    outerAttr = 'left';
+    this.logo.el.style.bottom = '0';
+}
+
+if (!this.logo.out) {
+    this.logo.el.style[outerAttr] = 0;
+}
+
+this.logo.img = document.createElement('img');
+this.logo.img.src = 'http://psma02.com/media/1/4/i14367900696092_219.png';
+this.logo.img.style.width = '13px';
+this.logo.img.style.height = '13px';
+this.logo.img.style.padding = this.logo.img.style.margin = 0;
+this.logo.img.style.float = 'none';
+this.logo.img.style.background = 'transparent';
+
+
+this.logo.el.appendChild(this.logo.img);
+
+if (this.logo.text) {
+    this.logo.textEl = document.createElement('div');
+    this.logo.textEl.innerHTML = this.logo.text;
+    this.logo.textEl.style.fontSize = '12px';
+    this.logo.textEl.style.fontFamily = 'Arial,Helvetica,sans-serif';
+    this.logo.textEl.style.color = 'orange';
+
+    if (this.logo.text_position == 'SIDE') {
+        this.logo.textEl.style.display = 'inline-block';
+        this.logo.textEl.style.padding = '0 5px';
+
+        this.logo.out = this.logo.out + 10;
+        this.logo.el.style[outerAttr] = '-'+this.logo.out+'px';
+
+        if (this.logo.out) {
+            this.logo.el.addEventListener('mouseenter', function () {
+                this.style[outerAttr] = '0';
+            });
+
+            var logoOut = this.logo.out;
+            this.logo.el.addEventListener('mouseleave', function () {
+                this.style[outerAttr] = '-'+logoOut+'px';
+            });
+        }
+
+        if (outerAttr == 'left') {
+            this.logo.el.insertBefore(this.logo.textEl, this.logo.img);
+        } else {
+            this.logo.el.appendChild(this.logo.textEl);
+        }
+    } else {
+        this.logo.textEl.style.padding = '3px 0 0';
+        this.logo.textEl.style.textAlign = 'center';
+        this.logo.el.appendChild(this.logo.textEl);
+    }
+}
+
+if (this.div) {
+    this.div.appendChild(this.logo.el);
+} else if (wrapper) {
+    wrapper.style.position = 'relative';
+    wrapper.style.overflow = 'hidden';
+    wrapper.appendChild(this.logo.el);
+}
+
+})();
+new (function(){var src = '//psma02.com/impression/Ym58MTQ1NDM0OTk5MXwxOTk1NXw2NDR8NjR8REVTS1RPUHwxMjB8MTYweDYwMHx8VVNEfDU4MjcyOTI=/?cachebuster=28482851'; var audit_img = document.createElement('img');audit_img.src = src;})();

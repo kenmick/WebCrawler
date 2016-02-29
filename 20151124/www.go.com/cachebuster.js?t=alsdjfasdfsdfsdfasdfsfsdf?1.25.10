@@ -1,0 +1,56 @@
+/*globals easyXDM, DisneyID, NewRelic, did*/
+
+/**
+ * TODO: Remove for July 2014 release
+ * This is a temporary fallback mechanism designed to load and instantiate a fresh DisneyID object on the client site,
+ * should the user-agent have an old version cached. As of the June 2014 release, DisneyID's UI servers will respond with
+ * proper cache-control headers that will prevent the user agent from caching our code for longer than 15 minutes.
+ * Code in the wild cached before the June 2014 release will respond to an EasyXDM message that allows us to execute
+ * custom JavaScript in the client site's context.
+ */
+
+(function ($) {
+    var xdm,
+        a,
+        resizeInterval,
+        intervalCount = 0,
+        intervalMaxDuration = 15, // seconds
+        urls = {},
+        cacheBusterScript;
+
+    // Don't bust cached JavaScript if the checksum matchces
+    if (DisneyID.getParameterByName('checksum') === DisneyID.checksum) {
+        DisneyID.log('DisneyID.js checksum passed');
+        return;
+    }
+
+    DisneyID.log('DisneyID.js checksum failed.');
+    DisneyID.log('Cached checksum: ' + DisneyID.getParameterByName('checksum'));
+    DisneyID.log('Current checksum: ' + DisneyID.checksum);
+
+    NewRelic.send({
+        name: 'JavaScriptOutOfSync',
+        clientId: DisneyID.getParameterByName('client_id'),
+        userAgent: navigator.userAgent,
+        cachedChecksum: DisneyID.getParameterByName('checksum') || '',
+        currentChecksum: DisneyID.checksum
+    });
+
+    // Instantiate a new EasyXDM Transport
+    xdm = new easyXDM.Rpc({
+            remote: did.responderPage
+        }, {
+            remote: {
+                setTopUrl: {}
+            }
+        }
+    );
+
+    cacheBusterScript = DisneyID.buildCacheBusterScript();
+
+    // JavaScript cached before the June 2014 release will still respond to EasyXDM messaging. We can utilize the method bound to SetTopUrl to
+    // execute custom JavaScript in the context of the BU's website to load a fresh DisneyID.js and override the existing (stale) DisneyID object.
+    // After the script has loaded, we cache the client's init data then re-instantiate the did object.
+    xdm.setTopUrl(cacheBusterScript);
+
+})(window.jQuery);

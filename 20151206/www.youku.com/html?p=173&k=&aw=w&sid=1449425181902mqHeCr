@@ -1,0 +1,58 @@
+
+(function(){
+		//åå§ååæ°
+        var initTop=240,
+        	  ad=null,
+              out=null,
+              inner=null,
+              lastType="ad_center_size";
+        //è·ååæ°
+        setTimeout(function(){
+        		//å¤å±
+                out=document.getElementById('ad_wanhuatong');
+                //åå±
+                inner=document.getElementById('youkuCrazy_AD_wanhuatong_node');
+                ad = out.parentNode;
+                ad.style.position="relative";
+				ad.style.zIndex="1049";   
+				ad.style.left=ad.parentNode.style.left="0";
+				window.ADLayer.show(lastType);
+        },50);
+    
+		if(!window.ADLayer){
+		        window.ADLayer={};
+		}
+		        
+		window.ADLayer.show=function(type){
+			if(!out)return;
+			lastType = type;
+				switch(type){
+					case "ad_center_size":
+					
+							out.parentNode.parentNode.parentNode.style.overflow = out.parentNode.parentNode.parentNode.parentNode.style.overflow = "visible";
+							out.parentNode.parentNode.parentNode.parentNode.style.zIndex = "100";
+							out.style.overflow="hidden";
+					   		out.style.width="350px";
+					        out.style.height="260px"
+					        out.style.right="-20px";
+					        out.style.top="0";
+					        inner.style.top="-214px";
+					        inner.style.right="0px";
+					        break;
+					case "ad_huge_size":
+					
+							out.parentNode.parentNode.parentNode.style.overflow = out.parentNode.parentNode.parentNode.parentNode.style.overflow = "visible";
+							out.parentNode.parentNode.parentNode.parentNode.style.zIndex = "100";
+							out.style.overflow="visible";
+					        out.style.width="955px";
+					        out.style.height="640px";
+					        out.style.right="-20px";
+					        out.style.top = "-158px";
+					        inner.style.top="-55px";
+					        inner.style.right="0px";
+					        break;
+				};
+		};
+          
+    })();
+function ad_div_173(){var adcontent = "";adcontent = adcontent + "<div style=\"position:absolute;top:0;right:0; z-index: 1049;height: 260px; width: 350px;\" id=\"ad_wanhuatong\"><div style=\"z-index: 1049; line-height: 0px; text-align: center; width: 955px; position: absolute; height: 640px; right: -34px; top: -215px;\" id=\"youkuCrazy_AD_wanhuatong_node\">             <object width=\"955px\" height=\"640px\" codebase=\"http:\/\/fpdownload.macromedia.com\/get\/flashplayer\/current\/swflash.cab\" classid=\"clsid:D27CDB6E-AE6D-11cf-96B8-444553540000\" id=\"youkuCrazy_AD_wanhuatong_object_node\"><param value=\"http:\/\/static.atm.youku.com\/idea\/201511\/1124\/88948\/wht-hp.swf\" name=\"movie\"><param value=\"high\" name=\"quality\"><param value=\"always\" name=\"allowscriptaccess\"><param value=\"transparent\" name=\"wmode\">                <embed width=\"955px\" height=\"640px\" align=\"middle\" pluginspage=\"http:\/\/www.adobe.com\/go\/getflashplayer\" type=\"application\/x-shockwave-flash\" wmode=\"transparent\" allowscriptaccess=\"always\" loop=\"false\" play=\"true\" quality=\"high\"src=\"http:\/\/static.atm.youku.com\/idea\/201511\/1124\/88948\/wht-hp.swf\" id=\"youkuCrazy_AD_wanhuatong_emb_node\">                                                  <\/object><\/div><\/div>";	var obj = document.getElementById('ab_173');	if( !obj || typeof(obj) != 'object' || typeof(adcontent) != 'string') return;	if( null != adcontent && 0 == adcontent.length ){		obj.style.display = 'none';	}else{		obj.style.display = 'block';		if( null != adcontent ){			obj.innerHTML = adcontent;		}	}}ad_div_173();

@@ -1,0 +1,56 @@
+/*
+(c) Copyright Weborama SA - France. All rights reserved.
+It is illegal to modify, disassemble, sell, copy or publish this software
+or any part thereof. The use of this software is only permitted with the
+prior and express written permission of Weborama SA - France.
+More information: http://www.weborama.com/contacts/
+*/
+function x17() {
+    var x1cl, x1ey = x1bb.x1cj();
+    x1ey.x1ie = x1bb.x1nn(x1ey.x1ie,'wuid=&retargeting=&');
+    x1ey.x1fN = 'https://cstatic.weborama.fr/advertiser/1215/47/676/1084/';
+    x1ey.x1lp = '3009';
+
+
+
+    x1ey.conf_oba = false;
+    adperfobj.zindex = adperfobj.zindex || 0 || 214748360;
+
+    adperfobj.clicks = new Array();
+    adperfobj.clicks[0] = 'http://adclick.g.doubleclick.net/aclk?sa=L&ai=CSO0_6IpgVsSPCcjU7AbkhJqQC42Oi_sF5Zr-x8gBwI23ARABIABg-8HsgugJggEXY2EtcHViLTY5ODg2NzY0MzExNTY4MjXIAQmoAwGqBHdP0CYgfQ-GSX-OieqU8tUwsNznhqeIjxmnpDb1Hh_M3SjMTWwzAoHasLeNROxMtPsAAcP-DboRiBncwnLjyuBL-ygnDlUnC1jeNsnqMrf8h3MjEIwAKoxNSDRGETJ52GPkPoAb9WSW3QPiQ-dKIhe8h7gQsq_kU4AGl-eSsKqij6gqoAYh2AcA&num=1&sig=AOD64_3V4qGaKC1BQMB_-ct34U6UbhinmQ&client=ca-pub-6988676431156825&adurl=https://bid.g.doubleclick.net/xbbe/creative/click%3Fd%3DAPEucNWnUkgeFG3wZgKXwC_2SzbHpuFrZFGFGOZYHi7H7IktAo8jjf7EtFLH7qPajMHU9AebSh8CM_d0Poy2raupEd-nzYZXZ1E7ETRaj34VD-Dq4Vmm_Qg%26r1%3Dhttps%3A%2F%2Fbouyguestelecomfr.solution.weborama.fr%2Ffcgi-bin%2Fdispatch.fcgi%3Fa.A%3Dcl%26a.si%3D1215%26a.te%3D6022%26a.aap%3D3009%26a.agi%3D145%26g.lu%3D' + (adperfobj.landing_urls[0] || '');
+
+
+    try{
+        adperfobj.imptrackers = new Array(
+                
+        );
+
+        adperfobj.clicktrackers = (new Array(
+                
+        ).concat(adperfobj.clicktrackers));
+
+        adperfobj.eventtrackers = (new Array(
+                
+        ).concat(adperfobj.eventtrackers));
+    }catch(scr_e){}
+
+
+
+    x1ey.addTrackers(adperfobj);
+    x1ey.addClicks(adperfobj);
+
+    x1cl = new x1bb.x1ig();
+x1cl.x1c(x1ey, 8383, 'index.html', adperfobj.width, adperfobj.height, '', '', '');
+x1ey.x1gG(x1cl, '', 2, '');
+x1cl = new x1bb.x1hW();
+x1cl.x1c(x1ey, 8380, 'backup.gif', adperfobj.width, adperfobj.height, '', '', '');
+x1ey.x1gG(x1cl, '', 2, '');
+
+
+
+
+    x1ey.x1gQ();
+
+
+}
+x1L('adperf_core_' + adperf_version + '_scrambled.js');

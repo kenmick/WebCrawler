@@ -1,0 +1,1057 @@
+/* From: production-mt-wfe-52-18-use1 : 2488 */
+huff.unit('modal', function(ready){
+
+    huff.css('_quickread');
+
+	var modal = this,
+		stack = [],
+		themes = {},
+		effects = {};
+
+	huff.use('jquery', function($){
+
+		var apply_effect = function(el, action, effect, callback){
+			if (effects[effect] === undefined) effect = 'default';
+			effects[effect][action](el, callback);
+		}
+
+		modal.effect = function(name, show, hide){
+			name = name || 'default';
+			if (undefined === show === hide) return effects[name];
+
+			effects[name] = {
+				show:	show,
+				hide:	hide
+			};
+
+			huff.emit('modal/effect', name);
+		}
+
+		modal.theme = function(name, options){
+			name = name || 'default';
+			if (undefined === options)
+				return themes[name];
+
+			var theme = themes[name] = options;
+
+			huff.emit('modal/theme', name, options);
+		}
+
+		modal.visible = function(){
+			return !!stack.length;
+		}
+
+		modal.size = function(){
+			return stack.length;
+		}
+
+		modal.create = function(options){
+			options = options || {};
+			options.theme = options.theme || 'default';
+			'embeds' in options || (options.embeds = true);
+
+			var w = {}, theme = themes[options.theme];
+
+			w.frame = $('<div>').hide().css('position', 'relative').
+				html(theme.frame || '').prependTo('body');
+
+			w.window = theme.window
+				? w.frame.find(theme.window)
+				: w.frame;
+
+			w.content = theme.content
+				? w.frame.find(theme.content)
+				: w.frame;
+
+			w.hide = function(callback){
+				apply_effect(w.frame, 'hide', options.effect, function(){
+					options['class'] && w.window.removeClass(options['class']);
+					'function' === typeof options.onclose && options.onclose();
+
+					'function' === typeof callback && callback();
+					huff.emit('modal/hide', w, options);
+
+					w.frame.undelegate(theme.closer).remove();
+					stack.splice(w.index, 1);
+					w.toggleEmbedObjects('visible');
+					$("body").removeClass('masked');
+					delete w;
+                });
+            }
+
+			w.refresh = function(update, callback){
+				var o = $.extend({}, options, update);
+
+				w.frame.css('z-index', stack[stack.length-1]
+					? parseInt(stack[stack.length-1].frame[0].style.zIndex) + 1
+					: 7000002);
+
+				o['class'] && w.window.addClass(o['class']);
+				theme.init && theme.init(w.window, o);
+				w.content.html(o.content || theme.loader);
+
+				var f = options.onclose;
+				options.onclose = function(){
+					'function' === typeof o.onclose && o.onclose.apply(this, arguments);
+					'function' === typeof f && f.apply(this, arguments);
+				}
+
+				'function' === typeof callback && callback(w, o);
+			}
+
+			w.show = function(update, callback){
+				w.refresh(update, function(w, o){
+					var onshow = function(){
+						'function' === typeof o.onshow && o.onshow(w.frame, o);
+						huff.emit('modal/show', w, o);
+					}
+
+					!options.content && options.url && $.ajax({
+						url:		options.url,
+						type:		options.type || 'GET',
+						cache:		options.cache === undefined ? true : options.cache,
+
+						success:	function(data, func, req){
+										w.update({
+											content:	data,
+											onshow:		onshow
+										});
+									},
+
+						error:		w.hide
+					});
+
+					apply_effect(w.frame, 'show', o.effect, (o.content || !o.url) && onshow);
+
+					w.index = stack.push(w) - 1;
+
+					w.toggleEmbedObjects('hidden');
+					$("body").addClass('masked');
+				});
+
+				return w;
+			}
+
+			w.update = function(update, callback){
+				options['class'] && w.window.removeClass(options['class']);
+
+				w.refresh(update, function(w, o){
+					'function' === typeof o.onshow && o.onshow(w.frame, o);
+					huff.emit('modal/update', w, o);
+					'function' === typeof callback && callback(w, o);
+				});
+
+				return w;
+			}
+
+			// show/hide embedded videos and objects
+			w.toggleEmbedObjects = function(state){
+				$('embed, object').each(function(i, e){
+					e = $(e);
+
+					if (options.embeds && w.frame.find(e).length) return;
+
+					e.css('visibility', state);
+					e.attr('belongs_modal') && e.css('display', 'visible' == state ? 'block' : 'none');
+				});
+			}
+
+			w.frame.delegate(theme.closer, 'click', w.hide);
+
+			return w;
+		}
+
+		modal.show = function(options){
+			return modal.create(options).show();
+		}
+
+		modal.hide = function(){
+			if ('function' === typeof effect)
+				callback = effect, effect = undefined;
+
+			if (!stack.length)
+				return 'function' === typeof callback && callback();
+
+			return stack[stack.length-1].hide();
+		}
+
+		modal.effect('default', function(el, callback){
+			el.show();
+			'function' === typeof callback && callback();
+		}, function(el, callback){
+			el.hide();
+			'function' === typeof callback && callback();
+		});
+
+		modal.effect('fade', function(el, callback){
+			el.fadeIn('fast', callback);
+		}, function(el, callback){
+			el.fadeOut('fast', callback);
+		});
+
+		modal.theme('default', {
+
+			frame:      '<div class="frame_qr" id="frame_qr"> '+
+						'<div class="qr_close close cursor_pointer"></div><div class="content"></div></div>' +
+						'<div class="close qr_close_frame"></div>',
+
+			loader:		'<div class="wait_load"></div>',
+
+			init:		function(window, options){
+							window
+								.width(options.width || '')
+								.height(options.height || '');
+
+							var window_width	=	window.width(),
+								document_width	=	$('body').width(),
+								document_height	=	(document.body && document.body.scrollTop)
+									? document.body.scrollTop
+									: document.documentElement.scrollTop,
+								left_position	=	Math.ceil(document_width/2 - window_width/2);
+
+							switch(options.position){
+								case 'absolute':
+									var css_styles = {
+										'position':	'absolute',
+										'left':		left_position,
+										'top':		document_height + 47 + 'px'
+									};
+									break;
+
+								default:
+									var css_styles = {
+										'position':		'fixed',
+										'left':			'50%',
+										'top':			'7%',
+										'margin-left':	'-' + (window_width/2) + 'px'
+									};
+									break;
+							}
+							window.css(css_styles);
+							return;
+						},
+
+			window:		'div:first',
+
+			content:	'div.content',
+
+			closer:		'.close'
+
+		});
+
+		modal.theme('quickreads', {
+
+			frame:		'<div class="frame_qr" id="frame_qr">'+
+						'<div class="qr_close_a close cursor_pointer"></div><div class="content"></div></div>' +
+						'<div class="close qr_close_frame"></div>',
+
+			loader:		'<div class="wait_load"></div>',
+
+			init:		function(window, options){
+							window
+								.width(options.width || '')
+								.height(options.height || '');
+
+							var window_width	=	window.width(),
+								document_width	=	$('body').width(),
+								document_height	=	(document.body && document.body.scrollTop)
+									? document.body.scrollTop
+									: document.documentElement.scrollTop,
+								left_position	=	Math.ceil(document_width/2 - window_width/2);
+
+							switch(options.position){
+								case 'absolute':
+									var css_styles = {
+										'position':	'absolute',
+										'left':		left_position,
+										'top':		document_height + 47 + 'px'
+									};
+									break;
+
+								default:
+									var css_styles = {
+										'position':		'fixed',
+										'left':			'50%',
+										'top': 			'7%',
+										'margin-left':	'-' + (window_width/2 + 30) + 'px'
+									};
+									break;
+							}
+
+							window.css(css_styles);
+							return;
+						},
+
+			window:		'div:first',
+
+			content:	'div.content',
+
+			closer:		'.close'
+
+		});
+		
+/*
+ * Theme used in Yahoo-Facebook module
+ */
+		modal.theme('yahoo', {
+
+			frame:		'<div class="frame_yahoo" id="frame_yahoo">'+
+						'<div class="yahoo_close_a close cursor_pointer"></div><div class="content"></div></div>' +
+						'<div class="close yahoo_close_frame"></div>',
+
+			loader:		'<div class="wait_load"></div>',
+
+			init:		function(window, options){
+							window
+								.width(options.width || '')
+								.height(options.height || '');
+
+							var window_width	=	window.width(),
+								document_width	=	$('body').width(),
+								document_height	=	(document.body && document.body.scrollTop)
+									? document.body.scrollTop
+									: document.documentElement.scrollTop,
+								left_position	=	Math.ceil(document_width/2 - window_width/2);
+
+							var css_styles = {
+								'position':			'fixed',
+								'width':			'100%',
+								'height':			'100%',
+								'text-align': 		'center'
+							};
+
+							window.css(css_styles);
+							return;
+						},
+
+			window:		'div:first',
+
+			content:	'div.content',
+
+			closer:		'.close'
+
+		});
+
+		ready(modal);
+
+	});
+
+});
+
+huff.unit('image', function(ready){
+
+	var image = this;
+
+	image.url = function(tag, aspect, size){
+		var r;
+
+		if (!(r = /<HH--(DEV--)?PHOTO--([A-Z\-_0-9]*)--(\d+)--HH>/.exec(tag)))
+			return false;
+
+		if (undefined === size){
+			size = aspect.match(/(\w+)-(.*)/);
+			size && (aspect = size[1], size = size[2]);
+		}
+
+		return url = [
+			'http://',
+			r[1] ? 'dev.assets.huffingtonpost.com' : 'i.huffpost.com',
+			'/gen/',
+			r[3],
+			aspect === 'original'
+				? '/original'
+				: '/thumbs/' + aspect  + '-' + r[2] + '-' + size,
+			'.jpg'
+		].join('');
+	}
+
+	ready(image);
+
+});
+
+huff.unit('layout', function(ready){
+
+	var layout = this;
+
+	huff.use('jquery', function($){
+
+		// onscroll
+		(function(){
+
+			layout.onscroll = function(frame, callback){
+				undefined === callback && (callback = frame, frame = undefined);
+
+				var check = function(e, c){
+						'function' === typeof callback && callback.call(e) &&
+							$(e).unbind('scroll', c).unbind('resize', c);
+					},
+
+					timer, wrap = function(){
+						var e = this,
+							c = arguments.callee;
+
+						timer && clearTimeout(timer);
+						timer = setTimeout(function(){
+							check(e, c);
+						}, 50);
+					}
+
+				$(frame || window).scroll(wrap).resize(wrap);
+			}
+
+		})();
+
+		// seeable
+		(function(){
+
+			var w = $(window),
+				contain = function(g, only_visible){
+					'number' === typeof g && (g = [g, g]);
+
+					return function(o, t, l){
+						if (only_visible && !this.is(':visible')) return false;
+
+						o = this.offset();
+						t = w.scrollTop() - g[1];
+						l = w.scrollLeft() - g[0];
+
+						return l <= o.left && l + w.width() + g[0]*2 >= o.left + this.outerWidth() &&
+							t <= o.top && t + w.height() + g[1]*2 >= o.top + this.outerHeight();
+					}
+				},
+				inview = function(g, only_visible){
+					'number' === typeof g && (g = [g, g]);
+
+					return function(o){
+						if (only_visible && !this.is(':visible')) return false;
+
+						o = this.offset();
+
+						return w.scrollTop() + w.height() + g[1] > o.top &&
+							w.scrollLeft() + w.width() + g[0] > o.left;
+					}
+				};
+
+			layout.seeable = function(selector, params, callback){
+				'function' === typeof params && (callback = params, params = undefined);
+
+				// non object params is spacing param
+				if (!params || params.length || 'object' !== typeof params)
+					params = { spacing: params };
+
+				var handlers = [],
+					verifier = 'function' === typeof params.spacing
+						? params.spacing
+						: contain(params.spacing || 0, params.only_visible);
+
+				$(selector).each(function(i, e){
+					verifier.call(e = $(e))
+						? 'function' === typeof callback && callback.call(e)
+						: handlers.push([e, callback, verifier]);
+				});
+
+				handlers.length && layout.onscroll(params.frame, function(){
+					for(var i=0, l=handlers.length; i<l; i++) handlers[i][2].call(handlers[i][0]) &&
+						(function(h){
+							'function' === typeof h[1] && h[1].call(h[0]);
+						})(handlers.splice(i--, 1)[0], l--);
+
+					return !handlers.length;
+				});
+			}
+
+			layout.inview = function(selector, params, callback){
+				'function' === typeof params && (callback = params, params = undefined);
+
+				if (!params || params.length || 'object' !== typeof params)
+					params = { spacing: params };
+
+				params.spacing = inview(params.spacing || 0, params.only_visible);
+				return layout.seeable(selector, params, callback);
+			}
+
+		})();
+
+		// process unloaded image
+		layout.load_image = function(e, url){
+			url = url || e.attr('longDesc');
+			if (url !== undefined && url !== null && url !== '') {
+				e.attr('src', url).removeAttr('longDesc');
+				e.removeClass('unloaded-image');
+				huff.emit('image/load', e, url);
+			}
+		}
+
+		// load seeable unloaded images
+		layout.lazy_images = function(selector, params){
+			params || (params = {});
+			params.spacing || (params.spacing = 400);
+
+			selector = $(selector || document).
+				find('img.unloaded-image');
+
+			layout.seeable(selector, params, function(){
+				layout.load_image(this);
+			});
+		}
+
+		// ready
+		ready(layout);
+
+	});
+
+});
+
+huff.unit('cookies', {
+
+	get:	function(key, f){
+				var result, regex = new RegExp('(?:^|; )' + encodeURIComponent(key) + '=([^;]*)');
+				result = (result = regex.exec(document.cookie)) ? decodeURIComponent(result[1]) : undefined;
+				return 'function' === typeof f ? f(result) : result;
+			},
+
+	set:	function(key, value, options){
+				options = options || {};
+				if (value === null || value === undefined)
+					options.expires = -1;
+
+				if (typeof options.expires === 'number'){
+					var days = options.expires,
+						t = options.expires = new Date();
+					t.setDate(t.getDate() + days);
+				}
+
+				value = String(value);
+
+				return (document.cookie = [
+					encodeURIComponent(key), '=',
+					options.raw ? value : encodeURIComponent(value),
+					options.expires ? '; expires=' + options.expires.toUTCString() : '',
+					options.path ? '; path=' + options.path : '',
+					options.domain ? '; domain=' + options.domain : '',
+					options.secure ? '; secure' : ''
+				].join(''));
+			},
+
+	del:	function(key){
+				this.set(key, undefined);
+			},
+
+	enabled:function(){
+		var cookieEnabled = (navigator.cookieEnabled) ? true : false;
+
+		if (typeof navigator.cookieEnabled == "undefined" && !cookieEnabled)
+		{
+			this.set("testcookie", "1");
+			cookieEnabled = (document.cookie.indexOf("testcookie") != -1) ? true : false;
+			this.del("testcookie");
+		}
+		return (cookieEnabled);
+	}
+});
+
+huff.unit('user', function(ready){
+
+	var user = this,
+		domain = '.' + location.hostname.replace(/www\./, ''),
+		prefix = huff.beta ? 'beta' + (location.port || 80) + '_' : '',
+		preferences = [
+			'facebook', 'twitter', 'read_tracking', 'gfc',
+			'yahoo', 'google', 'linkedin', 'aol', 'winlive'
+		];
+
+	huff.use('jquery', 'conf', 'cookies', function($, conf, cookies){
+
+		var keys = [],
+			auths = 1,
+			a = arguments,
+			now = +(new Date()),
+			get = function(key, f){
+				keys.push(key);
+				return cookies.get(prefix + key, f);
+			},
+			set = function(key, val, expires){
+				return cookies.set(prefix + key, val, {
+					path:		'/',
+					expires:	expires,
+					domain:		'.' + domain
+				});
+			}
+
+		user.id = get('huffpost_user_id');
+		user.name = get('huffpost_user');
+		user.logged = user.id && user.name ? true : false;
+		user.guid = get('huffpost_user_guid');
+		
+		if (user.logged) {
+			user.name = HPUtil.utf8_decode(user.name);
+		}
+
+		user.levels = get('huffpost_levels', function(levels){
+			return 'string' === typeof levels ? levels.split(',') : [];
+		});
+
+		user.influence = {
+			commented:	{ value: 0, check_date: now },
+			blogged:	{ value: 0, check_date: now },
+			shared:		{ value: 0, check_date: now },
+			emailed:	{ value: 0, check_date: now }
+		};
+
+		user.id && get('huffpost_influence_' + user.id, function(influence){
+			if (!influence) return;
+			influence = JSON.parse(influence);
+
+			if ('object' === typeof influence){
+				var past = new Date();
+				past.setDate(past.getDate() - 30);
+				past = Date.parse(past.toString());
+
+				for(var v in influence) if (influence.hasOwnProperty(v) && user.influence[v]){
+					user.influence[v] = influence[v].check_date < past
+						? { value: 0, check_date: +(new Date()) }
+						: influence[v];
+				}
+			} else {
+				set('huffpost_influence_' + user.id, JSON.stringify(user.influence))
+			}
+		});
+		
+		/**
+		 *	Important:
+		 *	The following script (Ln:73 to Ln:126) runs if the user is loggedin
+		 *	AND preferences cookies are set(which are set during user authentication)
+		 *	The ajax to reauthenticate.php will occur on every pageload to
+		 *	init social notifications and entry inside module etc.
+		 */	
+		user.id && get('huffpost_prefs', function(prefs) {
+			
+			if (!prefs) {
+				return;
+			}
+			
+			prefs = prefs.split('');
+			var a = arguments;
+			
+			if (prefs.length)
+			{
+				if (auths--)	//Imp: To avoid ajax req more than once
+				{
+					var postdata = {};
+					var entry_id = HPUtil.GetEntryID();
+					if (entry_id) {
+						postdata.entry_id = entry_id;
+					}
+					
+					$.post('/users/login/reauthenticate.php', postdata, function(resp) {
+						
+                        resp && ( resp = JSON.parse(resp) );
+						a.callee(get('huffpost_prefs'));
+						
+						if ('object' === typeof resp) {
+							
+							//using ready to avoid race condition in showing the counter on front
+							jQuery(document).ready(function(){
+								SocialNotifications.setCounter(resp.notifications);
+							});
+						
+							if (resp.hasOwnProperty('snp_entry_module')) {
+								SNPModule.addEntriesInside(resp.snp_entry_module);
+							}
+						}
+						
+					});
+				}
+				else
+				{
+					huff.error('couldn\'t read user preferences or already read');
+				}
+			}
+			
+			return;
+		});
+
+		user.pref = function(){
+			for(var i=0, l=arguments.length; i<l; i++)
+				'string' === typeof arguments[i] && (arguments[i] = 'user/pref/' + arguments[i]);
+
+			return conf.get.apply(conf, arguments);
+		}
+
+		user.destroy = function(){
+			for(var i=0, l=keys.length; i < l; i++)
+				set(keys[i], undefined);
+
+			huff.emit('user/destroy');
+
+			a.callee($, conf, cookies);
+		}
+
+		for(var i in user) if (user.hasOwnProperty(i) && 'function' !== typeof user[i])
+			conf.set('user/' + i, user[i]);
+
+		ready(user);
+
+	});
+
+});
+
+huff.unit('track', function(ready){
+
+  // if there is no external HPTrack object
+  if ('object' !== typeof HPTrack) return ready();
+
+    function trackTopnavEvent(itemLabel, e){
+		// prevent visiting link immediately
+		e.preventDefault();
+		e.stopPropagation(); // for safety! Die IE!
+
+		// where are we when we click, that is which Vertical
+		var action = 'Click from ' + (HPConfig.current_vertical_name.charAt(0).toUpperCase() + 
+                                      HPConfig.current_vertical_name.substring(1).toLowerCase());
+
+		// actual tracking request
+		HPTrack.trackEvent('Top Nav', action, itemLabel);
+		// track in DataLayer since we stopped propagation
+		try { if (undefined != bN) bN.click(e); } catch (ignored) {}
+        
+		if( typeof(e.target.href) !== undefined ) {
+			// handle visiting link appropriately
+			HPTrack.navigateAfterTrack(e, e.target.href);
+		}
+    }
+
+    function trackNewTopnavEvent(section, dropdown, item, e){
+		// prevent visiting link immediately
+		e.preventDefault();
+		e.stopPropagation(); // for safety! Die IE!
+
+		// where are we when we click, that is which Vertical
+		var action = 'Click from ' + (HPConfig.current_vertical_name.charAt(0).toUpperCase() + 
+                                      HPConfig.current_vertical_name.substring(1).toLowerCase());
+
+		// actual tracking request for item
+		HPTrack.trackEvent('Top Nav Item', "TNI -" + action, "TNI - " + item);
+		// actual tracking request for section
+		if (section)
+			HPTrack.trackEvent('Top Nav Section', "TNS - " + action, "TNS - " + section);
+		// actual tracking request for which dropdwon
+		if (dropdown)
+			HPTrack.trackEvent('Top Nav Dropdown', "TND - " + action, "TND - " + dropdown);
+		// track which section in dropdown
+		if (dropdown && section)
+			HPTrack.trackEvent('Top Nav DS - ' + dropdown, "TNDS - " + action, "TNDS - " + section);
+		// track which item in dropdown
+		if (dropdown)
+			HPTrack.trackEvent('Top Nav DI - ' + dropdown, "TNDI - " + action, "TNDI - " + item);
+		// track in DataLayer since we stopped propagation
+		try { if (undefined != bN) bN.click(e); } catch (ignored) {}
+        
+		if( typeof(e.target.href) !== undefined ) {
+			// handle visiting link appropriately
+			HPTrack.navigateAfterTrack(e, e.target.href);
+		}
+    }
+
+	huff.use('jquery', function($){
+
+	    huff.on('topnav/click', function(e){
+		    // get target of event (so we can track which was clicked)
+		    var link = e.target;
+		    // name of target of link
+		    var label = link.title;
+
+            if (!label)
+            {
+                var linkText = $(link).text();
+                label = linkText.charAt(0).toUpperCase() + linkText.substring(1).toLowerCase();
+                label = $.trim(label);
+            }
+
+            trackTopnavEvent (label, e);
+	    });
+
+	    huff.on('topnavnew/click', function(e){
+		    // get target of event (so we can track which was clicked)
+		    var link = e.target;
+		    // name of target of link
+		    var label = link.title;
+
+            if (!label)
+            {
+                var linkText = $(link).text();
+                label = linkText.charAt(0).toUpperCase() + linkText.substring(1).toLowerCase();
+                label = $.trim(label);
+            }
+
+            trackNewTopnavEvent ("TopTab", label, label, e);
+	    });
+
+	
+	    huff.on('topnavnew_vertical_list/click', function(e){
+
+            // get target of event (so we can track which was clicked)
+            var link = e.target;
+
+            // name of target of link
+		    var label = link.title;
+
+            if (!label)
+            {
+                var linkText = $(link).text();
+                label = linkText.charAt(0).toUpperCase() + linkText.substring(1).toLowerCase();
+                label = $.trim(label);
+            }
+
+            // find out which dropdown we were on
+            var dropdown = $(event.target).closest("div.relative").children(".topnav_tab_link").text();
+            dropdown = dropdown.charAt(0).toUpperCase() + dropdown.substring(1).toLowerCase();
+            dropdown = $.trim(dropdown);
+
+            trackNewTopnavEvent ("Vertical List", dropdown, label, e);
+        });
+
+	    huff.on('topnavnew_like_list/click', function(e){
+
+            // get target of event (so we can track which was clicked)
+            var link = e.target;
+
+            // name of target of link
+		    var label = link.title;
+
+            if (!label)
+            {
+                var linkText = $(link).text();
+                label = linkText.charAt(0).toUpperCase() + linkText.substring(1).toLowerCase();
+                label = $.trim(label);
+            }
+
+            // find out which dropdown we were on
+            var dropdown = $(event.target).closest("div.relative").children(".topnav_tab_link").text();
+            dropdown = dropdown.charAt(0).toUpperCase() + dropdown.substring(1).toLowerCase();
+            dropdown = $.trim(dropdown);
+
+            trackNewTopnavEvent ("You Might Also Like", dropdown, label, e);
+        });
+  
+        huff.on('topnavnew_trending/click', function(e){
+            // get target of event (so we can track which was clicked)
+            var link = e.target;
+
+            // name of target of link
+	        var label = link.title || $.trim($(link).text());
+
+            // find out which dropdown we were on
+            var dropdown = $(event.target).closest("div.relative").children(".topnav_tab_link").text();
+            dropdown = dropdown.charAt(0).toUpperCase() + dropdown.substring(1).toLowerCase();
+            dropdown = $.trim(dropdown);
+
+            trackNewTopnavEvent ("Trending Stories", dropdown, label, e);
+        });
+
+	    huff.on('topnavnew_all_sections/click', function(e){
+
+            // get target of event (so we can track which was clicked)
+            var link = e.target;
+
+            // name of target of link
+		    var label = link.title;
+
+            if (!label)
+            {
+                var linkText = $(link).text();
+                label = linkText.charAt(0).toUpperCase() + linkText.substring(1).toLowerCase();
+                label = $.trim(label);
+            }
+
+            // in all section tab, no sections
+            trackNewTopnavEvent ("", "All Sections", label, e);
+        });
+
+	    huff.on('topnavnew_blogs/click', function(e){
+
+            // get target of event (so we can track which was clicked)
+            var link = e.target;
+
+            // name of target of link
+		    var label = link.title;
+
+            if (!label)
+            {
+                var linkText = $(link).text();
+                label = linkText.charAt(0).toUpperCase() + linkText.substring(1).toLowerCase();
+                label = $.trim(label);
+            }
+
+            // in all section tab, no sections
+            trackNewTopnavEvent ("", "Blogs", label, e);
+        });
+
+
+        huff.on('topnavnew_subnav/click', function(e){
+            // get target of event (so we can track which was clicked)
+            var link = e.target;
+
+            // name of target of link
+		    var label = link.title;
+
+            if (!label)
+            {
+                var linkText = $(link).text();
+                label = linkText.charAt(0).toUpperCase() + linkText.substring(1).toLowerCase();
+                label = $.trim(label);
+            }
+            
+            trackNewTopnavEvent ("Subnav", "", label, e);
+        });
+    });
+
+
+  huff.on('topnav/signup', function(social_name){
+    // actual tracking request
+    HPTrack.trackEvent('Login/Signup', 'Click in Top Nav', social_name);
+  });
+
+  // keep track of furthest users have scrolled, for tracking
+  huff.use('jquery', function($){
+    var scroll = $(document).scrollTop();
+    if (!HPTrack._furthest_scrolled || HPTrack._furthest_scrolled < scroll)
+      HPTrack._furthest_scrolled = scroll;
+  });
+
+  ready();
+
+});
+
+huff.unit('common', function(ready){
+
+	// preload
+	huff.use('front/quickread');
+
+	huff.use('jquery', 'conf', 'cookies', function($, conf, cookies){
+
+		conf.get('topnav/version', function(version){
+			if (version === '1') 
+				huff.use('front/topnav'); 
+		});
+
+		// lazy image loading
+		huff.use('layout', function(l){
+			huff.on('content/update', function(frame){
+				frame && (frame = jQuery(frame));
+				l.lazy_images(frame);
+			});
+
+			huff.emit('content/update');
+		});
+
+		// quickread
+		conf.get('ads/zone', function(zone){
+			huff.use('front/quickread', function(q){
+				q.ad_zone = zone + '/quickread';
+
+                q.hint('#featured_content .quickread_link, #news_column .quickread_link, #grid_left_bl .quickread_link, #right_column_entries .quickread_link, #mynews-columns .quickread_link, #column-2 .quickread_link, #sidebar_right .quickread_link, .mod-tedsplash .quickread_link', function(e){
+					var entry = e.parent().attr('href').match(/_[n|b]_(\d+)\./) ||
+						e.attr('id').match(/image_(\d+)/) ||
+						e.parent().attr('id').match(/entry_id_(\d+)/);
+
+					entry && entry[1] && q.show(entry[1]);
+				});
+
+				$(document).delegate('.quick_read_link', 'click', function(e){
+					var entry = $(e.currentTarget).attr('href').match(/_[n|b]_(\d+)\./);
+					q.mp = $(e.currentTarget).attr('href').match(/ref=mostpopular/);
+					if (entry && entry[1]){
+						q.show(entry[1]);
+						e.preventDefault();
+					}
+				});
+			});
+		});
+
+		// cleanup-old unused cookies #11768
+		if (HPUtil) {
+			HPUtil.cleanup_cookies();
+			HPUtil.migrate_cookies();
+
+			HPUtil.onPageReady(function(){
+			//Cookie Consent bar
+			    if (HPConfig.site === 'italy' || HPConfig.site === 'spain' || HPConfig.site === 'germany' || HPConfig.site === 'france' || HPConfig.site === 'greece') {
+                    huff.use('util/cookieconsent', function(c){
+                        c.init();
+                    });
+                }
+			});
+
+            
+            // load auth modals based upon url var
+            if ( "signup" === HPUtil.getUrlVar("auth") ) {
+                HPConnect.Signup();
+            } else if ( "login" === HPUtil.getUrlVar("auth") ) {
+                HPConnect.Login();
+            } else if ( "verify" === HPUtil.getUrlVar("auth") ) {
+                HPConnect.Verify();
+            }
+            
+            HPUtil.onPageReady(function(){
+                if ( "germany" === HPConfig.site ) 
+                {
+                    try {
+                        var page        = jQuery(window);
+                        var wrapper     = jQuery("#wrapper");
+                        var ad_div      = jQuery("#tfm_skyscraper #ad_right_skyscraper");
+                        var ad_width    = 180;
+                        if ( wrapper.length && ad_div.length && "" !== ad_div.html() ) {
+                            var page_width     = page.width();
+                            var wrapper_width  = wrapper.width();
+                            var offset_left    = wrapper.offset().left;
+                            var offset_right   = page_width - (wrapper_width + offset_left);
+                            if ( offset_right < ad_width ) {
+                                var move_left = ad_width - offset_right;
+                                if ( offset_left > move_left ) {
+                                    var left_pos = offset_left - move_left;
+                                    wrapper.animate({
+                                        "margin-left": left_pos
+                                    }, 400, function(){ document._rail_left_position_reset = true; });
+                                }
+                            }
+                        }
+                    } catch (e) {
+                    }
+                }
+                return;
+            });
+		};
+
+		cookies.get('br_fp') || huff.use('br_fp');
+		
+		//Track new Shares count link on front top
+		if ($('.top_entry_share_count').length) {
+			$('.top_entry_share_count').click(function(){
+				var href = $(this).attr('href');
+				if (href) {
+					var entry = href.match(/_(\d+).html/);
+					
+					var entry_id = entry[1];
+					var vertical = conf.get('vertical') || '';
+					HPTrack.trackEvent('Shares count', 'Click from' + vertical, 'Entry:' + entry_id);
+					return;
+				}
+			});
+		};
+
+		ready();
+
+	});
+});
+
+huff.unit('promo', function(ready){
+
+	/iphone|ipad|ipod|android|blackberry/.test(navigator.userAgent.toLowerCase()) && huff.use('promo/mobile');
+
+	ready();
+
+});
+
+
+/* From: production-mt-wfe-52-18-use1 : 2488 *//* d46470a66384aab51872df9ebc089fc9cd6a886a */

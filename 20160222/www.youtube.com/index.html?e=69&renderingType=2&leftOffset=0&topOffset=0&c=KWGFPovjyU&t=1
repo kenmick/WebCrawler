@@ -1,0 +1,60 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta data-template-name="Template_H5T_mhexpanding-970x250-ytplayer">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" href="gwdyoutube_style.css">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <script type="text/javascript" src="/879366/Enabler_01_103.js"></script>
+  <script type="text/javascript" src="https://www.gstatic.com/external_hosted/polymer/custom.elements.min.js"></script>
+  <script type="text/javascript" src="https://www.gstatic.com/ads/ci/ytclosebutton/1/ytclosebutton_min.js"></script>
+  <script type="text/javascript" src="googbase_min.js"></script>
+  <script type="text/javascript" src="gwdyoutube_min.js"></script>
+</head>
+<body>
+    <div id="main-container">
+
+      <div id="bkgd"></div>
+     
+        <div id="collapsed-bkgd"></div>
+          <div id="collapsed-title"></div>
+          <div id="collapsed-subtitle"></div>
+          <div id="collapsed-packshot"></div>
+          <div id="collapsed-cta"></div>
+          <div id="collapsed-logo"></div>
+        
+        <div id="ended-title"></div>
+        <div id="ended-packshot"></div>
+        <div id="ended-cta"></div>
+        <div id="ended-logo"></div>
+
+      <!-- Collapsed Conent -->
+      <div id="collapsed-content">
+        <div class="feature-collapsed" id="feature-collapsed"></div>
+        <div id="collapsed-exit"></div>
+
+        <div id="collapsed-video-bkgd"></div>
+        <div id="collapsed-video"></div>
+      </div>
+
+      <!-- Expand Content -->
+      <div id="expanded-content">
+        <div class="feature-expanded" id="feature-expanded"></div>
+        <div id="expanded-exit"></div>
+        <div id="expanded-video"></div>
+      </div>
+
+      <div id="close-button"><img width="25" height="25" alt="Close Ad" src="https://www.gstatic.com/ads/ci/ytclosebutton/1/close_black.png"><span style="">Close Expanded</span></div>
+      <div id="replay-button"></div>
+
+      <ci-ytclosebutton id="yt-close"></ci-ytclosebutton>
+    </div>
+    <script>
+      Enabler.setExpandingPixelOffsets(0, 0, 970, 500);
+    </script>
+
+  <script src="TweenLite.min.js"></script>
+  <script src="logic.js"></script>
+</body>
+</html>

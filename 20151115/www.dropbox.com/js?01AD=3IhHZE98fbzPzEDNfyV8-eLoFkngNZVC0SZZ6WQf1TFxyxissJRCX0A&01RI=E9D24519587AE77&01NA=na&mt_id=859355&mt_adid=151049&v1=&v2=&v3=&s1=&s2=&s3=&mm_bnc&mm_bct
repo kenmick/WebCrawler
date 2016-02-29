@@ -1,0 +1,35 @@
+/**/
+(function() {
+    metric = function(url, wait)
+    {
+        setTimeout(function() {
+                var e = document.createElement("img");
+                e.src = url;
+            }, wait);
+    }
+
+    var intervals = [0, 10];
+    var inlen = intervals.length;
+    for (var k = 0; k < inlen; ++k)
+        this.metric("https://pixel.mathtag.com/misc/img?mm_bnc&bcdv="+k, intervals[k] * 1000);
+})();
+
+//used to sync advertiser without leaking referer to final destination
+	    var frm = document.createElement('iframe');
+	    frm.style.visibility = 'hidden';
+	    frm.style.display = 'none';
+	    frm.src = "https://pixel.mathtag.com/sync/iframe?01AD=3IhHZE98fbzPzEDNfyV8-eLoFkngNZVC0SZZ6WQf1TFxyxissJRCX0A&01RI=E9D24519587AE77&01NA=na&mt_adid=151049&v1=&v2=&v3=&s1=&s2=&s3=&mm_bnc&mm_bct&mt_uuid=01245648-ca4a-4200-8a80-066124435312&no_iframe=1";
+	    document.body.appendChild(frm);
+      (function() {
+    var mid = document.createElement('script'); mid.type = 'text/javascript'; mid.async = true;
+    mid.src = '//mathid.mathtag.com/d/i.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mid, s);
+})();
+
+(window.MathIDInits = window.MathIDInits || []).push(function() {
+    MathID.getData({mt_id:'859355',ccid:'',cuid:'',mm_uuid:'01245648-ca4a-4200-8a80-066124435312',src:'mt2'}).then(function(data) {
+        var p = document.createElement('script');
+        p.src = '//pixel.mathtag.com/event/js?01AD=3IhHZE98fbzPzEDNfyV8-eLoFkngNZVC0SZZ6WQf1TFxyxissJRCX0A&01RI=E9D24519587AE77&01NA=na&mt_id=859355&mt_adid=151049&v1=&v2=&v3=&s1=&s2=&s3=&mm_bnc&mm_bct&mathid_data=' + encodeURIComponent(data);
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(p, s);
+    });
+});

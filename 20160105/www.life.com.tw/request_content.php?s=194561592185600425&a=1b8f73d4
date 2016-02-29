@@ -1,0 +1,379 @@
+<html>
+	
+	<head>
+	
+		<meta name="robots" content="noindex,nofollow"> 
+		<link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700' rel='stylesheet' type='text/css'>
+		<style type="text/css">
+
+			* {
+				margin:0px;
+				margin-left: auto;
+				margin-right: auto;
+				padding:0px;
+			}
+	
+			img {
+				border:0px;
+			}
+	
+			div.container {
+				width:300px;
+				height:600px;
+				-webkit-perspective: 400;
+				perspective: 400;
+			}
+            #container2 {
+                position:absolute;
+				width:298px;
+				height:335px;
+                background-color:#F4F4F4;
+                border:1px solid #979797;
+                margin-top: 260px;
+			}
+	
+			#distractor {
+				position:absolute;
+			}
+	
+			div.bgLink {
+			
+				position:absolute;
+	
+				margin-top:108px;			
+				width:300px;
+				
+				text-align:center;
+				-moz-align:center;
+	
+				
+			}
+	
+			div.bgLink a {
+			
+				color:#333333;
+				font-family:arial;
+				font-size:10px;
+				text-decoration:none;
+				line-height:12px;
+				
+			}
+	
+			div.bgLink a:hover {
+				text-decoration:underline;
+			}
+	
+			div.bgLink a span.big {
+				color:#333333;
+				font-family:arial;
+				font-size:10px;
+				text-decoration:none;
+				line-height:12px;
+			}
+		
+			
+		
+	
+			div.contentad {
+
+				position:absolute;
+
+			}
+
+			div.b {
+			
+				position:absolute;
+
+			}
+	
+			div.b:hover {
+				background: transparent;
+			}
+			div.link {
+			
+				text-align:center;
+				color:#333333;
+	
+				margin-left:2px;
+				margin-right:2px;
+	
+				width:296px;
+				height:25px;
+	
+				overflow:hidden;
+	
+			}
+	
+			div.link a {
+				color:#333333;
+				color:#333333;
+				font-family:arial;
+				font-size:10px;
+				text-decoration:none;
+				line-height:12px;
+			}
+	
+			
+
+
+                   	
+			div.b table {
+				width:296px;
+				height:81px;
+				clip:rect(0px 0px 0px 0px);
+			}
+	
+	
+			td.img {
+				width:134px;
+				text-align:center;
+				-moz-align:center;
+			}
+	
+			td.img div.bounding {
+				width:120px;
+				max-height:60px;
+				overflow:hidden;
+			}
+	
+			td.imgbig {
+				width:296px;
+                                height:106px;
+                                vertical-align:middle;
+				text-align:center;
+				-moz-align:center;
+			}
+	
+			td.imgbig div.bounding {
+				width:234px;
+				max-height:60px;
+				overflow:hidden;
+			}
+	
+			td.text div {
+				margin:0px;
+				margin-left:2px;
+				margin:0px;
+				margin-left:5px;
+				width:150px;
+				height:100px;
+				overflow:hidden;
+			}
+	
+			td.text div table {
+				width:150px;
+				height:60px;
+			}
+
+			td.text div table tr td {
+			}			
+	
+			a.link {
+				color:#333333;
+				font-family:arial;
+				font-size:10px;
+				text-decoration:none;
+				line-height:12px;
+			}
+	
+   div.b:nth-child(2) {
+				left: 0px;
+				top: 109px;
+			}
+
+			div.b:nth-child(3) {
+				left: 0px;
+				top: 214px;
+			}
+
+			div.b:nth-child(4) {
+				left: 0px;
+				top: 490px;
+			}
+
+
+			td.text div table {
+				width:110px;
+				height:106px;
+			}
+	
+			hr {
+             border:0;
+             border-top:1px solid #9B9B9B;
+             height:1px;
+             width:42px;
+             text-align:center;
+             margin-top:4px;
+            }
+            
+            #b2 hr {display:none}
+            
+			a.link {
+				color:#4A4A4A;
+				font-family: 'Source Sans Pro', sans-serif;
+				font-size:10px;
+				text-decoration:none;
+                font-weight:400;
+				line-height:13px;
+			}
+
+			a.link:hover {
+				text-decoration:none;
+			}
+
+			div.headline {
+				margin-top:5px;
+				height:10px;
+			}
+
+			a.headline {
+				color:#4A4A4A;
+				font-family: 'Source Sans Pro', sans-serif;
+				font-size:10px;
+				text-decoration:none;
+                font-weight:700;
+				line-height:13px;
+			}
+	
+			a.headline:hover {
+				text-decoration:none;
+			}
+
+
+		</style>
+		
+		
+	</head>
+	
+	<body>
+	
+		<script>
+
+			var currentTime = new Date();	
+
+			function handleMouseOver(id) {
+				if ( ! interactions[id].awaiting ) {
+					interactions[id].awaiting = true;
+					currentTime = new Date();	
+					interactions[id].awaitingSince = currentTime.getTime() / 1000;
+				} else {
+					currentTime = new Date();	
+					var timeNow = currentTime.getTime() / 1000;
+					if ( ( ( timeNow - interactions[id].awaitingSince ) > 1 ) && ( ! interactions[id].interacted ) ) {
+						interactions[id].interacted = true;
+						document.getElementById('mouseinteraction').src='//hal9000.redintelligence.net/interaction.php?c='+interactions[id].c+'&h='+interactions[id].h;
+					}
+				}
+			}
+
+		</script>
+
+		<div class="container">
+	
+			
+	
+			
+
+				
+					<div class="contentad"><table cellspacing="0" cellpadding="0" border="0" width="300" height="250">
+						<tr>
+							<td width="300" height="250" align="center" onMouseMove="handleMouseOver(0)"><script type="text/javascript" src="https://img.metaffiliation.com/na/na/res/trk/script.js" ></script>        
+<script type="text/javascript">
+    try {
+        new __trknanapub("S4BED351F57B153",{
+            'argsite' : '194561592185600425',
+            'pcsite' : 'https://n25.hal9000.redintelligence.net/c/po3egnpcfz2u9kf?tprde='
+            }
+        );
+    } catch(e) {}
+</script></td>
+						</tr>
+					</table></div>
+				
+
+
+				
+
+
+				
+
+
+				
+
+
+
+<div id="container2">
+			
+				
+
+
+				
+           
+						
+				
+
+
+				
+					<div id="b[1]" class="b c2" onClick="window.open('https://n25.hal9000.redintelligence.net/c/pti8ryl0rq480hh')" onMouseMove="handleMouseOver(1)">	
+						<table id="tbig[1]" cellspacing="0" cellpadding="0" border="0">
+							<tr>
+								<td class="imgbig"><div class="bounding" onClick="disabledEventPropagation(event)"><a onClick="disabledEventPropagation(event)" href="https://n25.hal9000.redintelligence.net/c/pti8ryl0rq480hh" target="_blank"><img src="https://ad.zanox.com/ppv/?35081323C594800438&zpar0=194561592185600425"></a></div></td>
+							</tr>
+						</table>
+						<hr>
+					</div>
+				
+           
+						
+				
+					<div id="b[2]" class="b c3" onClick="window.open('https://n25.hal9000.redintelligence.net/c/p4aii7gyf1nyiyh')" onMouseMove="handleMouseOver(2)">
+						<table id="tmix[2]" class="b" cellspacing="0" cellpadding="0" border="0">
+							<tr>
+								<td class="img"><div class="bounding"><div><a href="https://n25.hal9000.redintelligence.net/c/p4aii7gyf1nyiyh" target="_blank"><img src="https://action.metaffiliation.com/trk.php?maff=P313851F57B1120&argsite=194561592185600425"></a></div></div></td><td class="text"><div><table cellspacing="0" cellpadding="0" border="0"><tr><td><a href="https://n25.hal9000.redintelligence.net/c/p4aii7gyf1nyiyh" class="link" target="_blank">29.000 Jeux & Jouets de qualitÃ© & de grandes marques chez Avenue des Jeux.</a><br><a href="https://n25.hal9000.redintelligence.net/c/p4aii7gyf1nyiyh" class="headline" target="_blank">Avenue des Jeux</a></td></tr></table></div></td>
+							</tr>
+	
+						</table>
+						<hr>
+					</div>
+				
+
+
+				
+           
+						
+				
+					<div id="b[3]" class="b c4" onClick="window.open('https://n25.hal9000.redintelligence.net/c/pwysx8li92m8e1x')" onMouseMove="handleMouseOver(3)">
+						<table id="tmix[3]" class="b" cellspacing="0" cellpadding="0" border="0">
+							<tr>
+								<td class="img"><div class="bounding"><div><a href="https://n25.hal9000.redintelligence.net/c/pwysx8li92m8e1x" target="_blank"><img src="https://tracking.publicidees.com/banner.php?partid=30890&progid=2712&promoid=71170&cb=194561592185600425"></a></div></div></td><td class="text"><div><table cellspacing="0" cellpadding="0" border="0"><tr><td><a href="https://n25.hal9000.redintelligence.net/c/pwysx8li92m8e1x" class="link" target="_blank">Vos chaussures de sport</a><br><a href="https://n25.hal9000.redintelligence.net/c/pwysx8li92m8e1x" class="headline" target="_blank">chausport.com</a></td></tr></table></div></td>
+							</tr>
+	
+						</table>
+						<hr>
+					</div>
+				
+
+
+				
+           
+			
+	 </div>
+			
+	
+		</div>
+
+		<img style="position:absolute;visibility:hidden" id="mouseinteraction" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" />
+			
+		
+
+		<script>
+			var interactions = new Array();
+			interactions.push({awaiting:false,awaitingSince:0,interacted:false,c:'395781',h:'9314078a3f11'});interactions.push({awaiting:false,awaitingSince:0,interacted:false,c:'316651',h:'de572b9e38f9'});interactions.push({awaiting:false,awaitingSince:0,interacted:false,c:'15521',h:'2b2e30f03799'});interactions.push({awaiting:false,awaitingSince:0,interacted:false,c:'53881',h:'87f6f0394f2b'});
+		</script>
+
+
+		
+	
+	</body>
+
+</html>

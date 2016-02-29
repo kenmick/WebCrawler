@@ -1,0 +1,60 @@
+if (screen.width && screen.height) {var jsinfocall=new Image;jsinfocall.src='http://ww690.smartadserver.com/track/jsinfo.asp?sw='+screen.width+'&sh='+screen.height;}
+var sasLib4845328Elt = document.createElement('script');
+sasLib4845328Elt.Type = "text/html";
+sasLib4845328Elt.src = 'http://cdn1.smartadserver.com/diff/templates/js/agency-redirect/sas-agency-redirect-1.1.js';
+
+sas_appendToContainer(21483, sasLib4845328Elt);
+	
+        if (typeof(sas_ajax) != 'undefined' && sas_ajax) {
+		var getDomElem = function(id) {
+			return document.getElementById(id).contentDocument || document.frames[id].document;
+		}
+
+		var i = document.createElement('iframe');
+		i.id = 'sas_4845328_iframe';
+		i.scrolling = 'no';
+		i.frameBorder = 0;
+		i.width = 1;
+		i.height = 1;
+		i.style.margin = 0;
+		i.style.padding = 0;
+		i.style.width = '1px';
+		i.style.height = '1px';
+		sas_appendToContainer(21483, i);
+
+		i.doc = getDomElem(i.id);
+		i.doc.write(
+			'<!doctype html><html><head><title></title></head><body style="margin:0;padding:0">'+
+			'<scr'+'ipt type="text/javascript">var inDapIF=inDapMgrIf=true;</scr'+'ipt>'+
+			'<!-- Position PavÃ© (MPU), incluant le Filmstrip et le Grand Angle -->\r\n'+'\r\n'+'<scr'+'ipt type="text/javascript" src="//static.adserver.pm/position/HUFFINGTON_POST/RG__NEW_/mpu/?click=[CLICK_COMMAND]"></scr'+'ipt>\r\n'+'\r\n'+
+			'<div id="sas_21483_readyDiv" style="display:none;"></div></body></html>'
+		);
+
+		if (navigator.userAgent.indexOf('MSIE') == -1 && navigator.userAgent.indexOf('Opera') == -1) i.doc.close();
+	} else {
+		document.write('<!-- Position PavÃ© (MPU), incluant le Filmstrip et le Grand Angle -->\r\n'+'\r\n'+'<scr'+'ipt type="text/javascript" src="//static.adserver.pm/position/HUFFINGTON_POST/RG__NEW_/mpu/?click=[CLICK_COMMAND]"></scr'+'ipt>\r\n'+'\r\n');
+	}
+
+var iframeConfig_4845328 = {
+	formatId: 21483,
+	insertionId: 4845328,
+	iFrame: i,
+	acceptedWidth: "1,300".split(","),
+	acceptedHeight: "1,250,600,900,1000,1050".split(","), 
+	defaultWidth: "1",
+	defaultHeight: "1",
+        status: "0"		
+}
+if (typeof(resizableIframeConfig11) != 'undefined')
+{
+	resizableIframeConfig11.push(iframeConfig_4845328);
+}
+else
+{
+	var resizableIframeConfig11 = new Array();
+	resizableIframeConfig11.push(iframeConfig_4845328);
+}
+
+
+
+

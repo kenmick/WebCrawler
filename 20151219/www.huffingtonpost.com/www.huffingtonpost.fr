@@ -1,0 +1,97 @@
+
+
+if (navigator && navigator.userAgent) {
+    var sasIsIosUiwebview = /(iPhone|iPod|iPad).*AppleWebKit(?!.*Safari)/i.test(navigator.userAgent);
+    if (!sasIsIosUiwebview) {
+        var smartCsync=document.createElement('IFRAME');smartCsync.src='http://cdn1.smartadserver.com/diff/rtb/csync/CookieSync.html?nwid=690&dcid=4';
+        smartCsync.scrolling = 'no';smartCsync.frameBorder = 0;smartCsync.width = 0;smartCsync.height = 0;smartCsync.style.margin = 0;smartCsync.style.padding = 0;smartCsync.style.display = 'none';smartCsync.style.width = '0px';smartCsync.style.height = '0px';smartCsync.style.visibility = 'hidden';
+        if(document.body != null)document.body.appendChild(smartCsync);
+    }
+}var SmartBackgroundConfig = {
+    insertionId: Number(5040434),
+    pageId: String("365932"),
+    sessionId: Math.round(Math.random()*100000),
+    formatId: Number(21486),
+    creative: {
+		url: String("http://ced.sascdn.com/diff/690/5040434/habillage-1680x1000px-HUFF-V7.jpg"),
+		width: Number(1680),
+		height: Number(1000),
+		clickUrl: String("http://ww690.smartadserver.com/h/cc?imgid=14976153&insid=5040434&pgid=365932&uid=6871826246360007689&tgt=country%3dfrance%3bcat%3d%3b%24dt%3d1t%3b%24hc&systgt=%24qc%3d1309908405%3b%24ql%3dhigh%3b%24qpc%3d33000%3b%24qpp%3d0%3b%24qt%3d184_1788_22057t%3b%24dma%3d0%3b%24b%3d9999%3b%24o%3d99999&go=http%3a%2f%2fwww.huffingtonpost.fr%2f2015%2f11%2f27%2fstory_n_8661272.html"),
+		oryginalClickUrl: String("http://www.huffingtonpost.fr/2015/11/27/story_n_8661272.html"),
+		clickTarget: String("_blank"),
+		type: Number(1),
+		agencyCode: String(''),
+		wMode: String("Opaque"),
+		flashVars: String(''),
+		backup: {
+			url: String(""),
+			clickUrl: String(""),
+			clickTarget: String("_blank"),
+			width: Number(),
+			height: Number()
+		}
+    },
+    background: {
+        color: String("e9edf0"),
+        repeat: String("no-repeat"),
+        position: String("center top"),
+        attachment: String("scroll")
+    },
+    elementOffset: {
+    	elementId: String(""),
+    	elementType: String("id"),
+    	value: Number(0),
+    	contentVerticalOffset: Number(206)
+    },
+    close: {
+		defaultButton: Boolean(0),
+		linkText: String(""),
+		linkColor: String("FFFFFF"),
+		linkFontSize: Number(14)
+    },
+	other: {
+		duration: Number(0),
+		trackingUrl: String(""),
+		zIndex: Number(1),
+		forcePointerCursor: Boolean(0),
+		fakeBodyIdTag: String(""),
+    	horizontalOffset: Number(0),
+		verticalOffset: Number(0),
+		important: Boolean(1)
+    },
+    clickMap: {
+    	pageWidth: Number(0),
+    	width: Number(5000),
+    	height: Number(1000),
+    	topPartHeight: Number(0),
+    	zIndex: Number(9999),
+    	horizontalOffset: Number(0),
+		verticalOffset: Number(0),
+		testBorderLine: Boolean(0)
+    }
+};
+
+(function () {
+	var scr = ('0'=='1') ? String('') : String(''+'');
+	
+	var lib = (document.location.protocol == 'https:' ? 'https://ec' : 'http://ak') + '-ns.sascdn.com/diff/templates/js/background/sas-background-1.12.js';
+
+	if ('undefined' != typeof sas_ajax && sas_ajax) {
+		var js = document.createElement('script'); js.src = lib;
+		sas_appendToContainer(21486, js);
+		if (scr.replace(/\r\n/gm, '')) {
+			var ifr = document.createElement('iframe');
+			ifr.src = 'about:blank';
+			var css = 'position:absolute;left:-1000px;width:1px;height:1px';
+			ifr.setAttribute('style', css);
+			ifr.style.cssText = css;
+			sas_appendToContainer(21486, ifr);
+			var d = ifr.contentWindow.document;
+			d.open('text/html', 'replace');
+			d.write('<!DOCTYPE html><head></head><body>' + scr + '</body></html>');
+			d.close();
+		}
+	} else {
+		document.write('<div id="sas_21486"></div><scr'+'ipt type="text/javascript" src="'+lib+'"></scr'+'ipt>' + scr);
+	}
+})();

@@ -1,0 +1,111 @@
+  <!DOCTYPE html>
+<html lang="fr">
+<head><script type="text/javascript">
+    
+      (function() {
+        var relegateNavigation = '';
+        var handleClickTagMessage = function(e) {
+          try {
+            var eventData = JSON.parse(e.data);
+          } catch (err) {
+            return;
+          }
+          if (eventData.isInitClickTag) {
+            if (eventData.clickTags) {
+              for (var i = 0; i < eventData.clickTags.length; i++) {
+                var clkTag = eventData.clickTags[i];
+                window[clkTag.name] = clkTag.url;
+              }
+            } else if (eventData.clickTag) {
+              window.clickTag = eventData.clickTag;
+            }
+            relegateNavigation = eventData.relegateNavigation;
+          }
+        };
+
+        if (open.call) {
+          window.open = function(open) {
+            return function(url, name, features) {
+              if (relegateNavigation === 'parent') {
+                var message = {'clickTag': url, 'isPostClickTag': true};
+                parent.postMessage(JSON.stringify(message), '*');
+              } else {
+                var args = [url, name];
+                if (features) {
+                  args.push(features);
+                }
+                open.apply(window, args);
+              }
+            };
+          }(window.open);
+        }
+
+        if (window.addEventListener) {
+          window.addEventListener(
+              'message', handleClickTagMessage, false);
+        } else {
+          window.attachEvent('onmessage', handleClickTagMessage);
+        }
+      })();
+    
+  </script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <meta name="ad.size" content="width=300,height=600">
+  <script type="text/javascript">
+  var clickTag = "#";
+  </script>
+  <title>VW-pasat-GTE_300x600</title>
+  <link rel="stylesheet" type="text/css" href="oc_main.css">
+</head>
+<body>
+<a href="javascript:window.open(window.clickTag)">
+<div id="oc_conteneur">
+    <div id="oc_bg"></div>
+    <div class="oc_bgfg"></div>
+
+    <div id="oc_modbouton">
+      <div class="oc_mod2"></div>
+      <div class="oc_mod1"></div>
+    </div>
+
+    <div id="oc_emode"></div>
+    <div id="oc_emodefx"></div>
+
+
+    <div id="oc_gtemode">
+      <div id="oc_comptetour"></div>
+          <div id="oc_aiguille"></div>
+
+    </div>
+    
+    
+    <div id="oc_fin"></div>
+    <div id="oc_fincar"></div>
+
+    <div class="oc_t1 VWFont1">Et si votre voiture pouvait combiner<br />1 moteur Ã©lectrique<br />et 1 moteur thermique...</div>
+    <div class="oc_t2 VWFont1">... Ã  la simple pression d&#39;un bouton ?</div>
+    <div class="oc_t3 VWFont1">E-Mode 100% Ã©lectrique.</div>
+    <div class="oc_t4 VWFont1">Mode GTE combinant la puissance<br />des 2 moteurs.</div>
+    <div class="oc_t5 VWFont1">Nouvelle Passat GTE <br><span class="VWFont2">hybride rechargeable.</span></div>
+    <div class="oc_t6 VWFont2">Prenez de l&#39;avance sur demain.</div>
+
+    
+    <div id="oc_bande_blanche">
+        <div id="oc_logo"></div>
+        <div id="oc_carname" class="VWFont1">Nouvelle Passat GTE</div>
+    </div>
+
+    <div id="oc_cta" class="oc_cta">
+      <span class="VWFont1">DÃ©couvrez-la</span>
+      <div id="oc_highlight_cta" class="oc_cta"></div>
+    </div>
+    
+    <div id="oc_fondu_entree" class="oc_fondu"></div>
+    <div id="oc_fondu_sorti" class="oc_fondu"></div>
+
+</div>
+</a>
+
+</body>
+</html>

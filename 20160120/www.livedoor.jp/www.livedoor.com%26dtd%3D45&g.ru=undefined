@@ -1,0 +1,56 @@
+/*
+(c) Copyright Weborama SA - France. All rights reserved.
+It is illegal to modify, disassemble, sell, copy or publish this software
+or any part thereof. The use of this software is only permitted with the
+prior and express written permission of Weborama SA - France.
+More information: http://www.weborama.com/contacts/
+*/
+function x17() {
+    var x1cl, x1ey = x1bb.x1cj();
+    x1ey.x1ie = x1bb.x1nn(x1ey.x1ie,'wuid=&retargeting=&');
+    x1ey.x1fN = 'https://cstatic.weborama.fr/advertiser/1052/12/257/297/';
+    x1ey.x1lp = '445';
+
+
+
+    x1ey.conf_oba = false;
+    adperfobj.zindex = adperfobj.zindex || 0 || 214748360;
+
+    adperfobj.clicks = new Array();
+    adperfobj.clicks[0] = 'https://adclick.g.doubleclick.net/aclk?sa=L&ai=CGRwPLtKfVvyVGdTMWuWJscANjY6L-wXlmv7HyAHAjbcBEAEgAGD7gYCA6AmCARdjYS1wdWItNjk4ODY3NjQzMTE1NjgyNcgBCagDAaoEdU_QWAVDswNzTWRtVJFQSrAf8q_OqOXB1_DM3KVyWTO2RnQkK26xFfBz3Z_gKBkA6qsbEDw9GGn-xW4jTvGnuMmykfs9JlXRdh3_mPN_Xiz1EGxL4pWezrdI6W9Y-cnxLsf9UdhCvZhU0E9CGLXz-FaMlrWdr4AGpa_Sn5OVnPnKAaAGIdgHAA&num=1&sig=AOD64_2t57MSsLDrW0PElh4oMpDAy03ezA&client=ca-pub-6988676431156825&adurl=https://bid.g.doubleclick.net/xbbe/creative/click%3Fd%3DAPEucNUGFp42rndBE4EdJWfWhPbt452AgJjmIFq-4AVp4dfP8gMmdvFXpxKPhqTqsn8A-qBW23ChHo-t5Dk6hTLVA5Sq8ePTVw%26r1%3Dhttps%3A%2F%2Fsncftgv.solution.weborama.fr%2Ffcgi-bin%2Fdispatch.fcgi%3Fa.A%3Dcl%26a.si%3D1052%26a.te%3D815%26a.aap%3D445%26a.agi%3D140%26g.lu%3D' + (adperfobj.landing_urls[0] || '');
+
+
+    try{
+        adperfobj.imptrackers = new Array(
+                'https://t.voyages-sncf.com/dynview/vsc-fr/pix1x1.gif?ead-publisher=weborama-1052-1128-4&ead-name=weborama-1052-1128-4-18&ead-location=weborama-1052-1128-4-18-~INSERTION_ID&ead-creative=weborama-257&ead-creativetype=1x1&ea-rnd=392721&'
+        );
+
+        adperfobj.clicktrackers = (new Array(
+                
+        ).concat(adperfobj.clicktrackers));
+
+        adperfobj.eventtrackers = (new Array(
+                
+        ).concat(adperfobj.eventtrackers));
+    }catch(scr_e){}
+
+
+
+    x1ey.addTrackers(adperfobj);
+    x1ey.addClicks(adperfobj);
+
+    x1cl = new x1bb.x1ig();
+x1cl.x1c(x1ey, 1457, '300x250_Pro.html', adperfobj.width, adperfobj.height, '', '', '');
+x1ey.x1gG(x1cl, '', 2, '');
+x1cl = new x1bb.x1hW();
+x1cl.x1c(x1ey, 1459, '300x250_Pro_3mois.gif', adperfobj.width, adperfobj.height, '', '', '');
+x1ey.x1gG(x1cl, '', 2, '');
+
+
+
+
+    x1ey.x1gQ();
+
+
+}
+x1L('adperf_core_' + adperf_version + '_scrambled.js');

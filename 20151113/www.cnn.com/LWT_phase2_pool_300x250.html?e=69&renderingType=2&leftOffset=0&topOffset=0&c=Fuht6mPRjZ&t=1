@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+	<title>LWT_phase2_pool_300x250</title>
+    <meta name="ad.size" content="width=300,height=250">
+    <script src="/879366/Enabler_01_86.js"></script>
+<!--Adobe Edge Runtime-->
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <script type="text/javascript" charset="utf-8" src="edge.5.0.1.min.js"></script>
+    <style>
+        .edgeLoad-EDGE-16557824 { visibility:hidden; }
+    </style>
+<script>
+   AdobeEdge.loadComposition('LWT_phase2_pool_300x250', 'EDGE-16557824', {
+    scaleToFit: "none",
+    centerStage: "none",
+    minW: "0",
+    maxW: "undefined",
+    width: "300px",
+    height: "250px"
+}, {"dom":{}}, {"dom":{}});
+</script>
+<!--Adobe Edge Runtime End-->
+<script>
+if (!Enabler.isInitialized()) {
+  Enabler.addEventListener(
+    studio.events.StudioEvent.INIT,
+    enablerInitialized);
+} else {
+   enablerInitialized();
+}
+function enablerInitialized() {
+  // Enabler initialized.
+  // In App ads are rendered offscreen so animation should wait for
+  // the visible event. These are simulated with delays in the local
+  // environment.
+  if (!Enabler.isVisible()) {
+    Enabler.addEventListener(
+      studio.events.StudioEvent.VISIBLE,
+      adVisible);
+  } else {
+     adVisible();
+  }
+}
+function adVisible() {
+  // Ad visible, start ad/animation.
+}
+</script>  
+<script>
+// Exits.
+Enabler.exit("Click on BG");
+</script>  
+</head>
+<body style="margin:0;padding:0;">
+	<div id="Stage" class="EDGE-16557824">
+	</div>
+</body>
+</html>

@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gbk" /><base target="_blank" />
+<script charset="gb2312" src="http://img3.cache.netease.com/cnews/js/ntes_jslib_1.x.js" language="javascript" type="text/javascript"></script>
+<script src="http://img1.cache.netease.com/f2e/lib/js/ne.js"></script>
+<script src="http://img1.cache.netease.com/f2e/component/switch/switch_prototype.734886.min.js"></script>
+<style type="text/css">
+body {margin:0;padding:0; font:12px/1.5 Tahoma,"hiragino sans gb",Helvetica,Arial;background: #F9F9F9;}
+div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,blockquote,p{padding:0; margin:0;}
+ol,ul {list-style:none;}
+li{list-style-type:none;}
+img{vertical-align:top;border:0;}
+address,cite,code,em,th,i{font-weight:normal; font-style:normal;}
+.hx a,.hx em,.fB{font-weight:bold;}
+.clearfix{*zoom:1;}
+.clearfix:after{display:block; overflow:hidden; clear:both; height:0; visibility:hidden; content:".";}
+a {color:#252525; text-decoration:none;}
+a:visited {text-decoration:none;}
+a:hover {color:#ba2636;text-decoration:underline;}
+a:active {color:#ba2636;}
+.dom-display .normal{display:none;}
+.dom-display .current{display:block;}
+.hidden{display:none;}
+.left,.c-fl{float:left;}
+.right,.c-fr{float:right;}
+.c-fs14{font-size:14px;}
+.c-fs12{font-size:12px;}
+/* margin & padding */
+.ma3,.mt3{margin-top:3px;}.ma3,.mr3{margin-right:3px;}.ma3,.mb3{margin-bottom:3px;}.ma3,.ml3{margin-left:3px;}
+.ma6,.mt6{margin-top:6px;}.ma6,.mr6{margin-right:6px;}.ma6,.mb6{margin-bottom:6px;}.ma6,.ml6{margin-left:6px;}
+.ma9,.mt9{margin-top:9px;}.ma9,.mr9{margin-right:9px;}.ma9,.mb9{margin-bottom:9px;}.ma9,.ml9{margin-left:9px;}
+.ma12,.mt12{margin-top:12px;}.ma12,.mr12{margin-right:12px;}.ma12,.mb12{margin-bottom:12px;}.ma12,.ml12{margin-left:12px;}
+.ma22,.mt22{margin-top:22px;}.ma22,.mr22{margin-right:22px;}.ma22,.mb22{margin-bottom:22px;}.ma22,.ml22{margin-left:22px;}
+.pa3,.pt3{padding-top:3px;}.pa3,.pr3{padding-right:3px;}.pa3,.pb3{padding-bottom:3px;}.pa3,.pl3{padding-left:3px;}
+.pa6,.pt6{padding-top:6px;}.pa6,.pr6{padding-right:6px;}.pa6,.pb6{padding-bottom:6px;}.pa6,.pl6{padding-left:6px;}
+.pa7,.pt7{padding-top:7px;}.pa7,.pr7{padding-right:7px;}.pa7,.pb7{padding-bottom:7px;}.pa7,.pl7{padding-left:7px;}
+.pa8,.pt8{padding-top:8px;}.pa8,.pr8{padding-right:8px;}.pa8,.pb8{padding-bottom:8px;}.pa8,.pl8{padding-left:8px;}
+.pa9,.pt9{padding-top:9px;}.pa9,.pr9{padding-right:9px;}.pa9,.pb9{padding-bottom:9px;}.pa9,.pl9{padding-left:9px;}
+.pa12,.pt12{padding-top:12px;}.pa12,.pr12{padding-right:12px;}.pa12,.pb12{padding-bottom:12px;}.pa12,.pl12{padding-left:12px;}
+.pa17,.pt17{padding-top:17px;}.pa17,.pr17{padding-right:17px;}.pa17,.pb17{padding-bottom:17px;}.pa17,.pl17{padding-left:17px;}
+.interval{margin-bottom:11px;}
+.interval-solid,.interval-dot{margin-bottom:6px;}
+.interval-dot{border-bottom:1px dotted #c1c1c1;}
+.interval-solid{border-bottom:1px solid #E3E6EB;}
+/* ad */
+.ad-sub,.ad{overflow:hidden;*zoom:1;}
+.ad-sub:after,.ad:after{display:block; overflow:hidden; clear:both; height:0; visibility:hidden; content:".";}
+.ad-sub{width:300px;}
+.tab-ad{border-top:1px solid #E3E3E3;background:#F9F9F9;}
+.tab-ad .tab-hd{height:31px;overflow:hidden;line-height:30px;border-left:1px solid #E3E3E3;}
+.tab-ad .tab-hd .tab-hd-con{height:30px;border-right:1px solid #E3E3E3;}
+.tab-ad .tab-hd .current{height:31px;background:#f9f9f9;_position:relative;_z-index:1;}
+.tab-ad .tab-bd{margin-top:-1px;border:1px solid #E3E3E3;}
+.ad{overflow:hidden;background:#F9F9F9;}
+.tab-sub-2 .tab-hd-con{width:148px;}
+.tab-sub-2 .tab-hd .current{width:149px;}
+.tab-sub-3 .tab-hd-con{width:98px;}
+.tab-sub-3 .tab-hd .current{width:100px;}
+.tab-sub-4 .tab-hd-con{width:73px;}
+.tab-sub-4 .tab-hd .current{width:76px;}
+.tab-hd-con{float:left;font-size:14px;text-align:center;cursor:pointer;}
+.tab-hd-con a{display:inline-block;}
+.tab-hd .current{font-weight:bold;}
+.tab-bd-con{display:none;overflow:hidden;}
+.tab-ad .tab-bd-con{padding:18px 9px 12px;}
+/* mod list */
+.list-sub li{background-image:url(http://img4.cache.netease.com/www/v2013/img/icon.png);background-repeat:no-repeat;}
+.m-list li{overflow:hidden;color:#c1c1c1;}
+.list-sub{padding-bottom:0px;}
+.list-sub li,.list-sub-normal li{height:23px;line-height:23px;font-size:14px;}
+.list-sub li{padding-left:8px;background-position:left -124px;}
+.list-detail h3{height:22px;margin-bottom:3px;overflow:hidden;font-size:14px;line-height:22px;font-weight:bold;}
+.list-detail p{line-height:22px;font-size:12px;color:#888;}
+.m-list .list-detail{padding-left:0;height:auto;line-height:0;background:none;}
+.list-detail img{float:left;margin-left:-140px;}
+.m-list .list-detail70{padding-left:100px;}
+.list-detail70 img{float:left;margin-left:-100px;}
+.heavy_title{font-weight:bold;}
+.clear{clear:both;display: block;}
+/*slider*/
+.list-sub li.ad_list{padding-left: 0px;}
+.list-sub .pics_list{padding-bottom:2px;background: none;height: 254px;padding-left: 0;width: 280px;overflow: hidden;position: relative;}
+.list-sub .pics_list_wrap{width:1120px;height: 237px;}
+.list-sub .pics_list .pics_litem{display: block;float: left;width: 280px;height: 237px;overflow: hidden;position: relative;color:#fff;margin-bottom: 4px;}
+.list-sub .pics_list .pics_litem p{background: #000;opacity: 0.9;background:#000\9;font-size: 14px;font-weight: bold;width: 100%;height: 30px;line-height: 30px;text-indent: 9px;letter-spacing: 1px;position: absolute;top: 207px;left: 0;z-index: 2;
+	background: -moz-linear-gradient(left, rgb(0, 0, 0), rgba(225, 225, 225,0));
+	background: -webkit-linear-gradient(left, rgb(0, 0, 0), rgba(225, 225, 225,0));
+	background: -ms-linear-gradient(left, rgb(0, 0, 0), rgba(225, 225, 225,0));
+	background: -o-linear-gradient(left, rgb(0, 0, 0), rgba(225, 225, 225,0));
+}
+.list-sub .pics_list a.pics_litem:hover p{opacity: 1;}
+.pics_list_ctrl{width:150px;margin: 7px auto 0;font-size: 0; line-height:5px;}
+.pics_list_ctrl .pl_ctrl_dot{background: url(http://img1.cache.netease.com/f2e/wine/jiuyou_ads/images/jiuxiang_icon1.png) -48px -40px;display: inline-block;width: 24px;height: 5px;margin-left: 8px;cursor: pointer;}
+.pics_list_ctrl .current{background: url(http://img1.cache.netease.com/f2e/wine/jiuyou_ads/images/jiuxiang_icon1.png) -24px -40px;}
+.pl_ctrl_prev,.pl_ctrl_next{background: url(http://img1.cache.netease.com/f2e/wine/jiuyou_ads/images/jiuxiang_icon1.png);width: 17px;height:29px;cursor: pointer;position: absolute;text-indent: -9999px;}
+.pl_ctrl_prev{background-position: 0 0; left: 10px;top: 40%;margin-top: -15px;}
+.pl_ctrl_next{background-position: -17px 0;right: 10px;top: 40%;margin-top: -15px;}
+.loading {
+  -webkit-animation: 5s linear 0s normal none 1 pl_loader;
+  -o-animation: 5s linear 0s normal none 1 pl_loader;
+  -moz-animation: 5s linear 0s normal none 1 pl_loader;
+  animation: 5s linear 0s normal none 1 pl_loader;
+}
+@-moz-keyframes pl_loader {
+  from {
+    background-position: -24px -40px;
+  }
+  to {
+    background-position: 0px -40px;
+  }
+}
+@-webkit-keyframes pl_loader {
+  from {
+    background-position: -24px -40px;
+  }
+  to {
+    background-position: 0px -40px;
+  }
+}
+@-o-keyframes pl_loader {
+  from {
+    background-position: -24px -40px;
+  }
+  to {
+    background-position: 0px -40px;
+  }
+}
+@keyframes pl_loader {
+  from {
+    background-position: -24px -40px;
+  }
+  to {
+    background-position: 0px -40px;
+  }
+}
+</style>
+</head>
+<body>
+	<div class="ad">
+		<ul class="m-list list-sub clearfix">
+			<li class="pics_list">
+				<div class="pics_list_wrap">
+										   					<a href="http://jiu.163.com/special/00824J3O/youjiangzhengwen01.html" class="pics_litem">
+						<img src="http://img4.cache.netease.com/cnews/2015/12/23/20151223104758f9241.jpg" alt="ÓÐ½±Õ÷ÎÄ£ºÔ¼´ºÖ®×í¡¤°®¼ÇÒä " width="280" height="237" />
+						<p>ÓÐ½±Õ÷ÎÄ£ºÔ¼´ºÖ®×í¡¤°®¼ÇÒä </p>
+					</a>
+					   					<a href="http://jiu.163.com/15/1221/20/BBCTN54800824IRJ.html" class="pics_litem">
+						<img src="http://img5.cache.netease.com/cnews/2015/12/22/20151222111348fa459.jpg" alt="ÆÏåËéËéÄî£ººì¾Æemoji½Ì³Ì" width="280" height="237" />
+						<p>ÆÏåËéËéÄî£ººì¾Æemoji½Ì³Ì</p>
+					</a>
+					   					<a href="http://jiu.163.com/#1zhen" class="pics_litem">
+						<img src="http://img4.cache.netease.com/cnews/2015/12/16/201512161405380c33a.jpg" alt="ÑëÊÓ²¥¡¶¹ú¾Æ¡· ½²ÊöÃ©Ì¨ÂÒ¶·¹ÊÊÂ" width="280" height="237" />
+						<p>ÑëÊÓ²¥¡¶¹ú¾Æ¡· ½²ÊöÃ©Ì¨ÂÒ¶·¹ÊÊÂ</p>
+					</a>
+					   					<a href="http://m.jiu.163.com/appshare.html?shareId=8303" class="pics_litem">
+						<img src="http://img1.cache.netease.com/cnews/2015/12/15/2015121510445006f4b.jpg" alt="¾ÆµÄ¶ÈÊýÄÃÎÂ¶È¼ÆÒ²ÄÜ²â£¿£¿" width="280" height="237" />
+						<p>¾ÆµÄ¶ÈÊýÄÃÎÂ¶È¼ÆÒ²ÄÜ²â£¿£¿</p>
+					</a>
+									</div>
+				<div class="pics_list_ctrl_wrap">
+					<div class="pics_list_ctrl">
+						<span class="pl_ctrl_dot current loading"></span>
+						<span class="pl_ctrl_dot"></span>
+						<span class="pl_ctrl_dot"></span>
+						<span class="pl_ctrl_dot"></span>
+					</div>
+					<span class="pl_ctrl_prev" >&lt;</span>
+					<span class="pl_ctrl_next" >&gt;</span>
+				</div>
+			</li>
+			<li style="display:none;"><a href="http://jiu.163.com/">¾ÆÏãÆµµÀ</a></li>
+			<li class="ad_list"><a href="http://m.jiu.163.com/" target="_blank"><img src="http://img1.cache.netease.com/f2e/wine/jiuyou_ads/images/jy_news_ad.png" alt=""></a></li>
+		</ul>  
+	</div>
+<script type="text/javascript">
+(function(){
+	document.domain = '163.com';
+	var datahash = '';
+	for(var i=0;i<document.links.length;i++){
+		document.links.item(i).href+=datahash;
+	}
+	var Tween = {
+		Linear: function(t,b,c,d){ return c*t/d + b; }
+	}
+	function animate(node,attr,start,end,delay,callback){
+		var _time = null;
+		var begin = new Date().getTime();
+		var tween_func = Tween.Linear;
+		_time = setInterval(function(){
+			var now = new Date().getTime();
+			if(now-begin>=delay){
+				clearInterval(_time);
+				_time=null;
+				if(attr!='opacity'){
+					node.style[attr] = end + 'px';
+				}else{
+					node.style[attr] = end;
+				}
+				callback&&callback();
+				return;
+			}
+			var val = tween_func(now-begin,start,end-start,delay);
+			if(attr!='opacity'){
+				node.style[attr] = val + 'px';
+			}else{
+				node.style[attr] = val;
+			}
+		},13);
+		return _time;
+	}
+	//ÂÖ²¥
+	NE('.pics_list').each(function(i,item){
+		var nodes = {
+			ctrls : NE(".pl_ctrl_dot",item),
+			contents : NE(".pics_litem",item)
+		},
+		params = {
+			css : "current",
+			eventName : 'click',
+			delay : 0,
+		};
+		var _switch = new switchable(nodes,params);
+		var _pics_list = NE('.pics_list_wrap',item)[0];
+		var _next_ctrl = NE('.pl_ctrl_next',item)[0];
+		var _prev_ctrl = NE('.pl_ctrl_prev',item)[0];
+		var _ctrl_list = NE('.pics_list_ctrl_wrap span',item);
+		_pics_list.style.width = _switch.elems.ctrls.length * 280+'px';
+		_pics_list.style.marginLeft = '0px';
+		_switch.onHandle=function(i){
+			NE(_switch.elems.ctrls).removeClass('loading');
+			NE(_switch.elems.ctrls[i]).addClass('loading');
+			animate(_pics_list,'marginLeft',parseInt(_pics_list.style.marginLeft),-i*280,400);
+		}
+		//ÉÏÏÂ·­
+		function playNext(){
+			_switch.next();
+		}
+		function playPrev(){
+			_switch.prev();
+		}
+		NE(_next_ctrl).bind('click',function(e){
+			playNext();
+		});
+		NE(_prev_ctrl).bind('click',function(e){
+			playPrev();
+		});
+		var _switch_int = setInterval(playNext,5000);
+		NE(_ctrl_list).bind("mouseover",function(){
+			var i = _switch.param.curIndex;
+			NE(_switch.elems.ctrls[i]).removeClass('loading');
+			_switch_int = clearInterval(_switch_int);
+		});
+		NE(_ctrl_list).bind("mouseout",function(){
+			var i = _switch.param.curIndex;
+			NE(_switch.elems.ctrls[i]).addClass('loading');
+			_switch_int = setInterval(playNext,5000);
+		});
+	});
+})();
+</script>
+</body>
+</html>

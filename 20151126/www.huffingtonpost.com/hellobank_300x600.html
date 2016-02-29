@@ -1,0 +1,349 @@
+<!DOCTYPE html> 
+<html lang="fr" xml:lang="fr">
+<head><script type="text/javascript">
+    
+      (function() {
+        var relegateNavigation = '';
+        var handleClickTagMessage = function(e) {
+          try {
+            var eventData = JSON.parse(e.data);
+          } catch (err) {
+            return;
+          }
+          if (eventData.isInitClickTag) {
+            if (eventData.clickTags) {
+              for (var i = 0; i < eventData.clickTags.length; i++) {
+                var clkTag = eventData.clickTags[i];
+                window[clkTag.name] = clkTag.url;
+              }
+            } else if (eventData.clickTag) {
+              window.clickTag = eventData.clickTag;
+            }
+            relegateNavigation = eventData.relegateNavigation;
+          }
+        };
+
+        if (open.call) {
+          window.open = function(open) {
+            return function(url, name, features) {
+              if (relegateNavigation === 'parent') {
+                var message = {'clickTag': url, 'isPostClickTag': true};
+                parent.postMessage(JSON.stringify(message), '*');
+              } else {
+                var args = [url, name];
+                if (features) {
+                  args.push(features);
+                }
+                open.apply(window, args);
+              }
+            };
+          }(window.open);
+        }
+
+        if (window.addEventListener) {
+          window.addEventListener(
+              'message', handleClickTagMessage, false);
+        } else {
+          window.attachEvent('onmessage', handleClickTagMessage);
+        }
+      })();
+    
+  </script>
+<meta name="ad.size" content="width=300,height=600">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<title>Hellobank_300x600</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/plugins/CSSPlugin.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenLite.min.js"></script>
+<script type="text/javascript">var clickTag = "http://www.google.com";Â </script>
+<style>
+	/*utilities*/
+
+	.left-5{
+		left: 5px;
+	}
+	.is-absolute{
+		position: absolute;
+	}
+	.is-center{
+		left: 50%;
+	}
+	.has-full-width{
+		width: 100%;
+	}
+	.text-center{
+		text-align: center;
+	}
+	.FLeft{float:left;}
+	.FRight{float:right;}
+	.clear{clear:both;}
+
+	/*MINE*/
+	.footer{
+		bottom: 0px;
+		background-color: white;
+		height: 150px;
+	}
+	.footer>.logo{
+		padding-top: 16px;
+	}
+	.footer>.footer-text{
+		margin-left: -79px;
+		top:121px;
+	}
+	/*END MINE*/
+	body{font-family:arial, Helvetica,sans-serif;color:#46515d;font-size:10px;margin: 0px;}
+
+	.global-wrapper{
+		width: 300px;
+		height: 600px;
+		 
+	}
+	.global{
+		background-color:#e1e1e1;
+		position: relative;
+		overflow: hidden;
+		cursor: pointer;
+		width: 300px;
+		height: 600px;
+	}
+	.border{
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 298px;
+		height: 598px;
+		border:1px solid #B5B5B5;
+		z-index: 2;
+	}
+
+	.menu {
+	    z-index: 9999;
+	    opacity: 0;
+	    left: 50%;
+	    position: absolute;
+	    top: -14px;
+	    margin-left: -170px;
+	}
+
+	.block_container{
+		width: 240px;
+	    position: relative;
+	    left: 50%;
+	    margin-left: -120px;
+	}
+
+	.block1{
+		opacity:0;
+		top: 88px;
+	}
+
+	.block2{
+		opacity:0;
+		top: 446px;
+	}
+
+	.block3{
+		opacity:0;
+		top: 735px;
+	}
+
+	.photo1{
+		left: 0;
+		top: 0;
+	}
+
+	.photo2{
+		left: 0;
+		top: 0;
+	}
+
+	.photo3{
+		left: 0;
+		top: 0;
+	}
+	
+	.profile{
+		margin-left: -19px;
+	}
+	.profile1{
+	    top: 134px;
+	}
+
+	.profile2{
+		opacity:0;
+		top: 231px;
+	}
+
+	.profile3{
+	    top: 134px;
+	}
+
+	.profile4{
+		top: 179px;
+		margin-left: -27px;
+	}
+		
+	.block1_text1{
+		top: 186px;
+	}
+
+	.block1_text2{
+		top: 201px;
+	}
+
+	.block1_text3{
+		opacity:0;
+		top: 281px;
+	}
+
+	.block1_text4{
+		opacity:0;
+		top: 305px;
+	}
+
+	.block2_text1{
+	    top: 188px;
+	}
+
+	.block2_text2{
+    	top: 205px;
+	}
+
+	.block3_text1{
+		top: 243px;
+	}
+
+	.block3_text2{
+		top: 261px;
+	}
+	.block3_text3{
+		top: 261px;
+	}
+	.ligne {
+		opacity:0;
+		width:108px;
+		height:1px;
+		background-color:#cccccc;
+		top: 251px;
+		margin-left: -54px;
+	}
+	.bg{
+	    top: 0;
+	    display: block;
+	    margin-left: -126px;
+	    width: 251px;
+	    height: 231px;		
+	}
+	.block2_bg{
+		height: 274px;
+	}
+	.block3_bg{
+		height: 310px;
+	}
+</style>
+<script type="text/javascript">
+	window.onload = init;
+	var ___loop=0;
+	function init(){
+		setStyleElement('menu',{css:{"opacity":1}});
+		TweenLite.from(getElementByClass('footer'), 0.8, {alpha:0, onComplete:rewind});
+	}
+
+	function rewind(){
+		setStyleElement('block_container',{y:0,alpha:1});
+		setStyleElement('block_bg',{height:259});
+		setStyleElement('block1',{css:{"opacity":0}});
+		setStyleElement('profile2',{css:{"opacity":0}});
+		setStyleElement('block1_text3',{css:{"opacity":0}});
+		setStyleElement('ligne',{css:{"opacity":0}});
+		setStyleElement('block1',{css:{"opacity":0}});
+		setStyleElement('block2',{css:{"opacity":0}});
+		setStyleElement('block3',{css:{"opacity":0}});
+		showSlide2Etape1();
+	}
+	function showSlide2Etape1(){
+		setStyleElement('block1',{css:{"opacity":1}});
+		TweenLite.from(getElementByClass('block1'), 0.8, {alpha:0, y:100,ease:Quint.easeOut});
+		TweenLite.from(getElementByClass('profile1'), 0.8, {alpha:0, scaleX:.2,delay:.4,ease:Quint.easeOut});
+		TweenLite.from(getElementByClass('block1_text1'), 0.8, {alpha:0, y:20,delay:.6,ease:Quint.easeOut});
+		TweenLite.from(getElementByClass('block1_text2'), 0.8, {alpha:0, y:20,delay:.8,ease:Quint.easeOut, onComplete:showSlide2Etape2});
+	}
+	function showSlide2Etape2(){
+		setStyleElement('ligne',{css:{"opacity":1}});
+		setStyleElement('profile2',{css:{"opacity":1}});
+		setStyleElement('block1_text3',{css:{"opacity":1}});
+		TweenLite.to(getElementByClass('block1'), 0.5, {delay:2,ease:Quint.easeOut});
+		TweenLite.to(getElementByClass('block_bg'), 0.5, {height:343,delay:2,ease:Quint.easeOut});
+		TweenLite.from(getElementByClass('ligne'), 0.8, {alpha:0 ,delay:2,ease:Quint.easeOut});
+		TweenLite.from(getElementByClass('profile2'), 0.8, {alpha:0, scaleX:.2,delay:2.2,ease:Quint.easeOut});
+		TweenLite.from(getElementByClass('block1_text3'), 0.8, {alpha:0, y:20,delay:2.2,ease:Quint.easeOut, onComplete:showSlide3});
+	}
+	function showSlide3(){
+		setStyleElement('block2',{css:{"opacity":1}});
+		TweenLite.to(getElementByClass('block_container'),0.8,{y:-310,delay:2.2,ease:Quint.easeOut});
+		TweenLite.from(getElementByClass('block2'), 0.8, {alpha:0, y:20,delay:2.2,ease:Quint.easeOut});
+		TweenLite.from(getElementByClass('profile3'), 0.8, {alpha:0, scaleX:.2,delay:2.4,ease:Quint.easeOut});
+		TweenLite.from(getElementByClass('block2_text1'), 0.8, {alpha:0, y:10,delay:2.6,ease:Quint.easeOut});
+		TweenLite.from(getElementByClass('block2_text2'), 0.8, {alpha:0, y:10,delay:2.8,ease:Quint.easeOut, onComplete:showSlide4});
+	}
+	function showSlide4(){
+		setStyleElement('block3',{css:{"opacity":1}});
+		TweenLite.to(getElementByClass('block_container'),0.8,{y:-640,delay:2.2,ease:Quint.easeOut});
+		TweenLite.from(getElementByClass('block3'), 0.8, {alpha:0, y:20,delay:2.2,ease:Quint.easeOut});
+		TweenLite.from(getElementByClass('profile4'), 0.8, {alpha:0, scaleX:.2,delay:2.4,ease:Quint.easeOut});
+		TweenLite.from(getElementByClass('block3_text1'), 0.8, {alpha:0, y:10,delay:2.6,ease:Quint.easeOut});
+		TweenLite.from(getElementByClass('block3_text2'), 0.8, {alpha:0, y:10,delay:2.8,ease:Quint.easeOut, onComplete:hide});
+	}
+	function hide(){
+		if(___loop)
+			TweenLite.to(getElementByClass('block_container'), 0.4, {alpha:0,delay:3, onComplete:rewind});
+	}
+	function setStyleElement(className,css){
+		TweenLite.set(getElementByClass(className),css);
+	}
+	function getElementByClass(className){
+		return document.getElementsByClassName(className)[0];
+	}
+</script>
+</head>
+<body>
+	<div id="mainlink" onclick="javascript:window.open(window.clickTag)" class="global-wrapper">
+		<div class="border"></div>
+		<div class="global">
+			<img class="menu" src="menu.png">
+			<div class="block_container">
+				<div class="block1 is-absolute has-full-width">
+					<img class="block_bg bg is-absolute is-center" src="block_bg.png">
+					<img class="photo1 is-absolute" src="photo1.jpg">
+					<img class="profile1 profile is-absolute is-center" src="profile1.png">
+					<img class="block1_text1 is-absolute left-5" src="block1_text1.png">
+					<img class="block1_text2 is-absolute left-5" src="block1_text2.png">
+					<div class="ligne is-absolute is-center"></div>
+					<img class="profile2 profile is-absolute is-center" src="profile2.png">
+					<img class="block1_text3 is-absolute left-5" src="block1_text3.png">
+				</div>
+				<div class="block2 is-absolute has-full-width">
+					<img class="block2_bg bg is-absolute is-center" src="block_bg.png">
+					<img class="photo2 is-absolute" src="photo2.jpg">
+					<img class="profile3 profile is-absolute is-center" src="profile1.png">
+					<img class="block2_text1 is-absolute left-5" src="block2_text1.png">
+					<img class="block2_text2 is-absolute left-5" src="block2_text2.png">
+				</div>
+				<div class="block3 is-absolute has-full-width">
+					<img class="block3_bg bg is-absolute is-center" src="block_bg.png">
+					<img class="photo3 is-absolute" src="photo3.jpg">
+					<img class="profile4 profile is-absolute is-center" src="profile3.png">
+					<img class="block3_text1 is-absolute left-5" src="block3_text1.jpg">
+					<img class="block3_text2 is-absolute left-5" src="block3_text2.jpg">					
+				</div>
+				
+			</div>
+			<div class="footer text-center has-full-width is-absolute">
+				<img class="logo" src="bulle1.jpg"><br>
+				<img class="footer-text is-absolute is-center" src="text1.jpg">
+			</div>
+		</div>
+	</div>
+</body>
+</html>

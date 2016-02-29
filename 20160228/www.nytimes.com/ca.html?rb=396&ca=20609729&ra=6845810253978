@@ -1,0 +1,95 @@
+<html><body><html>
+<body onload='rfiFirePixels()'>
+<script type="text/javascript">
+
+window.rfiEventHandler = function(obj, type, handler) {
+    if (obj.addEventListener) {
+        obj.addEventListener(type, handler, false);
+    } else if (obj.attachEvent) {
+        obj.attachEvent('on' + type, handler);
+    }
+    obj['on' + type] = handler;
+};
+
+window.rfiFirePixels = function() {
+    var data = new Object();
+    var timeout = 15000, collectStats = !0, statsDone = !1;
+    var pixels = [{"b":13488,"s":"https://cm.g.doubleclick.net/pixel?google_nid=rfi&google_cm=&google_sc=&google_hm=NjQwNzA3NDIwNTIyMjc5MjU3&forward="}, {"b":17243,"s":"https://secure.adnxs.com/pxj?bidder=18&seg=378601&action=setuids('640707420522279257','');&redir="}, {"b":51433,"s":"https://pixel.rubiconproject.com/tap.php?v=13490&nid=2596&put=640707420522279257&expires=30&next="}, {"b":54855,"s":"https://simage2.pubmatic.com/AdServer/Pug?vcode=bz0yJnR5cGU9MSZjb2RlPTI3MzkmdGw9MTU3NjgwMA==&piggybackCookie=640707420522279257&r="}, {"b":53935,"s":"https://dpm.demdex.net/ibs:dpid=1121&dpuuid=640707420522279257&redir="}, {"b":54831,"s":"https://t4.liverail.com/?metric=csync&p=3010&s=640707420522279257&redirect="}, {"b":56787,"s":"https://d.xp1.ru4.com/activity?_o=62795&_t=cm_adx"}, {"b":56791,"s":"https://d.xp1.ru4.com/activity?_o=62795&_t=cm_apn_in"}, {"b":56795,"s":"https://d.xp1.ru4.com/activity?_o=62795&_t=xl_cm"}, {"b":55507,"s":"https://msec.xp1.ru4.com/cx?_i=57753720&_u=640707420522279257&redirect="}, {"b":56793,"s":"https://ckm-m.xp1.ru4.com/activity?_o=62795&_t=cm_dlx"}, {"b":56809,"s":"https://ckm-m.xp1.ru4.com/activity?_o=37516008&_t=lr_cm"}, {"b":56829,"s":"https://rtd.tubemogul.com/upi/pid/CepIAyXi?redir=https%3A%2F%2Fmsec.xp1.ru4.com%2Fcx%3F_i%3D52583729%26_u%3D%24%7BUSER_ID%7D"}, {"b":52220,"s":"https://dsum-sec.casalemedia.com/rum?cm_dsp_id=57&external_user_id=640707420522279257&forward="}, {"b":42261,"s":"https://us-u.openx.net/w/1.0/sd?id=537073062&val=640707420522279257&r="}, {"b":55073,"s":"https://idsync.rlcdn.com/360947.gif?partner_uid=640707420522279257"}, {"b":52643,"s":"https://pix.btrll.com/partner/705829.png"}, {"b":50495,"s":"https://e.nexac.com/e/rocketfuel_sync.xgi?na_exid=640707420522279257"}, {"b":56605,"s":"https://a.rfihub.com/adb.gif?ms=&rb=396&ca=20609729&po=100&ra=6Ei4bCu9RH5_"}, {"b":54497,"s":"https://adadvisor.net/adscores/g.pixel?sid=9212192898&rf=640707420522279257"}, {"b":54645,"s":"https://tapestry.tapad.com/tapestry/1?ta_partner_id=937&ta_partner_did=640707420522279257&ta_format=gif"}, {"b":56607,"s":"https://cs.gssprt.jp/yie/ld/cs?dspid=rocket&uid=640707420522279257"}, {"b":56659,"s":"https://x.bidswitch.net/sync?dsp_id=119&user_id=640707420522279257&expires=30"}, {"b":56885,"s":"https://p.rfihub.com/cm?pub=24472&in=1"}];
+    var fbPixels = [
+        
+    ];
+    var additionalHtml = "";
+    var pixelId = 20609729;
+    pixels = pixels.concat(fbPixels);
+    data.id = "396,20609729,3b3d226b36a0784c5f2ac5fb76419996";
+
+    if (additionalHtml !== "") {
+        var d = document.createElement("div");
+        d.id = "rfiAddH";
+        d.innerHTML = additionalHtml;
+        document.body.appendChild(d);
+    }
+
+    if (collectStats) {
+        data.stats = new Object();
+        for (i in pixels) {
+            data.stats[pixels[i].b] = "";
+        }
+    }
+
+    var recordTime = function(elem, type) {
+        if (collectStats) {
+            data.stats[elem.elemId] = (new Date().getTime() - elem.initTime) + "," + type;
+        }
+    };
+
+    for (i in pixels) {
+        var img = document.createElement('IMG');
+        img.onload = function() {
+            recordTime(this, 1);
+        };
+        img.onerror = function() {
+            recordTime(this, 2);
+        };
+        img.onabort = function() {
+            recordTime(this, 3);
+        };
+        img.elemId = pixels[i].b;
+        img.src = pixels[i].s;
+        var t = new Date().getTime();
+        img.initTime = t;
+        document.body.appendChild(img);
+    }
+
+
+    var sendStats = function() {
+        var msg = new Object();
+        msg.type = 2;
+        msg.id = pixelId;
+        msg.data = data;
+        window.parent.postMessage(msg, '*');
+    };
+
+    setTimeout(function() {
+        sendStats();
+        var msg = new Object();
+        msg.type = 1;
+        msg.id = pixelId;
+        window.parent.postMessage(msg, '*');
+    }, timeout);
+
+
+    var unloadEventHandler = function(event) {
+        if (collectStats && !statsDone) {
+            sendStats();
+            statsDone = !0;
+        }
+    };
+
+    rfiEventHandler(window, "unload", unloadEventHandler);
+    rfiEventHandler(window, "beforeunload", unloadEventHandler);
+};
+</script>
+</body>
+</html>
+</body></html>

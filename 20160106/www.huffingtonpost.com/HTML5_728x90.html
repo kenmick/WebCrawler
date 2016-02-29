@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<style type="text/css">
+					body, body * {
+		vertical-align: baseline;
+		border: 0;
+		outline: 0;
+		padding: 0;
+		margin: 0;
+		}
+		/* Div layer for the entire banner. */
+		#container {
+		position: absolute;
+		width: 726px;
+		height: 88px;
+		border:1px solid #666666;
+		
+		display:none;
+		overflow: hidden;
+		}
+		#content {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		top: 0px;
+		left: 0px;
+		background-color: #BBC5E2;
+		z-index: 100;
+		background-repeat:no-repeat;
+		}
+		/* Invisible button for background clickthrough. */
+		#exit {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		top: 0px;
+		left: 0px;
+		cursor: pointer;
+		opacity: 0;
+		z-index: 400;
+		}
+		#logo {
+		position: absolute;
+		z-index: 400;
+		
+		top: 25px;
+		left: 10px;
+		
+		}
+		.step{
+			position: absolute;
+			width: 100%;
+			margin: auto;
+			top: 0; left: 0; bottom: 0; right: 0;
+		}
+		#step1{
+			width: 728px;
+			height: 90px;
+			z-index: 20;
+		}
+		#step1 .background{position:absolute;
+			display: inline-block;
+			z-index: 20;}
+		#flash{
+			position: absolute;
+			background-color: #fff;
+			width: 100%;
+			height: 100%;
+			z-index: 10;
+		}
+		#step2{
+			height: 90px;
+			left: 161px;
+		}
+		#step2 p,#step3 p {
+			line-height: 30px;
+			text-align: center;
+			font-size: 30px;
+			font-family: Arial;
+			color: #fff;
+			font-weight: bold;
+			text-transform: uppercase;
+			display: block;
+			margin: 12px 40px 0px 0px;
+		}
+		#step3 p {
+			font-size: 22px;
+			margin: 40px 0px -10px 200px;
+			line-height: 20px;
+		}
+#step3 .avion {position:absolute;
+z-index: 5;}
+		#step2 .light{
+			font-weight: 400;
+			
+		}
+		#step3 .light{
+		font-weight: 400;
+			margin: 10px 0px 0px 200px;
+		}
+		#step3{
+			height: 90px;
+			left: 0px;
+		}
+
+		#step3 li {
+			text-align: center;
+			font-size: 22px;
+			font-family: Arial;
+			color: #f2960d;
+			font-weight: bold;
+			text-transform: uppercase;
+			text-decoration: none;
+			list-style: none;
+			display: inline-block;
+			margin: 0px 10px;
+		}
+		#step3 li.title {
+			font-size: 20px;
+			color: #fff;
+			display: block;
+			margin: 10px 0px 0px;
+		}
+		#step4 .offre{
+			position: absolute;
+			top: 1px;
+			left:290px;
+			z-index: 20;
+		}
+		
+		.offre-top{
+			position: absolute;
+			height:80px;
+			overflow: hidden;
+		}
+		.offre-bottom{
+			position: absolute;
+			height:80px;
+			overflow: hidden;
+			top:80px;
+			width: 160px;
+		}
+		.offre-bottom img{
+			position: absolute;
+			top: -80px;
+		}
+		#step4 .promo{
+			position: absolute;
+			top: -20px;
+			left: 345px;
+			z-index: 21;
+
+		}
+		#step4 .cta {
+			position: absolute;
+			text-align: center;
+			right: 50px;
+			top: 28px;
+		}
+		#step4 .cta span{
+			display: inline-block;
+			line-height: 24px;
+			padding: 5px 5px;
+			text-align: center;
+			font-size: 16px;
+			font-family: Arial;
+			color: #fff;
+			font-weight: bold;
+			text-transform: uppercase;
+			background-color: #ef0f07;
+		}
+		#step4 .cta span.arrow{
+			display: inline-block;
+			width: 20px;
+			padding: 10px 5px;
+			background-color: #ff6f6f;
+			line-height: 14px;
+
+		}
+		#step4 .cta span.arrow img{
+			position: absolute;
+
+		}
+		.ml {
+			color:#fff;
+			font-family: arial;
+			font-size: 10px;
+			position: absolute;
+			width: 50%;
+			text-align: left;
+			bottom:2px;
+			left:5px;
+		}
+		#step4 img.background{
+			z-index: 10;
+			position: absolute;
+			top: 0px;
+			width: auto;
+			height: auto;
+			left: 120px;
+
+		}
+		:focus {outline:none;}
+		::-moz-focus-inner {border:0;}
+		</style>
+		<script language="javascript">
+		var container,content,exit;
+		//Function to run with any animations starting on load, or bringing in images etc
+		init = function(){
+			//Assign All the elements to the element on the page
+			container = document.getElementById('container');
+			content = document.getElementById('content');
+			exit = document.getElementById('exit');
+			//Bring in listeners i.e. if a user clicks or rollovers
+			addEventListeners();
+			//Show Ad
+			container.style.display = "block";
+			createTimeline();
+		}
+		//Add Event Listeners
+		addEventListeners = function() {
+			exit.addEventListener('click', onExitClick, false);
+		}
+		onExitClick = function(e) {
+			console.log("click")
+		}
+		createTimeline = function(){
+			tl = new TimelineMax({repeat:0,onComplete:showPackshot});
+			tl.to(".avion", 0, {scale:.8});
+			tl.to("#step3 .avion2",0, {scaleX:-0.8});
+			tl.to("#step1 .background", 0, {scale:.7,y:-20,x:50});
+			tl.to("#step4 .offre", 0, {scale:.53});
+			tl.to("#step4 .promo", 0, {scale:.6});
+			tl.from("#step1", .1, {x:-25,alpha:0, ease:Power2.easeIn});
+			tl.to("#flash", 0, {alpha:1});
+			tl.to("#flash", .4, {alpha:0});
+			tl.to("#flash", 0, {alpha:1},"+=1.5");
+			tl.to("#flash", .3, {alpha:0});
+			/*tl.to("#step1", .05, {alpha:0},"+=1");*/
+			tl.staggerFrom("#step2 p", .2, {x:-300,alpha:0, ease:Power2.easeOut}, 0.1);
+
+			tl.staggerTo("#step2 p", .2, {x:300, ease:Power2.easeOut,alpha:0,delay:2}, 0.1);
+			tl.staggerFrom("#step3 p", .2, {x:600, ease:Power2.easeOut}, 0.1);
+			tl.fromTo("#step3 .avion1", .46, {x:0,y:-10,alpha:0},{x:100,y:-10,alpha:1, ease:Linear.easeNone},"-=.5");
+			tl.to("#step3 .avion1", 3, {x:750,y:-10, ease:Linear.easeNone});
+
+			tl.fromTo("#step3 .avion2",3, {x:750,y:-10,scaleX:-0.8},{x:100,y:-10, ease:Linear.easeNone},"avion");
+			tl.to("#step3 .avion2", .46, {x:0,y:-10,alpha:0, ease:Linear.easeNone});
+
+			tl.from(".ml", .3, {alpha:0, ease:Power2.easeIn},"-=6");
+			//tl.staggerTo("#step3 p",.3, {y:"-=18",marginBottom:5},0.1,"-=1");
+			tl.to("#step3", .5, {alpha:0,delay:1});
+
+
+			tl.from("#step4", .2, {alpha:0, ease:Power2.easeOut});
+			tl.from("#step4 .background", .3, {x:-50,alpha:0, ease:Power2.easeIn});
+			tl.from("#step4 .cta", .5, {alpha:0,scale:.5, ease:Back.easeOut},"-=.2");
+			tl.from("#step4 .offre", 1, {alpha:0},"open");
+			tl.from("#step4 .offre-top", 1, {alpha:0, ease:Power2.easeOut},"open");
+			tl.from("#step4 .offre-bottom", 1, {rotationX:-180,transformOrigin:"left top",  ease:Power2.easeOut },"open");
+			tl.to(".blur", .3, {alpha:0,delay:.2},"open");
+			tl.from("#step4 .promo", .6, {alpha:0,scale:2, ease:Back.easeOut},"-=.5");
+			
+			tl.to("#step4 .cta", .3, {scale:1.1,delay:1});
+			tl.to("#step4 .cta", .5, {scale:1});
+			tl.addLabel("packshot");
+			//tl.to("#step4", .5, {alpha:0,delay:2});
+			
+			tl.play(0);
+		}
+		showPackshot=function(){
+			tl.pause("packshot");
+		}
+		</script>
+	</head>
+	<body onload="init()">
+		<div id="container">
+			<div id="content">
+				<span class="ml">*Voir conditions sur le site.</span>
+				<div class="step" id="step1">
+					<div id="flash"></div><img class="background" src="300x250.png"/>
+				</div>
+				<div class="step" id="step2">
+					<p>130 destinations</p><p class="light">Ã  moins de 2H</p>
+				</div>
+				<div class="step" id="step3">
+					<img src="avion.png" class="avion avion1"/>
+					<img src="avion.png" class="avion avion2"/>
+					<p>jusqu'Ã  25 allers-retours</p><p class="light">par jour*</p>
+
+				</div>
+				<div class="step" id="step4">
+					<div class="offre"><div class="offre-top"><img src="offre.png" /></div><div class="offre-bottom"><img src="offre.png"/><img src="offreblur.png" class="blur"/></div></div>
+				
+
+					<div class="cta"><span>RÃ©servez votre billet</span><span class="arrow"><img src="arrow.png" />&nbsp;</span></div>
+				</div>
+			</div>
+			<img id="logo" src="logo.png"/>
+			<button id="exit"></button>
+		</div>
+	</body>
+</html>

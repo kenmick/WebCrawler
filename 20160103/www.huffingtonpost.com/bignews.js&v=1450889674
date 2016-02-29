@@ -1,0 +1,54 @@
+/* From: production-mt-wfe-51-54-use1 : 21672 */
+huff.unit('front/bignews', function(ready){
+
+	var bignews = this;
+
+	huff.use('jquery', function($){
+
+		bignews.update = function(vertical){
+			var container  = $('#big_news_update');
+			if (container) $.get('/topnav/' + vertical + '.html', function(data){
+				if (container.html().length !== data.length){
+					container.fadeOut(function(){
+						container.html(data).fadeIn();
+						huff.emit('bignews/updated', vertical);
+					});
+				}
+			});
+		}
+
+		var interval;
+		bignews.interval = function(vertical, delay){
+			if (interval) clearInterval(interval);
+			interval = setInterval(function(){
+				bignews.update(vertical);
+			}, delay * 1000);
+		}
+
+		bignews.load = function(vertical){
+			var loader = $('#bignews-ajax-loader-' + vertical);
+			if (loader){
+				$('#morelink_' + vertical).hide();
+				loader.show();
+				$.post('get_more_bignews.php', { vertical: vertical }, function(data){
+					loader.html(data);
+					bignews.close(vertical);
+				});
+			}
+		}
+		
+		bignews.close = function(vertical){
+			$('.close_more_bignews').click(function(){
+				$(this).parent().hide();
+				$('#morelink_' + vertical).show();
+			});
+		}
+
+		ready(bignews);
+
+	});
+
+});
+
+
+/* From: production-mt-wfe-51-54-use1 : 21672 *//* a79ac2d2669e872d452a120f7e0829e698d12129 */

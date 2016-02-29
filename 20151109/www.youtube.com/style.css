@@ -1,0 +1,141 @@
+
+body, body * {
+  vertical-align: baseline;
+  border: 0 none;
+  outline: 0;
+  padding: 0;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  font-size: 9pt;
+  color: #333;
+}
+
+
+#main-container {
+  position: absolute;
+  width: 970px;
+  height: 500px;
+  box-sizing: border-box;
+  top: 0;
+  left: 0;
+}
+
+#collapsed-state {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 970px;
+  height: 250px;
+  z-index: 100;
+  cursor: pointer;
+  text-align: center;
+  background-color: #EEE;
+  border: 1px solid black;
+  box-sizing: border-box;
+}
+
+#expanded-state {
+  position: absolute;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: #F1F1F1;
+  z-index: 200;
+  border: 1px solid black;
+/*  display: none;*/
+}
+
+#expanded-exit {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+  cursor: pointer;
+  /* IE10 needs a background color otherwise he won't capture clicks */
+  background-color: #FFF;
+  opacity: 0;
+  z-index: 400;
+  display: none;
+}
+
+#collapsed-exit {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+  cursor: pointer;
+  /* IE10 needs a background color otherwise he won't capture clicks */
+  background-color: #FFF;
+  opacity: 0;
+  z-index: 400;
+  display: none;
+}
+
+.button {
+  position: absolute;
+  color: #FFF;
+  background-color: #339933;
+  border: 1px outset #333;
+  cursor: pointer;
+  padding: 5px 10px;
+  z-index: 500;
+  font-family: Arial, sans-serif;
+  font-size: 10pt;
+}
+
+#expand-button {
+  bottom: 5px;
+  right: 5px;
+  display: none;
+}
+
+#collapse-button {
+  top: 5px;
+  left: 5px;
+  display: none;
+}
+
+.feature-collapsed {
+  top: 0px;
+  left: 0px;
+  width: 970px;
+  height: 250px;
+  position: absolute;
+  z-index: 5;
+}
+
+.feature-expanded {
+  top: 0px;
+  left: 0px;
+  width: 970px;
+  height: 450px;
+  position: absolute;
+}
+
+#ytp-0 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 500;
+}
+#ytp-1, #ytp-2 , #ytp-3 , #ytp-4  {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 500;
+}
+
+:focus {
+  outline:none;
+}
+::-moz-focus-inner {
+  border:0;
+}

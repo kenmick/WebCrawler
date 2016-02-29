@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="ad.size" content="width=300,height=250">
+<style type="text/css">
+div, p, img { margin:0; padding:0; font-family:Arial; }
+a { width:100%; height:100%; position:absolute; }
+
+body, #container, #adventoriAd { position:relative; width:300px; height:250px; overflow:hidden }
+#container * { position:absolute; box-sizing:border-box; }
+#logo { top:10px; left:10px; width:75px; opacity:0; }
+#logo_blanc { top:70px; left:50%; width:180px; margin-left:-90px; opacity:0; }
+#fond { top:0; left:0; width:100%; height:100%; opacity:0; }
+#txt_forfait { top:50px; right:20px; width:210px;  opacity:0; }
+
+#ml { bottom:3px; left:5px; font-size:10px; color:#bbb; opacity:0; }
+
+#txt_claim1 { left:50%; top:82px; width:260px; margin-left:-130px; opacity:0; }
+#txt_claim2 { left:50%; top:142px; width:28px; margin-left:-14px; opacity:0; }
+#txt_claim3 { left:50%; top:176px; width:260px; margin-left:-130px; opacity:0; }
+
+#txt_tv { left:50%; top:150px; width:200px; margin-left:-100px; opacity:0; }
+#tv { right:-10px; top:15px; width:230px; opacity:0; }
+
+#prix { left:50%; top:140px; width:200px; margin-left:-100px; opacity:0; }
+
+#bt { top:195px; left:68px; background:#fff; border-radius:3px; padding:8px 26px 4px 26px; opacity:0; }
+#txt_bt { position:relative; width:120px; }
+
+</style>
+<script src="/lp/enabler/ADventori-2.0.0.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="/lp/enabler/ADventori-2.0.0.css">
+</head>
+
+<body>
+
+<div id="container">
+	<div id="adventoriAd">
+	<a href='javascript:void(0);' onclick='ADventori.click();'>
+		
+		<img id="fond" src="img/fond.png">
+		<p id="ml">*Voir conditions sur le site</p>
+		<img id="logo" src="img/logo_red.svg">
+		<img id="logo_blanc" src="img/logo_blanc.svg">
+		<img id="txt_claim1" src="img/txt_claim1.svg">
+		<img id="txt_claim2" src="img/txt_claim2.svg">
+		<img id="txt_claim3" src="img/txt_claim3.svg">
+		<img id="prix" src="img/prix.svg">
+		<img id="txt_forfait" src="img/txt_forfait.svg">
+		<div id="bt"><img id="txt_bt" src="img/txt_bt.svg"></div>
+        
+	</a>
+	</div>
+</div>
+
+<script type="text/javascript" src="js/velocity.min.js"></script>
+<script type="text/javascript" src="js/velocity.ui.min.js"></script>
+
+<script type="text/javascript">
+
+window.onload = function() {
+
+var fond = document.getElementById("fond");
+var logo_blanc = document.getElementById("logo_blanc");
+var logo = document.getElementById("logo");
+var txt_claim1 = document.getElementById("txt_claim1");
+var txt_claim2 = document.getElementById("txt_claim2");
+var txt_claim3 = document.getElementById("txt_claim3");
+var prix = document.getElementById("prix");
+var txt_forfait = document.getElementById("txt_forfait");
+var bt = document.getElementById("bt");
+
+Velocity.defaults.queue = false;
+// easings : swing | easeInOut Sine Quad Cubic Quart Quint Expo Circ | spring | [500, 20] | [0.5,-0.5,0.4,1]
+// easings UI : callout.bounce | callout.shake | callout.tada | transition.flipXIn | transition.slideRightIn | transition.bounceLeftOut | ...
+
+// 1
+Velocity ( fond, { scale:1.8, top:-100, opacity:1 }, { duration:0, delay:0, easing:"easeOutCubic" } );
+Velocity ( logo_blanc, "transition.bounceIn", { duration:500, delay:500, easing:"easeOutCubic" } );
+
+var duree1 = 3000;
+
+// 2
+Velocity ( logo_blanc, { scale:0, opacity:0 }, { duration:500, delay:duree1, easing:"easeOutCubic" } );
+Velocity ( fond, { scale:1, top:0 }, { duration:1000, delay:200+duree1, easing:"easeOutCubic" } );
+Velocity ( logo, { opacity:1 }, { duration:500, delay:600+duree1, easing:"easeOutCubic" } );
+Velocity ( txt_forfait, { opacity:1 }, { duration:500, delay:900+duree1, easing:"easeOutCubic" } );
+Velocity ( prix, "transition.bounceIn", { duration:500, delay:1200+duree1, easing:"easeOutCubic" } );
+Velocity ( ml, { opacity:1 }, { duration:500, delay:800+duree1, easing:"easeOutCubic" } );
+
+var duree2 = 8000;
+
+// 3
+Velocity ( txt_forfait, { opacity:0 }, { duration:500, delay:duree2, easing:"easeOutCubic" } );
+Velocity ( prix, { opacity:0 }, { duration:500, delay:duree2, easing:"easeOutCubic" } );
+Velocity ( ml, { opacity:0 }, { duration:500, delay:duree2, easing:"easeOutCubic" } );
+Velocity ( txt_claim1, "transition.flipXIn", { duration:800, delay:400+duree2, easing:"easeOutCubic" } );
+Velocity ( txt_claim2, "transition.bounceIn", { duration:800, delay:1000+duree2, easing:"easeOutCubic" } );
+Velocity ( txt_claim3, "transition.flipXIn", { duration:800, delay:1200+duree2, easing:"easeOutCubic" } );
+
+var duree3 = 13000;
+
+// 4
+Velocity ( txt_claim1, "transition.flipBounceXOut", { duration:600, delay:2600, easing:"easeInCubic" } );
+Velocity ( txt_claim2, "transition.flipBounceXOut", { duration:600, delay:2200, easing:"easeInCubic" } );
+Velocity ( txt_claim3, "transition.flipBounceXOut", { duration:600, delay:2200, easing:"easeInCubic" } );
+Velocity ( ml, { opacity:1 }, { duration:500, delay:duree3, easing:"easeOutCubic" } );
+Velocity ( txt_forfait, { opacity:1 }, { duration:500, delay:100+duree3, easing:"easeOutCubic" } );
+Velocity ( txt_forfait, { scale:0.7, top:"-=25px", right:"-=20px" }, { duration:400, delay:duree3+1200 } );
+Velocity ( prix, { opacity:1 }, { duration:500, delay:duree3+700, easing:"easeOutCubic" } );
+Velocity ( prix, { top:"-=40px" }, { duration:500, delay:duree3+1300, easing:"easeOutCubic" } );
+Velocity ( bt, "transition.bounceIn", { duration:500, delay:1800+duree3, easing:"easeOutCubic" } );
+Velocity ( bt, "callout.shake", { duration:1000, delay:1000, easing:"easeOutCubic" } );
+
+}
+</script>
+</body>
+</html>

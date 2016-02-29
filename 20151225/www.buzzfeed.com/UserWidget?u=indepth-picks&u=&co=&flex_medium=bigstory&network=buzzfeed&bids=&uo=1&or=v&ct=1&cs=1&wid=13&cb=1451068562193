@@ -1,0 +1,552 @@
+
+var BF_S3_IMAGE_URL='http://s3.amazonaws.com/buzzfeed-media/bigstory/';var BF_W=function(){var buzz_count=((typeof(BF_BUZZ_COUNT)!='undefined')?BF_BUZZ_COUNT:1);var small_image=((typeof(BF_SMALL_IMAGE)!='undefined')?BF_SMALL_IMAGE:false);var image_width=((typeof(BF_SMALL_IMAGE)!='undefined'&&BF_SMALL_IMAGE)?90:125);var image_height=((typeof(BF_SMALL_IMAGE)!='undefined'&&BF_SMALL_IMAGE)?60:83);var head_foot_ids=['bf-powered1','bf-powered2','bf-footer','bf-header'];var apply_styles=function(element,key){if(typeof(bf_styles)!='undefined'){if(bf_styles[key]){for(var style_key in bf_styles[key]){var value=bf_styles[key][style_key];element.style[style_key]=value;}}}};var randomize=function buzz(buzz_data){var bindexes=new Array();for(var i=0;i<buzz_data.length;i++){bindexes.push(i);}
+function randOrd(){return(Math.round(Math.random())-0.5);}
+bindexes.sort(randOrd);bindexes.sort(randOrd);var random_buzz=new Array();for(i=0;i<buzz_data.length;i++){if(!window.BF_NO_DUPES[buzz_data[bindexes[i]].bid]){random_buzz.push(buzz_data[bindexes[i]]);}}
+if(random_buzz.length==0&&buzz_data[0]){random_buzz.push(buzz_data[0]);}
+return random_buzz;};var element_handlers={'bf-url':function(el,buzz,wid,click_track_fn){var buzz_url=buzz['user_link']?buzz['user_link']:buzz['url'];buzz_url=buzz_url.replace(/www\.buzzfeed\.com/g,get_environment());el.href=buzz_url;el.setAttribute('href',buzz_url);if(typeof(el.addEventListener)=='undefined'){el.attachEvent('onmousedown',function(e){click_track_fn(el,buzz,wid);});}else{el.addEventListener('mousedown',function(e){click_track_fn(el,buzz,wid);},true);}
+if(el.getAttribute('rel:gt_label')&&el.getAttribute('rel:gt_label')=='partner'&&(13==10||13==15)){el.setAttribute('rel:gt_label','partner/'+buzz.username);}},'bf-name':function(el,name){var truncate=el.getAttribute("rel:bf_truncate");if(truncate){if(!isNaN(truncate)){var truncate=parseInt(truncate);if(name.length>truncate){var terminator=el.getAttribute("rel:bf_truncate_terminator");term_length=terminator?terminator.length:3;terminator=terminator?terminator:'&hellip;';var name_length=truncate-term_length;name=name.substring(0,name_length);var words=name.split(/\s+/);if(words[words.length-1].match(/&/)&&!words[words.length-1].match(/;$/)){words.pop();}
+name=words.join(' ');name+=terminator;}}}
+el.innerHTML=name;},'bf-image':function(el,image){el.src=image;el.width=image_width;el.height=image_height;},'bf-image-big':function(el,buzz){if(/\-[12]\-\d+\-\d+\-\d+\.(png|gif|jpg)/.test(buzz.image))
+{big_image=buzz.image;el.src=big_image.toString().replace(/\.(png|gif|jpg)/,'_big.$1');el.className+=' campaign-big-thumb';}else{el.src=buzz.image;}},'bf-image-dblbig':function(el,buzz){if(/\-2\-\d+\-\d+\-\d+\.(png|gif|jpg)/.test(buzz.image))
+{big_image=buzz.image;el.src=big_image.toString().replace(/\.(png|gif|jpg)/,'_dblbig.$1');el.className+=' campaign-big-thumb';}else{el.src=buzz.image;}},'bf-mobile-image':function(el,buzz){if(buzz&&buzz.mobile_image){big_image=buzz.image;el.src=big_image.toString().replace(/\/([^\/]+)\.(png|gif|jpg)$/,'/m-$1_big.$2');el.className+=' campaign-big-thumb';}else if(/\-[12]\-\d+\-\d+\-\d+\.(png|gif|jpg)/.test(buzz.image)){big_image=buzz.image;el.src=big_image.toString().replace(/\.(png|gif|jpg)/,'_big.$1');el.className+=' campaign-big-thumb';}else{el.src=buzz.image;}},'bf-impressions-label':function(el,text){el.innerHTML=text},'bf-impressions':function(el,impressions){if(impressions<100){impressions='';}
+el.innerHTML=impressions;},'bf-blurb':function(el,buzz){el.innerHTML=buzz.ad_blurb;},'bf-byline_prefix':function(el,byline_prefix,BF_DATA){if(typeof BF_DATA['network']!='undefined'&&BF_DATA['network']=='buzzfeed'){if(byline_prefix){el.innerHTML=byline_prefix;}}},'bf-user_image':function(el,name){el.src=name;},'bf-user_image_large':function(el,name){var extIndex=name.lastIndexOf('.');if(extIndex>=0){name=name.substr(0,extIndex)+"_large"+name.substr(extIndex,name.length);}
+el.src=name;},'bf-user-url':function(el,href){href=href.replace(/www\.buzzfeed\.com/g,get_environment());el.href=href;el.setAttribute('href',href);},'bf-partner-label':function(el,buzz){if(typeof(political_ad)!='undefined'&&buzz.username=='obamaforamerica'){el.innerHTML='PAID POLITICAL ADVERTISER';}},'bf-display_name':function(el,text){el.innerHTML=text;},'bf-image-bigstory':function(el,buzz){el.src=buzz.image;if(/\-[12]\-\d+\-\d+\-\d+\.(png|gif|jpg)/.test(buzz.image))
+{el.src=el.src.replace(/\.(png|gif|jpg)/,'_wide.$1');el.width=300;el.height=106;el.className+=' campaign-wide-thumb';}},'bf-image-dblwidestory':function(el,buzz){el.src=buzz.image;if(/\-2\-\d+\-\d+\-\d+\.(png|gif|jpg)/.test(buzz.image))
+{el.src=el.src.replace(/\.(png|gif|jpg)/,'_dblwide.$1');el.width=625;el.height=220;el.className+=' campaign-wide-thumb';}},'bf-image-dblbigstory':function(el,buzz){el.src=buzz.image;{el.src=el.src.replace(/\.(png|gif|jpg)/,'_dblbig.$1');el.width=625;el.height=415;el.className+=' campaign-wide-thumb';}},'bf-image-widestory':function(el,buzz,BF_DATA){el.src=buzz.image;if(/\-[12]\-\d+\-\d+\-\d+\.(png|gif|jpg)/.test(buzz.image))
+{el.src=el.src.replace(/\.(png|gif|jpg)/,'_wide.$1');el.width=338;el.height=119;el.className+=' campaign-wide-thumb';}},'bf-ad-msu':function(el,BF_DATA){var gptDiv=document.createElement('div');gptDiv.id='div-gpt-ad-25';gptDiv.style.position='absolute';gptDiv.style.overflow='hidden';gptDiv.style.zIndex='-1';el.parentNode.appendChild(gptDiv);if(typeof loadGPTAd!='undefined'){loadGPTAd({'wid':25,'site':BF_DATA.site,'size':[3,3]});}},'bf-ad-frame':function(el,BF_DATA){var base_path=(typeof window['BF_FAKE_DFP']=='undefined')?'http://ad.doubleclick.net/N6556/adi':'http://dev.buzzfeed.com/bf2/_fake_dfp';var full_path=base_path+'/bfd.widget/'+BF_DATA.site+';site='+BF_DATA.site+';sz=3x3;ord='+(new Date()).getTime();if(typeof window['BF_WIDGET_PREVIEW']!='undefined'&&typeof window['BF_FAKE_DFP']!='undefined')
+{full_path+='?load_preview=1';}
+el.src=full_path;},'bf-byline-other':function(el,buzz){if(buzz.byline_description_visual&&buzz.byline_description_visual!='Brand Publisher'){el.innerHTML=buzz.byline_description_visual;}},'bf-video-duration':function(el,buzz){if(buzz.video_metadata&&buzz.video_metadata.duration_string){el.innerHTML=buzz.video_metadata.duration_string;}},'bf-video-impressions':function(el,buzz){if(buzz.impressions){el.innerHTML=buzz.impressions.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g,"$1,");}}};var get_environment=function(){var result='www.buzzfeed.com';if(typeof BF_DFP_ENV!='undefined'&&BF_DFP_ENV!=''){if(BF_DFP_ENV.match(/dev/)){result='dev.buzzfeed.com/bf2';}else if(!BF_DFP_ENV.match(/prod/)){result=BF_DFP_ENV+'.buzzfeed.com';}}
+return result;}
+var parse_template=function(BF_DATA,click_track_fn){var data=BF_DATA.buzz;var wid=BF_DATA.wid;if(typeof(window.BF_NO_DUPES)=='undefined'){window.BF_NO_DUPES={}}
+var optimize=false;if(optimize){var bfo=new BF_WIDGET_OPTIMIZE();if(optimize===1){data=bfo.optimize1(data);}else if(optimize===2){data=bfo.optimize2(data);}else if(optimize===3){data=bfo.optimize3(data);}else if(optimize===4){data=bfo.optimize4(data);}}else{data=randomize(data);}
+window['BF_DISPLAYED_BUZZ']=[];try{for(var i=0;i<buzz_count;i++){var buzz=data[i];if(typeof buzz['promotions']!='undefined')
+{pick_promotion(buzz);}
+window.BF_NO_DUPES[buzz.bid]=true;window['BF_DISPLAYED_BUZZ'].push(buzz);item_id=wid?('bf-item-'+wid+'-'+(i+1)):('bf-item-'+(i+1));var item_element=document.getElementById(item_id);if(!item_element){item_element=document.getElementById('bf-item-'+(i+1));}
+if(!item_element){break;}
+if(item_element.nodeName==='A'&&(item_element.className.search(/bf-url/)>=0)){element_handlers['bf-url'](item_element,buzz,wid,click_track_fn);}
+if(typeof buzz.user_type!='undefined'){if(typeof buzz['byline_description_visual']!='undefined'){if(buzz.byline_description_visual=='Publishing Partner'){item_element.className+=" f_partner";}
+else{item_element.className+=" "+buzz.user_type;}}}
+else{item_element.className+=" f_ad";}
+var elements=item_element.getElementsByTagName("*");var view_count=0;for(var j=0;j<elements.length;j++){var element=elements[j];var class_string=element.className;if(class_string&&typeof class_string=='string'){var classes=class_string.split(/\s+/);if(classes&&classes[0]){for(var k=0;k<classes.length;k++){var key=classes[k].replace(/^bf\-/,'');apply_styles(element,key);if(element_handlers[classes[k]]){if(key=='impressions-label'){if(buzz['impressions']<100){element_handlers[classes[k]](element,'New Buzz');}}else if(key=='user-url'){element_handlers[classes[k]](element,'http://www.buzzfeed.com/'+buzz['username']);}else if(key=='url'){element_handlers[classes[k]](element,buzz,wid,click_track_fn);}else if(key=='ad-frame'||key=='ad-msu'){element_handlers[classes[k]](element,BF_DATA);}else if(key=='image-bigstory'){element_handlers[classes[k]](element,buzz);}else if(key=='image-widestory'){element_handlers[classes[k]](element,buzz);}else if(key=='image-big'){element_handlers[classes[k]](element,buzz);}else if(key=='user_image_large'){element_handlers[classes[k]](element,buzz['user_image']);}else if(key=='byline_prefix'){if(buzz[key]&&buzz[key]!=""){element_handlers[classes[k]](element,buzz[key],BF_DATA);}}else if(key=='partner-label'){element_handlers[classes[k]](element,buzz);}else if(key=='mobile-image'){element_handlers[classes[k]](element,buzz);}else if(key=='byline-other'){element_handlers[classes[k]](element,buzz);}else if(key=='blurb'){element_handlers[classes[k]](element,buzz);}else if(key=='video-duration'){element_handlers[classes[k]](element,buzz);}else if(key=='video-impressions'){element_handlers[classes[k]](element,buzz);}else{element_handlers[classes[k]](element,buzz[key],item_element,buzz);}}}}}}}}catch(e){console.error(e);}};var pick_promotion=function(buzz){var sel_promo;if(buzz.promotions.length==1)
+{sel_promo=buzz.promotions[0];}
+else
+{var promotions=buzz.promotions;var opts=[];for(var i=0;i<promotions.length;i++)
+for(var j=0;j<(promotions[i].probability*100);j++)
+opts.push(promotions[i]);sel_promo=opts[Math.floor(Math.random()*opts.length)];}
+if(typeof sel_promo=='undefined'){sel_promo=buzz.promotions[0];}
+buzz.image=sel_promo.image;buzz.name=sel_promo.title;buzz.blurb=sel_promo.description;buzz.ad_blurb=sel_promo.description;buzz.flex_pro_id=sel_promo.id;return buzz;};var render_template=function(template,wid,show_ad){template=template.replace(/\n|\r/g,'NL');var items_regex=/<!\-\-\s+\.bf\-item\s+\-\->(.*)<!\-\-\s+\/\.bf\-item \-\->/;var item_markup_match=template.match(items_regex);var item_markup=item_markup_match[1];var items_markup='';var ad_slot=Math.floor(Math.random()*(buzz_count))+1;if(show_ad&&parent.window['BF_AD_FIXED_POS']){fixed_ad_pos=parent.window['BF_AD_FIXED_POS'];if(fixed_ad_pos>0&&parent.window['BF_AD_FIXED_POS']<=buzz_count){ad_slot=BF_AD_FIXED_POS}}
+for(var i=1;i<=buzz_count;i++){var id_append=wid?(wid+'-'+i):i;var id_markup=item_markup;if(show_ad&&i==ad_slot)
+{var matches=item_markup.match(/(.*<div (id="" )?class="bf-item[^>]+>)(.*)<\/div>/);id_markup=item_markup.replace(matches[3],'<iframe width="100%" frameborder="0" scrolling="no" class="bf-ad-frame"></iframe>');if(AD_DESIGN&&AD_DESIGN=='gpt'&&typeof window.BF_DFP_MSU!='undefined'){id_markup=item_markup.replace(matches[3],'<div id="BF_WIDGET_25" class="bf-ad-msu" style="position:absolute;"></div>');}
+id_markup=id_markup.replace(/class="bf-item/,'class="bf-item bf-framed-item');}
+id_markup=id_markup.replace(/<div (id="" )?class="bf-item/,'<div id="bf-item-'+id_append+'" class="bf-item')+"\n";if(i==1){var first_markup=id_markup;items_markup+=first_markup.replace(/class="bf-item"/,'class="bf-item bf-first"')+"\n";}else if(i==buzz_count){var last_markup=id_markup;items_markup+=last_markup.replace(/class="bf-item"/,'class="bf-item bf-last"')+"\n";}else{items_markup+=id_markup;}}
+template=template.replace(items_regex,items_markup);template=template.replace(/NL/g,'\n');return template;};return{last_widget:false,record_pixel:function(track_url)
+{if(window['BF_STATIC']!='undefined'&&typeof BF_STATIC['bf_env']!='undefined'&&BF_STATIC.bf_env.match(/^dev|^stage/)==null){if(typeof window['BF_PIXELS']=='undefined'){window['BF_PIXELS']=[];}
+var timage=new Image();timage.src=track_url;window['BF_PIXELS'].push(timage);}
+else{console.log('Tracked Url: '+track_url);}},show_widget:function(BF_DATA,click_track_fn){BF_W.last_widget=BF_DATA;if(typeof(BF_W.loaded_template)=='undefined')
+BF_W.loaded_template=BF_DATA.template;if(typeof(BF_BUZZ_COUNTS)!='undefined'&&BF_BUZZ_COUNTS[BF_DATA.wid]){buzz_count=BF_BUZZ_COUNTS[BF_DATA.wid];}
+if(BF_DATA.buzz.length<buzz_count){buzz_count=BF_DATA.buzz.length;if(buzz_count>9){buzz_count=9;}}
+var main_id='BF_WIDGET_'+BF_DATA.wid;main_div=document.getElementById(main_id);if(main_div.getAttribute('rel:bf_ad_position'))
+{BF_DATA.position_id=parseInt(main_div.getAttribute('rel:bf_ad_position'));}
+var widget_markup='';if(BF_DATA.css){var ss1=document.createElement('style');var def=BF_DATA.css;ss1.setAttribute("type","text/css");if(ss1.styleSheet){ss1.styleSheet.cssText=def;}else{var tt1=document.createTextNode(def);ss1.appendChild(tt1);}
+var hh1=document.getElementsByTagName('head')[0];hh1.appendChild(ss1);}
+if(BF_DATA.template){wid=null;if(typeof(BF_BUZZ_COUNTS)!='undefined'&&BF_BUZZ_COUNTS[BF_DATA.wid]){wid=BF_DATA.wid;}
+widget_markup+=render_template(BF_DATA.template,wid,(BF_DATA.show_ad==1&&!BF_DATA.no_shell));}
+wid=null;if(typeof(BF_BUZZ_COUNTS)!='undefined'&&BF_BUZZ_COUNTS[BF_DATA.wid]){wid=BF_DATA.wid;}
+if(widget_markup){main_div.innerHTML=widget_markup;}
+parse_template(BF_DATA,click_track_fn);if(typeof(bf_styles)!='undefined'){for(var i=0;i<head_foot_ids.length;i++){var key=head_foot_ids[i].replace(/^bf\-/,'');if(bf_styles[key]){var el=document.getElementById(head_foot_ids[i]);if(!el){continue;}
+for(var style_key in bf_styles[key]){var value=bf_styles[key][style_key];el.style[style_key]=value;}}}}
+if(main_div.className.indexOf('bf-inline-display-ad')!=-1){main_div.style.display='inline-block';}else{main_div.style.display='block';if(main_div.parentNode.className.indexOf('dfp_bigstory')!=-1){main_div.parentNode.style.display='block';}
+if(main_div.className.indexOf('bf-msu-companion')!=-1&&main_div.parentNode.className.indexOf('BF_WIDGET_MSU')==-1){main_div.parentNode.className+=' BF_WIDGET_MSU';}
+else if(main_div.className.indexOf('bf-msu-companion')!=-1&&main_div.parentNode.className.indexOf('BF_WIDGET_MSU')!=-1){var msu_set=[].slice.call(document.getElementsByClassName('bf-msu-companion'));msu_set.unshift(document.getElementById('BF_WIDGET_13'));var msu_element=Math.floor(Math.random()*msu_set.length);if(msu_element!=0){main_div.parentNode.insertBefore(msu_set[0],msu_set[msu_element]);}
+if(msu_element!=msu_set.length-1){main_div.parentNode.insertBefore(msu_set[msu_set.length-1],msu_set[msu_element]);}}
+if(main_div.parentNode.className.indexOf('BF_WIDGET_MSU')!=-1){var rows=document.getElementsByClassName('span-8');if(rows.length>1){var splashHeight=rows[0].offsetHeight;var msuHeight=main_div.parentNode.offsetHeight;var postFlow=rows[1];postFlow.style.marginTop=-(msuHeight-splashHeight)+'px';}}}}};}();(function(){try{var BF_DATA={
+   "wid" : "13",
+   "userbuzz_count" : 10,
+   "network" : "buzzfeed",
+   "loaded" : "true",
+   "buzz" : [
+      {
+         "bid" : "7H2BV97",
+         "user_type" : "f_other",
+         "form" : "super",
+         "bid_native" : "4094588",
+         "user" : "alimwatkins",
+         "url" : "http://www.buzzfeed.com/alimwatkins/nobody-is-quite-sure-whos-managing-guantanamos-secrets",
+         "comments_count" : 0,
+         "last_updated" : "2015-12-07 16:54:01",
+         "images" : "",
+         "uid" : "7G5THV7",
+         "sub_buzz" : "",
+         "name" : "Nobody Is Quite Sure Who's Managing Guantanamo's Secrets",
+         "uri" : "nobody-is-quite-sure-whos-managing-guantanamos-secrets",
+         "cloud_servers" : [
+            "alleyezonme-collection.buzzfeed.com"
+         ],
+         "username" : "alimwatkins",
+         "published" : "2015-12-07 15:00:32",
+         "published_unix" : "1449518432",
+         "ad_blurb" : "As a once-public hearing re-emerges as partially classified, government officials refuse to say who's holding the redaction pen. BuzzFeed News' Ali Watkins reports from Guantanamo Bay.",
+         "nsfw" : "false",
+         "status" : "live",
+         "ct" : "http://75.101.183.223/small.gif?type=100,14&user=alimwatkins&buzz=nobody-is-quite-sure-whos-managing-guantanamos-secrets&c=7H2BV97&u=7G5THV7&url=http%3A%2F%2Fwww.buzzfeed.com%2Falimwatkins%2Fnobody-is-quite-sure-whos-managing-guantanamos-secrets%2F&rd=http%3A%2F%2Fwww.buzzfeed.com%2Falimwatkins%2Fnobody-is-quite-sure-whos-managing-guantanamos-secrets%2F",
+         "user_byline_data" : {},
+         "impressions" : "23816",
+         "mobile_image" : "1",
+         "user_image" : "http://s3-ak.buzzfed.com/static/2015-10/30/16/user_images/webdr04/alimwatkins-v2-2512-1446237716-18.jpg",
+         "blurb" : "As a once-public hearing re-emerges as partially classified, government officials refuse to say who&#39;s holding the redaction pen. BuzzFeed News&#39; Ali Watkins reports from Guantanamo Bay.",
+         "last_updated_unix" : "1449525241",
+         "byline_description_visual" : "BuzzFeed World News Correspondent",
+         "display_name" : "Ali Watkins",
+         "image" : "http://s3-ak.buzzfed.com/static/2015-12/7/16/campaign_images/webdr02/nobody-is-quite-sure-whos-managing-guantanamos-se-2-14610-1449525238-1.jpg",
+         "byline_description_id" : "2",
+         "static_images" : {
+            "small" : "http://s3-static-ak.buzzfed.com/static/2015-12/7/16/campaign_images/webdr02/nobody-is-quite-sure-whos-managing-guantanamos-se-2-14610-1449525238-1_small.jpg",
+            "standard" : "http://s3-static-ak.buzzfed.com/static/2015-12/7/16/campaign_images/webdr02/nobody-is-quite-sure-whos-managing-guantanamos-se-2-14610-1449525238-1.jpg",
+            "big" : "http://s3-static-ak.buzzfed.com/static/2015-12/7/16/campaign_images/webdr02/nobody-is-quite-sure-whos-managing-guantanamos-se-2-14610-1449525238-1_big.jpg",
+            "wide" : "http://s3-static-ak.buzzfed.com/static/2015-12/7/16/campaign_images/webdr02/nobody-is-quite-sure-whos-managing-guantanamos-se-2-14610-1449525238-1_wide.jpg",
+            "dblbig" : "http://s3-static-ak.buzzfed.com/static/2015-12/7/16/campaign_images/webdr02/nobody-is-quite-sure-whos-managing-guantanamos-se-2-14610-1449525238-1_dblbig.jpg",
+            "dblwide" : "http://s3-static-ak.buzzfed.com/static/2015-12/7/16/campaign_images/webdr02/nobody-is-quite-sure-whos-managing-guantanamos-se-2-14610-1449525238-1_dblwide.jpg"
+         },
+         "image_small" : "http://s3-ak.buzzfed.com/static/2015-12/7/16/campaign_images/webdr02/nobody-is-quite-sure-whos-managing-guantanamos-se-2-14610-1449525238-1_small.jpg",
+         "html_blurb" : "<b><big>Nobody Is Quite Sure Who's Managing Guantanamo's Secrets</big></b><br/>As a once-public hearing re-emerges as partially classified, government officials refuse to say who's holding the redaction pen. BuzzFeed News' Ali Watkins reports from Guantanamo Bay.<br/><table><tr><td width='30' padding='0 0'><img src='http://s3-ak.buzzfed.com/static/2015-10/30/16/user_images/webdr04/alimwatkins-v2-2512-1446237716-18.jpg' width='25' height='25'/></td><td padding='5' pspacing='0'><small><b><a href='/alimwatkins'>Ali Watkins</a></b></small><br/><small><color value='#939393'>BuzzFeed World News Correspondent</color></small></td></tr></table>"
+      },
+      {
+         "bid" : "7H355Q7",
+         "user_type" : "f_other",
+         "form" : "super",
+         "bid_native" : "4100011",
+         "user" : "jimdalrympleii",
+         "url" : "http://www.buzzfeed.com/jimdalrympleii/the-people-on-the-front-lines-of-climate-change-actually-won",
+         "comments_count" : 0,
+         "last_updated" : "2015-12-25 12:55:18",
+         "images" : "",
+         "uid" : "766OVA7",
+         "sub_buzz" : "",
+         "name" : "The People On The Front Lines Of Climate Change Actually Won Big In Paris",
+         "uri" : "the-people-on-the-front-lines-of-climate-change-actually-won",
+         "cloud_servers" : [
+            "alleyezonme-collection.buzzfeed.com"
+         ],
+         "username" : "jimdalrympleii",
+         "published" : "2015-12-12 18:10:53",
+         "published_unix" : "1449961853",
+         "ad_blurb" : "Against the odds, small island nations had a big influence at the just-finished Paris climate talks.",
+         "nsfw" : "false",
+         "status" : "live",
+         "ct" : "http://75.101.183.223/small.gif?type=100,14&user=jimdalrympleii&buzz=the-people-on-the-front-lines-of-climate-change-actually-won&c=7H355Q7&u=766OVA7&url=http%3A%2F%2Fwww.buzzfeed.com%2Fjimdalrympleii%2Fthe-people-on-the-front-lines-of-climate-change-actually-won%2F&rd=http%3A%2F%2Fwww.buzzfeed.com%2Fjimdalrympleii%2Fthe-people-on-the-front-lines-of-climate-change-actually-won%2F",
+         "user_byline_data" : {},
+         "impressions" : "19605",
+         "mobile_image" : "1",
+         "user_image" : "http://s3-ak.buzzfed.com/static/2014-05/user_images/webdr08/5/10/jimdalrympleii-13555-1399299523-1.jpg",
+         "blurb" : "Against the odds, small island nations had a big influence at the just-finished Paris climate talks.",
+         "last_updated_unix" : "1451066118",
+         "byline_description_visual" : "BuzzFeed News Reporter",
+         "display_name" : "Jim Dalrymple II",
+         "image" : "http://s3-ak.buzzfed.com/static/2015-12/12/18/campaign_images/webdr07/the-people-on-the-front-lines-of-climate-change-a-2-28592-1449961942-5.jpg",
+         "byline_description_id" : "2",
+         "static_images" : {
+            "small" : "http://s3-static-ak.buzzfed.com/static/2015-12/12/18/campaign_images/webdr07/the-people-on-the-front-lines-of-climate-change-a-2-28592-1449961942-5_small.jpg",
+            "standard" : "http://s3-static-ak.buzzfed.com/static/2015-12/12/18/campaign_images/webdr07/the-people-on-the-front-lines-of-climate-change-a-2-28592-1449961942-5.jpg",
+            "big" : "http://s3-static-ak.buzzfed.com/static/2015-12/12/18/campaign_images/webdr07/the-people-on-the-front-lines-of-climate-change-a-2-28592-1449961942-5_big.jpg",
+            "wide" : "http://s3-static-ak.buzzfed.com/static/2015-12/12/18/campaign_images/webdr07/the-people-on-the-front-lines-of-climate-change-a-2-28592-1449961942-5_wide.jpg",
+            "dblbig" : "http://s3-static-ak.buzzfed.com/static/2015-12/12/18/campaign_images/webdr07/the-people-on-the-front-lines-of-climate-change-a-2-28592-1449961942-5_dblbig.jpg",
+            "dblwide" : "http://s3-static-ak.buzzfed.com/static/2015-12/12/18/campaign_images/webdr07/the-people-on-the-front-lines-of-climate-change-a-2-28592-1449961942-5_dblwide.jpg"
+         },
+         "image_small" : "http://s3-ak.buzzfed.com/static/2015-12/12/18/campaign_images/webdr07/the-people-on-the-front-lines-of-climate-change-a-2-28592-1449961942-5_small.jpg",
+         "html_blurb" : "<b><big>The People On The Front Lines Of Climate Change Actually Won Big In Paris</big></b><br/>Against the odds, small island nations had a big influence at the just-finished Paris climate talks.<br/><table><tr><td width='30' padding='0 0'><img src='http://s3-ak.buzzfed.com/static/2014-05/user_images/webdr08/5/10/jimdalrympleii-13555-1399299523-1.jpg' width='25' height='25'/></td><td padding='5' pspacing='0'><small><b><a href='/jimdalrympleii'>Jim Dalrymple II</a></b></small><br/><small><color value='#939393'>BuzzFeed News Reporter</color></small></td></tr></table>"
+      },
+      {
+         "bid" : "7GZJ4O7",
+         "user_type" : "f_other",
+         "form" : "super",
+         "bid_native" : "4075937",
+         "user" : "jessicagarrison",
+         "url" : "http://www.buzzfeed.com/jessicagarrison/all-you-americans-are-fired",
+         "comments_count" : 9,
+         "last_updated" : "2015-12-25 13:23:42",
+         "images" : "",
+         "uid" : "76ABW47",
+         "sub_buzz" : "",
+         "name" : "\"All You Americans Are Fired\"",
+         "uri" : "all-you-americans-are-fired",
+         "cloud_servers" : [
+            "alleyezonme-collection.buzzfeed.com"
+         ],
+         "username" : "jessicagarrison",
+         "published" : "2015-12-01 17:41:22",
+         "published_unix" : "1449009682",
+         "ad_blurb" : "The H-2 guest worker program, which brought in 150,000 legal foreign workers last year, isn't supposed to deprive any American of a job. But many businesses go to extraordinary lengths to deny jobs to U.S. workers so they can hire foreigners instead. A BuzzFeed News investigation.",
+         "nsfw" : "false",
+         "status" : "live",
+         "ct" : "http://75.101.183.223/small.gif?type=100,14&user=jessicagarrison&buzz=all-you-americans-are-fired&c=7GZJ4O7&u=76ABW47&url=http%3A%2F%2Fwww.buzzfeed.com%2Fjessicagarrison%2Fall-you-americans-are-fired%2F&rd=http%3A%2F%2Fwww.buzzfeed.com%2Fjessicagarrison%2Fall-you-americans-are-fired%2F",
+         "user_byline_data" : {},
+         "impressions" : "390091",
+         "mobile_image" : "1",
+         "user_image" : "http://s3-ak.buzzfed.com/static/2014-05/user_images/webdr07/12/15/jessicagarrison-17835-1399923598-4.jpg",
+         "blurb" : "The H-2 guest worker program, which brought in 150,000 legal foreign workers last year, isn&#39;t supposed to deprive any American of a job. But many businesses go to extraordinary lengths to deny jobs to U.S. workers so they can hire foreigners&hellip;",
+         "last_updated_unix" : "1451067822",
+         "byline_description_visual" : "BuzzFeed News Reporter",
+         "display_name" : "Jessica Garrison",
+         "image" : "http://s3-ak.buzzfed.com/static/2015-12/2/13/campaign_images/webdr12/all-you-americans-are-fired-2-26810-1449082231-15.jpg",
+         "byline_description_id" : "2",
+         "static_images" : {
+            "small" : "http://s3-static-ak.buzzfed.com/static/2015-12/2/13/campaign_images/webdr12/all-you-americans-are-fired-2-26810-1449082231-15_small.jpg",
+            "standard" : "http://s3-static-ak.buzzfed.com/static/2015-12/2/13/campaign_images/webdr12/all-you-americans-are-fired-2-26810-1449082231-15.jpg",
+            "big" : "http://s3-static-ak.buzzfed.com/static/2015-12/2/13/campaign_images/webdr12/all-you-americans-are-fired-2-26810-1449082231-15_big.jpg",
+            "wide" : "http://s3-static-ak.buzzfed.com/static/2015-12/2/13/campaign_images/webdr12/all-you-americans-are-fired-2-26810-1449082231-15_wide.jpg",
+            "dblbig" : "http://s3-static-ak.buzzfed.com/static/2015-12/2/13/campaign_images/webdr12/all-you-americans-are-fired-2-26810-1449082231-15_dblbig.jpg",
+            "dblwide" : "http://s3-static-ak.buzzfed.com/static/2015-12/2/13/campaign_images/webdr12/all-you-americans-are-fired-2-26810-1449082231-15_dblwide.jpg"
+         },
+         "image_small" : "http://s3-ak.buzzfed.com/static/2015-12/2/13/campaign_images/webdr12/all-you-americans-are-fired-2-26810-1449082231-15_small.jpg",
+         "html_blurb" : "<b><big>\"All You Americans Are Fired\"</big></b><br/>The H-2 guest worker program, which brought in 150,000 legal foreign workers last year, isn't supposed to deprive any American of a job. But many businesses go to extraordinary lengths to deny jobs to U.S. workers so they can hire foreigners instead. A BuzzFeed News investigation.<br/><table><tr><td width='30' padding='0 0'><img src='http://s3-ak.buzzfed.com/static/2014-05/user_images/webdr07/12/15/jessicagarrison-17835-1399923598-4.jpg' width='25' height='25'/></td><td padding='5' pspacing='0'><small><b><a href='/jessicagarrison'>Jessica Garrison</a></b></small><br/><small><color value='#939393'>BuzzFeed News Reporter</color></small></td></tr></table>"
+      },
+      {
+         "bid" : "7H1XI87",
+         "user_type" : "f_other",
+         "form" : "super",
+         "bid_native" : "4091929",
+         "user" : "arianelange",
+         "url" : "http://www.buzzfeed.com/arianelange/james-deen-allegations",
+         "comments_count" : 9,
+         "last_updated" : "2015-12-04 00:52:47",
+         "images" : "",
+         "uid" : "72EEV97",
+         "sub_buzz" : "",
+         "name" : "James Deen's Co-Star: \"He Doesn't Just Rape; He Likes To Hurt Women\"",
+         "uri" : "james-deen-allegations",
+         "cloud_servers" : [
+            "alleyezonme-collection.buzzfeed.com"
+         ],
+         "username" : "arianelange",
+         "published" : "2015-12-03 20:34:34",
+         "published_unix" : "1449192874",
+         "ad_blurb" : "Lily LaBeau and Bonnie Rotten, two women who repeatedly worked with the porn star \u2014 who's recently been <a href=\"http://www.buzzfeed.com/davidmack/porn-star-james-deen-accused-of-rape-by-ex-girlfriend\">accused of rape</a> \u2014 told BuzzFeed News he deliberately upset them during filming.",
+         "nsfw" : "false",
+         "status" : "live",
+         "ct" : "http://75.101.183.223/small.gif?type=100,14&user=arianelange&buzz=james-deen-allegations&c=7H1XI87&u=72EEV97&url=http%3A%2F%2Fwww.buzzfeed.com%2Farianelange%2Fjames-deen-allegations%2F&rd=http%3A%2F%2Fwww.buzzfeed.com%2Farianelange%2Fjames-deen-allegations%2F",
+         "user_byline_data" : {},
+         "impressions" : "390156",
+         "mobile_image" : "1",
+         "user_image" : "http://s3-ak.buzzfed.com/static/user_images/webdr01/2013/3/25/13/arianelange-15208-1364232573-5.jpg",
+         "blurb" : "Lily LaBeau and Bonnie Rotten, two women who repeatedly worked with the porn star &mdash; who&#39;s recently been accused of rape &mdash; told BuzzFeed News he deliberately upset them during filming.",
+         "last_updated_unix" : "1449208367",
+         "byline_description_visual" : "BuzzFeed News Reporter",
+         "display_name" : "Ariane Lange",
+         "image" : "http://s3-ak.buzzfed.com/static/2015-12/4/0/campaign_images/webdr15/james-deens-co-star-he-doesnt-just-rape-he-likes--2-13926-1449208364-0.jpg",
+         "byline_description_id" : "2",
+         "static_images" : {
+            "small" : "http://s3-static-ak.buzzfed.com/static/2015-12/4/0/campaign_images/webdr15/james-deens-co-star-he-doesnt-just-rape-he-likes--2-13926-1449208364-0_small.jpg",
+            "standard" : "http://s3-static-ak.buzzfed.com/static/2015-12/4/0/campaign_images/webdr15/james-deens-co-star-he-doesnt-just-rape-he-likes--2-13926-1449208364-0.jpg",
+            "big" : "http://s3-static-ak.buzzfed.com/static/2015-12/4/0/campaign_images/webdr15/james-deens-co-star-he-doesnt-just-rape-he-likes--2-13926-1449208364-0_big.jpg",
+            "wide" : "http://s3-static-ak.buzzfed.com/static/2015-12/4/0/campaign_images/webdr15/james-deens-co-star-he-doesnt-just-rape-he-likes--2-13926-1449208364-0_wide.jpg",
+            "dblbig" : "http://s3-static-ak.buzzfed.com/static/2015-12/4/0/campaign_images/webdr15/james-deens-co-star-he-doesnt-just-rape-he-likes--2-13926-1449208364-0_dblbig.jpg",
+            "dblwide" : "http://s3-static-ak.buzzfed.com/static/2015-12/4/0/campaign_images/webdr15/james-deens-co-star-he-doesnt-just-rape-he-likes--2-13926-1449208364-0_dblwide.jpg"
+         },
+         "image_small" : "http://s3-ak.buzzfed.com/static/2015-12/4/0/campaign_images/webdr15/james-deens-co-star-he-doesnt-just-rape-he-likes--2-13926-1449208364-0_small.jpg",
+         "html_blurb" : "<b><big>James Deen's Co-Star: \"He Doesn't Just Rape; He Likes To Hurt Women\"</big></b><br/>Lily LaBeau and Bonnie Rotten, two women who repeatedly worked with the porn star \u2014 who's recently been <a href=\"http://www.buzzfeed.com/davidmack/porn-star-james-deen-accused-of-rape-by-ex-girlfriend\">accused of rape</a> \u2014 told BuzzFeed News he deliberately upset them during filming.<br/><table><tr><td width='30' padding='0 0'><img src='http://s3-ak.buzzfed.com/static/user_images/webdr01/2013/3/25/13/arianelange-15208-1364232573-5.jpg' width='25' height='25'/></td><td padding='5' pspacing='0'><small><b><a href='/arianelange'>Ariane Lange</a></b></small><br/><small><color value='#939393'>BuzzFeed News Reporter</color></small></td></tr></table>"
+      },
+      {
+         "bid" : "7H18HK7",
+         "user_type" : "f_other",
+         "form" : "super",
+         "bid_native" : "4087297",
+         "user" : "mckaycoppins",
+         "url" : "http://www.buzzfeed.com/mckaycoppins/whisper-campaigns-and-zipper-problems-how-jeb-bushs-allies-t",
+         "comments_count" : 0,
+         "last_updated" : "2015-11-29 23:47:53",
+         "images" : "",
+         "uid" : "7YZTZ7",
+         "sub_buzz" : "",
+         "name" : "Whisper Campaigns And \"Zipper Problems\": How Jeb Bush's Allies Tried \u2014 And Failed \u2014 To Stop Marco Rubio",
+         "uri" : "whisper-campaigns-and-zipper-problems-how-jeb-bushs-allies-t",
+         "cloud_servers" : [
+            "alleyezonme-collection.buzzfeed.com"
+         ],
+         "username" : "mckaycoppins",
+         "published" : "2015-11-29 23:47:53",
+         "published_unix" : "1448858873",
+         "ad_blurb" : "An adaption from the forthcoming book, The Wilderness: Deep Inside the Republican Party\u2019s Combative, Contentious, Chaotic Quest to Take Back the White House.",
+         "nsfw" : "false",
+         "status" : "live",
+         "ct" : "http://75.101.183.223/small.gif?type=100,14&user=mckaycoppins&buzz=whisper-campaigns-and-zipper-problems-how-jeb-bushs-allies-t&c=7H18HK7&u=7YZTZ7&url=http%3A%2F%2Fwww.buzzfeed.com%2Fmckaycoppins%2Fwhisper-campaigns-and-zipper-problems-how-jeb-bushs-allies-t%2F&rd=http%3A%2F%2Fwww.buzzfeed.com%2Fmckaycoppins%2Fwhisper-campaigns-and-zipper-problems-how-jeb-bushs-allies-t%2F",
+         "user_byline_data" : {},
+         "impressions" : "104171",
+         "mobile_image" : "1",
+         "user_image" : "http://s3-ak.buzzfed.com/static/user_images/web05/2012/3/25/8/mckaycoppins-4097-1332677044-0.jpg",
+         "blurb" : "An adaption from the forthcoming book, The Wilderness: Deep Inside the Republican Party&rsquo;s Combative, Contentious, Chaotic Quest to Take Back the White House.",
+         "last_updated_unix" : "1448858873",
+         "byline_description_visual" : "BuzzFeed Staff",
+         "display_name" : "McKay Coppins",
+         "image" : "http://s3-ak.buzzfed.com/static/2015-11/29/23/campaign_images/webdr15/whisper-campaigns-and-zipper-problems-how-jeb-bus-2-21532-1448858870-5.jpg",
+         "byline_description_id" : "2",
+         "static_images" : {
+            "small" : "http://s3-static-ak.buzzfed.com/static/2015-11/29/23/campaign_images/webdr15/whisper-campaigns-and-zipper-problems-how-jeb-bus-2-21532-1448858870-5_small.jpg",
+            "standard" : "http://s3-static-ak.buzzfed.com/static/2015-11/29/23/campaign_images/webdr15/whisper-campaigns-and-zipper-problems-how-jeb-bus-2-21532-1448858870-5.jpg",
+            "big" : "http://s3-static-ak.buzzfed.com/static/2015-11/29/23/campaign_images/webdr15/whisper-campaigns-and-zipper-problems-how-jeb-bus-2-21532-1448858870-5_big.jpg",
+            "wide" : "http://s3-static-ak.buzzfed.com/static/2015-11/29/23/campaign_images/webdr15/whisper-campaigns-and-zipper-problems-how-jeb-bus-2-21532-1448858870-5_wide.jpg",
+            "dblbig" : "http://s3-static-ak.buzzfed.com/static/2015-11/29/23/campaign_images/webdr15/whisper-campaigns-and-zipper-problems-how-jeb-bus-2-21532-1448858870-5_dblbig.jpg",
+            "dblwide" : "http://s3-static-ak.buzzfed.com/static/2015-11/29/23/campaign_images/webdr15/whisper-campaigns-and-zipper-problems-how-jeb-bus-2-21532-1448858870-5_dblwide.jpg"
+         },
+         "image_small" : "http://s3-ak.buzzfed.com/static/2015-11/29/23/campaign_images/webdr15/whisper-campaigns-and-zipper-problems-how-jeb-bus-2-21532-1448858870-5_small.jpg",
+         "html_blurb" : "<b><big>Whisper Campaigns And \"Zipper Problems\": How Jeb Bush's Allies Tried \u2014 And Failed \u2014 To Stop Marco Rubio</big></b><br/>An adaption from the forthcoming book, The Wilderness: Deep Inside the Republican Party\u2019s Combative, Contentious, Chaotic Quest to Take Back the White House.<br/><table><tr><td width='30' padding='0 0'><img src='http://s3-ak.buzzfed.com/static/user_images/web05/2012/3/25/8/mckaycoppins-4097-1332677044-0.jpg' width='25' height='25'/></td><td padding='5' pspacing='0'><small><b><a href='/mckaycoppins'>McKay Coppins</a></b></small><br/><small><color value='#939393'>BuzzFeed Staff</color></small></td></tr></table>"
+      },
+      {
+         "bid" : "7H0W8Y7",
+         "user_type" : "f_other",
+         "form" : "super",
+         "bid_native" : "4085031",
+         "user" : "josephbernstein",
+         "url" : "http://www.buzzfeed.com/josephbernstein/how-to-make-millions-of-hoverboards-almost-overnight",
+         "comments_count" : 6,
+         "last_updated" : "2015-12-25 13:23:37",
+         "images" : "",
+         "uid" : "71REJ97",
+         "sub_buzz" : "",
+         "name" : "Inside China's Memefacturing Factories, Where The Hottest New Gadgets Are Made",
+         "uri" : "how-to-make-millions-of-hoverboards-almost-overnight",
+         "cloud_servers" : [
+            "alleyezonme-collection.buzzfeed.com"
+         ],
+         "username" : "josephbernstein",
+         "published" : "2015-11-27 09:12:23",
+         "published_unix" : "1448633543",
+         "ad_blurb" : "This holiday season, we want to roll around on motorized two-wheeled scooters \u2014 and China wants to give us what we want, as soon as we want it. BuzzFeed News travels to Shenzhen, the world capital of memeufacturing, to see how your Black Friday sausage gets made.",
+         "nsfw" : "false",
+         "status" : "live",
+         "ct" : "http://75.101.183.223/small.gif?type=100,14&user=josephbernstein&buzz=how-to-make-millions-of-hoverboards-almost-overnight&c=7H0W8Y7&u=71REJ97&url=http%3A%2F%2Fwww.buzzfeed.com%2Fjosephbernstein%2Fhow-to-make-millions-of-hoverboards-almost-overnight%2F&rd=http%3A%2F%2Fwww.buzzfeed.com%2Fjosephbernstein%2Fhow-to-make-millions-of-hoverboards-almost-overnight%2F",
+         "user_byline_data" : {},
+         "impressions" : "259325",
+         "mobile_image" : "1",
+         "user_image" : "http://s3-ak.buzzfed.com/static/user_images/webdr01/2013/2/4/11/josephbernstein-5128-1359996832-11.jpg",
+         "blurb" : "This holiday season, we want to roll around on motorized two-wheeled scooters &mdash; and China wants to give us what we want, as soon as we want it. BuzzFeed News travels to Shenzhen, the world capital of memeufacturing, to see how your Black Friday&hellip;",
+         "last_updated_unix" : "1451067817",
+         "byline_description_visual" : "BuzzFeed News Reporter",
+         "display_name" : "Joseph Bernstein",
+         "image" : "http://s3-ak.buzzfed.com/static/2015-11/30/16/campaign_images/webdr04/inside-chinas-memefacturing-factories-where-the-h-2-26820-1448918997-12.jpg",
+         "byline_description_id" : "2",
+         "static_images" : {
+            "small" : "http://s3-static-ak.buzzfed.com/static/2015-11/30/16/campaign_images/webdr04/inside-chinas-memefacturing-factories-where-the-h-2-26820-1448918997-12_small.jpg",
+            "standard" : "http://s3-static-ak.buzzfed.com/static/2015-11/30/16/campaign_images/webdr04/inside-chinas-memefacturing-factories-where-the-h-2-26820-1448918997-12.jpg",
+            "big" : "http://s3-static-ak.buzzfed.com/static/2015-11/30/16/campaign_images/webdr04/inside-chinas-memefacturing-factories-where-the-h-2-26820-1448918997-12_big.jpg",
+            "wide" : "http://s3-static-ak.buzzfed.com/static/2015-11/30/16/campaign_images/webdr04/inside-chinas-memefacturing-factories-where-the-h-2-26820-1448918997-12_wide.jpg",
+            "dblbig" : "http://s3-static-ak.buzzfed.com/static/2015-11/30/16/campaign_images/webdr04/inside-chinas-memefacturing-factories-where-the-h-2-26820-1448918997-12_dblbig.jpg",
+            "dblwide" : "http://s3-static-ak.buzzfed.com/static/2015-11/30/16/campaign_images/webdr04/inside-chinas-memefacturing-factories-where-the-h-2-26820-1448918997-12_dblwide.jpg"
+         },
+         "image_small" : "http://s3-ak.buzzfed.com/static/2015-11/30/16/campaign_images/webdr04/inside-chinas-memefacturing-factories-where-the-h-2-26820-1448918997-12_small.jpg",
+         "html_blurb" : "<b><big>Inside China's Memefacturing Factories, Where The Hottest New Gadgets Are Made</big></b><br/>This holiday season, we want to roll around on motorized two-wheeled scooters \u2014 and China wants to give us what we want, as soon as we want it. BuzzFeed News travels to Shenzhen, the world capital of memeufacturing, to see how your Black Friday sausage gets made.<br/><table><tr><td width='30' padding='0 0'><img src='http://s3-ak.buzzfed.com/static/user_images/webdr01/2013/2/4/11/josephbernstein-5128-1359996832-11.jpg' width='25' height='25'/></td><td padding='5' pspacing='0'><small><b><a href='/josephbernstein'>Joseph Bernstein</a></b></small><br/><small><color value='#939393'>BuzzFeed News Reporter</color></small></td></tr></table>"
+      },
+      {
+         "bid" : "7GXPSA7",
+         "user_type" : "f_other",
+         "form" : "super",
+         "bid_native" : "4063839",
+         "user" : "tasneemnashrulla",
+         "url" : "http://www.buzzfeed.com/tasneemnashrulla/women-in-indias-mens-rights-movement",
+         "comments_count" : 10,
+         "last_updated" : "2015-12-25 13:15:35",
+         "images" : "",
+         "uid" : "7393M57",
+         "sub_buzz" : "",
+         "name" : "These Are The Indian Women Fighting For \u201cMen\u2019s Rights\u201d",
+         "uri" : "women-in-indias-mens-rights-movement",
+         "cloud_servers" : [
+            "alleyezonme-collection.buzzfeed.com"
+         ],
+         "username" : "tasneemnashrulla",
+         "published" : "2015-11-30 20:46:08",
+         "published_unix" : "1448934368",
+         "ad_blurb" : "In a country where the number of sexual assaults against women is increasing, a handful of women in India are fighting for the people they believe are the real victims: its men.",
+         "nsfw" : "false",
+         "status" : "live",
+         "ct" : "http://75.101.183.223/small.gif?type=100,14&user=tasneemnashrulla&buzz=women-in-indias-mens-rights-movement&c=7GXPSA7&u=7393M57&url=http%3A%2F%2Fwww.buzzfeed.com%2Ftasneemnashrulla%2Fwomen-in-indias-mens-rights-movement%2F&rd=http%3A%2F%2Fwww.buzzfeed.com%2Ftasneemnashrulla%2Fwomen-in-indias-mens-rights-movement%2F",
+         "user_byline_data" : {},
+         "impressions" : "128313",
+         "mobile_image" : "1",
+         "user_image" : "http://s3-ak.buzzfed.com/static/user_images/webdr03/2013/7/9/17/tasneemnashrulla-598-1373406682-4.jpg",
+         "blurb" : "In a country where the number of sexual assaults against women is increasing, a handful of women in India are fighting for the people they believe are the real victims: its men.",
+         "last_updated_unix" : "1451067335",
+         "byline_description_visual" : "BuzzFeed News Reporter",
+         "display_name" : "Tasneem Nashrulla",
+         "image" : "http://s3-ak.buzzfed.com/static/2015-12/1/8/campaign_images/webdr07/these-are-the-indian-women-fighting-for-mens-righ-2-30190-1448978292-0.jpg",
+         "byline_description_id" : "2",
+         "static_images" : {
+            "small" : "http://s3-static-ak.buzzfed.com/static/2015-12/1/8/campaign_images/webdr07/these-are-the-indian-women-fighting-for-mens-righ-2-30190-1448978292-0_small.jpg",
+            "standard" : "http://s3-static-ak.buzzfed.com/static/2015-12/1/8/campaign_images/webdr07/these-are-the-indian-women-fighting-for-mens-righ-2-30190-1448978292-0.jpg",
+            "big" : "http://s3-static-ak.buzzfed.com/static/2015-12/1/8/campaign_images/webdr07/these-are-the-indian-women-fighting-for-mens-righ-2-30190-1448978292-0_big.jpg",
+            "wide" : "http://s3-static-ak.buzzfed.com/static/2015-12/1/8/campaign_images/webdr07/these-are-the-indian-women-fighting-for-mens-righ-2-30190-1448978292-0_wide.jpg",
+            "dblbig" : "http://s3-static-ak.buzzfed.com/static/2015-12/1/8/campaign_images/webdr07/these-are-the-indian-women-fighting-for-mens-righ-2-30190-1448978292-0_dblbig.jpg",
+            "dblwide" : "http://s3-static-ak.buzzfed.com/static/2015-12/1/8/campaign_images/webdr07/these-are-the-indian-women-fighting-for-mens-righ-2-30190-1448978292-0_dblwide.jpg"
+         },
+         "image_small" : "http://s3-ak.buzzfed.com/static/2015-12/1/8/campaign_images/webdr07/these-are-the-indian-women-fighting-for-mens-righ-2-30190-1448978292-0_small.jpg",
+         "html_blurb" : "<b><big>These Are The Indian Women Fighting For \u201cMen\u2019s Rights\u201d</big></b><br/>In a country where the number of sexual assaults against women is increasing, a handful of women in India are fighting for the people they believe are the real victims: its men.<br/><table><tr><td width='30' padding='0 0'><img src='http://s3-ak.buzzfed.com/static/user_images/webdr03/2013/7/9/17/tasneemnashrulla-598-1373406682-4.jpg' width='25' height='25'/></td><td padding='5' pspacing='0'><small><b><a href='/tasneemnashrulla'>Tasneem Nashrulla</a></b></small><br/><small><color value='#939393'>BuzzFeed News Reporter</color></small></td></tr></table>"
+      },
+      {
+         "bid" : "7H44HE7",
+         "user_type" : "f_other",
+         "form" : "super",
+         "bid_native" : "4106551",
+         "user" : "nitashatiku",
+         "url" : "http://www.buzzfeed.com/nitashatiku/porn-sexual-assault",
+         "comments_count" : 3,
+         "last_updated" : "2015-12-20 16:38:13",
+         "images" : "",
+         "uid" : "7DECZV7",
+         "sub_buzz" : "",
+         "name" : "Inside The Porn Industry's Reckoning Over Sexual Assault",
+         "uri" : "porn-sexual-assault",
+         "cloud_servers" : [
+            "alleyezonme-collection.buzzfeed.com"
+         ],
+         "username" : "nitashatiku",
+         "published" : "2015-12-20 10:30:17",
+         "published_unix" : "1450625417",
+         "ad_blurb" : "There are few formal mechanisms for reporting and responding to rape in the industry. But recent publicity is leading to action as well as talk.",
+         "nsfw" : "false",
+         "status" : "live",
+         "ct" : "http://75.101.183.223/small.gif?type=100,14&user=nitashatiku&buzz=porn-sexual-assault&c=7H44HE7&u=7DECZV7&url=http%3A%2F%2Fwww.buzzfeed.com%2Fnitashatiku%2Fporn-sexual-assault%2F&rd=http%3A%2F%2Fwww.buzzfeed.com%2Fnitashatiku%2Fporn-sexual-assault%2F",
+         "user_byline_data" : {},
+         "impressions" : "282432",
+         "mobile_image" : "1",
+         "user_image" : "http://s3-ak.buzzfed.com/static/2015-06/10/14/user_images/webdr15/nitashatiku-v2-14656-1433959824-0.png",
+         "blurb" : "There are few formal mechanisms for reporting and responding to rape in the industry. But recent publicity is leading to action as well as talk.",
+         "last_updated_unix" : "1450647493",
+         "byline_description_visual" : "BuzzFeed News Reporter",
+         "display_name" : "Nitasha Tiku",
+         "image" : "http://s3-ak.buzzfed.com/static/2015-12/20/16/campaign_images/webdr10/inside-the-porn-industrys-reckoning-over-sexual-a-2-26371-1450647489-0.jpg",
+         "byline_description_id" : "2",
+         "static_images" : {
+            "small" : "http://s3-static-ak.buzzfed.com/static/2015-12/20/16/campaign_images/webdr10/inside-the-porn-industrys-reckoning-over-sexual-a-2-26371-1450647489-0_small.jpg",
+            "standard" : "http://s3-static-ak.buzzfed.com/static/2015-12/20/16/campaign_images/webdr10/inside-the-porn-industrys-reckoning-over-sexual-a-2-26371-1450647489-0.jpg",
+            "big" : "http://s3-static-ak.buzzfed.com/static/2015-12/20/16/campaign_images/webdr10/inside-the-porn-industrys-reckoning-over-sexual-a-2-26371-1450647489-0_big.jpg",
+            "wide" : "http://s3-static-ak.buzzfed.com/static/2015-12/20/16/campaign_images/webdr10/inside-the-porn-industrys-reckoning-over-sexual-a-2-26371-1450647489-0_wide.jpg",
+            "dblbig" : "http://s3-static-ak.buzzfed.com/static/2015-12/20/16/campaign_images/webdr10/inside-the-porn-industrys-reckoning-over-sexual-a-2-26371-1450647489-0_dblbig.jpg",
+            "dblwide" : "http://s3-static-ak.buzzfed.com/static/2015-12/20/16/campaign_images/webdr10/inside-the-porn-industrys-reckoning-over-sexual-a-2-26371-1450647489-0_dblwide.jpg"
+         },
+         "image_small" : "http://s3-ak.buzzfed.com/static/2015-12/20/16/campaign_images/webdr10/inside-the-porn-industrys-reckoning-over-sexual-a-2-26371-1450647489-0_small.jpg",
+         "html_blurb" : "<b><big>Inside The Porn Industry's Reckoning Over Sexual Assault</big></b><br/>There are few formal mechanisms for reporting and responding to rape in the industry. But recent publicity is leading to action as well as talk.<br/><table><tr><td width='30' padding='0 0'><img src='http://s3-ak.buzzfed.com/static/2015-06/10/14/user_images/webdr15/nitashatiku-v2-14656-1433959824-0.png' width='25' height='25'/></td><td padding='5' pspacing='0'><small><b><a href='/nitashatiku'>Nitasha Tiku</a></b></small><br/><small><color value='#939393'>BuzzFeed News Reporter</color></small></td></tr></table>"
+      },
+      {
+         "bid" : "7H31PO7",
+         "user_type" : "f_other",
+         "form" : "super",
+         "bid_native" : "4099373",
+         "user" : "borzoudaragahi",
+         "url" : "http://www.buzzfeed.com/borzoudaragahi/this-is-how-isis-has-spread-beyond-syria-and-iraq",
+         "comments_count" : 0,
+         "last_updated" : "2015-12-12 20:23:55",
+         "images" : "",
+         "uid" : "7E4N447",
+         "sub_buzz" : "",
+         "name" : "This Is How ISIS Has Spread Beyond Syria and Iraq",
+         "uri" : "this-is-how-isis-has-spread-beyond-syria-and-iraq",
+         "cloud_servers" : [
+            "alleyezonme-collection.buzzfeed.com"
+         ],
+         "username" : "borzoudaragahi",
+         "published" : "2015-12-12 11:01:15",
+         "published_unix" : "1449936075",
+         "ad_blurb" : "After consolidating territory in Syria and Iraq, ISIS has launched a different strategy to spread its influence in places like Egypt. BuzzFeed News' Borzou Daragahi reports on how the militant powerhouse absorbs local affiliates across the Middle East.",
+         "nsfw" : "false",
+         "status" : "live",
+         "ct" : "http://75.101.183.223/small.gif?type=100,14&user=borzoudaragahi&buzz=this-is-how-isis-has-spread-beyond-syria-and-iraq&c=7H31PO7&u=7E4N447&url=http%3A%2F%2Fwww.buzzfeed.com%2Fborzoudaragahi%2Fthis-is-how-isis-has-spread-beyond-syria-and-iraq%2F&rd=http%3A%2F%2Fwww.buzzfeed.com%2Fborzoudaragahi%2Fthis-is-how-isis-has-spread-beyond-syria-and-iraq%2F",
+         "user_byline_data" : {},
+         "impressions" : "50748",
+         "mobile_image" : "1",
+         "user_image" : "http://s3-ak.buzzfed.com/static/2015-09/4/12/user_images/webdr08/borzoudaragahi-v2-25920-1441383922-0.jpg",
+         "blurb" : "After consolidating territory in Syria and Iraq, ISIS has launched a different strategy to spread its influence in places like Egypt. BuzzFeed News&#39; Borzou Daragahi reports on how the militant powerhouse absorbs local affiliates across the Middle&hellip;",
+         "last_updated_unix" : "1449969835",
+         "byline_description_visual" : "BuzzFeed News Middle East Correspondent",
+         "display_name" : "Borzou Daragahi",
+         "image" : "http://s3-ak.buzzfed.com/static/2015-12/12/12/campaign_images/webdr01/this-is-how-isis-has-spread-beyond-syria-and-iraq-2-26020-1449940657-0.jpg",
+         "byline_description_id" : "2",
+         "static_images" : {
+            "small" : "http://s3-static-ak.buzzfed.com/static/2015-12/12/12/campaign_images/webdr01/this-is-how-isis-has-spread-beyond-syria-and-iraq-2-26020-1449940657-0_small.jpg",
+            "standard" : "http://s3-static-ak.buzzfed.com/static/2015-12/12/12/campaign_images/webdr01/this-is-how-isis-has-spread-beyond-syria-and-iraq-2-26020-1449940657-0.jpg",
+            "big" : "http://s3-static-ak.buzzfed.com/static/2015-12/12/12/campaign_images/webdr01/this-is-how-isis-has-spread-beyond-syria-and-iraq-2-26020-1449940657-0_big.jpg",
+            "wide" : "http://s3-static-ak.buzzfed.com/static/2015-12/12/12/campaign_images/webdr01/this-is-how-isis-has-spread-beyond-syria-and-iraq-2-26020-1449940657-0_wide.jpg",
+            "dblbig" : "http://s3-static-ak.buzzfed.com/static/2015-12/12/12/campaign_images/webdr01/this-is-how-isis-has-spread-beyond-syria-and-iraq-2-26020-1449940657-0_dblbig.jpg",
+            "dblwide" : "http://s3-static-ak.buzzfed.com/static/2015-12/12/12/campaign_images/webdr01/this-is-how-isis-has-spread-beyond-syria-and-iraq-2-26020-1449940657-0_dblwide.jpg"
+         },
+         "image_small" : "http://s3-ak.buzzfed.com/static/2015-12/12/12/campaign_images/webdr01/this-is-how-isis-has-spread-beyond-syria-and-iraq-2-26020-1449940657-0_small.jpg",
+         "html_blurb" : "<b><big>This Is How ISIS Has Spread Beyond Syria and Iraq</big></b><br/>After consolidating territory in Syria and Iraq, ISIS has launched a different strategy to spread its influence in places like Egypt. BuzzFeed News' Borzou Daragahi reports on how the militant powerhouse absorbs local affiliates across the Middle East.<br/><table><tr><td width='30' padding='0 0'><img src='http://s3-ak.buzzfed.com/static/2015-09/4/12/user_images/webdr08/borzoudaragahi-v2-25920-1441383922-0.jpg' width='25' height='25'/></td><td padding='5' pspacing='0'><small><b><a href='/borzoudaragahi'>Borzou Daragahi</a></b></small><br/><small><color value='#939393'>BuzzFeed News Middle East Correspondent</color></small></td></tr></table>"
+      },
+      {
+         "bid" : "7H4ILO7",
+         "user_type" : "f_other",
+         "form" : "super",
+         "bid_native" : "4109165",
+         "user" : "lindseyadler",
+         "url" : "http://www.buzzfeed.com/lindseyadler/women-sidelined-in-concussion",
+         "comments_count" : 1,
+         "last_updated" : "2015-12-23 13:27:32",
+         "images" : "",
+         "uid" : "75GZ7L7",
+         "sub_buzz" : "",
+         "name" : "Women Are Kept On The Sideline In \u201cConcussion\u201d",
+         "uri" : "women-sidelined-in-concussion",
+         "cloud_servers" : [
+            "alleyezonme-collection.buzzfeed.com"
+         ],
+         "username" : "lindseyadler",
+         "published" : "2015-12-23 13:26:08",
+         "published_unix" : "1450895168",
+         "ad_blurb" : "In the Will Smith blockbuster, out Friday, the impact of CTE on women and family life is just there to help the David vs. Goliath narrative.",
+         "nsfw" : "false",
+         "status" : "live",
+         "ct" : "http://75.101.183.223/small.gif?type=100,14&user=lindseyadler&buzz=women-sidelined-in-concussion&c=7H4ILO7&u=75GZ7L7&url=http%3A%2F%2Fwww.buzzfeed.com%2Flindseyadler%2Fwomen-sidelined-in-concussion%2F&rd=http%3A%2F%2Fwww.buzzfeed.com%2Flindseyadler%2Fwomen-sidelined-in-concussion%2F",
+         "user_byline_data" : {},
+         "impressions" : "32857",
+         "mobile_image" : "1",
+         "user_image" : "http://s3-ak.buzzfed.com/static/2014-12/3/9/user_images/webdr06/lindseyadler-15533-1417616010-18.jpg",
+         "blurb" : "In the Will Smith blockbuster, out Friday, the impact of CTE on women and family life is just there to help the David vs. Goliath narrative.",
+         "last_updated_unix" : "1450895252",
+         "byline_description_visual" : "BuzzFeed News Reporter",
+         "display_name" : "Lindsey Adler",
+         "image" : "http://s3-ak.buzzfed.com/static/2015-12/23/13/campaign_images/webdr04/women-are-kept-on-the-sideline-in-concussion-2-31586-1450895249-3.jpg",
+         "byline_description_id" : "2",
+         "static_images" : {
+            "small" : "http://s3-static-ak.buzzfed.com/static/2015-12/23/13/campaign_images/webdr04/women-are-kept-on-the-sideline-in-concussion-2-31586-1450895249-3_small.jpg",
+            "standard" : "http://s3-static-ak.buzzfed.com/static/2015-12/23/13/campaign_images/webdr04/women-are-kept-on-the-sideline-in-concussion-2-31586-1450895249-3.jpg",
+            "big" : "http://s3-static-ak.buzzfed.com/static/2015-12/23/13/campaign_images/webdr04/women-are-kept-on-the-sideline-in-concussion-2-31586-1450895249-3_big.jpg",
+            "wide" : "http://s3-static-ak.buzzfed.com/static/2015-12/23/13/campaign_images/webdr04/women-are-kept-on-the-sideline-in-concussion-2-31586-1450895249-3_wide.jpg",
+            "dblbig" : "http://s3-static-ak.buzzfed.com/static/2015-12/23/13/campaign_images/webdr04/women-are-kept-on-the-sideline-in-concussion-2-31586-1450895249-3_dblbig.jpg",
+            "dblwide" : "http://s3-static-ak.buzzfed.com/static/2015-12/23/13/campaign_images/webdr04/women-are-kept-on-the-sideline-in-concussion-2-31586-1450895249-3_dblwide.jpg"
+         },
+         "image_small" : "http://s3-ak.buzzfed.com/static/2015-12/23/13/campaign_images/webdr04/women-are-kept-on-the-sideline-in-concussion-2-31586-1450895249-3_small.jpg",
+         "html_blurb" : "<b><big>Women Are Kept On The Sideline In \u201cConcussion\u201d</big></b><br/>In the Will Smith blockbuster, out Friday, the impact of CTE on women and family life is just there to help the David vs. Goliath narrative.<br/><table><tr><td width='30' padding='0 0'><img src='http://s3-ak.buzzfed.com/static/2014-12/3/9/user_images/webdr06/lindseyadler-15533-1417616010-18.jpg' width='25' height='25'/></td><td padding='5' pspacing='0'><small><b><a href='/lindseyadler'>Lindsey Adler</a></b></small><br/><small><color value='#939393'>BuzzFeed News Reporter</color></small></td></tr></table>"
+      }
+   ],
+   "no_shell" : null
+}
+;var uw_impression=function(){bf_widget.d={type:[],buzzid:[],user:[],buzz:[],userid:[],query:[]};var num_displayed=BF_DISPLAYED_BUZZ.length;var buzzes=BF_DISPLAYED_BUZZ;for(var i=0;i<num_displayed;i++)
+{var buzz=buzzes[i];bf_widget.d.type.push((typeof buzz['b']!='undefined')?bf_widget.boost_impression_type:bf_widget.impression_type);bf_widget.d.buzzid.push(buzz.bid);bf_widget.d.userid.push(buzz.uid);bf_widget.d.buzz.push(buzz.uri);bf_widget.d.user.push(buzz.user);if(bf_widget.is_dfp_on_buzzfeed&&typeof BF_DATA['position_id']!='undefined')
+{bf_widget.d.query.push(BF_DATA.position_id);}
+if(typeof buzz['flex_pro_id']!='undefined')
+{bf_widget.d.type.push(bf_widget.flex_pro_impression_type);bf_widget.d.buzzid.push(buzz.bid);bf_widget.d.userid.push(buzz.uid);bf_widget.d.buzz.push(buzz.uri);bf_widget.d.user.push(buzz.user);bf_widget.d.query.push(buzz['flex_pro_id']);}}
+var track_url="http://"+(bf_widget.servers[Math.floor(Math.random()*bf_widget.servers.length)])+"/small.gif?";track_url+="type="+bf_widget.d.type.join(",");track_url+="&c="+bf_widget.d.buzzid.join(",");track_url+="&buzz="+bf_widget.d.buzz.join(",");track_url+="&u="+bf_widget.d.userid.join(",");track_url+="&user="+bf_widget.d.user.join(",");track_url+="&query="+bf_widget.d.query.join(",");if(!bf_widget.is_dfp)
+{track_url+="&url="+escape(window.location.href);}
+track_url+="&z="+Math.floor((Math.random()*10000));BF_W.record_pixel(track_url);if(typeof window['BF_DFP_IMP']!='undefined')
+{BF_W.record_pixel(BF_DFP_IMP);}
+if(BF_DATA.wid&&typeof window['BF_DFP_IMPS']!='undefined'&&BF_DFP_IMPS[BF_DATA.wid])
+{BF_W.record_pixel(BF_DFP_IMPS[BF_DATA.wid]);}
+if(typeof(parent.BF_NO_QS)=='undefined'){BF_W.record_pixel("http://pixel.quantserve.com/pixel/p-3aud4J6uA4Z6Y.gif?labels=Widget&busty="+Math.floor((Math.random()*10000)));}}
+var bfa_click=function(el,buzz,wid){try{if(!el.getAttribute("data-bfa")||typeof window.bfa=='undefined'||!(window.bfa instanceof Function)||typeof window.bfaBinder=='undefined'){return;}
+var bfaAttrObj=window.bfaBinder.parser.parse(el);if(bfaAttrObj[0].indexOf('-dfp')===-1){return;}
+bfaAttrObj[3].adbuzzid=buzz.bid_native;bfaAttrObj[3].adbuzzurl=buzz.url;bfaAttrObj[3].adpartner=buzz.user;bfaAttrObj[3].adtitle=buzz.name;bfaAttrObj[3].adimageurl=buzz.image;var result=["track",'click',];result=result.concat(bfaAttrObj);window.bfa.apply(this,result);}catch(e){console.error(e);}};var uw_click=function(el,buzz,wid){try{if(typeof window['BF_DFP_CLICK']!='undefined')
+{BF_W.record_pixel(BF_DFP_CLICK);}
+if(wid&&typeof window['BF_DFP_CLICKS']!='undefined'&&BF_DFP_CLICKS[wid])
+{BF_W.record_pixel(BF_DFP_CLICKS[wid]);}
+var DFP_CLICK=null;if(typeof window['BF_DFP_REDIRECT']!='undefined'){DFP_CLICK=BF_DFP_REDIRECT;}
+if(typeof window['BF_DFP_REDIRECTS']!='undefined'&&BF_DFP_REDIRECTS[wid]){DFP_CLICK=BF_DFP_REDIRECTS[wid];}
+if(DFP_CLICK)
+{el.href=DFP_CLICK+el.href;}
+var buzz_url=buzz['user_link']?buzz['user_link']:buzz['url'];bf_widget.d={type:[],buzzid:[],user:[],buzz:[],userid:[],query:[]};bf_widget.d.type.push(((typeof buzz['b']!='undefined')?bf_widget.boost_click_type:bf_widget.click_type));bf_widget.d.buzzid.push(buzz.bid);bf_widget.d.userid.push(buzz.uid);bf_widget.d.buzz.push(buzz.uri);bf_widget.d.user.push(buzz.user);bf_widget.d.query.push((bf_widget.is_dfp_on_buzzfeed&&typeof BF_DATA['position_id']!='undefined')?BF_DATA.position_id:'');if(typeof buzz['flex_pro_id']!='undefined')
+{bf_widget.d.type.push(bf_widget.flex_pro_click_type);bf_widget.d.buzzid.push(buzz.bid);bf_widget.d.userid.push(buzz.uid);bf_widget.d.buzz.push(buzz.uri);bf_widget.d.user.push(buzz.user);bf_widget.d.query.push(buzz['flex_pro_id']);}
+if(buzz['user_link'])
+{bf_widget.d.type.push(23);bf_widget.d.buzzid.push(buzz.bid);bf_widget.d.userid.push(buzz.uid);bf_widget.d.buzz.push(buzz.uri);bf_widget.d.user.push(buzz.user);bf_widget.d.query.push('');}
+var track_url="http://"+(bf_widget.servers[Math.floor(Math.random()*bf_widget.servers.length)])+"/small.gif?";track_url+="type="+bf_widget.d.type.join(",");track_url+="&c="+bf_widget.d.buzzid.join(",");track_url+="&buzz="+bf_widget.d.buzz.join(",");track_url+="&u="+bf_widget.d.userid.join(",");track_url+="&user="+bf_widget.d.user.join(",");track_url+="&query="+bf_widget.d.query.join(",");if(!bf_widget.is_dfp)
+{track_url+="&url="+escape(window.location.href);}
+BF_W.record_pixel(track_url);}catch(e){console.error(e);}};var bf_widget={};bf_widget.servers=["alleyezonme-collection.buzzfeed.com"];bf_widget.is_dfp=(typeof BF_DATA['network']!='undefined');bf_widget.is_dfp_on_buzzfeed=(typeof BF_DATA['network']!='undefined'&&BF_DATA['network']=='buzzfeed');bf_widget.impression_type=(bf_widget.is_dfp_on_buzzfeed)?30:13;bf_widget.click_type=(bf_widget.is_dfp_on_buzzfeed)?35:14;bf_widget.boost_impression_type=32;bf_widget.boost_click_type=37;bf_widget.flex_pro_impression_type=33;bf_widget.flex_pro_click_type=38;if(BF_DATA&&BF_DATA.wid&&BF_DATA.buzz&&BF_DATA.buzz.length>0){BF_W.show_widget(BF_DATA,function(el,buzz,wid){uw_click.call(this,el,buzz,wid);bfa_click.call(this,el,buzz,wid);});uw_impression();if(BF_DATA.track){BF_PARTNER.invisible=false;window['BF_SID']=BF_DATA.track;BF_PARTNER.track_page(BF_DATA.track);}}}catch(e){console.error(e);}})();
+
+/* s 13:27:07 12/25/2015 */
+/* g 13:36:02 12/25/2015 - sl=64 */ 

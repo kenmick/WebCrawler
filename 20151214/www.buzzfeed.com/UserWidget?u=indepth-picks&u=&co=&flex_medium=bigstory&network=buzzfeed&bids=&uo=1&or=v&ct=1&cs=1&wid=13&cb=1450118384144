@@ -1,0 +1,553 @@
+
+var BF_S3_IMAGE_URL='http://s3.amazonaws.com/buzzfeed-media/bigstory/';var BF_W=function(){var buzz_count=((typeof(BF_BUZZ_COUNT)!='undefined')?BF_BUZZ_COUNT:1);var small_image=((typeof(BF_SMALL_IMAGE)!='undefined')?BF_SMALL_IMAGE:false);var image_width=((typeof(BF_SMALL_IMAGE)!='undefined'&&BF_SMALL_IMAGE)?90:125);var image_height=((typeof(BF_SMALL_IMAGE)!='undefined'&&BF_SMALL_IMAGE)?60:83);var head_foot_ids=['bf-powered1','bf-powered2','bf-footer','bf-header'];var apply_styles=function(element,key){if(typeof(bf_styles)!='undefined'){if(bf_styles[key]){for(var style_key in bf_styles[key]){var value=bf_styles[key][style_key];element.style[style_key]=value;}}}};var randomize=function buzz(buzz_data){var bindexes=new Array();for(var i=0;i<buzz_data.length;i++){bindexes.push(i);}
+function randOrd(){return(Math.round(Math.random())-0.5);}
+bindexes.sort(randOrd);bindexes.sort(randOrd);var random_buzz=new Array();for(i=0;i<buzz_data.length;i++){if(!window.BF_NO_DUPES[buzz_data[bindexes[i]].bid]){random_buzz.push(buzz_data[bindexes[i]]);}}
+if(random_buzz.length==0&&buzz_data[0]){random_buzz.push(buzz_data[0]);}
+return random_buzz;};var element_handlers={'bf-url':function(el,buzz,wid,click_track_fn){var buzz_url=buzz['user_link']?buzz['user_link']:buzz['url'];buzz_url=buzz_url.replace(/www\.buzzfeed\.com/g,get_environment());el.href=buzz_url;el.setAttribute('href',buzz_url);if(typeof(el.addEventListener)=='undefined'){el.attachEvent('onmousedown',function(e){click_track_fn(el,buzz,wid);});}else{el.addEventListener('mousedown',function(e){click_track_fn(el,buzz,wid);},true);}
+if(el.getAttribute('rel:gt_label')&&el.getAttribute('rel:gt_label')=='partner'&&(13==10||13==15)){el.setAttribute('rel:gt_label','partner/'+buzz.username);}},'bf-name':function(el,name){var truncate=el.getAttribute("rel:bf_truncate");if(truncate){if(!isNaN(truncate)){var truncate=parseInt(truncate);if(name.length>truncate){var terminator=el.getAttribute("rel:bf_truncate_terminator");term_length=terminator?terminator.length:3;terminator=terminator?terminator:'&hellip;';var name_length=truncate-term_length;name=name.substring(0,name_length);var words=name.split(/\s+/);if(words[words.length-1].match(/&/)&&!words[words.length-1].match(/;$/)){words.pop();}
+name=words.join(' ');name+=terminator;}}}
+el.innerHTML=name;},'bf-image':function(el,image){el.src=image;el.width=image_width;el.height=image_height;},'bf-image-big':function(el,buzz){if(/\-[12]\-\d+\-\d+\-\d+\.(png|gif|jpg)/.test(buzz.image))
+{big_image=buzz.image;el.src=big_image.toString().replace(/\.(png|gif|jpg)/,'_big.$1');el.className+=' campaign-big-thumb';}else{el.src=buzz.image;}},'bf-image-dblbig':function(el,buzz){if(/\-2\-\d+\-\d+\-\d+\.(png|gif|jpg)/.test(buzz.image))
+{big_image=buzz.image;el.src=big_image.toString().replace(/\.(png|gif|jpg)/,'_dblbig.$1');el.className+=' campaign-big-thumb';}else{el.src=buzz.image;}},'bf-mobile-image':function(el,buzz){if(buzz&&buzz.mobile_image){big_image=buzz.image;el.src=big_image.toString().replace(/\/([^\/]+)\.(png|gif|jpg)$/,'/m-$1_big.$2');el.className+=' campaign-big-thumb';}else if(/\-[12]\-\d+\-\d+\-\d+\.(png|gif|jpg)/.test(buzz.image)){big_image=buzz.image;el.src=big_image.toString().replace(/\.(png|gif|jpg)/,'_big.$1');el.className+=' campaign-big-thumb';}else{el.src=buzz.image;}},'bf-impressions-label':function(el,text){el.innerHTML=text},'bf-impressions':function(el,impressions){if(impressions<100){impressions='';}
+el.innerHTML=impressions;},'bf-blurb':function(el,buzz){el.innerHTML=buzz.ad_blurb;},'bf-byline_prefix':function(el,byline_prefix,BF_DATA){if(typeof BF_DATA['network']!='undefined'&&BF_DATA['network']=='buzzfeed'){if(byline_prefix){el.innerHTML=byline_prefix;}}},'bf-user_image':function(el,name){el.src=name;},'bf-user_image_large':function(el,name){var extIndex=name.lastIndexOf('.');if(extIndex>=0){name=name.substr(0,extIndex)+"_large"+name.substr(extIndex,name.length);}
+el.src=name;},'bf-user-url':function(el,href){href=href.replace(/www\.buzzfeed\.com/g,get_environment());el.href=href;el.setAttribute('href',href);},'bf-partner-label':function(el,buzz){if(typeof(political_ad)!='undefined'&&buzz.username=='obamaforamerica'){el.innerHTML='PAID POLITICAL ADVERTISER';}},'bf-display_name':function(el,text){el.innerHTML=text;},'bf-image-bigstory':function(el,buzz){el.src=buzz.image;if(/\-[12]\-\d+\-\d+\-\d+\.(png|gif|jpg)/.test(buzz.image))
+{el.src=el.src.replace(/\.(png|gif|jpg)/,'_wide.$1');el.width=300;el.height=106;el.className+=' campaign-wide-thumb';}},'bf-image-dblwidestory':function(el,buzz){el.src=buzz.image;if(/\-2\-\d+\-\d+\-\d+\.(png|gif|jpg)/.test(buzz.image))
+{el.src=el.src.replace(/\.(png|gif|jpg)/,'_dblwide.$1');el.width=625;el.height=220;el.className+=' campaign-wide-thumb';}},'bf-image-dblbigstory':function(el,buzz){el.src=buzz.image;{el.src=el.src.replace(/\.(png|gif|jpg)/,'_dblbig.$1');el.width=625;el.height=415;el.className+=' campaign-wide-thumb';}},'bf-image-widestory':function(el,buzz,BF_DATA){el.src=buzz.image;if(/\-[12]\-\d+\-\d+\-\d+\.(png|gif|jpg)/.test(buzz.image))
+{el.src=el.src.replace(/\.(png|gif|jpg)/,'_wide.$1');el.width=338;el.height=119;el.className+=' campaign-wide-thumb';}},'bf-ad-msu':function(el,BF_DATA){var gptDiv=document.createElement('div');gptDiv.id='div-gpt-ad-25';gptDiv.style.position='absolute';gptDiv.style.overflow='hidden';gptDiv.style.zIndex='-1';el.parentNode.appendChild(gptDiv);if(typeof loadGPTAd!='undefined'){loadGPTAd({'wid':25,'site':BF_DATA.site,'size':[3,3]});}},'bf-ad-frame':function(el,BF_DATA){var base_path=(typeof window['BF_FAKE_DFP']=='undefined')?'http://ad.doubleclick.net/N6556/adi':'http://dev.buzzfeed.com/bf2/_fake_dfp';var full_path=base_path+'/bfd.widget/'+BF_DATA.site+';site='+BF_DATA.site+';sz=3x3;ord='+(new Date()).getTime();if(typeof window['BF_WIDGET_PREVIEW']!='undefined'&&typeof window['BF_FAKE_DFP']!='undefined')
+{full_path+='?load_preview=1';}
+el.src=full_path;},'bf-byline-other':function(el,buzz){if(buzz.byline_description_visual&&buzz.byline_description_visual!='Brand Publisher'){el.innerHTML=buzz.byline_description_visual;}},'bf-video-duration':function(el,buzz){if(buzz.video_metadata&&buzz.video_metadata.duration_string){el.innerHTML=buzz.video_metadata.duration_string;}},'bf-video-impressions':function(el,buzz){if(buzz.impressions){el.innerHTML=buzz.impressions.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g,"$1,");}}};var get_environment=function(){var result='www.buzzfeed.com';if(typeof BF_DFP_ENV!='undefined'&&BF_DFP_ENV!=''){if(BF_DFP_ENV.match(/dev/)){result='dev.buzzfeed.com/bf2';}else if(!BF_DFP_ENV.match(/prod/)){result=BF_DFP_ENV+'.buzzfeed.com';}}
+return result;}
+var parse_template=function(BF_DATA,click_track_fn){var data=BF_DATA.buzz;var wid=BF_DATA.wid;if(typeof(window.BF_NO_DUPES)=='undefined'){window.BF_NO_DUPES={}}
+var optimize=false;if(optimize){var bfo=new BF_WIDGET_OPTIMIZE();if(optimize===1){data=bfo.optimize1(data);}else if(optimize===2){data=bfo.optimize2(data);}else if(optimize===3){data=bfo.optimize3(data);}else if(optimize===4){data=bfo.optimize4(data);}}else{data=randomize(data);}
+window['BF_DISPLAYED_BUZZ']=[];try{for(var i=0;i<buzz_count;i++){var buzz=data[i];if(typeof buzz['promotions']!='undefined')
+{pick_promotion(buzz);}
+window.BF_NO_DUPES[buzz.bid]=true;window['BF_DISPLAYED_BUZZ'].push(buzz);item_id=wid?('bf-item-'+wid+'-'+(i+1)):('bf-item-'+(i+1));var item_element=document.getElementById(item_id);if(!item_element){item_element=document.getElementById('bf-item-'+(i+1));}
+if(!item_element){break;}
+if(item_element.nodeName==='A'&&(item_element.className.search(/bf-url/)>=0)){element_handlers['bf-url'](item_element,buzz,wid,click_track_fn);}
+if(typeof buzz.user_type!='undefined'){if(typeof buzz['byline_description_visual']!='undefined'){if(buzz.byline_description_visual=='Publishing Partner'){item_element.className+=" f_partner";}
+else{item_element.className+=" "+buzz.user_type;}}}
+else{item_element.className+=" f_ad";}
+var elements=item_element.getElementsByTagName("*");var view_count=0;for(var j=0;j<elements.length;j++){var element=elements[j];var class_string=element.className;if(class_string&&typeof class_string=='string'){var classes=class_string.split(/\s+/);if(classes&&classes[0]){for(var k=0;k<classes.length;k++){var key=classes[k].replace(/^bf\-/,'');apply_styles(element,key);if(element_handlers[classes[k]]){if(key=='impressions-label'){if(buzz['impressions']<100){element_handlers[classes[k]](element,'New Buzz');}}else if(key=='user-url'){element_handlers[classes[k]](element,'http://www.buzzfeed.com/'+buzz['username']);}else if(key=='url'){element_handlers[classes[k]](element,buzz,wid,click_track_fn);}else if(key=='ad-frame'||key=='ad-msu'){element_handlers[classes[k]](element,BF_DATA);}else if(key=='image-bigstory'){element_handlers[classes[k]](element,buzz);}else if(key=='image-widestory'){element_handlers[classes[k]](element,buzz);}else if(key=='image-big'){element_handlers[classes[k]](element,buzz);}else if(key=='user_image_large'){element_handlers[classes[k]](element,buzz['user_image']);}else if(key=='byline_prefix'){if(buzz[key]&&buzz[key]!=""){element_handlers[classes[k]](element,buzz[key],BF_DATA);}}else if(key=='partner-label'){element_handlers[classes[k]](element,buzz);}else if(key=='mobile-image'){element_handlers[classes[k]](element,buzz);}else if(key=='byline-other'){element_handlers[classes[k]](element,buzz);}else if(key=='blurb'){element_handlers[classes[k]](element,buzz);}else if(key=='video-duration'){element_handlers[classes[k]](element,buzz);}else if(key=='video-impressions'){element_handlers[classes[k]](element,buzz);}else{element_handlers[classes[k]](element,buzz[key],item_element,buzz);}}}}}}}}catch(e){console.error(e);}};var pick_promotion=function(buzz){var sel_promo;if(buzz.promotions.length==1)
+{sel_promo=buzz.promotions[0];}
+else
+{var promotions=buzz.promotions;var opts=[];for(var i=0;i<promotions.length;i++)
+for(var j=0;j<(promotions[i].probability*100);j++)
+opts.push(promotions[i]);sel_promo=opts[Math.floor(Math.random()*opts.length)];}
+if(typeof sel_promo=='undefined'){sel_promo=buzz.promotions[0];}
+buzz.image=sel_promo.image;buzz.name=sel_promo.title;buzz.blurb=sel_promo.description;buzz.ad_blurb=sel_promo.description;buzz.flex_pro_id=sel_promo.id;return buzz;};var render_template=function(template,wid,show_ad){template=template.replace(/\n|\r/g,'NL');var items_regex=/<!\-\-\s+\.bf\-item\s+\-\->(.*)<!\-\-\s+\/\.bf\-item \-\->/;var item_markup_match=template.match(items_regex);var item_markup=item_markup_match[1];var items_markup='';var ad_slot=Math.floor(Math.random()*(buzz_count))+1;if(show_ad&&parent.window['BF_AD_FIXED_POS']){fixed_ad_pos=parent.window['BF_AD_FIXED_POS'];if(fixed_ad_pos>0&&parent.window['BF_AD_FIXED_POS']<=buzz_count){ad_slot=BF_AD_FIXED_POS}}
+for(var i=1;i<=buzz_count;i++){var id_append=wid?(wid+'-'+i):i;var id_markup=item_markup;if(show_ad&&i==ad_slot)
+{var matches=item_markup.match(/(.*<div (id="" )?class="bf-item[^>]+>)(.*)<\/div>/);id_markup=item_markup.replace(matches[3],'<iframe width="100%" frameborder="0" scrolling="no" class="bf-ad-frame"></iframe>');if(AD_DESIGN&&AD_DESIGN=='gpt'&&typeof window.BF_DFP_MSU!='undefined'){id_markup=item_markup.replace(matches[3],'<div id="BF_WIDGET_25" class="bf-ad-msu" style="position:absolute;"></div>');}
+id_markup=id_markup.replace(/class="bf-item/,'class="bf-item bf-framed-item');}
+id_markup=id_markup.replace(/<div (id="" )?class="bf-item/,'<div id="bf-item-'+id_append+'" class="bf-item')+"\n";if(i==1){var first_markup=id_markup;items_markup+=first_markup.replace(/class="bf-item"/,'class="bf-item bf-first"')+"\n";}else if(i==buzz_count){var last_markup=id_markup;items_markup+=last_markup.replace(/class="bf-item"/,'class="bf-item bf-last"')+"\n";}else{items_markup+=id_markup;}}
+template=template.replace(items_regex,items_markup);template=template.replace(/NL/g,'\n');return template;};return{last_widget:false,record_pixel:function(track_url)
+{if(window['BF_STATIC']!='undefined'&&typeof BF_STATIC['bf_env']!='undefined'&&BF_STATIC.bf_env.match(/^dev|^stage/)==null){if(typeof window['BF_PIXELS']=='undefined'){window['BF_PIXELS']=[];}
+var timage=new Image();timage.src=track_url;window['BF_PIXELS'].push(timage);}
+else{console.log('Tracked Url: '+track_url);}},show_widget:function(BF_DATA,click_track_fn){BF_W.last_widget=BF_DATA;if(typeof(BF_W.loaded_template)=='undefined')
+BF_W.loaded_template=BF_DATA.template;if(typeof(BF_BUZZ_COUNTS)!='undefined'&&BF_BUZZ_COUNTS[BF_DATA.wid]){buzz_count=BF_BUZZ_COUNTS[BF_DATA.wid];}
+if(BF_DATA.buzz.length<buzz_count){buzz_count=BF_DATA.buzz.length;if(buzz_count>9){buzz_count=9;}}
+var main_id='BF_WIDGET_'+BF_DATA.wid;main_div=document.getElementById(main_id);if(main_div.getAttribute('rel:bf_ad_position'))
+{BF_DATA.position_id=parseInt(main_div.getAttribute('rel:bf_ad_position'));}
+var widget_markup='';if(BF_DATA.css){var ss1=document.createElement('style');var def=BF_DATA.css;ss1.setAttribute("type","text/css");if(ss1.styleSheet){ss1.styleSheet.cssText=def;}else{var tt1=document.createTextNode(def);ss1.appendChild(tt1);}
+var hh1=document.getElementsByTagName('head')[0];hh1.appendChild(ss1);}
+if(BF_DATA.template){wid=null;if(typeof(BF_BUZZ_COUNTS)!='undefined'&&BF_BUZZ_COUNTS[BF_DATA.wid]){wid=BF_DATA.wid;}
+widget_markup+=render_template(BF_DATA.template,wid,(BF_DATA.show_ad==1&&!BF_DATA.no_shell));}
+wid=null;if(typeof(BF_BUZZ_COUNTS)!='undefined'&&BF_BUZZ_COUNTS[BF_DATA.wid]){wid=BF_DATA.wid;}
+if(widget_markup){main_div.innerHTML=widget_markup;}
+parse_template(BF_DATA,click_track_fn);if(typeof(bf_styles)!='undefined'){for(var i=0;i<head_foot_ids.length;i++){var key=head_foot_ids[i].replace(/^bf\-/,'');if(bf_styles[key]){var el=document.getElementById(head_foot_ids[i]);if(!el){continue;}
+for(var style_key in bf_styles[key]){var value=bf_styles[key][style_key];el.style[style_key]=value;}}}}
+if(main_div.className.indexOf('bf-inline-display-ad')!=-1){main_div.style.display='inline-block';}else{main_div.style.display='block';if(main_div.parentNode.className.indexOf('dfp_bigstory')!=-1){main_div.parentNode.style.display='block';}
+if(main_div.className.indexOf('bf-msu-companion')!=-1&&main_div.parentNode.className.indexOf('BF_WIDGET_MSU')==-1){main_div.parentNode.className+=' BF_WIDGET_MSU';}
+else if(main_div.className.indexOf('bf-msu-companion')!=-1&&main_div.parentNode.className.indexOf('BF_WIDGET_MSU')!=-1){var msu_set=[].slice.call(document.getElementsByClassName('bf-msu-companion'));msu_set.unshift(document.getElementById('BF_WIDGET_13'));var msu_element=Math.floor(Math.random()*msu_set.length);if(msu_element!=0){main_div.parentNode.insertBefore(msu_set[0],msu_set[msu_element]);}
+if(msu_element!=msu_set.length-1){main_div.parentNode.insertBefore(msu_set[msu_set.length-1],msu_set[msu_element]);}}
+if(main_div.parentNode.className.indexOf('BF_WIDGET_MSU')!=-1){var rows=document.getElementsByClassName('span-8');if(rows.length>1){var splashHeight=rows[0].offsetHeight;var msuHeight=main_div.parentNode.offsetHeight;var postFlow=rows[1];postFlow.style.marginTop=-(msuHeight-splashHeight)+'px';}}}}};}();(function(){try{var BF_DATA={
+   "wid" : "13",
+   "userbuzz_count" : 10,
+   "network" : "buzzfeed",
+   "loaded" : "true",
+   "buzz" : [
+      {
+         "bid" : "7H0EAT7",
+         "user_type" : "f_other",
+         "form" : "super",
+         "bid_native" : "4081708",
+         "user" : "munzeralawad",
+         "url" : "http://www.buzzfeed.com/munzeralawad/refugee-children-keep-drowning-while-no-one-is-watching",
+         "comments_count" : 9,
+         "last_updated" : "2015-11-21 12:04:53",
+         "images" : "",
+         "uid" : "79BF867",
+         "sub_buzz" : "",
+         "name" : "Refugee Children Keep Drowning While No One Is Watching",
+         "uri" : "refugee-children-keep-drowning-while-no-one-is-watching",
+         "cloud_servers" : [
+            "alleyezonme-collection.buzzfeed.com"
+         ],
+         "username" : "munzeralawad",
+         "published" : "2015-11-21 08:31:23",
+         "published_unix" : "1448112683",
+         "ad_blurb" : "The death of the young Syrian boy Aylan Kurdi garnered the world\u2019s attention, but he was far from alone. BuzzFeed News' Munzer al-Awad talks to two mothers who lost their children when the boat they took from Turkey to Greece sank.",
+         "nsfw" : "false",
+         "status" : "live",
+         "ct" : "http://75.101.183.223/small.gif?type=100,14&user=munzeralawad&buzz=refugee-children-keep-drowning-while-no-one-is-watching&c=7H0EAT7&u=79BF867&url=http%3A%2F%2Fbuzzfeed.com%2Fmunzeralawad%2Frefugee-children-keep-drowning-while-no-one-is-watching%2F&rd=http%3A%2F%2Fbuzzfeed.com%2Fmunzeralawad%2Frefugee-children-keep-drowning-while-no-one-is-watching%2F",
+         "user_byline_data" : {},
+         "impressions" : "118105",
+         "mobile_image" : "1",
+         "user_image" : "http://s3-ak.buzzfed.com/static/2014-11/11/12/user_images/webdr02/munzeralawad-13063-1415725384-0.jpg",
+         "blurb" : "The death of the young Syrian boy Aylan Kurdi garnered the world&rsquo;s attention, but he was far from alone. BuzzFeed News&#39; Munzer al-Awad talks to two mothers who lost their children when the boat they took from Turkey to Greece sank.",
+         "last_updated_unix" : "1448125493",
+         "byline_description_visual" : "BuzzFeed Contributor",
+         "display_name" : "Munzer al-Awad",
+         "image" : "http://s3-ak.buzzfed.com/static/2015-11/21/12/campaign_images/webdr15/refugee-children-keep-drowning-while-no-one-is-wa-2-14469-1448125490-0.jpg",
+         "byline_description_id" : "3",
+         "static_images" : {
+            "small" : "http://s3-static-ak.buzzfed.com/static/2015-11/21/12/campaign_images/webdr15/refugee-children-keep-drowning-while-no-one-is-wa-2-14469-1448125490-0_small.jpg",
+            "standard" : "http://s3-static-ak.buzzfed.com/static/2015-11/21/12/campaign_images/webdr15/refugee-children-keep-drowning-while-no-one-is-wa-2-14469-1448125490-0.jpg",
+            "big" : "http://s3-static-ak.buzzfed.com/static/2015-11/21/12/campaign_images/webdr15/refugee-children-keep-drowning-while-no-one-is-wa-2-14469-1448125490-0_big.jpg",
+            "wide" : "http://s3-static-ak.buzzfed.com/static/2015-11/21/12/campaign_images/webdr15/refugee-children-keep-drowning-while-no-one-is-wa-2-14469-1448125490-0_wide.jpg",
+            "dblbig" : "http://s3-static-ak.buzzfed.com/static/2015-11/21/12/campaign_images/webdr15/refugee-children-keep-drowning-while-no-one-is-wa-2-14469-1448125490-0_dblbig.jpg",
+            "dblwide" : "http://s3-static-ak.buzzfed.com/static/2015-11/21/12/campaign_images/webdr15/refugee-children-keep-drowning-while-no-one-is-wa-2-14469-1448125490-0_dblwide.jpg"
+         },
+         "image_small" : "http://s3-ak.buzzfed.com/static/2015-11/21/12/campaign_images/webdr15/refugee-children-keep-drowning-while-no-one-is-wa-2-14469-1448125490-0_small.jpg",
+         "html_blurb" : "<b><big>Refugee Children Keep Drowning While No One Is Watching</big></b><br/>The death of the young Syrian boy Aylan Kurdi garnered the world\u2019s attention, but he was far from alone. BuzzFeed News' Munzer al-Awad talks to two mothers who lost their children when the boat they took from Turkey to Greece sank.<br/><table><tr><td width='30' padding='0 0'><img src='http://s3-ak.buzzfed.com/static/2014-11/11/12/user_images/webdr02/munzeralawad-13063-1415725384-0.jpg' width='25' height='25'/></td><td padding='5' pspacing='0'><small><b><a href='/munzeralawad'>Munzer al-Awad</a></b></small><br/><small><color value='#939393'>BuzzFeed Contributor</color></small></td></tr></table>"
+      },
+      {
+         "bid" : "7GZJ4O7",
+         "user_type" : "f_other",
+         "form" : "super",
+         "bid_native" : "4075937",
+         "user" : "jessicagarrison",
+         "url" : "http://www.buzzfeed.com/jessicagarrison/all-you-americans-are-fired",
+         "comments_count" : 9,
+         "last_updated" : "2015-12-14 13:08:51",
+         "images" : "",
+         "uid" : "76ABW47",
+         "sub_buzz" : "",
+         "name" : "\"All You Americans Are Fired\"",
+         "uri" : "all-you-americans-are-fired",
+         "cloud_servers" : [
+            "alleyezonme-collection.buzzfeed.com"
+         ],
+         "username" : "jessicagarrison",
+         "published" : "2015-12-01 17:41:22",
+         "published_unix" : "1449009682",
+         "ad_blurb" : "The H-2 guest worker program, which brought in 150,000 legal foreign workers last year, isn't supposed to deprive any American of a job. But many businesses go to extraordinary lengths to deny jobs to U.S. workers so they can hire foreigners instead. A BuzzFeed News investigation.",
+         "nsfw" : "false",
+         "status" : "live",
+         "ct" : "http://75.101.183.223/small.gif?type=100,14&user=jessicagarrison&buzz=all-you-americans-are-fired&c=7GZJ4O7&u=76ABW47&url=http%3A%2F%2Fbuzzfeed.com%2Fjessicagarrison%2Fall-you-americans-are-fired%2F&rd=http%3A%2F%2Fbuzzfeed.com%2Fjessicagarrison%2Fall-you-americans-are-fired%2F",
+         "user_byline_data" : {},
+         "impressions" : "381523",
+         "mobile_image" : "1",
+         "user_image" : "http://s3-ak.buzzfed.com/static/2014-05/user_images/webdr07/12/15/jessicagarrison-17835-1399923598-4.jpg",
+         "blurb" : "The H-2 guest worker program, which brought in 150,000 legal foreign workers last year, isn&#39;t supposed to deprive any American of a job. But many businesses go to extraordinary lengths to deny jobs to U.S. workers so they can hire foreigners&hellip;",
+         "last_updated_unix" : "1450116531",
+         "byline_description_visual" : "BuzzFeed News Reporter",
+         "display_name" : "Jessica Garrison",
+         "image" : "http://s3-ak.buzzfed.com/static/2015-12/2/13/campaign_images/webdr12/all-you-americans-are-fired-2-26810-1449082231-15.jpg",
+         "byline_description_id" : "2",
+         "static_images" : {
+            "small" : "http://s3-static-ak.buzzfed.com/static/2015-12/2/13/campaign_images/webdr12/all-you-americans-are-fired-2-26810-1449082231-15_small.jpg",
+            "standard" : "http://s3-static-ak.buzzfed.com/static/2015-12/2/13/campaign_images/webdr12/all-you-americans-are-fired-2-26810-1449082231-15.jpg",
+            "big" : "http://s3-static-ak.buzzfed.com/static/2015-12/2/13/campaign_images/webdr12/all-you-americans-are-fired-2-26810-1449082231-15_big.jpg",
+            "wide" : "http://s3-static-ak.buzzfed.com/static/2015-12/2/13/campaign_images/webdr12/all-you-americans-are-fired-2-26810-1449082231-15_wide.jpg",
+            "dblbig" : "http://s3-static-ak.buzzfed.com/static/2015-12/2/13/campaign_images/webdr12/all-you-americans-are-fired-2-26810-1449082231-15_dblbig.jpg",
+            "dblwide" : "http://s3-static-ak.buzzfed.com/static/2015-12/2/13/campaign_images/webdr12/all-you-americans-are-fired-2-26810-1449082231-15_dblwide.jpg"
+         },
+         "image_small" : "http://s3-ak.buzzfed.com/static/2015-12/2/13/campaign_images/webdr12/all-you-americans-are-fired-2-26810-1449082231-15_small.jpg",
+         "html_blurb" : "<b><big>\"All You Americans Are Fired\"</big></b><br/>The H-2 guest worker program, which brought in 150,000 legal foreign workers last year, isn't supposed to deprive any American of a job. But many businesses go to extraordinary lengths to deny jobs to U.S. workers so they can hire foreigners instead. A BuzzFeed News investigation.<br/><table><tr><td width='30' padding='0 0'><img src='http://s3-ak.buzzfed.com/static/2014-05/user_images/webdr07/12/15/jessicagarrison-17835-1399923598-4.jpg' width='25' height='25'/></td><td padding='5' pspacing='0'><small><b><a href='/jessicagarrison'>Jessica Garrison</a></b></small><br/><small><color value='#939393'>BuzzFeed News Reporter</color></small></td></tr></table>"
+      },
+      {
+         "bid" : "7GZYZ67",
+         "user_type" : "f_other",
+         "form" : "super",
+         "bid_native" : "4078871",
+         "user" : "albertsamaha",
+         "url" : "http://www.buzzfeed.com/albertsamaha/this-is-what-they-did-for-fun-a-modern-day-lynching-in-missi",
+         "comments_count" : 15,
+         "last_updated" : "2015-12-14 12:57:24",
+         "images" : "",
+         "uid" : "79ASJP7",
+         "sub_buzz" : "",
+         "name" : "\"This Is What They Did For Fun\": The Story Of A Modern-Day Lynching",
+         "uri" : "this-is-what-they-did-for-fun-a-modern-day-lynching-in-missi",
+         "cloud_servers" : [
+            "alleyezonme-collection.buzzfeed.com"
+         ],
+         "username" : "albertsamaha",
+         "published" : "2015-11-18 20:31:18",
+         "published_unix" : "1447896678",
+         "ad_blurb" : "Craig Anderson was headed home to celebrate his birthday with his partner. Instead, he became the victim of a brutal and violent form of racism that many in Mississippi had thought long gone.",
+         "nsfw" : "false",
+         "status" : "live",
+         "ct" : "http://75.101.183.223/small.gif?type=100,14&user=albertsamaha&buzz=this-is-what-they-did-for-fun-a-modern-day-lynching-in-missi&c=7GZYZ67&u=79ASJP7&url=http%3A%2F%2Fbuzzfeed.com%2Falbertsamaha%2Fthis-is-what-they-did-for-fun-a-modern-day-lynching-in-missi%2F&rd=http%3A%2F%2Fbuzzfeed.com%2Falbertsamaha%2Fthis-is-what-they-did-for-fun-a-modern-day-lynching-in-missi%2F",
+         "user_byline_data" : {},
+         "impressions" : "680357",
+         "mobile_image" : "1",
+         "user_image" : "http://s3-ak.buzzfed.com/static/2014-11/11/13/user_images/webdr08/albertsamaha-12633-1415729178-0.jpg",
+         "blurb" : "Craig Anderson was headed home to celebrate his birthday with his partner. Instead, he became the victim of a brutal and violent form of racism that many in Mississippi had thought long gone.",
+         "last_updated_unix" : "1450115844",
+         "byline_description_visual" : "BuzzFeed News Reporter",
+         "display_name" : "Albert Samaha",
+         "image" : "http://s3-ak.buzzfed.com/static/2015-11/19/15/campaign_images/webdr13/this-is-what-they-did-for-fun-the-story-of-a-mode-2-1209-1447964138-0.jpg",
+         "byline_description_id" : "2",
+         "static_images" : {
+            "small" : "http://s3-static-ak.buzzfed.com/static/2015-11/19/15/campaign_images/webdr13/this-is-what-they-did-for-fun-the-story-of-a-mode-2-1209-1447964138-0_small.jpg",
+            "standard" : "http://s3-static-ak.buzzfed.com/static/2015-11/19/15/campaign_images/webdr13/this-is-what-they-did-for-fun-the-story-of-a-mode-2-1209-1447964138-0.jpg",
+            "big" : "http://s3-static-ak.buzzfed.com/static/2015-11/19/15/campaign_images/webdr13/this-is-what-they-did-for-fun-the-story-of-a-mode-2-1209-1447964138-0_big.jpg",
+            "wide" : "http://s3-static-ak.buzzfed.com/static/2015-11/19/15/campaign_images/webdr13/this-is-what-they-did-for-fun-the-story-of-a-mode-2-1209-1447964138-0_wide.jpg",
+            "dblbig" : "http://s3-static-ak.buzzfed.com/static/2015-11/19/15/campaign_images/webdr13/this-is-what-they-did-for-fun-the-story-of-a-mode-2-1209-1447964138-0_dblbig.jpg",
+            "dblwide" : "http://s3-static-ak.buzzfed.com/static/2015-11/19/15/campaign_images/webdr13/this-is-what-they-did-for-fun-the-story-of-a-mode-2-1209-1447964138-0_dblwide.jpg"
+         },
+         "image_small" : "http://s3-ak.buzzfed.com/static/2015-11/19/15/campaign_images/webdr13/this-is-what-they-did-for-fun-the-story-of-a-mode-2-1209-1447964138-0_small.jpg",
+         "html_blurb" : "<b><big>\"This Is What They Did For Fun\": The Story Of A Modern-Day Lynching</big></b><br/>Craig Anderson was headed home to celebrate his birthday with his partner. Instead, he became the victim of a brutal and violent form of racism that many in Mississippi had thought long gone.<br/><table><tr><td width='30' padding='0 0'><img src='http://s3-ak.buzzfed.com/static/2014-11/11/13/user_images/webdr08/albertsamaha-12633-1415729178-0.jpg' width='25' height='25'/></td><td padding='5' pspacing='0'><small><b><a href='/albertsamaha'>Albert Samaha</a></b></small><br/><small><color value='#939393'>BuzzFeed News Reporter</color></small></td></tr></table>"
+      },
+      {
+         "bid" : "7H1XI87",
+         "user_type" : "f_other",
+         "form" : "super",
+         "bid_native" : "4091929",
+         "user" : "arianelange",
+         "url" : "http://www.buzzfeed.com/arianelange/james-deen-allegations",
+         "comments_count" : 9,
+         "last_updated" : "2015-12-04 00:52:47",
+         "images" : "",
+         "uid" : "72EEV97",
+         "sub_buzz" : "",
+         "name" : "James Deen's Co-Star: \"He Doesn't Just Rape; He Likes To Hurt Women\"",
+         "uri" : "james-deen-allegations",
+         "cloud_servers" : [
+            "alleyezonme-collection.buzzfeed.com"
+         ],
+         "username" : "arianelange",
+         "published" : "2015-12-03 20:34:34",
+         "published_unix" : "1449192874",
+         "ad_blurb" : "Lily LaBeau and Bonnie Rotten, two women who repeatedly worked with the porn star \u2014 who's recently been <a href=\"http://www.buzzfeed.com/davidmack/porn-star-james-deen-accused-of-rape-by-ex-girlfriend\">accused of rape</a> \u2014 told BuzzFeed News he deliberately upset them during filming.",
+         "nsfw" : "false",
+         "status" : "live",
+         "ct" : "http://75.101.183.223/small.gif?type=100,14&user=arianelange&buzz=james-deen-allegations&c=7H1XI87&u=72EEV97&url=http%3A%2F%2Fbuzzfeed.com%2Farianelange%2Fjames-deen-allegations%2F&rd=http%3A%2F%2Fbuzzfeed.com%2Farianelange%2Fjames-deen-allegations%2F",
+         "user_byline_data" : {},
+         "impressions" : "376956",
+         "mobile_image" : "1",
+         "user_image" : "http://s3-ak.buzzfed.com/static/user_images/webdr01/2013/3/25/13/arianelange-15208-1364232573-5.jpg",
+         "blurb" : "Lily LaBeau and Bonnie Rotten, two women who repeatedly worked with the porn star &mdash; who&#39;s recently been accused of rape &mdash; told BuzzFeed News he deliberately upset them during filming.",
+         "last_updated_unix" : "1449208367",
+         "byline_description_visual" : "BuzzFeed News Reporter",
+         "display_name" : "Ariane Lange",
+         "image" : "http://s3-ak.buzzfed.com/static/2015-12/4/0/campaign_images/webdr15/james-deens-co-star-he-doesnt-just-rape-he-likes--2-13926-1449208364-0.jpg",
+         "byline_description_id" : "2",
+         "static_images" : {
+            "small" : "http://s3-static-ak.buzzfed.com/static/2015-12/4/0/campaign_images/webdr15/james-deens-co-star-he-doesnt-just-rape-he-likes--2-13926-1449208364-0_small.jpg",
+            "standard" : "http://s3-static-ak.buzzfed.com/static/2015-12/4/0/campaign_images/webdr15/james-deens-co-star-he-doesnt-just-rape-he-likes--2-13926-1449208364-0.jpg",
+            "big" : "http://s3-static-ak.buzzfed.com/static/2015-12/4/0/campaign_images/webdr15/james-deens-co-star-he-doesnt-just-rape-he-likes--2-13926-1449208364-0_big.jpg",
+            "wide" : "http://s3-static-ak.buzzfed.com/static/2015-12/4/0/campaign_images/webdr15/james-deens-co-star-he-doesnt-just-rape-he-likes--2-13926-1449208364-0_wide.jpg",
+            "dblbig" : "http://s3-static-ak.buzzfed.com/static/2015-12/4/0/campaign_images/webdr15/james-deens-co-star-he-doesnt-just-rape-he-likes--2-13926-1449208364-0_dblbig.jpg",
+            "dblwide" : "http://s3-static-ak.buzzfed.com/static/2015-12/4/0/campaign_images/webdr15/james-deens-co-star-he-doesnt-just-rape-he-likes--2-13926-1449208364-0_dblwide.jpg"
+         },
+         "image_small" : "http://s3-ak.buzzfed.com/static/2015-12/4/0/campaign_images/webdr15/james-deens-co-star-he-doesnt-just-rape-he-likes--2-13926-1449208364-0_small.jpg",
+         "html_blurb" : "<b><big>James Deen's Co-Star: \"He Doesn't Just Rape; He Likes To Hurt Women\"</big></b><br/>Lily LaBeau and Bonnie Rotten, two women who repeatedly worked with the porn star \u2014 who's recently been <a href=\"http://www.buzzfeed.com/davidmack/porn-star-james-deen-accused-of-rape-by-ex-girlfriend\">accused of rape</a> \u2014 told BuzzFeed News he deliberately upset them during filming.<br/><table><tr><td width='30' padding='0 0'><img src='http://s3-ak.buzzfed.com/static/user_images/webdr01/2013/3/25/13/arianelange-15208-1364232573-5.jpg' width='25' height='25'/></td><td padding='5' pspacing='0'><small><b><a href='/arianelange'>Ariane Lange</a></b></small><br/><small><color value='#939393'>BuzzFeed News Reporter</color></small></td></tr></table>"
+      },
+      {
+         "bid" : "7H1Y9N7",
+         "user_type" : "f_other",
+         "form" : "super",
+         "bid_native" : "4092070",
+         "user" : "tgounley",
+         "url" : "http://www.buzzfeed.com/tgounley/the-day-the-earth-stood-still",
+         "comments_count" : 0,
+         "last_updated" : "2015-12-14 13:22:12",
+         "images" : "",
+         "uid" : "7GUAMY7",
+         "sub_buzz" : "",
+         "name" : "25 Years After The Great Missouri Earthquake That Never Happened",
+         "uri" : "the-day-the-earth-stood-still",
+         "cloud_servers" : [
+            "alleyezonme-collection.buzzfeed.com"
+         ],
+         "username" : "tgounley",
+         "published" : "2015-12-05 11:19:32",
+         "published_unix" : "1449332372",
+         "ad_blurb" : "On Dec. 3, 1990, an earthquake was supposed to level the small town of New Madrid, Missouri and become one of the biggest natural disasters the country had ever experienced. The ensuing mayhem \u2014 and quiet \u2014 instead brought fleeting attention to a high-risk seismic zone in the heart of America that many people still don't know exists.",
+         "nsfw" : "false",
+         "status" : "live",
+         "ct" : "http://75.101.183.223/small.gif?type=100,14&user=tgounley&buzz=the-day-the-earth-stood-still&c=7H1Y9N7&u=7GUAMY7&url=http%3A%2F%2Fbuzzfeed.com%2Ftgounley%2Fthe-day-the-earth-stood-still%2F&rd=http%3A%2F%2Fbuzzfeed.com%2Ftgounley%2Fthe-day-the-earth-stood-still%2F",
+         "user_byline_data" : {},
+         "impressions" : "127076",
+         "mobile_image" : "1",
+         "user_image" : "http://s3-ak.buzzfed.com/static/2015-12/4/11/user_images/webdr09/tgounley-v2-10985-1449245826-22.jpg",
+         "blurb" : "On Dec. 3, 1990, an earthquake was supposed to level the small town of New Madrid, Missouri and become one of the biggest natural disasters the country had ever experienced. The ensuing mayhem &mdash; and quiet &mdash; instead brought fleeting attention to a&hellip;",
+         "last_updated_unix" : "1450117332",
+         "byline_description_visual" : "BuzzFeed Contributor",
+         "display_name" : "Thomas Gounley",
+         "image" : "http://s3-ak.buzzfed.com/static/2015-12/8/16/campaign_images/webdr05/25-years-after-the-great-missouri-earthquake-that-2-18303-1449609183-9.jpg",
+         "byline_description_id" : "3",
+         "static_images" : {
+            "small" : "http://s3-static-ak.buzzfed.com/static/2015-12/8/16/campaign_images/webdr05/25-years-after-the-great-missouri-earthquake-that-2-18303-1449609183-9_small.jpg",
+            "standard" : "http://s3-static-ak.buzzfed.com/static/2015-12/8/16/campaign_images/webdr05/25-years-after-the-great-missouri-earthquake-that-2-18303-1449609183-9.jpg",
+            "big" : "http://s3-static-ak.buzzfed.com/static/2015-12/8/16/campaign_images/webdr05/25-years-after-the-great-missouri-earthquake-that-2-18303-1449609183-9_big.jpg",
+            "wide" : "http://s3-static-ak.buzzfed.com/static/2015-12/8/16/campaign_images/webdr05/25-years-after-the-great-missouri-earthquake-that-2-18303-1449609183-9_wide.jpg",
+            "dblbig" : "http://s3-static-ak.buzzfed.com/static/2015-12/8/16/campaign_images/webdr05/25-years-after-the-great-missouri-earthquake-that-2-18303-1449609183-9_dblbig.jpg",
+            "dblwide" : "http://s3-static-ak.buzzfed.com/static/2015-12/8/16/campaign_images/webdr05/25-years-after-the-great-missouri-earthquake-that-2-18303-1449609183-9_dblwide.jpg"
+         },
+         "image_small" : "http://s3-ak.buzzfed.com/static/2015-12/8/16/campaign_images/webdr05/25-years-after-the-great-missouri-earthquake-that-2-18303-1449609183-9_small.jpg",
+         "html_blurb" : "<b><big>25 Years After The Great Missouri Earthquake That Never Happened</big></b><br/>On Dec. 3, 1990, an earthquake was supposed to level the small town of New Madrid, Missouri and become one of the biggest natural disasters the country had ever experienced. The ensuing mayhem \u2014 and quiet \u2014 instead brought fleeting attention to a high-risk seismic zone in the heart of America that many people still don't know exists.<br/><table><tr><td width='30' padding='0 0'><img src='http://s3-ak.buzzfed.com/static/2015-12/4/11/user_images/webdr09/tgounley-v2-10985-1449245826-22.jpg' width='25' height='25'/></td><td padding='5' pspacing='0'><small><b><a href='/tgounley'>Thomas Gounley</a></b></small><br/><small><color value='#939393'>BuzzFeed Contributor</color></small></td></tr></table>"
+      },
+      {
+         "bid" : "7H31PO7",
+         "user_type" : "f_other",
+         "form" : "super",
+         "bid_native" : "4099373",
+         "user" : "borzoudaragahi",
+         "url" : "http://www.buzzfeed.com/borzoudaragahi/this-is-how-isis-has-spread-beyond-syria-and-iraq",
+         "comments_count" : 0,
+         "last_updated" : "2015-12-12 20:23:55",
+         "images" : "",
+         "uid" : "7E4N447",
+         "sub_buzz" : "",
+         "name" : "This Is How ISIS Has Spread Beyond Syria and Iraq",
+         "uri" : "this-is-how-isis-has-spread-beyond-syria-and-iraq",
+         "cloud_servers" : [
+            "alleyezonme-collection.buzzfeed.com"
+         ],
+         "username" : "borzoudaragahi",
+         "published" : "2015-12-12 11:01:15",
+         "published_unix" : "1449936075",
+         "ad_blurb" : "After consolidating territory in Syria and Iraq, ISIS has launched a different strategy to spread its influence in places like Egypt. BuzzFeed News' Borzou Daragahi reports on how the militant powerhouse absorbs local affiliates across the Middle East.",
+         "nsfw" : "false",
+         "status" : "live",
+         "ct" : "http://75.101.183.223/small.gif?type=100,14&user=borzoudaragahi&buzz=this-is-how-isis-has-spread-beyond-syria-and-iraq&c=7H31PO7&u=7E4N447&url=http%3A%2F%2Fbuzzfeed.com%2Fborzoudaragahi%2Fthis-is-how-isis-has-spread-beyond-syria-and-iraq%2F&rd=http%3A%2F%2Fbuzzfeed.com%2Fborzoudaragahi%2Fthis-is-how-isis-has-spread-beyond-syria-and-iraq%2F",
+         "user_byline_data" : {},
+         "impressions" : "39294",
+         "mobile_image" : "1",
+         "user_image" : "http://s3-ak.buzzfed.com/static/2015-09/4/12/user_images/webdr08/borzoudaragahi-v2-25920-1441383922-0.jpg",
+         "blurb" : "After consolidating territory in Syria and Iraq, ISIS has launched a different strategy to spread its influence in places like Egypt. BuzzFeed News&#39; Borzou Daragahi reports on how the militant powerhouse absorbs local affiliates across the Middle&hellip;",
+         "last_updated_unix" : "1449969835",
+         "byline_description_visual" : "BuzzFeed News Middle East Correspondent",
+         "display_name" : "Borzou Daragahi",
+         "image" : "http://s3-ak.buzzfed.com/static/2015-12/12/12/campaign_images/webdr01/this-is-how-isis-has-spread-beyond-syria-and-iraq-2-26020-1449940657-0.jpg",
+         "byline_description_id" : "2",
+         "static_images" : {
+            "small" : "http://s3-static-ak.buzzfed.com/static/2015-12/12/12/campaign_images/webdr01/this-is-how-isis-has-spread-beyond-syria-and-iraq-2-26020-1449940657-0_small.jpg",
+            "standard" : "http://s3-static-ak.buzzfed.com/static/2015-12/12/12/campaign_images/webdr01/this-is-how-isis-has-spread-beyond-syria-and-iraq-2-26020-1449940657-0.jpg",
+            "big" : "http://s3-static-ak.buzzfed.com/static/2015-12/12/12/campaign_images/webdr01/this-is-how-isis-has-spread-beyond-syria-and-iraq-2-26020-1449940657-0_big.jpg",
+            "wide" : "http://s3-static-ak.buzzfed.com/static/2015-12/12/12/campaign_images/webdr01/this-is-how-isis-has-spread-beyond-syria-and-iraq-2-26020-1449940657-0_wide.jpg",
+            "dblbig" : "http://s3-static-ak.buzzfed.com/static/2015-12/12/12/campaign_images/webdr01/this-is-how-isis-has-spread-beyond-syria-and-iraq-2-26020-1449940657-0_dblbig.jpg",
+            "dblwide" : "http://s3-static-ak.buzzfed.com/static/2015-12/12/12/campaign_images/webdr01/this-is-how-isis-has-spread-beyond-syria-and-iraq-2-26020-1449940657-0_dblwide.jpg"
+         },
+         "image_small" : "http://s3-ak.buzzfed.com/static/2015-12/12/12/campaign_images/webdr01/this-is-how-isis-has-spread-beyond-syria-and-iraq-2-26020-1449940657-0_small.jpg",
+         "html_blurb" : "<b><big>This Is How ISIS Has Spread Beyond Syria and Iraq</big></b><br/>After consolidating territory in Syria and Iraq, ISIS has launched a different strategy to spread its influence in places like Egypt. BuzzFeed News' Borzou Daragahi reports on how the militant powerhouse absorbs local affiliates across the Middle East.<br/><table><tr><td width='30' padding='0 0'><img src='http://s3-ak.buzzfed.com/static/2015-09/4/12/user_images/webdr08/borzoudaragahi-v2-25920-1441383922-0.jpg' width='25' height='25'/></td><td padding='5' pspacing='0'><small><b><a href='/borzoudaragahi'>Borzou Daragahi</a></b></small><br/><small><color value='#939393'>BuzzFeed News Middle East Correspondent</color></small></td></tr></table>"
+      },
+      {
+         "bid" : "7H0JT57",
+         "user_type" : "f_other",
+         "form" : "super",
+         "bid_native" : "4082728",
+         "user" : "davidmack",
+         "url" : "http://www.buzzfeed.com/davidmack/us-muslims-on-911",
+         "comments_count" : 5,
+         "last_updated" : "2015-11-22 21:35:26",
+         "images" : "",
+         "uid" : "791OCV7",
+         "sub_buzz" : "",
+         "name" : "Here's The Hateful History Of Falsely Accusing U.S. Muslims Of Celebrating On 9/11",
+         "uri" : "us-muslims-on-911",
+         "cloud_servers" : [
+            "alleyezonme-collection.buzzfeed.com"
+         ],
+         "username" : "davidmack",
+         "published" : "2015-11-22 19:56:31",
+         "published_unix" : "1448240191",
+         "ad_blurb" : "Donald Trump said he saw thousands of Arab Americans in New Jersey celebrating the day the Twin Towers fell. \"Either he's mistaken or he's lying,\" said a prominent Muslim spokesperson.",
+         "nsfw" : "false",
+         "status" : "live",
+         "ct" : "http://75.101.183.223/small.gif?type=100,14&user=davidmack&buzz=us-muslims-on-911&c=7H0JT57&u=791OCV7&url=http%3A%2F%2Fbuzzfeed.com%2Fdavidmack%2Fus-muslims-on-911%2F&rd=http%3A%2F%2Fbuzzfeed.com%2Fdavidmack%2Fus-muslims-on-911%2F",
+         "user_byline_data" : {},
+         "impressions" : "71782",
+         "mobile_image" : "1",
+         "user_image" : "http://s3-ak.buzzfed.com/static/2015-03/14/18/user_images/webdr14/davidmack-v2-29496-1426371108-32.jpg",
+         "blurb" : "Donald Trump said he saw thousands of Arab Americans in New Jersey celebrating the day the Twin Towers fell. &quot;Either he&#39;s mistaken or he&#39;s lying,&quot; said a prominent Muslim spokesperson.",
+         "last_updated_unix" : "1448246126",
+         "byline_description_visual" : "BuzzFeed News Reporter",
+         "display_name" : "David Mack",
+         "image" : "http://s3-ak.buzzfed.com/static/2015-11/22/21/campaign_images/webdr12/heres-the-hateful-history-of-falsely-accusing-us--2-26794-1448246124-0.jpg",
+         "byline_description_id" : "2",
+         "edit_last_updated" : "1448246123",
+         "static_images" : {
+            "small" : "http://s3-static-ak.buzzfed.com/static/2015-11/22/21/campaign_images/webdr12/heres-the-hateful-history-of-falsely-accusing-us--2-26794-1448246124-0_small.jpg",
+            "standard" : "http://s3-static-ak.buzzfed.com/static/2015-11/22/21/campaign_images/webdr12/heres-the-hateful-history-of-falsely-accusing-us--2-26794-1448246124-0.jpg",
+            "big" : "http://s3-static-ak.buzzfed.com/static/2015-11/22/21/campaign_images/webdr12/heres-the-hateful-history-of-falsely-accusing-us--2-26794-1448246124-0_big.jpg",
+            "wide" : "http://s3-static-ak.buzzfed.com/static/2015-11/22/21/campaign_images/webdr12/heres-the-hateful-history-of-falsely-accusing-us--2-26794-1448246124-0_wide.jpg",
+            "dblbig" : "http://s3-static-ak.buzzfed.com/static/2015-11/22/21/campaign_images/webdr12/heres-the-hateful-history-of-falsely-accusing-us--2-26794-1448246124-0_dblbig.jpg",
+            "dblwide" : "http://s3-static-ak.buzzfed.com/static/2015-11/22/21/campaign_images/webdr12/heres-the-hateful-history-of-falsely-accusing-us--2-26794-1448246124-0_dblwide.jpg"
+         },
+         "image_small" : "http://s3-ak.buzzfed.com/static/2015-11/22/21/campaign_images/webdr12/heres-the-hateful-history-of-falsely-accusing-us--2-26794-1448246124-0_small.jpg",
+         "html_blurb" : "<b><big>Here's The Hateful History Of Falsely Accusing U.S. Muslims Of Celebrating On 9/11</big></b><br/>Donald Trump said he saw thousands of Arab Americans in New Jersey celebrating the day the Twin Towers fell. \"Either he's mistaken or he's lying,\" said a prominent Muslim spokesperson.<br/><table><tr><td width='30' padding='0 0'><img src='http://s3-ak.buzzfed.com/static/2015-03/14/18/user_images/webdr14/davidmack-v2-29496-1426371108-32.jpg' width='25' height='25'/></td><td padding='5' pspacing='0'><small><b><a href='/davidmack'>David Mack</a></b></small><br/><small><color value='#939393'>BuzzFeed News Reporter</color></small></td></tr></table>"
+      },
+      {
+         "bid" : "7H0W8Y7",
+         "user_type" : "f_other",
+         "form" : "super",
+         "bid_native" : "4085031",
+         "user" : "josephbernstein",
+         "url" : "http://www.buzzfeed.com/josephbernstein/how-to-make-millions-of-hoverboards-almost-overnight",
+         "comments_count" : 6,
+         "last_updated" : "2015-12-14 13:10:57",
+         "images" : "",
+         "uid" : "71REJ97",
+         "sub_buzz" : "",
+         "name" : "Inside China's Memefacturing Factories, Where The Hottest New Gadgets Are Made",
+         "uri" : "how-to-make-millions-of-hoverboards-almost-overnight",
+         "cloud_servers" : [
+            "alleyezonme-collection.buzzfeed.com"
+         ],
+         "username" : "josephbernstein",
+         "published" : "2015-11-27 09:12:23",
+         "published_unix" : "1448633543",
+         "ad_blurb" : "This holiday season, we want to roll around on motorized two-wheeled scooters \u2014 and China wants to give us what we want, as soon as we want it. BuzzFeed News travels to Shenzhen, the world capital of memeufacturing, to see how your Black Friday sausage gets made.",
+         "nsfw" : "false",
+         "status" : "live",
+         "ct" : "http://75.101.183.223/small.gif?type=100,14&user=josephbernstein&buzz=how-to-make-millions-of-hoverboards-almost-overnight&c=7H0W8Y7&u=71REJ97&url=http%3A%2F%2Fbuzzfeed.com%2Fjosephbernstein%2Fhow-to-make-millions-of-hoverboards-almost-overnight%2F&rd=http%3A%2F%2Fbuzzfeed.com%2Fjosephbernstein%2Fhow-to-make-millions-of-hoverboards-almost-overnight%2F",
+         "user_byline_data" : {},
+         "impressions" : "252415",
+         "mobile_image" : "1",
+         "user_image" : "http://s3-ak.buzzfed.com/static/user_images/webdr01/2013/2/4/11/josephbernstein-5128-1359996832-11.jpg",
+         "blurb" : "This holiday season, we want to roll around on motorized two-wheeled scooters &mdash; and China wants to give us what we want, as soon as we want it. BuzzFeed News travels to Shenzhen, the world capital of memeufacturing, to see how your Black Friday&hellip;",
+         "last_updated_unix" : "1450116657",
+         "byline_description_visual" : "BuzzFeed News Reporter",
+         "display_name" : "Joseph Bernstein",
+         "image" : "http://s3-ak.buzzfed.com/static/2015-11/30/16/campaign_images/webdr04/inside-chinas-memefacturing-factories-where-the-h-2-26820-1448918997-12.jpg",
+         "byline_description_id" : "2",
+         "static_images" : {
+            "small" : "http://s3-static-ak.buzzfed.com/static/2015-11/30/16/campaign_images/webdr04/inside-chinas-memefacturing-factories-where-the-h-2-26820-1448918997-12_small.jpg",
+            "standard" : "http://s3-static-ak.buzzfed.com/static/2015-11/30/16/campaign_images/webdr04/inside-chinas-memefacturing-factories-where-the-h-2-26820-1448918997-12.jpg",
+            "big" : "http://s3-static-ak.buzzfed.com/static/2015-11/30/16/campaign_images/webdr04/inside-chinas-memefacturing-factories-where-the-h-2-26820-1448918997-12_big.jpg",
+            "wide" : "http://s3-static-ak.buzzfed.com/static/2015-11/30/16/campaign_images/webdr04/inside-chinas-memefacturing-factories-where-the-h-2-26820-1448918997-12_wide.jpg",
+            "dblbig" : "http://s3-static-ak.buzzfed.com/static/2015-11/30/16/campaign_images/webdr04/inside-chinas-memefacturing-factories-where-the-h-2-26820-1448918997-12_dblbig.jpg",
+            "dblwide" : "http://s3-static-ak.buzzfed.com/static/2015-11/30/16/campaign_images/webdr04/inside-chinas-memefacturing-factories-where-the-h-2-26820-1448918997-12_dblwide.jpg"
+         },
+         "image_small" : "http://s3-ak.buzzfed.com/static/2015-11/30/16/campaign_images/webdr04/inside-chinas-memefacturing-factories-where-the-h-2-26820-1448918997-12_small.jpg",
+         "html_blurb" : "<b><big>Inside China's Memefacturing Factories, Where The Hottest New Gadgets Are Made</big></b><br/>This holiday season, we want to roll around on motorized two-wheeled scooters \u2014 and China wants to give us what we want, as soon as we want it. BuzzFeed News travels to Shenzhen, the world capital of memeufacturing, to see how your Black Friday sausage gets made.<br/><table><tr><td width='30' padding='0 0'><img src='http://s3-ak.buzzfed.com/static/user_images/webdr01/2013/2/4/11/josephbernstein-5128-1359996832-11.jpg' width='25' height='25'/></td><td padding='5' pspacing='0'><small><b><a href='/josephbernstein'>Joseph Bernstein</a></b></small><br/><small><color value='#939393'>BuzzFeed News Reporter</color></small></td></tr></table>"
+      },
+      {
+         "bid" : "7H0P707",
+         "user_type" : "f_other",
+         "form" : "super",
+         "bid_native" : "4083725",
+         "user" : "sapna",
+         "url" : "http://www.buzzfeed.com/sapna/why-gun-sellers-want-shooting-to-be-more-fun",
+         "comments_count" : 2,
+         "last_updated" : "2015-12-14 13:15:40",
+         "images" : "",
+         "uid" : "72UHH47",
+         "sub_buzz" : "",
+         "name" : " Gun Sellers Have High Hopes For High School Shooting Leagues",
+         "uri" : "why-gun-sellers-want-shooting-to-be-more-fun",
+         "cloud_servers" : [
+            "alleyezonme-collection.buzzfeed.com"
+         ],
+         "username" : "sapna",
+         "published" : "2015-12-01 09:45:04",
+         "published_unix" : "1448981104",
+         "ad_blurb" : "Gun sales reached historic highs in recent years. To keep them there, the industry needs more new shooters, and ones who buy guns the way fashionistas buy clothes.",
+         "nsfw" : "false",
+         "status" : "live",
+         "ct" : "http://75.101.183.223/small.gif?type=100,14&user=sapna&buzz=why-gun-sellers-want-shooting-to-be-more-fun&c=7H0P707&u=72UHH47&url=http%3A%2F%2Fbuzzfeed.com%2Fsapna%2Fwhy-gun-sellers-want-shooting-to-be-more-fun%2F&rd=http%3A%2F%2Fbuzzfeed.com%2Fsapna%2Fwhy-gun-sellers-want-shooting-to-be-more-fun%2F",
+         "user_byline_data" : {},
+         "impressions" : "43539",
+         "mobile_image" : "1",
+         "user_image" : "http://s3-ak.buzzfed.com/static/user_images/webdr06/2013/4/21/23/sapna-6048-1366601033-0.jpg",
+         "blurb" : "Gun sales reached historic highs in recent years. To keep them there, the industry needs more new shooters, and ones who buy guns the way fashionistas buy clothes.",
+         "last_updated_unix" : "1450116940",
+         "byline_description_visual" : "BuzzFeed News Reporter",
+         "display_name" : "Sapna Maheshwari",
+         "image" : "http://s3-ak.buzzfed.com/static/2015-12/1/10/campaign_images/webdr10/why-gun-sellers-want-shooting-to-be-more-fun-2-22035-1448982313-10.jpg",
+         "byline_description_id" : "2",
+         "static_images" : {
+            "small" : "http://s3-static-ak.buzzfed.com/static/2015-12/1/10/campaign_images/webdr10/why-gun-sellers-want-shooting-to-be-more-fun-2-22035-1448982313-10_small.jpg",
+            "standard" : "http://s3-static-ak.buzzfed.com/static/2015-12/1/10/campaign_images/webdr10/why-gun-sellers-want-shooting-to-be-more-fun-2-22035-1448982313-10.jpg",
+            "big" : "http://s3-static-ak.buzzfed.com/static/2015-12/1/10/campaign_images/webdr10/why-gun-sellers-want-shooting-to-be-more-fun-2-22035-1448982313-10_big.jpg",
+            "wide" : "http://s3-static-ak.buzzfed.com/static/2015-12/1/10/campaign_images/webdr10/why-gun-sellers-want-shooting-to-be-more-fun-2-22035-1448982313-10_wide.jpg",
+            "dblbig" : "http://s3-static-ak.buzzfed.com/static/2015-12/1/10/campaign_images/webdr10/why-gun-sellers-want-shooting-to-be-more-fun-2-22035-1448982313-10_dblbig.jpg",
+            "dblwide" : "http://s3-static-ak.buzzfed.com/static/2015-12/1/10/campaign_images/webdr10/why-gun-sellers-want-shooting-to-be-more-fun-2-22035-1448982313-10_dblwide.jpg"
+         },
+         "image_small" : "http://s3-ak.buzzfed.com/static/2015-12/1/10/campaign_images/webdr10/why-gun-sellers-want-shooting-to-be-more-fun-2-22035-1448982313-10_small.jpg",
+         "html_blurb" : "<b><big> Gun Sellers Have High Hopes For High School Shooting Leagues</big></b><br/>Gun sales reached historic highs in recent years. To keep them there, the industry needs more new shooters, and ones who buy guns the way fashionistas buy clothes.<br/><table><tr><td width='30' padding='0 0'><img src='http://s3-ak.buzzfed.com/static/user_images/webdr06/2013/4/21/23/sapna-6048-1366601033-0.jpg' width='25' height='25'/></td><td padding='5' pspacing='0'><small><b><a href='/sapna'>Sapna Maheshwari</a></b></small><br/><small><color value='#939393'>BuzzFeed News Reporter</color></small></td></tr></table>"
+      },
+      {
+         "bid" : "7H30HJ7",
+         "user_type" : "f_other",
+         "form" : "super",
+         "bid_native" : "4099146",
+         "user" : "davidmack",
+         "url" : "http://www.buzzfeed.com/davidmack/the-witch-hunt-barring-same-sex-families-from-adopting-child",
+         "comments_count" : 7,
+         "last_updated" : "2015-12-14 12:47:04",
+         "images" : "",
+         "uid" : "791OCV7",
+         "sub_buzz" : "",
+         "name" : "The \u201cWitch Hunt\u201d Barring Same-Sex Families From Adopting Children In Kansas",
+         "uri" : "the-witch-hunt-barring-same-sex-families-from-adopting-child",
+         "cloud_servers" : [
+            "alleyezonme-collection.buzzfeed.com"
+         ],
+         "username" : "davidmack",
+         "published" : "2015-12-11 16:03:25",
+         "published_unix" : "1449867805",
+         "ad_blurb" : "Kansas authorities are under fire for allegedly discriminating against same-sex families wishing to adopt or foster children, after a case of alleged child abuse thrust the issue out of bureaucratic secrecy and into the spotlight.",
+         "nsfw" : "false",
+         "status" : "live",
+         "ct" : "http://75.101.183.223/small.gif?type=100,14&user=davidmack&buzz=the-witch-hunt-barring-same-sex-families-from-adopting-child&c=7H30HJ7&u=791OCV7&url=http%3A%2F%2Fbuzzfeed.com%2Fdavidmack%2Fthe-witch-hunt-barring-same-sex-families-from-adopting-child%2F&rd=http%3A%2F%2Fbuzzfeed.com%2Fdavidmack%2Fthe-witch-hunt-barring-same-sex-families-from-adopting-child%2F",
+         "user_byline_data" : {},
+         "impressions" : "159614",
+         "mobile_image" : "1",
+         "user_image" : "http://s3-ak.buzzfed.com/static/2015-03/14/18/user_images/webdr14/davidmack-v2-29496-1426371108-32.jpg",
+         "blurb" : "Kansas authorities are under fire for allegedly discriminating against same-sex families wishing to adopt or foster children, after a case of alleged child abuse thrust the issue out of bureaucratic secrecy and into the spotlight.",
+         "last_updated_unix" : "1450115224",
+         "byline_description_visual" : "BuzzFeed News Reporter",
+         "display_name" : "David Mack",
+         "image" : "http://s3-ak.buzzfed.com/static/2015-12/12/10/campaign_images/webdr10/the-witch-hunt-barring-same-sex-families-from-ado-2-21302-1449932523-0.jpg",
+         "byline_description_id" : "2",
+         "static_images" : {
+            "small" : "http://s3-static-ak.buzzfed.com/static/2015-12/12/10/campaign_images/webdr10/the-witch-hunt-barring-same-sex-families-from-ado-2-21302-1449932523-0_small.jpg",
+            "standard" : "http://s3-static-ak.buzzfed.com/static/2015-12/12/10/campaign_images/webdr10/the-witch-hunt-barring-same-sex-families-from-ado-2-21302-1449932523-0.jpg",
+            "big" : "http://s3-static-ak.buzzfed.com/static/2015-12/12/10/campaign_images/webdr10/the-witch-hunt-barring-same-sex-families-from-ado-2-21302-1449932523-0_big.jpg",
+            "wide" : "http://s3-static-ak.buzzfed.com/static/2015-12/12/10/campaign_images/webdr10/the-witch-hunt-barring-same-sex-families-from-ado-2-21302-1449932523-0_wide.jpg",
+            "dblbig" : "http://s3-static-ak.buzzfed.com/static/2015-12/12/10/campaign_images/webdr10/the-witch-hunt-barring-same-sex-families-from-ado-2-21302-1449932523-0_dblbig.jpg",
+            "dblwide" : "http://s3-static-ak.buzzfed.com/static/2015-12/12/10/campaign_images/webdr10/the-witch-hunt-barring-same-sex-families-from-ado-2-21302-1449932523-0_dblwide.jpg"
+         },
+         "image_small" : "http://s3-ak.buzzfed.com/static/2015-12/12/10/campaign_images/webdr10/the-witch-hunt-barring-same-sex-families-from-ado-2-21302-1449932523-0_small.jpg",
+         "html_blurb" : "<b><big>The \u201cWitch Hunt\u201d Barring Same-Sex Families From Adopting Children In Kansas</big></b><br/>Kansas authorities are under fire for allegedly discriminating against same-sex families wishing to adopt or foster children, after a case of alleged child abuse thrust the issue out of bureaucratic secrecy and into the spotlight.<br/><table><tr><td width='30' padding='0 0'><img src='http://s3-ak.buzzfed.com/static/2015-03/14/18/user_images/webdr14/davidmack-v2-29496-1426371108-32.jpg' width='25' height='25'/></td><td padding='5' pspacing='0'><small><b><a href='/davidmack'>David Mack</a></b></small><br/><small><color value='#939393'>BuzzFeed News Reporter</color></small></td></tr></table>"
+      }
+   ],
+   "no_shell" : null
+}
+;var uw_impression=function(){bf_widget.d={type:[],buzzid:[],user:[],buzz:[],userid:[],query:[]};var num_displayed=BF_DISPLAYED_BUZZ.length;var buzzes=BF_DISPLAYED_BUZZ;for(var i=0;i<num_displayed;i++)
+{var buzz=buzzes[i];bf_widget.d.type.push((typeof buzz['b']!='undefined')?bf_widget.boost_impression_type:bf_widget.impression_type);bf_widget.d.buzzid.push(buzz.bid);bf_widget.d.userid.push(buzz.uid);bf_widget.d.buzz.push(buzz.uri);bf_widget.d.user.push(buzz.user);if(bf_widget.is_dfp_on_buzzfeed&&typeof BF_DATA['position_id']!='undefined')
+{bf_widget.d.query.push(BF_DATA.position_id);}
+if(typeof buzz['flex_pro_id']!='undefined')
+{bf_widget.d.type.push(bf_widget.flex_pro_impression_type);bf_widget.d.buzzid.push(buzz.bid);bf_widget.d.userid.push(buzz.uid);bf_widget.d.buzz.push(buzz.uri);bf_widget.d.user.push(buzz.user);bf_widget.d.query.push(buzz['flex_pro_id']);}}
+var track_url="http://"+(bf_widget.servers[Math.floor(Math.random()*bf_widget.servers.length)])+"/small.gif?";track_url+="type="+bf_widget.d.type.join(",");track_url+="&c="+bf_widget.d.buzzid.join(",");track_url+="&buzz="+bf_widget.d.buzz.join(",");track_url+="&u="+bf_widget.d.userid.join(",");track_url+="&user="+bf_widget.d.user.join(",");track_url+="&query="+bf_widget.d.query.join(",");if(!bf_widget.is_dfp)
+{track_url+="&url="+escape(window.location.href);}
+track_url+="&z="+Math.floor((Math.random()*10000));BF_W.record_pixel(track_url);if(typeof window['BF_DFP_IMP']!='undefined')
+{BF_W.record_pixel(BF_DFP_IMP);}
+if(BF_DATA.wid&&typeof window['BF_DFP_IMPS']!='undefined'&&BF_DFP_IMPS[BF_DATA.wid])
+{BF_W.record_pixel(BF_DFP_IMPS[BF_DATA.wid]);}
+if(typeof(parent.BF_NO_QS)=='undefined'){BF_W.record_pixel("http://pixel.quantserve.com/pixel/p-3aud4J6uA4Z6Y.gif?labels=Widget&busty="+Math.floor((Math.random()*10000)));}}
+var bfa_click=function(el,buzz,wid){try{if(!el.getAttribute("data-bfa")||typeof window.bfa=='undefined'||!(window.bfa instanceof Function)||typeof window.bfaBinder=='undefined'){return;}
+var bfaAttrObj=window.bfaBinder.parser.parse(el);if(bfaAttrObj[0].indexOf('-dfp')===-1){return;}
+bfaAttrObj[3].adbuzzid=buzz.bid_native;bfaAttrObj[3].adbuzzurl=buzz.url;bfaAttrObj[3].adpartner=buzz.user;bfaAttrObj[3].adtitle=buzz.name;bfaAttrObj[3].adimageurl=buzz.image;var result=["track",'click',];result=result.concat(bfaAttrObj);window.bfa.apply(this,result);}catch(e){console.error(e);}};var uw_click=function(el,buzz,wid){try{if(typeof window['BF_DFP_CLICK']!='undefined')
+{BF_W.record_pixel(BF_DFP_CLICK);}
+if(wid&&typeof window['BF_DFP_CLICKS']!='undefined'&&BF_DFP_CLICKS[wid])
+{BF_W.record_pixel(BF_DFP_CLICKS[wid]);}
+var DFP_CLICK=null;if(typeof window['BF_DFP_REDIRECT']!='undefined'){DFP_CLICK=BF_DFP_REDIRECT;}
+if(typeof window['BF_DFP_REDIRECTS']!='undefined'&&BF_DFP_REDIRECTS[wid]){DFP_CLICK=BF_DFP_REDIRECTS[wid];}
+if(DFP_CLICK)
+{el.href=DFP_CLICK+el.href;}
+var buzz_url=buzz['user_link']?buzz['user_link']:buzz['url'];bf_widget.d={type:[],buzzid:[],user:[],buzz:[],userid:[],query:[]};bf_widget.d.type.push(((typeof buzz['b']!='undefined')?bf_widget.boost_click_type:bf_widget.click_type));bf_widget.d.buzzid.push(buzz.bid);bf_widget.d.userid.push(buzz.uid);bf_widget.d.buzz.push(buzz.uri);bf_widget.d.user.push(buzz.user);bf_widget.d.query.push((bf_widget.is_dfp_on_buzzfeed&&typeof BF_DATA['position_id']!='undefined')?BF_DATA.position_id:'');if(typeof buzz['flex_pro_id']!='undefined')
+{bf_widget.d.type.push(bf_widget.flex_pro_click_type);bf_widget.d.buzzid.push(buzz.bid);bf_widget.d.userid.push(buzz.uid);bf_widget.d.buzz.push(buzz.uri);bf_widget.d.user.push(buzz.user);bf_widget.d.query.push(buzz['flex_pro_id']);}
+if(buzz['user_link'])
+{bf_widget.d.type.push(23);bf_widget.d.buzzid.push(buzz.bid);bf_widget.d.userid.push(buzz.uid);bf_widget.d.buzz.push(buzz.uri);bf_widget.d.user.push(buzz.user);bf_widget.d.query.push('');}
+var track_url="http://"+(bf_widget.servers[Math.floor(Math.random()*bf_widget.servers.length)])+"/small.gif?";track_url+="type="+bf_widget.d.type.join(",");track_url+="&c="+bf_widget.d.buzzid.join(",");track_url+="&buzz="+bf_widget.d.buzz.join(",");track_url+="&u="+bf_widget.d.userid.join(",");track_url+="&user="+bf_widget.d.user.join(",");track_url+="&query="+bf_widget.d.query.join(",");if(!bf_widget.is_dfp)
+{track_url+="&url="+escape(window.location.href);}
+BF_W.record_pixel(track_url);}catch(e){console.error(e);}};var bf_widget={};bf_widget.servers=["alleyezonme-collection.buzzfeed.com"];bf_widget.is_dfp=(typeof BF_DATA['network']!='undefined');bf_widget.is_dfp_on_buzzfeed=(typeof BF_DATA['network']!='undefined'&&BF_DATA['network']=='buzzfeed');bf_widget.impression_type=(bf_widget.is_dfp_on_buzzfeed)?30:13;bf_widget.click_type=(bf_widget.is_dfp_on_buzzfeed)?35:14;bf_widget.boost_impression_type=32;bf_widget.boost_click_type=37;bf_widget.flex_pro_impression_type=33;bf_widget.flex_pro_click_type=38;if(BF_DATA&&BF_DATA.wid&&BF_DATA.buzz&&BF_DATA.buzz.length>0){BF_W.show_widget(BF_DATA,function(el,buzz,wid){uw_click.call(this,el,buzz,wid);bfa_click.call(this,el,buzz,wid);});uw_impression();if(BF_DATA.track){BF_PARTNER.invisible=false;window['BF_SID']=BF_DATA.track;BF_PARTNER.track_page(BF_DATA.track);}}}catch(e){console.error(e);}})();
+
+/* s 13:25:05 12/14/2015 */
+/* g 13:27:53 12/14/2015 - sl=432 */ 

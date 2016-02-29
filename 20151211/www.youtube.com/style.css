@@ -1,0 +1,538 @@
+
+body, body * {
+  vertical-align: baseline;
+  border: 0 none;
+  outline: 0;
+  padding: 0;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  font-size: 9pt;
+  color: #333;
+}
+
+#main-container {
+  position: absolute;
+  width: 970px;
+  height: 250px;
+  top: 0px;
+  left: 0px;
+  border: 1px solid black;
+  box-sizing: border-box;
+  background: #EEE;
+}
+
+#collapsed-content {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+  z-index: 100;
+  cursor: pointer;
+  text-align: center;
+  background-color: #EEE;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+#expanded-content {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background-color: #F1F1F1;
+  z-index: 200;
+  display: none;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+#expanded-exit {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+  cursor: pointer;
+  /* IE10 needs a background color otherwise he won't capture clicks */
+  background-color: #FFF;
+  opacity: 0;
+  z-index: 400;
+  display: none;
+}
+
+#collapsed-exit {
+  position: absolute;
+  width: 132px;
+  height: 42px;
+  top: 88px;
+  left: 817px;
+  cursor: pointer;
+  opacity: 1;
+  z-index: 501;
+  display: none;
+  background-image:url(unexpanded_buyNowCTA.png);
+
+}
+
+.button {
+  position: absolute;
+  color: #FFF;
+  background-color: #339933;
+  border: 1px outset #333;
+  cursor: pointer;
+  padding: 5px 10px;
+  z-index: 500;
+  font-family: Arial, sans-serif;
+  font-size: 10pt;
+}
+
+#expand-button {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: none;
+  //background-color: #000;
+  z-index: 500;
+}
+
+#collapse-button {
+ 
+  cursor: pointer;
+  /* Important: keep 5px padding at top: 0 and left: as per YouTube Specs */
+  top: 0px;
+  left: 0px;
+  position: absolute;
+  display: none;
+  z-index: 500;
+  width: 114px;
+  height: 24px;
+  background-image:url(closeExpandedBTN.png);
+  
+  
+
+ 
+}
+
+
+#replay-button {
+ 
+  cursor: pointer;
+  /* Important: keep 5px padding at top: 0 and left: as per YouTube Specs */
+  top: 0px;
+  left: 0px;
+  position: absolute;
+  display: none;
+  z-index: 501;
+  width: 73px;
+  height: 27px;
+  background-image:url(replayBTN.png);
+  
+
+}
+
+
+
+
+#yt-close {
+  z-index: 999;
+}
+
+.feature-collapsed {
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-image:url(unexpanded_video_start_frame.jpg);
+  
+}
+
+.feature-expanded {
+  top: 0px;
+  left: 0px;
+  width: 970px;
+  height: 500px;
+  position: absolute;
+}
+
+#ytp-1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 500;
+}
+
+
+#video-container-0 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: none;
+  border: none;
+  visibility: hidden;
+}
+
+#video-0 {
+  position: absolute;
+  width: 970px;
+  height: 250px;
+  left: 0;
+  top: 0;
+  box-sizing: border-box;
+}
+
+#video-0-controls{
+  position: absolute;
+  display: none;
+  z-index: 700;
+    top: 241px;
+    left: 404px;
+}
+
+.video-controls {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  bottom: -1px;
+  cursor: pointer;
+  background-color: #FFF;
+}
+
+/* Video button hiding an positioning */
+.video-controls:hover {
+  border-bottom: 1px solid #666;
+}
+
+#play-btn-0 {
+  background-image:url(play.svg);
+  background-repeat:no-repeat;
+  background-size:cover;
+  left: 0; 
+}
+
+#progress-bar-0-holder {
+    position: absolute;
+    bottom: 233px;
+    left: 500px;
+    width: 344px;
+    height: 4px;
+    //background-color: #000;
+}
+
+#progress-bar-0 {
+  position: absolute;
+  background-color: #999999;
+  height: 4px;
+  opacity: 0.5;
+}
+
+#pause-btn-0 {
+  background-image:url(pause.svg);
+  background-repeat:no-repeat;
+  background-size:cover;
+  left: 0px;
+  visibility: hidden;
+}
+
+#stop-btn-0 {
+  background-image:url(stop.svg);
+  background-size:cover;
+  background-repeat:no-repeat;
+  left: 20px;
+  display: none;
+}
+
+#unmute-btn-0 {
+  background-image:url(unmute.svg);
+  background-size:cover;
+  background-repeat:no-repeat;
+  right: 0px;
+  display: block;
+}
+
+#mute-btn-0 {
+  background-image:url(mute.svg);
+  background-size:cover;
+  background-repeat:no-repeat;
+  right: 0px;
+  visibility: hidden;
+  display: block;
+}
+
+#replay-btn-0 {
+  background-image:url(replay.svg);
+  background-size:cover;
+  background-repeat:no-repeat;
+  left: 40px;
+  display: none;
+}
+
+
+
+
+
+
+
+#video-container-1 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: #000;
+  XXz-index:499;
+  opacity:1;
+}
+
+#video-1 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+}
+
+#video-1-controls{
+    display: none;
+    position: absolute;
+    z-index: 1000;
+    bottom: 15px;
+    left: 30px;
+}
+
+
+.video-controls-1 {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  bottom: -1px;
+  cursor: pointer;
+  background-color: #FFF;
+}
+
+/* Video button hiding an positioning */
+.video-controls-1:hover {
+  border-bottom: 1px solid #666;
+}
+
+#play-btn-1 {
+  background-image:url(play.svg);
+  background-repeat:no-repeat;
+  background-size:cover;
+  left: 0;
+}
+
+#progress-bar-1-holder {
+    position: absolute;
+    bottom: 22px;
+    left: 110px;
+    width: 844px;
+    height: 4px;
+    //background-color: #000;
+}
+
+#progress-bar-1 {
+  position: absolute;
+  background-color: #999999;
+  height: 4px;
+  opacity: 0.5;
+}
+
+#pause-btn-1 {
+  background-image:url(pause.svg);
+  background-repeat:no-repeat;
+  background-size:cover;
+  left: 0px;
+  visibility: hidden;
+}
+
+#stop-btn-1 {
+  background-image:url(stop.svg);
+  background-size:cover;
+  background-repeat:no-repeat;
+  left: 20px;
+}
+
+#unmute-btn-1 {
+  background-image:url(unmute.svg);
+  background-size:cover;
+  background-repeat:no-repeat;
+  right: 0px;
+}
+
+#mute-btn-1 {
+  background-image:url(mute.svg);
+  background-size:cover;
+  background-repeat:no-repeat;
+  right: 0px;
+  visibility: hidden;
+}
+
+#replay-btn-1 {
+  background-image:url(replay.svg);
+  background-size:cover;
+  background-repeat:no-repeat;
+  left: 40px;
+}
+
+
+:focus {
+  outline:none;
+}
+::-moz-focus-inner {
+  border:0;
+}
+
+
+ 
+ /* CUSTOM CSS */
+
+
+#unexpanded_intro_graphics{
+position: absolute;
+width: 970px;
+height:250px;
+background-image:url(unexpanded_intro_graphics.png);
+}
+
+#unexpanded_end_frame_container {
+  display:none;
+  position: absolute;
+  width: 970px;
+  height:250px;
+
+}
+
+#unexpanded_end_frame_image {
+  position: absolute;
+  width: 970px;
+  height:250px;
+  background-image:url(unexpanded_end_frame_image.jpg);
+}
+
+#unexpanded_end_frame_EA_logos {
+  position: absolute;
+  width: 970px;
+  height:250px;
+  background-image:url(unexpanded_end_frame_EA_logos.png);
+}
+
+#unexpanded_end_frame_pak_shot {
+  position: absolute;
+  width: 970px;
+  height:250px;
+  background-image:url(unexpanded_end_frame_pak_shot.png);
+}
+
+#unexpanded_end_frame_PEGI {
+  position: absolute;
+  width: 970px;
+  height:250px;
+  background-image:url(unexpanded_end_frame_PEGI.png);
+}
+
+#unexpanded_end_frame_cta {
+  position: absolute;
+  width: 970px;
+  height:250px;
+  top:0px;
+  background-image:url(unexpanded_end_frame_cta.png);
+}
+
+#unexpanded_end_frame_xbox_bar {
+  position: absolute;
+  width: 970px;
+  height:250px;
+  background-image:url(unexpanded_end_frame_xbox_bar.png);
+}
+
+#expanded_end_frame_container {
+  position: absolute;
+  width: 970px;
+  height:500px;
+  overflow: hidden;
+  top:0px;
+}
+
+#expanded_end_frame_image {
+  position: absolute;
+  width: 970px;
+  height:500px;
+  background-image:url(expanded_end_frame_image.jpg);
+}
+
+#expanded_end_frame_EA_logos {
+  position: absolute;
+width: 970px;
+  height:500px;
+  background-image:url(expanded_end_frame_EA_logos.png);
+}
+
+#expanded_end_frame_pak_shot {
+  position: absolute;
+  width: 970px;
+  height:500px;
+  background-image:url(expanded_end_frame_pak_shot.png);
+}
+
+#expanded_end_frame_PEGI {
+  position: absolute;
+  width: 970px;
+  height:500px;
+  background-image:url(expanded_end_frame_PEGI.png);
+}
+
+#expanded_end_frame_cta {
+  position: absolute;
+  width: 970px;
+  height:500px;
+  background-image:url(expanded_end_frame_cta.png);
+}
+
+#expanded_end_frame_xbox_bar {
+  position: absolute;
+ width: 970px;
+  height:500px;
+  background-image:url(expanded_end_frame_xbox_bar.png);
+}
+
+
+#expanded_end_frame_copy_1_1 {
+  position: absolute;
+  width: 970px;
+  height:500px;
+  background-image:url(expanded_end_frame_copy_1_1.png);
+}
+
+#expanded_end_frame_copy_1_2 {
+  position: absolute;
+  width: 970px;
+  height:500px;
+  background-image:url(expanded_end_frame_copy_1_2.png);
+}
+
+#expanded_end_frame_copy_2 {
+  position: absolute;
+  width: 970px;
+  height:500px;
+  background-image:url(expanded_end_frame_copy_2.png);
+}
+
+#YouTubeContainer{
+  position: absolute;
+  width: 477px;
+  height:303px;
+ left: 471px;
+    top: 111px;
+    background-color: #000;
+    border-style: solid;
+    border-width: 4px;
+    border-color: #ccc;
+}
+

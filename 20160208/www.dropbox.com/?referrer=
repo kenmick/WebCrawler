@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="icon" href="data:;base64,=">
+  <meta charset="utf-8" />
+  <title>Demandbase Script</title>
+</head>
+<body>
+
+  <script type="text/javascript">
+    var Demandbase=window.Demandbase||{};Demandbase.Ads=window.Demandbase.Ads||{};
+Demandbase.Ads.Extd={name:"Demandbase Extended Company Targeting",version:"2.0",c_key:"ssid",t_key:"tuuid",s_key:"parent",c_value:null,t_value:null,getQueryParam:function(a){var b={},c=window.location.search.substring(1),d=c.split("&");if(!c)return"";for(c=0;c<d.length;c++){var e=d[c].split("=");b[e[0]]=e[1]}return b[a]||""},load:function(){var a=Demandbase.Ads.Extd;a.c_value=a.read(a.c_key)||"";a.t_value=a.read(a.t_key)||"";a.post()},post:function(){if(window&&window.parent&&"undefined"!==typeof window.postMessage){var a=
+this.getQueryParam(this.s_key)||document.referrer;top===self&&(a=document.location.href);if(a){var b={};b[this.c_key]=this.c_value;b[this.t_key]=this.t_value;window.parent.postMessage(b,a);return b}return!1}},read:function(a,b){return(b=document.cookie.match("(^|;)\\s*"+a+"\\s*=\\s*([^;]+)"))?b.pop():""}};Demandbase.Ads.Extd.load();
+
+  </script>
+</body>
+</html>

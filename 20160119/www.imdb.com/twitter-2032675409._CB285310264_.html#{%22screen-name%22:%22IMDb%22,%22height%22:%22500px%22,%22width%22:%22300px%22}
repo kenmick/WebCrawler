@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<!--
+    Name: 
+        Sandboxed Twitter Widget
+    Input: 
+        A JSON blob of the following format  {"screen-name":"IMDb","list-name":"imdb-at-sundance","height":"500px","width":"300px"}
+    Example Usage(s):
+        Default: <iframe src='/html/twitter.html'></iframe>
+        User's List: <iframe src='/html/twitter.html#{'screen-name':"IMDb","list-name":"imdb-at-sundance","height":"500px","width":"300px"}'></iframe>
+        Other user: <iframe src='/html/twitter.html#{'screen-name':"tomhanks","height":"500px","width":"300px"}'></iframe>
+-->
+<html><head>
+    <style>
+        body {
+            margin:0px;
+        }
+    </style>
+</head><body>
+    <a id="anchor" class="twitter-timeline" href="https://twitter.com/IMDb" data-widget-id="354387022028357633">Follow on Twitter</a>
+    <script>
+    (function(doc, JSON){
+        var fallback = {
+            'screen-name':"IMDb",
+            'height':"500px",
+            'width':"300px"
+        };
+        var sourceJSON, args, urlHash;
+        try {
+            urlHash = location.href.split("#")[1];
+            sourceJSON = urlHash ? decodeURIComponent(urlHash) : undefined;
+            args = sourceJSON ? JSON.parse(sourceJSON) : fallback;
+        } catch (e) {
+            console.log("Failed to decode JSON string: " + sourceJSON + " ; exception: " + e);
+            args = fallback;
+        }
+        var screenName = args["screen-name"];
+        var listName = args["list-name"];
+
+        anchor = doc.getElementById('anchor');
+        if (listName && screenName) {
+            anchor.setAttribute("data-list-owner-screen-name", screenName);
+            anchor.setAttribute("data-list-slug", listName);
+        } else if (screenName) {
+            anchor.setAttribute("data-screen-name", screenName);
+        }
+        anchor.setAttribute("width", args["width"]);
+        anchor.setAttribute("height", args["height"]);
+    })(document, window.JSON);
+    </script>
+    <script src="http://platform.twitter.com/widgets.js"></script>
+</body></html>

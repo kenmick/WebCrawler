@@ -1,0 +1,482 @@
+
+body, body * {
+  vertical-align: baseline;
+  border: 0 none;
+  outline: 0;
+  padding: 0;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  font-size: 9pt;
+  color: #333;
+}
+
+#main-container {
+    position: absolute;
+    width: 970px;
+    height: 250px;
+    top: 0px;
+    left: 0px;
+    border:1px solid black;
+    box-sizing: border-box;
+    -o-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -ms-box-sizing: border-box;  
+    background: #EEE;
+    overflow: hidden;
+}
+
+#collapsed-content {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+  z-index: 100;
+  cursor: pointer;
+  text-align: center;
+  background-color: #EEE;
+  box-sizing: border-box;
+}
+
+#expanded-content {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background-color: #F1F1F1;
+  z-index: 200;
+  display: none;
+  box-sizing: border-box;
+}
+
+#expanded-exit {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+  cursor: pointer;
+  /* IE10 needs a background color otherwise he won't capture clicks */
+  background-color: #FFF;
+  opacity: 0;
+  z-index: 400;
+  display: none;
+}
+
+#collapsed-exit {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+  cursor: pointer;
+  /* IE10 needs a background color otherwise he won't capture clicks */
+  background-color: #FFF;
+  opacity: 0;
+  z-index: 400;
+  display: none;
+}
+
+.button {
+  position: absolute;
+  color: #FFF;
+  cursor: pointer;
+  z-index: 500;
+}
+
+#expand-button {
+  top: 201px;
+  left: 19px;
+    
+    display: none;
+    overflow: hidden;
+}
+
+#collapse-button {
+  cursor: pointer;
+  /* Important: keep 5px padding at top: 0 and left: as per YouTube Specs */
+  top: 0px;
+  left: 0px;
+    width:170px;
+    height:30px;
+  position: absolute;
+  padding: 0px;
+  display: none;
+  z-index: 700;
+  font-family: Arial, sans-serif;
+  font-size: 10pt;
+}
+#collapse-button_img {
+  cursor: pointer;
+  /* Important: keep 5px padding at top: 0 and left: as per YouTube Specs */
+  top: 0px;
+  left: 0px;
+  position: absolute;
+
+
+  font-family: Arial, sans-serif;
+  font-size: 10pt;
+}
+
+#yt-close {
+  z-index: 998;
+}
+#yt-close_back {
+    position: absolute;
+    width: 80px;
+    height: 25px;
+    top:0px;
+    left: 890px;
+    
+
+    z-index: 998;    
+}
+.feature-collapsed {
+  top: 10px;
+  left: 297px;
+  width: 376.88888888888886px;
+  height: 230px;
+  position: absolute;
+}
+
+.feature-expanded {
+  top: 36px;
+  left: 121px;
+  width: 727.5px;
+  height: 427.21875px;
+  position: absolute;
+}
+#main-img-0 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url(dclk.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
+}
+#video-container-1 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+  background-color: none;
+  z-index: 500;
+  border: none;
+  visibility: hidden;
+}
+
+#video-1 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background-color: black
+}
+
+.video-controls {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  bottom: -1px;
+  cursor: pointer;
+  background-color: #FFF;
+    
+    visibility: hidden;
+}
+
+/* Video button hiding an positioning */
+.video-controls:hover {
+  border-bottom: 1px solid #666;
+}
+
+/*
+#play-btn-1 {
+  background-image:url(play.svg);
+  background-repeat:no-repeat;
+  background-size:cover;
+  left: 0;
+}
+
+
+#progress-bar-1 {
+  position: absolute;
+  background-color: #339933;
+  bottom: 18px;
+  height: 4px;
+    visibility: hidden;
+}
+
+
+#pause-btn-1 {
+  background-image:url(pause.svg);
+  background-repeat:no-repeat;
+  background-size:cover;
+  left: 0px;
+  visibility: hidden;
+}
+
+#stop-btn-1 {
+  background-image:url(stop.svg);
+  background-size:cover;
+  background-repeat:no-repeat;
+  left: 20px;
+}
+
+#unmute-btn-1 {
+  background-image:url(unmute.svg);
+  background-size:cover;
+  background-repeat:no-repeat;
+  right: 0px;
+}
+
+#mute-btn-1 {
+  background-image:url(mute.svg);
+  background-size:cover;
+  background-repeat:no-repeat;
+  right: 0px;
+  visibility: hidden;
+}
+
+#replay-btn-1 {
+  background-image:url(replay.svg);
+  background-size:cover;
+  background-repeat:no-repeat;
+  left: 40px;
+}
+*/
+
+:focus {
+  outline:none;
+}
+::-moz-focus-inner {
+  border:0;
+}
+
+
+
+
+/*/////////////////////////////////////////////////*/
+#bg_image {
+    position: absolute;
+    left: 0px;
+    top: 0px;  
+}
+
+#copy01 {
+    position: absolute;
+
+    left: 0px;
+    top: 0px; 
+    
+}
+
+#copy02 {
+    position: absolute;
+
+    left: 0px;
+    top: 0px;
+    
+    -ms-transform-origin: 84.5% 64%;
+    -webkit-transform-origin: 84.5% 64%;
+    transform-origin: 84.5% 64%;    
+}
+
+#copy03 {
+    position: absolute;
+
+    left: 0px;
+    top: 0px; 
+    
+}
+
+#copy04 {
+    position: absolute;
+
+    left: 0px;
+    top: 0px; 
+    
+}
+#logo_topbar {
+    position: absolute;
+    width: 80px;
+    height: 50px;
+    left: 775px;
+    top: 20px;
+    
+    overflow: hidden;
+}
+#logo_bottombar {
+    position: absolute;
+    width: 50px;
+    height: 33px;
+    left: 835px;
+    top: 75px; 
+    overflow: hidden;
+
+}
+
+
+
+#logo_line01 {
+    position: absolute;
+    width: 80px;
+    height: 50px;
+    left: 775px;
+    top: 45px;
+    overflow: hidden;
+}
+
+#logo_line02 {
+    position: absolute;
+    width: 90px;
+    height: 60px;
+    left: 795px;
+    top: 45px;
+    
+    overflow: hidden;
+}
+
+#logo_topbar_img {
+    position: absolute;
+    left: -775px;
+    top: -20px;
+}
+
+#logo_bottombar_img {
+    position: absolute;
+    left: -835px;
+    top: -75px; 
+}
+
+#logo_line01_img {
+    position: absolute;
+    left: -775px;
+    top: -45px;
+}
+
+#logo_line02_img {
+    position: absolute;
+    left: -795px;
+    top: -45px;
+
+}
+/*/////////////////////////////////////////////////*/
+#logo_c {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    
+    -ms-transform-origin: 80.3% 34%;
+    -webkit-transform-origin: 80.3% 34%;
+    transform-origin: 80.3% 34%;
+}
+
+#logo_heartLeft {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    
+    -ms-transform-origin: 77.1% 40.4%;
+    -webkit-transform-origin: 77.1% 40.4%;
+    transform-origin: 77.1% 40.4%;
+}
+
+#logo_heartTop {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    
+    -ms-transform-origin: 83.8% 17.2%;
+    -webkit-transform-origin: 83.8% 17.2%;
+    transform-origin: 83.8% 17.2%;    
+}
+
+#logo_heartRight {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    
+    -ms-transform-origin: 91.1% 20%;
+    -webkit-transform-origin: 91.1% 20%;
+    transform-origin: 91.1% 20%;
+}
+
+#logo_heartBottom {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    
+    -ms-transform-origin: 85.25% 40%;
+    -webkit-transform-origin: 85.25% 40%;
+    transform-origin: 85.25% 40%;
+}
+
+#glowholder {
+    position: absolute;
+    left: 748px;
+    top: 201px;
+    width: 136px;
+    height: 28px;
+    
+    overflow: hidden;
+    
+    -ms-transform: rotate(-2deg);
+    -webkit-transform: rotate(-2deg);
+    transform: rotate(-2deg);
+
+}
+
+#glowOverlay {
+    position: absolute;
+    left: 748px;
+    top: 201px;
+    width: 136px;
+    height: 28px;
+
+    
+    -ms-transform: rotate(-2deg);
+    -webkit-transform: rotate(-2deg);
+    transform: rotate(-2deg);
+    
+    z-index: 999;
+    
+}
+
+#glow {
+    position: absolute;
+    left: -40px;
+    top: 0px;
+
+}
+/*/////////////////////////////////////////////////*/
+
+
+
+
+
+#videoCollapsed {
+    position: absolute;
+    
+    left: 19px;
+    top: 19px;
+    
+    background-color: black;
+    border:1px solid white;
+    box-sizing: border-box;
+    -o-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    
+    z-index: 999;
+}
+video::-webkit-media-controls-fullscreen-button {
+    display: none;
+}

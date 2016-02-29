@@ -1,0 +1,466 @@
+<html>
+	
+	<head>
+	
+		<meta name="robots" content="noindex,nofollow"> 
+	
+		<style type="text/css">
+
+			* {
+				margin:0px;
+				margin-left: auto;
+				margin-right: auto;
+				padding:0px;
+			}
+	
+			img {
+				border:0px;
+			}
+	
+			div.container {
+				width:300px;
+				height:250px;
+				-webkit-perspective: 400;
+				perspective: 400;
+			}
+	
+			#arrow1 {
+				position:absolute;
+				margin-left:0px;
+				margin-top:0px;
+			}
+	
+			#arrow2 {
+				position:absolute;
+				margin-left:264px;
+				margin-top:0px;
+			}
+			
+			#arrow1 img, #arrow2 img {
+				-moz-border-radius: 6px; 
+				-webkit-border-radius: 6px; 
+				-khtml-border-radius: 6px; 
+				border-radius: 6px;
+			}
+	
+			#distractor {
+				position:absolute;
+			}
+	
+			div.bgLink {
+			
+				position:absolute;
+	
+				margin-top:108px;			
+				width:300px;
+				
+				text-align:center;
+				-moz-align:center;
+	
+				filter:alpha(opacity=25);
+				-moz-opacity:0.25;
+				-khtml-opacity: 0.25;
+				opacity: 0.25;
+			}
+	
+			div.bgLink a {
+			
+				font-size:17px;
+				font-family:arial;
+				color:#ffffff;
+				font-weight:bold;
+				
+				line-height:26px;
+				
+				text-decoration:none;
+				letter-spacing:-1px;
+	
+				text-shadow: 2px 2px 2px rgba(0,0,0,.8);
+				
+			}
+	
+			div.bgLink a:hover {
+				position:relative;
+				top:-1px;
+				text-shadow: 3px 3px 2px #000;
+			}
+	
+			div.bgLink a span.big {
+				font-size:33px;
+				letter-spacing:-2px;
+			}
+		
+			@-webkit-keyframes bAnimWebkit {
+				0% {	-webkit-transform: rotate3d(0,0,0,0deg);	}
+				1.5% {	-webkit-transform: rotate3d(0,0,0,0deg);	}
+				3.5% {	-webkit-transform: rotate3d(1,0,0,180deg);	}
+				6% {	-webkit-transform: rotate3d(1,0,0,360deg);	}
+				100% {	-webkit-transform: rotate3d(1,0,0,360deg);	}
+			}
+		
+			@keyframes bAnim {
+				0% {	transform: rotate3d(0,0,0,0deg);	}
+				1.5% {	transform: rotate3d(0,0,0,0deg);	}
+				3.5% {	transform: rotate3d(1,0,0,180deg);	}
+				6% {	transform: rotate3d(1,0,0,360deg);	}
+				100% {	transform: rotate3d(1,0,0,360deg);	}
+			}
+		
+			div.anim {
+				-webkit-animation-name: bAnimWebkit;	-webkit-animation-duration: 20s;	-webkit-animation-iteration-count: infinite;	-webkit-animation-direction: normal;	-webkit-animation-timing-function: linear;
+				animation-name: bAnim;					animation-duration: 20s;			animation-iteration-count: infinite;			animation-direction: normal;			animation-timing-function: linear;
+			}
+		
+			@-webkit-keyframes bAnimWebkitStart {
+				0% {	-webkit-transform: rotate3d(0,0,0,0deg);	}
+				25% {	-webkit-transform: rotate3d(0,0,0,0deg);	}
+				60% {	-webkit-transform: rotate3d(1,0,0,180deg);	}
+				100% {	-webkit-transform: rotate3d(1,0,0,360deg);	}
+			}
+		
+			@keyframes bAnimStart {
+				0% {	transform: rotate3d(0,0,0,0deg);	}
+				25% {	transform: rotate3d(0,0,0,0deg);	}
+				60% {	transform: rotate3d(1,0,0,180deg);	}
+				100% {	transform: rotate3d(1,0,0,360deg);	}
+			}
+		
+			div.animStart {
+				-webkit-animation-name: bAnimWebkitStart;	-webkit-animation-duration: 1.2s;	-webkit-animation-iteration-count: 1;	-webkit-animation-direction: normal;	-webkit-animation-timing-function: linear;
+				animation-name: bAnimStart;					animation-duration: 1.2s;			animation-iteration-count: 1;			animation-direction: normal;			animation-timing-function: linear;
+			}
+		
+			div.b {
+			
+				position:absolute;
+				visibility:hidden;
+	
+				-moz-border-radius: 3px; 
+				-webkit-border-radius: 3px; 
+				-khtml-border-radius: 3px; 
+				border-radius: 3px;
+		
+				cursor:pointer;
+			}
+	
+			div.link {
+			
+				text-align:center;
+				border-top:1px dotted #ffffff;
+	
+				margin-left:2px;
+				margin-right:2px;
+	
+				width:234px;
+				height:15px;
+	
+				overflow:hidden;
+	
+			}
+	
+			div.link a {
+				color:#ffffff;
+				font-size:11px;
+				font-weight:bold;
+				font-family:arial;
+				line-height:15px;
+				text-decoration:none;
+				text-shadow: 1px 1px 1px rgba(0,0,0,.3);
+			}
+	
+			
+			div.c1 {
+				background-color:#277496;
+				filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#349bc9', endColorstr='#277496');
+				background: -webkit-gradient(linear, left top, left bottom, from(#349bc9), to(#277496));
+				background: -moz-linear-gradient(top, #349bc9, #277496);
+			}
+			div.c1:hover {
+				filter:none;
+				background:none;
+				background-color:#349bc9;
+			}
+			
+			div.c2 {
+				background-color:#7F7F7F;
+				filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#AAAAAA', endColorstr='#7F7F7F');
+				background: -webkit-gradient(linear, left top, left bottom, from(#AAAAAA), to(#7F7F7F));
+				background: -moz-linear-gradient(top, #AAAAAA, #7F7F7F);
+			}
+			div.c2:hover {
+				filter:none;
+				background:none;
+				background-color:#AAAAAA;
+			}
+			
+			div.c3 {
+				background-color:#7F7F7F;
+				filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#AAAAAA', endColorstr='#7F7F7F');
+				background: -webkit-gradient(linear, left top, left bottom, from(#AAAAAA), to(#7F7F7F));
+				background: -moz-linear-gradient(top, #AAAAAA, #7F7F7F);
+			}
+			div.c3:hover {
+				filter:none;
+				background:none;
+				background-color:#AAAAAA;
+			}
+			
+	
+			div.b table {
+				width:238px;
+				height:64px;
+				clip:rect(0px 0px 0px 0px);
+			}
+	
+	
+			td.img {
+				width:124px;
+				text-align:center;
+				-moz-align:center;
+			}
+	
+			td.img div.bounding {
+				width:120px;
+				max-height:60px;
+				overflow:hidden;
+			}
+	
+			td.imgbig {
+				width:238px;
+				text-align:center;
+				-moz-align:center;
+			}
+	
+			td.imgbig div.bounding {
+				width:234px;
+				max-height:60px;
+				overflow:hidden;
+			}
+	
+			td.text div {
+				margin:0px;
+				margin-left:5px;
+				width:100px;
+				height:60px;
+				overflow:hidden;
+			}
+	
+			td.text div table {
+				width:100px;
+				height:60px;
+			}
+
+			td.text div table tr td {
+			}			
+	
+			a.link {
+				color:#ffffff;
+				font-family:arial;
+				font-size:11px;
+				text-decoration:none;
+				line-height:12px;
+				text-shadow: 1px 1px 1px rgba(0,0,0,.3);
+			}
+	
+		</style>
+		
+		<script src="https://cdn.contentspread.net/tp/adformats/triple/ad.js"></script>
+		
+	</head>
+	
+	<body>
+	
+		<script>
+
+			var currentTime = new Date();	
+
+			function handleMouseOver(id) {
+				if ( ! interactions[id].awaiting ) {
+					interactions[id].awaiting = true;
+					currentTime = new Date();	
+					interactions[id].awaitingSince = currentTime.getTime() / 1000;
+				} else {
+					currentTime = new Date();	
+					var timeNow = currentTime.getTime() / 1000;
+					if ( ( ( timeNow - interactions[id].awaitingSince ) > 1 ) && ( ! interactions[id].interacted ) ) {
+						interactions[id].interacted = true;
+						document.getElementById('mouseinteraction').src='https://ad.ad-srv.net/interaction.php?c='+interactions[id].c+'&h='+interactions[id].h;
+					}
+				}
+			}
+
+			var nonBranded = false;
+			
+				if (20641==2) {
+					nonBranded = true;
+				}
+			
+				if (30047==2) {
+					nonBranded = true;
+				}
+			
+				if (27717==2) {
+					nonBranded = true;
+				}
+			
+
+		</script>
+
+		<div class="container">
+	
+			<div class="bgLink">
+				<script>
+					if ( ! nonBranded ) document.write('<a href="http://www.targetperformance.de" target="_blank"><span class="big">TARGET</span><br>PERFORMANCE</a>');
+				</script>
+			</div>
+	
+			<div id="b[0]" class="b c1" onClick="window.open('https://n20.ad.ad-srv.net/c/ps3lf4bz1bal03s')" onMouseMove="handleMouseOver(0)">
+	
+
+				
+				<table id="tmix[0]" cellspacing="0" cellpadding="0" border="0">
+					<tr>
+						<td class="img"><div class="bounding"><div id="is[0]" onClick="disabledEventPropagation(event)"><a onClick="disabledEventPropagation(event)" href="https://n20.ad.ad-srv.net/c/ps3lf4bz1bal03s" target="_blank"><img src="https://tracking.publicidees.com/banner.php?partid=25607&progid=3530&promoid=97126&cb=107452790073535720"></a></div></div></td>
+						<td class="text"><div><table cellspacing="0" cellpadding="0" border="0"><tr><td><a onClick="disabledEventPropagation(event)" href="https://n20.ad.ad-srv.net/c/ps3lf4bz1bal03s" class="link" target="_blank">Cap Vacances, ce sont des clubs vacances pour des sÃ©jours de vacances en famille partout en France.</a></td></tr></table></div></td>
+					</tr>
+				</table>
+				
+
+
+				
+
+
+				<div class="link"><a onClick="disabledEventPropagation(event)" href="https://n20.ad.ad-srv.net/c/ps3lf4bz1bal03s" target="_blank">capvacances.fr</a></div>
+	
+			</div><div id="b[1]" class="b c2" onClick="window.open('https://n20.ad.ad-srv.net/c/p80wu0359fk8mqm')" onMouseMove="handleMouseOver(1)">
+	
+
+				
+				<table id="tmix[1]" cellspacing="0" cellpadding="0" border="0">
+					<tr>
+						<td class="img"><div class="bounding"><div id="is[1]" onClick="disabledEventPropagation(event)"><a onClick="disabledEventPropagation(event)" href="https://n20.ad.ad-srv.net/c/p80wu0359fk8mqm" target="_blank"><img src="https://cdn.contentspread.net/tp/advertiser/30047/creativesup/sammydress_120x60_adx.gif"></a></div></div></td>
+						<td class="text"><div><table cellspacing="0" cellpadding="0" border="0"><tr><td><a onClick="disabledEventPropagation(event)" href="https://n20.ad.ad-srv.net/c/p80wu0359fk8mqm" class="link" target="_blank">DÃ©couvrez des vÃªtements de hautes qualitÃ©s : robes, sacs, chaussures, bijoux, montres et bien plus encore...</a></td></tr></table></div></td>
+					</tr>
+				</table>
+				
+
+
+				
+
+
+				<div class="link"><a onClick="disabledEventPropagation(event)" href="https://n20.ad.ad-srv.net/c/p80wu0359fk8mqm" target="_blank">sammydress.com</a></div>
+	
+			</div><div id="b[2]" class="b c3" onClick="window.open('https://n20.ad.ad-srv.net/c/pnd50d4nds5wun4')" onMouseMove="handleMouseOver(2)">
+	
+
+				
+				<table id="tmix[2]" cellspacing="0" cellpadding="0" border="0">
+					<tr>
+						<td class="img"><div class="bounding"><div id="is[2]" onClick="disabledEventPropagation(event)"><a onClick="disabledEventPropagation(event)" href="https://n20.ad.ad-srv.net/c/pnd50d4nds5wun4" target="_blank"><img src="https://tracking.publicidees.com/banner.php?partid=25607&progid=4066&promoid=111623&cb=107452790073535720"></a></div></div></td>
+						<td class="text"><div><table cellspacing="0" cellpadding="0" border="0"><tr><td><a onClick="disabledEventPropagation(event)" href="https://n20.ad.ad-srv.net/c/pnd50d4nds5wun4" class="link" target="_blank">THALYS : RÃ©servez aux meilleurs tarif vos billets de train vers Paris, Bruxelles, Amsterdam, Cologne</a></td></tr></table></div></td>
+					</tr>
+				</table>
+				
+
+
+				
+
+
+				<div class="link"><a onClick="disabledEventPropagation(event)" href="https://n20.ad.ad-srv.net/c/pnd50d4nds5wun4" target="_blank">thalys.com</a></div>
+	
+			</div>
+	
+			<a id="arrow1" href="request.php?zone=7u2dmkcemfkt&nw=1&namespace=6d3241f181&subid=&uid=4a172539144db777&screenSize=1920x1080&screenSizeAvail=1853x1056&clientSize=300x250&scrollPos=0x0&extData[0]=&extVar[0]=DOUBLEBORDER%3A1&extVar[1]=ANIM_AFTER_30S%3A0&redirectClick=http%3A%2F%2Fadclick.g.doubleclick.net%2Faclk%3Fsa%3DL%26ai%3DCEvjehD18VunPHJG7WKvKjaAJ35XCuwf3s-jW2wKgq8CpWxABIABg-8HsgugJggEXY2EtcHViLTU2NzczMTgwNjE2NzE3MzDIAQmpAnElfQm1YLI-qAMBqgSFAU_QmeZ_2NqvdDfy2jcqeKveShPp6eNNu7F2eVPld1Agafj0ExlK9ALzTslosnqJYpwKF63Il1jD48LxShrJgC-aJsyCPl7nNQ0EhbMobwgYkZOFIj_2ZU3iw4m8wS597oS5eU2gpwb8gWsJSJbdyijQtG6w519LMGxRVFGG5PDZUpYPmTugBiHYBwA%26num%3D1%26sig%3DAOD64_07W2Nivh8HmNY6arrmRXkaps-qZw%26client%3Dca-pub-5677318061671730%26adurl%3D&documentReferer=http%3A%2F%2Fwww.life.com.tw%2F&ancestorOrigins=null&random=1802538772428&isIframe=1&container=&adPos=0x0&adPosCheck=1x1&adtagId=0&uidRedirect=1&reload=1&renderingType=html"><img src="https://cdn.contentspread.net/tp/adformats/triple/300x250_arrow_left.png"></a>
+			<a id="arrow2" href="request.php?zone=7u2dmkcemfkt&nw=1&namespace=6d3241f181&subid=&uid=4a172539144db777&screenSize=1920x1080&screenSizeAvail=1853x1056&clientSize=300x250&scrollPos=0x0&extData[0]=&extVar[0]=DOUBLEBORDER%3A1&extVar[1]=ANIM_AFTER_30S%3A0&redirectClick=http%3A%2F%2Fadclick.g.doubleclick.net%2Faclk%3Fsa%3DL%26ai%3DCEvjehD18VunPHJG7WKvKjaAJ35XCuwf3s-jW2wKgq8CpWxABIABg-8HsgugJggEXY2EtcHViLTU2NzczMTgwNjE2NzE3MzDIAQmpAnElfQm1YLI-qAMBqgSFAU_QmeZ_2NqvdDfy2jcqeKveShPp6eNNu7F2eVPld1Agafj0ExlK9ALzTslosnqJYpwKF63Il1jD48LxShrJgC-aJsyCPl7nNQ0EhbMobwgYkZOFIj_2ZU3iw4m8wS597oS5eU2gpwb8gWsJSJbdyijQtG6w519LMGxRVFGG5PDZUpYPmTugBiHYBwA%26num%3D1%26sig%3DAOD64_07W2Nivh8HmNY6arrmRXkaps-qZw%26client%3Dca-pub-5677318061671730%26adurl%3D&documentReferer=http%3A%2F%2Fwww.life.com.tw%2F&ancestorOrigins=null&random=1802538772428&isIframe=1&container=&adPos=0x0&adPosCheck=1x1&adtagId=0&uidRedirect=1&reload=1&renderingType=html"><img src="https://cdn.contentspread.net/tp/adformats/triple/300x250_arrow_right.png"></a>
+	
+			<img onMouseOver="djump()" id="distractor" src="https://cdn.contentspread.net/tp/adformats/triple/cursor.png">
+	
+		</div>
+
+		<img style="position:absolute;visibility:hidden" id="mouseinteraction" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" />
+			
+		<script>
+			
+			var interactions = new Array();
+			interactions.push({awaiting:false,awaitingSince:0,interacted:false,c:'305729',h:'e86e964b76d1'});interactions.push({awaiting:false,awaitingSince:0,interacted:false,c:'406943',h:'7f81e72fecb5'});interactions.push({awaiting:false,awaitingSince:0,interacted:false,c:'406715',h:'d6c089d29453'});
+			
+			var items = new Array();
+			items.push({mode:'',id:0,s:0,iscroll:{active:true,x:0}});items.push({mode:'',id:1,s:0,iscroll:{active:true,x:0}});items.push({mode:'',id:2,s:0,iscroll:{active:true,x:0}});
+			
+			var itemConfig = {
+				width:238,
+				height:80
+			};
+			
+			var distractor = {
+				active: false,
+				pos: {x:0,y:0},
+				target: {x:0,y:0},
+				width:21,
+				height:27,
+				borderpadding:10,
+				jumpcounter:0
+			};
+			
+			if ( Math.random() < 0.4 ) distractor.active = true;
+
+			var adConfig = {
+				a:200,
+				showtime:8,
+				itemDifftime:0.15,
+				iscrollRoundtrip:8,
+				smallImgWidth:120,
+				bigImgWidth:234,
+				width:300,
+				height:250,
+				animStart:true,
+				animRunning:true
+			};
+			
+			var screenpositions = [
+				{x:31,y:2},
+				{x:31,y:84},
+				{x:31,y:166}
+			];
+			
+			if ( nonBranded ) {
+				adConfig.animStart = false;
+				adConfig.animRunning = false;
+				distractor.active = false;
+				screenpositions[0].y = 1;
+				screenpositions[2].y = 167;
+				
+					var eDS = document.getElementById('b[0]').style;
+					eDS.background = 'transparent';
+					eDS.backgroundColor = '#b0b0b3';
+					eDS.border= '1px dotted #888890';
+				
+					var eDS = document.getElementById('b[1]').style;
+					eDS.background = 'transparent';
+					eDS.backgroundColor = '#b0b0b3';
+					eDS.border= '1px dotted #888890';
+				
+					var eDS = document.getElementById('b[2]').style;
+					eDS.background = 'transparent';
+					eDS.backgroundColor = '#b0b0b3';
+					eDS.border= '1px dotted #888890';
+				
+			}
+
+			init();
+		
+		</script>
+	
+		<script>
+			if ( '1' == '1' ) {
+				document.write('<sc'+'ript src="https://cdn.contentspread.net/tp/tools/js/addDoubleBorder.js"></sc'+'ript>');
+			}
+		</script>
+		<script>
+			if ( '1' == '1') {
+				addDoubleBorder(300,250,"#000000","#ffffff");
+			}
+		</script>
+
+	</body>
+</html>

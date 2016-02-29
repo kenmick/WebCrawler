@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="http://www.163.com/favicon.ico" type="image/x-icon" />
+<title>ç½æä¸ªæ§åå¹¿åææ¾ç³»ç»</title>
+<script type="text/javascript" src="http://img3.126.net/kaola/150512/js/jquery-1.4.2.js?v=1.01"></script>
+<script type="text/javascript">
+    function sendHover(uuid, flight_id, ad_id) {
+        $.ajax({
+            type: 'GET',
+            url: 'http://iad.g.163.com/wa/s',
+            data: {
+                'uuid': uuid,
+                'flight_id': flight_id,
+                'ad_id': ad_id
+            },
+            dataType: 'json',
+            success: function(info) {
+            }
+        });
+    }
+    
+    function sendClick(uuid, flight_id, ad_id) {
+        $.ajax({
+            type: 'GET',
+            url: 'http://iad.g.163.com/wa/c',
+            data: {
+                'uuid': uuid,
+                'flight_id': flight_id,
+                'ad_id': ad_id
+            },
+            dataType: 'json',
+            success: function(info) {
+            }
+        });
+    }
+    
+    var count = 0;
+    $(document).ready(function() {
+        $('body').click(function() {
+            var uuid = $('body').attr('data-uuid');
+            var flight_id = $('body').attr('data-flight_id');
+            var ad_id = $('body').attr('data-ad_id');
+            sendClick(uuid, flight_id, ad_id);
+        });
+        
+        $('body').hover(function() {
+            if(count == 0) {
+                var uuid = $('body').attr('data-uuid');
+                var flight_id = $('body').attr('data-flight_id');
+                var ad_id = $('body').attr('data-ad_id');
+                sendHover(uuid, flight_id, ad_id);
+            }
+            count++;
+        });
+    });
+</script>
+</head>
+<body class="adrec" marginwidth="0" marginheight="0" data-uuid="e4bfbcd8-fb23-4edd-9ce8-fddcc44078ac" data-flight_id="1229" data-ad_id="200160">
+<a target="_blank" href="http://g.163.com/c?AID=200160&FlightID=1229&Values=2752541620&Redirect=http://baoxian.163.com/activity/xing.html?from=mhsyxcy"><img src="http://img2.126.net/xoimages/baoxian/20150701/hd/xxxxx/300x150.jpg" border=0 height=150 width=300 alt=""></a>
+</body>
+</html>

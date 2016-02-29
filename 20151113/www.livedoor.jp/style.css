@@ -1,0 +1,107 @@
+
+/* reset */
+
+html, body, object, img {
+    margin: 0;
+    padding: 0;
+	}
+
+a:active,
+a:hover {
+    outline: 0;
+	}
+
+img {
+    border: 0;
+	}
+
+/* structure */
+
+#content{
+	width: 300px;
+	height: 250px;
+	overflow: hidden;
+	position: relative;
+	background: url(bg.jpg) 0 0 no-repeat;
+	}
+
+/* elements */
+
+#frame-1a, #frame-1b, #frame-1c, #frame-1d, #frame-2, #frame-3, #cta, #chip{
+	width: 300px;
+	height: 250px;
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 102;
+	opacity: 0;
+	-webkit-transform: translate( 0px, 0px) scale(0.60) ;
+	-ms-transform: translate( 0px, 0px) scale(0.60) ;
+	-moz-transform: translate( 0px, 0px) scale(0.60) ;
+	transform: translate( 0px, 0px) scale(0.60);
+	}
+
+#glow{
+	width: 850px;
+	height: 300px;
+	display: block;
+	position: absolute;
+	top: -16px;
+	left: -355px;
+	background: url(glow.png) 0 0 no-repeat;
+	opacity: 0;
+	}
+
+#chip{ background: url(frame-sprite.png) 0 0 no-repeat; }
+#frame-1a{ background: url(frame-sprite.png) -300px 0 no-repeat; }
+#frame-1b{ background: url(frame-sprite.png) -600px 0 no-repeat; }
+#frame-1c{ background: url(frame-sprite.png) 0 -250px no-repeat; }
+#frame-1d{ background: url(frame-sprite.png) -300px -250px no-repeat; }
+#frame-2{ background: url(frame-sprite.png) -600px -250px no-repeat; }
+#frame-3{ background: url(frame-sprite.png) -300px -500px no-repeat; }
+#cta{ background: url(frame-sprite.png) -600px -500px no-repeat; }
+
+a.click-through{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    cursor: pointer;
+    opacity: 0;
+    z-index: 999;
+    background: #ffffff;
+    }
+
+/* Animations */
+
+.animClass {
+	-webkit-transform: translate3d(0, 0, 0); /* Force Hardware Acceleration */
+	}
+
+.transition{
+	-webkit-transition: all 0.2s ;
+	-ms-transition: all 0.2s ;
+	-moz-transition: all 0.2s ;
+	transition: all 0.2s ;
+	}
+
+/* chip */
+
+.pop{
+	-webkit-transform: translate( 0px, 0px) scale(1) !important;
+	-ms-transform: translate( 0px, 0px) scale(1) !important;
+	-moz-transform: translate( 0px, 0px) scale(1) !important;
+	transform: translate( 0px, 0px) scale(1) !important;
+	}
+
+/* fades */
+
+.fade-in{
+	opacity: 1 !important;
+	}
+
+.fade-out{
+	opacity: 0 !important;
+	}

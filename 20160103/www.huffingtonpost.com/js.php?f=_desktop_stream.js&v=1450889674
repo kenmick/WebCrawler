@@ -1,0 +1,125 @@
+/* From: production-mt-wfe-58-160-use1 : 14323 */
+huff.unit('desktop_stream', function(ready) {
+
+  huff.use('jquery', 'fiji_socket', 'conf', function($, ws, c) {
+
+    /**
+     ** Set Defaults
+     */
+    var storagePrefix = 'hp-notification:';
+    var alertsButton = $('.hp_desktop_alerts');
+    var ttl = 60 * 10 * 1000;
+
+    /**
+     ** Iterates through local storage a purge notification messages that are older than the specified ttl
+     */
+    var purgeOldMessages = function() {
+      var regPrefix = new RegExp('^' + storagePrefix);
+      for (var i = 0; i < localStorage.length; i++) {
+        var key = localStorage.key(i);
+        var exprTime = Date.now() - ttl;
+        if (regPrefix.test(key) && parseInt(localStorage(key), 10) < exprTime) {
+          localStorage.removeItem(key);
+        }
+      }
+    }
+
+    /**
+     ** Checks if notification has been recieved, if so, do nothing, if not store the notification with the time it was received
+     */
+    var checkIfReceived = function(headline) {
+      var persistedHeadline = storagePrefix + headline;
+      if (typeof(Storage) !== "undefined") {
+        if (localStorage.getItem(persistedHeadline)) {
+          return true;
+        } else {
+          localStorage.setItem(persistedHeadline, Date.now());
+          return false;
+        }
+        purgeOldMessage();
+      }
+    }
+
+    /**
+     ** Calculate a random timeout
+     */
+    var randomTimeout = function() {
+      return Math.random() * 500 + 10;
+    }
+
+    /**
+     ** Render the destktop alert after so random timeout to prevent multiple tabs from rendering the same notification
+     */
+    var renderTimedDesktopAlert = function(data) {
+      window.setTimeout(function() {
+        renderDesktopAlert(data);
+      }, randomTimeout())
+    }
+
+    /**
+     ** Socket client callback function to render message received bounded to the desktop alerts channel
+     */
+    var renderDesktopAlert = function(data) {
+        if (!checkIfReceived(data.headline)) {
+          var onClick = function() {
+            window.open(data.entry_url || 'http://www.huffingtonpost.com', '_blank');
+          };
+          var options = {
+            icon: data.image_url || 'http://s.huffpost.com/images/H_logo_96px.png',
+            tag: data.headline
+          };
+          var notification = new Notification(data.headline, options);
+          notification.onclick = onClick;
+        }
+      }
+      /**
+       ** Subscribe to the news channel for the user's given edition. Render a desktop alert when messages come through on this channel
+       */
+    var subscribeDesktopAlerts = function() {
+      c.get('site_blog_id', function(site_blog_id) {
+        var channel = 'news-' + site_blog_id;
+        var id = '0';
+        ws.subscribe(channel, id, false, renderTimedDesktopAlert);
+      });
+    };
+    /**
+     ** Subscribe to desktop alerts channel if permitted. Connect to Websocket server if no connection is open
+     **/
+    var subscribeIfPermitted = function() {
+        if (Notification.permission === "granted") {
+          c.get('websocket/open', function(isOpen) {
+            if (isOpen) subscribeDesktopAlerts();
+            else ws.onopen(subscribeDesktopAlerts);
+          });
+          return true;
+        } else return false;
+      }
+      /**
+       ** Hide alerts button and check if notifications permission have been granted
+       */
+    var requestPermission = function() {
+      alertsButton.hide();
+      Notification.requestPermission(subscribeIfPermitted);
+    };
+    /**
+     *** Check if notifications are allowed and permitted. Render preferences button if they are supported by browser but not currently enabled by user.
+     **/
+    var checkNotificationPrefs = function() {
+      if ("Notification" in window) {
+         c.get('site_blog_id', function(site_blog_id) {
+          if (!subscribeIfPermitted() && site_blog_id == 2) {
+            var alertsButton = $('.hp_desktop_alerts');
+            alertsButton.parent().removeClass('hidden');
+            alertsButton.click(requestPermission);
+          }
+        });
+      }
+    }
+    //Init
+    checkNotificationPrefs();
+  });
+});
+
+
+
+/* From: production-mt-wfe-58-160-use1 : 14323 *//* d46470a66384aab51872df9ebc089fc9cd6a886a */

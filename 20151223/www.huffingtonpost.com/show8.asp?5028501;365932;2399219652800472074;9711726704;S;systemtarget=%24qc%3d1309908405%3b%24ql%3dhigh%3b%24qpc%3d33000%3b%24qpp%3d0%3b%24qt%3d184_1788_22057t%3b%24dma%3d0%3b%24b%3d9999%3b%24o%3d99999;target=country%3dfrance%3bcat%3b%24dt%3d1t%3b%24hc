@@ -1,0 +1,71 @@
+var sasLib5028501Elt = document.createElement('script');
+sasLib5028501Elt.Type = "text/html";
+sasLib5028501Elt.src = 'http://cdn1.smartadserver.com/diff/templates/js/agency-redirect/sas-agency-redirect-1.1.js';
+
+adapt_appendToContainer = function (formatid, item) {
+        var c = document.getElementById('sas_' + formatid);
+        if (!c) { return; }
+        if (typeof (item) === "string") {
+            var d = document.createElement('div');
+            d.innerHTML = item;
+            item = d;
+        }
+        c.appendChild(item);
+    };
+
+
+adapt_appendToContainer(21482, sasLib5028501Elt);
+	
+        if (typeof(sas_ajax) != 'undefined' && sas_ajax) {
+		var getDomElem = function(id) {
+			return document.getElementById(id).contentDocument || document.frames[id].document;
+		}
+
+		var i = document.createElement('iframe');
+		i.id = 'sas_5028501_iframe';
+		i.scrolling = 'no';
+		i.frameBorder = 0;
+		i.width = 1;
+		i.height = 1;
+		i.style.margin = 0;
+		i.style.padding = 0;
+		i.style.width = '1px';
+		i.style.height = '1px';
+		sas_appendToContainer(21482, i);
+
+		i.doc = getDomElem(i.id);
+		i.doc.write(
+			'<!doctype html><html><head><title></title></head><body style="margin:0;padding:0">'+
+			'<scr'+'ipt type="text/javascript">var inDapIF=inDapMgrIf=true;</scr'+'ipt>'+
+			'<!--JavaScript Tag // Tag for network 4569: Marketplace: Huffington Post France  // Website: Huffington Post France  // Page: Huffington Post France  // Placement: Huffington Post France  -  970x250 (5919951) // created at: Dec 14, 2015 1:38:14 PM-->\r\n'+'<scr'+'ipt language="javascript"><!--\r\n'+'document.write(\'<scr\'+\'ipt language="javascript1.1" src="http://adserver.adtech.de/addyn/3.0/4569/5919951/0/2466/ADTECH;loc=100;target=_blank;grp=[group];misc=\'+new Date().getTime()+\'"></scri\'+\'pt>\');\r\n'+'//-->\r\n'+'</scr'+'ipt>\r\n'+'<!-- End of JavaScript Tag -->\r\n'+'\r\n'+
+			'<div id="sas_21482_readyDiv" style="display:none;"></div></body></html>'
+		);
+
+		if (navigator.userAgent.indexOf('MSIE') == -1 && navigator.userAgent.indexOf('Opera') == -1) i.doc.close();
+	} else {
+		document.write('<!--JavaScript Tag // Tag for network 4569: Marketplace: Huffington Post France  // Website: Huffington Post France  // Page: Huffington Post France  // Placement: Huffington Post France  -  970x250 (5919951) // created at: Dec 14, 2015 1:38:14 PM-->\r\n'+'<scr'+'ipt language="javascript"><!--\r\n'+'document.write(\'<scr\'+\'ipt language="javascript1.1" src="http://adserver.adtech.de/addyn/3.0/4569/5919951/0/2466/ADTECH;loc=100;target=_blank;grp=[group];misc=\'+new Date().getTime()+\'"></scri\'+\'pt>\');\r\n'+'//-->\r\n'+'</scr'+'ipt>\r\n'+'<!-- End of JavaScript Tag -->\r\n'+'\r\n');
+	}
+
+var iframeConfig_5028501 = {
+	formatId: 21482,
+	insertionId: 5028501,
+	iFrame: i,
+	acceptedWidth: "1,728,970,990,1000".split(","),
+	acceptedHeight: "1,90,200,250,300,400,500".split(","), 
+	defaultWidth: "1",
+	defaultHeight: "1",
+        status: "0"		
+}
+if (typeof(resizableIframeConfig11) != 'undefined')
+{
+	resizableIframeConfig11.push(iframeConfig_5028501);
+}
+else
+{
+	var resizableIframeConfig11 = new Array();
+	resizableIframeConfig11.push(iframeConfig_5028501);
+}
+
+
+
+

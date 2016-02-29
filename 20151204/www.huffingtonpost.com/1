@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
+    <head>
+        <title></title>
+        <script type="text/javascript" src="http://www.ultimedia.com/js/jquery-1.9.1.min.js?v=2.0.2.7307"></script>
+        <script type="text/javascript" src="http://www.ultimedia.com/js/common/jquery.gatracker.js?v=2.0.2.7307"></script>
+        <script type="text/javascript" src="//ads.videoadex.com/jw/advertisement.js?v=2.0.2.7307"></script>
+        <script type="text/javascript" src="//static.ultimedia.com/jw/dtkplayer.js?v=2.0.2.7307"></script>
+        <script type="text/javascript" src="http://www.ultimedia.com/jw/jwplayer.js?v=2.0.2.7307"></script>
+        <script type="text/javascript">jwplayer.key="UqjkeYjkl4dnkmentV/4I/gLV208K+tLvi1Glg==";</script>
+        <script type="text/javascript">
+            var jQueryUM = jQuery.noConflict(false);
+            jQueryUM(document).ready(function() {
+                jQueryUM.gaTracker.init("UA-1399276-5");
+            });
+        </script>
+    </head>
+	<body>
+                    <div id="page" style="width:100%; height:100%; position:absolute; top:0; left:0; background-color:black;">
+            <div id='player'></div>
+        </div>
+        <script type="text/javascript">
+                                    dtkPlayer = new DTKPlayer(
+                'player',
+                '01590560',
+                1,
+                jQueryUM(window).width() != 0 ? jQueryUM(window).width() : 570,
+                jQueryUM(window).height() != 0 ? jQueryUM(window).height() : 321,
+                'http://www.huffingtonpost.fr/?country=FR',
+                '1',
+                "#CURRENT_TITLE#",
+                '',
+                '',
+                '',
+                '',
+                'http://www.ultimedia.com',
+                "Your video will start in xx seconds",
+                "Your video will start in xx second",
+                "Watch your video now",
+                false,
+                {},
+                'dtkPlayer',
+                false            );
+                                                dtkPlayer._viewsuspendedactif = 0;
+            dtkPlayer._typePlayer = 1;
+            dtkPlayer._autoplayMobile = "no";
+            dtkPlayer.load(
+                "generic",
+                "5zqzv3",
+                "no"
+            );
+
+
+            // Pulpix
+            var _um_pulpix = 1;
+            if (window.addEventListener) {
+                window.addEventListener("message", receiveMessage, false);
+            } else if (window.attachEvent) {
+                window.attachEvent("message", receiveMessage);
+            } 
+            function receiveMessage(e) {
+                e = e.data.split("=");
+                if ((e[0] == "play") && (typeof(dtkPlayer._jw) != 'undefined') && dtkPlayer._jw) {
+                    dtkPlayer._jw.play();
+                } else if ((e[0] == "pause") && (typeof(dtkPlayer._jw) != 'undefined') && dtkPlayer._jw) {
+                    dtkPlayer._jw.pause();
+                } else if ((e[0] == "getCurrentTime") && (typeof(dtkPlayer._jw) != 'undefined') && dtkPlayer._jw) {
+                    dtkPlayer.pulpixEvent("event=getCurrentTime&time=" + dtkPlayer._jw.getPosition());
+                } else if ((e[0] == "setCurrentTime") && (typeof(dtkPlayer._jw) != 'undefined') && dtkPlayer._jw) {
+                    dtkPlayer._jw.seek(e[1]);
+                } else if ((e[0] == "getDuration") && (typeof(dtkPlayer._jw) != 'undefined') && dtkPlayer._jw) {
+                    dtkPlayer.pulpixEvent("event=getDuration&duration=" + dtkPlayer._jw.getDuration());
+                } else if ((e[0] == "mute") && (typeof(dtkPlayer._jw) != 'undefined') && dtkPlayer._jw) {
+                    if (typeof(e[1]) != 'undefined') {
+                        dtkPlayer._jw.setMute(e[1]);
+                    } else {
+                        dtkPlayer._jw.setMute();
+                    }
+                } else if (e[0] == "loadVideo") {
+                    dtkPlayer.load("generic", e[1], "yes");
+                }
+            }
+        </script>
+                                <script type="text/javascript" src="http://www.ultimedia.com/deliver/statistiques/widgetdisplay/?mdtk=01590560&zone=1&url=http%3A%2F%2Fwww.huffingtonpost.fr%2F%3Fcountry%3DFR&autoplay=0&widget_type=unitaire&result=1&params=%7B%22first_video_id%22%3A1963488%2C%22first_video_id_content%22%3A%2221%22%2C%22limit%22%3A1%2C%22nb_videos%22%3A1%7D"></script>
+        	</body>
+</html>

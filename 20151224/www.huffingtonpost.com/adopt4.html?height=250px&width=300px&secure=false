@@ -1,0 +1,51 @@
+<html>
+	<head>
+		<script type="text/javascript">
+		window.onload = function(){
+			var result = parseUrl();
+			if(result["width"] && result["height"]){
+				var cleanWidth = result["width"].replace("px","");
+	    		var cleanHeight = result["height"].replace("px", "");
+                        var src_prefix = ""
+                        if (result["secure"] == "true") {
+                            src_prefix = "https://servedby.adxpose.com/partners/PSA/adoption";
+                        } else {
+                            src_prefix = "http://servedby.adxpose.com/partners/PSA/adoption";
+                        }
+		        var src = "";
+		        var ct_site = "http://www.shelterpetproject.org/";
+		        if(cleanWidth == 300){
+		            if(cleanHeight < 300){
+                        src = src_prefix + "_300x250.jpg";		            
+		            } else {
+                        src = src_prefix + "_300x600.jpg";		
+                        ct_site = "http://www.goodwill.org/";         
+		            }
+		        }
+		        else if(cleanWidth == 160 && cleanHeight < 630){
+		            src = src_prefix + "_160x600.jpg";
+		        }
+		        else if(cleanWidth == 728 && cleanHeight < 120){
+		            src = src_prefix + "_728x90.jpg";
+		        }
+		        if(src.length > 0){
+		        	document.getElementById("divPSAContent").innerHTML = "<a href='"+ct_site+"' target='_blank'><img src='"+src+"' alt='PSA'></a>";
+		    	}
+
+			}
+		}
+		function parseUrl() {
+		  var data = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');;
+		  var result = {};
+		  for(var i=0; i<data.length; i++) {
+		    var item = data[i].split("=");
+		    result[item[0]] = item[1];
+		  }
+		  return result;
+		}
+		</script>
+	</head>
+	<body>
+		<div id="divPSAContent"></div>
+	</body>
+</html>

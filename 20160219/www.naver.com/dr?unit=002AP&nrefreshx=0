@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-kr" />
+<title>NAVER</title>
+<link rel="stylesheet" type="text/css" href="http://nv2.tveta.naver.net/libs/css/min/common.min.css?111117" />
+<style type="text/css">
+/* DA Alternative - Contents Style */
+#addiv{position:relative}
+#addiv embed,#addiv object{z-index:20}
+#addiv #da_alt{position:absolute;top:0;left:0;width:100%;height:100%;z-index:-1}
+#addiv #da_alt.on{z-index:30}
+#addiv #da_alt a{display:block;overflow:hidden;position:absolute;bottom:0;left:0;width:100%;height:100%}
+#addiv #da_alt .guide{visibility:hidden;position:absolute;top:50%;left:50%;width:154px;height:58px;margin:-29px 0 0 -77px;background:url(http://img.naver.net/static/common/da/da_access.png)}
+#addiv #da_alt.on .guide{visibility:visible}
+#addiv #da_alt .blind{visibility:hidden;overflow:hidden;position:absolute;top:0;left:0;width:0;height:0;font-size:0;line-height:0}
+</style>
+<script type="text/javascript">var sibodomain = "http://nv2.tveta.naver.net/libs";</script>
+<script type="text/javascript">var currenttime = "03:21:57:000";</script>
+<script type="text/javascript">var local_cookie = "LX";</script>
+<script type="text/javascript">var sibolog = "&lg=N&lc=&pf=&camp=1004874&ad=2818520";</script>
+<script type="text/javascript">var siboinfo = {"##_SIBOINFO_##":""};</script>
+</head>
+<body onload="lazyLoading()">
+<div id="addiv">
+	<a href="http://nv.veta.naver.com/dc?unit=002AP&ac=6833641&src=2776802&br=2212440&rk=VsddRQpizWkAACrTKUAAAANg&eltts=Ois1vz3iOwV%2F%2BncyXok1yw%3D%3D&:::cl:::" id="ac_banner_a" target="_blank">
+		<img src="http://nv2.tveta.naver.net/libs/1004/1004874/1_2836.jpg" width="300" height="150" title="" alt="BAP ì»´ë°± ì¹´ì´í¸ë¤ì´" border="0" />
+	</a>
+</div>
+<a id="link" name="link" href="javascript:void(0)"></a>
+<script type="text/javascript">
+//<![CDATA[
+document.domain = "naver.com";
+
+function lazyLoading() {
+	setTimeout(function() {
+		loadScript("http://nv2.tveta.naver.net/libs/assets/js/min/it.min.js?20160113", function(){
+			loadScript("http://nv2.tveta.naver.net/libs/js/min/da.sibo.min.js?141208", initAd);
+		});
+				
+		function loadScript(url, callback) {
+			var script = document.createElement("script");
+			script.type = "text/javascript";
+			script.src = url;
+			if(script.readyState) { // IE
+				(function(script){
+					script.onreadystatechange = function() {
+						if(script.readyState == "loaded" || script.readyState == "complete") {
+							script.onreadystatechange = null;	
+							callback();
+						}
+					};
+				})(script);
+			} else { // IE ì¸
+				(function(script){
+					script.onload = function() {
+						callback();
+					};
+				})(script);
+			}
+			document.getElementsByTagName("head")[0].appendChild(script);
+	    }
+	}, 50);
+}
+
+function initAd() {
+	initAltForImage();
+}
+
+function initAltForImage() {
+	// DA Alternative - Create Access Layer
+	var accessLayer = document.createElement('div');
+	accessLayer.setAttribute('id','da_access');
+	accessLayer.style.cssText = 'position:absolute;top:50%;left:50%;width:154px;height:58px;margin:-29px 0 0 -77px;background:url(http://img.naver.net/static/common/da/da_access.png)';
+	accessLayer.style.display = "none";
+	var oAdDiv = document.getElementById("ac_banner_a");
+	oAdDiv.appendChild(accessLayer);
+	
+	// DA Alternative - Focus Action
+	var altLink = document.getElementById("ac_banner_a");
+	var bMousedown = false;
+	altLink.onmousedown = function() {
+		bMousedown = true;
+	};
+	altLink.onfocus = function() {
+		if(!bMousedown){accessLayer.style.display = "block";}
+	};
+	altLink.onblur = function() {
+		accessLayer.style.display = "none";
+	};
+}
+//]]>
+</script>
+
+</body>
+</html>

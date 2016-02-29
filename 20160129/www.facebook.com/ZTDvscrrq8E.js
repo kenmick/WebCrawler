@@ -1,0 +1,6 @@
+/*!CK:411174602!*//*1453698783,*/
+
+if (self.CavalryLogger) { CavalryLogger.start_js(["U9EKN"]); }
+
+__d('WebCookieUseBannerController',['DOM','DOMQuery','DeferredCookie','Event','Parent'],function a(b,c,d,e,f,g,h,i,j,k,l){'use strict';if(c.__markCompiled)c.__markCompiled();var m={init:function(n,o){this.banner=n;this.closeButton=o;this.addPageInteractionListeners();if(o){var p=function(){h.remove(n);};if(o.addEventListener){o.addEventListener('click',p);}else if(o.attachEvent)o.attachEvent('onclick',p);}},addPageInteractionListeners:function(){var n=(function(o){if(this.isWhitelistedTarget(o.getTarget()))return;j.flushAllCookies();if(window.removeEventListener){window.removeEventListener('click',n,true);}else if(document.detachEvent)document.detachEvent('onclick',n);}).bind(this);if(window.addEventListener){window.addEventListener('click',n,true);}else if(document.attachEvent)document.attachEvent('onclick',n);j.removeDefaultInteractionListener();},isWhitelistedTarget:function(n){if((!this.closeButton||n!==this.closeButton)&&i.contains(this.banner,n))return true;if(n.tagName.toLowerCase()!=='a')n=l.byTag(n,'a');if(n&&n.href&&n.href.indexOf('/help/cookies/')>-1)return true;return false;}};f.exports=m;},null);
+__d('legacy:PageFanning',['PageFanning'],function a(b,c,d,e){if(c.__markCompiled)c.__markCompiled();b.PageFanning=c('PageFanning');},3);

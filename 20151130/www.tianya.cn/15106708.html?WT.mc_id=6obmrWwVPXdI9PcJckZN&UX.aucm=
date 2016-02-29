@@ -1,0 +1,334 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head> 
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+        <title>éåºç§»å¨_ç½ä¸åå_çº¢ç±³2Aåå¡å¢å¼ºçï¼4Gææºï¼ï¼10085ä¸ä¾ï¼16GB ç½è²</title> 
+        <link href="../css/public.css" rel="stylesheet" type="text/css" /> 
+		<link href="../css/jqzoom.css" rel="stylesheet" type="text/css"/>
+        <link href="../css/detail.css" rel="stylesheet" type="text/css" /> 
+        <!--global.csså¿é¡»å¨ææcssä¸­ï¼æåä¸ä¸ªå¼ç¨--> 
+        <link href="../css/global.css" rel="stylesheet" type="text/css" />
+	  <script type="text/javascript" src="../js/common/jquery-1.7.1.min.js"></script> 	
+	  <script type="text/javascript" src="../js/common/map.js"></script>
+      <script type="text/javascript" src="../js/common/JSON2.js"></script>
+	  <script type="text/javascript" src="../js/common/jquery.cookie.js"></script>
+	  <script type="text/javascript" src="../js/common/jquery.pager.js"></script>
+	  <script type="text/javascript" src="../js/common/ajax-jquery-plugin.js"></script>
+	  <script type="text/javascript" src="../js/common/jquery.blockUI.js"></script>
+	  <script type="text/javascript" src="../js/common/public_common.js"></script>
+
+    </head> 
+    <body> 
+
+		
+<script language="javascript" type="text/javascript" src="/mall/js/head.js"></script>
+
+<div id="header">
+	<div class="top">
+		<div class="nav_top rel">
+			<span> ç§»å¨ååå·²è¿è¥ææºçï¼ææºç»é <a class="wap_a" href="javascript:void(0);">wap.cq.10086.cn</a> ï¼éæ¶éå°éå·è´­æºï¼ </span>
+			<div class="right top_0">
+				<a class="a_icon a_01" href="javascript:void(0);">æçåå
+					<label class="pl_10">|</label> 
+				</a>
+				<a class="a_icon a_02" href="http://service.cq.10086.cn/app" target="_blank" >ç½ä¸è¥ä¸å</a>
+				<a class="a_icon a_03" href="javascript:void(0);" onclick="addshop();" target="_blank" >æ¶èç§»å¨åå</a>
+				<a class="a_icon a_04" href="http://www.cq.10086.cn/mall/helpFiles/help/help.html" target="_blank" >å¸®å©ä¸­å¿</a>
+				<a class="a_icon a_05" href="http://service.cq.10086.cn/myMobile/rmyw.html" target="_blank" >å¨çº¿å®¢æ</a>
+			</div>
+			<div class="my_mall">
+				<span>
+					<label><a href="/mall/app?service=page/cq.UserOrder&listener=initPage" class="">æçåå</a></label>
+					<img src="/mall/images/jiant_02.png" />
+				</span>
+				<div class="my_mall_nav">
+					<p>
+						<a href="/mall/app?service=page/cq.UserOrder&listener=initPage" class="">â¢ æçè®¢å</a>
+					</p>
+					<p>
+						<a href="/mall/app?service=page/cq.Coupon" class="">â¢ æçä¼æ å¸</a>
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="layout">
+		<a href="/mall/index.html" class="logo"> <img
+				src="/mall/images/logo.png" /> </a>
+		<div class="search">
+			<img src="/mall/images/search_01.png" />
+			<input class="input" type="text" id="search_word" onkeydown="bindKey();"/> 
+            <a class="button" onclick="Forsearch();"></a> 
+			<div class="rmss" style="display:none">
+				ç­é¨æç´¢ï¼
+				<a href="/mall/app?service=page/cq.GoodsList&listener=initPage&BRAND_ID=2012080300008408">ä¸æ</a>
+				<a href="/mall/app?service=page/cq.GoodsList&listener=initPage&BRAND_ID=2012121100014957">è¯ºåºäº</a>
+			</div>
+		</div>
+		<div class="gocart_wrap right">
+			<a class="btn_gocart" href="javascript:void(0);" onclick="redirectTo('cq.ShoppingCart',null, null);"></a>
+		</div>
+	</div>
+</div>
+<script>
+function bindKey() {
+	$("#search_word").keyup(function() {
+		if (event.keyCode == 13) {
+			Forsearch();
+		}
+	});
+}
+//æç´¢
+function Forsearch(){
+	var search_word = $('#search_word').val();
+	if(search_word==""){
+		alert("è¯·è¾å¥åéçå³é®å­ï¼");
+		return ;
+	}
+	window.location="/mall/app?service=page/cq.SearchList&listener=initPage&KEY_WORD="+encodeURI(encodeURI(search_word));
+}
+</script>
+<div class="menuHead">
+	<div class="menu">
+		<div class="nav_menu">
+			<div class="tit_01">è´­ä¹°å¯¼èª</div>
+               <div class="nav-main">
+                   <a id="index" class="a_tits" href="/mall/index.html">
+                       <span class="rel">é¦é¡µ<i class="tits_triple"></i></span>
+                   </a>
+                   <a id="phoneCenter" class="a_tits" href="/mall/app?service=page/cq.GoodsList">
+                       <span class="rel">éæºä¸­å¿<i class="tits_triple"></i></span>
+                   </a>
+                   <div id="factoryCenter" class="a_tits">
+                       <span class="rel">ä¿¡ç¨å¡åæåæ¯è´­æº<i class="tits_triple"></i></span>
+                       <ul class="atits_hideUl" id="xykfenqiul">
+                    		<li>
+                    			<a href="/mall/app?service=page/cq.GoodsList&listener=initPage&CATEGORY_ID=16184998" target="_blank">ä¸­è¡åæåæ¯</a>
+                    		</li>
+                    		<li>
+                    			<a href="/mall/app?service=page/cq.GoodsList&listener=initPage&CATEGORY_ID=16185015" target="_blank">æè¡åæåæ¯</a>
+                    		</li>
+                    	</ul>
+                   </div>
+                   <div id="factoryCenter" class="a_tits">
+                       <span class="rel">è¥ä¸å<i class="tits_triple"></i></span>
+                       <ul class="atits_hideUl" id="yinyetingul">
+                    		<li>
+                    			<a href="/mall/app?service=page/cq.GoodsList&listener=initPage&CATEGORY_ID=30155" target="_blank">æ±å</a>
+                    		</li>
+                    		<li>
+                    			<a href="/mall/app?service=page/cq.GoodsList&listener=initPage&CATEGORY_ID=30155" target="_blank">åå²¸</a>
+                    		</li>
+                    		<li>
+                    			<a href="/mall/app?service=page/cq.GoodsList&listener=initPage&CATEGORY_ID=30155" target="_blank">æ¸ä¸­</a>
+                    		</li>
+                    		<li>
+                    			<a href="/mall/app?service=page/cq.GoodsList&listener=initPage&CATEGORY_ID=30155" target="_blank">ä¹é¾å¡</a>
+                    		</li>
+                    	</ul>
+                   </div>
+                   <a id="groupCenter" class="a_tits" href="/mall/app?service=page/cq.SmsInviteList&listener=initPage">
+                       <span class="rel">ç­ä¿¡éè¯·å¥å£<i class="tits_triple"></i></span></a>
+                   <a id="" class="a_tits" href="/mall/app?service=page/cq.GoodsList&listener=initPage&CATEGORY_ID=2219036">
+                       <span class="rel">æ¿ä¼å®¢æ·<i class="tits_triple"></i></span>
+                   </a>
+                   <a id="contactus" class="a_tits" href="/mall/contactus.html">
+                       <span class="rel">èç³»æä»¬<i class="tits_triple"></i></span>
+                   </a>
+               </div>
+		</div>
+	</div>
+</div>
+
+<script>
+$(function(){
+    var url = location.href;
+    var str = url.split("/");
+	if(str.length == 6){
+	     var  strCategory = url.split("&");
+		 if(strCategory.length > 2){
+		     var categoryId = strCategory[2].substr(12,6);
+			 if(categoryId == 101061){
+				$("#factoryCenter").addClass("on");
+			 }else if(categoryId == 100349){
+				$("#groupCenter").addClass("on");
+			 }else{
+				$("#phoneCenter").addClass("on");
+			 }
+		 }else{
+		     if(str[5] == "cq.GoodsList"){
+			     $("#phoneCenter").addClass("on");
+			 }else{
+			    $("#index").addClass("on"); 
+			 }
+		 }    
+	}else{
+	     if(str[4] == "index.html"){
+		     $("#index").addClass("on");
+		 }else if(str[4] == "contactus.html"){
+		    $("#contactus").addClass("on");
+		 }
+	}
+});
+</script>
+
+	
+		<input type="text" id="PRODUCT_ID" name="PRODUCT_ID" value="15106708" style="display:none"/> 
+        <input type="text" id="PRODUCT_NAME" name="PRODUCT_NAME" value="çº¢ç±³2Aåå¡å¢å¼ºçï¼4Gææºï¼ï¼10085ä¸ä¾ï¼16GB ç½è²" style="display:none"/> 
+        <input type="text" id="SELLING" name="SELLING" value="ãå èµ 100åè¯è´¹ããèµ 13GBæµéãä¸­å½ç§»å¨10085æ¯å¤©éééå®ï¼4.7è±å¯¸æ¸æ°å±å¹ï¼åæ ¸1.5GHzæéå¤çå¨ï¼800ä¸+200ä¸åæåå¤´ï¼" style="display:none"/> 
+        <input type="text" id="MALL_PRICE" name="MALL_PRICE" value="" style="display:none"/> 
+        <input type="text" id="MARKET_PRICE" name="MARKET_PRICE" value="699.00" style="display:none"/> 
+		<input type="text" id="SALES" name="SALES" value="1779" style="display:none"/> 
+		<input type="text" id="BRAND_ID" name="BRAND_ID" value="2013083000017030" style="display:none"/> 
+        <input type="text" id="CATEGORY_ID" name="CATEGORY_ID" value="" style="display:none"/>
+		<input type="text" id="IS_LOGIN_AUTHENTICATION" name="IS_LOGIN_AUTHENTICATION" value="" style="display:none"/>
+		<input type="text" id="PROMOTION_ID" name="PROMOTION_ID" value="" style="display:none"/>
+		<input type="text" id="IS_SHOPPING_CART" name="IS_SHOPPING_CART" value="" style="display:none"/> 
+		<input type="text" id="RES_QUERY_CODE" name="RES_QUERY_CODE" value="" style="display:none"/>
+		<input type="text" id="LIT_IMAGE" name="LIT_IMAGE" value="/mall/product/images/2015071810011224_lit.jpg      " style="display:none"/>
+		<input type="text" id="SHOP_CART_IMAGE" name="SHOP_CART_IMAGE" value="/mall/product/images/2015071810014855_lit.jpg    " style="display:none"/>
+		<input type="text" id="ICON_TYPE" name="ICON_TYPE" value="" style="display:none"/>
+		<input type="text" id="LOGIN_TYPE" name="LOGIN_TYPE" value="" style="display:none"/>
+		<input type="text" id="STOCK_TYPE" name="STOCK_TYPE" value="" style="display:none"/>
+		<input type="text" id="STOCK_NUM" name="STOCK_NUM" value="" style="display:none"/>
+		<input type="text" id="MANAGER_TYPE" name="MANAGER_TYPE" value="" style="display:none"/>
+		
+        <div class="fh_shoujizs7 clearfix">
+		   <a href="/mall/index.html" class="fh_shoujizs8">é¦é¡µ</a>&nbsp;&gt;&nbsp;
+           <a href="/mall/app?service=page/cq.GoodsList" class="fh_shoujizs8">éæºä¸­å¿</a>&nbsp;&gt;&nbsp;
+		   <label id="categoryDH"></label>
+           <a href="javascript:void(0);" class="fh_shoujizs8"></a>&nbsp;çº¢ç±³2Aåå¡å¢å¼ºçï¼4Gææºï¼ï¼10085ä¸ä¾ï¼16GB ç½è²
+        </div> 
+        <div class="main201308"> 
+            <div class="xxscsjym2"> 
+                <div class="xxscsjym44"> 
+                    <div class="fh_shoujizs"> 
+                        <div class="fh_shoujizs1 jqzoom"> 
+                            <img src="../product/images/2015071810014855_big.jpg    "  jqimg="../product/images/2015071810014855.jpg    " class="img_1" width="370" height="370" id="bigImg"/>
+                        </div> 
+                        <div class="fh_shoujizs2"> 
+                            <div class="fh_shoujizs3 fh_phonePrev"></div> 
+                            <div class="fh_shoujizs5 fh_phonelistwrap"> 
+                                <div class="fh_innerwrap clearfix"> 
+								  <div class="fh_shoujizs6"> 
+                                       <img class="img" src="../product/images/2015071810014855_big.jpg    " id="" jqimg="../product/images/2015071810014855.jpg    " />
+                                    </div> 
+								  <div class="fh_shoujizs6"> 
+                                       <img class="img" src="../product/images/2015071810014856_big.jpg    " id="" jqimg="../product/images/2015071810014856.jpg    " />
+                                    </div> 
+								  <div class="fh_shoujizs6"> 
+                                       <img class="img" src="../product/images/2015071810014857_big.jpg    " id="" jqimg="../product/images/2015071810014857.jpg    " />
+                                    </div> 
+                                </div> 
+                            </div> 
+                            <div class="fh_shoujizs4 fh_phoneNext"></div> 
+                        </div> 
+                    </div> 
+                </div> 
+                <!--å³è¾¹--> 
+				<form id="detailForm">
+                <div class="xscnry_title"> 
+                 <p>çº¢ç±³2Aåå¡å¢å¼ºçï¼4Gææºï¼ï¼10085ä¸ä¾ï¼16GB ç½è²</p> 
+                 <p><span class="xscnry_color">ãå èµ 100åè¯è´¹ããèµ 13GBæµéãä¸­å½ç§»å¨10085æ¯å¤©éééå®ï¼4.7è±å¯¸æ¸æ°å±å¹ï¼åæ ¸1.5GHzæéå¤çå¨ï¼800ä¸+200ä¸åæåå¤´ï¼</span></p> 
+                </div> 
+                <div class="xscnry_summary goodDetail hide"> 
+                    <ul> 
+                        <li> 
+                           <div class="xscnry_sumdt">å å ä»·ï¼</div> 
+                            <div class="xscnry_color01 fl shopPirce"></div>
+							<div id="fqfkComment">
+                            <img class="img_fqfk" src="../images/fqfk.jpg" />
+                            <span class="span_fqfk">æ¯æåæä»æ¬¾</span>
+							</div>
+                        </li> 
+                        <li class="mt_8"> 
+                            <div class="xscnry_sumdt">å¸ åº ä»·ï¼</div> 
+                            <div class="xscnry_style f_12"></div>
+                        </li> 
+                        <li> 
+                            <div class="xscnry_sumdt">ååè¯åï¼</div> 
+                            <div class="xscnry_color01"> 
+                                <div class="xxscsjym1" > 
+								<a id="clickComment" href="javascript:void(0);" onclick="pcomment();">
+                                    <img src="../images/xscsjym_xx.jpg" /> 
+                                    <img src="../images/xscsjym_xx.jpg" /> 
+                                    <img src="../images/xscsjym_xx.jpg" /> 
+                                    <img src="../images/xscsjym_xx.jpg" /> 
+                                    <img src="../images/xscsjym_hxx.jpg" /> 
+								</a>
+                                </div> 
+                                <span class="xxscsjym comment_num"></span> 
+                            </div>
+                        </li> 
+                        <li> 
+                            <div class="xscnry_sumdt">åº&nbsp;&nbsp;å­ï¼</div> 
+                            <div>
+                                <span class="xscnry_style01"></span>
+                                <label>ï¼å·²å®åº</label>
+                                <span id="sales" class="xxscsjym"></span>
+                                <label>ä»¶ï¼</label>
+                            </div>
+                        </li> 
+                        <li> 
+                            <div class="xscnry_sumdt">è´­ä¹°æ°éï¼</div> 
+                            <!--data-maxcountå±æ§ä¸ºå¯éæå¤§æ°é-->
+                            <div class="detail_count" data-maxcount="5"> 
+                                <a id="cart_minus" href="javascript:void(0);" class="xscnry_a01 off"></a> 
+                                <input name="" type="text" class="xscnry_suminp" value="1" /> 
+                                <a id="cart_plus" href="javascript:void(0);" class="xscnry_a02"></a> 
+                            </div>
+                        </li> 
+                        <li> 
+                            <div class="xscnry_sumdt">
+                            ééæ¹å¼ï¼
+                            </div> 
+                            <div>
+                                <span class="xscnry_color">å¨å¸åè´¹éé</span>
+                            </div>
+                        </li> 
+                        <li> 
+                            <div class="xscnry_sumdt">
+                            ææºé¢è²ï¼
+                            </div> 
+                            <div id="colors" class="xscnry_sumul002">    
+                            </div>
+                        </li> 
+						<li id="memoryList" style="display:none;">
+                        </li>	
+                        <li> 
+                            <div class="xscnry_sumdt">
+                            è´­ä¹°æ¹å¼ï¼
+                            </div> 
+                            <div id="tmarketpack" class="xscnry_sumul002 ordercheck_wrap"> 
+                            </div>
+                        </li>
+                        <li id="giftList" style="display:none;">
+                        </li>						
+                        <li class="ordercheck_li" style="display:none;"> 
+                            <div class="xscnry_sumdt">
+                            åçº¦æ¹æ¡ï¼
+                            </div> 
+                            <div class="xscnry_sumul002 ordercheck_wrap"> 
+                                <a href="javascript:void(0);" class="pinkcheck checkPackage hover"></a> 
+                                <a class="tip_fitself" href="javascript:void(0);" onclick="openCustomizedPackage();">&nbsp;&nbsp;ä¸åéï¼å®å¶æ¨èªå·±çå¥é¤</a>
+                            </div>
+                        </li> 
+                    </ul> 
+                    <table class="phoneD_ordertable phoneTabel" style="display:none;"> 
+                        <tbody>
+                            <tr>
+                                <th>åçº¦æ»ä»·</th>
+                                <th>åè®®æ</th>
+                                <th>ææä½æ¶è´¹</th>
+                                <th>ææº</th>
+                                <th>è¯è´¹</th>
+                            </tr>
+                            <tr>
+                                <td id="PACK_PRICE"></td>
+                                <td id="AGREEMENT"></td>
+                                <td id="CONTRACT_LEVEL"></td>
+                                <td id="GOODS_NAME"></td>
+                                <td id="GIFT_PRICE"></td>
+                            </tr>
+                        </tbody>
+                    

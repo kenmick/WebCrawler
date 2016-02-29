@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title></title>
+</head>
+<body>
+<script type="text/javascript">
+      var key ='ad_uid';
+      
+      var IdWs=new function(){function g(c,a){var b;void 0!==a&&document.getElementById(a)?b=document.getElementById(a):(b=document.createElement(c),b.id=a);b.style.visibility="hidden";b.style.position="absolute";document.body.appendChild(b);return b}function e(c,a){var b=null;try{return b="function"!=typeof c?this[c].apply(this,a):c.apply(this,a)}catch(d){return null}}var f=window.location.host.replace("www.","");this.getUElem=function(c){var a=g("div","userdata_el");a.style.behavior="url(#default#userData)";
+a.load("id");return a.getAttribute(c)};this.setUElem=function(c,a){var b=g("div","userdata_el");b.style.behavior="url(#default#userData)";b.load("id");b.setAttribute(c,a);b.save("id")};this.getGVal=function(c){return globalStorage[f][c]};this.setGVal=function(c,a){globalStorage[f][c]=a};this.getWName=function(c){var a=window.name,c=RegExp(" "+c+"=(\\w*);");return(c.test(a)?c.exec(a):["",""])[1]};this.setWName=function(c,a){var b=window,d;d=window.name;var e=RegExp(" "+c+"=\\w*;"),g=e.test(d),f=" "+
+c+"="+a+";";g?d=d.replace(e,f):(";"!=d.charAt(d.length)&&(d+=";"),d+=f);b.name=d};this.storeKey=function(c,a){e.call(window.localStorage,"setItem",[c,a]);e.call(this,"setWName",[c,a]);e.call(this,"setGVal",[c,a]);e.call(this,"setGVal",[c,a]);e.call(this,"setUElem",[c,a])};this.getKey=function(c){var a={},b,d={};(d.ls=b=e.call(window.localStorage,"getItem",[c]))&&(a[b]?a[b]+=1:a[b]=1);(d.wn=b=e.call(this,"getWName",[c]))&&(a[b]?a[b]+=1:a[b]=1);d.gs=e.call(this,"getGVal",[c]);b&&(a[b]?a[b]+=1:a[b]=
+1);d.us=e.call(this,"getUElem",[c]);b&&(a[b]?a[b]+=1:a[b]=1);window.debugList=d;var f,c=0;b=null;for(f in a)a[f]>c&&(c=a[f],b=f);if(null==b||"null"==b||""==b)b="";return b};return this};
+
+
+function handler(event){
+    if ( event.source == window.parent){
+      try {
+    	var oid = IdWs.getKey(key),nid = event.data!='rst'?event.data:'';
+
+        if (event.data=='rst' || nid>0&&(oid==0 || nid<oid)) {
+          IdWs.storeKey(key,nid);
+        }
+      } catch (e){}
+    }
+}
+      
+      if (window.addEventListener){
+        addEventListener("message", handler, false)
+      } else {
+        attachEvent("onmessage", handler)
+      }
+      var brs=navigator.userAgent.toLowerCase(); 
+      if(window.parent != window && window.parent.postMessage && brs.search(/msie\s7/) == - 1) {
+        var msg = IdWs.getKey(key)+'';
+        parent.postMessage(msg,'*');
+      }
+
+    </script>
+</body>
+</html>

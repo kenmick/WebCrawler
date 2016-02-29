@@ -1,0 +1,155 @@
+/* 
+ * Mediaplex Flash template, flash_new
+ * Maintained By: Christopher D. Robison (cdr@cdr2.com) and 
+ * Heath Matthew Kornblum (heathkornblum@gmail.com) 
+ * Last Modified: 8/31/2014 12:31 pm
+ *
+*/
+(function(){
+	function mojoProtocol() {
+		 var regexx = /\d+-\d+-\d+-\d+/;
+		 var theMpck = "adfarm.mediaplex.com/ad/ck/25521-185134-34920-31?mpt=3736557836678314636&mpcr=72891931&mpcrset=root";
+		 var myplid = regexx.test(theMpck) ? theMpck.match(/\d+-\d+-\d+-\d+/) : null;
+		 var myURL = "";
+		 try{
+			if (myplid != null) {
+				var tags = window.document.getElementsByTagName("script");
+				for (var i=0; i < tags.length; i++) {
+					if (tags.item(i).src){
+					  if (tags.item(i).src.match(myplid)) {
+						myURL = tags.item(i).src;  
+					  }
+					}
+				}
+				window.mojoProto = myURL.substring(0,6);
+			} else {
+			  window.mojoProto = "http:";	
+			}
+			
+		 } catch (e) {
+			 window.mojoProto = "http:";
+		 }		
+                 if (window.mojoProto == "" || window.mojoProto == null) window.mojoProto = window.location.protocol;
+
+
+	}
+	mojoProtocol();
+	var mojopro = window.mojoProto;
+	if (mojopro == "https:") {
+		mojopro = "https://secure.img-cdn.mediaplex.com/0/";
+	}	else  {
+		mojopro = "http://img-cdn.mediaplex.com/0/";
+  	};  
+	var mpvce = '<mpvce/>';
+	mpenhanced = "",
+	mpenhancedurl = "" || "http://www.conversantmedia.com/ad-choices";
+	if (mpvce == 1) {
+		mpvclick = encodeURIComponent("http://pr.ybp.yahoo.com/cj/cd/DUbxiusTNbeAoj7H6tv7pYOar2MuU4-zNlKlBF8YfKdTu6QAHGMZ_uztK7GvuxgZuecktJY_wJqIGRACqKwMVZCpl29g8OLm2eelJp0gK0Ier6Ft9sZB9Xne_WH2NMxf/rurl/");
+		mpvc = mpvclick;
+	}
+	else if (mpvce == 2) {
+		mpvclick2 = encodeURIComponent("http://pr.ybp.yahoo.com/cj/cd/DUbxiusTNbeAoj7H6tv7pYOar2MuU4-zNlKlBF8YfKdTu6QAHGMZ_uztK7GvuxgZuecktJY_wJqIGRACqKwMVZCpl29g8OLm2eelJp0gK0Ier6Ft9sZB9Xne_WH2NMxf/rurl/");
+		mpvc = encodeURIComponent(mpvclick2);
+	}
+	else
+  	{
+		mpvc = ("http://pr.ybp.yahoo.com/cj/cd/DUbxiusTNbeAoj7H6tv7pYOar2MuU4-zNlKlBF8YfKdTu6QAHGMZ_uztK7GvuxgZuecktJY_wJqIGRACqKwMVZCpl29g8OLm2eelJp0gK0Ier6Ft9sZB9Xne_WH2NMxf/rurl/");
+  	}
+	var mpcke = '<mpcke/>';
+	if (mpcke == 1) {
+		mpcclick = encodeURIComponent("adfarm.mediaplex.com%2Fad%2Fck%2F25521-185134-34920-31%3Fmpt%3D3736557836678314636%26mpcr%3D72891931%26mpcrset%3Droot");
+		mpck = "http://" + mpcclick;
+	}
+	else if (mpcke == 2) {
+		mpcclick2 = encodeURIComponent("adfarm.mediaplex.com%2Fad%2Fck%2F25521-185134-34920-31%3Fmpt%3D3736557836678314636%26mpcr%3D72891931%26mpcrset%3Droot");
+		mpck = "http://" + encodeURIComponent(mpcclick2);
+	}
+	else if (mpcke == -1) { 
+		mpcclick = "adfarm.mediaplex.com/ad/ck/25521-185134-34920-31?mpt=3736557836678314636&mpcr=72891931&mpcrset=root"; 
+		mpck = "http://" + mpcclick; 
+	} 
+	else
+  	{
+		mpck = ("http://adfarm.mediaplex.com%2Fad%2Fck%2F25521-185134-34920-31%3Fmpt%3D3736557836678314636%26mpcr%3D72891931%26mpcrset%3Droot");
+  	}
+	var mp_swver = 0, mp_html = "", mp_crpv = 9 * 1;
+	mp_html += "<div id='mp_wrapper72891931' style='position:relative;display:inline-block;width:300px;height:250px;'>";
+	if( navigator.mimeTypes && navigator.mimeTypes["application/x-shockwave-flash"] && navigator.mimeTypes["application/x-shockwave-flash"].enabledPlugin ) {
+  		if( navigator.plugins && navigator.plugins["Shockwave Flash"] ) {
+    		mp_swver = (navigator.plugins["Shockwave Flash"].description.split( " " ))[2];
+  		}
+	} else if ( navigator.userAgent && navigator.userAgent.indexOf("MSIE") >= 0 && ( navigator.userAgent.indexOf("Windows") >= 0 ) ) {
+		var mp_axo,e;
+  		for( var mp_i = 11; mp_i > 6; mp_i-- ) {
+			try {
+				mp_axo = new ActiveXObject("ShockwaveFlash.ShockwaveFlash." + mp_i );
+				mp_swver = mp_i;
+				break;
+			} catch (e) {}
+		}
+	}
+	var mplxBrowserVendor = (typeof window.navigator.vendor == 'undefined' ? '' : window.navigator.vendor);
+	if( mplxBrowserVendor != "Google Inc." && mp_swver >= mp_crpv ) {
+  		mp_html +=  '<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" ';
+  		mp_html += ' codebase="https://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,40,0" id="72891931" name="movie72891931" width="300" height="250">';
+  		if( mp_swver > 5 ) {
+			mp_html += '<param name="FlashVars" value="clickTAG=' + mpvc + mpck +'&clickTag=' + mpvc + mpck + '&clickTag1=' + mpvc + mpck + '">';
+			mp_html += '<param name="movie" value="' + mojopro + '25521/FR_2015-11-18_Glamour_Dresses_300x250.swf">';
+			mp_html += '<param name="wmode" value="opaque">';
+			mp_html += '<param name="allowscriptaccess" value="always">';
+  		} 
+  		else {
+			mp_html += '<param name="movie" value="' + mojopro + '25521/FR_2015-11-18_Glamour_Dresses_300x250.swf?clickTAG=' + mpvc + mpck +'&clickTag=' + mpvc + mpck + '&clickTag1=' + mpvc + mpck + '">';
+			mp_html += '<param name="wmode" value="opaque">';
+			mp_html += '<param name="allowscriptaccess" value="always">';
+  		}
+  		if( mp_swver > 5 ) {
+			mp_html += '<embed wmode="opaque" allowscriptaccess="always" name="FR_2015-11-18_Glamour_Dresses_300x250.swf" src="' + mojopro + '25521/FR_2015-11-18_Glamour_Dresses_300x250.swf" FlashVars="clickTAG=' + mpvc + mpck  +'&clickTag=' + mpvc + mpck  +'&clickTag1=' + mpvc + mpck  + '"';
+		}
+ 		else {
+    		mp_html += '<embed wmode="opaque" allowscriptaccess="always" NAME="FR_2015-11-18_Glamour_Dresses_300x250.swf" src="' + mojopro + '25521/FR_2015-11-18_Glamour_Dresses_300x250.swf?clickTAG=' + mpvc + mpck  +'&clickTag=' + mpvc + mpck  +'&clickTag1=' + mpvc + mpck  + '"';
+		}
+ 		mp_html += ' swLiveConnect="false" width="300" height="250" type="application/x-shockwave-flash" pluginspage="">';
+  		mp_html += '</embed>';
+  		mp_html += '</object>';
+  		mp_html += (mpenhanced) ? "<div style='position:absolute;z-index:10500;top:0px;right:1px;width:17px;height15px;z-index:999999;overflow:hidden;' onmouseover='this.style.width = \"75px\";document.getElementById(\"en_sm_72891931\").style.display=\"none\";document.getElementById(\"en_lg_72891931\").style.display=\"inline\";' onmouseout='this.style.width = \"17px\";document.getElementById(\"en_sm_72891931\").style.display=\"inline\";document.getElementById(\"en_lg_72891931\").style.display=\"none\";'><a href='" + mpenhancedurl + "' target='_blank'><img src='" + mojopro + "16179/109012/IconOnlyCollisionMarker.png' border='0'  id='en_sm_72891931'  style='display:inline'/><img src='" + mojopro + "16179/109012/CollisionAdMarker.png' border='0' id='en_lg_72891931'  style='display:none' /></a></div>" : "";
+	
+  		mp_html += '</div>';
+    		document.write( mp_html );
+	} else if( !( navigator.appName && navigator.appName.indexOf("Netscape") >= 0 && navigator.appVersion.indexOf("2.") >= 0 ) ) {
+
+  		document.write('<a href="http://pr.ybp.yahoo.com/cj/cd/DUbxiusTNbeAoj7H6tv7pYOar2MuU4-zNlKlBF8YfKdTu6QAHGMZ_uztK7GvuxgZuecktJY_wJqIGRACqKwMVZCpl29g8OLm2eelJp0gK0Ier6Ft9sZB9Xne_WH2NMxf/rurl/http://adfarm.mediaplex.com/ad/ck/25521-185134-34920-31?mpt=3736557836678314636&mpcr=72891931&mpcrset=root" target="_blank"><img src="' + mojopro + '25521/FR_2015-11-18_Glamour_Dresses_300x250.jpg" width="300" height="250" border="0" alt=""></a>');
+	} else {
+  		document.write('<a href="http://pr.ybp.yahoo.com/cj/cd/DUbxiusTNbeAoj7H6tv7pYOar2MuU4-zNlKlBF8YfKdTu6QAHGMZ_uztK7GvuxgZuecktJY_wJqIGRACqKwMVZCpl29g8OLm2eelJp0gK0Ier6Ft9sZB9Xne_WH2NMxf/rurl/http://adfarm.mediaplex.com/ad/ck/25521-185134-34920-31?mpt=3736557836678314636&mpcr=72891931&mpcrset=root" target="_blank"><img src="' + mojopro + '25521/FR_2015-11-18_Glamour_Dresses_300x250.jpg" width="300" height="250" border="0" alt=""></a>');
+        }
+        document.close();
+})();
+
+   function mojo_clickthru() {
+	     var OOBImg = new Image();
+         if (typeof (mpOOBClickTrack) !== 'undefined') {
+            try {
+				OOBImg.src = mpOOBClickTrack;
+			} catch (e) {
+			  if (window.console && window.console.error) {
+				   window.console.error(e.message);
+			  }
+			}
+         }
+   }
+
+//-->
+
+var mpjs = String("https://secure.img-cdn.mediaplex.com/0/25985/adclear_fr.js?camp=FR_BB_CC_ME_20_00001&ts=3736557836678314636");
+if (mpjs && typeof mpjs === "string" && mpjs.length > 0 && mpjs!="<mp"+"jsp/>") {
+  var mpscr, head = document.getElementsByTagName("head")[0] || document.documentElement;
+  mpjs = mpjs.split( " " );
+  for( var i = 0; i < mpjs.length; i++ ) {
+    mpscr = document.createElement("script");
+    mpscr.type = "text/javascript";
+                mpscr.async = true;
+    mpscr.src = mpjs[i];
+    head.insertBefore(mpscr, head.firstChild);
+  }
+}
+

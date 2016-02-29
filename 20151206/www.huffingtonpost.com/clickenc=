@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IT=edge,chrome=IE8">
+	<meta charset="UTF-8">
+  <title>aberlour-style-300x250</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+  <!--CSS-->
+  <style>
+    body {  margin: 0; padding:0; }
+    img { display:block; position:absolute; }
+    a img { border:none; }
+    a { text-decoration:none; }
+    #conteneur { overflow: hidden; position: absolute; width:298px; height: 248px; border:1px solid #fff; background-color: #000; background-image:url('background.jpg'); }
+    .logo { width:373px; height:auto; top:-52px; left:-37px; }
+    .texte1 { width:302px; height:auto; top:27px; left:67px; opacity:0; }
+    .masque { width:157px; height:auto; top:55px; left:-1px }
+    .lueur1 { width:16px; height:30px; top:94px; left:62px; }
+    .lueur2 { width:40px; height:30px; top:168px; left:46px; opacity:0; }
+  </style>
+  <!--JAVASCRIPTS-->
+  <script src="./zepto.js"></script>
+  <script src="./aberlour-style2-300x250.js"></script>
+</head>
+
+<body>
+<style> body {margin:0px;overflow:hidden}</style> <a target='_blank' id='trlbcta'>
+    <div id="conteneur"> 
+      <img src="./lueur.png" class="lueur1" />
+      <img src="./masque-lueur.png" class="masque" />
+      <img src="./logo.png" class="logo" />
+      <img src="./texte1.png" class="texte1" />
+      <img src="./lueur.png" class="lueur2" />      
+    </div>
+
+</a>
+<script type="text/javascript">
+var urlbase = 'http://pr-fr.com/790f43a9';
+    // Get the click url parameter
+    var search = window.location.search;
+    var newBaseUrl = decodeURIComponent(search.split("?click=")[1]);
+    console.log("newBaseUrl 1", newBaseUrl);
+    if (search.indexOf("console.appnexus.com") > -1) {
+        // Its a click tag valdiation test
+        newBaseUrl = newBaseUrl.split("click=")[0]+newBaseUrl.split("click=")[1]+"click="; /* To validate the click tacking */
+    }
+    else {
+        // It's the normal click tracking system
+        newBaseUrl = newBaseUrl.split("click?")[0]+"click?"+newBaseUrl.split("click?")[1];
+        console.log('newBaseUrl',newBaseUrl);
+    };
+    var myLink1 = document.getElementById('trlbcta');
+    var myFormActionUrl = newBaseUrl+encodeURIComponent(urlbase);
+    cliktag = myFormActionUrl;
+    myLink1.setAttribute("href", myFormActionUrl);
+</script>
+</body>
+

@@ -1,0 +1,475 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+
+<!-- Copyright the Rubicon Project 2010 -->
+
+
+<html>
+<head>
+<title></title>
+</head>
+<body>
+<script type="text/javascript">
+
+	// http://tap.rubiconproject.com/partner/agent/rubicon/channels.js?cb=oz_onPixelsLoaded
+	function oz_onPixelsLoaded(profile) {
+		if (profile && profile.pixels) {
+			var uri;
+			for (var i=0; i < profile.pixels.length; i++) {
+				uri = profile.pixels[i].url;
+				if (uri && (uri.indexOf("http") == 0)) {
+					new Image().src = uri;
+				}
+			}
+		}
+	}
+	
+	function getReferrer() {
+		var ref;
+		
+		var href = document.referrer;
+        try {
+            if (typeof window.parent.location.href == "string" && window.parent.location.href.substr(0, 4) == "http") {
+            	href = top.location.href || href;
+            } 
+         } catch (ignore) { }            		
+    	
+    	if (href && href.length > 0) {
+        	 ref = escape(href);
+    	}
+
+    	return ref;
+	}
+	
+	function setCookie(name,value,days) {
+		var expires ;
+		if (days) {
+			var date = new Date();
+			date.setTime(date.getTime()+(days*24*60*60*1000));
+			expires = "; expires="+date.toGMTString();
+		}
+		else expires = "";
+		document.cookie = name+"="+escape(value)+expires+"; path=/";
+	}
+	
+	function readCookie(name) {
+		var nameEQ = name + "=";
+		var ca = document.cookie.split(';');
+		for(var i=0;i < ca.length;i++) {
+			var c = ca[i];
+			while (c.charAt(0)==' ') 
+				c = c.substring(1,c.length);
+			if (c.indexOf(nameEQ) == 0) 
+				return unescape(c.substring(nameEQ.length,c.length));
+		}
+		return null;
+	}
+	function trim_whitespace(x) {
+	    return x.replace(/^\s+|\s+$/gm,'');
+	}
+
+	function countCookies(prefix) {
+		var ca = document.cookie.split(';');
+		var count = 0;
+		for(var i=0;i < ca.length;i++) {
+			var c = ca[i];
+			c = trim_whitespace(c);
+			if (!prefix)
+				count++;
+			else if (c.indexOf(prefix) == 0)
+				count++;
+		}
+		return count;
+	}
+	
+	function addScriptAsync(url,id)
+	{
+		var script;
+		script = document.createElement("script");
+		if (id)
+			script.setAttribute("id",id);
+		script.setAttribute("type","text/javascript");
+		url = url.replace(/\s/g,'+');
+		script.setAttribute("src",url);
+
+		document.getElementsByTagName("head").item(0).appendChild(script);
+	}
+
+	function addScript(url,id)
+	{
+		var html = '<scr'+'ipt type="text/javascript" SRC="'+url+'"></scr'+'ipt>';
+		document.write(html);
+	}
+	
+	function mergeProperties(dest,defaults)
+	{
+		if (typeof(dest) == "undefined" || !dest)
+			return defaults;
+
+		if (typeof(defaults) == "undefined" || !defaults)
+			return dest;
+
+		for (var name in defaults)
+		{
+			if (!defaults.hasOwnProperty(name))
+				continue;
+			if (typeof dest[name] == "undefined")
+				dest[name] = defaults[name];
+		}
+		return dest;
+	}
+
+    function readPutCookie() {
+        var result = {};
+        var ca = document.cookie.split(';');
+        for(var i = 0; i < ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0)==' ') {
+                c = c.substring(1, c.length);
+            }
+            if (c.indexOf("put_") == 0) {
+                var nid = unescape(c.substring(4, c.indexOf("=")));
+                var value = unescape(c.substring(c.indexOf("=") + 1, c.length));
+                result[nid] = value;
+            }
+        }
+        return result;
+    }
+
+    function readSputCookie() {
+        var result = {};
+        var ca = document.cookie.split(';');
+        for(var j = 0; j < ca.length; j++) {
+            var c = ca[j];
+            while (c.charAt(0)==' ')
+                c = c.substring(1,c.length);
+            if (c.indexOf("sput") == 0) {
+                var sput = c.substring(c.indexOf("=") + 1, c.length);
+                if (sput) {
+                    var parts = sput.split('|');
+                    for(var i = 0; i < parts.length; i++) {
+                        var part = parts[i];
+                        var items = part.split('^');
+                        if (items.length >= 2) {
+                            var nid = unescape(items[0]);
+                            var value = unescape(items[1]);
+                            result[nid] = value;
+                        }
+                    }
+                }
+            }
+        }
+        return result;
+    }
+
+    function readValue(nid) {
+        var result = put[nid];
+        if (!result) {
+            result = sput[nid];
+        }
+        return result;
+    }
+
+	var rtb_sync = {};
+	var rtb_site_sync = {};
+	var rtb_pixel_set = ["rtb","aud","nets","pubs"];
+	var request_region = "eu";
+	var request_country = "fr";
+    var put = readPutCookie();
+    var sput = readSputCookie();
+
+
+
+
+	rtb_sync = {"ttl":14,"sample":100,"max_pixels":8,"pixel_sets":{"rtb":{"sample":100,"pixels":{}},"rtb_ext":{"sample":100,"pixels":{}},"aud":{"sample":100,"pixels":{"bk":{"pingdom_id":"605728","ttl":4,"img":"http://tags.bluekai.com/site/6123?redir=http://tap-t.rubiconproject.com/oz/feeds/bluekai/tokens?afu=$_BK_UUID","region":"na","partner":"bluekai"},"turn":{"pingdom_id":"1504062","ttl":7,"img":"http://tap-t.rubiconproject.com/oz/partner/sync?pk=HN1L-G6MQK567&rt=pixel","partner":"turn-dmp"}}},"nets":{"sample":100,"pixels":{}},"pubs":{"sample":0,"pixels":{}}},"notify":{"rubicon":{"sample":1,"img":"http://tap.rubiconproject.com/stats/rtbsync"}},"priority":20,"resync":1,"max_ie_partners":1000} ;
+
+
+
+	function loadExpiration()
+	{
+		var map = {};
+		var c = readCookie("pux");
+		if (!c)
+			return map;
+		
+		var list = c.split("&");
+		var name;
+		var value;
+		for (var i in list)
+		{
+			var parts = list[i].split("=");
+			if (parts.length < 2)
+				continue;
+			name = parts[0];
+			value = parts[1];
+			var fields = value.split(",");
+			if (fields.length > 0)
+			{
+				map[name] = { created : fields[0] };
+			}
+		}
+		return map;
+	}
+	function saveExpiration(map)
+	{
+		var c="";
+		for (name in map)
+		{
+			var info = map[name];
+			
+			c += name + "=";
+			c += info.created;
+			c += "&";
+		}
+		setCookie("pux",c,90);
+	}
+
+	function is_expired(ttl,info)
+	{
+		if (!info)
+			return true;
+		ttl = Number(ttl);
+		
+		var now = new Date().getTime() / (3600*1000);
+		var then = new Date(2010,0,1,0,0,0,0).getTime() / (3600*1000);
+		var expires = (new Number(info.created) + (ttl * 24));
+		
+		if ((now - then) < expires)
+		{
+			return false;
+		}
+		return true;		
+	}
+	
+	function shouldFirePixel(pixel)
+	{
+		var info = expiration_info[pixel.nid];
+		if (info && !is_expired(pixel.info.ttl || pixel.context.ttl || rtb_sync.ttl,info))
+			return false;
+		
+		var sample = (pixel.info.sample == 0) ? pixel.info.sample : (pixel.info.sample || pixel.context.sample || rtb_sync.pixel_sample || 0) ;
+		sample = Number(sample);	// do simple parsing
+		
+		if (!(Math.floor(Math.random()*100) < sample))
+			return false;
+		
+		return true;
+	}
+	
+	function fireComscorePixel(pixel,page_is_secure) {
+		var _comscore = _comscore || [];
+		//var rp_cats = "##RUBICON_IAB_CATEGORIES##";
+		var rp_cats = null;
+		var rp_cat = 24*1000;
+		if (rp_cats) {
+			rp_cats = rp_cats.replace(/IAB/g,"").split(",");
+			if (rp_cats.length > 0 && rp_cats[0] && rp_cats[0].length > 0) {
+				rp_cat = rp_cats[0].split("-")[0];
+				rp_cat = rp_cat * 1000;
+			}
+		}
+		
+		// todo : rp_cat, site_id, creative_id
+		var site_id = "62528";
+		var creative_id = 0;
+		_comscore.push({ c1: "8", c2: "6135404", c3: rp_cat, c4: site_id, c10: creative_id });
+		(function() { 
+			var s = document.createElement("script"), el = document.getElementsByTagName("script")[0]; 
+			s.async = true; 
+			s.src = (document.location.protocol == "https:" ? "https://sb" : "http://b") + ".scorecardresearch.com/beacon.js"; 
+			el.parentNode.insertBefore(s, el); 
+		})(); 
+	}
+	
+	function firePixel(pixel,page_is_secure)
+	{
+		var days = (pixel.info.ttl || pixel.context.ttl || rtb_sync.ttl || 14);
+		var now_hours = Math.floor(new Date().getTime()/(3600*1000));
+		var then = new Date(2010,0,1,0,0,0,0).getTime() / (3600*1000);
+
+		expiration_info[pixel.nid] = { created : now_hours-then };
+
+		var info = pixel.info;
+		if (page_is_secure)
+			info = pixel.info.secure;
+		if (info) {
+			var ref = getReferrer();
+			if (pixel.nid == "rp" && info.script && ref) {
+				info.script += ("&rf=" + ref);
+			}
+			if (info.img)
+				setTimeout(function() {new Image().src = info.img},100);
+			if (info.iframe)
+				document.write("<iframe src='"+info.iframe+"' width='1' height='1' frameborder='0'></iframe>");
+			if (info.script)
+				addScript(info.script);
+			if (info.comscore)
+				fireComscorePixel(pixel,page_is_secure);
+		}
+	}
+
+	// Fisher Yates
+	function shuffle ( myArray ) 
+	{
+		var i = myArray.length;
+		if ( i == 0 ) return false;
+		while ( --i ) 
+		{
+			var j = Math.floor( Math.random() * ( i + 1 ) );
+			var tempi = myArray[i];
+			var tempj = myArray[j];
+			myArray[i] = tempj;
+			myArray[j] = tempi;
+		}
+	}
+	function prioritize(list) {
+		list.sort(function(a,b){ return a.info.priority - b.info.priority; })
+	}	
+	
+	var expiration_info;
+	function array_contains(list,item)
+	{
+		for (e in list)
+		{
+			if (item == list[e])
+				return true;
+			
+		}
+		return false;
+	}
+	function detectIE() {
+	    var ua = window.navigator.userAgent;
+
+	    var msie = ua.indexOf('MSIE ');
+	    if (msie > 0) {
+	    	return true;
+	    }
+
+	    var trident = ua.indexOf('Trident/');
+	    if (trident > 0) {
+	    	return true;
+	    }
+
+	    var edge = ua.indexOf('Edge/');
+	    if (edge > 0) {
+	    	return true;
+	    }
+
+	    // other browser
+	    return false;
+	}	
+	function doPixels()
+	{
+		var allFired=true;
+		var all_pixels=new Array();
+		var pixels=new Array();
+	
+		expiration_info = loadExpiration();
+		var loc = location.href.split(':');
+		var page_is_secure = (loc[0] == 'https');
+
+		// check for 'cookies enabled'
+		if (!document.cookie || (document.cookie.length < 1)) {
+			setCookie("cd","false",365);
+			return;
+		}
+
+		// check for 'khaos cookie'
+		if (!readCookie("khaos")) {
+			new Image().src = ((page_is_secure ? "https" : "http") + "://pixel.rubiconproject.com/tap.php");
+			return false;
+		}
+		
+		// global throttle
+		if (!(Math.floor(Math.random()*100) < Number(rtb_sync.sample)))
+			return false;
+
+		
+		for (var i in rtb_pixel_set)
+		{
+			var name = rtb_pixel_set[i];
+			var context = rtb_sync.pixel_sets[name];
+			if (!context)
+				continue;
+			for ( nid in context.pixels )
+			{
+				var info = context.pixels[nid];
+				info.priority = info.priority || context.priority || rtb_sync.priority;
+
+				// check for geo region limited scope
+				if (request_region && info.region && (info.region != request_region && !array_contains(info.region,request_region)))
+					continue;
+				if (request_country && info.country && (info.country != request_country && !array_contains(info.country,request_country)))
+					continue;
+
+				if (info.sample == 0)
+					continue;
+
+				info.ttl = info.ttl || context.ttl || rtb_sync.ttl;
+				
+				// if there is no stored partner-user-token, then trigger after 1d
+                if ((name == "rtb" || name =="rtb_ext") && (info.resync || context.resync) && !readValue(info.nid || nid) ) {
+                    info.ttl = 0.5;
+				}
+				// add to candidate list
+				all_pixels[all_pixels.length] = {pixel_set: name, nid: nid, info : info, context: context}; 
+			}
+		}
+
+		prioritize(all_pixels);
+		if (detectIE()) {
+			var max_partners = rtb_sync.max_ie_partners || all_pixels.length;
+			all_pixels.splice(max_partners,all_pixels.length - max_partners);
+		}
+
+		for (var i in all_pixels) {
+			var pixel = all_pixels[i];
+			
+			// check to see if pixel is expired
+			if (is_expired(pixel.info.ttl,expiration_info[pixel.nid]) && (pixel.info.sample != 0))
+			{
+				pixels[pixels.length] = pixel; 
+			}
+		}
+		
+		allFired = (pixels.length == 0);
+
+		shuffle(pixels);
+		prioritize(pixels);
+		var max = rtb_sync.max_pixels || 1;
+		for (var i in pixels)
+		{
+			var pixel = pixels[i];
+			
+			if (shouldFirePixel(pixel))
+			{
+				firePixel(pixel,page_is_secure);
+				max--;
+				if (max <= 0)
+					break;
+			}
+		}
+		
+		var nid = "rubicon";
+		var info = rtb_sync.notify[nid];
+		var pixel = {nid : nid, info : info, context : rtb_sync};
+		if (shouldFirePixel(pixel))
+		{
+			pixel.info.img += "?allfired="+allFired;
+			pixel.info.img += "&cookies="+countCookies();				
+			pixel.info.img += "&puts="+countCookies("put_");	
+			pixel.info.img += "&ie="+(detectIE()?"true":"false");
+			
+			firePixel(pixel,page_is_secure);
+		}
+		saveExpiration(expiration_info);
+	}
+
+	doPixels();
+			
+</script>
+
+
+
+</body>
+</html>

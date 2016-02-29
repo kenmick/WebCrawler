@@ -1,0 +1,83 @@
+<!-- HTML 5 Ad Template from DoubleClick by Google -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- Studio Enabler Required -->
+	<script src="/879366/Enabler_01_93.js"></script>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">  
+    <meta data-template-name="Template_DCRM_HTML5_Inpage_video_970x250">
+    
+    <style type="text/css">
+	#loading_dc{
+		width:100%;
+		height:100%;
+		background-color:white;
+		z-index:10;
+	}
+	/*#loading_image_dc{
+	position:absolute;
+	left:50%;
+	margin-left:-15px;
+	top:50%;
+	margin-top:-15px;	
+	}*/
+	#container_dc{display:none;z-index:20}
+	</style>
+    
+    <script language="javascript">
+		//Initialize Enabler
+		if (Enabler.isInitialized()) {
+			init();
+		} else {
+			Enabler.addEventListener(studio.events.StudioEvent.INIT, init);
+		}
+		//Run when Enabler is ready
+		function init(){
+			//politeInit();
+			//Load in Javascript
+			
+			if(Enabler.isPageLoaded()){
+				politeInit();
+			}else{
+				Enabler.addEventListener(studio.events.StudioEvent.PAGE_LOADED, politeInit);
+			} 
+		}
+		
+		function politeInit(){		
+			//Load in Javascript
+			var extJavascript = document.createElement('script');
+			extJavascript.setAttribute('type', 'text/javascript');
+			extJavascript.setAttribute('src', Enabler.getUrl('DCRM_HTML5_Inpage_video_970x250.js')); 
+			document.getElementsByTagName('head')[0].appendChild(extJavascript);
+			
+			//Load in CSS
+			var extCSS=document.createElement('link');
+			extCSS.setAttribute("rel", "stylesheet");
+			extCSS.setAttribute("type", "text/css");
+			extCSS.setAttribute("href", Enabler.getUrl("DCRM_HTML5_Inpage_video_970x250.css")); 
+			document.getElementsByTagName("head")[0].appendChild(extCSS);
+			document.getElementById("container_dc").style.opacity=1;
+			// document.getElementById("loading_image_dc").style.visibility='hidden';
+		}
+	</script>
+</head>
+<body>    
+    <div id="container_dc">
+        <div id="fond"></div>
+        <div id="texte"></div>
+        <div id="cta"></div>
+        <button id="background_exit_dc"></button>
+        <div id="contour"></div>
+       
+        <div id="video1_container_dc">        	 
+            <video id="video1_dc">
+                <source id="video_1_mp4_src_dc" type="video/mp4" src="//gcdn.2mdn.net/videoplayback/id/3995b9c9e4c8e8ac/itag/59/source/doubleclick/ratebypass/yes/acao/yes/ip/0.0.0.0/ipbits/0/expire/3595938362/sparams/id,itag,source,ratebypass,acao,ip,ipbits,expire/signature/5FF229CB561CC329575DA33160BA111637836483.22AE55F0A0AA0AE89F540B3A6D4C65E958663F53/key/ck2/file/file.mp4" />
+            </video>            
+            <button id="video1_control_unmute_dc" class="video_controls_dc"></button>
+            <button id="video1_control_mute_dc" class="video_controls_dc"></button>
+        </div>
+        <div id="packshot"></div>
+        <button id="video1_control_replay_dc" class="video_controls_dc"></button>
+    </div>
+</body>
+</html>

@@ -1,0 +1,381 @@
+<html>
+	
+	<head>
+	
+		<meta name="robots" content="noindex,nofollow"> 
+		<link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700' rel='stylesheet' type='text/css'>
+		<style type="text/css">
+
+			* {
+				margin:0px;
+				margin-left: auto;
+				margin-right: auto;
+				padding:0px;
+			}
+	
+			img {
+				border:0px;
+			}
+	
+			div.container {
+				width:300px;
+				height:600px;
+				-webkit-perspective: 400;
+				perspective: 400;
+			}
+            #container2 {
+                position:absolute;
+				width:298px;
+				height:335px;
+                background-color:#F4F4F4;
+                border:1px solid #979797;
+                margin-top: 260px;
+			}
+	
+			#distractor {
+				position:absolute;
+			}
+	
+			div.bgLink {
+			
+				position:absolute;
+	
+				margin-top:108px;			
+				width:300px;
+				
+				text-align:center;
+				-moz-align:center;
+	
+				
+			}
+	
+			div.bgLink a {
+			
+				color:#333333;
+				font-family:arial;
+				font-size:10px;
+				text-decoration:none;
+				line-height:12px;
+				
+			}
+	
+			div.bgLink a:hover {
+				text-decoration:underline;
+			}
+	
+			div.bgLink a span.big {
+				color:#333333;
+				font-family:arial;
+				font-size:10px;
+				text-decoration:none;
+				line-height:12px;
+			}
+		
+			
+		
+	
+			div.contentad {
+
+				position:absolute;
+
+			}
+
+			div.b {
+			
+				position:absolute;
+
+			}
+	
+			div.b:hover {
+				background: transparent;
+			}
+			div.link {
+			
+				text-align:center;
+				color:#333333;
+	
+				margin-left:2px;
+				margin-right:2px;
+	
+				width:296px;
+				height:25px;
+	
+				overflow:hidden;
+	
+			}
+	
+			div.link a {
+				color:#333333;
+				color:#333333;
+				font-family:arial;
+				font-size:10px;
+				text-decoration:none;
+				line-height:12px;
+			}
+	
+			
+
+
+                   	
+			div.b table {
+				width:296px;
+				height:81px;
+				clip:rect(0px 0px 0px 0px);
+			}
+	
+	
+			td.img {
+				width:134px;
+				text-align:center;
+				-moz-align:center;
+			}
+	
+			td.img div.bounding {
+				width:120px;
+				max-height:60px;
+				overflow:hidden;
+			}
+	
+			td.imgbig {
+				width:296px;
+                                height:106px;
+                                vertical-align:middle;
+				text-align:center;
+				-moz-align:center;
+			}
+	
+			td.imgbig div.bounding {
+				width:234px;
+				max-height:60px;
+				overflow:hidden;
+			}
+	
+			td.text div {
+				margin:0px;
+				margin-left:2px;
+				margin:0px;
+				margin-left:5px;
+				width:150px;
+				height:100px;
+				overflow:hidden;
+			}
+	
+			td.text div table {
+				width:150px;
+				height:60px;
+			}
+
+			td.text div table tr td {
+			}			
+	
+			a.link {
+				color:#333333;
+				font-family:arial;
+				font-size:10px;
+				text-decoration:none;
+				line-height:12px;
+			}
+	
+   div.b:nth-child(2) {
+				left: 0px;
+				top: 109px;
+			}
+
+			div.b:nth-child(3) {
+				left: 0px;
+				top: 214px;
+			}
+
+			div.b:nth-child(4) {
+				left: 0px;
+				top: 490px;
+			}
+
+
+			td.text div table {
+				width:110px;
+				height:106px;
+			}
+	
+			hr {
+             border:0;
+             border-top:1px solid #9B9B9B;
+             height:1px;
+             width:42px;
+             text-align:center;
+             margin-top:4px;
+            }
+            
+            #b2 hr {display:none}
+            
+			a.link {
+				color:#4A4A4A;
+				font-family: 'Source Sans Pro', sans-serif;
+				font-size:10px;
+				text-decoration:none;
+                font-weight:400;
+				line-height:13px;
+			}
+
+			a.link:hover {
+				text-decoration:none;
+			}
+
+			div.headline {
+				margin-top:5px;
+				height:10px;
+			}
+
+			a.headline {
+				color:#4A4A4A;
+				font-family: 'Source Sans Pro', sans-serif;
+				font-size:10px;
+				text-decoration:none;
+                font-weight:700;
+				line-height:13px;
+			}
+	
+			a.headline:hover {
+				text-decoration:none;
+			}
+
+
+		</style>
+		
+		
+	</head>
+	
+	<body>
+	
+		<script>
+
+			var currentTime = new Date();	
+
+			function handleMouseOver(id) {
+				if ( ! interactions[id].awaiting ) {
+					interactions[id].awaiting = true;
+					currentTime = new Date();	
+					interactions[id].awaitingSince = currentTime.getTime() / 1000;
+				} else {
+					currentTime = new Date();	
+					var timeNow = currentTime.getTime() / 1000;
+					if ( ( ( timeNow - interactions[id].awaitingSince ) > 1 ) && ( ! interactions[id].interacted ) ) {
+						interactions[id].interacted = true;
+						document.getElementById('mouseinteraction').src='//hal9000.redintelligence.net/interaction.php?c='+interactions[id].c+'&h='+interactions[id].h;
+					}
+				}
+			}
+
+		</script>
+
+		<div class="container">
+	
+			
+	
+			
+
+				
+					<div class="contentad"><table cellspacing="0" cellpadding="0" border="0" width="300" height="250">
+						<tr>
+							<td width="300" height="250" align="center" onMouseMove="handleMouseOver(0)"><script type="text/javascript" src="https://img.metaffiliation.com/na/na/res/trk/script.js" ></script>        
+<script type="text/javascript">
+    try {
+        new __trknanapub("S4BED351F57B153",{
+            'argsite' : '124901692185533832',
+            'pcsite' : 'https://n32.hal9000.redintelligence.net/c/pcxtx8evlxhu32q?tprde='
+            }
+        );
+    } catch(e) {}
+</script></td>
+						</tr>
+					</table></div>
+				
+
+
+				
+
+
+				
+
+
+				
+
+
+
+<div id="container2">
+			
+				
+
+
+				
+           
+						
+				
+					<div id="b[1]" class="b c2" onClick="window.open('https://n32.hal9000.redintelligence.net/c/pmquxt43f3ywznd')" onMouseMove="handleMouseOver(1)">
+						<table id="tmix[1]" class="b" cellspacing="0" cellpadding="0" border="0">
+							<tr>
+								<td class="img"><div class="bounding"><div><script type="text/javascript" src="https://banniere.reussissonsensemble.fr/view.asp?ref=527540&js=1&site=12927&b=10&target=_blank&title=Mondadori+-+Kiosque+Mag&PURL=https%3A%2F%2Fn32.hal9000.redintelligence.net%2Fc%2Fpisfttn1b7632xa%3Ftprde%3D&subid=124901692185533832" ></script><noscript><a href="http://clic.reussissonsensemble.fr/click.asp?ref=527540&site=12927&type=b10&bnb=10&PURL=https%3A%2F%2Fn32.hal9000.redintelligence.net%2Fc%2Fpisfttn1b7632xa%3Ftprde%3D&subid=124901692185533832" target="_blank">
+<img src="https://banniere.reussissonsensemble.fr/view.asp?ref=527540&site=12927&b=10&subid=124901692185533832" border="0" title="Mondadori - Kiosque Mag" alt="Mondadori - Kiosque Mag" width="120" height="40" /></a></noscript></div></div></td><td class="text"><div><table cellspacing="0" cellpadding="0" border="0"><tr><td><a href="https://n32.hal9000.redintelligence.net/c/pmquxt43f3ywznd" class="link" target="_blank">Des magazines pour toutes vos envies</a><br><a href="https://n32.hal9000.redintelligence.net/c/pmquxt43f3ywznd" class="headline" target="_blank">www.kiosquemag.com</a></td></tr></table></div></td>
+							</tr>
+	
+						</table>
+						<hr>
+					</div>
+				
+
+
+				
+           
+						
+				
+
+
+				
+					<div id="b[2]" class="b c3" onClick="window.open('https://n32.hal9000.redintelligence.net/c/ppqwhl9iav5x32q')" onMouseMove="handleMouseOver(2)">	
+						<table id="tbig[2]" cellspacing="0" cellpadding="0" border="0">
+							<tr>
+								<td class="imgbig"><div class="bounding" onClick="disabledEventPropagation(event)"><script type="text/javascript" src="https://banniere.reussissonsensemble.fr/view.asp?ref=527540&js=1&site=7537&b=109&target=_blank&title=Swarovski+FR&PURL=https%3A%2F%2Fn32.hal9000.redintelligence.net%2Fc%2Fp9h8xgkbvmw229t%3Ftprde%3D&subid=124901692185533832" ></script><noscript><a href="https://clic.reussissonsensemble.fr/click.asp?ref=527540&site=7537&type=b109&bnb=109&PURL=https%3A%2F%2Fn32.hal9000.redintelligence.net%2Fc%2Fp9h8xgkbvmw229t%3Ftprde%3D&subid=124901692185533832" target="_blank">
+<img src="https://banniere.reussissonsensemble.fr/view.asp?ref=527540&site=7537&b=109&subid=124901692185533832" border="0" title="Swarovski FR" alt="Swarovski FR" width="234" height="60" /></a></noscript></div></td>
+							</tr>
+						</table>
+						<hr>
+					</div>
+				
+           
+						
+				
+					<div id="b[3]" class="b c4" onClick="window.open('https://n32.hal9000.redintelligence.net/c/pfd7x9v7vsw0gvt')" onMouseMove="handleMouseOver(3)">
+						<table id="tmix[3]" class="b" cellspacing="0" cellpadding="0" border="0">
+							<tr>
+								<td class="img"><div class="bounding"><div><a href="https://n32.hal9000.redintelligence.net/c/pfd7x9v7vsw0gvt" target="_blank"><img src="https://action.metaffiliation.com/trk.php?maff=P313851F57B1120&argsite=124901692185533832"></a></div></div></td><td class="text"><div><table cellspacing="0" cellpadding="0" border="0"><tr><td><a href="https://n32.hal9000.redintelligence.net/c/pfd7x9v7vsw0gvt" class="link" target="_blank">29.000 Jeux & Jouets de qualitÃ© & de grandes marques chez Avenue des Jeux.</a><br><a href="https://n32.hal9000.redintelligence.net/c/pfd7x9v7vsw0gvt" class="headline" target="_blank">Avenue des Jeux</a></td></tr></table></div></td>
+							</tr>
+	
+						</table>
+						<hr>
+					</div>
+				
+
+
+				
+           
+			
+	 </div>
+			
+	
+		</div>
+
+		<img style="position:absolute;visibility:hidden" id="mouseinteraction" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" />
+			
+		
+
+		<script>
+			var interactions = new Array();
+			interactions.push({awaiting:false,awaitingSince:0,interacted:false,c:'395781',h:'9314078a3f11'});interactions.push({awaiting:false,awaitingSince:0,interacted:false,c:'330299',h:'4c8c945b4bee'});interactions.push({awaiting:false,awaitingSince:0,interacted:false,c:'18173',h:'51d17c37fc02'});interactions.push({awaiting:false,awaitingSince:0,interacted:false,c:'15521',h:'2b2e30f03799'});
+		</script>
+
+
+		
+	
+	</body>
+
+</html>

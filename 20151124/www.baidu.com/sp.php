@@ -1,0 +1,140 @@
+try {
+ht5=0;
+if(window.localStorage){ht5=1;}
+var speedTest =  new bds.se.speedMonitor({
+	"logPath":"https://www.baidu.com/splg/s.gif",
+	"nt":"56549790",
+	"flag":"dt",											
+	"sleep":2000												
+});
+
+//IDC:AI
+speedTest.addTask({
+    "id":"1",
+    "name":"dt",
+    "url":"https://awww.baidu.com/nocache/imgdata/sp10.gif?v=5d81d293l56549790",
+    "size":"10000",
+    "logData":{
+        "i":"147.210.129.93",
+        "c":"awww.baidu.com",
+		"round":"1",
+		"hts":ht5,
+        "ts":"56549790"
+    }
+});
+
+//IDC:TC
+speedTest.addTask({
+    "id":"2",
+    "name":"dt",
+    "url":"https://twww.baidu.com/nocache/imgdata/sp10.gif?v=5d81d293l56549790",
+    "size":"10000",
+    "logData":{
+        "i":"147.210.129.93",
+        "c":"twww.baidu.com",
+		"round":"2",
+        "ts":"56549790"
+    }
+});
+
+//IDC:M1
+speedTest.addTask({
+    "id":"3",
+    "name":"dt",
+    "url":"https://jwww.baidu.com/nocache/imgdata/sp10.gif?v=5d81d293l56549790",
+    "size":"10000",
+    "logData":{
+        "i":"147.210.129.93",
+        "c":"jwww.baidu.com",
+		"round":"3",
+        "ts":"56549790"
+    }
+});
+
+//IDC:DBL
+speedTest.addTask({
+    "id":"4",
+    "name":"dt",
+    "url":"https://dwww.baidu.com/nocache/imgdata/sp10.gif?v=5d81d293l56549790",
+    "size":"10000",
+    "logData":{
+        "i":"147.210.129.93",
+        "c":"dwww.baidu.com",
+		"round":"4",
+        "ts":"56549790"
+    }
+});
+
+//IDC:NJ02
+speedTest.addTask({
+    "id":"5",
+    "name":"dt",
+    "url":"https://nj2uwww.baidu.com/nocache/imgdata/sp10.gif?v=5d81d293l56549790",
+    "size":"10000",
+    "logData":{
+        "i":"147.210.129.93",
+        "c":"nj2uwww.baidu.com",
+		"round":"5",
+        "ts":"56549790"
+    }
+});
+
+//IDC:NJ02
+speedTest.addTask({
+    "id":"6",
+    "name":"dt",
+    "url":"https://nwww.baidu.com/nocache/imgdata/sp10.gif?v=5d81d293l56549790",
+    "size":"10000",
+    "logData":{
+        "i":"147.210.129.93",
+        "c":"nwww.baidu.com",
+		"round":"6",
+        "ts":"56549790"
+    }
+});
+
+//IDC:HZ01
+speedTest.addTask({
+    "id":"7",
+    "name":"dt",
+    "url":"https://hwww.baidu.com/nocache/imgdata/sp10.gif?v=5d81d293l56549790",
+    "size":"10000",
+    "logData":{
+        "i":"147.210.129.93",
+        "c":"hwww.baidu.com",
+		"round":"7",
+        "ts":"56549790"
+    }
+});
+
+//IDC:GZHXY
+speedTest.addTask({
+    "id":"8",
+    "name":"dt",
+    "url":"https://hxywww.baidu.com/nocache/imgdata/sp10.gif?v=5d81d293l56549790",
+    "size":"10000",
+    "logData":{
+        "i":"147.210.129.93",
+        "c":"hxywww.baidu.com",
+		"round":"8",
+        "ts":"56549790"
+    }
+});
+
+//IDC:GZNS
+speedTest.addTask({
+    "id":"9",
+    "name":"dt",
+    "url":"https://nswww.baidu.com/nocache/imgdata/sp10.gif?v=5d81d293l56549790",
+    "size":"10000",
+    "logData":{
+        "i":"147.210.129.93",
+        "c":"nswww.baidu.com",
+		"round":"9",
+        "ts":"56549790"
+    }
+});
+
+speedTest.start();
+}catch(e){
+}

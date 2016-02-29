@@ -1,0 +1,213 @@
+/* ==============================================================================================
+Sass variables 
+============================================================================================== */
+/* ==============================================================================================
+
+  Fonts 
+  To add fonts use fontPrep https://github.com/briangonzalez/fontprep to create font
+
+  To create a custom set of fonts convert to hex and use subset of fontprep or other font 
+  conversion tool -  http://www.unit-conversion.info/texttools/hexadecimal/ 
+ 
+============================================================================================== */
+html {
+  box-sizing: border-box; }
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit; }
+
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  color: #fff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
+
+#mainContent {
+  position: relative;
+  overflow: hidden;
+  width: 970px;
+  height: 250px;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+  -webkit-transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
+  transform: rotate(0deg);
+  border: 1px solid black;
+  background: #03070a; }
+
+#exit {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 970px;
+  height: 250px;
+  cursor: pointer; }
+
+#video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 970px;
+  height: 250px; }
+
+a {
+  text-decoration: none;
+  color: #fff; }
+
+#googleLogo {
+  position: absolute;
+  top: 90px;
+  left: 50%;
+  width: 170px;
+  height: 60px;
+  background: url(../img/googleLogo_white.svg) center center no-repeat;
+  background-size: 100%;
+  -webkit-transform: translateX(-85px) rotate(0.01deg);
+  -ms-transform: translateX(-85px) rotate(0.01deg);
+  transform: translateX(-85px) rotate(0.01deg);
+  opacity: 0; }
+
+#lineOne {
+  font-size: 40px;
+  font-weight: 300;
+  position: absolute;
+  top: 97px;
+  left: 140px;
+  display: block;
+  width: 600px;
+  -webkit-transform: translateX(calc(-170px/2));
+  -ms-transform: translateX(calc(-170px/2));
+  transform: translateX(calc(-170px/2));
+  letter-spacing: -2px; }
+  #lineOne.out {
+    opacity: 0;
+    -webkit-filter: blur(6px); }
+  #lineOne.small {
+    font-weight: 400; }
+
+#lineThree {
+  left: -1px; }
+
+#lineThreeA {
+  left: -2px; }
+
+#lineFour {
+  top: -11px;
+  left: -2px; }
+
+.copy {
+  font-size: 48px;
+  font-weight: 300;
+  line-height: .9;
+  position: absolute;
+  top: 15px;
+  width: 100%;
+  text-align: center;
+  letter-spacing: -2px;
+  opacity: 0; }
+
+.share {
+  position: relative;
+  top: 5px;
+  left: 5px;
+  display: block;
+  height: 30px;
+  padding: 0;
+  list-style: none;
+  text-indent: 0; }
+  .share #shareOver {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background: aqua; }
+  .share span {
+    position: absolute;
+    display: block;
+    width: 30px;
+    height: 30px;
+    padding: 8px;
+    border-radius: 2px; }
+    .share span#mail {
+      background: url(../img/email.png) center center no-repeat; }
+    .share span#gPlus {
+      background: url(../img/gPlus.png) center center no-repeat; }
+    .share span#facebook {
+      background: url(../img/facebook.png) center center no-repeat; }
+    .share span#twitter {
+      background: url(../img/twitter.png) center center no-repeat; }
+    .share span#linkedIn {
+      background: url(../img/linkedIn.png) center center no-repeat; }
+    .share span:hover#mail {
+      background-color: #868686; }
+    .share span:hover#gPlus {
+      background-color: #e4503c; }
+    .share span:hover#facebook {
+      background-color: #325c97; }
+    .share span:hover#twitter {
+      background-color: #42afed; }
+    .share span:hover#linkedIn {
+      background-color: #127ab4; }
+    .share span:not(:first-child) {
+      top: 5px;
+      margin-left: -40px;
+      opacity: 1; }
+    .share span img,
+    .share span p {
+      position: absolute;
+      margin: 0;
+      padding: 0; }
+    .share span p {
+      font-size: 12px;
+      top: 12px;
+      left: 38px; }
+
+#button {
+  position: absolute;
+  top: 122px;
+  left: 50%;
+  width: 266px;
+  height: 57px;
+  margin: 0 auto;
+  opacity: 0; }
+
+#button .button {
+  font: 500 16px/42px 'roboto';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  padding: 8px 20px 0 0;
+  transition: all .17s linear;
+  -webkit-transform-origin: 50% 50% -28.5px;
+  -ms-transform-origin: 50% 50% -28.5px;
+  transform-origin: 50% 50% -28.5px;
+  text-align: center;
+  letter-spacing: -.25px;
+  text-transform: uppercase;
+  border-radius: 2px;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden; }
+
+.button.front {
+  -webkit-transform: rotateX(0deg);
+  transform: rotateX(0deg);
+  color: #fff;
+  background: #4285f4 url(../img/arrowWhite.svg) 95% 50% no-repeat; }
+
+.button.back {
+  -webkit-transform: rotateX(90deg);
+  transform: rotateX(90deg);
+  color: #4285f4;
+  background: #fff url(../img/arrowBlue.svg) 95% 50% no-repeat; }
+
+.active .button.front {
+  -webkit-transform: rotateX(-90deg);
+  transform: rotateX(-90deg); }
+
+.active .button.back {
+  -webkit-transform: rotateX(0deg);
+  transform: rotateX(0deg); }

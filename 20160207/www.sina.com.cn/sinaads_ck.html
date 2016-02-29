@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title> sinaads-ck-mp-script </title>
+</head>
+<body>
+  <script type="text/javascript">
+    /**
+     * CrossDomainStorage
+     */
+    (function(exports, name) {
+        var fns = [];
+        var isReady = 0;
+        var iframeStore = null;
+        var EXPORTNAME = name || '___SinaadsCrossDomainStorage___';
+        var HANDLE = EXPORTNAME + '.onReady';
+        var opt = {
+            domain: 'sina.com.cn',
+            url: 'http://news.sina.com.cn/iframe/87/store.html'
+        };
+        var ERROR = {
+            domain: 'fail to set domain!'
+        };
+        var loadStore = function() {
+            if (iframeStore) {
+                return;
+            }
+            try {
+                document.domain = opt.domain;
+            } catch (e) {
+                throw new Error(ERROR.domain);
+            }
+            var node = document.getElementById(EXPORTNAME);
+            if (node) {
+                node.parentNode.removeChild(node);
+            }
+            var iframeWrap = document.createElement('div');
+            var doc = document.body;
+            var iframe = '<iframe src="' + opt.url + '?handle=' + HANDLE + '&domain=' + opt.domain + '" frameborder="0"></iframe>';
+            var px = '-' + 1e5 + 'em';
+            iframeWrap.style.position = 'absolute';
+            iframeWrap.style.left = px;
+            iframeWrap.style.top = px;
+            iframeWrap.className = 'hidden';
+            iframeWrap.id = EXPORTNAME;
+            iframeWrap.innerHTML = iframe;
+            doc.insertBefore(iframeWrap, doc.childNodes[0]);
+        };
+
+        var checkReady = function() {
+            if (!isReady) {
+                loadStore();
+            }
+            return isReady;
+        };
+        var CrossDomainStorage = {};
+        CrossDomainStorage.ready = function(fn) {
+            if (!checkReady()) {
+                //ifrmaeè¿æ²¡å è½½
+                fns.push(fn);
+                return;
+            }
+            fn(iframeStore);
+        };
+        CrossDomainStorage.onReady = function(store) {
+            if (isReady) {
+                return;
+            }
+            isReady = 1;
+            iframeStore = store;
+            if (fns) {
+                while (fns.length) {
+                    fns.shift()(store);
+                }
+            }
+            fns = null;
+        };
+        CrossDomainStorage.config = function(o) {
+            if (!o) {
+                return;
+            }
+            for (var i in o) {
+                if (o.hasOwnProperty(i)) {
+                    opt[i] = o[i] || opt[i];
+                }
+            }
+            return this;
+        };
+        exports[EXPORTNAME] = CrossDomainStorage;
+    })(window);
+
+    /*!
+     * sinaadToolkit
+     * @description æ°æµªå¹¿åå·¥å·åï¼æä¾äºæµè§å¨å¤æ­ï¼æ¸²æï¼cookie, storage, iframe, è½¬ä¹ç­åºç¡æä½
+     * @author  acelan <xiaobin8[at]staff.sina.com.cn>
+     * @version  1.0.0
+     */
+    (function (window, undefined) {
+
+        "use strict";
+
+        /**
+         * @global
+         * @namespace
+         * @name sinaadToolkit
+         */
+        var sinaadToolkit = window.sinaadToolkit = window.sinaadToolkit || /** @lends sinaadToolkit */{
+            /**
+             * å·¥å·åçæ¬å·
+             * @type {String}
+             * @const
+             */
+            VERSION : '1.0.0',
+            /**
+             * æ¨¡å¼ debug || release
+             * å¨é¡µé¢urlä¸­ä½¿ç¨__sinaadToolkitDebug__å¯ä»¥è§¦ådebugæ¨¡å¼
+             */
+            mode : window.location.href.indexOf('__sinaadToolkitDebug__') !== -1 ? 'debug' : 'release',  //æ¯å¦å¼å¯debugæ¨¡å¼
+            /**
+             * è°è¯æ¹æ³ï¼ç¨äºæ¹ä¾¿çº¿ä¸è°è¯é®é¢
+             * @param  {String} msg è¾åºçä¿¡æ¯
+             */
+            debug : (function () {
+                /**
+                 * @remarks å½scriptæ¾å¨headä¸­ï¼ç«å³æ§è¡çæ¶ådoc.bodyä¸å­å¨ï¼è¿æ¶åæ¨¡æçconsoleçªå£æ²¡æå°æ¹ææ¥
+                 * è¿æ¯æä»¬éæ©çæ¯æå¼è¿é¨ådebugä¿¡æ¯ï¼åç»­èèä½¿ç¨cacheå°è¿é¨åä¿¡æ¯ç¼å­ä¸æ¥ï¼å½bodyå è½½åè¿è¡åæ¾
+                 * ä½æ¯èèå°è¿åªæ¯è°è¯ä¿¡æ¯ï¼èä¸headä¸ææ¥jsçä½¿ç¨æ¹æ³å¨å¹¿åé»è¾ä¸æ¯è¾å°ç¨ï¼å æ­¤æ²¡æå¿è¦è±å¤§åæ°ç¨å è¡
+                 * ä»£ç å»å®ç°è¿ä¸ªåè½ã
+                 */
+                var containerId = 'sinaadToolkitDebugContainer';
+                var console = window.console || {
+                    log : function (msg) {
+                        if (!document.body) {
+                            return;
+                        }
+                        var consoleView = document.getElementById(containerId);
+                        if (!consoleView) {
+                            consoleView = document.createElement('ul');
+                            consoleView.id = containerId;
+                            consoleView.style.cssText = 'z-index:99999;overflow:auto;height:300px;position:absolute;right:0;top:0;opacity:.9;*filter:alpha(opacity=90);background:#fff;width:500px;';
+                            document.body.insertBefore(consoleView, document.body.firstChild);
+                        }
+                        var li = document.createElement('li');
+                        li.style.cssText = 'border-bottom:1px dotted #ccc;line-height:30px;font-size:12px;';
+                        li.innerHTML = msg + Array.prototype.slice.call(arguments, 1).join(' ');
+                        consoleView.appendChild(li);
+                    }
+                };
+                return function (msg) {
+                    if (sinaadToolkit.mode === 'debug') {
+                        console.log(msg, Array.prototype.slice.call(arguments, 1));
+                    }
+                };
+            })(),
+            /**
+             * éè¯¯ä¿¡æ¯
+             */
+            error : function (msg, e) {
+                try {
+                    sinaadToolkit.sio.log('//d00.sina.com.cn/a.gif?' + [
+                        'type=' + 'sinaads_error',
+                        'msg=' + encodeURIComponent(msg ? msg : e ? e.message : 'unknow'),
+                        'ref=' + encodeURIComponent(sinaadToolkit.url.top),
+                        'ja=' + (navigator.javaEnabled() ? 1 : 0),
+                        'ck=' + (navigator.cookieEnabled ? 1 : 0),
+                        'ds=' + (window.screen.width + "x" + window.screen.height),
+                        'ua=' + encodeURIComponent(navigator.appVersion),
+                        'pf=' + navigator.platform,
+                        'ts=' + sinaadToolkit.now()
+                    ].join('&'));
+                } catch (e) {}
+
+                if (sinaadToolkit.mode === 'debug') {
+                    throw new Error(msg + (e ? ':' + e.message : ''));
+                }
+            },
+            /**
+             * è·åå½åæ¶é´æ³
+             * @return {Number} å½åæ¶é´æ³
+             * @static
+             */
+            now : function () {
+                return +new Date();
+            },
+            /**
+             * éæºæ°çæï¼çæä¸ä¸ªéæºæ°ç36è¿å¶è¡¨ç¤ºæ¹æ³
+             * @return {String} çæä¸ä¸ªéæºç36è¿å¶å­ç¬¦ä¸²ï¼åå«0-9a-zï¼
+             * @static
+             */
+            rnd : function () {
+                return Math.floor(Math.random() * 2147483648).toString(36);
+            },
+            /**
+             * è·å[min, max]åºé´åä»»ææ´æ°
+             * @param  {Number} min æå°å¼
+             * @param  {Number} max æå¤§å¼
+             * @return {Number}     
+             */
+            rand : function (min, max) {
+                return Math.floor(min + Math.random() * (max - min + 1));
+            },
+            /**
+             * æä¸ä¸ªå­ç¬¦ä¸²çæå¯ä¸hash
+             * @param  {String} s è¦çæhashçå­ç¬¦ä¸²
+             * @return {String}   36è¿å¶å­ç¬¦ä¸²
+             */
+            hash : function (s) {
+                var hash = 0,
+                    i = 0,
+                    w;
+
+                for (; !isNaN(w = s.charCodeAt(i++));) {
+                    hash = ((hash << 5) - hash) + w;
+                    hash = hash & hash;
+                }
+
+                return Math.abs(hash).toString(36);
+            },
+            /**
+             * å¤æ­æ¯å¦æ¯å½æ°
+             * @param  {Any}        source      éè¦å¤æ­çå¯¹è±¡
+             * @return {Boolean}                æ¯å¦æ¯å½æ°
+             * @staitc
+             */
+            isFunction : function (source) {
+                return '[object Function]' === Object.prototype.toString.call(source);
+            },
+            /**
+             * å¤æ­æ¯å¦æ¯å­ç¬¦ä¸²
+             * @param  {Any} source è¦å¤æ­çå¯¹è±¡
+             * @return {Boolean}        æ¯å¦å­ç¬¦ä¸²
+             * @static
+             */
+            isString : function (source) {
+                return '[object String]' === Object.prototype.toString.call(source);
+            },
+            /**
+             * å¤æ­æ¯å¦æ¯nullæèæªå®ä¹
+             * @param  {Any} source  è¦å¤æ­çå¯¹è±¡
+             * @return {Boolean}      æ¯å¦ä¸ºnullææªå®ä¹
+             */
+            isNull : function (source) {
+                return ('undefined' === typeof source) || (source === null);
+            },
+            /**
+             * å¤æ­æ¯å¦æ¯æ°ç»
+             */
+            isArray : function (source) {
+                return '[object Array]' === Object.prototype.toString.call(source);
+            },
+            /**
+             * å¤æ­æ¯å¦æ¯æ°å­
+             */
+            isNumber : function (source) {
+                return '[object Number]' === Object.prototype.toString.call(source) && isFinite(source);
+            }
+        };
+
+        /**
+         * @namespace sinaadToolkit.browser
+         */
+        sinaadToolkit.browser = sinaadToolkit.browser || (function (ua) {
+            /**
+             * @lends sinaadToolkit.browser
+             */
+            var browser = {
+                /**
+                 * æ¯å¦æ¯andriodç³»ç»
+                 * @type {Boolean}
+                 * @marks zeptoçAndroidå¤æ­å¥½åæé®é¢
+                 * eg: userAgent: Mozilla/4.0 (compatible;Android;320x480)
+                 */
+                //android : /(Android)\s+([\d.]+)/i.test(ua),
+                android : /(Android)(\s+([\d.]+))*/i.test(ua),
+                /**
+                 * @type {Boolean}
+                 */
+                ipad : /(iPad).*OS\s([\d_]+)/i.test(ua),
+                /**
+                 * @type {Boolean}
+                 */
+                webos : /(webOS|hpwOS)[\s\/]([\d.]+)/i.test(ua),
+                /**
+                 * @type {Boolean}
+                 */
+                kindle : /Kindle\/([\d.]+)/i.test(ua),
+                /** 
+                 * @type {Boolean}
+                 */
+                silk : /Silk\/([\d._]+)/i.test(ua),
+                /** 
+                 * @type {Boolean}
+                 */
+                blackberry : /(BlackBerry).*Version\/([\d.]+)/i.test(ua),
+                /** 
+                 * @type {Boolean}
+                 */
+                bb10 : /(BB10).*Version\/([\d.]+)/i.test(ua),
+                /** 
+                 * @type {Boolean}
+                 */
+                rimtabletos : /(RIM\sTablet\sOS)\s([\d.]+)/i.test(ua),
+                /** 
+                 * @type {Boolean}
+                 */
+                playbook : /PlayBook/i.test(ua),
+                /** 
+                 * å¦ææ¯chromeæµè§å¨ï¼è¿åæµè§å¨å½åçæ¬å·
+                 * @type {Number}
+                 */
+                chrome : /chrome\/(\d+\.\d+)/i.test(ua) ? + RegExp.$1 : undefined,
+                /**
+                 * å¦ææ¯firefoxæµè§å¨ï¼è¿åæµè§å¨å½åçæ¬å·
+                 * @type {Number}
+                 */
+                firefox : /firefox\/(\d+\.\d+)/i.test(ua) ? + RegExp.$1 : undefined,
+                /**
+                 * å¦ææ¯ieè¿åieå½åçæ¬å·
+                 * @type {Number}
+                 */
+                ie : /msie (\d+\.\d+)/i.test(ua) ? (document.documentMode || + RegExp.$1) : undefined,
+                /**
+                 * @type {Boolean}
+                 */
+                isGecko : /gecko/i.test(ua) && !/like gecko/i.test(ua),
+                /**
+                 * @type {Boolean}
+                 */
+                isStrict : document.compatMode === "CSS1Compat",
+                /**
+                 * @type {Boolean}
+                 */
+                isWebkit : /webkit/i.test(ua),
+                /**
+                 * å¦ææ¯opera,è¿åoperaå½åçæ¬å·
+                 * @type {Number}
+                 */
+                opera : /opera(\/| )(\d+(\.\d+)?)(.+?(version\/(\d+(\.\d+)?)))?/i.test(ua) ?  + (RegExp.$6 || RegExp.$2) : undefined
+            };
+
+            /**
+             * @type {Boolean}
+             */
+            browser.iphone = !browser.ipad && /(iPhone\sOS)\s([\d_]+)/i.test(ua);
+            /**
+             * @type {Boolean}
+             */
+            browser.touchpad = browser.webos && /TouchPad/.test(ua);
+            /**
+             * @type {Boolean}
+             */
+            browser.tablet = !!(browser.ipad || browser.playbook || (browser.android && !/Mobile/.test(ua)) || (browser.firefox && /Tablet/.test(ua)));
+            /**
+             * @type {Boolean}
+             */
+            browser.phone  = !!(!browser.tablet && (browser.android || browser.iphone || browser.webos || browser.blackberry || browser.bb10 || (browser.chrome && /Android/.test(ua)) || (browser.chrome && /CriOS\/([\d.]+)/.test(ua)) || (browser.firefox && /Mobile/.test(ua))));
+
+            try {
+                if (/(\d+\.\d+)/.test(window.external.max_version)) {
+                    /**
+                     * å¦ææ¯é¨æ¸¸æµè§å¨ï¼è¿åé¨æ¸¸çæ¬å·
+                     * @type {Number}
+                     */
+                    browser.maxthon = + RegExp.$1;
+                }
+            } catch (e) {}
+
+            browser.mobile = browser.tablet || browser.phone || browser.touchpad;
+
+            /**
+             * å¦ææ¯safariæµè§å¨ï¼è¿åsafariçæ¬å·
+             * @type {Number}
+             */
+            browser.safari = /(\d+\.\d)?(?:\.\d)?\s+safari\/?(\d+\.\d+)?/i.test(ua) && !/chrome/i.test(ua) ? + (RegExp.$1 || RegExp.$2) : undefined;
+            /**
+             * æ¯å¦æ¯æposition:fixedå±æ§
+             * @type {Boolean}
+             */
+            browser.isSupportFixed = !browser.ie || browser.ie >= 7;
+
+            return browser;
+
+        })(navigator.userAgent);
+
+
+        /**
+         * @namespace sinaadToolkit.array
+         */
+        sinaadToolkit.array = sinaadToolkit.array || /** @lends sinaadToolkit.array */{
+            /**
+             * ç§»é¤æ°ç»åç´ 
+             * @param  {Array} source è¦ç§»é¤åç´ çæ°ç»
+             * @param  {Any} match  è¦ç§»é¤çåç´ 
+             * @return {Array}        ç§»é¤åç´ åçæ°ç»
+             */
+            remove : function (source, match) {
+                var len = source.length;
+                    
+                while (len--) {
+                    if (len in source && source[len] === match) {
+                        source.splice(len, 1);
+                    }
+                }
+                return source;
+            },
+            /**
+             * éåæ°ç»
+             * @param  {Array} source     è¦éåçæºæ°ç»
+             * @param  {Function} iterator   éåæ¹æ³
+             * @param  {Object} thisObject è°ç¨å¯¹è±¡
+             * @return {Array}            è¢«éåçæºæ°ç»
+             */
+            each : function (source, iterator, thisObject) {
+
+                source = sinaadToolkit.array.ensureArray(source);
+
+                var returnValue,
+                    item,
+                    i,
+                    len = source.length;
+                
+                if ('function' === typeof iterator) {
+                    for (i = 0; i < len; i++) {
+                        item = source[i];
+                        //TODO
+                        //æ­¤å¤å®ç°åæ åä¸ç¬¦åï¼æ åä¸­æ¯è¿æ ·è¯´çï¼
+                        //If a thisObject parameter is provided to forEach, it will be used as the this for each invocation of the callback. If it is not provided, or is null, the global object associated with callback is used instead.
+                        returnValue = iterator.call(thisObject || source, item, i);
+                
+                        if (returnValue === false) {
+                            break;
+                        }
+                    }
+                }
+                return source;
+            },
+            /**
+             * å°ä¼ å¥åç´ è½¬æ¢æä¸ä¸ªæ°ç»ï¼å¦ææ¯ä¸ä¸ªæ°ç»ï¼ç´æ¥è¿åï¼å¦æä¸æ¯ï¼å¤æ­æ¯å¦ä¸ºnullæèundefined,å¦æä¸æ¯ï¼è¿åè¿ä¸ªåç´ ç»æçæ°ç»ï¼å¦åè¿åç©ºæ°ç»
+             * @param  {Any} source éè¦è½¬æ¢çå¯¹è±¡
+             * @return {Array}      è½¬æ¢åçæ°ç»
+             */
+            ensureArray : function (source) {
+                return sinaadToolkit.isArray(source) ? source : sinaadToolkit.isNull(source) ? [] : [source];
+            }
+        };
+
+
+        /**
+         * @namespace sinaadToolkit.event
+         */
+        sinaadToolkit.event = sinaadToolkit.event || /** @lends sinaadToolkit.event */{
+            /**
+             * æ³¨åäºä»¶
+             * @param  {HTMLNodeElement}   dom      äºä»¶çå¬èç¹
+             * @param  {String}   type     äºä»¶ç±»å
+             * @param  {Function} callback åè°æ¹æ³
+             */
+            on : function (dom, type, callback) {
+                if (dom.attachEvent) {
+                    dom.attachEvent('on' + type, callback);
+                } else if (dom.addEventListener) {
+                    dom.addEventListener(type, callback, false);
+                }
+            },
+            un : function (dom, type, callback) {
+                if (dom.detachEvent) {
+                    dom.detachEvent('on' + type, callback);
+                } else if (dom.removeEventListener) {
+                    dom.removeEventListener(type, callback);
+                }
+            }
+        };
+
+        /**
+         * @namespace sinaadToolkit.cookie
+         */
+        sinaadToolkit.cookie = sinaadToolkit.cookie || /** @lends sinaadToolkit.cookie */{
+            /**
+             * @private
+             * @param  {String} key è¦éªè¯çcookieçkey
+             * @return {Boolean}    æ¯å¦ä¸ºç¬¦åè§åçkey
+             */
+            // http://www.w3.org/Protocols/rfc2109/rfc2109
+            // Syntax:  General
+            // The two state management headers, Set-Cookie and Cookie, have common
+            // syntactic properties involving attribute-value pairs.  The following
+            // grammar uses the notation, and tokens DIGIT (decimal digits) and
+            // token (informally, a sequence of non-special, non-white space
+            // characters) from the HTTP/1.1 specification [RFC 2068] to describe
+            // their syntax.
+            // av-pairs   = av-pair *(";" av-pair)
+            // av-pair    = attr ["=" value] ; optional value
+            // attr       = token
+            // value      = word
+            // word       = token | quoted-string
+             
+            // http://www.ietf.org/rfc/rfc2068.txt
+            // token      = 1*<any CHAR except CTLs or tspecials>
+            // CHAR       = <any US-ASCII character (octets 0 - 127)>
+            // CTL        = <any US-ASCII control character
+            //              (octets 0 - 31) and DEL (127)>
+            // tspecials  = "(" | ")" | "<" | ">" | "@"
+            //              | "," | ";" | ":" | "\" | <">
+            //              | "/" | "[" | "]" | "?" | "="
+            //              | "{" | "}" | SP | HT
+            // SP         = <US-ASCII SP, space (32)>
+            // HT         = <US-ASCII HT, horizontal-tab (9)>
+            _isValidKey : function (key) {
+                return (new RegExp("^[^\\x00-\\x20\\x7f\\(\\)<>@,;:\\\\\\\"\\[\\]\\?=\\{\\}\\/\\u0080-\\uffff]+\x24")).test(key);
+            },
+            /**
+             * ä»cookieä¸­è·åkeyæå¯¹åºçå¼
+             * @private
+             * @param  {String} key è¦è·åçcookieçkey
+             * @return {String}     cookieå¯¹åºè¯¥keyçå¼
+             */
+            _getRaw : function (key) {
+                if (sinaadToolkit.cookie._isValidKey(key)) {
+                    var reg = new RegExp("(^| )" + key + "=([^;]*)(;|\x24)"),
+                        result = reg.exec(document.cookie);
+                         
+                    if (result) {
+                        return result[2] || null;
+                    }
+                }
+                return null;
+            },
+            /**
+             * å°cookieä¸­keyçå¼è®¾ç½®ä¸ºvalue, å¹¶å¸¦å¥ä¸äºåæ°
+             * @private
+             * @param  {String} key è¦è®¾ç½®çcookieçkey
+             * @param  {String} value è¦è®¾ç½®çå¼
+             * @param  {Object} options éé¡¹
+             */
+            _setRaw : function (key, value, options) {
+                if (!sinaadToolkit.cookie._isValidKey(key)) {
+                    return;
+                }
+                 
+                options = options || {};
+
+                // è®¡ç®cookieè¿ææ¶é´
+                var expires = options.expires;
+                if ('number' === typeof options.expires) {
+                    expires = new Date();
+                    expires.setTime(expires.getTime() + options.expires);
+                }
+                 
+                document.cookie =
+                    key + "=" + value +
+                    (options.path ? "; path=" + options.path : "") +
+                    (expires ? "; expires=" + expires.toGMTString() : "") +
+                    (options.domain ? "; domain=" + options.domain : "") +
+                    (options.secure ? "; secure" : '');
+
+            },
+            /**
+             * è·åcookieä¸­keyçå¼
+             * @param  {String} key è¦è·åçkey
+             * @return {String}     cookieå¼
+             */
+            get : function (key) {
+                var value = sinaadToolkit.cookie._getRaw(key);
+                if ('string' === typeof value) {
+                    value = decodeURIComponent(value);
+                    return value;
+                }
+                return null;
+            },
+            /**
+             * è®¾ç½®cookieå¼
+             * @param  {String} key     è¦è®¾ç½®çkey
+             * @param  {String} value   è¦è®¾ç½®çvalue   
+             * @param  {object} options éé¡¹
+             */
+            set : function (key, value, options) {
+                sinaadToolkit.cookie._setRaw(key, encodeURIComponent(value), options);
+            },
+            /**
+             * ç§»é¤keyç¸å³çcookie
+             * @param  {String} key     è¦ç§»é¤çcookieçkey
+             * @param  {Object} options éé¡¹
+             */
+            remove : function (key, options) {
+                options = options || {};
+                options.expires = new Date(0);
+                sinaadToolkit.cookie._setRaw(key, '', options);
+            }
+        };
+
+        /**
+         * @namespace sinaadToolkit.storage
+         */
+        sinaadToolkit.storage = sinaadToolkit.storage || (function () {
+            //å³é­æµè§å¨åè¿æçkey
+            var _sessionStorageMap = {};
+            //å·æ°æµè§å¨æ¸ç©ºæ²¡æè®¾ç½®expiresçå­å¨
+            sinaadToolkit.event.on(window, 'beforeunload', function () {
+                for (var key in _sessionStorageMap) {
+                    try {
+                        sinaadToolkit.storage.remove(key);
+                        delete _sessionStorageMap[key];
+                    } catch (e) {}
+                }
+            });
+
+            /**
+             * userDataç¸å³æ¹æ³
+             */
+            var userData = {
+                id : 'sinaadToolkitUserDataContainer',
+                name : location.hostname,
+                init : function () {
+                    var dom = document.getElementById(userData.id);
+                    if (!dom) {
+                        try {
+                            dom = document.createElement('input');
+                            dom.type = "hidden";
+                            dom.style.display = "none";
+                            dom.addBehavior("#default#userData");
+                            document.body.insertBefore(dom, document.body.firstChild);
+                            var expires = new Date();
+                            expires.setDate(expires.getDate() + 365);
+                            dom.expires = expires.toUTCString();
+                        } catch (e) {
+                            sinaadToolkit.debug('sinaadToolkit.storage:userData init fail, ' + e.message);
+                            return null;
+                        }
+                    }
+                    return dom;
+                },
+                setItem : function (key, value, expires) {
+                    var dom = userData.init();
+                    if (dom) {
+                        dom.load(userData.name);
+                        dom.setAttribute(key, value + (expires ? ';expires=' + (sinaadToolkit.now() + expires) : ''));
+                        dom.save(userData.name);
+                    }
+                    if (!expires) {
+                        _sessionStorageMap[key] = 1;
+                    }
+                },
+                getItem : function (key) {
+                    var dom = userData.init();
+                    if (dom) {
+                        dom.load(userData.name);
+                        return dom.getAttribute(key);
+                    }
+                    return null;
+                },
+                removeItem : function (key) {
+                    var dom = userData.init();
+                    if (dom) {
+                        dom.load(userData.name);
+                        dom.removeAttribute(key);
+                        dom.save(userData.name);
+                    }
+                }
+            };
+
+            /**
+             * localstorageç¸å³æ¹æ³
+             */
+            var ls = {
+                getItem : function (key) {
+                    return window.localStorage.getItem(key);
+                },
+                setItem : function (key, value, expires) {
+                    window.localStorage.setItem(key, value + (expires ? ';expires=' + (sinaadToolkit.now() + expires) : ''));
+                    if (!expires) {
+                        _sessionStorageMap[key] = 1;
+                    }
+                },
+                removeItem : function (key) {
+                    window.localStorage.removeItem(key);
+                }
+            };
+
+            /**
+             * cookieç¸å³æ¹æ³
+             * @type {Object}
+             */
+            var cookie = {
+                getItem : function (key) {
+                    return sinaadToolkit.cookie.get(key);
+                },
+                setItem : function (key, value, expires) {
+                    sinaadToolkit.cookie.set(key, value, {expires : expires || 0});
+                },
+                removeItem : function (key) {
+                    sinaadToolkit.cookie.remove(key);
+                }
+            };
+
+            /** 
+             * æ ¹æ®æµè§å¨æ¯æéæ©ç¸å³çå­å¨æ¹æ¡
+             * å½ieä¸ie<8æ¶ä½¿ç¨userDataæ¹æ¡ï¼å¦åä½¿ç¨localStorageæ¹æ¡ï¼å¦åä½¿ç¨cookieæ¹æ¡
+             * éç§æ¨¡å¼ä¸storageä¼åå¥å¤±è´¥
+             */
+            var storage = window.localStorage ? ls : sinaadToolkit.browser.ie && sinaadToolkit.browser.ie < 8 ? userData : cookie;
+
+            /**
+             * æµè¯storageæ¯å¦æåï¼éç§æ¨¡å¼ä¸localstorageä¼å¤±è´¥
+             */
+            try {
+                storage.setItem('sinaads_test_ls', 'support');
+            } catch (e) {
+                storage = cookie;
+            }
+
+            return /** @lends sinaadToolkit.storage */{
+                /**
+                 * è·åæ¬å°å­å¨çkeyçå¼
+                 * @param  {String} key key
+                 * @return {String}     åå¾çå¼
+                 */
+                get : function (key) {
+                    try {
+                        var value = storage.getItem(key);
+                        if (value) {
+                            sinaadToolkit.debug('sinaadToolkit.storage.get:get value of ' + key + ':' + value);
+                            value = value.split(';expires=');
+                            //æè¿ææ¶é´
+                            if (value[1] && sinaadToolkit.now() > parseInt(value[1], 10)) {
+                                storage.removeItem(key);
+                                return null;
+                            } else {
+                                return value[0];
+                            }
+                        }
+                        return null;
+                    } catch (e) {
+                        sinaadToolkit.debug('sinaadToolkit.storage.get:' + e.message);
+                        return null;
+                    }
+                },
+                /**
+                 * è®¾ç½®æ¬å°å­å¨keyçå¼ä¸ºvalue
+                 * æ³¨æï¼è¯·ä¸è¦è®¾ç½®éå­ç¬¦ä¸²æ ¼å¼å½¢å¼çå¼å°æ¬å°å­å¨
+                 * @param  {String} key     è®¾ç½®çkey
+                 * @param  {String} value   è®¾ç½®çvalue
+                 * @param  {Number} expires è¿ææ¶é´æ¯«ç§æ°
+                 */
+                set : function (key, value, expires) {
+                    try {
+                        storage.setItem(key, value, expires);
+                    } catch (e) {
+                        sinaadToolkit.error('sinaadToolkit.storage.set:' + e.message);
+                    }
+                },
+                /**
+                 * ç§»é¤æ¬å°å­å¨ä¸­keyçå¼
+                 * @param  {String} key è¦ç§»é¤çkey
+                 */
+                remove : function (key) {
+                    try {
+                        storage.removeItem(key);
+                    } catch (e) {
+                        sinaadToolkit.error('sinaadToolkit.storage.remove:' + e.message);
+                    }
+                }
+            };
+        })();
+
+
+        /* æµè¯ç§»é¤æ²¡æè®¾ç½®è¿ææ¶é´çå­å¨ */
+        // sinaadToolkit.storage.set('noexpireskey', 1);
+        // sinaadToolkit.storage.set('noexpireskey2', 2);
+
+        /**
+         * @namespace sinaadToolkit.url
+         */
+        sinaadToolkit.url = sinaadToolkit.url || /** @lends sinaadToolkit.url */{
+            protocol : (function() {
+                return (window.location.protocol === "https:" ? "https://" : "http://");
+            })(),
+            /**
+             * ç¡®ä¿ä¼ å¥çå­ç¬¦ä¸²æ¯ä¸ä¸ªurl, åæ¶å»é¤ååç©ºæ ¼
+             * iframeçsrcå¨ieä¸åè®®åéä¼å¯¼è´å·æ°å½åé¡µé¢æiframeçsrc,
+             * å¤æ­æ¯å¦æhttpæèhttpså¼å¤´ï¼å¦ææ²¡æç´æ¥è®¤å®æ·»å httpæèhttps
+             * @todo \n\r å»é¤
+             */
+            ensureURL : function (source) {
+                source = sinaadToolkit.string.trim(source);
+                return source ? (/^(http|https):\/\//).test(source) ? source : (sinaadToolkit.url.protocol + source) : '';
+            },
+            /**
+             * åå»ºä¸ä¸ªurl
+             * @param  {String} domain urlä¸»å
+             * @param  {String} path   path
+             * @param  {Boolean} useSSL ä½¿ç¨https?
+             * @return {String}        çæçurl
+             */
+            createURL : function (domain, path, useSSL) {
+                return [useSSL ? "https" : "http", "://", domain, path].join("");
+            },
+            /**
+             * è·åå½åé¡µé¢æå¨çä¸»é¡µé¢url
+             * @return {String} è·åå½åé¡µé¢æå¨çä¸»é¡µé¢url
+             */
+            top : (function () {
+                var top;
+                try {
+                    top = window.top.location.href;
+                } catch (e) {}
+                top = top || ((window.top === window.self) ?  window.location.href : window.document.referrer);
+                if (!top) {
+                    sinaadToolkit.error('sinaadToolkit:Cannot get pageurl on which ad locates.');
+                }
+                return top;
+            })()
+        };
+
+        /**
+         * @namespace sinaadToolkit.sio
+         */
+        sinaadToolkit.sio = sinaadToolkit.sio || (function () {
+            /**
+             * @private
+             * @param  {HTMLScriptElement} scr     scriptèç¹
+             * @param  {String} url     èµæºå°å
+             * @param  {String} charset å­ç¬¦é
+             */
+            function _createScriptTag(scr, url, charset) {
+                scr.setAttribute('type', 'text/javascript');
+                charset && scr.setAttribute('charset', charset);
+                scr.setAttribute('src', url);
+                document.getElementsByTagName('head')[0].appendChild(scr);
+            }
+            /**
+             * @private
+             * @param  {HTMLScriptElement} scr scriptèç¹
+             */
+            function _removeScriptTag(scr) {
+                if (scr && scr.parentNode) {
+                    scr.parentNode.removeChild(scr);
+                }
+                scr = null;
+            }
+            return /** @lends sinaadToolkit.sio */{
+                IMG_1_1 : 'http://d00.sina.com.cn/a.gif',
+                /**
+                 * å è½½jsæ¨¡å
+                 * @param  {String} url          èµæºå°å
+                 * @param  {Function} opt_callback æåååè°æ¹æ³
+                 * @param  {Object} opt_options  éé¡¹
+                 */
+                loadScript : function (url, optCallback, optOptions) {
+                    var scr = document.createElement("SCRIPT"),
+                        scriptLoaded = 0,
+                        options = optOptions || {},
+                        charset = options.charset || 'utf-8',
+                        callback = optCallback || function () {},
+                        timeOut = options.timeout || 0,
+                        timer;
+                    
+                    // IEåoperaæ¯æonreadystatechange
+                    // safariãchromeãoperaæ¯æonload
+                    scr.onload = scr.onreadystatechange = function () {
+                        // é¿åoperaä¸çå¤æ¬¡è°ç¨
+                        if (scriptLoaded) {
+                            return;
+                        }
+                        
+                        var readyState = scr.readyState;
+                        if ('undefined' === typeof readyState ||
+                             readyState === "loaded" ||
+                             readyState === "complete") {
+                            scriptLoaded = 1;
+                            try {
+                                callback();
+                                clearTimeout(timer);
+                            } finally {
+                                scr.onload = scr.onreadystatechange = null;
+                                _removeScriptTag(scr);
+                            }
+                        }
+                    };
+
+                    if (timeOut) {
+                        timer = setTimeout(function () {
+                            scr.onload = scr.onreadystatechange = null;
+                            _removeScriptTag(scr);
+                            options.onfailure && options.onfailure();
+                        }, timeOut);
+                    }
+                    
+                    _createScriptTag(scr, url, charset);
+                },
+                /**
+                 * jsonpæ¹å¼åè°
+                 * @param  {String}   url         èµæºå°å
+                 * @param  {Function} callback    åè°æ¹æ³
+                 * @param  {Object}   opt_options éé¡¹
+                 */
+                jsonp : function (url, callback, optOptions) {
+                    var scr = document.createElement('SCRIPT'),
+                        prefix = '_sinaads_cbs_',
+                        callbackName,
+                        // callbackImpl,
+                        options = optOptions || {},
+                        charset = options.charset || 'utf-8',
+                        queryField = options.queryField || 'callback',
+                        timeOut = options.timeout || 0,
+                        timer,
+                        reg = new RegExp('(\\?|&)' + queryField + '=([^&]*)'),
+                        matches;
+
+                    function getCallBack(onTimeOut) {
+                         
+                        return function () {
+                            try {
+                                if (onTimeOut) {
+                                    options.onfailure && options.onfailure();
+                                } else {
+                                    callback.apply(window, arguments);
+                                    clearTimeout(timer);
+                                }
+                                window[callbackName] = null;
+                                delete window[callbackName];
+                            } catch (e) {
+                                // ignore the exception
+                            } finally {
+                                _removeScriptTag(scr);
+                            }
+                        };
+                    }
+             
+                    if (sinaadToolkit.isFunction(callback)) {
+                        callbackName = prefix + Math.floor(Math.random() * 2147483648).toString(36);
+                        window[callbackName] = getCallBack(0);
+                    } else if (sinaadToolkit.isString(callback)) {
+                        // å¦æcallbackæ¯ä¸ä¸ªå­ç¬¦ä¸²çè¯ï¼å°±éè¦ä¿è¯urlæ¯å¯ä¸çï¼ä¸è¦å»æ¹åå®
+                        // TODO å½è°ç¨äºcallbackä¹åï¼æ æ³å é¤å¨æåå»ºçscriptæ ç­¾
+                        callbackName = callback;
+                    } else {
+                        if ((matches = reg.exec(url))) {
+                            callbackName = matches[2];
+                        }
+                    }
+             
+                    if (timeOut) {
+                        timer = setTimeout(getCallBack(1), timeOut);
+                    }
+             
+                    //å¦æç¨æ·å¨URLä¸­å·²æcallbackï¼ç¨åæ°ä¼ å¥çcallbackæ¿æ¢ä¹
+                    url = url.replace(reg, '\x241' + queryField + '=' + callbackName);
+                     
+                    if (url.search(reg) < 0) {
+                        url += (url.indexOf('?') < 0 ? '?' : '&') + queryField + '=' + callbackName;
+                    }
+                    _createScriptTag(scr, url, charset);
+                },
+                /**
+                 * æ¥å¿æ¹æ³
+                 * @param  {String} url åéæ¥å¿å°å
+                 */
+                log : function (url, useCache) {
+                    var img = new Image(),
+                        key = '_sinaads_sio_log_' + sinaadToolkit.rnd();
+
+                    window[key] = img;
+                 
+                    img.onload = img.onerror = img.onabort = function () {
+                        img.onload = img.onerror = img.onabort = null;
+                 
+                        window[key] = null;
+                        img = null;
+                    };
+             
+                    img.src = url + (useCache ? '' : (url.indexOf('?') > 0 ? '&' : '?') + key);
+                }
+            };
+        })();
+    })(window);
+
+    /**
+     * cookie mapping
+     */
+    function _cookiemapping(store) {
+        var _sinaglobal = sinaadToolkit.cookie.get('SINAGLOBAL');
+        if (!sinaadToolkit.isNull(_sinaglobal)) {
+            //çæå¯ä¸hashå¼
+            var _sinaglobal_hash = sinaadToolkit.hash(_sinaglobal);
+            var _sinaads_ls = store.get('sinaads_ck_ls');
+            if (!sinaadToolkit.isNull(_sinaads_ls)) {
+                if (_sinaads_ls.indexOf(_sinaglobal_hash) !== -1) {
+                    var source = _sinaads_ls.split("|");
+                    var item,
+                        i = 0;
+
+                    while (item = source[i++]) {
+                        if (item && item.indexOf(_sinaglobal_hash) !== -1) {
+                            var value = item.split(':exp=');
+                            //æè¿ææ¶é´
+                            if (value[1] && sinaadToolkit.now() > parseInt(value[1], 10)) {
+                                source.splice(i - 1, 1);
+
+                                var v = _sinaglobal_hash + ':exp=' + (sinaadToolkit.now() + 1000 * 60 * 60 * 24) + '|' + source.join("|");
+                                _request(v);
+                            }
+                        }
+                    }
+                } else { //å­å¨æ¬å°å­å¨(sinaads_ck_ls)ï¼ä½ä¸å­å¨å½åç¨æ·ä¿¡æ¯åç´æ¥åéæ¥å¿å¹¶å­å¨
+                    var v = _sinaglobal_hash + ':exp=' + (sinaadToolkit.now() + 1000 * 60 * 60 * 24) + "|" + _sinaads_ls;
+                    _request(v);
+                }
+            } else { //ä¸å­å¨æ¬å°å­å¨(sinaads_ck_ls),åç´æ¥åéæ¥å¿å¹¶å­å¨
+                var v = _sinaglobal_hash + ':exp=' + (sinaadToolkit.now() + 1000 * 60 * 60 * 24) + "|";
+                _request(v);
+            }
+        }
+
+        function _request(value) {
+            var host = "unknow",
+                url = sinaadToolkit.url.top,
+                durl = /^(http|https):\/\/([^\/]+)\/?/i;
+            try {
+                host = url.match(durl)[2];
+            } catch (e) {}
+
+            sinaadToolkit.sio.jsonp('http://r.dmp.sina.com.cn/cm/list?sinaglobal=' + _sinaglobal + '&host=' + host, function(data) {
+                if (data && data.status === 0) {
+                    sinaadToolkit.array.each(data.data, function(url) {
+                        url && sinaadToolkit.sio.log(url, 1);
+                    });
+
+                    store.set('sinaads_ck_ls', value);
+                }
+            }, {
+                onfailure: function() {
+                    sinaadToolkit.error('timeOut');
+                }
+            });
+        }
+    };
+
+    var XDomainStorage = window.___SinaadsCrossDomainStorage___;
+    XDomainStorage.ready(function(store) {
+        if (store) {
+            _cookiemapping(store);
+        }
+    });
+  </script>
+</body>
+</html>

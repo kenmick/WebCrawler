@@ -1,0 +1,220 @@
+$.fn.bindFirst = function (name, fn) {
+    this.on(name, fn);
+    this.each(function () {
+        var handlers = $._data(this, 'events')[name.split('.')[0]];
+        var handler = handlers.pop();
+        handlers.splice(0, 0, handler);
+    });
+};
+
+$(function () {
+    window.Analytics = (function () {
+        var ret = {
+            // Dispatcher to dispatch events
+            Dispatcher: {
+                events: [],
+                init: function () {
+                    Dispatcher.call(this)
+                },
+                /**
+                 * Adds event listener
+                 * @param {string|string[]} event Event name. May be array of names
+                 * @param {Function} callback Event handler
+                 * @param {string|number} [context] Optional context or namespace for easy removing
+                 * @returns {boolean}
+                 */
+                addEventListener: function (event, callback, context) {
+                    context = context || 0;
+
+                    if (Object.prototype.toString.call(event) === '[object Array]') {
+                        event.forEach(function (e) {
+                            Analytics.Dispatcher.addEventListener(e, callback);
+                        });
+
+                        return true;
+                    }
+
+                    this.events[event] = this.events[event] || {};
+                    this.events[event][context] = this.events[event][context] || [];
+                    if (this.events[event][context]) {
+                        this.events[event][context].push(callback);
+                    }
+                },
+                removeEventListener: function (event, context) {
+                    context = context || 0;
+                    if (this.events[event][context]) {
+                        var listeners = this.events[event][context];
+                        for (var i = listeners.length - 1; i >= 0; --i) {
+                            listeners.splice(i, 1);
+                        }
+                    }
+                },
+                dispatch: function (event) {
+                    var args = [];
+
+                    if (arguments.length > 1) {
+                        args = [].slice.call(arguments, 1);
+                    }
+
+                    if (typeof this.events[event] != 'undefined') {
+                        var contexts = this.events[event];
+
+                        for (var i in contexts) {
+                            var events = this.events[event][i], len2 = events.length;
+                            while (len2--) {
+                                //callback with self and check for stop propagation and cancel event firing
+                                ret = events[len2].apply(this, args);
+                                if (ret === false) {
+                                    return false;
+                                }
+
+                                if (typeof ret != 'undefined') {
+                                    return ret;
+                                }
+                            }
+                        }
+                    }
+                },
+                on: function (event, callback) {
+                    this.Dispatcher.addEventListener(event, callback);
+                }
+            },
+            eventStack: [],
+            /**
+             * Push event to stack
+             * @param {Object} data Event data
+             */
+            pushEvent: function (data) {
+                this.eventStack.push(data);
+            },
+            /**
+             * Pop event from stack
+             * @returns []
+             */
+            popEvent: function () {
+                return this.eventStack.pop();
+            },
+            /**
+             * Get last event data
+             * @returns []
+             */
+            getLastEvent: function () {
+                return this.eventStack[this.eventStack.length - 1];
+            },
+            /**
+             * Bind events on all clickable elements with top priority
+             */
+            bindEvents: function () {
+                // Bind with top priority to prevent propagation stopping
+                $('a, body, button').bindFirst('click', function (e) {
+                    Analytics.storeLastEvent();
+                });
+            },
+            /**
+             * Store last event in stack in cookie. Useful when we have complex AJAX-design with window layers like photo box viewer
+             */
+            storeLastEvent: function () {
+                var data;
+
+                if (data = Analytics.getLastEvent()) {
+                    var values = [];
+                    for (var i in data) {
+                        values.push(data[i]);
+                    }
+
+                    this.setCookie('v_event', values.join('|'), 360, '/', window.js_vars.cookieDomain);
+                }
+            },
+            /**
+             * Track external event
+             * @param {string} data valid JSON of event data represented as string
+             */
+            trackExternalEvent: function (data) {
+                try {
+                    data = JSON.parse(data)
+                } catch (err) {
+                }
+
+                this.storeLastEvent();
+
+                var event = data['event'];
+                delete data['event'];
+
+                this.trackEvent(event, data);
+            },
+            trackEvent: function (name, data) {
+                if (typeof data === 'string') {
+                    try {
+                        data = JSON.parse(data)
+                    } catch (err) {
+                        if (typeof console != 'undefined')
+                            console.log('JSON decode error');
+
+                        return false;
+                    }
+                }
+
+                // Dispatch event. If event return false then cancel further
+                var dispatch = this.Dispatcher.dispatch(name, data);
+                if (dispatch === false) {
+                    return false;
+                }
+
+                if (typeof dispatch == 'object') {
+                    data = dispatch;
+                }
+
+                this.storeLastEvent();
+
+                $.ajax({
+                    dataType: 'json',
+                    url: '/ajax.php?act=track_event&event=' + name,
+                    data: data
+                }).success(function (data) {
+                    if (typeof data == 'object') {
+                        Analytics.pushEvent(data);
+                    }
+
+                    return true;
+                });
+            },
+            setCookie: function (name, value, days, path, domain) {
+                var date = new Date();
+                date.setTime(date.getTime() + (days * 86400000));
+                if (!path) {
+                    path = '/';
+                }
+                var cookieStr = name + '=' + value + '; expires=' + date.toGMTString() + '; path=' + path + ';';
+                if (domain) {
+                    cookieStr += "domain=" + domain + ";";
+                }
+                document.cookie = cookieStr;
+            },
+            /**
+             * Add event listener
+             * @param {string} event Event name
+             * @param {Analytics~Dispatcher} [callback]
+             */
+            on: function (event, callback) {
+                this.Dispatcher.addEventListener(event, callback);
+            }
+
+            /**
+             * Callback.
+             * @callback Analytics~Dispatcher
+             * @param {object} [data] Data of event
+             */
+        };
+
+        // Constructor
+
+        // Push current event as first
+        if (typeof window.js_vars !== 'undefined' && typeof window.js_vars.v_event !== 'undefined') {
+            ret.pushEvent(window.js_vars.v_event);
+        }
+
+        ret.bindEvents();
+
+        return ret;
+    })();
+});

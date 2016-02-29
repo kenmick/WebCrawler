@@ -1,0 +1,176 @@
+
+   setTimeout(function(){
+       __ad__slide($("ab_24").select(".yk-slide-index")[0]);
+   },300);
+
+
+//ç´ æå°å
+var AD_skin_url = 'http://static.atm.youku.com/idea/201512/1210/97221/1500600.jpg';
+
+//ç¹å»å°å
+var AD_skin_href = 'http://count.atm.youku.com/c?id=7802';
+
+
+//é¢æ§æ¬¡æ°
+var AD_skin_count = '2';
+
+
+
+//ä»¥ä¸ä»£ç å¿å¨
+(function(){
+ var cssStr = '.yk-skin{ position:relative; z-index:990; } ';
+ var style = document.createElement('style');
+ style.type = 'text/css';
+ if(style.styleSheet){// IE
+  style.styleSheet.cssText = cssStr;
+ } else {// w3c
+  style.innerHTML = cssStr;   
+ }
+ document.getElementsByTagName('head')[0].appendChild(style);
+  })();
+function execGetBackCookie(name){
+	var nameEQ = name + "="; 
+	var ca = document.cookie.split(';'); 
+	for(var i=0;i < ca.length;i++) {
+		var c = ca[i];
+		while (c.charAt(0)==' ') 
+		c = c.substring(1,c.length); 
+		if (c.indexOf(nameEQ) == 0) return unescape(c.substring(nameEQ.length,c.length));
+	}
+	return null;
+}
+function execSetBackCookie(name,value){
+	expires = new Date(); 
+	expires.setTime(expires.getTime()+24*60*60*1000);
+	document.cookie = name + "="+ escape (value) + ";expires=" + expires.toGMTString()+ ";path=/";
+}
+(function(){
+	function addStyle(content){  
+	    var style;  
+	    if(document.all)    //IE  
+	    {  
+	        style = document.createStyleSheet();  
+	        style.cssText = content;  
+	    }  
+	    else  
+	    {  
+	        style = document.createElement("style");   
+	        style.type = "text/css";   
+	        //style.innerHTML = content;//SafariãChrome ä¸innerHTMLåªè¯»  
+	        style.textContent = content;  
+	    }  
+	    try{document.getElementsByTagName("head")[0].appendChild(style);}catch(e){}//IE Error:ä¸æ¯ææ­¤æ¥å£  
+	}
+	
+	//-----start-----
+	var back_chanel_count = execGetBackCookie("__chanel_youku_ad_crazy_count");
+	if(typeof(back_chanel_count)=="undefined"||back_chanel_count==null){
+		back_chanel_count = 0;
+	}
+	
+	//é¢æ¬¡æ§å¶ 2+
+	if( back_chanel_count < AD_skin_count ){
+	
+		//display
+		var href=AD_skin_href, url=AD_skin_url,
+			width="145", height="600";
+		var nav=document.getElementById('qheader_nav');
+		var parent=nav.parentElement;
+		var skin=document.createElement('div');
+		skin.className = "yk-skin";
+		skin.innerHTML = '<div class="yk-skin-links" id="yk-skin-ad"><a class="yk-skin-left" href="'+href+'" target="_blank"></a><a class="yk-skin-top" href="'+href+'" target="_blank"></a><a class="yk-skin-right" href="'+href+'" target="_blank"></a><div class="yk-skin-close" style="cursor:pointer;width:70px;height:20px;text-align:center;line-height:23px;position:absolute; right:0; bottom:3px" id="close-lrt"><img src="http://static.atm.youku.com/idea/201502/0213/button/close.jpg" border="0"></div></div>';
+		parent.insertBefore( skin, nav );
+	
+		var style='.yk-w970 .yk-skin-links{width:990px}.yk-w1190 .yk-skin-links{width:1210px}';
+			style+='.yk-skin-links{position:relative;height:100px;margin:0 auto;}.yk-skin-top{display:block;width:100%;height:100%;background:url('+url+') no-repeat 50% top;}';
+			style+='.yk-w970 .yk-skin-top{background-position:50% top}';
+			style+='.yk-w1190 .yk-skin-top{background-position:50% top}';
+			style+='.yk-skin-left,.yk-skin-right{position:absolute;top:0;display:block;background:url('+url+') no-repeat left 0;width:'+width+'px;height:'+height+'px}';
+			style+='.yk-skin-left{right:100%}';
+			style+='.yk-skin-right{left:100%;background-position:right 0}';
+		addStyle(style);
+	
+		back_chanel_count++;
+		execSetBackCookie("__chanel_youku_ad_crazy_count", back_chanel_count);
+	}
+
+})();
+
+var closeBtn = document.getElementById('close-lrt');
+var skinAd = document.getElementById('yk-skin-ad');
+if(closeBtn != null && skinAd != null){
+	closeBtn.onclick = function(){
+    	skinAd.parentNode.removeChild(skinAd);
+	}
+}
+
+
+
+	function setChanelAdTop(){
+		var ccc = document.getElementById("ad-video-banner");
+		if(ccc){
+			ccc.style.display = "";
+		}
+	}
+	
+	function execGetN5Cookie(name){
+		var nameEQ = name + "="; 
+		var ca = document.cookie.split(';'); 
+		for(var i=0;i < ca.length;i++) {
+			var c = ca[i];
+			while (c.charAt(0)==' ') 
+			c = c.substring(1,c.length); 
+			if (c.indexOf(nameEQ) == 0) return unescape(c.substring(nameEQ.length,c.length));
+		}
+		return null;
+	}
+
+	function execSetN5Cookie(name,value){
+		expires = new Date(); 
+		expires.setTime(expires.getTime()+24*60*60*1000);
+		document.cookie = name + "="+ escape (value) + ";expires=" + expires.toGMTString()+ ";path=/";
+	}
+	
+	// JavaScript Documenton
+	var VideoBanner = {
+		adID: 'ad-video-banner',
+		extend: function(val){
+			var box = document.getElementById(this.adID);		
+			box.style.height = val + 'px';
+			document.getElementById('ab_145').parentNode.parentNode.parentNode.style.height=(val + 20) + "px"
+		},
+		close: function() {
+			var box = document.getElementById(this.adID);		
+			box.parentNode.removeChild(box);
+			document.getElementById('ab_145').parentNode.parentNode.parentNode.style.height="0px"
+		}
+	};
+	
+	//-----start-----
+	var chanel_count = execGetN5Cookie("_chanel_youku_ad_crazy_count_1");
+	if(typeof(chanel_count)=="undefined"||chanel_count==null){
+		chanel_count = 0;
+	}
+	
+	//é¢æ¬¡æ§å¶ 2+
+	if( chanel_count < 2 ){
+		setTimeout(setChanelAdTop,1000);
+		chanel_count++;
+		execSetN5Cookie("_chanel_youku_ad_crazy_count_1", chanel_count);
+	}
+		
+	//è®°å½æåçæµ
+	//var img_atm = document.createElement("img");
+	//img_atm.width=0;
+	//img_atm.height=0;
+	//img_atm.src="æåçæµå°å";
+	//document.getElementsByTagName('HEAD').item(0).appendChild(img_atm);
+	
+function ad_div_849(){var adcontent = "";adcontent = adcontent + "<div><\/div>";	var obj = document.getElementById('ab_849');	if( !obj || typeof(obj) != 'object' || typeof(adcontent) != 'string') return;	if( null != adcontent && 0 == adcontent.length ){		obj.style.display = 'none';	}else{		obj.style.display = 'block';		if( null != adcontent ){			obj.innerHTML = adcontent;		}	}}ad_div_849();function ad_div_145(){var adcontent = "";adcontent = adcontent + "<style type=\"text\/css\">.yk-w1190 #ad-video-banner { width:1190px; }.yk-w970 #ad-video-banner { width:970px; }.yk-w970 .yk-AD-tong .ad-con {width: 970px;}<\/style><div align=\"center\" id=\"ad-video-banner\" class=\"mod\" style=\"height:200px;z-index:10000;display:none;\"><object id=\"video_banner_movie_object_node\" width=\"100%\" height=\"100%\" data=\"http:\/\/static.atm.youku.com\/idea\/201512\/1210\/97221\/imaxv1.swf\" type=\"application\/x-shockwave-flash\"><param value=\"always\" name=\"allowscriptaccess\"\/><param value=\"transparent\" name=\"wmode\"\/><param height=\"100%\" width=\"100%\" value=\"http:\/\/static.atm.youku.com\/idea\/201512\/1210\/97221\/imaxv1.swf\" name=\"movie\"\/><embed id=\"video_banner_movie_embed_node\" width=\"100%\" height=\"100%\" border=\"0\" align=\"center\" wmode=\"transparent\" allowscriptaccess=\"always\" src=\"http:\/\/static.atm.youku.com\/idea\/201512\/1210\/97221\/imaxv1.swf\"\/><\/object><\/div>";	var obj = document.getElementById('ab_145');	if( !obj || typeof(obj) != 'object' || typeof(adcontent) != 'string') return;	if( null != adcontent && 0 == adcontent.length ){		obj.style.display = 'none';	}else{		obj.style.display = 'block';		if( null != adcontent ){			obj.innerHTML = adcontent;		}	}}ad_div_145();function ad_div_827(){var adcontent = "";adcontent = adcontent + "<div class=\"AD_tipRT\"><div class=\"tip_cont\" style=\"top:0px; right:0px; width:150px;\"><a style=\"width:100px; height:25px; float:left; margin-left: 20px; margin-top: 4px;display:block; background:url(http:\/\/static.atm.youku.com\/idea\/201511\/1127\/84771\/100-25.png) no-repeat; _background:none;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src=\'http:\/\/static.atm.youku.com\/idea\/201511\/1127\/84771\/100-25.png\', sizingMethod=\'crop\');\" href=\"http:\/\/count.atm.youku.com\/c?id=6197\" target=\"_blank\" ><\/a><\/div><\/div>";	var obj = document.getElementById('ab_827');	if( !obj || typeof(obj) != 'object' || typeof(adcontent) != 'string') return;	if( null != adcontent && 0 == adcontent.length ){		obj.style.display = 'none';	}else{		obj.style.display = 'block';		if( null != adcontent ){			obj.innerHTML = adcontent;		}	}}ad_div_827();function ad_div_101543(){var adcontent = "";adcontent = adcontent + "    <div align=\"center\" class=\"mod\" id=\"s_h_554647\"><a href=\"http:\/\/html.atm.youku.com\/htmlclick?p=101543&pp=41018442&pg=5&&ca=650149&ie=554647&k=&u=http:\/\/news.youku.com\/xdt\/abbott&md5=32caf1c38066eaa9c279e79bb0024d4a&uri=-1&dc=0\" target=\"_blank\"><img src=\"http:\/\/static.atm.youku.com\/idea\/201508\/0803\/71799\/310-50.jpg\" border=\"0\"\/><\/a><div class=\"ad-flag\"><\/div><\/div>";	var obj = document.getElementById('ab_101543');	if( !obj || typeof(obj) != 'object' || typeof(adcontent) != 'string') return;	if( null != adcontent && 0 == adcontent.length ){		obj.style.display = 'none';	}else{		obj.style.display = 'block';		if( null != adcontent ){			obj.innerHTML = adcontent;		}	}}ad_div_101543();function ad_div_174(){var adcontent = "";adcontent = adcontent + "    <div align=\"center\" class=\"mod\" id=\"s_h_673859\"><a href=\"http:\/\/html.atm.youku.com\/htmlclick?p=174&pp=258&pg=5&&ca=979882&ie=673859&k=&u=http:\/\/cps.youku.com\/redirect.htmlinterrogation_escidequal_esc00014a10&md5=ea8556c5831679a36a637797a7747aa2&uri=-1&dc=0\" target=\"_blank\"><img src=\"http:\/\/static.atm.youku.com\/idea\/201512\/1207\/97485\/640-110-2.jpg\" border=\"0\"\/><\/a><div class=\"ad-flag\"><\/div><\/div>";	var obj = document.getElementById('ab_174');	if( !obj || typeof(obj) != 'object' || typeof(adcontent) != 'string') return;	if( null != adcontent && 0 == adcontent.length ){		obj.style.display = 'none';	}else{		obj.style.display = 'block';		if( null != adcontent ){			obj.innerHTML = adcontent;		}	}}ad_div_174();function ad_div_833(){var adcontent = "";adcontent = adcontent + "<div class=\"AD_tipRT\"><div class=\"tip_cont\" style=\"top:0px; right:0px; width:90px;\"><a style=\"width:70px; height:25px; float:left; margin-left: 60px; margin-top: 4px;display:block; background:url(http:\/\/static.atm.youku.com\/idea\/201511\/1124\/85920\/70-25.jpg) no-repeat; _background:none;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src=\\\"http:\/\/static.atm.youku.com\/idea\/201511\/1124\/85920\/70-25.jpg\\\", sizingMethod=\\\"crop\\\");\" href=\"http:\/\/count.atm.youku.com\/c?id=7645\" target=\"_blank\" ><\/a><\/div><\/div>";	var obj = document.getElementById('ab_833');	if( !obj || typeof(obj) != 'object' || typeof(adcontent) != 'string') return;	if( null != adcontent && 0 == adcontent.length ){		obj.style.display = 'none';	}else{		obj.style.display = 'block';		if( null != adcontent ){			obj.innerHTML = adcontent;		}	}}ad_div_833();function ad_div_101544(){var adcontent = "";adcontent = adcontent + "    <div align=\"center\" class=\"mod\" id=\"s_h_554656\"><a href=\"http:\/\/html.atm.youku.com\/htmlclick?p=101544&pp=41018443&pg=5&&ca=631992&ie=554656&k=&u=http:\/\/gongyi.youku.com\/v1\/yxzg&md5=a76c4046f4fc59cb7c914ff5130e6ef4&uri=-1&dc=0\" target=\"_blank\"><img src=\"http:\/\/static.atm.youku.com\/idea\/201503\/0331\/71827\/310-50.jpg\" border=\"0\"\/><\/a><div class=\"ad-flag\"><\/div><\/div>";	var obj = document.getElementById('ab_101544');	if( !obj || typeof(obj) != 'object' || typeof(adcontent) != 'string') return;	if( null != adcontent && 0 == adcontent.length ){		obj.style.display = 'none';	}else{		obj.style.display = 'block';		if( null != adcontent ){			obj.innerHTML = adcontent;		}	}}ad_div_101544();function ad_div_716(){var adcontent = "";adcontent = adcontent + "    <div align=\"center\" class=\"mod\" id=\"s_h_669079\"><a href=\"http:\/\/html.atm.youku.com\/htmlclick?p=716&pp=1372&pg=5&&ca=979458&ie=669079&k=&u=http:\/\/z.youku.com\/d\/201512022339050.htm&md5=d643a3c9beec38c259605d05e27fe0bc&uri=-1&dc=0\" target=\"_blank\"><img src=\"http:\/\/static.atm.youku.com\/idea\/201512\/1202\/97445\/640110.jpg\" border=\"0\"\/><\/a><div class=\"ad-flag\"><\/div><\/div>";	var obj = document.getElementById('ab_716');	if( !obj || typeof(obj) != 'object' || typeof(adcontent) != 'string') return;	if( null != adcontent && 0 == adcontent.length ){		obj.style.display = 'none';	}else{		obj.style.display = 'block';		if( null != adcontent ){			obj.innerHTML = adcontent;		}	}}ad_div_716();function ad_div_24(){var adcontent = "";adcontent = adcontent + "<div id=\"\" class=\"yk-slide yk-slide-col6 b20 yk-slide-index\" pagesel=\"yk-col3\" perpage=\"2\" from=\"1\" loop=\"6\" random=\"random\">        <div id=\"\" class=\"yk-slide-pages\" style=\"width: 3000px;\">                <div class=\"yk-row\">                       <div class=\"yk-col3\">";
+adcontent = adcontent + "		<div class=\"yk-act-thumb\">			<div class=\"mod\">  	          	<a href=\"http:\/\/html.atm.youku.com\/htmlclick?p=24&pp=30&pg=5&ca=897332&ie=669694&k=&u=http:\/\/c.admaster.com.cn\/c\/a25631,b200642530,c4387,i0,m101,h&md5=9c8a0ea23f50d89066434821f31d717b&uri=-1&dc=0\" target=\"_blank\"><img src=\"http:\/\/r4.ykimg.com\/05100000566108C267BC3D52DF061391.jpg\" border=\"0\"\/><\/a>    		<div class=\"ad-flag\"><\/div>    		<\/div>		<\/div>				<div class=\"yk-act-link\">			<a href=\"http:\/\/html.atm.youku.com\/htmlclick?p=24&pp=30&pg=5&ca=897332&ie=669694&k=&u=http:\/\/c.admaster.com.cn\/c\/a25631,b200642530,c4387,i0,m101,h&md5=9c8a0ea23f50d89066434821f31d717b&uri=-1&dc=0\" target=\"_blank\">æå¢èè·ï¼é¦åå¨å<\/a>		<\/div>     ";adcontent = adcontent + "<\/div>                       <div class=\"yk-col3\">";
+adcontent = adcontent + "		<div class=\"yk-act-thumb\">			<div class=\"mod\">  	          	<a href=\"http:\/\/html.atm.youku.com\/htmlclick?p=24&pp=27&pg=5&ca=971764&ie=667392&k=&u=https:\/\/lths.tmall.com\/p\/rd727751.htminterrogation_escspmequal_esca1z10.1-b.w5002-10852258035.3.i81Qyl&md5=519ef23ffb0bc0292dc3c18d562074b4&uri=-1&dc=0\" target=\"_blank\"><img src=\"http:\/\/static.atm.youku.com\/idea\/201511\/1130\/96879\/145-80.jpg\" border=\"0\"\/><\/a>    		<div class=\"ad-flag\"><\/div>    		<\/div>		<\/div>				<div class=\"yk-act-link\">			<a href=\"http:\/\/html.atm.youku.com\/htmlclick?p=24&pp=27&pg=5&ca=971764&ie=667392&k=&u=https:\/\/lths.tmall.com\/p\/rd727751.htminterrogation_escspmequal_esca1z10.1-b.w5002-10852258035.3.i81Qyl&md5=519ef23ffb0bc0292dc3c18d562074b4&uri=-1&dc=0\" target=\"_blank\">æ¥æä¼é·ç¹æçææº<\/a>		<\/div>     ";adcontent = adcontent + "<\/div>                       <div class=\"yk-col3\">";
+adcontent = adcontent + "		<div class=\"yk-act-thumb\">			<div class=\"mod\">  	          	<a href=\"http:\/\/html.atm.youku.com\/htmlclick?p=24&pp=1038&pg=5&ca=969861&ie=665279&k=&u=http:\/\/tvs.youku.com\/audifastestlap&md5=0106708c9ab3af2cc5fba4285fafd7bc&uri=-1&dc=0\" target=\"_blank\"><img src=\"http:\/\/static.atm.youku.com\/idea\/201512\/1208\/96648\/14580.jpg\" border=\"0\"\/><\/a>    		<div class=\"ad-flag\"><\/div>    		<\/div>		<\/div>				<div class=\"yk-act-link\">			<a href=\"http:\/\/html.atm.youku.com\/htmlclick?p=24&pp=1038&pg=5&ca=969861&ie=665279&k=&u=http:\/\/tvs.youku.com\/audifastestlap&md5=0106708c9ab3af2cc5fba4285fafd7bc&uri=-1&dc=0\" target=\"_blank\">æå¿«åéâ¢ä¹ææè¦æ<\/a>		<\/div>     ";adcontent = adcontent + "<\/div>                       <div class=\"yk-col3\">";
+adcontent = adcontent + "		<div class=\"yk-act-thumb\">			<div class=\"mod\">  	          	<a href=\"http:\/\/html.atm.youku.com\/htmlclick?p=24&pp=29&pg=5&ca=854256&ie=622608&k=&u=http:\/\/i.youku.com\/u\/UMTkxMDg4MzU5Mg&md5=1e2a26e8b725f8c34e6cd76e10080a3f&uri=-1&dc=0\" target=\"_blank\"><img src=\"http:\/\/static.atm.youku.com\/idea\/201508\/0819\/88166\/145-80.jpg\" border=\"0\"\/><\/a>    		<div class=\"ad-flag\"><\/div>    		<\/div>		<\/div>				<div class=\"yk-act-link\">			<a href=\"http:\/\/html.atm.youku.com\/htmlclick?p=24&pp=29&pg=5&ca=854256&ie=622608&k=&u=http:\/\/i.youku.com\/u\/UMTkxMDg4MzU5Mg&md5=1e2a26e8b725f8c34e6cd76e10080a3f&uri=-1&dc=0\" target=\"_blank\">ç¾å¾ä¸åº<\/a>		<\/div>     ";adcontent = adcontent + "<\/div>                       <div class=\"yk-col3\">";
+adcontent = adcontent + "		<div class=\"yk-act-thumb\">			<div class=\"mod\">  	          	<a href=\"http:\/\/html.atm.youku.com\/htmlclick?p=24&pp=24&pg=5&ca=584332&ie=532397&k=&u=http:\/\/news.youku.com\/xdt\/abbott&md5=32caf1c38066eaa9c279e79bb0024d4a&uri=-1&dc=0\" target=\"_blank\"><img src=\"http:\/\/static.atm.youku.com\/idea\/201507\/0706\/67827\/145-80.jpg\" border=\"0\"\/><\/a>    		<div class=\"ad-flag\"><\/div>    		<\/div>		<\/div>				<div class=\"yk-act-link\">			<a href=\"http:\/\/html.atm.youku.com\/htmlclick?p=24&pp=24&pg=5&ca=584332&ie=532397&k=&u=http:\/\/news.youku.com\/xdt\/abbott&md5=32caf1c38066eaa9c279e79bb0024d4a&uri=-1&dc=0\" target=\"_blank\">çå½â¢å¥é å¯è½<\/a>		<\/div>     ";adcontent = adcontent + "<\/div>                       <div class=\"yk-col3\">";
+adcontent = adcontent + "		<div class=\"yk-act-thumb\">			<div class=\"mod\">  	          	<a href=\"http:\/\/html.atm.youku.com\/htmlclick?p=24&pp=31&pg=5&ca=518321&ie=508471&k=&u=http:\/\/v.youku.com\/v_show\/id_XNjEyMDExMjIw.html&md5=baa1cca13316147a99a9ce01e3bd928b&uri=-1&dc=0\" target=\"_blank\"><img src=\"http:\/\/static.atm.youku.com\/Youku2013\/201309\/0916\/21942\/145-80-dahua.jpg\" border=\"0\"\/><\/a>    		<div class=\"ad-flag\"><\/div>    		<\/div>		<\/div>				<div class=\"yk-act-link\">			<a href=\"http:\/\/html.atm.youku.com\/htmlclick?p=24&pp=31&pg=5&ca=518321&ie=508471&k=&u=http:\/\/v.youku.com\/v_show\/id_XNjEyMDExMjIw.html&md5=baa1cca13316147a99a9ce01e3bd928b&uri=-1&dc=0\" target=\"_blank\">å¤§è¯çµå½±åç°çµå½±è¶£é»<\/a>		<\/div>     ";adcontent = adcontent + "<\/div>                <\/div>        <\/div>        <div class=\"yk-slide-btnnext\" style=\"visibility:visible;\"><i><\/i><\/div>     <\/div>";
+	var obj = document.getElementById('ab_24');	if( !obj || typeof(obj) != 'object' || typeof(adcontent) != 'string') return;	if( null != adcontent && 0 == adcontent.length ){		obj.style.display = 'none';	}else{		obj.style.display = 'block';		if( null != adcontent ){			obj.innerHTML = adcontent;		}	}}ad_div_24();function ad_div_25(){var adcontent = "";adcontent = adcontent + "    <div align=\"center\" class=\"mod\" id=\"s_h_660755\"><a href=\"http:\/\/html.atm.youku.com\/htmlclick?p=25&pp=182&pg=5&&ca=959549&ie=660755&k=&u=http:\/\/z.youku.com\/d\/201511021342182.htm&md5=ad0ad77572249bc0fc857491f2150796&uri=-1&dc=0\" target=\"_blank\"><img src=\"http:\/\/static.atm.youku.com\/idea\/201511\/1112\/95878\/310-110.jpg\" border=\"0\"\/><\/a><div class=\"ad-flag\"><\/div><\/div>";	var obj = document.getElementById('ab_25');	if( !obj || typeof(obj) != 'object' || typeof(adcontent) != 'string') return;	if( null != adcontent && 0 == adcontent.length ){		obj.style.display = 'none';	}else{		obj.style.display = 'block';		if( null != adcontent ){			obj.innerHTML = adcontent;		}	}}ad_div_25();function ad_div_595(){var adcontent = "";adcontent = adcontent + "    <div align=\"center\" class=\"mod\" id=\"s_h_668555\"><a href=\"http:\/\/html.atm.youku.com\/htmlclick?p=595&pp=976&pg=5&&ca=986340&ie=668555&k=&u=http:\/\/wan.youku.com\/landing\/c2hvcnQ2Ngequal_escequal_esc&md5=4c6a2eec3ec2a8ed5fb16f5a70bcf20c&uri=-1&dc=0\" target=\"_blank\"><img src=\"http:\/\/static.atm.youku.com\/idea\/201511\/1120\/95038\/1190100.jpg\" border=\"0\"\/><\/a><div class=\"ad-flag\"><\/div><\/div>";	var obj = document.getElementById('ab_595');	if( !obj || typeof(obj) != 'object' || typeof(adcontent) != 'string') return;	if( null != adcontent && 0 == adcontent.length ){		obj.style.display = 'none';	}else{		obj.style.display = 'block';		if( null != adcontent ){			obj.innerHTML = adcontent;		}	}}ad_div_595();

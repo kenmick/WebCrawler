@@ -1,0 +1,352 @@
+if (!window.mraid) {document.write('\x3cdiv class="GoogleActiveViewClass" ' +'id="DfaVisibilityIdentifier_4253018040"\x3e');}
+(function() {
+  var DEBUG = ''.toLowerCase() == 'true';
+  var csiStart = (+new Date);
+  var studioObjects = window['studioV2'] = window['studioV2'] || {};
+  var publisherSideFilePath = unescape('');
+  if(publisherSideFilePath == '') {
+    publisherSideFilePath = '/doubleclick/DARTIframe.html';
+  } else if (publisherSideFilePath.charAt(publisherSideFilePath.length - 1) == '/') {
+    publisherSideFilePath += 'DARTIframe.html';
+  }
+  var bookingTimeMetaData = {
+  };
+
+  var runtimeMetaData = {
+  };
+
+  var exitUrlPatternMacroValues = {
+  };
+  var macroParser = function (macroName, value) {
+    return (value.indexOf(macroName) < 0) ? value : '';
+  };
+  var adServerData = {
+    eventReportingUrl: 'https://ad.doubleclick.net/activity;src=4217983;met=1;v=1;pid=122680842;aid=295737977;ko=0;cid=65467180;rid=65347280;rv=1;',
+    clickUrl: 'https://adclick.g.doubleclick.net/pcs/click?xai=AKAOjsscJJr6JW3iS-rMx8N_6qSaHOrQrQgpHL8mtinnOw3MT09td4ubPgh7J7kzwtZW7qMUXxTm6kK2mHt9G8dUWvJLG1yJcvauLCTY2puMmkPNkPqsGCJ1xl20fw&sig=Cg0ArKJSzCPdsNYsmn_AEAE&urlfix=1&adurl=http://adclick.g.doubleclick.net/aclk%3Fsa%3DL%26ai%3DCiryKhDt8VpfGJs_HWoXinLAPqNj0oQOo_ZGyRcCNtwEQASAAYPvB7ILoCYIBF2NhLXB1Yi02OTg4Njc2NDMxMTU2ODI1yAEJqAMBqgSCAU_QaYE_4I8LD8JN1FzZo_ENxwIRr7-SRDzwNB912rbHHBq4TtMC30-FZx4f9bSKJ90MC4Xk9YncDNHrecGlFYBWzqHMuhvmX2JgnA2hNWT_MxWNCid-rk7hvFoxLkUUnmPCjAJoaQTxRoaO4Z39cbVYta4z-xCOJfSI5HkQozKcEmCABtqcz-H-yuvHqwGgBiHYBwA%26num%3D1%26sig%3DAOD64_2UP09Rivfel1hSVxcD9gJe9g90rg%26client%3Dca-pub-6988676431156825%26adurl%3Dhttps://bid.g.doubleclick.net/xbbe/creative/click%253Fd%253DAPEucNXFT1qhN_iWvak6CUcWwwNJj5OweTkk3FAbXhbzQCDphj3uAILiPfgdqcTqghnwENoNguzi0vEMC6WH7isosztgBKfgs52iLZF7v5Es7vLmC0tU3NU%2526r1%253D',
+    clickUrlTimesToEscape: '',
+    impressionUrl: '',
+    geoData: 'ct=FR&st=&city=5127&dma=0&zp=33000&bw=4',
+    siteName: 'N5340.1759593.OMNICOMGROUP.COM',
+    siteId: '1500256',
+    adId: '0',
+    exitSuffix: '',
+    buyId: '9015222',
+    creativeId: '65467180',
+    placementId: '122680842',
+    advertiserId: '4217983',
+    keyValueOrdinal: '0',
+    renderingVersion: '1',
+    renderingId: '65347280',
+    randomNumber: '4253018040',
+    dynamicData: '',
+    stringReportingUrl: 'https://ad.doubleclick.net/activity;src=4217983;stragg=1;v=1;pid=122680842;aid=295737977;ko=0;cid=65467180;rid=65347280;rv=1;rn=4253018040;',
+    urlToGetKeywordsFor: '%LivePreviewSiteUrl',
+    bookingTimeMetaData: bookingTimeMetaData,
+    generatedAdSlot: false,
+    exitUrlPatternMacroValues: exitUrlPatternMacroValues,
+    renderingEnvironment: ('' == '1' ||
+        window['mraid']) ? 'IN_APP' : 'BROWSER',
+    placementDimensions: {
+      'w': '300',
+      'h': '250'
+    },
+    swiffyRuntimeUrl: 'https://www.gstatic.com/swiffy/v7.3.1/runtime.js',
+    tag: {
+      adContainerElementId: macroParser('ad_container_id', ''),
+      hideObjects: '',
+      top: '',
+      left: '',
+      zIndex: '',
+      duration: '',
+      wmode: '',
+      preferFlash: '' == 'true',
+      preferHtml5Artwork: '' == 'true',
+      adSenseKeywords: '',
+      adSenseLatitude: '',
+      adSenseLongitude: '',
+      publisherSideFilePath: publisherSideFilePath,
+      runtimeMetaData: runtimeMetaData,
+      lidarEnabled: false,
+      expansionMode: '',
+      renderFloatInplace: ''.toLowerCase() == 'true',
+      tryToWriteHtmlInline: ''.toLowerCase() == 'true'
+    }
+  };
+
+  var scheme;
+  if ('https' == 'http' || 'https' == 'https') {
+    // DCM scheme macro usage.
+    scheme = 'https' + ':';
+  } else if ('%%SCHEME%%' == 'http' || '%%SCHEME%%' == 'https') {
+    // XFP scheme macro usage.
+    scheme = '%%SCHEME%%' + ':';
+  } else {
+    // preview usage.
+    scheme = location.protocol;
+  }
+  var staticResourceMediaServer = scheme == 'https:' ?
+       'https://s0.2mdn.net' :
+       'http://s0.2mdn.net';
+
+  var creativeMediaServer = scheme == 'https:' ?
+       'https://s0.2mdn.net' :
+       'http://s0.2mdn.net';
+
+  var backupImageUrl = '/4217983/FR_BrandCampaign_300x250.jpg';
+  if (!/^https?:/.test(backupImageUrl)) {
+    backupImageUrl = creativeMediaServer + backupImageUrl;
+  }
+  var backupImage = {
+    exitUrl: 'https://adclick.g.doubleclick.net/pcs/click?xai=AKAOjsscJJr6JW3iS-rMx8N_6qSaHOrQrQgpHL8mtinnOw3MT09td4ubPgh7J7kzwtZW7qMUXxTm6kK2mHt9G8dUWvJLG1yJcvauLCTY2puMmkPNkPqsGCJ1xl20fw&sig=Cg0ArKJSzCPdsNYsmn_AEAE&urlfix=1&adurl=http://adclick.g.doubleclick.net/aclk%3Fsa%3DL%26ai%3DCiryKhDt8VpfGJs_HWoXinLAPqNj0oQOo_ZGyRcCNtwEQASAAYPvB7ILoCYIBF2NhLXB1Yi02OTg4Njc2NDMxMTU2ODI1yAEJqAMBqgSCAU_QaYE_4I8LD8JN1FzZo_ENxwIRr7-SRDzwNB912rbHHBq4TtMC30-FZx4f9bSKJ90MC4Xk9YncDNHrecGlFYBWzqHMuhvmX2JgnA2hNWT_MxWNCid-rk7hvFoxLkUUnmPCjAJoaQTxRoaO4Z39cbVYta4z-xCOJfSI5HkQozKcEmCABtqcz-H-yuvHqwGgBiHYBwA%26num%3D1%26sig%3DAOD64_2UP09Rivfel1hSVxcD9gJe9g90rg%26client%3Dca-pub-6988676431156825%26adurl%3Dhttps://bid.g.doubleclick.net/xbbe/creative/click%253Fd%253DAPEucNXFT1qhN_iWvak6CUcWwwNJj5OweTkk3FAbXhbzQCDphj3uAILiPfgdqcTqghnwENoNguzi0vEMC6WH7isosztgBKfgs52iLZF7v5Es7vLmC0tU3NU%2526r1%253Dhttps://d.agkn.com/pixel/2389/%253Fche%253D4253018040%2526col%253D9015222,1500256,122680842,295737977,65467180%2526l0%253Dhttp://www.icelandair.fr/%253Futm_expid%253D12590174-9._FDYuBm8TM6Xe7gA0Y7SjA.0%2526utm_source%253DOMG%2526utm_medium%253Dbrand%252520banner%2526utm_campaign%253Dbrand%252520campaign',
+    target: '_blank',
+    imageUrl: backupImageUrl,
+    width: '300',
+    height: '250',
+    backupDisplayActivityUrl: '',
+    thirdPartyBackupImpressionUrl: ''
+  };
+
+  var versionPrefix = DEBUG ? 'db_' : '';
+  var templateVersion = '200_100';
+  var renderingScriptPath = '/879366';
+  var rendererDisplayType = '';
+  rendererDisplayType += 'dfa7banner_';
+  rendererDisplayType += 'flash_';
+  rendererDisplayType += 'html_';
+  var rendererFormat = 'inpage';
+  var rendererName = rendererDisplayType + rendererFormat;
+  var renderingLibrary = renderingScriptPath + '/' + rendererName + '_rendering_lib_' +
+      versionPrefix + templateVersion + '.js';
+  // Adserver has a logic to detect media files and prepend host name.
+  if (!/^https?:/.test(renderingLibrary)) {
+    renderingLibrary = staticResourceMediaServer + renderingLibrary;
+  }
+
+  var adCreativeDefinitions = {};
+
+  var creativeId = '65467180';
+  var adId = adCreativeDefinitions[adServerData.adId] ? adServerData.adId : 0;
+  // The unique creative is identified by combination of creative id and ad id.
+  // When the same creative(same creative id and same ad id) is served on the page more
+  // than once then they will share the creative definition yet there will be
+  // multiple instances of 'adResponses'.s
+  var creativeKey = [creativeId, adId].join('_');
+  var creativeDef = adCreativeDefinitions[adServerData.adId] ?
+      adCreativeDefinitions[adServerData.adId] :
+      '[%DEFAULT_PLCR_PATH%]';
+  if(!/^https?:/.test(creativeDef) && creativeDef.substring(0, 2) != '//') {
+    creativeDef = creativeMediaServer + creativeDef;
+  }
+    creativeDef = null;
+  studioObjects['creativeCount'] = studioObjects['creativeCount'] || 0;
+  var creativeDto = {
+    id: creativeId,
+    uniqueId: creativeId + '_' + studioObjects['creativeCount']++,
+    templateVersion: templateVersion,
+    adServerData: adServerData,
+    isPreviewEnvironment: '%PreviewMode' == 'true',
+    hasFlashAsset: true,
+    hasHtmlAsset: true,
+    requiresCss3Animations: false,
+    flashVersion: '8',
+    httpsMediaServer: 'https://s0.2mdn.net',
+    httpMediaServer: 'http://s0.2mdn.net',
+    renderingScriptPath: renderingScriptPath,
+    renderingLibrary: renderingLibrary,
+    rendererName: rendererName,
+    creativeDefinitionUrl: creativeDef,
+    creativeKey: creativeKey,
+    thirdPartyImpressionUrls: [''],
+    thirdPartyArtworkImpressionUrl: '',
+    breakoutToTop: false,
+    dimensions: {
+      width: '300px',
+      height: '250px'
+    },
+    backupImage: backupImage,
+    csiStart: csiStart,
+    csiAdRespTime: csiStart - (parseFloat('') || 0),
+    csiEvents: {},
+    hasModernizrFeatureChecks: true,
+    html5FeatureChecks: [
+      'Modernizr.rgba',
+      'Modernizr.canvastext',
+      'Modernizr.canvas'
+    ],
+    hasSwiffyHtmlAsset: true
+  };
+
+  var inGdnIframe = window['IN_ADSENSE_IFRAME'] || false;
+  var inYahooSecureIframe = window.Y && Y.SandBox && Y.SandBox.vendor;
+  var inWinLiveIframe = false;
+  try {
+    inWinLiveIframe = !!window.$WLXRmAd;
+  } catch(e) {}
+  var inSafeFrame = window.$sf && window.$sf.ext;
+  var isMsnAjaxIframe = (typeof(inDapMgrIf) != 'undefined' && inDapMgrIf);
+  var breakoutIframe = ''.toLowerCase();
+  var shouldBreakout = (((false ||
+                          false) &&
+                         !inGdnIframe &&
+                         !inYahooSecureIframe &&
+                         !inSafeFrame &&
+                         !inWinLiveIframe) ||
+                        (true && breakoutIframe == 'true')) &&
+                       self != top &&
+                       !creativeDto.isPreviewEnvironment &&
+                       breakoutIframe != 'false';
+
+  if (adServerData.tag.adContainerElementId == '' &&
+      (true || false ||
+         adServerData.tag.renderFloatInplace)) {
+    var containerId = ['creative', creativeDto.uniqueId].join('_');
+    var divHtml = ['<div id="', containerId, '"></div>'].join('');
+    document.write(divHtml);
+    adServerData.tag.adContainerElementId = containerId;
+    adServerData.generatedAdSlot = true;
+  }
+  var creatives = studioObjects['creatives'] = studioObjects['creatives'] || {};
+  var creative = creatives[creativeKey] = creatives[creativeKey] || {};
+  var adResponses = creative['adResponses'] = creative['adResponses'] || [];
+  creative['shouldBreakout'] = creative['shouldBreakout'] || shouldBreakout;
+  var iframeBusterLibrary = renderingScriptPath + '/iframe_buster_' +
+      versionPrefix + templateVersion + '.js';
+  if(!/^https?:/.test(iframeBusterLibrary)) {
+    iframeBusterLibrary = staticResourceMediaServer + iframeBusterLibrary;
+  }
+  var loadedLibraries = studioObjects['loadedLibraries'] = studioObjects['loadedLibraries'] || {};
+  var versionedLibrary = loadedLibraries[templateVersion] = loadedLibraries[templateVersion] || {};
+  var typedLibrary = versionedLibrary[rendererName] = versionedLibrary[rendererName] || {};
+  adResponses.push({
+    creativeDto: creativeDto
+  });
+    var modernizrLibrary = '/ads/studio/cached_libs/modernizr_2.8.3_ec185bb44fe5e6bf7455d6e8ef37ed0e_no-classes.js';
+    if(!/^https?:/.test(modernizrLibrary)) {
+      modernizrLibrary = staticResourceMediaServer + modernizrLibrary;
+    }
+    document.write('<scr' + 'ipt type="text/javascript" src="' + modernizrLibrary + '"></scr' + 'ipt>');
+  if (shouldBreakout) {
+    if (versionedLibrary['breakout']) {
+      versionedLibrary['breakout']();
+    } else if (!versionedLibrary['breakoutLoading']) {
+      versionedLibrary['breakoutLoading'] = true;
+      document.write('<scr' + 'ipt type="text/javascript" src="' + iframeBusterLibrary + '" async="async"></scr' + 'ipt>');
+    }
+  } else if (typedLibrary['bootstrap'] && creative['creativeDefinition']) {
+    typedLibrary['bootstrap']();
+  } else {
+    if (!typedLibrary['loading']) {
+      typedLibrary['loading'] = true;
+      creativeDto.csiEvents['gb'] = (+new Date);
+      document.write('<scr' + 'ipt type="text/javascript" src="' + renderingLibrary + '"' + (adServerData.tag.tryToWriteHtmlInline ? '' : ' async="async"') + '></scr' + 'ipt>');
+    }
+  }
+  if (isMsnAjaxIframe) {
+    window.setTimeout("document.close();", 1000);
+  }
+  (function() {
+  var creativeDefinition = {
+    customScriptUrl: '',
+    isDynamic: false,
+    delayedImpression: false,
+    standardEventIds: {
+      HTML5_CREATIVE_IMPRESSION: '871060'
+    },
+    exitEvents: [
+      {
+        name: 'clickTAG',
+        reportingId: '',
+        url: 'https://adclick.g.doubleclick.net/pcs/click?xai=AKAOjsscJJr6JW3iS-rMx8N_6qSaHOrQrQgpHL8mtinnOw3MT09td4ubPgh7J7kzwtZW7qMUXxTm6kK2mHt9G8dUWvJLG1yJcvauLCTY2puMmkPNkPqsGCJ1xl20fw&sig=Cg0ArKJSzCPdsNYsmn_AEAE&urlfix=1&adurl=http://adclick.g.doubleclick.net/aclk%3Fsa%3DL%26ai%3DCiryKhDt8VpfGJs_HWoXinLAPqNj0oQOo_ZGyRcCNtwEQASAAYPvB7ILoCYIBF2NhLXB1Yi02OTg4Njc2NDMxMTU2ODI1yAEJqAMBqgSCAU_QaYE_4I8LD8JN1FzZo_ENxwIRr7-SRDzwNB912rbHHBq4TtMC30-FZx4f9bSKJ90MC4Xk9YncDNHrecGlFYBWzqHMuhvmX2JgnA2hNWT_MxWNCid-rk7hvFoxLkUUnmPCjAJoaQTxRoaO4Z39cbVYta4z-xCOJfSI5HkQozKcEmCABtqcz-H-yuvHqwGgBiHYBwA%26num%3D1%26sig%3DAOD64_2UP09Rivfel1hSVxcD9gJe9g90rg%26client%3Dca-pub-6988676431156825%26adurl%3Dhttps://bid.g.doubleclick.net/xbbe/creative/click%253Fd%253DAPEucNXFT1qhN_iWvak6CUcWwwNJj5OweTkk3FAbXhbzQCDphj3uAILiPfgdqcTqghnwENoNguzi0vEMC6WH7isosztgBKfgs52iLZF7v5Es7vLmC0tU3NU%2526r1%253Dhttps://d.agkn.com/pixel/2389/%253Fche%253D4253018040%2526col%253D9015222,1500256,122680842,295737977,65467180%2526l0%253Dhttp://www.icelandair.fr/%253Futm_expid%253D12590174-9._FDYuBm8TM6Xe7gA0Y7SjA.0%2526utm_source%253DOMG%2526utm_medium%253Dbrand%252520banner%2526utm_campaign%253Dbrand%252520campaign',
+        targetWindow: '_blank',
+        windowProperties: ''
+      }
+    ],
+    timerEvents: [
+    ],
+    counterEvents: [
+    ],
+    childFiles: [
+    ],
+    videoFiles: [
+    ],
+    videoEntries: [
+    ],
+    primaryAssets: [
+      {
+        id: '0',
+        artworkType: 'FLASH',
+        displayType: 'BANNER',
+        width: '300',
+        height: '250',
+        servingPath: '/4217983/FR_BrandCampaign_300x250.swf',
+        zIndex: '0',
+        customCss: '',
+        flashArtworkTypeData: {
+          actionscriptVersion: '1',
+          wmode: 'opaque',
+          sdkVersion: '',
+          flashBackgroundColor: '',
+          allowScriptAccess: 'always'
+        },
+        htmlArtworkTypeData: null,
+        floatingDisplayTypeData: null,
+        expandingDisplayTypeData: null,
+        imageGalleryTypeData: null,
+        pageSettings:null,
+layoutsConfig: null,
+layoutsApi: null
+      },
+      {
+        id: '0',
+        artworkType: 'HTML5',
+        displayType: 'BANNER',
+        width: '300',
+        height: '250',
+        servingPath: '/4217983/1442933141765/FR_BrandCampaign_300x250.html',
+        zIndex: '0',
+        customCss: '',
+        flashArtworkTypeData: null,
+        htmlArtworkTypeData: {
+          isTransparent: false,
+          sdkVersion: '' // Duplicating sdk version in subsequent field as version format not the same.
+        },
+        floatingDisplayTypeData: null,
+        expandingDisplayTypeData: null,
+        imageGalleryTypeData: null,
+        pageSettings:null,
+layoutsConfig: null,
+layoutsApi: null
+      }
+    ]
+  }
+  var rendererDisplayType = '';
+  rendererDisplayType += 'dfa7banner_';
+  rendererDisplayType += 'flash_';
+  rendererDisplayType += 'html_';
+  var rendererFormat = 'inpage';
+  var rendererName = rendererDisplayType + rendererFormat;
+
+  var creativeId = '65467180';
+  var adId = '0';
+  var templateVersion = '200_100';
+  var studioObjects = window['studioV2'] = window['studioV2'] || {};
+  var creativeObjects = studioObjects['creatives'] = studioObjects['creatives'] || {};
+  var creativeKey = [creativeId, adId].join('_');
+  var creative = creativeObjects[creativeKey] = creativeObjects[creativeKey] || {};
+  creative['creativeDefinition'] = creativeDefinition;
+  var adResponses = creative['adResponses'] || [];
+  for (var i = 0; i < adResponses.length; i++) {
+    adResponses[i].creativeDto && adResponses[i].creativeDto.csiEvents &&
+        (adResponses[i].creativeDto.csiEvents['pe'] =
+            adResponses[i].creativeDto.csiEvents['pe'] || (+new Date));
+  }
+  var loadedLibraries = studioObjects['loadedLibraries'] = studioObjects['loadedLibraries'] || {};
+  var versionedLibrary = loadedLibraries[templateVersion] = loadedLibraries[templateVersion] || {};
+  var typedLibrary = versionedLibrary[rendererName] = versionedLibrary[rendererName] || {};
+  if (typedLibrary['bootstrap']) {
+    typedLibrary.bootstrap();
+  }
+})();
+
+})();
+document.write('\n\x3cnoscript\x3e\n  \x3ca target\x3d\x22_blank\x22 href\x3d\x22https://adclick.g.doubleclick.net/pcs/click?xai\x3dAKAOjsscJJr6JW3iS-rMx8N_6qSaHOrQrQgpHL8mtinnOw3MT09td4ubPgh7J7kzwtZW7qMUXxTm6kK2mHt9G8dUWvJLG1yJcvauLCTY2puMmkPNkPqsGCJ1xl20fw\x26sig\x3dCg0ArKJSzCPdsNYsmn_AEAE\x26urlfix\x3d1\x26adurl\x3dhttp://adclick.g.doubleclick.net/aclk%3Fsa%3DL%26ai%3DCiryKhDt8VpfGJs_HWoXinLAPqNj0oQOo_ZGyRcCNtwEQASAAYPvB7ILoCYIBF2NhLXB1Yi02OTg4Njc2NDMxMTU2ODI1yAEJqAMBqgSCAU_QaYE_4I8LD8JN1FzZo_ENxwIRr7-SRDzwNB912rbHHBq4TtMC30-FZx4f9bSKJ90MC4Xk9YncDNHrecGlFYBWzqHMuhvmX2JgnA2hNWT_MxWNCid-rk7hvFoxLkUUnmPCjAJoaQTxRoaO4Z39cbVYta4z-xCOJfSI5HkQozKcEmCABtqcz-H-yuvHqwGgBiHYBwA%26num%3D1%26sig%3DAOD64_2UP09Rivfel1hSVxcD9gJe9g90rg%26client%3Dca-pub-6988676431156825%26adurl%3Dhttps://bid.g.doubleclick.net/xbbe/creative/click%253Fd%253DAPEucNXFT1qhN_iWvak6CUcWwwNJj5OweTkk3FAbXhbzQCDphj3uAILiPfgdqcTqghnwENoNguzi0vEMC6WH7isosztgBKfgs52iLZF7v5Es7vLmC0tU3NU%2526r1%253Dhttps://d.agkn.com/pixel/2389/%253Fche%253D4253018040%2526col%253D9015222,1500256,122680842,295737977,65467180%2526l0%253Dhttp://www.icelandair.fr/%253Futm_expid%253D12590174-9._FDYuBm8TM6Xe7gA0Y7SjA.0%2526utm_source%253DOMG%2526utm_medium%253Dbrand%252520banner%2526utm_campaign%253Dbrand%252520campaign\x22\x3e\n    \x3cimg border\x3d\x220\x22 alt\x3d\x22\x22 src\x3d\x22//s0.2mdn.net/4217983/FR_BrandCampaign_300x250.jpg\x22\n        width\x3d\x22300\x22 height\x3d\x22250\x22 /\x3e\n  \x3c/a\x3e\n\x3c/noscript\x3e\n');if (!window.mraid) {document.write('\x3c/div\x3e');}if (!window.mraid) {(function() {var avDiv = document.getElementById("DfaVisibilityIdentifier_4253018040");if (avDiv) {avDiv['_avi_'] = 'BxmONhTt8VruXGKHSiwbOtYCQCQAAAAAQATgB4AQCiAW2n6YEoAY_';avDiv['_avihost_'] = 'pagead2.googlesyndication.com';avDiv['_avm_'] = 'la\x3d0\x26';}var glidar = document.createElement('script');glidar.type = 'text/javascript';glidar.async = true;glidar.src = '//pagead2.googlesyndication.com/pagead/js/lidar.js';var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(glidar, s);})();} else {document.write('\x3cimg src="//pagead2.googlesyndication.com/activeview?id=lidar2&avi=BxmONhTt8VruXGKHSiwbOtYCQCQAAAAAQATgB4AQCiAW2n6YEoAY_&r=w&rs=5j" style="display:none;"\x3e\x3c/img\x3e');}document.write('\x3cimg src\x3d\x22https://d.agkn.com/pixel/2387/?ct\x3dFR\x26amp;st\x3d\x26amp;city\x3d5127\x26amp;dma\x3d0\x26amp;zp\x3d33000\x26amp;bw\x3d4\x26amp;che\x3d4253018040\x26amp;col\x3d9015222,1500256,122680842,295737977,65467180\x22 height\x3d\x221\x22 width\x3d\x221\x22 border\x3d\x220\x22\x3e');

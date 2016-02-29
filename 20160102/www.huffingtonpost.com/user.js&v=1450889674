@@ -1,0 +1,575 @@
+/* From: production-mt-wfe-49-81-use1 : 29038 */
+/**
+ *	Unit  for user specific utility methods for HuffPost
+ */
+huff.unit('util/user', function(ready) {
+	var u = this;
+	
+	u.setInfluenceCookie = function(cookie_value) {
+		var HC = HuffCookies;
+		cookie_value = cookie_value || false;
+		HPUtil.removeEmptyInfluence();
+		if( !HC.getUserId() ) {
+			return;
+		}
+		
+		var cookie_name = 'huffpost_influence_' + HC.getUserId();
+		if( cookie_value ) {
+			HC.setCookie(cookie_name, cookie_value);
+		}
+		return;
+	};
+	
+	u.updateInfluenceCookie = function(update, value) {
+		var HC 			= HuffCookies;
+		update			= update || false;
+		value		  	= value  || false;
+		var influence 	= HC.getUserInfluence();
+		HPUtil.removeEmptyInfluence();
+		if( !HC.getUserId() ) {
+			return;
+		}
+		
+		if( update && value && influence && influence[update] ) {
+			var check_date = new Date();
+			check_date.setDate(check_date.getDate() + 30);
+			influence[update].value = value;
+			influence[update].check_date = Date.parse(check_date.toString());
+			
+			var influence_val = JSON.stringify(influence);
+			HPUtil.setInfluenceCookie(influence_val);
+		}
+		return;
+	};
+	
+	/**
+	 *	For updating user's influence cookie
+	 */
+	u.updateUserInfluence = function() {
+		
+		var user_influence = HuffCookies.getUserInfluence();
+        var curr_timestamp = Date.parse(new Date().toString());
+		var pref_to_update = false;
+		
+        if (user_influence.commented.check_date < curr_timestamp) {
+            pref_to_update = 'commented';
+        }
+        if (user_influence.blogged.check_date < curr_timestamp) {
+			pref_to_update = 'blogged';
+        }
+		
+		if (!pref_to_update) {
+			return;
+		}
+		
+		jQuery.ajax({
+			type   : 'GET',
+			dataType: 'json',
+			url    : 'http://' + location.host + '/commentsv3/checkUserInfluence.php?' + 'prop=' + pref_to_update,
+			success: function(response) {
+				if ("object" !== typeof(response))
+					return;
+				
+				var check_date = new Date();
+				
+				if (response.value == 'noinfluence') {
+					check_date.setDate(check_date.getDate() + 1);
+				} else {
+					check_date.setSeconds(check_date.getSeconds()+ 2592000 - parseInt(response.value));
+				}
+				
+				if(response.prop == 'commented') {
+					user_influence.commented.value = (response.value == 'noinfluence') ? 0 : 1;
+					user_influence.commented.check_date = Date.parse(check_date.toString());
+				} else if (response.prop == 'blogged') {
+					user_influence.blogged.value = (response.value == 'noinfluence') ? 0 : 1;
+					user_influence.blogged.check_date = Date.parse(check_date.toString());
+				}
+				
+				HPUtil.setInfluenceCookie(JSON.stringify(user_influence));
+				
+				return;
+			},
+			error: function(transport){
+				return;
+			}
+    	});
+		
+	};
+	
+	/**
+	 *	Migrates the user auth status
+	 *	if the user logs in on editor/blogger(MT)
+	 *	to set the correct auth cookies
+	 */
+	u.reauthenticated_user = false;
+	u.reauthenticateUser = function(force_reauth) {
+		force_reauth = force_reauth || false;
+		var postdata = {};
+		var entry_id = HPUtil.GetEntryID();
+		if (entry_id) {
+			postdata.entry_id = entry_id;
+		}
+		
+		jQuery.ajax({
+			type: 'POST',
+			url: '/users/login/reauthenticate.php',
+			data: postdata,
+			success: function(resp) {
+				u.reauthenticated_user = true;
+				u.updateAuthStatus();
+				resp && ( resp = JSON.parse(resp) );
+				
+				if (!force_reauth && !HPUtil.isDotComVersion()) {
+					window.XDAuth && XDAuth.syncRemoteWithLocal();
+				}
+				
+				if ('object' === typeof resp) {
+					
+					SocialNotifications.setCounter(resp.notifications);
+					
+					if (resp.hasOwnProperty('snp_entry_module')) {
+						SNPModule.addEntriesInside(resp.snp_entry_module);
+					}
+				}
+			},
+			error: function() {
+				u.reauthenticated_user = true;
+			}
+		});
+	};
+	
+	/**
+	 *	Updates the user auth status on top nav
+	 */
+	u.updateAuthStatus = function(force_reauth) {
+		if ((typeof HuffCookies === 'undefined')
+				|| !(HPUtil.isWWW() || HPConfig.site)) {
+			return;
+		}
+		
+		force_reauth = force_reauth || false;
+		var HC = HuffCookies;
+		var username = HC.getUserName() || false;
+
+		if (!u.reauthenticated_user
+				&& username
+				&& !(HC.getUserId() || HC.getCookie('huffpost_prefs'))) {
+			u.reauthenticateUser();
+			return;
+		}
+
+		if ( force_reauth ) {
+			u.reauthenticateUser(force_reauth);
+			return;
+		}
+
+		if (username) {
+			var url = '/social/' + username;
+			var display_username = HPUtil.getDisplayName(username);
+			var status_el = jQuery('#avatar_logged_in');
+			var wendybird_el = jQuery('.wendybird_user_data .dropdown .profile');
+			
+			if (status_el.length)
+			{
+				var html = '<a href="' + url + '" \id="avatar_logged_in_link" class="bold">\
+				<img src="' + HC.getCurrentUserPhotoUrl() + '" />'
+					+ display_username +
+				'</a>';
+				
+				status_el.html(html).css('display', 'block');
+				wendybird_el.attr('href', url);
+			}
+			
+			jQuery('body').addClass('sn_signed_in');
+            jQuery('#wendybird_user_name').html('<a href="'+ url +'" class="color_333333">'+ display_username +'</a>');
+            jQuery('#wendybird_user').show();
+            jQuery('#not_logged_user').hide();
+
+            //phoenix updates
+            if( jQuery(".topnav .username").get(0) ) {
+                jQuery('.topnav .username').html('<a href="'+ url +'" class="color_333333">'+ display_username +'</a>');
+                jQuery('.topnav .vcard img').attr('src', HC.getCurrentUserPhotoUrl());
+                jQuery('.topnav .controls li:first').attr('href', '/social/' + username);
+                jQuery('.topnav .user .logged-in').show();
+                jQuery('.topnav .user .not-logged-in').hide();
+		    }	
+
+			var rc = 'tmp_date_registered';
+			var registered = HC.getCookie(rc+'');
+			if (registered) {
+				HC.destroyCookie(rc+'');
+			}
+			
+			huff.use('conf', function(conf){
+				conf.get('topnav/version', function(version){
+					if (version === '1') {
+						huff.use('util/util', function(util){
+							util.resetNavigationEvents();
+							return;
+						});
+					}
+				});
+			});
+			
+			
+			if (HC.get('user_is_not_approved'))
+			{
+				HC.del('user_is_not_approved');
+				HPError.e('Your account has not yet been activated');
+				
+				if(window.IS_NEWSGLIDE) {
+					jQuery(document).trigger('account.error', ['Your account has not yet been activated']);
+					ChromeApp.Login.Collection.Instance.fireEvent('account.error', ['Your account has not yet been activated']);
+				} else {
+					window.location.href = window.location.href;
+				}
+				return;
+			}
+			
+			if (HC.get('snn_track_user_logged_in') && typeof(SNProject) !== "undefined")
+			{
+				SNProject.track(HC.getUserId(), 'user_log_in');
+				HC.del('snn_track_user_logged_in');
+			}
+			
+			HPUtil.checkUserInfluence();
+			
+			el = jQuery('#fbook_main_text_loggedin');
+            el && el.hide();
+            el = jQuery('#join_login_fbook_loggedin');
+            el && el.show();
+            el = jQuery('#fbook_main_text_name');
+            el && el.html(HPUtil.getDisplayName());
+            el = jQuery('#fConnect_img_container');
+            el && el.hide();
+		}
+		else {
+			el = jQuery('#fbook_main_text_notloggedin');
+            el && el.hide();
+            el = jQuery('#join_login_fbook_notloggedin');
+            el && el.show();
+            el = jQuery('#fConnect_img_container');
+            el && el.show();
+		}
+		
+		return;
+	};
+	
+	u.updateNavByReferrer = function() {
+		var html			= '';
+		var learn_more_html = '';
+		var referrer		= '';
+		var div_el			= jQuery("#not_logged_user");
+		
+		if ( 0 == div_el.length) {
+			return;
+		}
+		
+		//enable referer mat here for the internationals
+		if (!(HPConfig.site === false ||
+			   HPConfig.site === 'uk')) {
+			return;
+		}
+		
+		if( /http:\/\/www.facebook.com|https:\/\/www.facebook.com/.test(document.referrer) || HPUtil.getUrlVar('fb_action_ids') ) {
+			referrer = 'facebook';
+			return; //disabling facebook welcome mat
+		}
+		else if( /http:\/\/t.co|https:\/\/t.co/.test(document.referrer) || HPUtil.getUrlVar('test_twitter_mat') ) {
+			referrer = 'twitter';
+		} 
+		else if( /welcomeUK/.test(document.referrer) ) {
+			referrer = 'ukcampaign';
+		}
+		
+		window.setTimeout(function() {
+			if( '' != referrer )
+			{
+				//Already linked to the referrer(provider)
+				if( HuffPrefs.get(referrer) ) {
+					return;
+				}
+				
+				learn_more_html += '<div id="nav_learn_more_link" class="nav_provider_learn_more float_left cursor_pointer">' + __('Learn more') + '</div>';
+				
+				//show only 1st and 4th time
+				var can_show_mat =  function()
+				{
+					var mat_cookie = HuffCookies.getCookie('disable_mats');
+					
+					if (!mat_cookie)
+					{
+						return true;
+					}
+					
+					if (mat_cookie == 'y')
+					{
+						mat_cookie = 1;
+						HuffCookies.setCookie('disable_mats', mat_cookie, 720);
+					}
+					else
+					{
+						mat_cookie = parseInt(mat_cookie, 10);
+					}
+					
+					if (mat_cookie < 3)
+					{
+						mat_cookie = mat_cookie + 1;
+						HuffCookies.setCookie('disable_mats', mat_cookie, 720);
+						return false;
+					}
+					else if (mat_cookie == 3)
+					{
+						return true;
+					}
+					
+					return false;
+				};
+
+				var can_show_ukwelcomemat = function() 
+				{
+					var ukmat_cookie = HuffCookies.getCookie('disable_ukmat');
+
+					return (!ukmat_cookie); 
+				}
+
+				if ( 'ukcampaign' == referrer ) {
+					if ( can_show_ukwelcomemat() ) 
+					{
+						HPUtil.providerOverview(referrer);
+					}
+					return;
+				}
+				
+				//A/B test to show popup modal
+				//Welcome mat modal is shown everytime the referrer is facebook
+				if (('facebook' == referrer || Math.ceil(Math.random(10) * 10) > 3) && can_show_mat())
+				{
+					if ('appcenter' !== HPUtil.getUrlVar('fb_source'))
+					{
+						HPUtil.providerOverview(referrer);
+						HPTrack.trackEvent('UserAuth', 'Provider modal auto appeared', referrer);
+					}
+				}
+				
+				html += '<div id="nav_provider_'+ referrer +'_button" class="provider_buttons_bg nav_' + referrer + '_button float_left cursor_pointer"></div>';
+				html += learn_more_html;
+				html += '<div id="nav_create_account_link" class="nav_provider_learn_more float_left cursor_pointer" onclick="HPConnect.Signup();return false;">' + _('Create Account') + '</div>';
+				html += '<div class="clear"></div>';
+				
+				div_el.html(html);
+				
+				jQuery("#nav_provider_" + referrer + "_button").click(function()
+				{
+					linkSocialAccount.checkLoginStatus(referrer);
+					HPTrack.trackEvent('UserAuth', 'Clicked provider button top nav', referrer);
+					return;
+				});
+				
+				jQuery("#nav_learn_more_link").click(function()
+				{
+					HPUtil.providerOverview(referrer);
+					HPTrack.trackEvent('UserAuth', 'Clicked learn more link top nav', referrer);
+				});
+			}
+		}, 1500, true);
+		
+		return;
+	};
+	
+	u.providerOverview = function(provider) {
+		huff.use('conf', 'connect/modal', 'modal', function(conf, connect_modal, modal)
+		{
+			var html = '';
+			html += '<div class="modal_provider_intro">';
+			html += 	'<div class="mp_intro_top">' + _('Welcome to HuffPost') +'!</div>';
+			html += 	'<div class="mp_intro_'+provider+'_img"></div>';
+			html += 	'<div class="mp_intro_buttons mp_intro_'+provider+'_buttons">';
+			html += 	'<div id="provider_mat_button" style="float: left;"></div>';
+			html += 	'<div id="mp_intro_'+provider+'_button" class="provider_buttons_bg mp_'+provider+'_button cursor_pointer"></div>';
+			
+			if( !HuffCookies.getUserName() ) {
+				html += '<a id="mp_intro_opts_button" href="javascript:void(0);" class="mp_more_connect_opts mp_more_connect_opts">' + _('Login with a different account') +'</a>';
+			}
+			
+			html += 	'</div>';
+			html += 	'<div class="clear"></div>';
+			html += '</div>';
+
+			if ( "ukcampaign" == provider ) {
+				html = '';
+				html += '<div class="modal_provider_intro hpuk">';
+				html += 	'<div class="mp_intro_top"><img src="/images/social/uk/logo_huffpostUK.gif" alt="The Huffington Post UK"></div>';
+				html += 	'<div class="mp_intro_img"><img src="/images/social/uk/carla-buzasi.jpg" alt="Carla Buzasi"><p><strong>Carla Buzasi</strong><br />Editor In Chief<br />Huffington Post UK</p></div>';
+				html += 	'<div class="mp_intro_text"><p>Welcome to The Huffington Post UK.</p><p>Now there&lsquo;s a different way to get your daily dose of news. Click this way for the latest headlines, served up in our inimitable style, alongside opinions and blogs from across the UK.</p><p>Conversations start here&hellip;</p></div>';
+				html += 	'<div class="mp_intro_'+provider+'_buttons"><input id="mp_fb_btn" type="button" value="Follow us on &#10;Facebook" class="grey first" ><input id="mp_newsletter_btn" type="button" value="Sign up for our &#10;Newsletter" class="grey">';
+
+				if( !HuffCookies.getUserName() ) {
+				    html += '<input id="mp_create_btn" type="button" value="Create Account">';
+			        }
+				
+				html +=		'<input id="mp_continue_btn" type="button" value="Continue Reading &#10;HuffPost UK" class="grey last"></div>';
+				html += 	'</div>';
+				html += 	'<div class="clear"></div>';
+				html += '</div>';
+			}
+			
+			connect_modal.init(function() {
+				if (document.loading_referer_mat) {
+					return;
+				}
+				document.loading_referer_mat = true;
+				
+				modal.show({
+					theme: 'connect_modal',
+					content: html,
+					width: 675,
+					onshow: function()
+					{
+						jQuery("#mp_intro_"+ provider +"_button").click(function() {
+							linkSocialAccount.checkLoginStatus(provider, false, false, function() {
+								HPFB.overridden_permissions = 'user_about_me,user_birthday,user_interests,user_likes,user_location,read_stream,email,publish_actions';
+							});
+							HPTrack.trackEvent('UserAuth', 'Clicked provider button intro modal', provider);
+						});
+						
+						jQuery("#mp_intro_opts_button").click(function() {
+							jQuery("#connect_modal_closer").click();
+							HPConnect.Login();
+							HPTrack.trackEvent('UserAuth', 'Clicked another account button intro modal', provider);
+						});
+						
+						switch(provider) {
+							case "facebook":
+								conf.get('primary_vertical_facebook_name', function(facebook_name) {
+									social_action_btn = '<iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.facebook.com%2F' + facebook_name + '&amp;send=false&amp;layout=button_count&amp;width=250&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:165px; height:21px; visibility:visible !important; float:left; margin-top:5px;" allowTransparency="true"></iframe>';
+									jQuery("#provider_mat_button").html(social_action_btn);
+								});
+							break;
+							
+							case "twitter":
+								conf.get('primary_vertical_twitter_name', function(twitter_name) {
+									social_action_btn = '<iframe allowtransparency="true" frameborder="0" scrolling="no" src="//platform.twitter.com/widgets/follow_button.html?screen_name=' + twitter_name + '&show_count=false&show_screen_name=false&lang=en" style="width:75px; height:20px; float:left; visibility:visible !important; margin-top:5px;"></iframe>';
+									jQuery("#provider_mat_button").html(social_action_btn);
+								});
+							break;
+
+							case "ukcampaign":
+								jQuery("#mp_fb_btn").click( function() {
+									HuffConnect.hideModal();
+									window.open('http://www.facebook.com/HuffPostUK', '_blank');
+									window.focus();
+									HPTrack.trackEvent('UserAuth', 'Click Follow Us on FB from welcome mat', 'ukcampaign');
+								});
+								jQuery("#mp_newsletter_btn").click( function() {
+									HuffConnect.hideModal();
+									window.location = '/users/notifications/';
+									HPTrack.trackEvent('UserAuth', 'Click Sign Up for Newsletters from welcome mat', 'ukcampaign');
+								});
+								jQuery("#mp_create_btn").click( function() {
+									HuffConnect.hideModal();
+									HPConnect.Signup();
+									HPTrack.trackEvent('UserAuth', 'Clicked UK Create Account from welcome mat', 'ukcampaign');
+								});
+								jQuery("#mp_continue_btn").click( function() {
+									HuffConnect.hideModal();
+									HPTrack.trackEvent('UserAuth', 'Click Continue Reading UK from welcome mat', 'ukcampaign');
+								});
+							break;
+							
+							default:
+								return;
+						}
+					},
+					onclose: function() {
+						try{
+							delete(document.loading_referer_mat);
+						} catch(e){}
+
+						if (provider == 'ukcampaign') {
+							HuffCookies.setCookie('disable_ukmat', 1, 2160);
+							HPTrack.trackEvent('UserAuth', 'UK Welcome mat closed', 'ukcampaign');
+							return;
+						}
+
+						var mat_cookie = HuffCookies.getCookie('disable_mats');
+						if (!mat_cookie) {
+							HuffCookies.setCookie('disable_mats', 1, 720);
+						}
+						else {
+							if (mat_cookie == 'y') {
+								mat_cookie = 1;
+								HuffCookies.setCookie('disable_mats', mat_cookie, 720);
+							} else {
+								mat_cookie = parseInt(mat_cookie);
+							}
+							if (mat_cookie <= 3) {
+								mat_cookie = mat_cookie + 1;
+							}
+							HuffCookies.setCookie('disable_mats', mat_cookie, 720);
+						}
+						HPTrack.trackEvent('UserAuth', 'Intro modal closed', provider);
+						return;
+					}
+				});
+			});
+		});
+	};
+	
+	/**
+		Method used for correct facebook auth on safari
+	*/
+	u.doFacebookAuth = function() 
+	{
+		huff.use('conf', function(c) {
+			c.get('auth_method', 'site_blog_id', function(auth_method, site_blog_id) 
+			{
+				auth_method = auth_method || 'frame';
+				site_blog_id = site_blog_id || 2;
+
+				HPFB.ensureInit(function() {
+					if ( 'undefined' !== typeof FB 
+							|| !HPFB.authResponse ) 
+					{
+						var wl = window.location;
+						if ( wl.search.match('userhash=') ) {
+							var return_to = (wl.pathname != "/") ? wl.pathname : "";
+						}
+						else {
+							var return_to = (wl.pathname != "/") ? (wl.pathname) : "";
+							return_to += (wl.search != "")? (wl.search) : "";
+						}
+
+						var html = [];
+						var postdata = HPFB.getSessionForServer('obj');
+
+						html.push('<div style="position: absolute; top: -9999em; width: 10px; height: 10px; visibility: hidden;">');
+						html.push('<form id="facebook_auth_form" method="post" action="/users/connect/facebooklogin.php">');
+						for (var key in postdata) {
+							html.push('<input type="hidden" name="'+ key +'" value="'+ postdata[key] +'" />');
+						}
+						html.push('<input type="hidden" name="site_blog_id" value="' + site_blog_id + '" />');
+						html.push('<input type="hidden" name="auth_response_type" value="' + auth_method + '" />');
+						html.push('<input type="hidden" name="return_to" value="' + return_to + '" />');
+						html.push('</form>');
+						html.push('</div>');
+
+						jQuery('body').length && jQuery('body').prepend(html.join(''));
+						jQuery('#facebook_auth_form').submit();
+
+						return;
+					}
+				
+				});
+
+			});
+		});
+	};
+
+	/**/
+	ready(u);
+});
+
+
+/* From: production-mt-wfe-49-81-use1 : 29038 *//* a79ac2d2669e872d452a120f7e0829e698d12129 */

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<base target="_blank" />
+<script charset="gb2312" src="http://img3.cache.netease.com/cnews/js/ntes_jslib_1.x.js" language="javascript" type="text/javascript"></script>
+<style type="text/css">
+body {margin:0;padding:0; font:12px/1.5 Tahoma,"hiragino sans gb",Helvetica,Arial;}
+div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,blockquote,p{padding:0; margin:0;}
+ol,ul {list-style:none;}
+li{list-style-type:none;}
+img{vertical-align:top;border:0;}
+address,cite,code,em,th,i{font-weight:normal; font-style:normal;}
+.hx a,.hx em,.fB{font-weight:bold;}
+.clearfix{*zoom:1;}
+.clearfix:after{display:block; overflow:hidden; clear:both; height:0; visibility:hidden; content:".";}
+a {color:#252525; text-decoration:none;}
+a:visited {text-decoration:none;}
+a:hover {color:#ba2636;text-decoration:underline;}
+a:active {color:#ba2636;}
+.dom-display .normal{display:none;}
+.dom-display .current{display:block;}
+.hidden{display:none;}
+.left,.c-fl{float:left;}
+.right,.c-fr{float:right;}
+.c-fs14{font-size:14px;}
+.c-fs12{font-size:12px;}
+/* margin & padding */
+.ma3,.mt3{margin-top:3px;}.ma3,.mr3{margin-right:3px;}.ma3,.mb3{margin-bottom:3px;}.ma3,.ml3{margin-left:3px;}
+.ma6,.mt6{margin-top:6px;}.ma6,.mr6{margin-right:6px;}.ma6,.mb6{margin-bottom:6px;}.ma6,.ml6{margin-left:6px;}
+.ma9,.mt9{margin-top:9px;}.ma9,.mr9{margin-right:9px;}.ma9,.mb9{margin-bottom:9px;}.ma9,.ml9{margin-left:9px;}
+.ma12,.mt12{margin-top:12px;}.ma12,.mr12{margin-right:12px;}.ma12,.mb12{margin-bottom:12px;}.ma12,.ml12{margin-left:12px;}
+.ma22,.mt22{margin-top:22px;}.ma22,.mr22{margin-right:22px;}.ma22,.mb22{margin-bottom:22px;}.ma22,.ml22{margin-left:22px;}
+.pa3,.pt3{padding-top:3px;}.pa3,.pr3{padding-right:3px;}.pa3,.pb3{padding-bottom:3px;}.pa3,.pl3{padding-left:3px;}
+.pa6,.pt6{padding-top:6px;}.pa6,.pr6{padding-right:6px;}.pa6,.pb6{padding-bottom:6px;}.pa6,.pl6{padding-left:6px;}
+.pa7,.pt7{padding-top:7px;}.pa7,.pr7{padding-right:7px;}.pa7,.pb7{padding-bottom:7px;}.pa7,.pl7{padding-left:7px;}
+.pa8,.pt8{padding-top:8px;}.pa8,.pr8{padding-right:8px;}.pa8,.pb8{padding-bottom:8px;}.pa8,.pl8{padding-left:8px;}
+.pa9,.pt9{padding-top:9px;}.pa9,.pr9{padding-right:9px;}.pa9,.pb9{padding-bottom:9px;}.pa9,.pl9{padding-left:9px;}
+.pa12,.pt12{padding-top:12px;}.pa12,.pr12{padding-right:12px;}.pa12,.pb12{padding-bottom:12px;}.pa12,.pl12{padding-left:12px;}
+.pa17,.pt17{padding-top:17px;}.pa17,.pr17{padding-right:17px;}.pa17,.pb17{padding-bottom:17px;}.pa17,.pl17{padding-left:17px;}
+.interval{margin-bottom:11px;}
+.interval-solid,.interval-dot{margin-bottom:6px;}
+.interval-dot{border-bottom:1px dotted #c1c1c1;}
+.interval-solid{border-bottom:1px solid #E3E6EB;}
+/* ad */
+.ad-sub,.ad{overflow:hidden;*zoom:1;}
+.ad-sub:after,.ad:after{display:block; overflow:hidden; clear:both; height:0; visibility:hidden; content:".";}
+.ad-sub{width:300px;}
+/*.ad,.ad a,.ad a:visited{color:#376A77;}
+.ad a:hover{color:#BA2636;}*/
+.tab-ad{border-top:1px solid #E3E3E3;background:#F9F9F9;}
+.tab-ad .tab-hd{height:31px;overflow:hidden;line-height:30px;border-left:1px solid #E3E3E3;}
+.tab-ad .tab-hd .tab-hd-con{height:30px;border-right:1px solid #E3E3E3;}
+.tab-ad .tab-hd .current{height:31px;background:#f9f9f9;_position:relative;_z-index:1;}
+.tab-ad .tab-bd{margin-top:-1px;border:1px solid #E3E3E3;}
+.ad{overflow:hidden;background:#F9F9F9;}
+.tab-sub-2 .tab-hd-con{width:73px;}
+.tab-sub-2 .tab-hd .current{width:76px;}
+.tab-sub-3 .tab-hd-con{width:98px;}
+.tab-sub-3 .tab-hd .current{width:100px;}
+.tab-sub-4 .tab-hd-con{width:73px;}
+.tab-sub-4 .tab-hd .current{width:76px;}
+.tab-hd-con{float:left;font-size:14px;text-align:center;cursor:pointer;}
+.tab-hd-con a{display:inline-block;}
+.tab-hd .current{font-weight:bold;}
+.tab-bd-con{display:none;overflow:hidden;}
+.tab-ad .tab-bd-con{padding:18px 9px 12px;}
+/* mod list */
+.list-sub li{background-image:url(http://img4.cache.netease.com/www/v2013/img/icon.png);background-repeat:no-repeat;}
+.m-list li{overflow:hidden;color:#c1c1c1;}
+.list-sub{padding-bottom:5px;}
+.list-sub li,.list-sub-normal li{height:25px;line-height:25px;font-size:12px;}
+.list-sub li{padding-left:8px;background-position:left -124px;}
+.list-detail h3{height:22px;margin-bottom:3px;overflow:hidden;font-size:14px;line-height:22px;font-weight:bold;}
+.list-detail p{line-height:22px;font-size:12px;color:#888;}
+.m-list .list-detail{padding-left:0;height:auto;line-height:0;background:none;}
+.list-detail img{float:left;margin-left:-140px;}
+.m-list .list-detail70{padding-left:100px;}
+.list-detail70 img{float:left;margin-left:-100px;}
+.heavy_title{font-weight:bold;}
+.clear{clear:both;display: block;}
+.list-sub .pics_list{padding-bottom:4px;background: none;height: 115px;padding-left: 0;width: 290px;overflow: hidden;}
+.list-sub .pics_list a{display: block;float: left;margin-right: 4px;background:#e4e4e4;}
+.list-sub .pics_list img{display: block;width: 138px;height: 90px;}
+.list-sub .pics_list p{width: 138px;height: 25px;line-height: 25px;font-size: 12px;text-align: center;}
+/* jiupin_v2 */
+.jiupin_mod{font-size: 12px;color: #252525;font-family: Arial,'ËÎÌå',sans-serif;background-color:#f9f9f9;}
+.jiupin_hot{height: 55px;overflow: hidden;border-bottom: 1px dashed #e4e4e4;}
+.jiupin_hot_hd{height: 24px;overflow: hidden;}
+.jiupin_hot_hd h2{font-size: 14px;background: url(http://img1.cache.netease.com/f2e/wine/net_mod/images/hot_rec_t.jpg) -3px 0 no-repeat;text-indent: -9999px;height: 24px;}
+.jiupin_hot_bd{}
+.jiupin_hot_bd p{margin:0;font-size:0;}
+.jiupin_hot_bd a,.jiupin_hot_bd a:visited{line-height: 22px;color: #252525;white-space: nowrap;font-size: 12px;margin:0 6px 0 0;*margin:0 5px 0 0;}
+.jiupin_quick{padding-top: 8px;display: none;}
+.jiupin_quick_hd{}
+.jiupin_quick_hd:after{clear: both; content: "."; display: block; height: 0; overflow: hidden; visibility: hidden;}
+.jiupin_quick_hd h2{font-size: 14px;font-weight: bold;color: #252525;float: left;}
+.jiupin_quick_hd .viewmore{font-size: 12px;color: #d5545d;font-family: 'ËÎÌå';float: right;}
+.jiupin_quick_bd{padding-top: 5px;}
+.jiupin_quick_bd table{border-collapse: collapse;width: 100%;vertical-align: middle}
+.jiupin_quick_bd th{width: 58px;}
+.jiupin_quick_bd th span,.jiupin_quick_bd th a,.jiupin_quick_bd th a:visited{display: inline-block;*zoom:1;width: 58px;height: 22px;text-align: center;line-height: 22px;background: #e4e4e4;color: #376a77;font-weight: bold;}
+.jiupin_quick_bd td{padding: 0 10px;font-size:0;}
+.jiupin_quick_bd td a,.jiupin_quick_bd td a:visited{line-height: 22px;color: #252525;white-space: nowrap;margin:0 6px 0 0;font-size:12px;*margin:0 5px 0 0; }
+.ad235h{height: 235px;overflow: hidden;}
+</style>
+</head>
+<body>
+	<div class="ad ad235h">
+		<ul class="m-list list-sub clearfix">
+			<li class="pics_list">
+										<a href="http://product.jiu.163.com/trial/curr.html#2zhen">
+					<img src="http://img4.cache.netease.com/cnews/2015/4/24/201504241018152668f.jpg" alt="³£Ê¤¡¤×ÓÁúÃâ·ÑÊÔÒû" width="138" height="90" /><p>³£Ê¤¡¤×ÓÁúÃâ·ÑÊÔÒû</p>
+				</a>
+							<a href="http://jiu.163.com/photoview/5FLK0082/29789.html#p=AFTMH2VO5FLK0082#2zhen">
+					<img src="http://img2.cache.netease.com/cnews/2015/2/5/20150205150435df0a9.jpg" alt="²ÈÌ¤Ò¹»ÆÆÖÇøÁìµ¼¾Æµ¥" width="138" height="90" /><p>²ÈÌ¤Ò¹»ÆÆÖÇøÁìµ¼¾Æµ¥</p>
+				</a>
+							<div class="clear"></div>
+			</li>
+			<li class="pics_list">
+										<a href="http://jiu.163.com/15/0106/09/AF934LD100824IMP.html#2zhen">
+					<img src="http://img1.cache.netease.com/cnews/2015/2/5/20150205150645ed788.jpg" alt="±±ÎèÐ£»¨º£Á¿ ÇáËÉ¶ÔÆ¿´µ" width="138" height="90" /><p>±±ÎèÐ£»¨º£Á¿ ÇáËÉ¶ÔÆ¿´µ</p>
+				</a>
+							<a href="http://jiu.163.com/14/1112/10/AARJ323K00824IMP.html#2zhen">
+					<img src="http://img2.cache.netease.com/cnews/2015/2/5/20150205150914bb7d4.jpg" alt="ÄÐ×ÓÖ÷¶¯º°¾¯²ìÊÔ¾Æ²â" width="138" height="90" /><p>ÄÐ×ÓÖ÷¶¯º°¾¯²ìÊÔ¾Æ²â</p>
+				</a>
+							<div class="clear"></div>
+			</li>
+		</ul>  
+	</div>
+	<div class="jiupin_mod">
+		<div class="jiupin_hot">
+			<div class="jiupin_hot_hd">
+				<h2>ÈÈÃÅËÑË÷ÍÆ¼ö</h2>  
+			</div>
+			<div class="jiupin_hot_bd">
+				<p>
+					<a href="http://product.jiu.163.com/rank/detail/yanqing/201305.html#PH01" target="_blank" title="ÉÌÎñÑçÇëºÈÊ²Ã´¾Æ">ÉÌÎñÑçÇëºÈÊ²Ã´¾Æ</a>
+					<a href="http://product.jiu.163.com/rank/detail/lipin/201305.html#PH02" target="_blank" title="ÀñÆ·ÓÃ¾Æ">ÀñÆ·ÓÃ¾Æ</a>
+					<a href="http://product.jiu.163.com/search/product/0_0_0_9_0_0_0_0.html#SS01" target="_blank" title="¸ß¶Ë¾Æ">¸ß¶Ë¾Æ</a>
+					<a href="http://product.jiu.163.com/search/product/0_0_0_0_0_0_24_0.html#SS02" target="_blank" title="¹óÖÝÃû¾Æ">¹óÖÝÃû¾Æ</a>
+				</p>
+			</div>
+		</div>
+		<div class="jiupin_quick">
+			<div class="jiupin_quick_hd">
+				<h2>¿ìËÙ¼ìË÷</h2>
+				<a href="http://product.jiu.163.com/search/index.html#SS03" target="_blank"  class="viewmore">²é¿´¸ü¶à&gt;&gt;</a>
+			</div>
+			<div class="jiupin_quick_bd">
+				<table>
+				<tr>
+				<th>
+				<span>°´Æ·ÅÆ</span>
+				</th>
+				<td>
+				<a href="http://product.jiu.163.com/search/product/10000_0_0_0_0_0_0_0.html#SS04" target="_blank" title="Ã©Ì¨">Ã©Ì¨</a>
+				<a href="http://product.jiu.163.com/search/product/10001_0_0_0_0_0_0_0.html#SS05" target="_blank" title="ÎåÁ¸Òº">ÎåÁ¸Òº</a>
+				<a href="http://product.jiu.163.com/search/product/10006_0_0_0_0_0_0_0.html#SS06" target="_blank" title="ÑóºÓ">ÑóºÓ</a>
+				<a href="http://product.jiu.163.com/search/product/10041_0_0_0_0_0_0_0.html#SS07" target="_blank" title="ºìÂ¥ÃÎ¾Æ">ºìÂ¥ÃÎ</a>
+				<a href="http://product.jiu.163.com/search/product/10017_0_0_0_0_0_0_0.html#SS08" target="_blank" title="Î÷·ï">Î÷·ï</a>
+				<a href="http://product.jiu.163.com/search/product/10039_0_0_0_0_0_0_0.html#SS09" target="_blank" title="Ï°¾Æ">Ï°¾Æ</a>
+				<a href="http://product.jiu.163.com/search/product/10002_0_0_0_0_0_0_0.html#SS10" target="_blank" title="½£ÄÏ´º">½£ÄÏ´º</a>
+				<a href="http://product.jiu.163.com/search/product/10019_0_0_0_0_0_0_0.html#SS11" target="_blank" title="¶Å¿µ">¶Å¿µ</a>
+				<a href="http://product.jiu.163.com/search/product/10003_0_0_0_0_0_0_0.html#SS12" target="_blank" title="·Ú¾Æ">·Ú¾Æ</a>
+				<a href="http://product.jiu.163.com/search/product/10016_0_0_0_0_0_0_0.html#SS13" target="_blank" title="ºâË®ÀÏ°×¸É">ºâË®ÀÏ°×¸É</a>
+				</td>
+				</tr>
+				<tr>
+				<th>
+				<span>°´¼Û¸ñ</span>
+				</th>
+				<td>
+				<a href="http://product.jiu.163.com/search/product/0_0_0_9_0_0_0_0.html#SS14" target="_blank" title="2000ÔªÒÔÉÏ">2000ÔªÒÔÉÏ</a>
+				<a href="http://product.jiu.163.com/search/product/0_0_0_8_0_0_0_0.html#SS15" target="_blank" title="1500Ôª×óÓÒ">1500Ôª×óÓÒ</a>
+				<a href="http://product.jiu.163.com/search/product/0_0_0_6_0_0_0_0.html#SS16" target="_blank" title="500Ôª×óÓÒ">500Ôª×óÓÒ</a>
+				<a href="http://product.jiu.163.com/search/product/0_0_0_3_0_0_0_0.html#SS17" target="_blank" title="100Ôª×óÓÒ">100Ôª×óÓÒ</a>
+				<a href="http://product.jiu.163.com/search/product/0_0_0_1_0_0_0_0.html#SS18" target="_blank" title="20Ôª×óÓÒ">20Ôª×óÓÒ</a>
+				</td>
+				</tr>
+				<tr>
+				<th>
+				<span>°´ÓÃÍ¾</span>
+				</th>
+				<td>
+				<a href="http://product.jiu.163.com/search/product/0_0_0_0_0_1130_0_0.html#SS19" target="_blank" title="»éÇì">»éÇì</a>
+				<a href="http://product.jiu.163.com/search/product/0_0_0_0_0_1026_0_0.html#SS20" target="_blank" title="ÉÌÎñÑçÇë">ÉÌÎñÑçÇë</a>
+				<a href="http://product.jiu.163.com/search/product/0_0_0_0_0_1027_0_0.html#SS21" target="_blank" title="ÀñÆ·">ÀñÆ·</a>
+				<a href="http://product.jiu.163.com/search/product/0_0_0_0_0_1028_0_0.html#SS22" target="_blank" title="¾Û»á">¾Û»á</a>
+				<a href="http://product.jiu.163.com/search/product/0_0_0_0_0_1025_0_0.html#SS23" target="_blank" title="×Ô×Ã">×Ô×Ã</a>
+				</td>
+				</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+
+  <script type="text/javascript">
+
+  (function(w) {
+    'use strict';
+
+    var
+      eventName,
+      eventMsg,
+      eventFunction,
+      LSValue,
+      LSTimeValue;
+
+    if(typeof w.localStorage !== 'object') { return; }
+
+    eventName = 'addEventListener';
+    eventMsg = 'message';
+    if(typeof w.addEventListener !== 'function') { // Cas IE
+      eventName = 'attachEvent';
+      eventMsg = 'onmessage';
+    }
+
+    eventFunction = w[eventName];
+    if(typeof eventFunction !== 'object' && typeof eventFunction !== 'function') { return; }
+
+    eventFunction(eventMsg, function(e) {
+      // on vÃ©rifie que la donnÃ©e envoyÃ©e est un objet contenant un index netals et un index netalst ( string et qu'elle est infÃ©rieur Ã  8ko)le tout doit Ãªtre infÃ©rieur Ã  8ko).
+      if(typeof e.data !== 'object' || e.data.netals === null || e.data.netalst === null || e.data.netals.length > 8000) { return; }
+
+      w.localStorage.setItem('netals', e.data.netals);
+      w.localStorage.setItem('netalst', e.data.netalst);
+    }, false);
+
+    LSValue = w.localStorage.getItem('netals', null);
+    LSTimeValue = w.localStorage.getItem('netalst', null);
+
+    if(w.parent === w.self) { return; }
+
+    w.parent.postMessage({'netals':LSValue, 'netalst':LSTimeValue}, '*');
+  }(window));
+
+  </script>
+
+</head>
+<body>
+</body>
+</html>

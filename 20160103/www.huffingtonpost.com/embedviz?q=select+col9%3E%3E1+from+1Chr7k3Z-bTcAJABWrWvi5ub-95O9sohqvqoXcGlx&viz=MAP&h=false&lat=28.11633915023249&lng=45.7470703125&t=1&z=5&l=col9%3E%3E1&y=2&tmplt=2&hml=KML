@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport"></meta>
+<title>Merge of Jeux d&#39;alliance au Moyen-Orient and World Country Boundaries.kml - Google Fusion Tables</title>
+<style type="text/css">
+html, body, #googft-mapCanvas {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+#googft-legend {
+  background-color: #fff;
+  border: 1px solid #000;
+  font-family: Arial,sans-serif;
+  font-size: 12px;
+  margin: 5px;
+  padding: 10px 10px 8px;
+}
+
+#googft-legend p {
+  font-weight: bold;
+  margin-top: 0;
+}
+
+#googft-legend div {
+  margin-bottom: 5px;
+}
+
+.googft-legend-swatch {
+  border: 1px solid;
+  float: left;
+  height: 12px;
+  margin-right: 8px;
+  width: 20px;
+}
+
+.googft-legend-range {
+  margin-left: 0;
+}
+
+.googft-dot-icon {
+  margin-right: 8px;
+}
+
+.googft-paddle-icon {
+  height: 24px;
+  left: -8px;
+  margin-right: -8px;
+  position: relative;
+  vertical-align: middle;
+  width: 24px;
+}
+
+.googft-legend-source {
+  margin-bottom: 0;
+  margin-top: 8px;
+}
+
+.googft-legend-source a {
+  color: #666;
+  font-size: 11px;
+}
+
+</style>
+
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3&amp;libraries=visualization&amp;sensor=false"></script>
+
+<script type="text/javascript">
+  function initialize() {
+    google.maps.visualRefresh = true;
+    var isMobile = (navigator.userAgent.toLowerCase().indexOf('android') > -1) ||
+      (navigator.userAgent.match(/(iPod|iPhone|iPad|BlackBerry|Windows Phone|iemobile)/));
+    if (isMobile) {
+      var viewport = document.querySelector("meta[name=viewport]");
+      viewport.setAttribute('content', 'initial-scale=1.0, user-scalable=no');
+    }
+    var mapDiv = document.getElementById('googft-mapCanvas');
+    mapDiv.style.width = isMobile ? '100%' : '100%';
+    mapDiv.style.height = isMobile ? '100%' : '100%';
+    var map = new google.maps.Map(mapDiv, {
+      center: new google.maps.LatLng(28.11633915023249, 45.7470703125),
+      zoom: 5,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    });
+    map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(document.getElementById('googft-legend-open'));
+    map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(document.getElementById('googft-legend'));
+
+    layer = new google.maps.FusionTablesLayer({
+      map: map,
+      heatmap: { enabled: false },
+      query: {
+        select: "col9\x3e\x3e1",
+        from: "1Chr7k3Z-bTcAJABWrWvi5ub-95O9sohqvqoXcGlx",
+        where: ""
+      },
+      options: {
+        styleId: 2,
+        templateId: 2
+      }
+    });
+
+    if (isMobile) {
+      var legend = document.getElementById('googft-legend');
+      var legendOpenButton = document.getElementById('googft-legend-open');
+      var legendCloseButton = document.getElementById('googft-legend-close');
+      legend.style.display = 'none';
+      legendOpenButton.style.display = 'block';
+      legendCloseButton.style.display = 'block';
+      legendOpenButton.onclick = function() {
+        legend.style.display = 'block';
+        legendOpenButton.style.display = 'none';
+      }
+      legendCloseButton.onclick = function() {
+        legend.style.display = 'none';
+        legendOpenButton.style.display = 'block';
+      }
+    }
+  }
+
+  google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+</head>
+
+<body>
+  <div id="googft-mapCanvas"></div>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<SCRIPT LANGUAGE=JavaScript>
+var ShockMode = 0;
+var plugin = (navigator.mimeTypes && navigator.mimeTypes["application/x-shockwave-flash"]) ? navigator.mimeTypes["application/x-shockwave-flash"].enabledPlugin : 0;
+if (plugin && parseInt(plugin.description.substring(plugin.description.indexOf(".")-2)) >= 8) { ShockMode = 1;}
+else if (navigator.userAgent && navigator.userAgent.indexOf("MSIE")>=0 
+&& navigator.userAgent.indexOf("Opera")<0) {
+document.write('<SCRIPT LANGUAGE=VBScript\> \n'+'on error resume next \n'+'ShockMode = (IsObject(CreateObject("ShockwaveFlash.ShockwaveFlash.8")))\n'+'<\/SCRIPT\> \n');
+}
+if ( ShockMode ) {
+document.write('<a href="http://g.163.com/c?AID=215662&FlightID=1466&Values=2308735740&Redirect=http://mlt01.com/c.htm?pv=1&sp=0,1264921,1309154,2225553,0,1,1&target=http://www.faw-hongqi.com.cn/xinzhengce/" target="_blank"><img src="http://img1.126.net/channel7/cover.gif" style="position:absolute; width:640px; height:100px; margin:0px; padding:0px; border:0px;" />');
+document.write('<OBJECT ');
+document.write(' codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0"');
+document.write(' ID=flashad WIDTH=640 HEIGHT=100>');
+document.write(' <PARAM NAME=movie VALUE="http://img1.126.net/channel4/021558/hq640100_1214.swf"> '); 
+document.write(' <PARAM NAME=quality VALUE=autohigh> ');
+document.write(' <PARAM NAME=wmode VALUE=opaque> ');
+document.write(' <EMBED SRC="http://img1.126.net/channel4/021558/hq640100_1214.swf" QUALITY=autohigh  wmode=opaque'); 
+document.write(' NAME=flashad swLiveConnect=TRUE WIDTH=640 HEIGHT=100');
+document.write(' TYPE="application/x-shockwave-flash" PLUGINSPAGE="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash">');
+document.write('</EMBED>');
+document.write('</OBJECT>');
+document.write('</a>');
+} 
+</SCRIPT>

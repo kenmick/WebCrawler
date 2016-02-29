@@ -1,0 +1,56 @@
+/*
+(c) Copyright Weborama SA - France. All rights reserved.
+It is illegal to modify, disassemble, sell, copy or publish this software
+or any part thereof. The use of this software is only permitted with the
+prior and express written permission of Weborama SA - France.
+More information: http://www.weborama.com/contacts/
+*/
+function x17() {
+    var x1cl, x1ey = x1bb.x1cj();
+    x1ey.x1ie = x1bb.x1nn(x1ey.x1ie,'wuid=&retargeting=&');
+    x1ey.x1fN = 'http://cstatic.weborama.fr/advertiser/322/104/1584/2073/';
+    x1ey.x1lp = '5746';
+
+
+
+    x1ey.conf_oba = false;
+    adperfobj.zindex = adperfobj.zindex || 0 || 214748360;
+
+    adperfobj.clicks = new Array();
+    adperfobj.clicks[0] = 'http://ams1.ib.adnxs.com/click?tgaP9dpUzj9gOfS4qufLP0jhehSuR-k_4PynOm_l0z_dEoqCV6DVP0kBhHBwUEsZqhevxSy-ZVIH0p9WAAAAAM6wDwBIBgAAzQQAAAIAAAA-VV4C8cYCAAAAAQBVU0QARVVSANgCWgAEIAAAkPUAAgUAAQAAAIoAASnGjQAAAAA./cnd=%216AZeQwj01swFEL6q-RIY8Y0LIAA./referrer=http%3A%2F%2Fwww.huffingtonpost.fr%2F%3Fcountry%3DFR/clickenc=http%3A%2F%2Fgroupelaposte.solution.weborama.fr%2Ffcgi-bin%2Fdispatch.fcgi%3Fa.A%3Dcl%26a.si%3D322%26a.te%3D5733%26a.aap%3D5746%26a.agi%3D182%26g.lu%3D' + (adperfobj.landing_urls[0] || '');
+
+
+    try{
+        adperfobj.imptrackers = new Array(
+                'https://laboutique.commander1.com/v3/?tcs=1491&rand=39982&chn=Display&src=Tradelab&cmp=20151207_BNUM_Temps_Fort_Pro&med=banniere_728x90&dis_pub=&dis_c=&dis_v=&dis_f=redirect&url='
+        );
+
+        adperfobj.clicktrackers = (new Array(
+                
+        ).concat(adperfobj.clicktrackers));
+
+        adperfobj.eventtrackers = (new Array(
+                
+        ).concat(adperfobj.eventtrackers));
+    }catch(scr_e){}
+
+
+
+    x1ey.addTrackers(adperfobj);
+    x1ey.addClicks(adperfobj);
+
+    x1cl = new x1bb.x1ig();
+x1cl.x1c(x1ey, 10507, 'index.html', adperfobj.width, adperfobj.height, '', '', '');
+x1ey.x1gG(x1cl, '', 2, '');
+x1cl = new x1bb.x1hW();
+x1cl.x1c(x1ey, 10498, 'backup.gif', adperfobj.width, adperfobj.height, '', '', '');
+x1ey.x1gG(x1cl, '', 2, '');
+
+
+
+
+    x1ey.x1gQ();
+
+
+}
+x1L('adperf_core_' + adperf_version + '_scrambled.js');

@@ -1,0 +1,434 @@
+/* setup */
+html {
+  box-sizing: border-box; }
+
+*, *:before, *:after {
+  box-sizing: inherit; }
+
+body {
+  background-color: #FFF;
+  margin: 0;
+  padding: 0; }
+
+.hide {
+  border: 0 !important;
+  clip: rect(0 0 0 0) !important;
+  height: 1px !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  position: absolute !important;
+  width: 1px !important; }
+
+#ytClose {
+  z-index: 999; }
+
+/* Banner Styles */
+.guide {
+  position: absolute;
+  width: 300px;
+  height: 600px;
+  left: 0;
+  top: 0;
+  background: url(../img/guide_controls.jpg); }
+
+.banner {
+  position: relative;
+  width: 300px;
+  height: 600px;
+  border: solid 1px;
+  overflow: hidden;
+  background-color: #000; }
+  .banner .bannerClick {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer; }
+  .banner #main {
+    width: 100%;
+    height: 100%; }
+  .banner .logo {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 30;
+    cursor: pointer;
+    pointer-events: none; }
+  .banner #endframe {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 19; }
+    .banner #endframe .bannerClick {
+      width: 100%;
+      height: 150px; }
+      .banner #endframe .bannerClick:nth-child(2) {
+        top: 0; }
+      .banner #endframe .bannerClick:nth-child(3) {
+        top: 150px;
+        height: 150px; }
+      .banner #endframe .bannerClick:nth-child(4) {
+        top: 300px;
+        height: 150px; }
+      .banner #endframe .bannerClick:nth-child(5) {
+        top: 450px;
+        height: 150px; }
+    .banner #endframe .replayBtn {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      cursor: pointer; }
+  .banner #mainVideo {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 11; }
+    .banner #mainVideo .darken {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-color: #000;
+      opacity: 0; }
+    .banner #mainVideo .copy img {
+      position: absolute;
+      top: 321px;
+      left: 19px;
+      opacity: 0; }
+    .banner #mainVideo .playPauseIcon {
+      position: absolute;
+      cursor: pointer;
+      left: 15px;
+      bottom: 15px;
+      z-index: 5; }
+    .banner #mainVideo .muteIcon {
+      position: absolute;
+      cursor: pointer;
+      left: 55px;
+      bottom: 15px;
+      z-index: 5; }
+      .banner #mainVideo .muteIcon.muteIconDetail {
+        left: 31px;
+        bottom: 0px; }
+    .banner #mainVideo .progressBar {
+      position: absolute;
+      height: 8px;
+      left: 10px;
+      bottom: 85px;
+      z-index: 5; }
+      .banner #mainVideo .progressBar .icons {
+        position: absolute;
+        top: -33px;
+        left: 0px;
+        z-index: -1; }
+        .banner #mainVideo .progressBar .icons.over {
+          z-index: 1; }
+        .banner #mainVideo .progressBar .icons .playIcon {
+          cursor: pointer;
+          position: absolute; }
+          .banner #mainVideo .progressBar .icons .playIcon:nth-child(1) {
+            left: 11px; }
+          .banner #mainVideo .progressBar .icons .playIcon:nth-child(2) {
+            left: 81px; }
+          .banner #mainVideo .progressBar .icons .playIcon:nth-child(3) {
+            left: 151px; }
+        .banner #mainVideo .progressBar .icons #playIconHit1, .banner #mainVideo .progressBar .icons #playIconHit2, .banner #mainVideo .progressBar .icons #playIconHit3 {
+          position: absolute;
+          width: 50px;
+          height: 40px;
+          top: 18px; }
+        .banner #mainVideo .progressBar .icons #playIconHit1 {
+          left: 40px; }
+        .banner #mainVideo .progressBar .icons #playIconHit2 {
+          left: 111px; }
+        .banner #mainVideo .progressBar .icons #playIconHit3 {
+          left: 181px; }
+      .banner #mainVideo .progressBar > * {
+        float: left; }
+      .banner #mainVideo .progressBar #dotStage {
+        position: absolute;
+        left: -19px;
+        top: -19px; }
+      .banner #mainVideo .progressBar .dot {
+        width: 8px;
+        height: 8px;
+        background-color: #fff;
+        border-radius: 4px;
+        margin-right: 4px;
+        opacity: .5;
+        cursor: pointer; }
+        .banner #mainVideo .progressBar .dot:hover {
+          opacity: 1; }
+        .banner #mainVideo .progressBar .dot.active {
+          opacity: 1; }
+        .banner #mainVideo .progressBar .dot:nth-child(6) {
+          margin-left: 4px; }
+      .banner #mainVideo .progressBar .line {
+        margin-right: 30px;
+        height: 1px;
+        width: 40px;
+        background-color: rgba(255, 255, 255, 0.5);
+        margin-top: 4px;
+        position: relative; }
+        .banner #mainVideo .progressBar .line:nth-child(2) {
+          margin-left: 12px;
+          width: 40px; }
+        .banner #mainVideo .progressBar .line:nth-child(5) {
+          margin-right: 0; }
+        .banner #mainVideo .progressBar .line .hit {
+          position: absolute;
+          height: 9px;
+          width: 100%;
+          top: -4px;
+          opacity: .5;
+          cursor: pointer;
+          background: url("data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"); }
+        .banner #mainVideo .progressBar .line .inner {
+          position: absolute;
+          background-color: #fff;
+          height: 1px; }
+  .banner #introSequence {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 10; }
+    .banner #introSequence .sequence {
+      position: absolute; }
+    .banner #introSequence .introCopy {
+      position: absolute;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      -webkit-transform: translate(-50%, -50%);
+      top: 50%; }
+    .banner #introSequence .slider {
+      position: absolute;
+      top: 390px;
+      left: 25px;
+      width: 245px; }
+      .banner #introSequence .slider .button {
+        width: 52px;
+        height: 52px;
+        position: absolute; }
+        .banner #introSequence .slider .button img {
+          width: 17px;
+          left: 16px;
+          top: 12px;
+          position: absolute; }
+      .banner #introSequence .slider #dragStage {
+        position: absolute;
+        top: -20px;
+        left: -20px;
+        width: 93px;
+        height: 93px; }
+      .banner #introSequence .slider .track {
+        width: 153px;
+        height: 3px;
+        position: absolute;
+        top: 26px;
+        right: 37px;
+        overflow: hidden; }
+        .banner #introSequence .slider .track .sprite {
+          background: url(../img/slider_track2.png);
+          background-position: 0 0;
+          width: 153px;
+          margin-right: 0px; }
+        .banner #introSequence .slider .track .sprite,
+        .banner #introSequence .slider .track img {
+          right: 0;
+          height: 3px;
+          position: absolute; }
+      .banner #introSequence .slider .targetCircle {
+        position: absolute;
+        right: 14px;
+        top: 14px;
+        width: 24px;
+        height: 24px;
+        border-radius: 12px;
+        border: dashed 1px #fff; }
+
+/* Video */
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 15;
+  cursor: pointer;
+  width: 19px;
+  height: 19px;
+  background: url(../img/close_button.png);
+  overflow: hidden; }
+
+.close:hover {
+  background-position: -19px 0; }
+
+#replay:hover {
+  -webkit-transform: rotate(180deg);
+  transform: rotate(180deg); }
+
+#replay {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 20px;
+  height: 20px;
+  background: url(../img/replay.png) no-repeat center;
+  cursor: pointer;
+  transition: -webkit-transform .3s ease-out, -ms-transform .3s ease-out;
+  transition: transform .3s ease-out, -ms-transform .3s ease-out; }
+
+#introWrapper {
+  z-index: 20; }
+  #introWrapper .introCopyVideo {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    top: 50%;
+    opacity: 0; }
+  #introWrapper .playPauseIcon {
+    position: absolute;
+    cursor: pointer;
+    left: 0;
+    bottom: 0;
+    z-index: 1; }
+  #introWrapper .muteIconDetail {
+    position: absolute;
+    cursor: pointer;
+    left: 42px;
+    bottom: 0;
+    z-index: 1; }
+  #introWrapper .timer {
+    position: absolute;
+    cursor: pointer;
+    left: 40px;
+    bottom: 5px;
+    z-index: 1; }
+
+#mainWrapper,
+#introWrapper {
+  background-color: #000;
+  position: absolute;
+  width: 300px;
+  height: 600px;
+  top: 0;
+  left: 0; }
+  #mainWrapper.blur,
+  #introWrapper.blur {
+    -webkit-filter: blur(10px);
+            filter: blur(10px); }
+
+#detailsWrapper {
+  position: absolute;
+  width: 300px;
+  height: 600px;
+  right: 0px;
+  top: 0px;
+  z-index: 3; }
+  #detailsWrapper .controls {
+    height: 32px;
+    bottom: 353px;
+    width: 250px;
+    left: auto;
+    right: 32px;
+    z-index: 12; }
+    #detailsWrapper .controls .playPauseIcon {
+      left: 0;
+      bottom: 0; }
+  #detailsWrapper .backBtn {
+    left: 62px;
+    bottom: 0px;
+    position: absolute;
+    z-index: 15;
+    cursor: pointer;
+    overflow: hidden; }
+
+#detailsContainer {
+  position: absolute;
+  width: 404px;
+  height: 230px;
+  left: 20px;
+  top: 100px;
+  z-index: 3;
+  cursor: pointer; }
+
+#detailsStage {
+  position: absolute;
+  width: 300px;
+  height: 600px;
+  top: 0;
+  left: 0; }
+
+.mainContainer,
+.introContainer {
+  width: 100%;
+  height: 100%;
+  background-color: #000; }
+
+.videoClick {
+  z-index: 2;
+  position: absolute;
+  top: 0;
+  left: 0;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  background: url("data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"); }
+
+.detailVideoClick {
+  position: absolute;
+  width: 404px;
+  height: 230px;
+  right: 13px;
+  top: 10px;
+  z-index: 4;
+  cursor: pointer; }
+
+.controls {
+  z-index: 12;
+  position: absolute;
+  bottom: 10px;
+  left: 10px; }
+
+.sprite {
+  width: 20px;
+  height: 20px;
+  float: left;
+  margin-right: 2px;
+  cursor: pointer; }
+
+.playBtn {
+  background-position: 0 0; }
+
+.playBtn:hover {
+  background-position: 0 -44px; }
+
+.playBtn.pause {
+  background-position: 0 -22px; }
+
+.playBtn.pause:hover {
+  background-position: 0 -66px; }
+
+.muteBtn {
+  background-position: -22px -22px; }
+
+.muteBtn.unmute {
+  background-position: -22px 0; }
+
+.muteBtn.unmute:hover {
+  background-position: -22px -44px; }
+
+.muteBtn:hover {
+  background-position: -22px -66px; }
+
+.timer {
+  float: left;
+  color: #fff;
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  width: 100px;
+  line-height: 20px;
+  margin-left: 5px; }

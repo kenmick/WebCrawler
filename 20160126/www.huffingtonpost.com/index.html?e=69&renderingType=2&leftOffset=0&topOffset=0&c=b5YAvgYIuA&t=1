@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta name="ad.size" content="width=300, height=600">
+	<title>Louis Vuitton_300x600</title>
+	<style type="text/css">
+		body {
+		    margin: 0;
+		    padding: 0;
+		    background: #FFF;
+		}
+		.lienPub {
+		    position: absolute;
+		    width: inherit;
+		    height: inherit;
+		    display: block;
+		    text-decoration: none;
+		    color: #fff;
+		}
+		#banConteneur {
+		    width: 300px;
+		    height: 600px;
+		    position: absolute;
+		    overflow: hidden;
+		    border: 1px solid black;
+		    -webkit-box-sizing: border-box;
+		    -moz-box-sizing: border-box;
+		    box-sizing: border-box;
+		}
+		img {
+		    opacity: 0;
+		    position: absolute;
+		    width: 300px;
+		    height: 600px;
+		}
+		div {
+		    opacity: 1;
+		    position: absolute;
+		    width: 300px;
+		    height: 600px;
+		}
+		.bg {
+		    opacity: 1
+		}
+		.helice {
+		    width: 160px;
+		    height: 160px;
+		    left: 105px;
+		    top: 160px;
+		}
+		.helice_centre {
+		    opacity: 1;
+		    width: 160px;
+		    height: 160px;
+		    left: 105px;
+		    top: 160px;
+		}
+		.plane_ombre, .plane {
+		    opacity: 1
+		}
+		.appearplane {
+		    opacity: 0;
+		}
+		.anim .head_1 {
+		    animation: anim_head_1 3s ease-out 0.1s 1 normal forwards;
+		    animation-timing-function: cubic-bezier(.18, .77, .21, .99);
+		}
+		@keyframes anim_head_1 {
+		    0% {
+		        transform: translate3d(0px, 20px, 0px);
+		    }
+		    100% {
+		        transform: translate3d(0px, 0px, 0px);
+		        opacity: 1;
+		    }
+		}
+		.anim .v {
+		    animation: anim_v 2s ease-out 0.1s 1 normal forwards;
+		    animation-timing-function: cubic-bezier(.18, .77, .21, .99);
+		}
+		.anim .v_left {
+		    animation: anim_v 2s ease-out 0.1s 1 normal forwards;
+		    animation-timing-function: cubic-bezier(.18, .77, .21, .99);
+		}
+		@keyframes anim_v {
+		    0% {
+		        /*transform: translate3d(0px, 80px, 0px);*/
+		        opacity: 1;
+		    }
+		    100% {
+		        /*transform: translate3d(0px, 0px, 0px);*/
+		        opacity: 1;
+		    }
+		}
+		/* AVION */
+
+		.anim .appearplane {
+		    animation: anim_appearplane 4s ease-out 0.2s 1 normal forwards;
+		    animation-timing-function: cubic-bezier(.17, 1, .75, 1);
+		}
+		@keyframes anim_appearplane {
+		    0% {
+		        transform: translate3d(0px, 90px, 0px);
+		        opacity: 0;
+		    }
+		    100% {
+		        transform: translate3d(0px, 0px, 0px);
+		        opacity: 1;
+		    }
+		}
+		.anim .mooveplane {
+		    animation: anim_mooveplane 5s linear 6 normal forwards;
+		}
+		@keyframes anim_mooveplane {
+		    0% {
+		        transform: translate3d(0px, 0px, 0px);
+		        opacity: 1;
+		    }
+		    50% {
+		        transform: translate3d(0px, 8px, 0px);
+		    }
+		    100% {
+		        transform: translate3d(0px, 0px, 0px);
+		        opacity: 1;
+		    }
+		}
+		.anim:hover .helice {
+		    animation: anim_helice_hover 4s cubic-bezier(.12, .84, .85, 1) 0s 1 normal forwards;
+		    z-index: 1000;
+		}
+		@keyframes anim_helice_hover {
+		    from {
+		        transform: rotate(-1000deg);
+		        opacity: 1;
+		    }
+		    to {
+		        transform: rotate(0deg);
+		        opacity: 1;
+		    }
+		}
+		.anim .helice {
+		    animation: anim_helice 4s cubic-bezier(.12, .84, .85, 1) 0s 1 normal forwards;
+		}
+		@keyframes anim_helice {
+		    from {
+		        transform: rotate(-3000deg);
+		        opacity: 1;
+		    }
+		    to {
+		        transform: rotate(0deg);
+		        opacity: 1;
+		    }
+		}
+		/* TEXTES */
+
+		.anim .txt_volez {
+		    animation: anim_txt_volez 1s ease-out 3s 1 normal forwards;
+		    animation-timing-function: cubic-bezier(.17, 1, .75, 1);
+		}
+		@keyframes anim_txt_volez {
+		    0% {
+		        transform: translate3d(0px, 20px, 0px);
+		    }
+		    100% {
+		        transform: translate3d(0px, 0px, 0px);
+		        opacity: 1;
+		    }
+		}
+		.anim .txt_voguez {
+		    animation: anim_txt_voguez 1.2s ease-out 3.5s 1 normal forwards;
+		    animation-timing-function: cubic-bezier(.17, 1, .75, 1);
+		}
+		@keyframes anim_txt_voguez {
+		    0% {
+		        transform: translate3d(0px, 20px, 0px);
+		    }
+		    100% {
+		        transform: translate3d(0px, 0px, 0px);
+		        opacity: 1;
+		    }
+		}
+		.anim .txt_voyagez {
+		    animation: anim_txt_voyagez 1.4s ease-out 4s 1 normal forwards;
+		    animation-timing-function: cubic-bezier(.17, 1, .75, 1);
+		}
+		@keyframes anim_txt_voyagez {
+		    0% {
+		        transform: translate3d(0px, 20px, 0px);
+		    }
+		    100% {
+		        transform: translate3d(0px, 0px, 0px);
+		        opacity: 1;
+		    }
+		}
+		.anim .txt_du {
+		    animation: anim_txt_du 0.6s ease-out 5s 1 normal forwards;
+		    animation-timing-function: cubic-bezier(.17, 1, .75, 1);
+		}
+		@keyframes anim_txt_du {
+		    0% {
+		        transform: translate3d(10px, 0px, 0px);
+		    }
+		    100% {
+		        transform: translate3d(0px, 0px, 0px);
+		        opacity: 1;
+		    }
+		}
+		.anim .txt_au {
+		    animation: anim_txt_au 0.6s ease-out 5s 1 normal forwards;
+		    animation-timing-function: cubic-bezier(.17, 1, .75, 1);
+		}
+		@keyframes anim_txt_au {
+		    0% {
+		        transform: translate3d(-10px, 0px, 0px);
+		    }
+		    100% {
+		        transform: translate3d(0px, 0px, 0px);
+		        opacity: 1;
+		    }
+		}
+		.anim .txt_entree {
+		    animation: anim_txt_entree 1s ease-out 4.5s 1 normal forwards;
+		    animation-timing-function: cubic-bezier(.17, 1, .75, 1);
+		}
+		@keyframes anim_txt_entree {
+		    0% {
+		        transform: translate3d(0px, -20px, 0px);
+		    }
+		    100% {
+		        transform: translate3d(0px, 0px, 0px);
+		        opacity: 1;
+		    }
+		}
+		.anim .cta {
+		    animation: anim_cta 0.6s ease-out 4.8s 1 normal forwards;
+		    animation-timing-function: cubic-bezier(.17, 1, .75, 1);
+		}
+		@keyframes anim_cta {
+		    0% {
+		        transform: translate3d(0px, -20px, 0px);
+		    }
+		    100% {
+		        transform: translate3d(0px, 0px, 0px);
+		        opacity: 1;
+		    }
+		}
+		a {
+			cursor: pointer;
+		}
+	</style>
+	<style>#bg-exit {background-color: rgba(255, 255, 255, 0);cursor: pointer;left: 0px;position: absolute;top: 0px;width: 300px;height: 600px; z-index: 1000;}</style>
+	<script type="text/javascript">
+		/**
+		 * StyleFix 1.0.3 & PrefixFree 1.0.7
+		 * @author Lea Verou
+		 * MIT license
+		 */
+		(function(){function k(a,b){return[].slice.call((b||document).querySelectorAll(a))}if(window.addEventListener){var e=window.StyleFix={link:function(a){try{if("stylesheet"!==a.rel||a.hasAttribute("data-noprefix"))return}catch(b){return}var c=a.href||a.getAttribute("data-href"),d=c.replace(/[^\/]+$/,""),h=(/^[a-z]{3,10}:/.exec(d)||[""])[0],l=(/^[a-z]{3,10}:\/\/[^\/]+/.exec(d)||[""])[0],g=/^([^?]*)\??/.exec(c)[1],m=a.parentNode,f=new XMLHttpRequest,n;f.onreadystatechange=function(){4===f.readyState&&
+		n()};n=function(){var b=f.responseText;if(b&&a.parentNode&&(!f.status||400>f.status||600<f.status)){b=e.fix(b,!0,a);if(d)var b=b.replace(/url\(\s*?((?:"|')?)(.+?)\1\s*?\)/gi,function(b,a,c){return/^([a-z]{3,10}:|#)/i.test(c)?b:/^\/\//.test(c)?'url("'+h+c+'")':/^\//.test(c)?'url("'+l+c+'")':/^\?/.test(c)?'url("'+g+c+'")':'url("'+d+c+'")'}),c=d.replace(/([\\\^\$*+[\]?{}.=!:(|)])/g,"\\$1"),b=b.replace(RegExp("\\b(behavior:\\s*?url\\('?\"?)"+c,"gi"),"$1");c=document.createElement("style");c.textContent=
+		b;c.media=a.media;c.disabled=a.disabled;c.setAttribute("data-href",a.getAttribute("href"));m.insertBefore(c,a);m.removeChild(a);c.media=a.media}};try{f.open("GET",c),f.send(null)}catch(p){"undefined"!=typeof XDomainRequest&&(f=new XDomainRequest,f.onerror=f.onprogress=function(){},f.onload=n,f.open("GET",c),f.send(null))}a.setAttribute("data-inprogress","")},styleElement:function(a){if(!a.hasAttribute("data-noprefix")){var b=a.disabled;a.textContent=e.fix(a.textContent,!0,a);a.disabled=b}},styleAttribute:function(a){var b=
+		a.getAttribute("style"),b=e.fix(b,!1,a);a.setAttribute("style",b)},process:function(){k('link[rel="stylesheet"]:not([data-inprogress])').forEach(StyleFix.link);k("style").forEach(StyleFix.styleElement);k("[style]").forEach(StyleFix.styleAttribute)},register:function(a,b){(e.fixers=e.fixers||[]).splice(void 0===b?e.fixers.length:b,0,a)},fix:function(a,b,c){for(var d=0;d<e.fixers.length;d++)a=e.fixers[d](a,b,c)||a;return a},camelCase:function(a){return a.replace(/-([a-z])/g,function(b,a){return a.toUpperCase()}).replace("-",
+		"")},deCamelCase:function(a){return a.replace(/[A-Z]/g,function(b){return"-"+b.toLowerCase()})}};(function(){setTimeout(function(){k('link[rel="stylesheet"]').forEach(StyleFix.link)},10);document.addEventListener("DOMContentLoaded",StyleFix.process,!1)})()}})();
+		(function(k){function e(b,c,d,h,l){b=a[b];b.length&&(b=RegExp(c+"("+b.join("|")+")"+d,"gi"),l=l.replace(b,h));return l}if(window.StyleFix&&window.getComputedStyle){var a=window.PrefixFree={prefixCSS:function(b,c,d){var h=a.prefix;-1<a.functions.indexOf("linear-gradient")&&(b=b.replace(/(\s|:|,)(repeating-)?linear-gradient\(\s*(-?\d*\.?\d*)deg/ig,function(b,a,c,d){return a+(c||"")+"linear-gradient("+(90-d)+"deg"}));b=e("functions","(\\s|:|,)","\\s*\\(","$1"+h+"$2(",b);b=e("keywords","(\\s|:)","(\\s|;|\\}|$)",
+		"$1"+h+"$2$3",b);b=e("properties","(^|\\{|\\s|;)","\\s*:","$1"+h+"$2:",b);if(a.properties.length){var l=RegExp("\\b("+a.properties.join("|")+")(?!:)","gi");b=e("valueProperties","\\b",":(.+?);",function(a){return a.replace(l,h+"$1")},b)}c&&(b=e("selectors","","\\b",a.prefixSelector,b),b=e("atrules","@","\\b","@"+h+"$1",b));b=b.replace(RegExp("-"+h,"g"),"-");return b=b.replace(/-\*-(?=[a-z]+)/gi,a.prefix)},property:function(b){return(0<=a.properties.indexOf(b)?a.prefix:"")+b},value:function(b,c){b=
+		e("functions","(^|\\s|,)","\\s*\\(","$1"+a.prefix+"$2(",b);b=e("keywords","(^|\\s)","(\\s|$)","$1"+a.prefix+"$2$3",b);0<=a.valueProperties.indexOf(c)&&(b=e("properties","(^|\\s|,)","($|\\s|,)","$1"+a.prefix+"$2$3",b));return b},prefixSelector:function(b){return b.replace(/^:{1,2}/,function(b){return b+a.prefix})},prefixProperty:function(b,c){var d=a.prefix+b;return c?StyleFix.camelCase(d):d}};(function(){var b={},c=[],d=getComputedStyle(document.documentElement,null),h=document.createElement("div").style,
+		l=function(a){if("-"===a.charAt(0)){c.push(a);a=a.split("-");var d=a[1];for(b[d]=++b[d]||1;3<a.length;)a.pop(),d=a.join("-"),StyleFix.camelCase(d)in h&&-1===c.indexOf(d)&&c.push(d)}};if(0<d.length)for(var g=0;g<d.length;g++)l(d[g]);else for(var e in d)l(StyleFix.deCamelCase(e));var g=0,f,k;for(k in b)d=b[k],g<d&&(f=k,g=d);a.prefix="-"+f+"-";a.Prefix=StyleFix.camelCase(a.prefix);a.properties=[];for(g=0;g<c.length;g++)e=c[g],0===e.indexOf(a.prefix)&&(f=e.slice(a.prefix.length),StyleFix.camelCase(f)in
+		h||a.properties.push(f));!("Ms"!=a.Prefix||"transform"in h||"MsTransform"in h)&&"msTransform"in h&&a.properties.push("transform","transform-origin");a.properties.sort()})();(function(){function b(a,b){h[b]="";h[b]=a;return!!h[b]}var c={"linear-gradient":{property:"backgroundImage",params:"red, teal"},calc:{property:"width",params:"1px + 5%"},element:{property:"backgroundImage",params:"#foo"},"cross-fade":{property:"backgroundImage",params:"url(a.png), url(b.png), 50%"}};c["repeating-linear-gradient"]=
+		c["repeating-radial-gradient"]=c["radial-gradient"]=c["linear-gradient"];var d={initial:"color","zoom-in":"cursor","zoom-out":"cursor",box:"display",flexbox:"display","inline-flexbox":"display",flex:"display","inline-flex":"display",grid:"display","inline-grid":"display","max-content":"width","min-content":"width","fit-content":"width","fill-available":"width"};a.functions=[];a.keywords=[];var h=document.createElement("div").style,e;for(e in c){var g=c[e],k=g.property,g=e+"("+g.params+")";!b(g,k)&&
+		b(a.prefix+g,k)&&a.functions.push(e)}for(var f in d)k=d[f],!b(f,k)&&b(a.prefix+f,k)&&a.keywords.push(f)})();(function(){function b(a){e.textContent=a+"{}";return!!e.sheet.cssRules.length}var c={":read-only":null,":read-write":null,":any-link":null,"::selection":null},d={keyframes:"name",viewport:null,document:'regexp(".")'};a.selectors=[];a.atrules=[];var e=k.appendChild(document.createElement("style")),l;for(l in c){var g=l+(c[l]?"("+c[l]+")":"");!b(g)&&b(a.prefixSelector(g))&&a.selectors.push(l)}for(var m in d)g=
+		m+" "+(d[m]||""),!b("@"+g)&&b("@"+a.prefix+g)&&a.atrules.push(m);k.removeChild(e)})();a.valueProperties=["transition","transition-property"];k.className+=" "+a.prefix;StyleFix.register(a.prefixCSS)}})(document.documentElement);
+	</script>
+	<script src="/879366/Enabler_01_99.js"></script><script>if (!Enabler.isInitialized()) {Enabler.addEventListener(studio.events.StudioEvent.INIT,enablerInitialized);} else {enablerInitialized();}function enablerInitialized() {if (!Enabler.isVisible()) {Enabler.addEventListener(studio.events.StudioEvent.VISIBLE,adVisible);} else {adVisible();}}function adVisible() {}</script>
+	<!-- Apply Spec -->
+	<script src="//ns.sascdn.com/diff/templates/js/banner/sas-clicktag-2.0.js"></script>
+	<script type="text/javascript">
+		var clickTag = "http://www.google.com";
+	</script>
+	<!-- End Apply Spec -->
+</head>
+<body>
+	<div id="banConteneur" class="anim">
+		<a onclick="window.open(window.clickTag);">
+			<img class="bg" src="bg.jpg">
+			<img class="v" src="v.png">
+			<div class="mooveplane">
+				<div class="appearplane">
+					<img class="plane_ombre" src="plane_ombre.png">
+					<img class="plane" src="plane.png">
+					<img class="helice" src="helice.png">
+					<img class="helice_centre" src="helice_centre.png">
+				</div>
+			</div>
+			<img class="v_left" src="v_left.png">
+			<img class="head_1" src="head_1.png">
+			<img class="txt_au" src="txt_au.png">
+			<img class="txt_du" src="txt_du.png">
+			<img class="txt_voguez" src="txt_voguez.png">
+			<img class="txt_volez" src="txt_volez.png">
+			<img class="txt_voyagez" src="txt_voyagez.png">
+			<img class="txt_entree" src="txt_entree.png">
+			<img class="cta" src="cta.png">
+			<!-- CTA top layer-->
+	    	<div id="bg-exit"></div>
+    	</a>
+	</div>
+	<!-- CTA call script-->
+    <script>function bgExitHandler(e) {Enabler.exit("Background Exit");}document.getElementById("bg-exit").addEventListener("click", bgExitHandler, false);</script>
+    <!-- CTA call script End-->
+</body>
+</html>
+

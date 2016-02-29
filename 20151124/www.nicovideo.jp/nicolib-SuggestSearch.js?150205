@@ -1,0 +1,1531 @@
+/**
+ * @author Takayuki Yamaguchi
+ */
+if (typeof Nico === 'undefined') {
+  Nico = {};
+}
+
+//TODO: ãµã¸ã§ã¹ãæ©è½ç¡å¹æã«æå¹ã«ããããã®UIãå®è£
+
+/*
+ * æå®ãããå¥åãã£ã¼ã«ã(<input type="text">)ã«å¯¾ãã¦ãµã¸ã§ã¹ãæ¤ç´¢æ©è½ãè¿½å ãã
+ * (ä½¿ãæ¹ä¾) â»jQueryå¿é  â»å¥åãã£ã¼ã«ãã®DOMçæå¾ã«å¼ã³åºãã¦ãã ãã â»(required)ã¨æ¸ãã¦ããã­ããã£ã¯å¿é ã§ã
+ * new Nico.SuggestSearch({
+ *   targetInput: '#bar_search', //(required) ã­ã¼ã¯ã¼ããå¥åãããå¥åãã£ã¼ã«ãã®ã»ã¬ã¯ã¿ãjQueryãªãã¸ã§ã¯ã
+ *   submitFunction: function(){ //(optional) ãµã¸ã§ã¹ããããã­ã¼ã¯ã¼ãé¸ææã«å®è¡ãããfunctionãæå®ãç¡ããã°é¸ææã«å¥åãã£ã¼ã«ãã«é¸æãããã­ã¼ã¯ã¼ããå¥åãããã ãã
+ *     jQuery('#form').submit();
+ *   },
+ *   maxShowItemsCount: 10, //(optional) æå¤§è¡¨ç¤ºä»¶æ°ãå¢ããã¦ããµã¸ã§ã¹ãAPIã®ä¸éã10ä»¶
+ *   requestDelay: 500, //(optional) ãµã¸ã§ã¹ãAPIã®é£æãå¶éããããã®ãã£ã¬ã¤ãç´åã®ãªã¯ã¨ã¹ãããããã§æå®ããããªç§ãéããªãã¨æ¬¡ã®ãªã¯ã¨ã¹ããé£ã°ãªã
+ *   showSuggestMinLength: 1 //(optional) ãµã¸ã§ã¹ãã®ãªã¯ã¨ã¹ããé£ã°ãæå°æå­æ°ãããã©ã«ãã§ã¯å¥åããã¦ãªãç¶æã§ã¯ãæ°ã«å¥ãã¿ã°ã®ã¿æ¤ç´¢ãã
+ * });
+ */
+
+/**
+ * @class
+ * @requires jQuery 1.3-1.7
+ * @constructor
+ * @param {object<targetInput<jQuery|string>,submitFunction<function>,maxShowItemsCount<number>,requestDelay<number>>} config
+ */
+Nico.SuggestSearch = function(config) {
+  //å¿µã®ããjQueryãä½¿ããªãå ´åã«ã¨ã©ã¼ã«ãªãã«ããããã«ä½ãå¦çããªãããã«ãã
+  if (!Nico.SuggestSearch.IS_ENABLED || typeof jQuery === 'undefined') return;
+
+  var self = this;
+
+  /**
+   * IE8+ã«ããã¦ã¯ã­ã¹ãµã¤ããªã¯ã¨ã¹ããé£ã°ãããã®è¨­å®
+   */
+  if (!jQuery.support.cors && window.XDomainRequest) {
+    jQuery.ajaxTransport(function(xhrOptions) {
+      if (xhrOptions.crossDomain && xhrOptions.async) {
+        var xdr, send, abort, noop = jQuery.noop;
+        send = function(_, complete) {
+          var callback = function(status, statusText, responses, responseHeaders) {
+            xdr.onload = xdr.onerror = xdr.ontimeout = xdr.onprogress = noop;
+            xdr = null;
+            if (typeof complete === 'function') complete(status, statusText, responses, responseHeaders);
+          };
+          xdr = new XDomainRequest();
+          xdr.open(xhrOptions.type, xhrOptions.url);
+          xdr.onload = function() {
+            callback(200, 'OK', { text: xdr.responseText }, 'Content-Type: ' + xdr.contentType);
+          };
+          xdr.onerror = function() {
+            callback(404, 'Not Found');
+          };
+          xdr.send(( xhrOptions.hasContent && xhrOptions.data ) || null);
+        };
+        abort = function() {
+          if (xdr) {
+            xdr.onerror = noop;
+            xdr.abort();
+          }
+        };
+        return {send: send, abort: abort};
+      }
+    });
+  }
+
+  /**
+   * ã³ã³ã¹ãã©ã¯ã¿å¦ç
+   */
+
+  config = (config) ? config : {};
+
+  //URLé¢é£ã®å®ç¾©
+  //ãæ°ã«å¥ãã¿ã°ã®ä¸è¦§ãåå¾ããAPIã®URL
+  this.favoriteTagsApiUrl = ('favoriteTagsApiUrl' in config) ? config.favoriteTagsApiUrl : '/api/favtag/list';
+  //ãµã¸ã§ã¹ãAPIã®URL
+  this.suggestApiUrl = ('suggestApiUrl' in config) ? config.suggestApiUrl : Nico.SuggestSearch.SUGGEST_API_URL;
+
+  //jQueryã¡ã½ããåã®ãã¼ã¸ã§ã³ã«ããå¦çåã
+  this.jQueryMethodOnName = (typeof jQuery.fn.on === 'function') ? 'on' : 'bind';
+
+  //ãµã¸ã§ã¹ãå¯¾è±¡ã®å¥åãã£ã¼ã«ã(<input type="text">ï¼ãã»ãã
+  this.$targetInput = null;
+  this._hasInput = false; //å¥åãã£ã¼ã«ããã»ããããã¦ãããã©ãããå¤æ­ãããã©ã°
+  if ('targetInput' in config) {
+    this._hasInput = this.setTargetInput(config.targetInput);
+  }
+
+  //ãµã¸ã§ã¹ãåè£é¸ææã®æå
+  this._targetPage = Nico.SuggestSearch.TARGET_PAGE_DEFAULT; //ããã©ã«ãã¯ã­ã¼ã¯ã¼ãæ¤ç´¢
+  if ('targetPage' in config) this.setTargetPage(config.targetPage);
+
+  //submitæã«ãµã¸ã§ã¹ããéãããã©ãã
+  this._hideOnSubmit = false;
+  if ('hideOnSubmit' in config) this._hideOnSubmit = !!config.hideOnSubmit;
+
+  //ååãã©ã¼ã«ã¹æã«checkInput()ãå®è¡ãããã©ããã®ãªãã·ã§ã³ãã©ã°(/myç¨)
+  this.skipFirstFocus = ('skipFirstFocus' in config) ? !!config.skipFirstFocus : false;
+  this._isFirstFocus = true;
+
+  //æ¤ç´¢çµæéä¿¡functionãã»ãã
+  this.submitFunction = null;
+  if ('submitFunction' in config) this.setSubmitFunction(config.submitFunction);
+
+  //ãæ°ã«å¥ãã¿ã°ã®ä¸è¦§ãä¿æããå¤æ°
+  this.favoriteTags = null;
+
+  //æå¤§è¡¨ç¤ºä»¶æ°ãè¨­å®
+  this.maxShowItemsCount = ('maxShowItemsCount' in config) ? +config.maxShowItemsCount : 10;
+
+  //ãµã¸ã§ã¹ãAPIãå©ããã£ã¬ã¤ã®è¨­å®ï¼ååãªã¯ã¨ã¹ãæããããã§æå®ããmså¾ããªãã¨ãªã¯ã¨ã¹ããããªãï¼ããã©ã«ã:0.5ç§
+  this.requestDelay = ('requestDelay' in config) ? +config.requestDelay : 500;
+
+  //ãµã¸ã§ã¹ãçµæãè¡¨ç¤ºããæå°æå­æ°
+  this.showSuggestMinLength = ('showSuggestMinLength' in config) ? +config.showSuggestMinLength : 1;
+
+  //ãªã¯ã¨ã¹ãå¦çä¸­ãã©ã°
+  this._isRequestSending = false;
+
+  //ãµã¸ã§ã¹ãæ©è½ãæå¹ç¶æãã©ãããä¿æãããã©ã°(ä¸æçã«ç¡å¹ã«ããã±ã¼ã¹ãããstart()/stop()ï¼
+  this._isEnabled = true;
+
+  //ååãã©ã¼ã«ã¹æã­ã°éä¿¡æ¸ã¿ãã©ãã
+  this._isInitLogged = false;
+
+  //ååãã©ã¼ã«ã¹æã®ã¿ã¤ã ã¹ã¿ã³ã
+  this._initFocusTimestamp = null;
+
+  //ãµã¸ã§ã¹ãã¯ã¼ãã®ã­ã£ãã·ã¥
+  this._suggestWordCache = {};
+
+  //æå¾ã®æ¤ç´¢ã¯ã¼ãï¼å¥åãã£ã¼ã«ãã®å¤ãåæå¤ã¨ãã¦ãã£ã¦ããï¼
+  this._recentSearchWord = this.getQuery();
+
+  //æå¾ã®keyupãã(this.requestDelay)mså¾ã«åãã§ãã¯ãè¡ãã¤ãã³ã(setTimeoutãæ ¼ç´ï¼
+  this._recheckEvent = null;
+
+  ///favtagAPIã«ãªã¯ã¨ã¹ããããã©ããã®ãã©ã°ãä¿æãã
+  this._isFavtagRequested = false;
+
+  //ãã³ãã¬ã¼ãã®aliasãä½æ
+  this.templates = Nico.SuggestSearch.templates;
+
+  //ã¬ã®ã¥ã©ã¼ã¿ã°å½¢å¼å¤æç¨ãã¼ãã«ã®aliasãä½æ
+  this.regularTagTable = Nico.SuggestSearch.REGULAR_TAG_TRANSFORM_TABLE;
+
+  //ã¬ã®ã¥ã¼ã©ã¿ã°å½¢å¼å¤æç¨ã®RegExpãªãã¸ã§ã¯ããäºåçæãã¦ãã
+  this.regularTagTableRegExp = (function(table) {
+    var keys = '', key;
+    for (key in table) {
+      keys += key;
+    }
+    return new RegExp('[' + keys + ']', 'g');
+  })(this.regularTagTable);
+  this.regularTagRegExpAlphaNum = new RegExp('[ï¼¡-ï¼ºï½-ï½ï¼-ï¼]', 'g');
+  this.regularTagRegExpHiragana = new RegExp('[ã-ã]', 'g');
+
+  //DOMã®çæã¨jQueryObjectå
+  this.$container = jQuery(this.templates.container(Nico.SuggestSearch.ENABLE_SUGGEST_SWITCH)); //ã¡ã¤ã³ã¨ãªãã³ã³ãã
+  this.$favoriteTagsHeader = this.$container.find('.nicolib-SuggestSearch-footer-favtag-edit-container');
+  this.$list = this.$container.find('.nicolib-SuggestSearch-suggestion-list'); //<ul>ã®ã©ããã¼
+  this.$suggestWords = this.$list.find('ul.nicolib-SuggestSearch-suggestion-suggest-items'); //ãµã¸ã§ã¹ãã¯ã¼ãã®<ul>
+  this.$favoriteTags = this.$list.find('ul.nicolib-SuggestSearch-suggestion-favtag-items'); //ãæ°ã«å¥ãã¿ã°ã®<ul>
+
+  //ãµã¸ã§ã¹ãæå¹ã»ç¡å¹ã¹ã¤ããå¨ãã®DOMãåå¾ãã¦ãã
+  this.$switchContainer = this.$container.find('.nicolib-SuggestSearch-footer-switch-container');
+  this.$enableLink = this.$switchContainer.find('.nicolib-SuggestSearch-switch-enable-link');
+  this.$enabledSpan = this.$switchContainer.find('.nicolib-SuggestSearch-switch-enabled');
+  this.$disableLink = this.$switchContainer.find('.nicolib-SuggestSearch-switch-disable-link');
+  this.$disabledSpan = this.$switchContainer.find('.nicolib-SuggestSearch-switch-disabled');
+
+  //DOMãçªã£è¾¼ãã§ãã
+  this.$container.hide();
+  if (this._hasInput) {
+    this.$targetInput.after(this.$container);
+    this.fitContainerPositionToInput();
+  }
+
+  //ç¾å¨ã®ã¢ã¤ãã ãæ ¼ç´ãã¦ããå¤æ°
+  this.$items = null;
+
+  //å¥åãã£ã¼ã«ãã¸ã®ã¤ãã³ãã®ç»é²
+  this._registerEventToTargetInput('focus', this._onInputFocus);
+  this._registerEventToTargetInput('blur', this._onInputBlur);
+  this._registerEventToTargetInput('keyup', this._onInputKeyUp);
+  this._registerEventToTargetInput('keydown', this._onInputKeyDown);
+  this._registerEventToTargetInput('mousedown', this._onInputMouseDown);
+
+  //ãµã¸ã§ã¹ãã¢ã¤ãã ã¸ã®ã¤ãã³ãã®ç»é²
+  this._registerEventToItems('click', this._onItemClicked);
+  this._registerEventToItems('mouseenter', this._onItemMouseEntered);
+  this._registerEventToItems('mouseleave', this._onItemMouseLeaved);
+
+  this._registerEventToElement(this.$container, 'mouseenter', this._onContainerMouseEntered);
+  this._registerEventToElement(this.$container, 'mouseleave', this._onContainerMouseLeaved);
+
+  //ãµã¸ã§ã¹ãã®æå¹ã»ç¡å¹ã®ã¤ãã³ãã®ç»é²
+  if (Nico.SuggestSearch.ENABLE_SUGGEST_SWITCH) {
+    this._registerEventToElement(this.$enableLink, 'click', this._onEnableLinkClicked);
+    this._registerEventToElement(this.$disableLink, 'click', this._onDisableLinkClicked);
+  }
+
+  //ãã­ã¥ã¡ã³ãã¯ãªãã¯æã«é ãããã«ã¤ãã³ãç»é²
+  this._registerEventToElement(jQuery(document), 'mousedown', this._onInputBlur);
+
+  //Firefoxã¯æ¥æ¬èªå¥åä¸­ã®keydown/keyupãåå¾ã§ããªãã®ã§intervalã§ã«ã¼ããã
+  if (((typeof navigator !== "undefined" && navigator !== null ? navigator.userAgent : void 0) != null)
+    && navigator.userAgent.indexOf('Firefox') >= 0) {
+    setInterval(function() {
+      if (self.$targetInput.is(':focus')) {
+        self._checkInput.call(self);
+      }
+    }, 250);
+  }
+};
+
+/**
+ * å®æ°å®ç¾©ã¨ãªã¢
+ */
+//ã­ã¼ã³ã¼ãã®å®ç¾©
+Nico.SuggestSearch.KEY_CODE_UP_ARROW = 38; //ã­ã¼ãã¼ãã®ãâãã®ã­ã¼ã³ã¼ã
+Nico.SuggestSearch.KEY_CODE_DOWN_ARROW = 40; //ã­ã¼ãã¼ãã®ãâãã®ã­ã¼ã³ã¼ã
+Nico.SuggestSearch.KEY_CODE_ENTER = 13; //ã­ã¼ãã¼ãã®ãENTERãã®ã­ã¼ã³ã¼ã
+
+//CSSç¨ã®ã¯ã©ã¹åã®å®ç¾©
+Nico.SuggestSearch.ITEM_ACTIVE_CLASS_NAME = 'active';
+Nico.SuggestSearch.CONTAINER_ACTIVE_CLASS_NAME_FOR_JS = '_active';
+
+//ãµã¸ã§ã¹ãæå¹ã»ç¡å¹ã¹ã¤ããã®Cookieã®ã­ã¼
+Nico.SuggestSearch.SUGGEST_DISABLED_COOKIE_KEY = 'suggestDisabled';
+
+//ãµã¸ã§ã¹ãç¡å¹ã®æã®Cookieã®å¤
+Nico.SuggestSearch.SUGGEST_DISABLED_COOKIE_VALUE = 'disabled';
+
+//ãµã¸ã§ã¹ãæå¹ã»ç¡å¹ãã¹ã¤ãããããã©ãã
+Nico.SuggestSearch.ENABLE_SUGGEST_SWITCH = false;
+
+//ãµã¸ã§ã¹ãæ¤ç´¢æ©è½ãæå¹ãã©ãã
+Nico.SuggestSearch.IS_ENABLED = true;
+
+//ã¦ã¼ã¶ã¼ãã­ã°ã¤ã³ãã¦ãããã©ãã
+Nico.SuggestSearch.IS_LOGIN = false;
+
+//ãµã¸ã§ã¹ãåè£ãé¸æï¼Enter||ã¯ãªãã¯ï¼ããæã®é£ã³åãå®ç¾©ããå®æ°
+Nico.SuggestSearch.TARGET_PAGE_KEYWORD_SEARCH = 0;
+Nico.SuggestSearch.TARGET_PAGE_TAG_SEARCH = 1;
+Nico.SuggestSearch.TARGET_PAGE_MYLIST_SEARCH = 2;
+Nico.SuggestSearch.TARGET_PAGE_NONE = 3; //noneã®æã¯å¥åæ¬ã«æå­åãå¥åããã
+Nico.SuggestSearch.TARGET_PAGE_RELATED_TAG_SEARCH = 4;
+Nico.SuggestSearch.TARGET_PAGE_DEFAULT = Nico.SuggestSearch.TARGET_PAGE_KEYWORD_SEARCH; //ããã©ã«ãã®å¯¾è±¡
+
+//ãµã¸ã§ã¹ãAPIã®URLãå®ç¾©
+Nico.SuggestSearch.SUGGEST_API_URL = '//sug.search.nicovideo.jp/suggestion/complete';
+
+/**
+ * prototypeãå®ç¾©
+ */
+Nico.SuggestSearch.prototype = {
+
+  //ãµã¸ã§ã¹ãAPIãå©ããçµæãæ ¼ç´
+  suggestList: [],
+
+  /**
+   * å¯¾è±¡ã®å¥åãã£ã¼ã«ãããã­ããã£ã«ã»ãããã
+   * @param targetInput string|jQueryãªãã¸ã§ã¯ã
+   * @returns {boolean}
+   * @public
+   */
+  setTargetInput: function(targetInput) {
+    //æå­åã§æ¸¡ã£ã¦ãããjQueryå©ãã¦jQueryãªãã¸ã§ã¯ãã«å¤æ
+    if (typeof targetInput === 'string') {
+      var $targetInput = jQuery(targetInput);
+      if ($targetInput.length > 0) targetInput = $targetInput;
+    }
+
+    //jQueryãªãã¸ã§ã¯ããªããã®ã¾ã¾ã»ãããã¦ãããã§ãªããã°nullãã»ãããã
+    //<input>ã®DOMã« _isNicoLibSuggestSearch ãã©ã°ãç«ã£ã¦ãå ´åã¯æ¢ã«ãµã¸ã§ã¹ãæ¤ç´¢æ©è½ã®å¯¾è±¡ã«ãªã£ã¦ãDOMãªã®ã§ä½ãããªã
+    if (this._isJQueryObject(targetInput) && targetInput.length > 0 && targetInput[0]
+      && (!('_isNicoLibSuggestSearch' in targetInput[0]) || !targetInput[0]._isNicoLibSuggestSearch)) {
+      this.$targetInput = targetInput;
+      //ãµã¸ã§ã¹ããè¡¨ç¤ºãããå ´åã¯ãªã¼ãã³ã³ããªã¼ããç¡å¹ã«ãã¦ãã
+      this.$targetInput.attr('autocomplete', 'off');
+      //targetInputã®DOMã«å¯¾ãã¦(jQueryãªãã¸ã§ã¯ããããªãã¦DOM)ãµã¸ã§ã¹ãæ¤ç´¢ã®å¯¾è±¡ã«ãªã£ã¦ããã©ããã®ãã©ã°ãç«ã¦ã
+      this.$targetInput[0]._isNicoLibSuggestSearch = true;
+      return true;
+    } else {
+      this.$targetInput = null;
+      return false;
+    }
+  },
+
+  /**
+   * æ¤ç´¢éä¿¡functionãã»ããããããã®functionã®ä½¿ãéã¯sendSubmit()ã¡ã½ããåç§ãã¦ãã ãã
+   * @param {function} submitFunction
+   * @returns {boolean}
+   * @public
+   */
+  setSubmitFunction: function(submitFunction) {
+    //functionä»¥å¤ãæ¸¡ãããå ´åã¯nullãã»ãããã¦ãã
+    if (typeof submitFunction === 'function') {
+      this.submitFunction = submitFunction;
+      return true;
+    } else {
+      this.submitFunction = null;
+      return false;
+    }
+  },
+
+  /**
+   * ãªã³ã¯åã®å¯¾è±¡ãã¼ã¸ãã»ãããã
+   * @param {number} targetPage
+   * @returns {boolean}
+   */
+  setTargetPage: function(targetPage) {
+    if (!isNaN(targetPage)) {
+      //configã§æ¸¡ãããé£ã³åã®ãã¼ã¸ãã»ãããã
+      targetPage = +targetPage;
+      if (targetPage === Nico.SuggestSearch.TARGET_PAGE_KEYWORD_SEARCH
+        || targetPage === Nico.SuggestSearch.TARGET_PAGE_TAG_SEARCH
+        || targetPage === Nico.SuggestSearch.TARGET_PAGE_MYLIST_SEARCH
+        || targetPage === Nico.SuggestSearch.TARGET_PAGE_NONE
+        || targetPage === Nico.SuggestSearch.TARGET_PAGE_RELATED_TAG_SEARCH) {
+        this._targetPage = targetPage;
+        return true;
+      }
+    }
+    this._targetPage = Nico.SuggestSearch.TARGET_PAGE_DEFAULT;
+    return false;
+  },
+
+  /**
+   * ãµã¸ã§ã¹ããæå¹ã«ãã
+   */
+  start: function() {
+    if (this._hasInput) {
+      this.$targetInput.attr('autocomplete', 'off');
+    }
+    this._isEnabled = true;
+  },
+
+  /**
+   * ãµã¸ã§ã¹ããä¸æç¡å¹ã«ãã
+   */
+  stop: function() {
+    if (this._hasInput) {
+      this.$targetInput.attr('autocomplete', null);
+    }
+    this._isEnabled = false;
+    this.hideSuggest();
+  },
+
+  /**
+   * å®äºæã®å¦çãå­å¨ãããã©ãããè¿ã
+   * @returns {boolean}
+   * @private
+   */
+  _hasSubmitFunction: function() {
+    return typeof this.submitFunction === 'function';
+  },
+
+  /**
+   * ãã©ã¼ã éä¿¡å¦çãå®æ½ãããå¦çã®ä¸­èº«ã¯æ¸¡ããããã®ãå©ç¨ãã.
+   * @param {object} $targetItem é¸æããã$('li')
+   * @param {boolean} [natural=false] JSå´ã§ãã¼ã¸é·ç§»ããã«ãã®ã¾ã¾return trueãè¿ããã©ãã
+   * @returns {boolean}
+   * @public
+   */
+  sendSubmit: function($targetItem, natural) {
+    var targetText = this._getItemText($targetItem);
+
+    //éä¿¡æã«ãµã¸ã§ã¹ããé ããªãã·ã§ã³ãæå¹ãªå ´åé ã
+    if (this._hideOnSubmit) {
+      this.$targetInput.blur(); //Firefoxç¨ã«blurãã¦ãã
+      this.hideSuggest();
+    }
+
+    if (this._hasSubmitFunction()) {
+      //å®äºå¦çãå®ç¾©ããã¦ããå ´åã¯å®è¡ãã
+      var params = this._generateLogParams();
+      this.submitFunction(targetText, $targetItem, params.ct === 1, params, this._generateLogParamsRequestString());
+      return false;
+    } else if ((typeof natural !== 'undefined') && !!natural) {
+      if ($targetItem.parents('.nicolib-SuggestSearch-suggestion-favtag-items').length > 0) {
+        $targetItem.find('a').attr('href', this._getTargetPageUrl(targetText, Nico.SuggestSearch.TARGET_PAGE_TAG_SEARCH));
+      } else {
+        $targetItem.find('a').attr('href', this._getTargetPageUrl(targetText));
+      }
+      return true;
+    } else if (this._isFavoriteTagItem($targetItem)) {
+      //ã¯ãªãã¯ãããã®ããæ°ã«å¥ãã¿ã°ãªãã¿ã°æ¤ç´¢ãã¼ã¸ã«ç§»åãã
+      return this._redirectToTagSearchPage(targetText);
+    } else {
+      //ãæ°ã«å¥ãã¿ã°ã§ãªããã°é©å½ãªã¨ããã«ç§»åãã
+      return this._redirectToTargetPage(targetText);
+    }
+  },
+
+  /**
+   * ãã©ã¼ã ã«å¥åããã¦ããæ¤ç´¢æå­åãåå¾ããï¼åå¾ã®ç©ºç½ã¯ç¡è¦ï¼
+   * @returns {string}
+   * @public
+   */
+  getQuery: function() {
+    return (this._hasInput) ? jQuery.trim(this.$targetInput.val()) : '';
+  },
+
+  /**
+   * ãæ°ã«å¥ãã¿ã°ä¸è¦§ãåå¾ãã
+   * @param callback function
+   * @public
+   */
+  fetchFavoriteTagsFromAPI: function(callback) {
+
+    //ãã§ã«åå¾æ¸ã¿ã®å ´åã¯ãã®ã¾ã¾ã³ã¼ã«ããã¯ãå®è¡
+    if (this.favoriteTags instanceof Array) {
+      if (typeof callback === 'function') callback.call(this);
+      return;
+    } else if(this._isFavtagRequested) {
+      return;
+    }
+    this._isFavtagRequested = true;
+
+    var favoriteTags = []
+      , self = this;
+    jQuery.ajax({
+      type: 'GET',
+      url: this.favoriteTagsApiUrl + '?t=' + (new Date()).getTime(),
+      dataType: 'json',
+
+      //æåæã¯favoriteTagsãæ´æ°ãã
+      success: function(data, status) {
+        //status=ok ã§ãfavtag_itemsãéåã®å ´åã®æã®ã¿æ´æ°
+        if (('status' in data) && data.status === 'ok'
+          && ('favtag_items' in data) && (data.favtag_items instanceof Array)) {
+          favoriteTags = data.favtag_items;
+          for (var i = 0, len = favoriteTags.length; i < len; i++) {
+            favoriteTags[i].regular_tag = self._regularize(favoriteTags[i].tag);
+          }
+        }
+      },
+      error: function(xhr, status, error) {
+      },
+
+      //æå/å¤±æã«é¢ããããthis.favoriteTagsãæ´æ°ãã¦ã³ã¼ã«ããã¯ãå®è¡ãã
+      complete: function() {
+        self.favoriteTags = favoriteTags;
+        if (typeof callback === 'function') callback.call(self);
+      }
+    });
+  },
+
+  /**
+   * æ¸¡ãããæå­åãåã«ãµã¸ã§ã¹ãã®åèªä¸è¦§ãåå¾ãã
+   * @param {string} searchWord
+   * @param {function} callback
+   * @public
+   */
+  fetchSuggestWordsFromAPI: function(searchWord, callback) {
+    if (this._isRequestSending) return false;
+
+    this._isRequestSending = true;
+
+    var self = this
+      , searchWords = [];
+    jQuery.ajax({
+      type: 'GET',
+      url: this.suggestApiUrl + '/' + encodeURIComponent(searchWord),
+      dataType: 'json',
+      crossDomain: true,
+      //æåæã¯suggestWordsãæ´æ°ãã
+      success: function(data) {
+        if ((typeof data !== 'undefined') && ('candidates' in data) && (data.candidates instanceof Array)) {
+          for (var i = 0; i < data.candidates.length; i++) {
+            searchWords.push(jQuery.trim(data.candidates[i]));
+          }
+          //çµæãã­ã£ãã·ã¥ãã¦ãã
+          self._suggestWordCache[searchWord] = searchWords;
+        }
+      },
+      error: function(xhr, status, error) {
+      },
+
+      //æåã»å¤±æã«é¢ãããã³ã¼ã«ããã¯ãå®è¡
+      complete: function() {
+        //æå®ããããã£ã¬ã¤å¾ã«ãªã¯ã¨ã¹ããã©ã°ããªãã«ãã
+        setTimeout(function() {
+          self._isRequestSending = false;
+        }, self.requestDelay);
+
+        //ã³ã¼ã«ããã¯ãæå®ããã¦ããå ´åã¯ã³ã¼ã«ããã¯ãå©ã
+        if (typeof callback === 'function') callback.call(self, searchWords);
+      }
+    });
+
+    return true;
+  },
+
+  /**
+   * ãµã¸ã§ã¹ãAPIå©ããçµæãåå¾ãã
+   * ãã§ã«åå¾æ¸ã¿ã®åèªã®å ´åã¯ã­ã£ãã·ã¥ããè¿ã
+   * @param {string} searchWord
+   * @param {function} callback
+   */
+  getSuggestWords: function(searchWord, callback) {
+    if (searchWord in this._suggestWordCache) {
+      if (typeof callback === 'function') callback.call(this, this._suggestWordCache[searchWord]);
+    } else if (!this.fetchSuggestWordsFromAPI(searchWord, callback)) {
+      return false;
+    }
+    return true;
+  },
+
+  /**
+   * ãµã¸ã§ã¹ããè¡¨ç¤ºããã
+   * @returns {boolean}
+   * @public
+   */
+  showSuggest: function() {
+    //å¥åãã£ã¼ã«ãããªããã°ä½ãããªã
+    if (!this._hasInput || !this.isSuggestEnabled()) return false;
+
+    if (this.getQuery().length <= 0 && this.$favoriteTags.find('li').length > 0) {
+      this.$favoriteTagsHeader.show();
+    } else {
+      this.$favoriteTagsHeader.hide();
+    }
+
+    this.$container.show();
+    return true;
+  },
+
+  /**
+   * ãµã¸ã§ã¹ããéè¡¨ç¤ºã«ãã
+   * @returns {boolean}
+   */
+  hideSuggest: function() {
+    //å¥åãã£ã¼ã«ãããªããã°ä½ãããªã
+    if (!this._hasInput) return false;
+
+    this.$container.hide();
+    return true;
+  },
+
+  /**
+   * ãæ°ã«å¥ãã¿ã°ã ãã§ãµã¸ã§ã¹ããè¡¨ç¤ºããã
+   * @param {array.<string>} favoriteTags
+   * @returns {boolean}
+   */
+  showSuggestWithFavoriteTags: function(favoriteTags) {
+    if (this._renderSuggest(favoriteTags)) {
+      this.showSuggest();
+      return true;
+    } else {
+      this.hideSuggest();
+      return false;
+    }
+  },
+
+  /**
+   * ãµã¸ã§ã¹ãã®ã³ã³ããã®ä½ç½®ãå¥åãã£ã¼ã«ãã«åããã
+   * @returns {boolean}
+   * @public
+   */
+  fitContainerPositionToInput: function() {
+    //å¥åãã£ã¼ã«ãããªããã°ä½ãããªã
+    if (!this._hasInput) return false;
+    var inputPosition = this.$targetInput.position()
+      , marginLeft = this.$targetInput.css('margin-left')
+      , paddingTop = this.$targetInput.css('padding-top')
+      , paddingBottom = this.$targetInput.css('padding-bottom');
+
+    //margin/paddingãINTã«æ´å½¢
+    if (marginLeft) marginLeft = marginLeft.toString().replace('px', '');
+    if (paddingTop) paddingTop = paddingTop.toString().replace('px', '');
+    if (paddingBottom) paddingBottom = paddingBottom.toString().replace('px', '');
+    marginLeft = isNaN(marginLeft) ? 0 : +marginLeft;
+    paddingTop = isNaN(paddingTop) ? 0 : +paddingTop;
+    paddingBottom = isNaN(paddingBottom) ? 0 : +paddingBottom;
+
+    this.$container.css({
+      top: inputPosition.top + this.$targetInput.height() + paddingTop + paddingBottom,
+      left: inputPosition.left + marginLeft
+    });
+    return true;
+  },
+
+  /**
+   * ãµã¸ã§ã¹ãæ©è½ãæå¹ã«ãªã£ã¦ããã©ãããè¿ã
+   * @returns {boolean}
+   */
+  isSuggestEnabled: function() {
+    return Nico.SuggestSearch.IS_ENABLED && this._isEnabled
+      && this._getCookie(Nico.SuggestSearch.SUGGEST_DISABLED_COOKIE_KEY, 'enabled') !== Nico.SuggestSearch.SUGGEST_DISABLED_COOKIE_VALUE;
+  },
+
+  /**
+   * ãµã¸ã§ã¹ãæ©è½ãæå¹ã«ãã
+   * @public
+   */
+  enableSuggest: function() {
+    this._setCookie(Nico.SuggestSearch.SUGGEST_DISABLED_COOKIE_KEY, '', '-1');
+    this.$disabledSpan.hide();
+    this.$disableLink.show();
+    this.$enabledSpan.show();
+    this.$enableLink.hide();
+  },
+
+  /**
+   * ãµã¸ã§ã¹ãæ©è½ãç¡å¹ã«ãã
+   * @public
+   */
+  disableSuggest: function() {
+    this._setCookie(Nico.SuggestSearch.SUGGEST_DISABLED_COOKIE_KEY, Nico.SuggestSearch.SUGGEST_DISABLED_COOKIE_VALUE);
+    this.$disabledSpan.show();
+    this.$disableLink.hide();
+    this.$enabledSpan.hide();
+    this.$enableLink.show();
+  },
+
+  /**
+   * æå®ããã­ã¼ã§å¤ãã¯ãã­ã¼ã«ã»ãããã
+   * @param {string} name
+   * @param {string} value
+   * @param {string|Date} expires
+   * @private
+   */
+  _setCookie: function(name, value, expires) {
+
+    //æå®ãç¡ãå ´åã¯1æ¥ä¿å­
+    if (typeof expires === 'undefined') {
+      expires = new Date();
+      expires.setDate(expires.getDate() + 1);
+    }
+
+    //æ¥ä»ã®å ´åã¯æå­åã«å¤æãã¦ãã
+    if (expires instanceof Date) {
+      expires = expires.toUTCString();
+    }
+
+    //Cookieã«ã»ãããã
+    document.cookie = [
+      encodeURIComponent(name), '=', '' + value,
+      '; domain=.nicovideo.jp',
+      '; path=/',
+      '; expires=', expires
+    ].join('');
+  },
+
+  /**
+   * æå®ããã¯ãã­ã¼ã®å¤ãåå¾ãã¦è¿ã
+   * @param {string} name
+   * @param {string} defaultValue
+   * @returns {*}
+   * @private
+   */
+  _getCookie: function(name, defaultValue) {
+    if (typeof defaultValue === 'undefined') defaultValue = null;
+
+    var cookies = document.cookie ? document.cookie.split('; ') : []
+      , i = 0
+      , len = cookies.length
+      , parts
+      , key
+      , value;
+
+    for (; i < len; i++) {
+      parts = cookies[i].split('=');
+      key = decodeURIComponent(parts.shift());
+      value = parts.join('=');
+
+      if (name && name === key) return decodeURIComponent(value);
+    }
+
+    return defaultValue;
+  },
+
+  /**
+   * ãµã¸ã§ã¹ãã®ä¸­èº«ã®HTMLãæ´æ°ãã
+   * @param {array.<string>} [favoriteTags] è¡¨ç¤ºããããæ°ã«å¥ãã¿ã°ã®æå­åãæ ¼ç´ããã¦ãéå
+   * @param {array.<string>} [suggestWords] æç»ãããµã¸ã§ã¹ãæå­åãæ ¼ç´ããã¦ãéå
+   * @returns {boolean}
+   * @private
+   */
+  _renderSuggest: function(favoriteTags, suggestWords) {
+    if (!this._hasInput) return false;
+
+    //ãµã¸ã§ã¹ããæå®ããã¦ãããã©ãã
+    var hasSuggestWords = (typeof suggestWords !== 'undefined') && (suggestWords instanceof Array)
+      , favoriteTagsHtml = '' //ãæ°ã«å¥ãã¿ã°ä¸è¦§ã®HTML
+      , suggestWordsHtml = '' //ãµã¸ã§ã¹ãä¸è¦§ã®HTML
+      , currentSearchWord = this.getQuery()
+      , $activeItem
+      , activeItemIndex = null
+      , itemCounter = 0
+      , existsOnFavoriteTag
+      , suggestWord
+      , i, n;
+
+    //ãæ°ã«å¥ãã¿ã°ä¸è¦§ãæ¸¡ããã¦ãªãå ´åã®åæå
+    if ((typeof favoriteTags === 'undefined') || !(favoriteTags instanceof Array)) {
+      //ãµã¸ã§ã¹ããæå®ããã¦ããå ´åã¯ç©ºã®éåã¨ããæå®ãç¡ãå ´åã¯å¨ãæ°ã«å¥ãã¿ã°ã¨ãã
+      favoriteTags = (hasSuggestWords) ? [] : this._getFavoriteTagStrings();
+    }
+
+    //ç¾å¨activeãªã¢ã¤ãã ãããã°ä¸ããä½çªç®ããåå¾ãã¦ãã
+    if (this._isJQueryObject(this.$items)) {
+      $activeItem = this.$items.filter('.' + Nico.SuggestSearch.ITEM_ACTIVE_CLASS_NAME + ':first');
+      if ($activeItem.length > 0) {
+        this.$items.each(function(index, item) {
+          if (item === $activeItem[0]) {
+            activeItemIndex = index;
+            return false; //break;
+          }
+        });
+      }
+    }
+
+    //ãµã¸ã§ã¹ãã¯ã¼ããæ¸¡ããã¦ãªãå ´åã¯ç©ºã®éåã¨ãã
+    if (!hasSuggestWords) suggestWords = [];
+
+    //ãæ°ã«å¥ãã¿ã°ä¸è¦§ã®HTMLãçæãã
+    for (i = 0; i < favoriteTags.length; i++) {
+      favoriteTagsHtml += this.templates.favoriteTagItem(jQuery.trim(favoriteTags[i]));
+      itemCounter++;
+    }
+
+    //ãµã¸ã§ã¹ãä¸è¦§ã®HTMLãçæããï¼ãæ°ã«å¥ãã¿ã°ã¨åããã¦æå¤§10ä»¶(this.maxShowItemsCount)åã¾ã§çæï¼
+    for (i = 0; i < suggestWords.length && itemCounter < this.maxShowItemsCount; i++) {
+      if (currentSearchWord !== suggestWords[i]) {
+        //ãæ°ã«å¥ãã¿ã°ã§åããã®ãæ¢ã«è¡¨ç¤ºããã¦ãããã©ãããç¢ºèª
+        existsOnFavoriteTag = false;
+        for (n = 0; n < favoriteTags.length; n++) {
+          if (favoriteTags[n] === suggestWords[i]) {
+            existsOnFavoriteTag = true;
+            break;
+          }
+        }
+
+        //ãæ°ã«å¥ãã¿ã°ã§åããã®ãæ¢ã«è¡¨ç¤ºããã¦ããå ´åã¯ã¹ã­ãã
+        if (existsOnFavoriteTag) continue;
+
+        suggestWord = jQuery.trim(suggestWords[i]);
+        suggestWordsHtml += this.templates.suggestWordItem(suggestWord, this._getTargetPageUrl(suggestWord));
+        itemCounter++;
+      }
+    }
+
+    //ULã®HTMLãæ´æ°
+    this.$suggestWords.empty().html(suggestWordsHtml);
+    this.$favoriteTags.empty().html(favoriteTagsHtml);
+    if (favoriteTagsHtml.length > 0) {
+      this.$favoriteTags.addClass(Nico.SuggestSearch.ITEM_ACTIVE_CLASS_NAME);
+    } else {
+      this.$favoriteTags.removeClass(Nico.SuggestSearch.ITEM_ACTIVE_CLASS_NAME);
+    }
+
+    //LIãå¤æ°ã¨ãã¦æ ¼ç´ãã¦ãã
+    this.$items = this.$list.find('li');
+
+    //activeã ã£ãã¢ã¤ãã ãããã°ä¸ããä½çªç®ã®ä½ç½®ã ã£ããã«åããã¦æ°ããã¢ã¤ãã ä¸è¦§ã«activeãã¤ãã
+    if (activeItemIndex !== null && this.$items[activeItemIndex]) {
+      jQuery(this.$items[activeItemIndex]).addClass(Nico.SuggestSearch.ITEM_ACTIVE_CLASS_NAME);
+    }
+
+    //HTMLãç©ºãªãfalseãè¿ã
+    return favoriteTagsHtml.length > 0 || suggestWordsHtml.length > 0;
+  },
+
+  /**
+   * ç¾å¨è¡¨ç¤ºããã¦ãå¨ã¢ã¤ãã ï¼ãµã¸ã§ã¹ã+ãæ°ã«å¥ãã¿ã°ï¼ããactiveã¯ã©ã¹ãåé¤ãã
+   * @private
+   */
+  _removeAllActiveClasses: function() {
+    if (this._isJQueryObject(this.$items)) this.$items.removeClass(Nico.SuggestSearch.ITEM_ACTIVE_CLASS_NAME);
+  },
+
+  /**
+   * å¥åãããå¤ãåå¾ãã¦ããæ°ã«å¥ãã¿ã°ãæ¤ç´¢ãã¦ã
+   * ããããããæ°ã«å¥ãã¿ã°ã10ä»¶æªæºãªããµã¸ã§ã¹ãAPIãå©ãã¦ãµã¸ã§ã¹ããåå¾ã»è¡¨ç¤ºããã
+   * â»ããã¯ this._hasInput === true åæ
+   * @param {boolean} [forceCheck = false] ååã®å¥åå¤ã¨åãå ´åãã¹ã­ããããªãããã«ãããã©ãã
+   * @returns {boolean}
+   * @private
+   */
+  _checkInput: function(forceCheck) {
+
+    //ãµã¸ã§ã¹ããç¡å¹ãªãä½ãããªã
+    if (!this.isSuggestEnabled()) {
+      this.hideSuggest();
+      return false;
+    }
+
+    forceCheck = (typeof forceCheck === 'undefined') ? false : !!forceCheck;
+
+    //å¥åå¤ãåå¾
+    var self = this
+      , inputValue = this.getQuery()
+      , inputValueModified = (this._recentSearchWord === inputValue)
+      , matchedFavoriteTags;
+
+    //æå¾ã®å¥åå¤ãç»é²
+    this._recentSearchWord = inputValue;
+
+    //å¥åå¤ãç©ºã®å ´åãæ°ã«å¥ãã¿ã°ã ãã§ãµã¸ã§ã¹ããè¡¨ç¤ºããã
+    if (inputValue.length === 0) {
+      this.showSuggestWithFavoriteTags(); //å¨ãæ°ã«å¥ãã¿ã°ãè¡¨ç¤º
+      return true;
+    } else if (!forceCheck && !inputValueModified) {
+      return true; //å¤ã«å¤æ´ããªããã°ä½ãããªã
+    }
+
+    //ãæ°ã«å¥ãã¿ã°ãåå¾
+    matchedFavoriteTags = this._getMatchFavoriteTags(inputValue);
+
+    //ä¸è´ãããæ°ã«å¥ãã¿ã°ã®æ°ãè¡¨ç¤ºä»¶æ°ãæºããã¦ããããµã¸ã§ã¹ãè¡¨ç¤ºæå­æ°ãæºããã¦ãªãå ´åã¯ãã®ã¾ã¾ãµã¸ã§ã¹ããæç»ãã¦è¡¨ç¤ºããã
+    if (inputValue.length < this.showSuggestMinLength || matchedFavoriteTags.length >= this.maxShowItemsCount) {
+      this.showSuggestWithFavoriteTags(matchedFavoriteTags);
+      return true;
+    }
+
+    //ãµã¸ã§ã¹ãã¯ã¼ãä¸è¦§ãåå¾ãã¦ããµã¸ã§ã¹ããè¡¨ç¤ºããã
+    this.getSuggestWords(inputValue, function(searchWords) {
+      if (self._renderSuggest(matchedFavoriteTags, searchWords)) {
+        self.showSuggest();
+      } else {
+        self.hideSuggest();
+      }
+    });
+
+    return true;
+  },
+
+  /**
+   * ãæ°ã«å¥ãã¿ã°(Object)ä¸è¦§ã®éåãã¿ã°åã®æå­åã ãã®éåã«å¤æãã¦è¿ã
+   * @returns {array.<string>}
+   * @private
+   */
+  _getFavoriteTagStrings: function() {
+    var favoriteTags = [];
+
+    //ãæ°ã«å¥ãã¿ã°ãåå¾ããã¦ãªãå ´åã¯ç©ºã®éåãè¿ã
+    if (this.favoriteTags === null) return favoriteTags;
+
+    for (var i = 0; i < this.favoriteTags.length; i++) {
+      favoriteTags.push(this.favoriteTags[i].tag);
+    }
+    return favoriteTags;
+  },
+
+  /**
+   * æ¸¡ããããæ¤ç´¢æå­åãæ ¼ç´ãããéåãã«ä¸è´ãããæ°ã«å¥ãã¿ã°ä¸è¦§ãè¿ã
+   * @param {string} inputValue
+   * @returns {array.<string>}
+   * @private
+   */
+  _getMatchFavoriteTags: function(inputValue) {
+    var matchedFavoriteTags = []
+      , i
+      , favoriteTags
+      , favoriteTag
+      , tagMatched;
+
+    //ãæ°ã«å¥ãã¿ã°åå¾åããå¼æ°ãéåã§ãªãããããã¯ç©ºã§ããã°ãã®ã¾ã¾ç©ºã®éåãè¿ã
+    if (this.favoriteTags === null || !inputValue || (inputValue += '').length === 0) return matchedFavoriteTags;
+
+    //ãæ°ã«å¥ãã¿ã°ãå¨ä»¶ã«ã¼ãããã¦ãå¼æ°ã§æå®ãããtagsã¨å¨é¨ä¸è´ãããã®ãåå¾ãã
+    favoriteTags = (this.favoriteTags !== null) ? this.favoriteTags : [];
+    inputValue = this._regularize(jQuery.trim(inputValue));
+    for (i = 0; i < favoriteTags.length; i++) {
+      favoriteTag = favoriteTags[i];
+      tagMatched = true; //ä¸è´ãã¦ãããã©ããã®ãã©ã°
+
+      //å¥åæå­åã¨åé ­ä¸è´ãããªãè¿½å ãã
+      if (favoriteTag.regular_tag.indexOf(inputValue) === 0) {
+        matchedFavoriteTags.push(favoriteTag.tag);
+        //ãã§ã«10ä»¶ããããã¦ãå ´åã¯ã«ã¼ããæãã
+        if (matchedFavoriteTags.length >= this.maxShowItemsCount) break;
+      }
+    }
+
+    return matchedFavoriteTags;
+  },
+
+  /**
+   * jQueryãªãã¸ã§ã¯ããã©ãããè¿ã
+   * ç°å¢ã«ãã£ã¦ã¯(obj instanceof jQuery)ãfalseã«ãªãã±ã¼ã¹ããããããªã®ã§ãã­ããã£ããå¤æ­ãã
+   * @param {*} obj
+   * @returns {boolean}
+   * @private
+   */
+  _isJQueryObject: function(obj) {
+    return (typeof obj !== 'undefined') && (obj !== null) && obj && ('jquery' in obj) && obj.jquery;
+  },
+
+  /**
+   * æ¸¡ãããjQueryObjectã«å¯¾ãã¦æå®ãããåå®¹ã§ã¤ãã³ããç»é²ãã
+   * @param {jQuery} $element
+   * @param {string} eventName
+   * @param {function} callback
+   * @private
+   */
+  _registerEventToElement: function($element, eventName, callback) {
+    var self = this;
+    $element[this.jQueryMethodOnName](eventName, function() {
+      callback.apply(self, arguments);
+    });
+  },
+
+  /**
+   * å¯¾è±¡ã®å¥åãã£ã¼ã«ãã«å¯¾ãã¦ã¤ãã³ããç»é²ãã
+   * @param {string} eventName
+   * @param {function} callback
+   * @returns {boolean}
+   * @private
+   */
+  _registerEventToTargetInput: function(eventName, callback) {
+    //å¥åãã£ã¼ã«ããç¡ãå ´åã¯ä½ãããªã
+    if (!this._hasInput) return false;
+    //å¥åãã£ã¼ã«ãã«å¯¾ãã¦ã¤ãã³ããç»é²
+    this._registerEventToElement(this.$targetInput, eventName, callback);
+    return true;
+  },
+
+  /**
+   * ãµã¸ã§ã¹ãã®ã¢ã¤ãã ã«å¯¾ãã¦ã¤ãã³ããç»é²ãã
+   * @param {string} eventName
+   * @param {function} callback
+   * @returns {boolean}
+   * @private
+   */
+  _registerEventToItems: function(eventName, callback) {
+    //å¥åãã£ã¼ã«ããç¡ãå ´åã¯ä½ãããªã
+    if (!this._hasInput) return false;
+
+    var self = this;
+
+    //ãµã¸ã§ã¹ãåã®è¦ç´ ãã¯ãªãã¯ãããæã®ã¤ãã³ãã®ç»é²
+    if (this.jQueryMethodOnName === 'on') {
+      this.$list.on(eventName, 'li a', function() {
+        callback.apply(self, arguments);
+      });
+    } else {
+      //.on()ãä½¿ããªãå ´åã¯liveã§ä»£ç¨ãã
+      jQuery('.nicolib-SuggestSearch-suggestion-list ul li a').live(eventName, function() {
+        callback.apply(self, arguments);
+      });
+    }
+
+    return true;
+  },
+
+  /**
+   * æå¾ã®å¥åã®ã¿ã¤ãã³ã°ããã£ã¬ã¤ã¨è¢«ãã¨æå¾ã®å¥åç¶æã§æ´æ°ãããªãã®ã§ã
+   * æå¾ã®å¥åã®æã«æ´æ°ããsetTimeoutãç»é²ããå¦ç
+   * @param {string} searchWord
+   * @private
+   */
+  _registerEventRecheckInputIfNotModified: function(searchWord) {
+    var self = this;
+
+    //æ¢ã«åãã§ãã¯ã¤ãã³ããç»é²ããã¦ãå ´åã¯åé¤ãã¦ãã
+    if (this._recheckEvent) {
+      clearTimeout(this._recheckEvent);
+      this._recheckEvent = null;
+    }
+
+    //åãã§ãã¯ãç»é²ãã
+    this._recheckEvent = setTimeout(function() {
+      if (self.$targetInput.is(':focus')) {
+        self._checkInput.apply(self, arguments);
+      }
+    }, this.requestDelay + 1);
+  },
+
+  /**
+   * å¯¾è±¡ã®å¥åãã£ã¼ã«ãã«ãã©ã¼ã«ã¹ãããæã®å¦ç
+   * ãµã¸ã§ã¹ããè¡¨ç¤ºããã
+   * ååãã©ã¼ã«ã¹æã¯ãæ°ã«å¥ãã¿ã°ãåå¾ããã
+   * @param {object} event
+   * @returns {boolean}
+   * @private
+   */
+  _onInputFocus: function(event) {
+    if (!this._initFocusTimestamp) {
+      this._initFocusTimestamp = (new Date()).getTime();
+    }
+    if (!this._isInitLogged) {
+      this._isInitLogged = true;
+      jQuery.get('/api/1?target=search_suggest&t=' + (new Date()).getTime());
+    }
+
+    //ååãã©ã¼ã«ã¹æã®ãã§ãã¯
+    if (this._isFirstFocus) {
+      //ãã©ã°ãæã
+      this._isFirstFocus = false;
+      //ååè¡¨ç¤ºæã«checkInputãè¡ããªããã©ã°ãç«ã£ã¦ãå ´åä½ãããªã
+      if (this.skipFirstFocus) {
+        return true;
+      }
+    }
+
+    //ãã©ã¼ã«ã¹æã«Positionãã»ãããç´ã
+    if (this._hasInput) {
+      this.fitContainerPositionToInput();
+    }
+
+    if (this.isSuggestEnabled()) {
+      //ã­ã°ã¤ã³ç¶æã§ã®ååãã©ã¼ã«ã¹æã¯ãæ°ã«å¥ãã¿ã°ãåå¾ãã¦ããµã¸ã§ã¹ãè¡¨ç¤ºãç»é²ãã
+      if (Nico.SuggestSearch.IS_LOGIN && this.favoriteTags === null) {
+        this.fetchFavoriteTagsFromAPI(this._checkInput);
+      } else {
+        //ãµã¸ã§ã¹ããè¡¨ç¤ºãã
+        this._checkInput();
+      }
+    }
+    return true;
+  },
+
+  /**
+   * ãã©ã¼ã«ã¹ã¢ã¦ãæã«å¿è¦ãããã°ãµã¸ã§ã¹ããéè¡¨ç¤ºã«ãã
+   * @param event
+   * @private
+   */
+  _onInputBlur: function(event) {
+    if ((event.type === 'mousedown' || event.type === 'click')) {
+      //ã¯ãªãã¯ç³»ã¤ãã³ãã®å ´åã¯å¯¾è±¡ããµã¸ã§ã¹ãã¢ã¤ãã ã§ããã°ä½ãããªã
+      if (event.target && (
+        jQuery(event.target).parents('.nicolib-SuggestSearch-suggestions').length <= 0
+          && (!('_isNicoLibSuggestSearch' in event.target) || !event.target._isNicoLibSuggestSearch)
+        )) {
+        this.hideSuggest();
+      }
+    } else if (!this.$container.hasClass(Nico.SuggestSearch.CONTAINER_ACTIVE_CLASS_NAME_FOR_JS)) {
+      //ããä»¥å¤ã§ããã°ãã©ã¼ã«ã¹ã¢ã¦ãæãªã®ã§é ã
+      this.hideSuggest();
+    }
+  },
+
+  /**
+   * å¯¾è±¡ã®å¥åãã£ã¼ã«ãã«ã¦keyupã¤ãã³ããçºçããæã®å¦ç
+   * @param {object} event
+   * @returns {boolean}
+   * @private
+   */
+  _onInputKeyUp: function(event) {
+    if (event.keyCode === Nico.SuggestSearch.KEY_CODE_DOWN_ARROW || event.keyCode === Nico.SuggestSearch.KEY_CODE_UP_ARROW
+      || event.keyCode === Nico.SuggestSearch.KEY_CODE_ENTER) {
+      event.preventDefault();
+      return false;
+    }
+    this._checkInput(true);
+    this._registerEventRecheckInputIfNotModified(this.getQuery());
+    return true;
+  },
+
+  /**
+   * å¯¾è±¡ã®å¥åãã£ã¼ã«ãã«keydownã¤ãã³ããçºçããæã®å¦ç
+   * @param {object} event
+   * @returns {boolean}
+   * @private
+   */
+  _onInputKeyDown: function(event) {
+    if (event.keyCode === Nico.SuggestSearch.KEY_CODE_DOWN_ARROW || event.keyCode === Nico.SuggestSearch.KEY_CODE_UP_ARROW) {
+      event.preventDefault();
+      this._moveActiveItem(event.keyCode === Nico.SuggestSearch.KEY_CODE_DOWN_ARROW);
+      return false;
+    } else if (event.keyCode === Nico.SuggestSearch.KEY_CODE_ENTER) {
+      //ENTERãæ¼ãããå ´åãã¢ã¯ãã£ããªã¢ã¤ãã ãããã°ãã©ã¼ã ã®éä¿¡ãã­ã£ã³ã»ã«ãã¦å¤ãã»ãããã«ãã
+      var $currentActiveItem = this._getCurrentActiveItem();
+      if (this._isJQueryObject($currentActiveItem)) {
+        event.preventDefault();
+        this.sendSubmit($currentActiveItem);
+        return false;
+      }
+    }
+    this._checkInput();
+    return true;
+  },
+
+  /**
+   * ãã©ã¼ã«ã¹ã¨ã¯å¥ã«ã¯ãªãã¯æã«ããã©ã°ãæã
+   * @param {object} event
+   * @private
+   */
+  _onInputMouseDown: function(event) {
+    this._onInputFocus();
+  },
+
+  /**
+   * ãµã¸ã§ã¹ããæå¹ã«ããããªã³ããªã³ã¯ãã¯ãªãã¯ãããæã®åä½
+   * @param {object} event
+   * @returns {false}
+   * @private
+   */
+  _onEnableLinkClicked: function(event) {
+    this.enableSuggest();
+    return false;
+  },
+
+  /**
+   * ãµã¸ã§ã¹ããç¡å¹ã«ããããªãããªã³ã¯ãã¯ãªãã¯ãããæã®åä½
+   * @param {object} event
+   * @returns {false}
+   * @private
+   */
+  _onDisableLinkClicked: function(event) {
+    this.disableSuggest();
+    this.hideSuggest();
+    return false;
+  },
+
+  /**
+   * ãµã¸ã§ã¹ãã¢ã¤ãã ãã¯ãªãã¯ãããæã®å¦ç
+   * @param {object} event
+   * @private
+   */
+  _onItemClicked: function(event) {
+    var $targetItem = this._getTargetItemFromEvent(event);
+    this.sendSubmit($targetItem, true);
+    if (this._hasSubmitFunction()) {
+      event.preventDefault();
+      return false;
+    }
+  },
+
+  /**
+   * ãµã¸ã§ã¹ãã¢ã¤ãã ã«ãã¦ã¹ã«ã¼ã½ã«ãããã£ããã¢ã¯ãã£ãã«ãã
+   * @param event
+   * @private
+   */
+  _onItemMouseEntered: function(event) {
+    this._removeAllActiveClasses();
+    if (event.target) {
+      var $item = jQuery(event.target);
+      if (event.target.nodeName.toLowerCase() !== 'li') {
+        $item = $item.parents('li');
+      }
+      $item.addClass(Nico.SuggestSearch.ITEM_ACTIVE_CLASS_NAME);
+    }
+  },
+
+  /**
+   * ãµã¸ã§ã¹ãã¢ã¤ãã ãããã¦ã¹ã«ã¼ã½ã«ãå¤ãããã¢ã¯ãã£ãã¯ã©ã¹ãåé¤ãã
+   * @param event
+   * @private
+   */
+  _onItemMouseLeaved: function(event) {
+    this._removeAllActiveClasses();
+  },
+
+  /**
+   * ãµã¸ã§ã¹ãã¢ã¤ãã ã¸ã®ããã¼æã«ãã®è¦ç´ ã«å¯¾ãã¦ããã¼ç¶æãè¡¨ãã¯ã©ã¹ãä»ä¸ãã
+   * @param {object} event
+   * @return {bool} return only true
+   * @private
+   */
+  _onContainerMouseEntered: function(event) {
+    this.$container.addClass(Nico.SuggestSearch.CONTAINER_ACTIVE_CLASS_NAME_FOR_JS);
+    return true;
+  },
+
+  /**
+   * ãµã¸ã§ã¹ãã¢ã¤ãã ããã®ããã¼ã¢ã¦ãæã«ãã®è¦ç´ ã«å¯¾ãã¦ããã¼ç¶æãè¡¨ãã¯ã©ã¹ãåé¤ãã
+   * @param {object} event
+   * @return {bool} return only true
+   * @private
+   */
+  _onContainerMouseLeaved: function(event) {
+    this.$container.removeClass(Nico.SuggestSearch.CONTAINER_ACTIVE_CLASS_NAME_FOR_JS);
+    return true;
+  },
+
+  /**
+   * å¥åãã£ã¼ã«ãã®æ«å°¾ã«ãã©ã¼ã«ã¹ãç§»åããã
+   * åèï¼ http://d.hatena.ne.jp/minmin_lucky7/20110426/1303804105
+   * @private
+   */
+  _focusInputEnd: function() {
+    var targetInput = this.$targetInput[0];
+    targetInput.focus();
+    targetInput.value += '';
+  },
+
+  /**
+   * æ¸¡ãããã¤ãã³ãããå¯¾è±¡ã®<li>ã®jQueryãªãã¸ã§ã¯ããè¿ã
+   * @param {object} event
+   * @private
+   */
+  _getTargetItemFromEvent: function(event) {
+    var $target = jQuery(event.target);
+    if (event.target.tagName.toLowerCase() !== 'li') $target = $target.parents('li');
+    return $target;
+  },
+
+  /**
+   * æ¸¡ããããµã¸ã§ã¹ãã¢ã¤ãã ã®å¤ãå¥åè¦ç´ ã«è»¢è¨ãã
+   * @param {jQuery} $targetItem
+   * @private
+   */
+  _setSelectedItemToInput: function($targetItem) {
+    this._setWordToTargetInput(this._getItemText($targetItem));
+  },
+
+  /**
+   * æ¸¡ãããæå­åãå¥åè¦ç´ ã«è»¢è¨ãã
+   * @param {string} word
+   * @private
+   */
+  _setWordToTargetInput: function(word) {
+    this.$targetInput.val(word);
+  },
+
+  /**
+   * æ¸¡ããããµã¸ã§ã¹ãã¢ã¤ãã ã®æå­åãè¿ã
+   * @param $targetItem
+   * @returns {bool|string}
+   * @private
+   */
+  _getItemText: function($targetItem) {
+    if (!this._isJQueryObject($targetItem) || $targetItem.length === 0
+      || $targetItem[0].nodeName.toLowerCase() !== 'li') {
+      return false;
+    }
+    return jQuery.trim($targetItem.find('.nicolib-SuggestSearch-suggestion-item-name').text());
+  },
+
+  /**
+   * ãµã¸ã§ã¹ãã®ãã©ã¼ã«ã¹ä½ç½®ãç§»åããã
+   * @param {boolean} toDown ãã©ã¼ã«ã¹ã1åä¸ã«ç§»åãããå ´åã¯true,1åä¸ã®å ´åã¯false
+   * @returns {boolean}
+   */
+  _moveActiveItem: function(toDown) {
+    var $currentItem = null
+      , $previousItem = null
+      , $targetItem = null
+      , nextIsTarget = false;
+
+    //ã¢ã¤ãã ä¸è¦§ãåå¾ã§ããªãã£ãå ´åã¯ä½ãããªã
+    if (!this._isJQueryObject(this.$items)) {
+      return false;
+    }
+
+    //UL2ã¤ãã¾ããã <li>ã®ãªã¹ãããå¯¾è±¡ã¨ãªãåå¾ã®ã¢ã¤ãã ãåå¾ãã
+    this.$items.each(function(index, item) {
+      var $item = jQuery(item);
+
+      //nextIsTargetãã©ã°ãONãªããããç§»ååã®ã¢ã¤ãã 
+      if (nextIsTarget) {
+        $targetItem = $item;
+        return false; //break
+      }
+
+      //ç¾å¨ãã©ã¼ã«ã¹ä¸­ã®ã¯ã©ã¹ã®å ´å
+      if ($item.hasClass(Nico.SuggestSearch.ITEM_ACTIVE_CLASS_NAME)) {
+        //ç¾å¨ã®ã¢ã¤ãã ãã»ãããã
+        $currentItem = $item;
+
+        if (toDown) {
+          //ä¸ã«ç§»åããå ´å
+          nextIsTarget = true;
+        } else {
+          //ä¸ã«ç§»åããå ´å
+          $targetItem = $previousItem;
+          return false; //break
+        }
+      }
+      $previousItem = $item;
+      return true; //continue
+    });
+
+    //ç§»ååã®ã¢ã¤ãã ãåå¾ã§ããªãå ´åãç§»ååãã»ãããã
+    if (!this._isJQueryObject($targetItem)) {
+      if (this._isJQueryObject($currentItem)) {
+        //åé ­ãæ«å°¾ã«ãã©ã¼ã«ã¹ãããå ´åã¯é¸æä¸­ã¢ã¤ãã ãç¡ãããinputã«ãã©ã¼ã«ã¹ãæ»ã
+        this._removeAllActiveClasses();
+        this._focusInputEnd();
+        return true;
+      } else {
+        //ãã©ã¼ã«ã¹ãç¡ãå ´åï¼ãã©ã¼ã«ã¹ãinputã«ããå ´åï¼åé ­(oræ«å°¾)ã®ã¢ã¤ãã ã«ãã©ã¼ã«ã¹ãã»ãããã
+        $targetItem =  this.$items.filter(toDown ? ':first' : ':last');
+      }
+    }
+
+    //ä»ã®ãã¹ã¦ã®ã¢ã¤ãã ããactiveã¯ã©ã¹ãåé¤ããå¯¾è±¡ã®ã¢ã¤ãã ã«activeã¯ã©ã¹ãè¿½å ãã
+    this._removeAllActiveClasses();
+    $targetItem.addClass(Nico.SuggestSearch.ITEM_ACTIVE_CLASS_NAME);
+
+    return true;
+  },
+
+  /**
+   * ç¾å¨ã¢ã¯ãã£ããªï¼ç¢å°ã­ã¼ã§ãã©ã¼ã«ã¹ããã¦ãï¼ã¢ã¤ãã ã®jQueryãªãã¸ã§ã¯ããè¿ã
+   * @returns {false|jQuery}
+   * @private
+   */
+  _getCurrentActiveItem: function() {
+    //ã³ã³ãããéè¡¨ç¤ºãªã®ã§ããã°å¨activeã¯ã©ã¹ãåé¤ããããã§ä½ãããªã
+    if (this.$container.is(':visible')) {
+      //ã³ã³ãããè¡¨ç¤ºç¶æã§ããã°activeãªè¡ãè¿ã
+      var $activeItem = this.$items.filter('.' + Nico.SuggestSearch.ITEM_ACTIVE_CLASS_NAME + ':first');
+      if ($activeItem.length > 0) {
+        return $activeItem;
+      }
+    }
+    return false;
+  },
+
+  /**
+   * æ¸¡ãããjQueryãªãã¸ã§ã¯ãããæ°ã«å¥ãã¿ã°ã®åè£ãã©ãããè¿ã
+   * @param {object} $item
+   * @returns {boolean}
+   * @private
+   */
+  _isFavoriteTagItem: function($item) {
+    return this._isJQueryObject($item) && $item[0].nodeName.toLowerCase() === 'li'
+      && $item.parents('ul.nicolib-SuggestSearch-suggestion-favtag-items').length > 0;
+  },
+
+  /**
+   * å¯¾è±¡ã®å¥åè¦ç´ ã«ãã©ã¼ã«ã¹ãããã£ã¦ããã©ãããè¿ã
+   * @returns {boolean}
+   * @private
+   */
+  _isFocusedToTargetInput: function() {
+    return this._hasInput && this.$targetInput.is(':focus');
+  },
+
+  /**
+   * ã¬ã®ã¥ã©ã¼ã¿ã°å½¢å¼ã«å¤æãã
+   * @param {string} string
+   * @returns {string}
+   * @private
+   */
+  _regularize: function(string) {
+    var self = this;
+    return string
+      //å¨è§ã¹ãã¼ã¹ãåè§ã¹ãã¼ã¹ã«å¤æ
+      .replace('ã', ' ')
+      //å¤§æå­ã«å¤æ
+      .toUpperCase()
+      //å¨è§è±æ°ãåè§è±æ°ã«å¤æ
+      .replace(this.regularTagRegExpAlphaNum, function(character) {
+        return String.fromCharCode(character.charCodeAt(0) - 0xFEE0);
+      })
+      //ã²ãããªãã«ã¿ã«ãã«å¤æ
+      .replace(this.regularTagRegExpHiragana, function(character) {
+        return String.fromCharCode(character.charCodeAt(0) + 0x60);
+      })
+      //å¤æãã¼ãã«ã«ãããã£ã¦å¤æ
+      .replace(this.regularTagTableRegExp, function(character) {
+        if ((character in self.regularTagTable) && self.regularTagTable[character]) {
+          return self.regularTagTable[character];
+        } else {
+          return character;
+        }
+      });
+  },
+
+  /**
+   * ãªã³ã¯åã®URLãçæãã¦è¿ã
+   * @param {string} targetText æ¤ç´¢æå­å
+   * @param {undefined|number} targetPage å¯¾è±¡ãã¼ã¸ãæç¤ºçã«æå®ããå ´åå¿è¦ãæå®ãç¡ããã°ã¤ã³ã¹ã¿ã³ã¹ã«è¨­å®ããããªã³ã¯åãå©ç¨ããã
+   * @returns {string|false}
+   * @private
+   */
+  _getTargetPageUrl: function(targetText, targetPage) {
+    if (typeof targetPage === 'undefined' || isNaN(targetPage)) {
+      targetPage = this._targetPage;
+    }
+
+    var encodedText = encodeURIComponent(targetText) + '?' + this._generateLogParamsRequestString();
+
+    if (targetPage === Nico.SuggestSearch.TARGET_PAGE_KEYWORD_SEARCH) {
+      return '/search/' + encodedText;
+    } else if (targetPage === Nico.SuggestSearch.TARGET_PAGE_TAG_SEARCH) {
+      return '/tag/' + encodedText;
+    } else if (targetPage === Nico.SuggestSearch.TARGET_PAGE_MYLIST_SEARCH) {
+      return '/mylist_search/' + encodedText;
+    } else if (targetPage === Nico.SuggestSearch.TARGET_PAGE_RELATED_TAG_SEARCH) {
+      return '/related_tag/' + encodedText;
+    } else {
+      return false;
+    }
+  },
+
+  /**
+   * ã­ã°åºåç¨ã®ãã©ã¡ã¼ã¿Objectãè¿ã
+   * @returns {{hft: number, st: number, itc: number, ct: number, cip: number}}
+   * @private
+   */
+  _generateLogParams: function() {
+    var params = {
+        hft: ((this.favoriteTags instanceof Array) && this.favoriteTags.length > 0) ? 1 : 0,
+        st: this._initFocusTimestamp,
+        itc: this.$suggestWords.find('li').length,
+        ct: 0,
+        cip: 0
+      }
+      , $currentItem = this._getCurrentActiveItem();
+    if ($currentItem) {
+      params.ct = $currentItem.parents('.nicolib-SuggestSearch-suggestion-favtag-items').length > 0 ? 1 : 2;
+      this.$items.each(function(index, element) {
+        if (jQuery(element).hasClass(Nico.SuggestSearch.ITEM_ACTIVE_CLASS_NAME)) {
+          params.cip = index + 1;
+          return false;
+        }
+      });
+    }
+    return params;
+  },
+
+  /**
+   * ã­ã°åºåç¨ã®ãã©ã¡ã¼ã¿ã®GET URLç¨ã®æå­åãè¿ãï¼åé ­ã®?/&ã¯å«ã¾ãªã)
+   * @returns {string}
+   * @private
+   */
+  _generateLogParamsRequestString: function() {
+    var params = this._generateLogParams();
+    var stringParams = [];
+    jQuery.each(params, function(key, value) {
+      stringParams.push(key + '=' + value);
+    });
+    return stringParams.join('&');
+  },
+
+  /**
+   * å¯¾è±¡ãã¼ã¸ã«ãªãã¤ã¬ã¯ããã
+   * @param {string} targetText
+   * @returns {bool}
+   * @private
+   */
+  _redirectToTargetPage: function(targetText) {
+    var targetPageUrl = this._getTargetPageUrl(targetText);
+    if (targetPageUrl) {
+      location.href = targetPageUrl;
+      return false;
+    } else {
+      //å¯¾è±¡ãã¼ã¸ãNONEã®å ´åã¯å¥åæ¬ã«æå­åãè¨­å®ãã
+      this._removeAllActiveClasses();
+      return this._setWordToTargetInput(targetText);
+    }
+  },
+
+  /**
+   * ã¿ã°æ¤ç´¢ãã¼ã¸ã«ãªãã¤ã¬ã¯ããã
+   * @param {string} targetText
+   * @private
+   */
+  _redirectToTagSearchPage: function(targetText) {
+    location.href = this._getTargetPageUrl(targetText, Nico.SuggestSearch.TARGET_PAGE_TAG_SEARCH);
+  }
+};
+
+/**
+ * HTMLãã³ãã¬ã¼ã
+ * @type {object.<function>}
+ */
+Nico.SuggestSearch.templates = {
+  /**
+   * ãµã¸ã§ã¹ããè¡¨ç¤ºããã¡ã¤ã³ã®ã³ã³ããã®HTMLãè¿ã
+   * @returns {string}
+   */
+  container: function(suggestSwitchEnabled) {
+    suggestSwitchEnabled = (typeof suggestSwitchEnabled === 'undefined') ? true : !!suggestSwitchEnabled;
+    return '<div class="nicolib-SuggestSearch-suggestions suggestBox" style="display: none;">' +
+      '<div class="nicolib-SuggestSearch-suggestion-list suggestBoxInner">' +
+      '<div class="nicolib-SuggestSearch-footer-favtag-edit-container favTagEditBox">' +
+      '<p>âãæ°ã«å¥ãã¿ã°</p>' +
+      '<a href="/my/fav/tag">ç·¨é</a>' +
+      '</div>' +
+      '<ul class="nicolib-SuggestSearch-suggestion-favtag-items favTagItem"></ul>' +
+      '<ul class="nicolib-SuggestSearch-suggestion-suggest-items suggestItem"></ul>' +
+      '</div>' +
+      '<div class="nicolib-SuggestSearch-footer">' +
+      ( (suggestSwitchEnabled) ?
+        '<div class="nicolib-SuggestSearch-footer-switch-container">' +
+          'åè£ã®è¡¨ç¤ºï¼' +
+          '<a href="#" class="nicolib-SuggestSearch-switch-enable-link" style="display: none;">ãªã³</a>' +
+          '<span class="nicolib-SuggestSearch-switch-enabled">ãªã³</span>' +
+          ' / ' +
+          '<a href="#" class="nicolib-SuggestSearch-switch-disable-link">ãªã</a>' +
+          '<span class="nicolib-SuggestSearch-switch-disabled" style="display: none;">ãªã</span>' +
+          '</div>' : ''
+        ) +
+      '</div>' +
+      '</div>';
+  },
+  /**
+   * ãæ°ã«å¥ãã¿ã°ã®åè¡ã¨ãªã<li>ã¿ã°ãè¿ã
+   * @param {string} tagName
+   * @returns {string}
+   */
+  favoriteTagItem: function(tagName) {
+    return '<li>' +
+      '<a href="/tag/' + tagName.toString() + '">' +
+      /*'<span class="nicolib-SuggestSearch-suggestion-favtag-star">â</span>' + */
+      '<span class="nicolib-SuggestSearch-suggestion-item-name">' + tagName.toString() + '</span>' +
+      '</a>' +
+      '</li>';
+  },
+  /**
+   * ãµã¸ã§ã¹ãã®åè¡ã¨ãªã<li>ã¿ã°ãè¿ã
+   * @param {string} suggestWord
+   * @returns {string}
+   */
+  suggestWordItem: function(suggestWord, link) {
+    return '<li>' +
+      '<a href="' + link + '">' +
+      '<span class="nicolib-SuggestSearch-suggestion-item-name">' + suggestWord.toString() + '</span>' +
+      '</a>' +
+      '</li>';
+  }
+};
+
+/**
+ * ã¬ã®ã¥ã¼ã©ã¼ã¿ã°å¤æç¨ãã¼ãã«
+ * @type {object<string>}
+ */
+Nico.SuggestSearch.REGULAR_TAG_TRANSFORM_TABLE = {
+  'ï½¶ï¾': 'ã¬', 'ï½·ï¾': 'ã®', 'ï½¸ï¾': 'ã°', 'ï½¹ï¾': 'ã²', 'ï½ºï¾': 'ã´', 'ï½»ï¾': 'ã¶', 'ï½¼ï¾': 'ã¸', 'ï½½ï¾': 'ãº', 'ï½¾ï¾': 'ã¼', 'ï½¿ï¾': 'ã¾',
+  'ï¾ï¾': 'ã', 'ï¾ï¾': 'ã', 'ï¾ï¾': 'ã', 'ï¾ï¾': 'ã', 'ï¾ï¾': 'ã', 'ï¾ï¾': 'ã', 'ï¾ï¾': 'ã', 'ï¾ï¾': 'ã', 'ï¾ï¾': 'ã', 'ï¾ï¾': 'ã',
+  'ï¾ï¾': 'ã', 'ï¾ï¾': 'ã', 'ï¾ï¾': 'ã', 'ï¾ï¾': 'ã', 'ï¾ï¾': 'ã', 'ï½³ï¾': 'ã´', 'ï½§': 'ã¡', 'ï½±': 'ã¢', 'ï½¨': 'ã£', 'ï½²': 'ã¤',
+  'ï½©': 'ã¥', 'ï½³': 'ã¦', 'ï½ª': 'ã§', 'ï½´': 'ã¨', 'ï½«': 'ã©', 'ï½µ': 'ãª', 'ï½¶': 'ã«', 'ï½·': 'ã­', 'ï½¸': 'ã¯', 'ï½¹': 'ã±', 'ï½º': 'ã³',
+  'ï½»': 'ãµ', 'ï½¼': 'ã·', 'ï½½': 'ã¹', 'ï½¾': 'ã»', 'ï½¿': 'ã½', 'ï¾': 'ã¿', 'ï¾': 'ã', 'ï½¯': 'ã', 'ï¾': 'ã', 'ï¾': 'ã', 'ï¾': 'ã',
+  'ï¾': 'ã', 'ï¾': 'ã', 'ï¾': 'ã', 'ï¾': 'ã', 'ï¾': 'ã', 'ï¾': 'ã', 'ï¾': 'ã', 'ï¾': 'ã', 'ï¾': 'ã', 'ï¾': 'ã', 'ï¾': 'ã',
+  'ï¾': 'ã', 'ï¾': 'ã ', 'ï¾': 'ã¡', 'ï¾': 'ã¢', 'ï½¬': 'ã£', 'ï¾': 'ã¤', 'ï½­': 'ã¥', 'ï¾': 'ã¦', 'ï½®': 'ã§', 'ï¾': 'ã¨', 'ï¾': 'ã©',
+  'ï¾': 'ãª', 'ï¾': 'ã«', 'ï¾': 'ã¬', 'ï¾': 'ã­', 'ï¾': 'ã¯', 'ï½¦': 'ã²', 'ï¾': 'ã³'
+};

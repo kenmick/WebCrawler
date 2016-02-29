@@ -1,0 +1,156 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>sonos_tis_300x600</title>
+
+	<link rel="stylesheet" href="css/style.css" type="text/css">
+
+	<script>
+		var config = "config.js";
+	</script>
+
+</head>
+
+<body>
+	<div class="banner hide">
+
+		<div id="main" class="">
+			
+			<div id="endframe" class="hide">
+				<canvas id="endStage" width="300" height="600"></canvas>
+				<div class="bannerClick hit1"></div>
+				<div class="bannerClick hit2"></div>
+				<div class="bannerClick hit3"></div>
+				<div class="bannerClick hit4"></div>
+				<canvas class="replayBtn" width="32" height="32"></canvas>
+			</div>
+
+			<div id="mainVideo" class="hide">
+				<div class="hide" id="mainWrapper">
+					<div id="mainContainer"></div>
+					<div class="videoClick"></div>
+					<div class="controls">
+						<div class="playBtn sprite"></div>
+						<div class="muteBtn sprite hide"></div>
+					</div>
+				</div>
+
+				<div class="copy">
+					<img data-src="mainCopy1.png" alt="" class="mainCopy lang">
+					<img data-src="mainCopy2.png" alt="" class="mainCopy lang">
+					<img data-src="mainCopy3.png" alt="" class="mainCopy lang">
+				</div>
+
+				<div class="darken hide"></div>
+				
+				<canvas class="playPauseIcon" width="32" height="32"></canvas>
+				<canvas class="muteIcon" width="32" height="32"></canvas>
+
+				<div class="progressBar">
+					<canvas id="dotStage" width="44" height="44"></canvas>
+					<div class="line">
+						<div class="inner"></div>
+						<div class="hit" data="0"></div>
+					</div>
+					<div class="line">
+						<div class="inner"></div>
+						<div class="hit" data="1"></div>
+					</div>
+					<div class="line">
+						<div class="inner"></div>
+						<div class="hit" data="2"></div>
+					</div>
+					<div class="line">
+						<div class="inner"></div>
+						<div class="hit" data="3"></div>
+					</div>
+					<div class="dot"></div>
+					<div class="icons">
+						<canvas class="playIcon" width="113" height="75"></canvas>
+						<canvas class="playIcon" width="113" height="75"></canvas>
+						<canvas class="playIcon" width="113" height="75"></canvas>
+						<!-- <div id="playIconHit1"></div>
+						<div id="playIconHit2"></div>
+						<div id="playIconHit3"></div> -->
+					</div>
+				</div>
+
+				<div class="" id="detailsWrapper">
+					<canvas id="detailsStage" width="300" height="600"></canvas>
+					<div id="detailsContainer"></div>
+					<div class="videoClick"></div>
+					<div class="controls">
+						<canvas class="playPauseIcon" width="32" height="32"></canvas>
+						<canvas class="muteIconDetail muteIcon" width="32" height="32"></canvas>
+						<canvas class="backBtn" class="" width="32" height="32"></canvas>
+						<div class="playBtn sprite hide"></div>
+						<div class="muteBtn sprite hide"></div>
+					</div>
+					<div class="detailVideoClick"></div>
+				</div>
+			</div>
+
+
+			<div id="introSequence" class="hide">
+				<!-- <canvas id="sequence" width="300" height="600"></canvas> -->
+				<img src="img/sequence/sonos_86642.jpg" alt="">
+				<img data-src="copy_intro.png" class="introCopy lang">
+            	<div class="bannerClick"></div>
+				<div class="slider">
+					<div class="targetCircle"></div>
+					<div class="track">
+						<div class="sprite"></div>
+					</div>
+					<div class="button">
+						<canvas id="dragStage" width="93" height="93"></canvas>
+					</div>
+					
+				</div>
+			</div>
+
+
+            <div id="replay" class="hide"></div>
+			
+           	<img src="img/sonos_logo.png" alt="" class="logo">
+		</div>
+		
+		<div class="hide" id="introWrapper">
+			<div id="introContainer"></div>
+			<img data-src="copy_intro_video1.png" alt="" class="introCopyVideo lang">
+			<img data-src="copy_intro_video2.png" alt="" class="introCopyVideo lang">
+			<div class="videoClick"></div>
+			<div class="controls">
+				<canvas class="playPauseIcon" width="32" height="32"></canvas>
+				<canvas class="muteIconDetail muteIcon hide" width="32" height="32"></canvas>
+				<div class="playBtn sprite hide"></div>
+				<div class="muteBtn sprite hide"></div>
+				<div class="timer ">0:00 / 0:00</div>
+			</div>
+			<div class="close hide"></div>
+		</div>
+
+		
+	</div>
+
+
+	<!-- doubleclick -->
+	<script type="text/javascript" src="/879366/Enabler_01_93.js"></script>
+	<script src="https://www.gstatic.com/external_hosted/polymer/custom.elements.min.js"></script>
+	<script src="https://www.gstatic.com/ads/ci/ytclosebutton/1/ytclosebutton_min.js"></script>
+	<!-- TweenLite -->
+	<script src="js/libs/TweenLite.min.js"></script>
+	<script src="js/libs/CSSPlugin.min.js"></script>
+	<script src="js/libs/Draggable.min.js"></script>
+	<script src="js/libs/EasePack.min.js"></script>
+	<!-- CreateJS -->
+	<script src="js/libs/preloadjs-0.6.0.min.js"></script>
+	<!-- core DC template -->
+	<script src="core/core.dc.js"></script>
+	<script src="js/template_A.js"></script>
+	<!-- main -->
+	<script src="js/main.js"></script>
+            
+</body>
+</html>

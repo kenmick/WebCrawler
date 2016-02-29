@@ -1,0 +1,6 @@
+/*!CK:4206912997!*//*1451575259,*/
+
+if (self.CavalryLogger) { CavalryLogger.start_js(["Tzb2p"]); }
+
+__d('legacy:nux-wizard-step',['NUXWizardStep'],function a(b,c,d,e){if(c.__markCompiled)c.__markCompiled();b.NUXWizardStep=c('NUXWizardStep');},3);
+__d('WebCookieUseBannerController',['DOM','DOMQuery','DeferredCookie','Parent'],function a(b,c,d,e,f,g,h,i,j,k){'use strict';if(c.__markCompiled)c.__markCompiled();var l={init:function(m,n){this.banner=m;this.closeButton=n;this.addPageInteractionListeners();if(n){var o=function(){h.remove(m);};if(n.addEventListener){n.addEventListener('click',o);}else if(n.attachEvent)n.attachEvent('onclick',o);}},addPageInteractionListeners:function(){var m=(function(n){if(this.isWhitelistedTarget(n.getTarget()))return;j.flushAllCookies();if(window.removeEventListener){window.removeEventListener('click',m,true);}else if(document.detachEvent)document.detachEvent('onclick',m);}).bind(this);if(window.addEventListener){window.addEventListener('click',m,true);}else if(document.attachEvent)document.attachEvent('onclick',m);j.removeDefaultInteractionListener();},isWhitelistedTarget:function(m){if((!this.closeButton||m!==this.closeButton)&&i.contains(this.banner,m))return true;if(m.tagName.toLowerCase()!=='a')m=k.byTag(m,'a');if(m&&m.href&&m.href.indexOf('/help/cookies/')>-1)return true;return false;}};f.exports=l;},null);

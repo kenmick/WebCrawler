@@ -1,0 +1,159 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta data-template-name="Template_H5T_expanding-970x250-ytplayer">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" type="text/css" href="fallout.css">
+  <script type="text/javascript" src="/879366/Enabler_01_88.js"></script>
+  <script type="text/javascript" src="https://www.gstatic.com/external_hosted/polymer/custom.elements.min.js"></script>
+  <script data-source="https://www.gstatic.com/ads/ci/ytclosebutton/1/ytclosebutton_min.js" data-exports-type="ci-ytclosebutton" type="text/javascript" src="https://www.gstatic.com/ads/ci/ytclosebutton/1/ytclosebutton_min.js"></script>
+  <script type="text/javascript" src="gwdyoutube_min.js"></script> 
+  <script type="text/javascript" src="TweenMax.min.js"></script>
+</head>
+<body>
+    <div id="main-container">
+
+    <!-- Collapsed Conent -->
+      <div id="collapsed-state" class="unexp">
+        <div id="collapsed-exit"></div>
+        <div class="feature-collapsed" id="feature-collapsed"></div>
+        <div id="expand-button" class="button">
+          Rollover to expand
+        </div>
+        <div class="blackOverlayIntro" id="blackOverlayIntro"></div>
+        
+        <div class="exitbtn" id="exitCollapse"></div>
+
+        <div class="btn_expand" id="btn_expand"><img src="btn_expand.png" alt="" /></div>
+        <div class="blankbtn" id="blankbtn"></div>
+        <div class="audio" id="audio">
+          <img id="audioOn" src="audioOn.png" width="20px" height="20px" />
+          <img id="audioOff" src="audioOff.png" width="20px" height="20px" />
+        </div>
+        <div class="play" id="play">
+          <img id="playOn" src="play.png" width="15px" height="15px" />
+          <img id="playOff" src="pause.png" width="15px" height="15px" />
+        </div>
+        <div class="time" id="time">0:<span class="timeGone" id="timeGone">00</span> | 0:15</div>
+        <!-- side element -->
+        <!-- <div class="side fo-green" id="side">
+            <div class="logo"></div>
+        </div> -->
+      </div>
+
+      <!-- Expand Content -->
+      <div id="expanded-state" class="exp">
+        <div id="expanded-exit"></div>
+        <div id="collapse-button" class="button">X Close Expanded</div>
+        <div class="feature-expanded" id="feature-expanded"></div>
+
+        <div class="exitbtn" id="exitExpand"></div>
+
+        <!-- VIDEO FEATURES -->
+         <div class="videoBG" id="videoBG"></div>
+         <div class="videoFeature" id="videoFeature1"></div>
+         <div class="videoFeature" id="videoFeature2"></div>
+         <div class="videoFeature" id="videoFeature3"></div>
+         <div class="videoFeature" id="videoFeature4"></div>
+
+        <!-- CUSTOM DESIGN -->
+        <div class="blackOverlay" id="blackOverlay"></div>
+        <div class="btn_close" id="btn_close"><img src="btn_close.png" alt="" /></div>
+        <div class="btn_closepanel" id="btn_closepanel"><img src="btn_closepanel.png" alt="" /></div>
+        
+        <div class="btn_scroll"><img src="btn_scroll.png" alt="" /></div>
+        <div class="btn_buy" id="btn_buy"></div>
+        <div class="packShot" id="packshot"><img src="packshot.png" alt="" /></div>
+        <div class="logoBeth"><img src="logo_beth.png" alt="" /></div>
+        <!-- <div class="logoAmazon"><img src="logo-amazon.png" alt='' /></div> -->
+        <div class="amazonLegal"><img src="amazon_legal.png" alt="" /></div>
+        <div id="hitSpots" class="hitSpots">
+
+          <div id="h1" class="hitarea"></div>
+          <div id="h2" class="hitarea"></div>
+          <div id="h3" class="hitarea"></div>
+          <div id="h4" class="hitarea"></div>
+
+          <!-- Pulse Hit Spots --> 
+          <div id="pulse1">
+              <div class="line_guide" id="line1"></div>
+              <div class="pulseTitle" id="title1"><img src="title_feature.png" alt="" /></div>
+              <div class="dot" id="dot1"></div>
+              <div class="pulse" id=""></div>
+          </div>
+
+          <div id="pulse2">
+              <div class="line_guide" id="line2"></div>
+              <div class="pulseTitle" id="title2"><img src="title_trailer.png" alt="" /></div>
+              <div class="dot" id="dot2"></div>
+              <div class="pulse" id=""></div>
+          </div>
+
+          <div id="pulse3">
+              <div class="line_guide" id="line3"></div>
+              <div class="pulseTitle" id="title3"><img src="title_gallery.png" alt="" /></div>
+              <div class="dot" id="dot3"></div>
+              <div class="pulse" id=""></div>
+          </div>
+
+
+          <div id="pulse4">
+              <div class="line_guide" id="line4"></div>
+              <div class="pulseTitle" id="title4"><img src="title_video.png" alt="" /></div>
+              <div class="dot" id="dot4"></div>
+              <div class="pulse" id=""></div>
+          </div>
+        </div>
+
+        <div class="imgGallery" id="imgGallery">
+            <ul id="imgSlider">
+              <li><img src="gallery_1.jpg" /></li>
+              <li><img src="gallery_2.jpg" /></li>
+              <li><img src="gallery_3.jpg" /></li>
+              <li><img src="gallery_4.jpg" /></li>
+              <li><img src="gallery_5.jpg" /></li>
+            </ul>
+
+            <div id="btnBck" class="btnBck">&lt;</div>
+            <div id="btnNext" class="btnNext">&gt;</div>
+
+        </div>
+
+        <div class="imgGallery" id="infoGallery">
+            <ul id="infoSlider">
+              <li><img src="info_1.jpg" /></li>
+              <li><img src="info_2.jpg" /></li>
+              <li><img src="info_3.jpg" /></li>
+              <li><img src="info_4.jpg" /></li>
+            </ul>
+
+            <div id="btnBckInfo" class="btnBck">&lt;</div>
+            <div id="btnNextInfo" class="btnNext">&gt;</div>
+
+        </div>
+
+        <div class="bgArtwork" id="bgArtwork">
+          <div class="quotes"><img src="quotes.png" alt="" /></div>
+        </div>
+
+
+        <!-- side element -->
+        <!-- <div class="footer fo-green" id="footer">
+            <div class="logo"></div>
+        </div>
+ -->
+      </div>
+
+      <ci-ytclosebutton id="ci-ytclosebutton_1" theme="white" class="gwd-ci-ytclosebutton-3vh7" style="z-index:9999999"></ci-ytclosebutton>
+    </div>
+  
+  <script>
+     Enabler.setExpandingPixelOffsets(0, 0, 970, 500);
+  </script>
+  
+  <script src="zepto.min.js"></script>
+  <script src="logic.js"></script>
+</body>
+</html>

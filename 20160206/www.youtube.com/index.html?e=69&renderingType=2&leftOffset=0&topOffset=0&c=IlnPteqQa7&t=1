@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <title>Single Composition</title>
+    <script type="text/javascript" src="/879366/Enabler_01_101.js"></script>
+    <!--Adobe Edge Runtime-->
+    <script type="text/javascript" charset="utf-8" src="edge_includes/edge.6.0.0.min.js"></script>
+    <!-- Polymer should come before custom elements, like the close button. -->
+    <script src="https://www.gstatic.com/external_hosted/polymer/custom.elements.min.js"></script>
+    <!-- YouTube close button -->
+    <script src="https://www.gstatic.com/ads/ci/ytclosebutton/1/ytclosebutton_min.js?shadow=true"></script>
+
+    <style>
+        .edgeLoad-collapse {
+            visibility: hidden;
+        }
+
+        .collapse {
+            position: absolute !important;
+            top: 0;
+            overflow: hidden;
+        }
+
+        #remarketing-pixels, #remarketing-pixels > img {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+        }
+    </style>
+    <script>
+
+        AdobeEdge.bootstrapCallback(function (compId)
+        {
+
+        });
+
+        document.addEventListener("DOMContentLoaded", function (event)
+        {
+            setRemarketingPixel("https://ad.doubleclick.net/ddm/ad/N270001.2108124YOUTUBEFR/B9396854.127796535;sz=1x1;ord=[timestamp];dc_lat=;dc_rdid=;tag_for_child_directed_treatment=? https://googleads.g.doubleclick.net/pagead/viewthroughconversion/950330583/?value=1.00&currency_code=EUR&label=yiqlCOzVgmMQ18mTxQM&guid=ON&script=0");
+            if (Enabler.isInitialized())
+                enablerInitHandler();
+            else
+                Enabler.addEventListener(studio.events.StudioEvent.INIT, enablerInitHandler);
+
+            function enablerInitHandler()
+            {
+                    Enabler.loadModule(studio.module.ModuleId.VIDEO, videoModuleHandler);
+            }
+
+            function videoModuleHandler()
+            {
+                if (!Enabler.isVisible())
+                    Enabler.addEventListener(studio.events.StudioEvent.VISIBLE, start);
+                else
+                    start();
+            }
+        });
+
+        function start()
+        {
+            AdobeEdge.loadComposition("collapse","collapse",{
+    scaleToFit: "none",
+    centerStage: "none",
+    minW: "0px",
+    maxW: "undefined",
+    width: "970px",
+    height: "250px"
+}, {
+    dom: [
+        {
+            id: 'bg_loader',
+            type: 'image',
+            tag: 'img',
+            rect: ['0px', '0px', '1020px', '250px', 'auto', 'auto'],
+            fill: ["rgba(0,0,0,0)",'images/bg_loader.jpg','0px','0px']
+        },
+        {
+            id: 'logo_dior_video2',
+            type: 'image',
+            tag: 'img',
+            rect: ['61px', '40px', '119px', '48px', 'auto', 'auto'],
+            fill: ["rgba(0,0,0,0)",'images/logo_dior_video.png','0px','0px']
+        },
+        {
+            id: 'logo_poison2',
+            type: 'image',
+            tag: 'img',
+            rect: ['42px', '94px', '157px', '101px', 'auto', 'auto'],
+            fill: ["rgba(0,0,0,0)",'images/logo_poison_video.png','0px','0px']
+        },
+        {
+            id: 'loader2',
+            type: 'image',
+            tag: 'img',
+            rect: ['506px', '123px', '35px', '5px', 'auto', 'auto'],
+            fill: ["rgba(0,0,0,0)",'images/loader.gif','0px','0px']
+        }
+    ],
+    style: {
+        '${symbolSelector}': {
+            isStage: true,
+            rect: [undefined, undefined, '970px', '250px']
+        }
+    }
+}, {
+    dom: [
+
+    ],
+    style: {
+        '${symbolSelector}': {
+            isStage: true,
+            rect: [undefined, undefined, '1020px', '250px']
+        }
+    }
+});
+
+            document.getElementById('collapse').addEventListener('click', click);
+
+            Enabler.addEventListener(studio.events.StudioEvent.EXIT, exit, false);
+        }
+
+        function click()
+        {
+            requestExit();
+        }
+
+        function requestExit()
+        {
+            Enabler.exit('Exit_Click');
+        }
+
+        function requestClose()
+        {
+            AdobeEdge.getComposition('collapse').controller.freeze();
+
+            Enabler.reportManualClose();
+        }
+
+        function exit()
+        {
+            setRemarketingPixel("https://googleads.g.doubleclick.net/pagead/viewthroughconversion/950330583/?value=1.00&currency_code=EUR&label=hDDRCO-V-GIQ18mTxQM&guid=ON&script=0");
+        }
+
+        function onVideoEnd()
+        {
+            setRemarketingPixel("https://googleads.g.doubleclick.net/pagead/viewthroughconversion/950330583/?value=1.00&currency_code=EUR&label=UMiNCPvZlGMQ18mTxQM&guid=ON&script=0");
+        }
+
+        function setRemarketingPixel(src)
+        {
+            var srcs = src.split(' ');
+            document.getElementById('remarketing-pixels').innerHTML = '';
+            for (var i = 0; i < srcs.length; i++)
+            {
+                var s = srcs[i].trim();
+                if (s == '') continue;
+                s = s.replace('[timestamp]', new Date().getTime().toString());
+                var img = document.createElement('img');
+                img.src = s;
+                document.getElementById('remarketing-pixels').appendChild(img);
+            }
+        }
+
+    </script>
+    <!--Adobe Edge Runtime End-->
+
+</head>
+<body style="margin:0;padding:0;">
+<div id="remarketing-pixels"></div>
+
+<div id="collapse" class="collapse">
+</div>
+<ci-ytclosebutton lang="fr" theme="white" shadow="true" id="ytClose"></ci-ytclosebutton>
+</body>
+</html>

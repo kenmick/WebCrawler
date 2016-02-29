@@ -1,0 +1,35 @@
+(function(w, d){
+	if (typeof(sas_ajax) != 'undefined' && sas_ajax) {
+		var getDomElem = function(id) {
+			return d.getElementById(id).contentDocument || d.frames[id].document;
+		}
+
+		var i = d.createElement('iframe');
+		i.id = 'sas_5098068_iframe';
+		i.scrolling = 'no';
+		i.frameBorder = 0;
+		i.width = 300;
+		i.height = 600;
+		i.style.margin = 0;
+		i.style.padding = 0;
+		i.style.width = '300px';
+		i.style.height = '600px';
+		sas_appendToContainer(21483, i);
+
+		i.doc = getDomElem(i.id);
+		i.doc.write(
+			'<!doctype html><html><head><title></title></head><body style="margin:0;padding:0">'+
+			'<scr'+'ipt type="text/javascript">var inDapIF=inDapMgrIf=true;</scr'+'ipt>'+
+			'<scr'+'ipt src="http://bs.serving-sys.com/BurstingPipe/adServer.bs?cn=rsb&c=28&pli=16282431&PluID=0&w=300&h=600&ord=%5Btimestamp%5D&ucm=true&ncu=$$http://groupelemonde.solution.weborama.fr/fcgi-bin/dispatch.fcgi?a.A=cl&a.si=2488&a.te=88&a.ra=%5Btimestamp%5D&URL=http://ww690.smartadserver.com/clic/countgo.asp?5098068;500655;9007718293425243149;%5Btimestamp%5D;S;systemtarget=%24qc%3d1309908405%3b%24ql%3dhigh%3b%24qpc%3d33000%3b%24qpp%3d0%3b%24qt%3d184_1788_22057t%3b%24dma%3d0%3b%24b%3d9999%3b%24o%3d99999%3b%24sh%3d1080%3b%24sw%3d1920;target=%24hc;15132477;URL=$$&z=2"></scr'+'ipt>\r\n'+'\r\n'+'<img src="http://groupelemonde.solution.weborama.fr/fcgi-bin/dispatch.fcgi?a.A=im&a.si=2488&a.te=88&a.he=1&a.wi=1&a.hr=p&a.ra=%5Btimestamp%5D" width="1" height="1" style="border:0px">\r\n'+'\r\n'+'\r\n'+
+			'</body></html>'
+		);
+
+		if (navigator.userAgent.indexOf('MSIE') == -1 && navigator.userAgent.indexOf('Opera') == -1) i.doc.close();
+	} else {
+		d.write('<scr'+'ipt src="http://bs.serving-sys.com/BurstingPipe/adServer.bs?cn=rsb&c=28&pli=16282431&PluID=0&w=300&h=600&ord=%5Btimestamp%5D&ucm=true&ncu=$$http://groupelemonde.solution.weborama.fr/fcgi-bin/dispatch.fcgi?a.A=cl&a.si=2488&a.te=88&a.ra=%5Btimestamp%5D&URL=http://ww690.smartadserver.com/clic/countgo.asp?5098068;500655;9007718293425243149;%5Btimestamp%5D;S;systemtarget=%24qc%3d1309908405%3b%24ql%3dhigh%3b%24qpc%3d33000%3b%24qpp%3d0%3b%24qt%3d184_1788_22057t%3b%24dma%3d0%3b%24b%3d9999%3b%24o%3d99999%3b%24sh%3d1080%3b%24sw%3d1920;target=%24hc;15132477;URL=$$&z=2"></scr'+'ipt>\r\n'+'\r\n'+'<img src="http://groupelemonde.solution.weborama.fr/fcgi-bin/dispatch.fcgi?a.A=im&a.si=2488&a.te=88&a.he=1&a.wi=1&a.hr=p&a.ra=%5Btimestamp%5D" width="1" height="1" style="border:0px">\r\n'+'\r\n'+'\r\n');
+	}
+})(window, document);
+
+
+
+

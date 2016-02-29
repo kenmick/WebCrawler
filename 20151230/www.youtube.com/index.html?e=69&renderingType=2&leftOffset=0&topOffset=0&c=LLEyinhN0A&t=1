@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <title>Expand Composition</title>
+    <script type="text/javascript" src="/879366/Enabler_01_93.js"></script>
+    <!--Adobe Edge Runtime-->
+    <script type="text/javascript" charset="utf-8" src="edge_includes/edge.6.0.0.min.js"></script>
+    <!-- Polymer should come before custom elements, like the close button. -->
+    <script src="https://www.gstatic.com/external_hosted/polymer/custom.elements.min.js"></script>
+
+    <!-- YouTube close button -->
+    <script src="https://www.gstatic.com/ads/ci/ytclosebutton/1/ytclosebutton_min.js?shadow=true"></script>
+    <style>
+        .edgeLoad-collapse, .edgeLoad-expand {
+            visibility: hidden;
+        }
+
+        .expand, .collapse {
+            position: absolute !important;
+            top: 0;
+            overflow: hidden;
+        }
+
+        .close-expand {
+            top: 5px;
+            left: 0;
+            height: 15px;
+            cursor: pointer;
+            display: block;
+            position: absolute;
+            font-family: arial, sans-serif;
+            font-size: 11px;
+            letter-spacing: 0.4px;
+            text-decoration: underline;
+            color: #000;
+            background: transparent url("https://www.gstatic.com/ads/ci/ytclosebutton/1/close_black_shadow.png") no-repeat left center;
+            padding-left: 25px;
+        }
+
+        #ytClose span, .close-expand {
+            /*text-shadow: 0 0 6px #FFF, 0 0 4px #FFF, 0 0 2px #FFF !important;*/
+        }
+
+        #remarketing-pixel {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+        }
+    </style>
+    <script>
+
+        var collapseLoaded = false;
+        var expandLoaded = false;
+        var expanded = false;
+
+        AdobeEdge.bootstrapCallback(function (compId)
+        {
+
+        });
+
+        document.addEventListener("DOMContentLoaded", function (event)
+        {
+                document.getElementById('remarketing-pixel').src = "https://googleads.g.doubleclick.net/pagead/viewthroughconversion/969884037/?value=1.00&currency_code=EUR&label=AaPwCPuK2mIQhYO9zgM&guid=ON&script=0";
+
+            if (Enabler.isInitialized())
+                enablerInitHandler();
+            else
+                Enabler.addEventListener(studio.events.StudioEvent.INIT, enablerInitHandler);
+
+            function enablerInitHandler()
+            {
+                    Enabler.loadModule(studio.module.ModuleId.VIDEO, videoModuleHandler);
+            }
+
+            function videoModuleHandler()
+            {
+                if (!Enabler.isVisible())
+                    Enabler.addEventListener(studio.events.StudioEvent.VISIBLE, start);
+                else
+                    start();
+            }
+        });
+
+        function start()
+        {
+            AdobeEdge.loadComposition("collapse","collapse",{
+    scaleToFit: "none",
+    centerStage: "none",
+    minW: "0px",
+    maxW: "undefined",
+    width: "970px",
+    height: "250px"
+}, {
+    dom: [
+        {
+            id: 'loader2',
+            type: 'image',
+            tag: 'img',
+            rect: ['0%', '0px', '970px', '250px', 'auto', 'auto'],
+            fill: ["rgba(0,0,0,0)",'images/loader.gif','0px','0px']
+        },
+        {
+            id: 'border_l',
+            type: 'rect',
+            rect: ['0px', '0px', '1px', '100%', 'auto', 'auto'],
+            opacity: '1',
+            fill: ["rgba(0,0,0,1.00)"],
+            stroke: [0,"rgb(0, 0, 0)","none"]
+        },
+        {
+            id: 'border_r',
+            type: 'rect',
+            rect: ['auto', '0px', '1px', '100%', '0px', 'auto'],
+            opacity: '1',
+            fill: ["rgba(0,0,0,1.00)"],
+            stroke: [0,"rgb(0, 0, 0)","none"]
+        },
+        {
+            id: 'border_t',
+            type: 'rect',
+            rect: ['0px', '0px', '100%', '1px', 'auto', 'auto'],
+            opacity: '1',
+            fill: ["rgba(0,0,0,1.00)"],
+            stroke: [0,"rgb(0, 0, 0)","none"]
+        },
+        {
+            id: 'border_b',
+            type: 'rect',
+            rect: ['0px', 'auto', '100%', '1px', 'auto', '0px'],
+            opacity: '1',
+            fill: ["rgba(0,0,0,1.00)"],
+            stroke: [0,"rgb(0, 0, 0)","none"]
+        }
+    ],
+    style: {
+        '${symbolSelector}': {
+            isStage: true,
+            rect: [undefined, undefined, '970px', '250px'],
+            fill: ["rgba(255,255,255,1)"]
+        }
+    }
+}, {
+    dom: [
+
+    ],
+    style: {
+        '${symbolSelector}': {
+            isStage: true,
+            rect: [undefined, undefined, '970px', '250px'],
+            fill: ["rgba(255,255,255,1)"]
+        }
+    }
+});
+
+            Enabler.addEventListener(studio.events.StudioEvent.EXIT, exit, false);
+        }
+
+        function closeExpandClick()
+        {
+        }
+
+        function collapseClick()
+        {
+        }
+
+        function expandClick()
+        {
+            requestExit();
+        }
+
+
+        function requestExit()
+        {
+
+        }
+
+        function requestClose()
+        {
+            if (expanded)
+                AdobeEdge.getComposition('collapse').controller.freeze();
+
+            Enabler.reportManualClose();
+        }
+
+
+        function exit()
+        {
+                document.getElementById('remarketing-pixel').src = "https://googleads.g.doubleclick.net/pagead/viewthroughconversion/969884037/?value=1.00&currency_code=EUR&label=-HYICPHOyWIQhYO9zgM&guid=ON&script=0";
+        }
+
+    </script>
+    <!--Adobe Edge Runtime End-->
+
+</head>
+<body style="margin:0;padding:0;width:970px;position:absolute">
+<img id="remarketing-pixel" />
+
+<div id="collapse" class="collapse">
+</div>
+<ci-ytclosebutton lang="fr" theme="white" shadow="true" id="ytClose"></ci-ytclosebutton>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <script type="text/javascript">function guv(){var a=[],b;var c=window.location.href.slice(window.location.href.indexOf("?")+1).split("&");for(var d=0;d<c.length;d++){var e=c[d].indexOf("=");var f=c[d].substring(0,e);var g=c[d].substring(e+1,c[d].length);a.push(f);a[f]=g}return a}
+        function gamnaa(r) { var s=document.createElement("img");s.width="1";s.height="1";s.style.position="absolute";s.style.left="-5000px";s.style.top="-4000px";s.src=r;document.body.appendChild(s);}
+        function urldecode (str) {return decodeURIComponent((str + '').replace(/\+/g, '%20'));}
+        var cacheBuster = new Date().getTime();
+        var cId = '10106';
+        var staticUrl = '//static.adbutter.net/';
+        var redirectorUrl = '//redir.adbutter.net/';
+        var staticCdnUrl = staticUrl + 'dco/byAdvertiser/{adv_id}/dcov2/';
+        function initBanner() {
+            var tag = document.createElement("script");
+            tag.src = staticUrl + "dco/libs/require-2.1.15.min.js";
+            document.getElementsByTagName("head")[0].appendChild(tag);
+            
+            var ivlRequire = setInterval(function () {
+                if (typeof require === "undefined") {
+                    return;
+                }
+                require([
+                    staticUrl + '/dco/jquery/jquery-1.8.3.min.js'
+                ], function() {
+                    require([staticUrl + '/dco/mkz-infos.min.js?t='+cacheBuster,staticUrl + '/dco/flight-ng.min.js?t='+cacheBuster]);
+                });
+
+                clearInterval(ivlRequire);
+            },20);
+        }
+        </script>
+    </head>
+    <body style="padding:0;margin:0;" onload="initBanner();"></body> 
+</html>

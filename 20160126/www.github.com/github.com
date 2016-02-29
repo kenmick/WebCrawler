@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en" class="">
+  <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# object: http://ogp.me/ns/object# article: http://ogp.me/ns/article# profile: http://ogp.me/ns/profile#">
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Language" content="en">
+    <meta name="viewport" content="width=1020">
+    
+    
+    <title>GitHub Â· Where software is built</title>
+    <link rel="search" type="application/opensearchdescription+xml" href="/opensearch.xml" title="GitHub">
+    <link rel="fluid-icon" href="https://github.com/fluidicon.png" title="GitHub">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
+    <meta property="fb:app_id" content="1401488693436528">
+
+      <meta property="og:url" content="https://github.com">
+      <meta property="og:site_name" content="GitHub">
+      <meta property="og:title" content="Build software better, together">
+      <meta property="og:description" content="GitHub is where people build software. More than 12 million people use GitHub to discover, fork, and contribute to over 31 million projects.">
+      <meta property="og:image" content="https://assets-cdn.github.com/images/modules/open_graph/github-logo.png">
+      <meta property="og:image:type" content="image/png">
+      <meta property="og:image:width" content="1200">
+      <meta property="og:image:height" content="1200">
+      <meta property="og:image" content="https://assets-cdn.github.com/images/modules/open_graph/github-mark.png">
+      <meta property="og:image:type" content="image/png">
+      <meta property="og:image:width" content="1200">
+      <meta property="og:image:height" content="620">
+      <meta property="og:image" content="https://assets-cdn.github.com/images/modules/open_graph/github-octocat.png">
+      <meta property="og:image:type" content="image/png">
+      <meta property="og:image:width" content="1200">
+      <meta property="og:image:height" content="620">
+      <meta property="twitter:site" content="github">
+      <meta property="twitter:site:id" content="13334762">
+      <meta property="twitter:creator" content="github">
+      <meta property="twitter:creator:id" content="13334762">
+      <meta property="twitter:card" content="summary_large_image">
+      <meta property="twitter:title" content="GitHub">
+      <meta property="twitter:description" content="GitHub is where people build software. More than 12 million people use GitHub to discover, fork, and contribute to over 31 million projects.">
+      <meta property="twitter:image:src" content="https://assets-cdn.github.com/images/modules/open_graph/github-logo.png">
+      <meta property="twitter:image:width" content="1200">
+      <meta property="twitter:image:height" content="1200">
+      <meta name="browser-stats-url" content="https://api.github.com/_private/browser/stats">
+    <meta name="browser-errors-url" content="https://api.github.com/_private/browser/errors">
+    <link rel="assets" href="https://assets-cdn.github.com/">
+    
+    <meta name="pjax-timeout" content="1000">
+    
+
+    <meta name="msapplication-TileImage" content="/windows-tile.png">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="selected-link" value="/" data-pjax-transient>
+
+    <meta name="google-site-verification" content="KT5gs8h0wvaagLKAVWq8bbeNwnZZK1r1XQysX3xurLU">
+    <meta name="google-analytics" content="UA-3769691-2">
+
+<meta content="collector.githubapp.com" name="octolytics-host" /><meta content="github" name="octolytics-app-id" /><meta content="93D2815D:3E3D:B8C96FC:56A7B4FD" name="octolytics-dimension-request_id" />
+
+
+
+
+  <meta class="js-ga-set" name="dimension1" content="Logged Out">
+
+
+
+        <meta name="hostname" content="github.com">
+    <meta name="user-login" content="">
+
+        <meta name="expected-hostname" content="github.com">
+
+      <link rel="mask-icon" href="https://assets-cdn.github.com/pinned-octocat.svg" color="#4078c0">
+      <link rel="icon" type="image/x-icon" href="https://assets-cdn.github.com/favicon.ico">
+
+    <meta content="a530cf1ea05d609b7c596e9ad1f723107c117a94" name="form-nonce" />
+
+    <link crossorigin="anonymous" href="https://assets-cdn.github.com/assets/github-0aa9cf6e491e3dfa1a86f66fea26ac404c7841ee70f5ad341e09a94e8a8c3c97.css" media="all" rel="stylesheet" />
+    <link crossorigin="anonymous" href="https://assets-cdn.github.com/assets/github2-f04b9194351af07a58c2b9ec7b45b0871f46f60e58a0339039da8a4ae563156a.css" media="all" rel="stylesheet" />
+    
+    
+
+
+    <meta http-equiv="x-pjax-version" content="1d282fc17d7a0e85bd5c8538fd08c348">
+
+      <meta name="description" content="GitHub is where people build software. More than 12 million people use GitHub to discover, fork, and contribute to over 31 million projects.">
+
+      <link rel="canonical" href="https://github.com/" data-pjax-transient>
+  </head>
+
+
+  <body class="logged_out   env-production linux  homepage">
+    <a href="#start-of-content" tabindex="1" class="accessibility-aid js-skip-to-content">Skip to content</a>
+
+    
+    
+    
+
+
+
+      
+      <div class="header header-logged-out" role="banner">
+  <div class="container clearfix">
+
+    <a class="header-logo-wordmark" href="https://github.com/" data-ga-click="(Logged out) Header, go to homepage, icon:logo-wordmark">
+      <span aria-hidden="true" class="mega-octicon octicon-logo-github"></span>
+    </a>
+
+    <div class="header-actions" role="navigation">
+        <a class="btn btn-primary" href="/join?source=header" data-ga-click="(Logged out) Header, clicked Sign up, text:sign-up">Sign up</a>
+      <a class="btn" href="/login" data-ga-click="(Logged out) Header, clicked Sign in, text:sign-in">Sign in</a>
+    </div>
+
+    <div class="site-search  js-site-search" role="search">
+      <!-- </textarea> --><!-- '"` --><form accept-charset="UTF-8" action="/search" class="js-site-search-form" data-global-search-url="/search" data-repo-search-url="" method="get"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /></div>
+  <label class="js-chromeless-input-container form-control">
+    <div class="scope-badge">This repository</div>
+    <input type="text"
+      class="js-site-search-focus  chromeless-input"
+      data-hotkey="s"
+      name="q"
+      placeholder="Search GitHub"
+      aria-label="Search GitHub"
+      data-global-scope-placeholder="Search GitHub"
+      data-repo-scope-placeholder="Search"
+      tabindex="1"
+      autocapitalize="off">
+  </label>
+</form>
+    </div>
+
+      <ul class="header-nav left" role="navigation">
+          <li class="header-nav-item">
+            <a class="header-nav-link" href="/explore" data-ga-click="(Logged out) Header, go to explore, text:explore">Explore</a>
+          </li>
+          <li class="header-nav-item">
+            <a class="header-nav-link" href="/features" data-ga-click="(Logged out) Header, go to features, text:features">Features</a>
+          </li>
+          <li class="header-nav-item">
+            <a class="header-nav-link" href="https://enterprise.github.com/" data-ga-click="(Logged out) Header, go to enterprise, text:enterprise">Enterprise</a>
+          </li>
+          <li class="header-nav-item">
+            <a class="header-nav-link" href="/pricing" data-ga-click="(Logged out) Header, go to pricing, text:pricing">Pricing</a>
+          </li>
+      </ul>
+
+  </div>
+</div>
+
+
+
+    <div id="start-of-content" class="accessibility-aid"></div>
+
+      <div id="js-flash-container">
+</div>
+
+
+    <div role="main" class="main-content">
+
+      <div id="js-pjax-container" class="context-loader-container" data-pjax-container>
+        
+<div class="marketing-section-signup">
+  <div class="container">
+      <!-- </textarea> --><!-- '"` --><form accept-charset="UTF-8" action="/join" autocomplete="off" class="form-signup-home js-signup-form" data-form-nonce="a530cf1ea05d609b7c596e9ad1f723107c117a94" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="PvtNqHU3cBljvfGzsGT/Lu9F6i8cO5jOjw/5qCQnuCnoXPSoMDqFsonkbc458L5KL6PxQnQuu5yatESr5jrB5w==" /></div>        <dl class="form">
+          <dd>
+            <input type="text" name="user[login]" class="textfield" placeholder="Pick a username" aria-label="Pick a username" data-autocheck-url="/signup_check/username" autofocus>
+          </dd>
+        </dl>
+        <dl class="form">
+          <dd>
+            <input type="text" name="user[email]" class="textfield js-email-notice-trigger" placeholder="Your email" aria-label="Your email" data-autocheck-url="/signup_check/email">
+          </dd>
+        </dl>
+        <dl class="form">
+          <dd>
+            <input type="password" name="user[password]" class="textfield" placeholder="Create a password" aria-label="Create a password" data-autocheck-url="/signup_check/password">
+          </dd>
+          <p class="text-muted">Use at least one lowercase letter, one numeral, and seven characters.</p>
+        </dl>
+        <input type="hidden" name="source" class="js-signup-source" value="Homepage Form">
+        <button class="btn btn-primary btn-block" type="submit">Sign up for GitHub</button>
+        <p class="text-muted">
+          By clicking "Sign up for GitHub", you agree to our
+          <a href="https://help.github.com/terms" target="_blank">terms of service</a> and
+          <a href="https://help.github.com/privacy" target="_blank">privacy policy</a>. <span class="js-email-notice">We will send you account related emails occasionally.</span>
+        </p>
+</form>
+    <h1 class="heading">Where software is built</h1>
+    <p class="subheading">
+      Powerful collaboration, code review, and code management for<br>
+      open source and private projects. Public projects are always free.
+      <br>
+
+      <a href="/plans" data-ga-click="Home, go to pricing">
+        Private plans start at $7/mo.
+      </a>
+    </p>
+  </div><!-- /.container -->
+
+  <div class="marketing-section-depth"></div>
+</div><!-- /.jumbotron -->
+
+<div class="marketing-section marketing-section-enterprise">
+  <div class="container marketing-header">
+    <h1><a href="https://enterprise.github.com">Want to use GitHub on your servers?</a></h1>
+    <a href="https://enterprise.github.com" class="btn btn-marketing">Learn more about GitHub Enterprise.</a>
+    <img class="marketing-section-img" src="https://assets-cdn.github.com/images/modules/home/gh-enterprise-code.png" alt="">
+  </div><!-- /.container -->
+  <div class="marketing-section-depth"></div>
+</div><!-- /.marketing-section -->
+
+<div class="marketing-section">
+  <div class="container">
+    <div class="marketing-header">
+      <h1>Why youâll love GitHub.</h1>
+      <p class="lead"><a href="/features">Powerful features</a> to make software development more collaborative.</p>
+    </div>
+    <div class="columns marketing-grid">
+      <div class="one-half column">
+        <div class="marketing-hero-octicon">
+          <span aria-hidden="true" class="mega-octicon octicon-checklist"></span>
+        </div>
+        <h3>Great collaboration starts with communication.</h3>
+        <p>Review changes, comment on lines of code, report issues, and plan the future of your project with discussion tools.</p>
+      </div>
+      <div class="one-half column">
+        <div class="marketing-hero-octicon">
+          <span aria-hidden="true" class="mega-octicon octicon-organization"></span>
+        </div>
+        <h3>Friction-less development across teams.</h3>
+        <p>Work with project collaborators or teams of people in organization accounts to communicate with ease.</p>
+      </div>
+      <div class="one-half column">
+        <div class="marketing-hero-octicon">
+          <span aria-hidden="true" class="mega-octicon octicon-cloud-upload"></span>
+        </div>
+        <h3>Worldâs largest open source community.</h3>
+        <p>Share your projects with the world, get feedback, and contribute to <a href="/explore">millions of repositories</a> hosted on GitHub.</p>
+      </div>
+      <div class="one-half column">
+        <div class="marketing-hero-octicon">
+          <span aria-hidden="true" class="mega-octicon octicon-zap"></span>
+        </div>
+        <h3>Do more with powerful integrations.</h3>
+        <p>Discover applications and tools that <a href="/integrations">integrate with GitHub</a> to help you and your team build software better, together.</p>
+      </div>
+    </div>
+  </div><!-- /.container -->
+</div><!-- /.marketing-section -->
+
+<div class="marketing-section">
+  <div class="container">
+    <div class="marketing-header">
+      <h1>Simple collaboration from your desktop</h1>
+      <p class="lead">
+        GitHub Desktop is a seamless way to contribute to projects on
+        <a href="https://desktop.github.com">OS X and Windows operating systems</a>.
+        Create branches, make changes, craft the perfect commit, and deployâall
+        from a native interface.
+      </p>
+      <a href="https://desktop.github.com" class="btn btn-primary">
+        Find out more
+      </a>
+      <img src="https://assets-cdn.github.com/images/modules/home/desktop-mac.png?v=1" alt="" class="marketing-section-img show-mac show-linux">
+      <img src="https://assets-cdn.github.com/images/modules/home/desktop-windows.png?v=1" alt="" class="marketing-section-img hide-mac">
+    </div>
+  </div><!-- /.container -->
+</div><!-- /.marketing-section -->
+
+      </div>
+      <div class="modal-backdrop"></div>
+    </div>
+
+        <div class="container">
+  <div class="site-footer" role="contentinfo">
+    <ul class="site-footer-links right">
+        <li><a href="https://status.github.com/" data-ga-click="Footer, go to status, text:status">Status</a></li>
+      <li><a href="https://developer.github.com" data-ga-click="Footer, go to api, text:api">API</a></li>
+      <li><a href="https://training.github.com" data-ga-click="Footer, go to training, text:training">Training</a></li>
+      <li><a href="https://shop.github.com" data-ga-click="Footer, go to shop, text:shop">Shop</a></li>
+        <li><a href="https://github.com/blog" data-ga-click="Footer, go to blog, text:blog">Blog</a></li>
+        <li><a href="https://github.com/about" data-ga-click="Footer, go to about, text:about">About</a></li>
+        <li><a href="https://github.com/pricing" data-ga-click="Footer, go to pricing, text:pricing">Pricing</a></li>
+
+    </ul>
+
+    <a href="https://github.com" aria-label="Homepage">
+      <span aria-hidden="true" class="mega-octicon octicon-mark-github" title="GitHub "></span>
+</a>
+    <ul class="site-footer-links">
+      <li>&copy; 2016 <span title="0.01477s from github-fe120-cp1-prd.iad.github.net">GitHub</span>, Inc.</li>
+        <li><a href="https://github.com/site/terms" data-ga-click="Footer, go to terms, text:terms">Terms</a></li>
+        <li><a href="https://github.com/site/privacy" data-ga-click="Footer, go to privacy, text:privacy">Privacy</a></li>
+        <li><a href="https://github.com/security" data-ga-click="Footer, go to security, text:security">Security</a></li>
+        <li><a href="https://github.com/contact" data-ga-click="Footer, go to contact, text:contact">Contact</a></li>
+        <li><a href="https://help.github.com" data-ga-click="Footer, go to help, text:help">Help</a></li>
+    </ul>
+  </div>
+</div>
+
+
+
+    
+    
+    
+
+    <div id="ajax-error-message" class="flash flash-error">
+      <span aria-hidden="true" class="octicon octicon-alert"></span>
+      <button type="button" class="flash-close js-flash-close js-ajax-error-dismiss" aria-label="Dismiss error">
+        <span aria-hidden="true" class="octicon octicon-x"></span>
+      </button>
+      Something went wrong with that request. Please try again.
+    </div>
+
+
+      <script crossorigin="anonymous" src="https://assets-cdn.github.com/assets/compat-a0cee5d8d4fb535c0f41971d037b32e852a56ddca5bf67bb2124e426a2d813a5.js"></script>
+      <script crossorigin="anonymous" src="https://assets-cdn.github.com/assets/frameworks-9ee55ceaf87fc34dc86334249fef6cbece88e815478e0fbe81642d57ed0fff89.js"></script>
+      <script async="async" crossorigin="anonymous" src="https://assets-cdn.github.com/assets/github-2bcf2c1e1f2c9aac8502fd1198181d17ac42c3e139be06af6ce320fbdaedf0eb.js"></script>
+      
+      
+      
+    <div class="js-stale-session-flash stale-session-flash flash flash-warn flash-banner hidden">
+      <span aria-hidden="true" class="octicon octicon-alert"></span>
+      <span class="signed-in-tab-flash">You signed in with another tab or window. <a href="">Reload</a> to refresh your session.</span>
+      <span class="signed-out-tab-flash">You signed out in another tab or window. <a href="">Reload</a> to refresh your session.</span>
+    </div>
+    <div class="facebox" id="facebox" style="display:none;">
+  <div class="facebox-popup">
+    <div class="facebox-content" role="dialog" aria-labelledby="facebox-header" aria-describedby="facebox-description">
+    </div>
+    <button type="button" class="facebox-close js-facebox-close" aria-label="Close modal">
+      <span aria-hidden="true" class="octicon octicon-x"></span>
+    </button>
+  </div>
+</div>
+
+  </body>
+</html>

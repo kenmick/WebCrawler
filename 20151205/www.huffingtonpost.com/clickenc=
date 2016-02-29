@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IT=edge,chrome=IE8">
+	<meta charset="UTF-8">
+  <title>aberlour-style-728x90</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+  <!--CSS-->
+  <style>
+    body {  margin: 0; padding:0; }
+    img { display:block; position:absolute; }
+    a img { border:none; }
+    a { text-decoration:none; }
+    #conteneur { overflow: hidden; position: absolute; width:726px; height: 88px; border:1px solid #fff; background-color: #000; }
+    .logo { width:245px; height:auto; top:-65px; left:-53px; }
+    .texte1 { width:253px; height:auto; top:-2px; left:91px; opacity:0; }
+    .lueur2 { width:40px; height:52px; top:9px; left:545px; opacity:0; }
+    .cta { width:118px; height:auto; top:7px; left:560px; opacity:1; }
+    .mentionsbg { display:block; position:absolute; width:726px; height:20px; bottom:0px; left:0px; background:#000; opacity:0; }
+    .mentions { width:726px; height:auto; bottom:0px; left:0px; opacity:1; }
+    .zoom { display:block; position:absolute; width:2100px; height:297px; top:-120px; left:-682px; }
+      .bouteilles { width:100%; height:auto; top:0px; left:0px; }
+      .masque { width:13.9%; height:auto; top:34%; left:45.5%; }
+      .lueur11 { width:16px; height:8%; top:54%; left:48%; }
+      .lueur12 { width:16px; height:8%; top:53%; left:51%; }
+      .lueur13 { width:16px; height:8%; top:52%; left:54%; }
+  </style>
+  <!--JAVASCRIPTS-->
+  <script src="./zepto.js"></script>
+  <script src="./aberlour-exception2-728x90.js"></script>
+</head>
+
+<body>
+<style> body {margin:0px;overflow:hidden}</style> <a target='_blank' id='trlbcta'>
+    <div id="conteneur"> 
+      <div class="zoom">
+        <img src="./bouteilles.jpg" class="bouteilles" />
+        <img src="./lueur.png" class="lueur11" />
+        <img src="./lueur.png" class="lueur12" />
+        <img src="./lueur.png" class="lueur13" />
+        <img src="./masque.png" class="masque" />
+      </div>
+      
+      <img src="./logo.png" class="logo" />
+      <img src="./texte1.png" class="texte1" />   
+      <img src="./cta.png" class="cta" />    
+      <img src="./lueur.png" class="lueur2" />    
+      <div class="mentionsbg"></div>
+      <img src="./mentions.png" class="mentions" />   
+    </div>
+
+</a>
+<script type="text/javascript">
+var urlbase = 'http://pr-fr.com/e9aba72d';
+    // Get the click url parameter
+    var search = window.location.search;
+    var newBaseUrl = decodeURIComponent(search.split("?click=")[1]);
+    console.log("newBaseUrl 1", newBaseUrl);
+    if (search.indexOf("console.appnexus.com") > -1) {
+        // Its a click tag valdiation test
+        newBaseUrl = newBaseUrl.split("click=")[0]+newBaseUrl.split("click=")[1]+"click="; /* To validate the click tacking */
+    }
+    else {
+        // It's the normal click tracking system
+        newBaseUrl = newBaseUrl.split("click?")[0]+"click?"+newBaseUrl.split("click?")[1];
+        console.log('newBaseUrl',newBaseUrl);
+    };
+    var myLink1 = document.getElementById('trlbcta');
+    var myFormActionUrl = newBaseUrl+encodeURIComponent(urlbase);
+    cliktag = myFormActionUrl;
+    myLink1.setAttribute("href", myFormActionUrl);
+</script>
+</body>
+

@@ -1,0 +1,1396 @@
+
+var BF_S3_IMAGE_URL='http://s3.amazonaws.com/buzzfeed-media/bigstory/';var BF_W=function(){var buzz_count=((typeof(BF_BUZZ_COUNT)!='undefined')?BF_BUZZ_COUNT:1);var small_image=((typeof(BF_SMALL_IMAGE)!='undefined')?BF_SMALL_IMAGE:false);var image_width=((typeof(BF_SMALL_IMAGE)!='undefined'&&BF_SMALL_IMAGE)?90:125);var image_height=((typeof(BF_SMALL_IMAGE)!='undefined'&&BF_SMALL_IMAGE)?60:83);var head_foot_ids=['bf-powered1','bf-powered2','bf-footer','bf-header'];var apply_styles=function(element,key){if(typeof(bf_styles)!='undefined'){if(bf_styles[key]){for(var style_key in bf_styles[key]){var value=bf_styles[key][style_key];element.style[style_key]=value;}}}};var randomize=function buzz(buzz_data){var bindexes=new Array();for(var i=0;i<buzz_data.length;i++){bindexes.push(i);}
+function randOrd(){return(Math.round(Math.random())-0.5);}
+bindexes.sort(randOrd);bindexes.sort(randOrd);var random_buzz=new Array();for(i=0;i<buzz_data.length;i++){if(!window.BF_NO_DUPES[buzz_data[bindexes[i]].bid]){random_buzz.push(buzz_data[bindexes[i]]);}}
+if(random_buzz.length==0&&buzz_data[0]){random_buzz.push(buzz_data[0]);}
+return random_buzz;};var element_handlers={'bf-url':function(el,buzz,wid,click_track_fn){var buzz_url=buzz['user_link']?buzz['user_link']:buzz['url'];buzz_url=buzz_url.replace(/www\.buzzfeed\.com/g,get_environment());el.href=buzz_url;el.setAttribute('href',buzz_url);if(typeof(el.addEventListener)=='undefined'){el.attachEvent('onmousedown',function(e){click_track_fn(el,buzz,wid);});}else{el.addEventListener('mousedown',function(e){click_track_fn(el,buzz,wid);},true);}
+if(el.getAttribute('rel:gt_label')&&el.getAttribute('rel:gt_label')=='partner'&&(14==10||14==15)){el.setAttribute('rel:gt_label','partner/'+buzz.username);}},'bf-name':function(el,name){var truncate=el.getAttribute("rel:bf_truncate");if(truncate){if(!isNaN(truncate)){var truncate=parseInt(truncate);if(name.length>truncate){var terminator=el.getAttribute("rel:bf_truncate_terminator");term_length=terminator?terminator.length:3;terminator=terminator?terminator:'&hellip;';var name_length=truncate-term_length;name=name.substring(0,name_length);var words=name.split(/\s+/);if(words[words.length-1].match(/&/)&&!words[words.length-1].match(/;$/)){words.pop();}
+name=words.join(' ');name+=terminator;}}}
+el.innerHTML=name;},'bf-image':function(el,image){el.src=image;el.width=image_width;el.height=image_height;},'bf-image-big':function(el,buzz){if(/\-[12]\-\d+\-\d+\-\d+\.(png|gif|jpg)/.test(buzz.image))
+{big_image=buzz.image;el.src=big_image.toString().replace(/\.(png|gif|jpg)/,'_big.$1');el.className+=' campaign-big-thumb';}else{el.src=buzz.image;}},'bf-image-dblbig':function(el,buzz){if(/\-2\-\d+\-\d+\-\d+\.(png|gif|jpg)/.test(buzz.image))
+{big_image=buzz.image;el.src=big_image.toString().replace(/\.(png|gif|jpg)/,'_dblbig.$1');el.className+=' campaign-big-thumb';}else{el.src=buzz.image;}},'bf-mobile-image':function(el,buzz){if(buzz&&buzz.mobile_image){big_image=buzz.image;el.src=big_image.toString().replace(/\/([^\/]+)\.(png|gif|jpg)$/,'/m-$1_big.$2');el.className+=' campaign-big-thumb';}else if(/\-[12]\-\d+\-\d+\-\d+\.(png|gif|jpg)/.test(buzz.image)){big_image=buzz.image;el.src=big_image.toString().replace(/\.(png|gif|jpg)/,'_big.$1');el.className+=' campaign-big-thumb';}else{el.src=buzz.image;}},'bf-impressions-label':function(el,text){el.innerHTML=text},'bf-impressions':function(el,impressions){if(impressions<100){impressions='';}
+el.innerHTML=impressions;},'bf-blurb':function(el,buzz){el.innerHTML=buzz.ad_blurb;},'bf-byline_prefix':function(el,byline_prefix,BF_DATA){if(typeof BF_DATA['network']!='undefined'&&BF_DATA['network']=='buzzfeed'){if(byline_prefix){el.innerHTML=byline_prefix;}}},'bf-user_image':function(el,name){el.src=name;},'bf-user_image_large':function(el,name){var extIndex=name.lastIndexOf('.');if(extIndex>=0){name=name.substr(0,extIndex)+"_large"+name.substr(extIndex,name.length);}
+el.src=name;},'bf-user-url':function(el,href){href=href.replace(/www\.buzzfeed\.com/g,get_environment());el.href=href;el.setAttribute('href',href);},'bf-partner-label':function(el,buzz){if(typeof(political_ad)!='undefined'&&buzz.username=='obamaforamerica'){el.innerHTML='PAID POLITICAL ADVERTISER';}},'bf-display_name':function(el,text){el.innerHTML=text;},'bf-image-bigstory':function(el,buzz){el.src=buzz.image;if(/\-[12]\-\d+\-\d+\-\d+\.(png|gif|jpg)/.test(buzz.image))
+{el.src=el.src.replace(/\.(png|gif|jpg)/,'_wide.$1');el.width=300;el.height=106;el.className+=' campaign-wide-thumb';}},'bf-image-dblwidestory':function(el,buzz){el.src=buzz.image;if(/\-2\-\d+\-\d+\-\d+\.(png|gif|jpg)/.test(buzz.image))
+{el.src=el.src.replace(/\.(png|gif|jpg)/,'_dblwide.$1');el.width=625;el.height=220;el.className+=' campaign-wide-thumb';}},'bf-image-dblbigstory':function(el,buzz){el.src=buzz.image;{el.src=el.src.replace(/\.(png|gif|jpg)/,'_dblbig.$1');el.width=625;el.height=415;el.className+=' campaign-wide-thumb';}},'bf-image-widestory':function(el,buzz,BF_DATA){el.src=buzz.image;if(/\-[12]\-\d+\-\d+\-\d+\.(png|gif|jpg)/.test(buzz.image))
+{el.src=el.src.replace(/\.(png|gif|jpg)/,'_wide.$1');el.width=338;el.height=119;el.className+=' campaign-wide-thumb';}},'bf-ad-msu':function(el,BF_DATA){var gptDiv=document.createElement('div');gptDiv.id='div-gpt-ad-25';gptDiv.style.position='absolute';gptDiv.style.overflow='hidden';gptDiv.style.zIndex='-1';el.parentNode.appendChild(gptDiv);if(typeof loadGPTAd!='undefined'){loadGPTAd({'wid':25,'site':BF_DATA.site,'size':[3,3]});}},'bf-ad-frame':function(el,BF_DATA){var base_path=(typeof window['BF_FAKE_DFP']=='undefined')?'http://ad.doubleclick.net/N6556/adi':'http://dev.buzzfeed.com/bf2/_fake_dfp';var full_path=base_path+'/bfd.widget/'+BF_DATA.site+';site='+BF_DATA.site+';sz=3x3;ord='+(new Date()).getTime();if(typeof window['BF_WIDGET_PREVIEW']!='undefined'&&typeof window['BF_FAKE_DFP']!='undefined')
+{full_path+='?load_preview=1';}
+el.src=full_path;},'bf-byline-other':function(el,buzz){if(buzz.byline_description_visual&&buzz.byline_description_visual!='Brand Publisher'){el.innerHTML=buzz.byline_description_visual;}},'bf-video-duration':function(el,buzz){if(buzz.video_metadata&&buzz.video_metadata.duration_string){el.innerHTML=buzz.video_metadata.duration_string;}},'bf-video-impressions':function(el,buzz){if(buzz.impressions){el.innerHTML=buzz.impressions.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g,"$1,");}}};var get_environment=function(){var result='www.buzzfeed.com';if(typeof BF_DFP_ENV!='undefined'&&BF_DFP_ENV!=''){if(BF_DFP_ENV.match(/dev/)){result='dev.buzzfeed.com/bf2';}else if(!BF_DFP_ENV.match(/prod/)){result=BF_DFP_ENV+'.buzzfeed.com';}}
+return result;}
+var parse_template=function(BF_DATA,click_track_fn){var data=BF_DATA.buzz;var wid=BF_DATA.wid;if(typeof(window.BF_NO_DUPES)=='undefined'){window.BF_NO_DUPES={}}
+var optimize=false;if(optimize){var bfo=new BF_WIDGET_OPTIMIZE();if(optimize===1){data=bfo.optimize1(data);}else if(optimize===2){data=bfo.optimize2(data);}else if(optimize===3){data=bfo.optimize3(data);}else if(optimize===4){data=bfo.optimize4(data);}}else{data=randomize(data);}
+window['BF_DISPLAYED_BUZZ']=[];try{for(var i=0;i<buzz_count;i++){var buzz=data[i];if(typeof buzz['promotions']!='undefined')
+{pick_promotion(buzz);}
+window.BF_NO_DUPES[buzz.bid]=true;window['BF_DISPLAYED_BUZZ'].push(buzz);item_id=wid?('bf-item-'+wid+'-'+(i+1)):('bf-item-'+(i+1));var item_element=document.getElementById(item_id);if(!item_element){item_element=document.getElementById('bf-item-'+(i+1));}
+if(!item_element){break;}
+if(item_element.nodeName==='A'&&(item_element.className.search(/bf-url/)>=0)){element_handlers['bf-url'](item_element,buzz,wid,click_track_fn);}
+if(typeof buzz.user_type!='undefined'){if(typeof buzz['byline_description_visual']!='undefined'){if(buzz.byline_description_visual=='Publishing Partner'){item_element.className+=" f_partner";}
+else{item_element.className+=" "+buzz.user_type;}}}
+else{item_element.className+=" f_ad";}
+var elements=item_element.getElementsByTagName("*");var view_count=0;for(var j=0;j<elements.length;j++){var element=elements[j];var class_string=element.className;if(class_string&&typeof class_string=='string'){var classes=class_string.split(/\s+/);if(classes&&classes[0]){for(var k=0;k<classes.length;k++){var key=classes[k].replace(/^bf\-/,'');apply_styles(element,key);if(element_handlers[classes[k]]){if(key=='impressions-label'){if(buzz['impressions']<100){element_handlers[classes[k]](element,'New Buzz');}}else if(key=='user-url'){element_handlers[classes[k]](element,'http://www.buzzfeed.com/'+buzz['username']);}else if(key=='url'){element_handlers[classes[k]](element,buzz,wid,click_track_fn);}else if(key=='ad-frame'||key=='ad-msu'){element_handlers[classes[k]](element,BF_DATA);}else if(key=='image-bigstory'){element_handlers[classes[k]](element,buzz);}else if(key=='image-widestory'){element_handlers[classes[k]](element,buzz);}else if(key=='image-big'){element_handlers[classes[k]](element,buzz);}else if(key=='user_image_large'){element_handlers[classes[k]](element,buzz['user_image']);}else if(key=='byline_prefix'){if(buzz[key]&&buzz[key]!=""){element_handlers[classes[k]](element,buzz[key],BF_DATA);}}else if(key=='partner-label'){element_handlers[classes[k]](element,buzz);}else if(key=='mobile-image'){element_handlers[classes[k]](element,buzz);}else if(key=='byline-other'){element_handlers[classes[k]](element,buzz);}else if(key=='blurb'){element_handlers[classes[k]](element,buzz);}else if(key=='video-duration'){element_handlers[classes[k]](element,buzz);}else if(key=='video-impressions'){element_handlers[classes[k]](element,buzz);}else{element_handlers[classes[k]](element,buzz[key],item_element,buzz);}}}}}}}}catch(e){console.error(e);}};var pick_promotion=function(buzz){var sel_promo;if(buzz.promotions.length==1)
+{sel_promo=buzz.promotions[0];}
+else
+{var promotions=buzz.promotions;var opts=[];for(var i=0;i<promotions.length;i++)
+for(var j=0;j<(promotions[i].probability*100);j++)
+opts.push(promotions[i]);sel_promo=opts[Math.floor(Math.random()*opts.length)];}
+if(typeof sel_promo=='undefined'){sel_promo=buzz.promotions[0];}
+buzz.image=sel_promo.image;buzz.name=sel_promo.title;buzz.blurb=sel_promo.description;buzz.ad_blurb=sel_promo.description;buzz.flex_pro_id=sel_promo.id;return buzz;};var render_template=function(template,wid,show_ad){template=template.replace(/\n|\r/g,'NL');var items_regex=/<!\-\-\s+\.bf\-item\s+\-\->(.*)<!\-\-\s+\/\.bf\-item \-\->/;var item_markup_match=template.match(items_regex);var item_markup=item_markup_match[1];var items_markup='';var ad_slot=Math.floor(Math.random()*(buzz_count))+1;if(show_ad&&parent.window['BF_AD_FIXED_POS']){fixed_ad_pos=parent.window['BF_AD_FIXED_POS'];if(fixed_ad_pos>0&&parent.window['BF_AD_FIXED_POS']<=buzz_count){ad_slot=BF_AD_FIXED_POS}}
+for(var i=1;i<=buzz_count;i++){var id_append=wid?(wid+'-'+i):i;var id_markup=item_markup;if(show_ad&&i==ad_slot)
+{var matches=item_markup.match(/(.*<div (id="" )?class="bf-item[^>]+>)(.*)<\/div>/);id_markup=item_markup.replace(matches[3],'<iframe width="100%" frameborder="0" scrolling="no" class="bf-ad-frame"></iframe>');if(AD_DESIGN&&AD_DESIGN=='gpt'&&typeof window.BF_DFP_MSU!='undefined'){id_markup=item_markup.replace(matches[3],'<div id="BF_WIDGET_25" class="bf-ad-msu" style="position:absolute;"></div>');}
+id_markup=id_markup.replace(/class="bf-item/,'class="bf-item bf-framed-item');}
+id_markup=id_markup.replace(/<div (id="" )?class="bf-item/,'<div id="bf-item-'+id_append+'" class="bf-item')+"\n";if(i==1){var first_markup=id_markup;items_markup+=first_markup.replace(/class="bf-item"/,'class="bf-item bf-first"')+"\n";}else if(i==buzz_count){var last_markup=id_markup;items_markup+=last_markup.replace(/class="bf-item"/,'class="bf-item bf-last"')+"\n";}else{items_markup+=id_markup;}}
+template=template.replace(items_regex,items_markup);template=template.replace(/NL/g,'\n');return template;};return{last_widget:false,record_pixel:function(track_url)
+{if(window['BF_STATIC']!='undefined'&&typeof BF_STATIC['bf_env']!='undefined'&&BF_STATIC.bf_env.match(/^dev|^stage/)==null){if(typeof window['BF_PIXELS']=='undefined'){window['BF_PIXELS']=[];}
+var timage=new Image();timage.src=track_url;window['BF_PIXELS'].push(timage);}
+else{console.log('Tracked Url: '+track_url);}},show_widget:function(BF_DATA,click_track_fn){BF_W.last_widget=BF_DATA;if(typeof(BF_W.loaded_template)=='undefined')
+BF_W.loaded_template=BF_DATA.template;if(typeof(BF_BUZZ_COUNTS)!='undefined'&&BF_BUZZ_COUNTS[BF_DATA.wid]){buzz_count=BF_BUZZ_COUNTS[BF_DATA.wid];}
+if(BF_DATA.buzz.length<buzz_count){buzz_count=BF_DATA.buzz.length;if(buzz_count>9){buzz_count=9;}}
+var main_id='BF_WIDGET_'+BF_DATA.wid;main_div=document.getElementById(main_id);if(main_div.getAttribute('rel:bf_ad_position'))
+{BF_DATA.position_id=parseInt(main_div.getAttribute('rel:bf_ad_position'));}
+var widget_markup='';if(BF_DATA.css){var ss1=document.createElement('style');var def=BF_DATA.css;ss1.setAttribute("type","text/css");if(ss1.styleSheet){ss1.styleSheet.cssText=def;}else{var tt1=document.createTextNode(def);ss1.appendChild(tt1);}
+var hh1=document.getElementsByTagName('head')[0];hh1.appendChild(ss1);}
+if(BF_DATA.template){wid=null;if(typeof(BF_BUZZ_COUNTS)!='undefined'&&BF_BUZZ_COUNTS[BF_DATA.wid]){wid=BF_DATA.wid;}
+widget_markup+=render_template(BF_DATA.template,wid,(BF_DATA.show_ad==1&&!BF_DATA.no_shell));}
+wid=null;if(typeof(BF_BUZZ_COUNTS)!='undefined'&&BF_BUZZ_COUNTS[BF_DATA.wid]){wid=BF_DATA.wid;}
+if(widget_markup){main_div.innerHTML=widget_markup;}
+parse_template(BF_DATA,click_track_fn);if(typeof(bf_styles)!='undefined'){for(var i=0;i<head_foot_ids.length;i++){var key=head_foot_ids[i].replace(/^bf\-/,'');if(bf_styles[key]){var el=document.getElementById(head_foot_ids[i]);if(!el){continue;}
+for(var style_key in bf_styles[key]){var value=bf_styles[key][style_key];el.style[style_key]=value;}}}}
+if(main_div.className.indexOf('bf-inline-display-ad')!=-1){main_div.style.display='inline-block';}else{main_div.style.display='block';if(main_div.parentNode.className.indexOf('dfp_bigstory')!=-1){main_div.parentNode.style.display='block';}
+if(main_div.className.indexOf('bf-msu-companion')!=-1&&main_div.parentNode.className.indexOf('BF_WIDGET_MSU')==-1){main_div.parentNode.className+=' BF_WIDGET_MSU';}
+else if(main_div.className.indexOf('bf-msu-companion')!=-1&&main_div.parentNode.className.indexOf('BF_WIDGET_MSU')!=-1){var msu_set=[].slice.call(document.getElementsByClassName('bf-msu-companion'));msu_set.unshift(document.getElementById('BF_WIDGET_13'));var msu_element=Math.floor(Math.random()*msu_set.length);if(msu_element!=0){main_div.parentNode.insertBefore(msu_set[0],msu_set[msu_element]);}
+if(msu_element!=msu_set.length-1){main_div.parentNode.insertBefore(msu_set[msu_set.length-1],msu_set[msu_element]);}}
+if(main_div.parentNode.className.indexOf('BF_WIDGET_MSU')!=-1){var rows=document.getElementsByClassName('span-8');if(rows.length>1){var splashHeight=rows[0].offsetHeight;var msuHeight=main_div.parentNode.offsetHeight;var postFlow=rows[1];postFlow.style.marginTop=-(msuHeight-splashHeight)+'px';}}}}};}();(function(){try{var BF_DATA={
+   "wid" : "14",
+   "userbuzz_count" : 1,
+   "network" : "buzzfeed",
+   "loaded" : "true",
+   "buzz" : [
+      {
+         "bid" : "7H6RSD7",
+         "user_type" : "f_ad",
+         "form" : "super",
+         "bid_native" : "4124196",
+         "user" : "visitbritainfr",
+         "url" : "http://www.buzzfeed.com/visitbritainfr/12-lieux-de-grande-bretagne-qui-feront-immediatement-de-vous?utm_term=4ldrfe9",
+         "comments_count" : 0,
+         "last_updated" : "2016-01-21 13:33:06",
+         "images" : "",
+         "uid" : "7FTUGF7",
+         "sub_buzz" : "",
+         "name" : "12 lieux de Grande-Bretagne qui feront imm\u00e9diatement de vous un amateur d\u2019art",
+         "uri" : "12-lieux-de-grande-bretagne-qui-feront-immediatement-de-vous",
+         "cloud_servers" : [
+            "alleyezonme-collection.buzzfeed.com"
+         ],
+         "username" : "visitbritainfr",
+         "published" : "2016-01-20 11:53:58",
+         "published_unix" : "1453308838",
+         "ad_blurb" : "La Grande-Bretagne est une \u0153uvre d\u2019art en elle-m\u00eame \u00e0 vrai dire. <a href=\"https://ad.doubleclick.net/ddm/trackclk/N6198.244372.BUZZFEED/B9126123.127172812;dc_trk_aid=300333791;dc_trk_cid=66097070;dc_lat=;dc_rdid=;tag_for_child_directed_treatment=\">Venez la d\u00e9couvrir</a> et vivez des instants culturels m\u00e9morables \u00e0 des prix abordables, comme nulle part ailleurs.",
+         "nsfw" : "false",
+         "status" : "live",
+         "ct" : "http://75.101.183.223/small.gif?type=100,14&user=visitbritainfr&buzz=12-lieux-de-grande-bretagne-qui-feront-immediatement-de-vous&c=7H6RSD7&u=7FTUGF7&url=http%3A%2F%2Fwww.buzzfeed.com%2Fvisitbritainfr%2F12-lieux-de-grande-bretagne-qui-feront-immediatement-de-vous%2F&rd=http%3A%2F%2Fwww.buzzfeed.com%2Fvisitbritainfr%2F12-lieux-de-grande-bretagne-qui-feront-immediatement-de-vous%2F",
+         "user_byline_data" : {},
+         "impressions" : "291",
+         "mobile_image" : "1",
+         "user_image" : "https://s3-ak.buzzfed.com/static/2015-10/8/12/user_images/webdr03/akwarren2-v2-14177-1444322584-4.jpg",
+         "blurb" : "La Grande-Bretagne est une &oelig;uvre d&rsquo;art en elle-m&ecirc;me &agrave; vrai dire. Venez la d&eacute;couvrir et vivez des instants culturels m&eacute;morables &agrave; des prix abordables, comme nulle part ailleurs.",
+         "promotions" : [
+            {
+               "width" : "125",
+               "extra_fields" : {
+                  "small" : {
+                     "width" : "1000",
+                     "left" : 0,
+                     "top" : 0,
+                     "height" : 664
+                  },
+                  "big" : {
+                     "width" : "1000",
+                     "left" : 0,
+                     "top" : 0,
+                     "height" : 664
+                  },
+                  "wide" : {
+                     "width" : "1000",
+                     "left" : 0,
+                     "top" : 193,
+                     "height" : 352
+                  }
+               },
+               "image_dblwide" : "/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309308-29_dblwide.jpg",
+               "clicks" : "4",
+               "dud" : "0",
+               "added" : "2016-01-20 12:01:50",
+               "campaign_id" : "4124196",
+               "rate" : 0.00173010380622837,
+               "impressions" : "2312",
+               "image_id" : "412815",
+               "original_image_width" : "1000",
+               "promoter" : "1982408",
+               "updated" : "2016-01-21 13:08:19",
+               "id" : "658093",
+               "image_dblbig" : "/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309308-29_dblbig.jpg",
+               "is_default" : "0",
+               "promotion_image_id" : "412815",
+               "sub_buzz_id" : "7766705",
+               "image_big" : "/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309308-29_big.jpg",
+               "probability" : 0.0395184072167559,
+               "active" : "1",
+               "original_image_height" : "738",
+               "height" : "83",
+               "description" : "La Grande-Bretagne est une \u0153uvre d\u2019art en elle-m\u00eame \u00e0 vrai dire. <a href=\"https://ad.doubleclick.net/ddm/trackclk/N6198.244372.BUZZFEED/B9126123.127172812;dc_trk_aid=300333791;dc_trk_cid=66097070;dc_lat=;dc_rdid=;tag_for_child_directed_treatment=\">Venez la d\u00e9couvrir</a> et vivez des instants culturels m\u00e9morables \u00e0 des prix abordables, comme nulle part ailleurs.",
+               "image" : "https://s3-ak.buzzfed.com/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309308-29.jpg",
+               "old" : "0",
+               "promotion_medium_id" : "1",
+               "flexpro_recipients" : "",
+               "title" : "12 lieux de Grande-Bretagne qui feront imm\u00e9diatement de vous un amateur d\u2019art",
+               "image_wide" : "/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309308-29_wide.jpg",
+               "original_image" : "/static/2016-01/14/15/enhanced/webdr04/original-grid-image-31321-1452801961-15.jpg"
+            },
+            {
+               "width" : "125",
+               "extra_fields" : {
+                  "small" : {
+                     "width" : "1000",
+                     "left" : 0,
+                     "top" : 0,
+                     "height" : 664
+                  },
+                  "big" : {
+                     "width" : "1000",
+                     "left" : 0,
+                     "top" : 0,
+                     "height" : 664
+                  },
+                  "wide" : {
+                     "width" : "1000",
+                     "left" : 0,
+                     "top" : 157,
+                     "height" : 352
+                  }
+               },
+               "image_dblwide" : "/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309252-11_dblwide.jpg",
+               "clicks" : "5",
+               "dud" : "0",
+               "added" : "2016-01-20 12:00:55",
+               "campaign_id" : "4124196",
+               "rate" : 0.00218150087260035,
+               "impressions" : "2292",
+               "image_id" : "412805",
+               "original_image_width" : "1000",
+               "promoter" : "1982408",
+               "updated" : "2016-01-21 12:19:44",
+               "id" : "658079",
+               "image_dblbig" : "/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309252-11_dblbig.jpg",
+               "is_default" : "0",
+               "promotion_image_id" : "412805",
+               "sub_buzz_id" : "7766674",
+               "image_big" : "/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309252-11_big.jpg",
+               "probability" : 0.0399571368454395,
+               "active" : "1",
+               "original_image_height" : "667",
+               "height" : "83",
+               "description" : "La Grande-Bretagne est une \u0153uvre d\u2019art en elle-m\u00eame \u00e0 vrai dire. <a href=\"https://ad.doubleclick.net/ddm/trackclk/N6198.244372.BUZZFEED/B9126123.127172812;dc_trk_aid=300333791;dc_trk_cid=66097070;dc_lat=;dc_rdid=;tag_for_child_directed_treatment=\">Venez la d\u00e9couvrir</a> et vivez des instants culturels m\u00e9morables \u00e0 des prix abordables, comme nulle part ailleurs.",
+               "image" : "https://s3-ak.buzzfed.com/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309252-11.jpg",
+               "old" : "0",
+               "promotion_medium_id" : "1",
+               "flexpro_recipients" : "",
+               "title" : "12 lieux de Grande-Bretagne qui feront imm\u00e9diatement de vous un amateur d\u2019art",
+               "image_wide" : "/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309252-11_wide.jpg",
+               "original_image" : "/static/2015-10/7/17/enhanced/webdr14/original-20396-1444253485-6.jpg"
+            },
+            {
+               "width" : "125",
+               "extra_fields" : {
+                  "small" : {
+                     "width" : "1024",
+                     "left" : 0,
+                     "top" : 0,
+                     "height" : 679
+                  },
+                  "big" : {
+                     "width" : "1024",
+                     "left" : 0,
+                     "top" : 0,
+                     "height" : 679
+                  },
+                  "wide" : {
+                     "width" : "1024",
+                     "left" : 0,
+                     "top" : 161,
+                     "height" : 360
+                  }
+               },
+               "image_dblwide" : "/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309301-27_dblwide.jpg",
+               "clicks" : "7",
+               "dud" : "0",
+               "added" : "2016-01-20 12:02:49",
+               "campaign_id" : "4124196",
+               "rate" : 0.00302506482281763,
+               "impressions" : "2314",
+               "image_id" : "412814",
+               "original_image_width" : "1024",
+               "promoter" : "1982408",
+               "updated" : "2016-01-21 13:33:06",
+               "id" : "658107",
+               "image_dblbig" : "/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309301-27_dblbig.jpg",
+               "is_default" : "0",
+               "promotion_image_id" : "412814",
+               "sub_buzz_id" : "7766704",
+               "image_big" : "/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309301-27_big.jpg",
+               "probability" : 0.0395132390075557,
+               "active" : "1",
+               "original_image_height" : "683",
+               "height" : "83",
+               "description" : "La Grande-Bretagne est une \u0153uvre d\u2019art en elle-m\u00eame \u00e0 vrai dire. <a href=\"https://ad.doubleclick.net/ddm/trackclk/N6198.244372.BUZZFEED/B9126123.127172812;dc_trk_aid=300333791;dc_trk_cid=66097070;dc_lat=;dc_rdid=;tag_for_child_directed_treatment=\">Venez la d\u00e9couvrir</a> et vivez des instants culturels m\u00e9morables \u00e0 des prix abordables, comme nulle part ailleurs.",
+               "image" : "https://s3-ak.buzzfed.com/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309301-27.jpg",
+               "old" : "0",
+               "promotion_medium_id" : "1",
+               "flexpro_recipients" : "",
+               "title" : "12 lieux de Grande-Bretagne qui feront imm\u00e9diatement de vous un amateur d\u2019art",
+               "image_wide" : "/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309301-27_wide.jpg",
+               "original_image" : "/static/2016-01/14/15/enhanced/webdr04/original-grid-image-31321-1452801959-10.jpg"
+            },
+            {
+               "width" : "125",
+               "extra_fields" : {
+                  "small" : {
+                     "width" : "1000",
+                     "left" : 0,
+                     "top" : 0,
+                     "height" : 664
+                  },
+                  "big" : {
+                     "width" : "1000",
+                     "left" : 0,
+                     "top" : 0,
+                     "height" : 664
+                  },
+                  "wide" : {
+                     "width" : "1000",
+                     "left" : 0,
+                     "top" : 199,
+                     "height" : 352
+                  }
+               },
+               "image_dblwide" : "/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309264-15_dblwide.jpg",
+               "clicks" : "9",
+               "dud" : "0",
+               "added" : "2016-01-20 12:02:49",
+               "campaign_id" : "4124196",
+               "rate" : 0.00386266094420601,
+               "impressions" : "2330",
+               "image_id" : "412808",
+               "original_image_width" : "1000",
+               "promoter" : "1982408",
+               "updated" : "2016-01-21 13:25:27",
+               "id" : "658101",
+               "image_dblbig" : "/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309264-15_dblbig.jpg",
+               "is_default" : "0",
+               "promotion_image_id" : "412808",
+               "sub_buzz_id" : "7766697",
+               "image_big" : "/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309264-15_big.jpg",
+               "probability" : 0.0406503246287679,
+               "active" : "1",
+               "original_image_height" : "750",
+               "height" : "83",
+               "description" : "La Grande-Bretagne est une \u0153uvre d\u2019art en elle-m\u00eame \u00e0 vrai dire. <a href=\"https://ad.doubleclick.net/ddm/trackclk/N6198.244372.BUZZFEED/B9126123.127172812;dc_trk_aid=300333791;dc_trk_cid=66097070;dc_lat=;dc_rdid=;tag_for_child_directed_treatment=\">Venez la d\u00e9couvrir</a> et vivez des instants culturels m\u00e9morables \u00e0 des prix abordables, comme nulle part ailleurs.",
+               "image" : "https://s3-ak.buzzfed.com/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309264-15.jpg",
+               "old" : "0",
+               "promotion_medium_id" : "1",
+               "flexpro_recipients" : "",
+               "title" : "12 lieux de Grande-Bretagne qui feront imm\u00e9diatement de vous un amateur d\u2019art",
+               "image_wide" : "/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309264-15_wide.jpg",
+               "original_image" : "/static/2016-01/14/14/enhanced/webdr05/original-grid-image-17681-1452801548-6.jpg"
+            },
+            {
+               "width" : "125",
+               "extra_fields" : {
+                  "small" : {
+                     "width" : "1024",
+                     "left" : 0,
+                     "top" : 0,
+                     "height" : 679
+                  },
+                  "big" : {
+                     "width" : "1024",
+                     "left" : 0,
+                     "top" : 0,
+                     "height" : 679
+                  },
+                  "wide" : {
+                     "width" : "1024",
+                     "left" : 0,
+                     "top" : 161,
+                     "height" : 360
+                  }
+               },
+               "image_dblwide" : "/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309293-25_dblwide.jpg",
+               "clicks" : "5",
+               "dud" : "0",
+               "added" : "2016-01-20 12:01:36",
+               "campaign_id" : "4124196",
+               "rate" : 0.00213310580204778,
+               "impressions" : "2344",
+               "image_id" : "412813",
+               "original_image_width" : "1024",
+               "promoter" : "1982408",
+               "updated" : "2016-01-21 12:22:18",
+               "id" : "658091",
+               "image_dblbig" : "/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309293-25_dblbig.jpg",
+               "is_default" : "0",
+               "promotion_image_id" : "412813",
+               "sub_buzz_id" : "7766712",
+               "image_big" : "/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309293-25_big.jpg",
+               "probability" : 0.0388193218866506,
+               "active" : "1",
+               "original_image_height" : "683",
+               "height" : "83",
+               "description" : "La Grande-Bretagne est une \u0153uvre d\u2019art en elle-m\u00eame \u00e0 vrai dire. <a href=\"https://ad.doubleclick.net/ddm/trackclk/N6198.244372.BUZZFEED/B9126123.127172812;dc_trk_aid=300333791;dc_trk_cid=66097070;dc_lat=;dc_rdid=;tag_for_child_directed_treatment=\">Venez la d\u00e9couvrir</a> et vivez des instants culturels m\u00e9morables \u00e0 des prix abordables, comme nulle part ailleurs.",
+               "image" : "https://s3-ak.buzzfed.com/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309293-25.jpg",
+               "old" : "0",
+               "promotion_medium_id" : "1",
+               "flexpro_recipients" : "",
+               "title" : "12 lieux de Grande-Bretagne qui feront imm\u00e9diatement de vous un amateur d\u2019art",
+               "image_wide" : "/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309293-25_wide.jpg",
+               "original_image" : "/static/2016-01/14/15/enhanced/webdr08/original-grid-image-8493-1452801935-16.jpg"
+            },
+            {
+               "width" : "125",
+               "extra_fields" : {
+                  "small" : {
+                     "width" : "1024",
+                     "left" : 0,
+                     "top" : 0,
+                     "height" : 679
+                  },
+                  "big" : {
+                     "width" : "1024",
+                     "left" : 0,
+                     "top" : 0,
+                     "height" : 679
+                  },
+                  "wide" : {
+                     "width" : "1024",
+                     "left" : 0,
+                     "top" : 161,
+                     "height" : 360
+                  }
+               },
+               "image_dblwide" : "/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309301-27_dblwide.jpg",
+               "clicks" : "12",
+               "dud" : "0",
+               "added" : "2016-01-20 12:01:45",
+               "campaign_id" : "4124196",
+               "rate" : 0.00476758045292014,
+               "impressions" : "2517",
+               "image_id" : "412814",
+               "original_image_width" : "1024",
+               "promoter" : "1982408",
+               "updated" : "2016-01-21 12:55:19",
+               "id" : "658092",
+               "image_dblbig" : "/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309301-27_dblbig.jpg",
+               "is_default" : "0",
+               "promotion_image_id" : "412814",
+               "sub_buzz_id" : "7766704",
+               "image_big" : "/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309301-27_big.jpg",
+               "probability" : 0.074985527370618,
+               "active" : "1",
+               "original_image_height" : "683",
+               "height" : "83",
+               "description" : "La Grande-Bretagne est une \u0153uvre d\u2019art en elle-m\u00eame \u00e0 vrai dire. <a href=\"https://ad.doubleclick.net/ddm/trackclk/N6198.244372.BUZZFEED/B9126123.127172812;dc_trk_aid=300333791;dc_trk_cid=66097070;dc_lat=;dc_rdid=;tag_for_child_directed_treatment=\">Venez la d\u00e9couvrir</a> et vivez des instants culturels m\u00e9morables \u00e0 des prix abordables, comme nulle part ailleurs.",
+               "image" : "https://s3-ak.buzzfed.com/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309301-27.jpg",
+               "old" : "0",
+               "promotion_medium_id" : "1",
+               "flexpro_recipients" : "",
+               "title" : "12 lieux de Grande-Bretagne qui feront imm\u00e9diatement de vous un amateur d\u2019art",
+               "image_wide" : "/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309301-27_wide.jpg",
+               "original_image" : "/static/2016-01/14/15/enhanced/webdr04/original-grid-image-31321-1452801959-10.jpg"
+            },
+            {
+               "width" : "125",
+               "extra_fields" : {
+                  "small" : {
+                     "width" : 911,
+                     "left" : 0,
+                     "top" : 0,
+                     "height" : "605"
+                  },
+                  "big" : {
+                     "width" : 911,
+                     "left" : 0,
+                     "top" : 0,
+                     "height" : "605"
+                  },
+                  "wide" : {
+                     "width" : "1024",
+                     "left" : 0,
+                     "top" : 122,
+                     "height" : 360
+                  }
+               },
+               "image_dblwide" : "/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309271-17_dblwide.jpg",
+               "clicks" : "5",
+               "dud" : "0",
+               "added" : "2016-01-20 12:02:49",
+               "campaign_id" : "4124196",
+               "rate" : 0.00220848056537102,
+               "impressions" : "2264",
+               "image_id" : "412809",
+               "original_image_width" : "1024",
+               "promoter" : "1982408",
+               "updated" : "2016-01-21 13:18:27",
+               "id" : "658102",
+               "image_dblbig" : "/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309271-17_dblbig.jpg",
+               "is_default" : "0",
+               "promotion_image_id" : "412809",
+               "sub_buzz_id" : "7766693",
+               "image_big" : "/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309271-17_big.jpg",
+               "probability" : 0.0405726761885657,
+               "active" : "1",
+               "original_image_height" : "605",
+               "height" : "83",
+               "description" : "La Grande-Bretagne est une \u0153uvre d\u2019art en elle-m\u00eame \u00e0 vrai dire. <a href=\"https://ad.doubleclick.net/ddm/trackclk/N6198.244372.BUZZFEED/B9126123.127172812;dc_trk_aid=300333791;dc_trk_cid=66097070;dc_lat=;dc_rdid=;tag_for_child_directed_treatment=\">Venez la d\u00e9couvrir</a> et vivez des instants culturels m\u00e9morables \u00e0 des prix abordables, comme nulle part ailleurs.",
+               "image" : "https://s3-ak.buzzfed.com/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309271-17.jpg",
+               "old" : "0",
+               "promotion_medium_id" : "1",
+               "flexpro_recipients" : "",
+               "title" : "12 lieux de Grande-Bretagne qui feront imm\u00e9diatement de vous un amateur d\u2019art",
+               "image_wide" : "/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309271-17_wide.jpg",
+               "original_image" : "/static/2016-01/20/11/enhanced/webdr13/original-grid-image-18956-1453308686-8.jpg"
+            },
+            {
+               "width" : "125",
+               "extra_fields" : {
+                  "small" : {
+                     "width" : "1000",
+                     "left" : 0,
+                     "top" : 0,
+                     "height" : 664
+                  },
+                  "big" : {
+                     "width" : "1000",
+                     "left" : 0,
+                     "top" : 0,
+                     "height" : 664
+                  },
+                  "wide" : {
+                     "width" : "1000",
+                     "left" : 0,
+                     "top" : 156,
+                     "height" : 352
+                  }
+               },
+               "image_dblwide" : "/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309258-13_dblwide.jpg",
+               "clicks" : "6",
+               "dud" : "0",
+               "added" : "2016-01-20 12:01:01",
+               "campaign_id" : "4124196",
+               "rate" : 0.00265957446808511,
+               "impressions" : "2256",
+               "image_id" : "412807",
+               "original_image_width" : "1000",
+               "promoter" : "1982408",
+               "updated" : "2016-01-21 12:34:53",
+               "id" : "658085",
+               "image_dblbig" : "/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309258-13_dblbig.jpg",
+               "is_default" : "0",
+               "promotion_image_id" : "412807",
+               "sub_buzz_id" : "7766688",
+               "image_big" : "/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309258-13_big.jpg",
+               "probability" : 0.0407539224293969,
+               "active" : "1",
+               "original_image_height" : "665",
+               "height" : "83",
+               "description" : "La Grande-Bretagne est une \u0153uvre d\u2019art en elle-m\u00eame \u00e0 vrai dire. <a href=\"https://ad.doubleclick.net/ddm/trackclk/N6198.244372.BUZZFEED/B9126123.127172812;dc_trk_aid=300333791;dc_trk_cid=66097070;dc_lat=;dc_rdid=;tag_for_child_directed_treatment=\">Venez la d\u00e9couvrir</a> et vivez des instants culturels m\u00e9morables \u00e0 des prix abordables, comme nulle part ailleurs.",
+               "image" : "https://s3-ak.buzzfed.com/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309258-13.jpg",
+               "old" : "0",
+               "promotion_medium_id" : "1",
+               "flexpro_recipients" : "",
+               "title" : "12 lieux de Grande-Bretagne qui feront imm\u00e9diatement de vous un amateur d\u2019art",
+               "image_wide" : "/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309258-13_wide.jpg",
+               "original_image" : "/static/2015-10/8/17/enhanced/webdr10/original-1317-1444339842-4.jpg"
+            },
+            {
+               "width" : "125",
+               "extra_fields" : {
+                  "small" : {
+                     "width" : "1024",
+                     "left" : 0,
+                     "top" : 0,
+                     "height" : 679
+                  },
+                  "big" : {
+                     "width" : "1024",
+                     "left" : 0,
+                     "top" : 0,
+                     "height" : 679
+                  },
+                  "wide" : {
+                     "width" : "1024",
+                     "left" : 0,
+                     "top" : 160,
+                     "height" : 360
+                  }
+               },
+               "image_dblwide" : "/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309246-9_dblwide.jpg",
+               "clicks" : "11",
+               "dud" : "0",
+               "added" : "2016-01-20 12:00:49",
+               "campaign_id" : "4124196",
+               "rate" : 0.00459866220735786,
+               "impressions" : "2392",
+               "image_id" : "412803",
+               "original_image_width" : "1024",
+               "promoter" : "1982408",
+               "updated" : "2016-01-21 13:00:40",
+               "id" : "658077",
+               "image_dblbig" : "/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309246-9_dblbig.jpg",
+               "is_default" : "0",
+               "promotion_image_id" : "412803",
+               "sub_buzz_id" : "7766667",
+               "image_big" : "/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309246-9_big.jpg",
+               "probability" : 0.0594358665244434,
+               "active" : "1",
+               "original_image_height" : "681",
+               "height" : "83",
+               "description" : "La Grande-Bretagne est une \u0153uvre d\u2019art en elle-m\u00eame \u00e0 vrai dire. <a href=\"https://ad.doubleclick.net/ddm/trackclk/N6198.244372.BUZZFEED/B9126123.127172812;dc_trk_aid=300333791;dc_trk_cid=66097070;dc_lat=;dc_rdid=;tag_for_child_directed_treatment=\">Venez la d\u00e9couvrir</a> et vivez des instants culturels m\u00e9morables \u00e0 des prix abordables, comme nulle part ailleurs.",
+               "image" : "https://s3-ak.buzzfed.com/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309246-9.jpg",
+               "old" : "0",
+               "promotion_medium_id" : "1",
+               "flexpro_recipients" : "",
+               "title" : "12 lieux de Grande-Bretagne qui feront imm\u00e9diatement de vous un amateur d\u2019art",
+               "image_wide" : "/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309246-9_wide.jpg",
+               "original_image" : "/static/2016-01/8/14/enhanced/webdr10/original-771-1452280943-3.jpg"
+            },
+            {
+               "width" : "125",
+               "extra_fields" : {
+                  "small" : {
+                     "width" : "1000",
+                     "left" : 0,
+                     "top" : 0,
+                     "height" : 664
+                  },
+                  "big" : {
+                     "width" : "1000",
+                     "left" : 0,
+                     "top" : 0,
+                     "height" : 664
+                  },
+                  "wide" : {
+                     "width" : "1000",
+                     "left" : 0,
+                     "top" : 199,
+                     "height" : 352
+                  }
+               },
+               "image_dblwide" : "/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309264-15_dblwide.jpg",
+               "clicks" : "8",
+               "dud" : "0",
+               "added" : "2016-01-20 12:01:08",
+               "campaign_id" : "4124196",
+               "rate" : 0.00350723366944323,
+               "impressions" : "2281",
+               "image_id" : "412808",
+               "original_image_width" : "1000",
+               "promoter" : "1982408",
+               "updated" : "2016-01-21 12:40:19",
+               "id" : "658086",
+               "image_dblbig" : "/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309264-15_dblbig.jpg",
+               "is_default" : "0",
+               "promotion_image_id" : "412808",
+               "sub_buzz_id" : "7766697",
+               "image_big" : "/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309264-15_big.jpg",
+               "probability" : 0.0405463033746896,
+               "active" : "1",
+               "original_image_height" : "750",
+               "height" : "83",
+               "description" : "La Grande-Bretagne est une \u0153uvre d\u2019art en elle-m\u00eame \u00e0 vrai dire. <a href=\"https://ad.doubleclick.net/ddm/trackclk/N6198.244372.BUZZFEED/B9126123.127172812;dc_trk_aid=300333791;dc_trk_cid=66097070;dc_lat=;dc_rdid=;tag_for_child_directed_treatment=\">Venez la d\u00e9couvrir</a> et vivez des instants culturels m\u00e9morables \u00e0 des prix abordables, comme nulle part ailleurs.",
+               "image" : "https://s3-ak.buzzfed.com/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309264-15.jpg",
+               "old" : "0",
+               "promotion_medium_id" : "1",
+               "flexpro_recipients" : "",
+               "title" : "12 lieux de Grande-Bretagne qui feront imm\u00e9diatement de vous un amateur d\u2019art",
+               "image_wide" : "/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309264-15_wide.jpg",
+               "original_image" : "/static/2016-01/14/14/enhanced/webdr05/original-grid-image-17681-1452801548-6.jpg"
+            },
+            {
+               "width" : "125",
+               "extra_fields" : {
+                  "small" : {
+                     "width" : 983,
+                     "left" : 0,
+                     "top" : 0,
+                     "height" : "653"
+                  },
+                  "big" : {
+                     "width" : 983,
+                     "left" : 0,
+                     "top" : 0,
+                     "height" : "653"
+                  },
+                  "wide" : {
+                     "width" : "1000",
+                     "left" : 0,
+                     "top" : 150,
+                     "height" : 352
+                  }
+               },
+               "image_dblwide" : "/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309278-19_dblwide.jpg",
+               "clicks" : "6",
+               "dud" : "0",
+               "added" : "2016-01-20 12:02:49",
+               "campaign_id" : "4124196",
+               "rate" : 0.00250312891113892,
+               "impressions" : "2397",
+               "image_id" : "412810",
+               "original_image_width" : "1000",
+               "promoter" : "1982408",
+               "updated" : "2016-01-21 12:52:00",
+               "id" : "658103",
+               "image_dblbig" : "/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309278-19_dblbig.jpg",
+               "is_default" : "0",
+               "promotion_image_id" : "412810",
+               "sub_buzz_id" : "7766683",
+               "image_big" : "/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309278-19_big.jpg",
+               "probability" : 0.037670066341695,
+               "active" : "1",
+               "original_image_height" : "653",
+               "height" : "83",
+               "description" : "La Grande-Bretagne est une \u0153uvre d\u2019art en elle-m\u00eame \u00e0 vrai dire. <a href=\"https://ad.doubleclick.net/ddm/trackclk/N6198.244372.BUZZFEED/B9126123.127172812;dc_trk_aid=300333791;dc_trk_cid=66097070;dc_lat=;dc_rdid=;tag_for_child_directed_treatment=\">Venez la d\u00e9couvrir</a> et vivez des instants culturels m\u00e9morables \u00e0 des prix abordables, comme nulle part ailleurs.",
+               "image" : "https://s3-ak.buzzfed.com/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309278-19.jpg",
+               "old" : "0",
+               "promotion_medium_id" : "1",
+               "flexpro_recipients" : "",
+               "title" : "12 lieux de Grande-Bretagne qui feront imm\u00e9diatement de vous un amateur d\u2019art",
+               "image_wide" : "/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309278-19_wide.jpg",
+               "original_image" : "/static/2016-01/11/13/enhanced/webdr14/original-3648-1452538031-3.jpg"
+            },
+            {
+               "width" : "125",
+               "extra_fields" : {
+                  "small" : {
+                     "width" : "1000",
+                     "left" : 0,
+                     "top" : 0,
+                     "height" : 664
+                  },
+                  "big" : {
+                     "width" : "1000",
+                     "left" : 0,
+                     "top" : 0,
+                     "height" : 664
+                  },
+                  "wide" : {
+                     "width" : "1000",
+                     "left" : 0,
+                     "top" : 157,
+                     "height" : 352
+                  }
+               },
+               "image_dblwide" : "/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309252-11_dblwide.jpg",
+               "clicks" : "6",
+               "dud" : "0",
+               "added" : "2016-01-20 12:02:49",
+               "campaign_id" : "4124196",
+               "rate" : 0.00264900662251656,
+               "impressions" : "2265",
+               "image_id" : "412805",
+               "original_image_width" : "1000",
+               "promoter" : "1982408",
+               "updated" : "2016-01-21 12:20:49",
+               "id" : "658099",
+               "image_dblbig" : "/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309252-11_dblbig.jpg",
+               "is_default" : "0",
+               "promotion_image_id" : "412805",
+               "sub_buzz_id" : "7766674",
+               "image_big" : "/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309252-11_big.jpg",
+               "probability" : 0.0405554435428344,
+               "active" : "1",
+               "original_image_height" : "667",
+               "height" : "83",
+               "description" : "La Grande-Bretagne est une \u0153uvre d\u2019art en elle-m\u00eame \u00e0 vrai dire. <a href=\"https://ad.doubleclick.net/ddm/trackclk/N6198.244372.BUZZFEED/B9126123.127172812;dc_trk_aid=300333791;dc_trk_cid=66097070;dc_lat=;dc_rdid=;tag_for_child_directed_treatment=\">Venez la d\u00e9couvrir</a> et vivez des instants culturels m\u00e9morables \u00e0 des prix abordables, comme nulle part ailleurs.",
+               "image" : "https://s3-ak.buzzfed.com/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309252-11.jpg",
+               "old" : "0",
+               "promotion_medium_id" : "1",
+               "flexpro_recipients" : "",
+               "title" : "12 lieux de Grande-Bretagne qui feront imm\u00e9diatement de vous un amateur d\u2019art",
+               "image_wide" : "/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309252-11_wide.jpg",
+               "original_image" : "/static/2015-10/7/17/enhanced/webdr14/original-20396-1444253485-6.jpg"
+            },
+            {
+               "width" : "125",
+               "extra_fields" : {
+                  "small" : {
+                     "width" : "1024",
+                     "left" : 0,
+                     "top" : 0,
+                     "height" : 679
+                  },
+                  "big" : {
+                     "width" : "1024",
+                     "left" : 0,
+                     "top" : 0,
+                     "height" : 679
+                  },
+                  "wide" : {
+                     "width" : "1024",
+                     "left" : 0,
+                     "top" : 160,
+                     "height" : 360
+                  }
+               },
+               "image_dblwide" : "/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309246-9_dblwide.jpg",
+               "clicks" : "3",
+               "dud" : "0",
+               "added" : "2016-01-20 12:02:49",
+               "campaign_id" : "4124196",
+               "rate" : 0.00128369704749679,
+               "impressions" : "2337",
+               "image_id" : "412803",
+               "original_image_width" : "1024",
+               "promoter" : "1982408",
+               "updated" : "2016-01-21 12:49:19",
+               "id" : "658098",
+               "image_dblbig" : "/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309246-9_dblbig.jpg",
+               "is_default" : "0",
+               "promotion_image_id" : "412803",
+               "sub_buzz_id" : "7766667",
+               "image_big" : "/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309246-9_big.jpg",
+               "probability" : 0.0389718343256363,
+               "active" : "1",
+               "original_image_height" : "681",
+               "height" : "83",
+               "description" : "La Grande-Bretagne est une \u0153uvre d\u2019art en elle-m\u00eame \u00e0 vrai dire. <a href=\"https://ad.doubleclick.net/ddm/trackclk/N6198.244372.BUZZFEED/B9126123.127172812;dc_trk_aid=300333791;dc_trk_cid=66097070;dc_lat=;dc_rdid=;tag_for_child_directed_treatment=\">Venez la d\u00e9couvrir</a> et vivez des instants culturels m\u00e9morables \u00e0 des prix abordables, comme nulle part ailleurs.",
+               "image" : "https://s3-ak.buzzfed.com/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309246-9.jpg",
+               "old" : "0",
+               "promotion_medium_id" : "1",
+               "flexpro_recipients" : "",
+               "title" : "12 lieux de Grande-Bretagne qui feront imm\u00e9diatement de vous un amateur d\u2019art",
+               "image_wide" : "/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309246-9_wide.jpg",
+               "original_image" : "/static/2016-01/8/14/enhanced/webdr10/original-771-1452280943-3.jpg"
+            },
+            {
+               "width" : "125",
+               "extra_fields" : {
+                  "small" : {
+                     "width" : "1024",
+                     "left" : 0,
+                     "top" : 0,
+                     "height" : 679
+                  },
+                  "big" : {
+                     "width" : "1024",
+                     "left" : 0,
+                     "top" : 0,
+                     "height" : 679
+                  },
+                  "wide" : {
+                     "width" : "1024",
+                     "left" : 0,
+                     "top" : 161,
+                     "height" : 360
+                  }
+               },
+               "image_dblwide" : "/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309282-21_dblwide.jpg",
+               "clicks" : "9",
+               "dud" : "0",
+               "added" : "2016-01-20 12:02:49",
+               "campaign_id" : "4124196",
+               "rate" : 0.00378310214375788,
+               "impressions" : "2379",
+               "image_id" : "412811",
+               "original_image_width" : "1024",
+               "promoter" : "1982408",
+               "updated" : "2016-01-21 13:24:59",
+               "id" : "658104",
+               "image_dblbig" : "/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309282-21_dblbig.jpg",
+               "is_default" : "0",
+               "promotion_image_id" : "412811",
+               "sub_buzz_id" : "7766685",
+               "image_big" : "/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309282-21_big.jpg",
+               "probability" : 0.0392074866302466,
+               "active" : "1",
+               "original_image_height" : "683",
+               "height" : "83",
+               "description" : "La Grande-Bretagne est une \u0153uvre d\u2019art en elle-m\u00eame \u00e0 vrai dire. <a href=\"https://ad.doubleclick.net/ddm/trackclk/N6198.244372.BUZZFEED/B9126123.127172812;dc_trk_aid=300333791;dc_trk_cid=66097070;dc_lat=;dc_rdid=;tag_for_child_directed_treatment=\">Venez la d\u00e9couvrir</a> et vivez des instants culturels m\u00e9morables \u00e0 des prix abordables, comme nulle part ailleurs.",
+               "image" : "https://s3-ak.buzzfed.com/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309282-21.jpg",
+               "old" : "0",
+               "promotion_medium_id" : "1",
+               "flexpro_recipients" : "",
+               "title" : "12 lieux de Grande-Bretagne qui feront imm\u00e9diatement de vous un amateur d\u2019art",
+               "image_wide" : "/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309282-21_wide.jpg",
+               "original_image" : "/static/2016-01/14/15/enhanced/webdr05/original-grid-image-16839-1452801844-24.jpg"
+            },
+            {
+               "width" : "125",
+               "extra_fields" : {
+                  "small" : {
+                     "width" : 911,
+                     "left" : 0,
+                     "top" : 0,
+                     "height" : "605"
+                  },
+                  "big" : {
+                     "width" : 911,
+                     "left" : 0,
+                     "top" : 0,
+                     "height" : "605"
+                  },
+                  "wide" : {
+                     "width" : "1024",
+                     "left" : 0,
+                     "top" : 122,
+                     "height" : 360
+                  }
+               },
+               "image_dblwide" : "/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309271-17_dblwide.jpg",
+               "clicks" : "4",
+               "dud" : "0",
+               "added" : "2016-01-20 12:01:15",
+               "campaign_id" : "4124196",
+               "rate" : 0.00168137873055906,
+               "impressions" : "2379",
+               "image_id" : "412809",
+               "original_image_width" : "1024",
+               "promoter" : "1982408",
+               "updated" : "2016-01-21 13:14:42",
+               "id" : "658087",
+               "image_dblbig" : "/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309271-17_dblbig.jpg",
+               "is_default" : "0",
+               "promotion_image_id" : "412809",
+               "sub_buzz_id" : "7766693",
+               "image_big" : "/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309271-17_big.jpg",
+               "probability" : 0.0380577413655036,
+               "active" : "1",
+               "original_image_height" : "605",
+               "height" : "83",
+               "description" : "La Grande-Bretagne est une \u0153uvre d\u2019art en elle-m\u00eame \u00e0 vrai dire. <a href=\"https://ad.doubleclick.net/ddm/trackclk/N6198.244372.BUZZFEED/B9126123.127172812;dc_trk_aid=300333791;dc_trk_cid=66097070;dc_lat=;dc_rdid=;tag_for_child_directed_treatment=\">Venez la d\u00e9couvrir</a> et vivez des instants culturels m\u00e9morables \u00e0 des prix abordables, comme nulle part ailleurs.",
+               "image" : "https://s3-ak.buzzfed.com/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309271-17.jpg",
+               "old" : "0",
+               "promotion_medium_id" : "1",
+               "flexpro_recipients" : "",
+               "title" : "12 lieux de Grande-Bretagne qui feront imm\u00e9diatement de vous un amateur d\u2019art",
+               "image_wide" : "/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309271-17_wide.jpg",
+               "original_image" : "/static/2016-01/20/11/enhanced/webdr13/original-grid-image-18956-1453308686-8.jpg"
+            },
+            {
+               "width" : "125",
+               "extra_fields" : {
+                  "small" : {
+                     "width" : "1000",
+                     "left" : 0,
+                     "top" : 0,
+                     "height" : 664
+                  },
+                  "big" : {
+                     "width" : "1000",
+                     "left" : 0,
+                     "top" : 0,
+                     "height" : 664
+                  },
+                  "wide" : {
+                     "width" : "1000",
+                     "left" : 0,
+                     "top" : 157,
+                     "height" : 352
+                  }
+               },
+               "image_dblwide" : "/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309313-31_dblwide.jpg",
+               "clicks" : "6",
+               "dud" : "0",
+               "added" : "2016-01-20 12:01:56",
+               "campaign_id" : "4124196",
+               "rate" : 0.0025974025974026,
+               "impressions" : "2310",
+               "image_id" : "412816",
+               "original_image_width" : "1000",
+               "promoter" : "1982408",
+               "updated" : "2016-01-21 13:18:48",
+               "id" : "658094",
+               "image_dblbig" : "/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309313-31_dblbig.jpg",
+               "is_default" : "0",
+               "promotion_image_id" : "412816",
+               "sub_buzz_id" : "7766689",
+               "image_big" : "/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309313-31_big.jpg",
+               "probability" : 0.0395661138270443,
+               "active" : "1",
+               "original_image_height" : "667",
+               "height" : "83",
+               "description" : "La Grande-Bretagne est une \u0153uvre d\u2019art en elle-m\u00eame \u00e0 vrai dire. <a href=\"https://ad.doubleclick.net/ddm/trackclk/N6198.244372.BUZZFEED/B9126123.127172812;dc_trk_aid=300333791;dc_trk_cid=66097070;dc_lat=;dc_rdid=;tag_for_child_directed_treatment=\">Venez la d\u00e9couvrir</a> et vivez des instants culturels m\u00e9morables \u00e0 des prix abordables, comme nulle part ailleurs.",
+               "image" : "https://s3-ak.buzzfed.com/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309313-31.jpg",
+               "old" : "0",
+               "promotion_medium_id" : "1",
+               "flexpro_recipients" : "",
+               "title" : "12 lieux de Grande-Bretagne qui feront imm\u00e9diatement de vous un amateur d\u2019art",
+               "image_wide" : "/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309313-31_wide.jpg",
+               "original_image" : "/static/2015-10/9/10/enhanced/webdr15/original-13902-1444401474-3.jpg"
+            },
+            {
+               "width" : "125",
+               "extra_fields" : {
+                  "small" : {
+                     "width" : "1024",
+                     "left" : 0,
+                     "top" : 0,
+                     "height" : 679
+                  },
+                  "big" : {
+                     "width" : "1024",
+                     "left" : 0,
+                     "top" : 0,
+                     "height" : 679
+                  },
+                  "wide" : {
+                     "width" : "1024",
+                     "left" : 0,
+                     "top" : 161,
+                     "height" : 360
+                  }
+               },
+               "image_dblwide" : "/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309293-25_dblwide.jpg",
+               "clicks" : "6",
+               "dud" : "0",
+               "added" : "2016-01-20 12:02:49",
+               "campaign_id" : "4124196",
+               "rate" : 0.00256849315068493,
+               "impressions" : "2336",
+               "image_id" : "412813",
+               "original_image_width" : "1024",
+               "promoter" : "1982408",
+               "updated" : "2016-01-21 13:07:16",
+               "id" : "658106",
+               "image_dblbig" : "/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309293-25_dblbig.jpg",
+               "is_default" : "0",
+               "promotion_image_id" : "412813",
+               "sub_buzz_id" : "7766712",
+               "image_big" : "/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309293-25_big.jpg",
+               "probability" : 0.0389970275105736,
+               "active" : "1",
+               "original_image_height" : "683",
+               "height" : "83",
+               "description" : "La Grande-Bretagne est une \u0153uvre d\u2019art en elle-m\u00eame \u00e0 vrai dire. <a href=\"https://ad.doubleclick.net/ddm/trackclk/N6198.244372.BUZZFEED/B9126123.127172812;dc_trk_aid=300333791;dc_trk_cid=66097070;dc_lat=;dc_rdid=;tag_for_child_directed_treatment=\">Venez la d\u00e9couvrir</a> et vivez des instants culturels m\u00e9morables \u00e0 des prix abordables, comme nulle part ailleurs.",
+               "image" : "https://s3-ak.buzzfed.com/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309293-25.jpg",
+               "old" : "0",
+               "promotion_medium_id" : "1",
+               "flexpro_recipients" : "",
+               "title" : "12 lieux de Grande-Bretagne qui feront imm\u00e9diatement de vous un amateur d\u2019art",
+               "image_wide" : "/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309293-25_wide.jpg",
+               "original_image" : "/static/2016-01/14/15/enhanced/webdr08/original-grid-image-8493-1452801935-16.jpg"
+            },
+            {
+               "width" : "125",
+               "extra_fields" : {
+                  "small" : {
+                     "width" : "1024",
+                     "left" : 0,
+                     "top" : 0,
+                     "height" : 679
+                  },
+                  "big" : {
+                     "width" : "1024",
+                     "left" : 0,
+                     "top" : 0,
+                     "height" : 679
+                  },
+                  "wide" : {
+                     "width" : "1024",
+                     "left" : 0,
+                     "top" : 161,
+                     "height" : 360
+                  }
+               },
+               "image_dblwide" : "/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309282-21_dblwide.jpg",
+               "clicks" : "1",
+               "dud" : "0",
+               "added" : "2016-01-20 12:01:24",
+               "campaign_id" : "4124196",
+               "rate" : 0.000429922613929493,
+               "impressions" : "2326",
+               "image_id" : "412811",
+               "original_image_width" : "1024",
+               "promoter" : "1982408",
+               "updated" : "2016-01-21 13:07:25",
+               "id" : "658089",
+               "image_dblbig" : "/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309282-21_dblbig.jpg",
+               "is_default" : "0",
+               "promotion_image_id" : "412811",
+               "sub_buzz_id" : "7766685",
+               "image_big" : "/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309282-21_big.jpg",
+               "probability" : 0.0392121085092784,
+               "active" : "1",
+               "original_image_height" : "683",
+               "height" : "83",
+               "description" : "La Grande-Bretagne est une \u0153uvre d\u2019art en elle-m\u00eame \u00e0 vrai dire. <a href=\"https://ad.doubleclick.net/ddm/trackclk/N6198.244372.BUZZFEED/B9126123.127172812;dc_trk_aid=300333791;dc_trk_cid=66097070;dc_lat=;dc_rdid=;tag_for_child_directed_treatment=\">Venez la d\u00e9couvrir</a> et vivez des instants culturels m\u00e9morables \u00e0 des prix abordables, comme nulle part ailleurs.",
+               "image" : "https://s3-ak.buzzfed.com/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309282-21.jpg",
+               "old" : "0",
+               "promotion_medium_id" : "1",
+               "flexpro_recipients" : "",
+               "title" : "12 lieux de Grande-Bretagne qui feront imm\u00e9diatement de vous un amateur d\u2019art",
+               "image_wide" : "/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309282-21_wide.jpg",
+               "original_image" : "/static/2016-01/14/15/enhanced/webdr05/original-grid-image-16839-1452801844-24.jpg"
+            },
+            {
+               "width" : "125",
+               "extra_fields" : {
+                  "small" : {
+                     "width" : 983,
+                     "left" : 0,
+                     "top" : 0,
+                     "height" : "653"
+                  },
+                  "big" : {
+                     "width" : 983,
+                     "left" : 0,
+                     "top" : 0,
+                     "height" : "653"
+                  },
+                  "wide" : {
+                     "width" : "1000",
+                     "left" : 0,
+                     "top" : 150,
+                     "height" : 352
+                  }
+               },
+               "image_dblwide" : "/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309278-19_dblwide.jpg",
+               "clicks" : "5",
+               "dud" : "0",
+               "added" : "2016-01-20 12:01:20",
+               "campaign_id" : "4124196",
+               "rate" : 0.00216825672159584,
+               "impressions" : "2306",
+               "image_id" : "412810",
+               "original_image_width" : "1000",
+               "promoter" : "1982408",
+               "updated" : "2016-01-21 12:43:15",
+               "id" : "658088",
+               "image_dblbig" : "/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309278-19_dblbig.jpg",
+               "is_default" : "0",
+               "promotion_image_id" : "412810",
+               "sub_buzz_id" : "7766683",
+               "image_big" : "/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309278-19_big.jpg",
+               "probability" : 0.0396500868716892,
+               "active" : "1",
+               "original_image_height" : "653",
+               "height" : "83",
+               "description" : "La Grande-Bretagne est une \u0153uvre d\u2019art en elle-m\u00eame \u00e0 vrai dire. <a href=\"https://ad.doubleclick.net/ddm/trackclk/N6198.244372.BUZZFEED/B9126123.127172812;dc_trk_aid=300333791;dc_trk_cid=66097070;dc_lat=;dc_rdid=;tag_for_child_directed_treatment=\">Venez la d\u00e9couvrir</a> et vivez des instants culturels m\u00e9morables \u00e0 des prix abordables, comme nulle part ailleurs.",
+               "image" : "https://s3-ak.buzzfed.com/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309278-19.jpg",
+               "old" : "0",
+               "promotion_medium_id" : "1",
+               "flexpro_recipients" : "",
+               "title" : "12 lieux de Grande-Bretagne qui feront imm\u00e9diatement de vous un amateur d\u2019art",
+               "image_wide" : "/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309278-19_wide.jpg",
+               "original_image" : "/static/2016-01/11/13/enhanced/webdr14/original-3648-1452538031-3.jpg"
+            },
+            {
+               "width" : "125",
+               "extra_fields" : {
+                  "small" : {
+                     "width" : "1000",
+                     "left" : 0,
+                     "top" : 0,
+                     "height" : 664
+                  },
+                  "big" : {
+                     "width" : "1000",
+                     "left" : 0,
+                     "top" : 0,
+                     "height" : 664
+                  },
+                  "wide" : {
+                     "width" : "1000",
+                     "left" : 0,
+                     "top" : 156,
+                     "height" : 352
+                  }
+               },
+               "image_dblwide" : "/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309258-13_dblwide.jpg",
+               "clicks" : "5",
+               "dud" : "0",
+               "added" : "2016-01-20 12:02:49",
+               "campaign_id" : "4124196",
+               "rate" : 0.00215238915195867,
+               "impressions" : "2323",
+               "image_id" : "412807",
+               "original_image_width" : "1000",
+               "promoter" : "1982408",
+               "updated" : "2016-01-21 12:29:43",
+               "id" : "658100",
+               "image_dblbig" : "/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309258-13_dblbig.jpg",
+               "is_default" : "0",
+               "promotion_image_id" : "412807",
+               "sub_buzz_id" : "7766688",
+               "image_big" : "/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309258-13_big.jpg",
+               "probability" : 0.0392779324574302,
+               "active" : "1",
+               "original_image_height" : "665",
+               "height" : "83",
+               "description" : "La Grande-Bretagne est une \u0153uvre d\u2019art en elle-m\u00eame \u00e0 vrai dire. <a href=\"https://ad.doubleclick.net/ddm/trackclk/N6198.244372.BUZZFEED/B9126123.127172812;dc_trk_aid=300333791;dc_trk_cid=66097070;dc_lat=;dc_rdid=;tag_for_child_directed_treatment=\">Venez la d\u00e9couvrir</a> et vivez des instants culturels m\u00e9morables \u00e0 des prix abordables, comme nulle part ailleurs.",
+               "image" : "https://s3-ak.buzzfed.com/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309258-13.jpg",
+               "old" : "0",
+               "promotion_medium_id" : "1",
+               "flexpro_recipients" : "",
+               "title" : "12 lieux de Grande-Bretagne qui feront imm\u00e9diatement de vous un amateur d\u2019art",
+               "image_wide" : "/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309258-13_wide.jpg",
+               "original_image" : "/static/2015-10/8/17/enhanced/webdr10/original-1317-1444339842-4.jpg"
+            },
+            {
+               "width" : "125",
+               "extra_fields" : {
+                  "small" : {
+                     "width" : "1000",
+                     "left" : 0,
+                     "top" : 0,
+                     "height" : 664
+                  },
+                  "big" : {
+                     "width" : "1000",
+                     "left" : 0,
+                     "top" : 0,
+                     "height" : 664
+                  },
+                  "wide" : {
+                     "width" : "1000",
+                     "left" : 0,
+                     "top" : 157,
+                     "height" : 352
+                  }
+               },
+               "image_dblwide" : "/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309313-31_dblwide.jpg",
+               "clicks" : "5",
+               "dud" : "0",
+               "added" : "2016-01-20 12:02:49",
+               "campaign_id" : "4124196",
+               "rate" : 0.0020746887966805,
+               "impressions" : "2410",
+               "image_id" : "412816",
+               "original_image_width" : "1000",
+               "promoter" : "1982408",
+               "updated" : "2016-01-21 12:40:22",
+               "id" : "658109",
+               "image_dblbig" : "/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309313-31_dblbig.jpg",
+               "is_default" : "0",
+               "promotion_image_id" : "412816",
+               "sub_buzz_id" : "7766689",
+               "image_big" : "/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309313-31_big.jpg",
+               "probability" : 0.0373868277697568,
+               "active" : "1",
+               "original_image_height" : "667",
+               "height" : "83",
+               "description" : "La Grande-Bretagne est une \u0153uvre d\u2019art en elle-m\u00eame \u00e0 vrai dire. <a href=\"https://ad.doubleclick.net/ddm/trackclk/N6198.244372.BUZZFEED/B9126123.127172812;dc_trk_aid=300333791;dc_trk_cid=66097070;dc_lat=;dc_rdid=;tag_for_child_directed_treatment=\">Venez la d\u00e9couvrir</a> et vivez des instants culturels m\u00e9morables \u00e0 des prix abordables, comme nulle part ailleurs.",
+               "image" : "https://s3-ak.buzzfed.com/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309313-31.jpg",
+               "old" : "0",
+               "promotion_medium_id" : "1",
+               "flexpro_recipients" : "",
+               "title" : "12 lieux de Grande-Bretagne qui feront imm\u00e9diatement de vous un amateur d\u2019art",
+               "image_wide" : "/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309313-31_wide.jpg",
+               "original_image" : "/static/2015-10/9/10/enhanced/webdr15/original-13902-1444401474-3.jpg"
+            },
+            {
+               "width" : "125",
+               "extra_fields" : {
+                  "small" : {
+                     "width" : "1024",
+                     "left" : 0,
+                     "top" : 0,
+                     "height" : 679
+                  },
+                  "big" : {
+                     "width" : "1024",
+                     "left" : 0,
+                     "top" : 0,
+                     "height" : 679
+                  },
+                  "wide" : {
+                     "width" : "1024",
+                     "left" : 0,
+                     "top" : 161,
+                     "height" : 360
+                  }
+               },
+               "image_dblwide" : "/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309288-23_dblwide.jpg",
+               "clicks" : "6",
+               "dud" : "0",
+               "added" : "2016-01-20 12:02:49",
+               "campaign_id" : "4124196",
+               "rate" : 0.00262697022767075,
+               "impressions" : "2284",
+               "image_id" : "412812",
+               "original_image_width" : "1024",
+               "promoter" : "1982408",
+               "updated" : "2016-01-21 12:59:53",
+               "id" : "658105",
+               "image_dblbig" : "/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309288-23_dblbig.jpg",
+               "is_default" : "0",
+               "promotion_image_id" : "412812",
+               "sub_buzz_id" : "7766714",
+               "image_big" : "/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309288-23_big.jpg",
+               "probability" : 0.0401370849871225,
+               "active" : "1",
+               "original_image_height" : "683",
+               "height" : "83",
+               "description" : "La Grande-Bretagne est une \u0153uvre d\u2019art en elle-m\u00eame \u00e0 vrai dire. <a href=\"https://ad.doubleclick.net/ddm/trackclk/N6198.244372.BUZZFEED/B9126123.127172812;dc_trk_aid=300333791;dc_trk_cid=66097070;dc_lat=;dc_rdid=;tag_for_child_directed_treatment=\">Venez la d\u00e9couvrir</a> et vivez des instants culturels m\u00e9morables \u00e0 des prix abordables, comme nulle part ailleurs.",
+               "image" : "https://s3-ak.buzzfed.com/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309288-23.jpg",
+               "old" : "0",
+               "promotion_medium_id" : "1",
+               "flexpro_recipients" : "",
+               "title" : "12 lieux de Grande-Bretagne qui feront imm\u00e9diatement de vous un amateur d\u2019art",
+               "image_wide" : "/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309288-23_wide.jpg",
+               "original_image" : "/static/2015-12/18/12/enhanced/webdr14/original-6094-1450459891-11.jpg"
+            },
+            {
+               "width" : "125",
+               "extra_fields" : {
+                  "small" : {
+                     "width" : "1024",
+                     "left" : 0,
+                     "top" : 0,
+                     "height" : 679
+                  },
+                  "big" : {
+                     "width" : "1024",
+                     "left" : 0,
+                     "top" : 0,
+                     "height" : 679
+                  },
+                  "wide" : {
+                     "width" : "1024",
+                     "left" : 0,
+                     "top" : 161,
+                     "height" : 360
+                  }
+               },
+               "image_dblwide" : "/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309288-23_dblwide.jpg",
+               "clicks" : "6",
+               "dud" : "0",
+               "added" : "2016-01-20 12:01:30",
+               "campaign_id" : "4124196",
+               "rate" : 0.00254668930390492,
+               "impressions" : "2356",
+               "image_id" : "412812",
+               "original_image_width" : "1024",
+               "promoter" : "1982408",
+               "updated" : "2016-01-21 12:50:55",
+               "id" : "658090",
+               "image_dblbig" : "/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309288-23_dblbig.jpg",
+               "is_default" : "0",
+               "promotion_image_id" : "412812",
+               "sub_buzz_id" : "7766714",
+               "image_big" : "/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309288-23_big.jpg",
+               "probability" : 0.0385606403888468,
+               "active" : "1",
+               "original_image_height" : "683",
+               "height" : "83",
+               "description" : "La Grande-Bretagne est une \u0153uvre d\u2019art en elle-m\u00eame \u00e0 vrai dire. <a href=\"https://ad.doubleclick.net/ddm/trackclk/N6198.244372.BUZZFEED/B9126123.127172812;dc_trk_aid=300333791;dc_trk_cid=66097070;dc_lat=;dc_rdid=;tag_for_child_directed_treatment=\">Venez la d\u00e9couvrir</a> et vivez des instants culturels m\u00e9morables \u00e0 des prix abordables, comme nulle part ailleurs.",
+               "image" : "https://s3-ak.buzzfed.com/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309288-23.jpg",
+               "old" : "0",
+               "promotion_medium_id" : "1",
+               "flexpro_recipients" : "",
+               "title" : "12 lieux de Grande-Bretagne qui feront imm\u00e9diatement de vous un amateur d\u2019art",
+               "image_wide" : "/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309288-23_wide.jpg",
+               "original_image" : "/static/2015-12/18/12/enhanced/webdr14/original-6094-1450459891-11.jpg"
+            },
+            {
+               "width" : "125",
+               "extra_fields" : {
+                  "small" : {
+                     "width" : "1000",
+                     "left" : 0,
+                     "top" : 0,
+                     "height" : 664
+                  },
+                  "big" : {
+                     "width" : "1000",
+                     "left" : 0,
+                     "top" : 0,
+                     "height" : 664
+                  },
+                  "wide" : {
+                     "width" : "1000",
+                     "left" : 0,
+                     "top" : 193,
+                     "height" : 352
+                  }
+               },
+               "image_dblwide" : "/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309308-29_dblwide.jpg",
+               "clicks" : "7",
+               "dud" : "0",
+               "added" : "2016-01-20 12:02:49",
+               "campaign_id" : "4124196",
+               "rate" : 0.0029374737725556,
+               "impressions" : "2383",
+               "image_id" : "412815",
+               "original_image_width" : "1000",
+               "promoter" : "1982408",
+               "updated" : "2016-01-21 13:00:11",
+               "id" : "658108",
+               "image_dblbig" : "/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309308-29_dblbig.jpg",
+               "is_default" : "0",
+               "promotion_image_id" : "412815",
+               "sub_buzz_id" : "7766705",
+               "image_big" : "/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309308-29_big.jpg",
+               "probability" : 0.0379968799994596,
+               "active" : "1",
+               "original_image_height" : "738",
+               "height" : "83",
+               "description" : "La Grande-Bretagne est une \u0153uvre d\u2019art en elle-m\u00eame \u00e0 vrai dire. <a href=\"https://ad.doubleclick.net/ddm/trackclk/N6198.244372.BUZZFEED/B9126123.127172812;dc_trk_aid=300333791;dc_trk_cid=66097070;dc_lat=;dc_rdid=;tag_for_child_directed_treatment=\">Venez la d\u00e9couvrir</a> et vivez des instants culturels m\u00e9morables \u00e0 des prix abordables, comme nulle part ailleurs.",
+               "image" : "https://s3-ak.buzzfed.com/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309308-29.jpg",
+               "old" : "0",
+               "promotion_medium_id" : "1",
+               "flexpro_recipients" : "",
+               "title" : "12 lieux de Grande-Bretagne qui feront imm\u00e9diatement de vous un amateur d\u2019art",
+               "image_wide" : "/static/2016-01/20/12/campaign_images/webdr02/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-25379-1453309308-29_wide.jpg",
+               "original_image" : "/static/2016-01/14/15/enhanced/webdr04/original-grid-image-31321-1452801961-15.jpg"
+            }
+         ],
+         "last_updated_unix" : "1453401186",
+         "byline_description_visual" : "Brand Publisher",
+         "display_name" : "VisitBritain",
+         "image" : "https://s3-ak.buzzfed.com/static/2016-01/20/12/campaign_images/webdr09/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-20174-1453309969-12.jpg",
+         "byline_description_id" : "5",
+         "static_images" : {
+            "small" : "http://s3-static-ak.buzzfed.com/static/2016-01/20/12/campaign_images/webdr09/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-20174-1453309969-12_small.jpg",
+            "standard" : "http://s3-static-ak.buzzfed.com/static/2016-01/20/12/campaign_images/webdr09/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-20174-1453309969-12.jpg",
+            "big" : "http://s3-static-ak.buzzfed.com/static/2016-01/20/12/campaign_images/webdr09/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-20174-1453309969-12_big.jpg",
+            "wide" : "http://s3-static-ak.buzzfed.com/static/2016-01/20/12/campaign_images/webdr09/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-20174-1453309969-12_wide.jpg",
+            "dblbig" : "http://s3-static-ak.buzzfed.com/static/2016-01/20/12/campaign_images/webdr09/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-20174-1453309969-12_dblbig.jpg",
+            "dblwide" : "http://s3-static-ak.buzzfed.com/static/2016-01/20/12/campaign_images/webdr09/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-20174-1453309969-12_dblwide.jpg"
+         },
+         "image_small" : "https://s3-ak.buzzfed.com/static/2016-01/20/12/campaign_images/webdr09/12-lieux-de-grande-bretagne-qui-feront-immediatem-2-20174-1453309969-12_small.jpg",
+         "html_blurb" : "<b><big>12 lieux de Grande-Bretagne qui feront imm\u00e9diatement de vous un amateur d\u2019art</big></b><br/>La Grande-Bretagne est une \u0153uvre d\u2019art en elle-m\u00eame \u00e0 vrai dire. <a href=\"https://ad.doubleclick.net/ddm/trackclk/N6198.244372.BUZZFEED/B9126123.127172812;dc_trk_aid=300333791;dc_trk_cid=66097070;dc_lat=;dc_rdid=;tag_for_child_directed_treatment=\">Venez la d\u00e9couvrir</a> et vivez des instants culturels m\u00e9morables \u00e0 des prix abordables, comme nulle part ailleurs.<br/><table><tr><td width='30' padding='0 0'><img src='https://s3-ak.buzzfed.com/static/2015-10/8/12/user_images/webdr03/akwarren2-v2-14177-1444322584-4.jpg' width='25' height='25'/></td><td padding='5' pspacing='0'><small><b><a href='/visitbritainfr'>VisitBritain</a></b></small><br/><small><color value='#939393'>Brand Publisher</color></small></td></tr></table>"
+      }
+   ],
+   "no_shell" : null
+}
+;var uw_impression=function(){bf_widget.d={type:[],buzzid:[],user:[],buzz:[],userid:[],query:[]};var num_displayed=BF_DISPLAYED_BUZZ.length;var buzzes=BF_DISPLAYED_BUZZ;for(var i=0;i<num_displayed;i++)
+{var buzz=buzzes[i];bf_widget.d.type.push((typeof buzz['b']!='undefined')?bf_widget.boost_impression_type:bf_widget.impression_type);bf_widget.d.buzzid.push(buzz.bid);bf_widget.d.userid.push(buzz.uid);bf_widget.d.buzz.push(buzz.uri);bf_widget.d.user.push(buzz.user);if(bf_widget.is_dfp_on_buzzfeed&&typeof BF_DATA['position_id']!='undefined')
+{bf_widget.d.query.push(BF_DATA.position_id);}
+if(typeof buzz['flex_pro_id']!='undefined')
+{bf_widget.d.type.push(bf_widget.flex_pro_impression_type);bf_widget.d.buzzid.push(buzz.bid);bf_widget.d.userid.push(buzz.uid);bf_widget.d.buzz.push(buzz.uri);bf_widget.d.user.push(buzz.user);bf_widget.d.query.push(buzz['flex_pro_id']);}}
+var track_url="http://"+(bf_widget.servers[Math.floor(Math.random()*bf_widget.servers.length)])+"/small.gif?";track_url+="type="+bf_widget.d.type.join(",");track_url+="&c="+bf_widget.d.buzzid.join(",");track_url+="&buzz="+bf_widget.d.buzz.join(",");track_url+="&u="+bf_widget.d.userid.join(",");track_url+="&user="+bf_widget.d.user.join(",");track_url+="&query="+bf_widget.d.query.join(",");if(!bf_widget.is_dfp)
+{track_url+="&url="+escape(window.location.href);}
+track_url+="&z="+Math.floor((Math.random()*10000));BF_W.record_pixel(track_url);if(typeof window['BF_DFP_IMP']!='undefined')
+{BF_W.record_pixel(BF_DFP_IMP);}
+if(BF_DATA.wid&&typeof window['BF_DFP_IMPS']!='undefined'&&BF_DFP_IMPS[BF_DATA.wid])
+{BF_W.record_pixel(BF_DFP_IMPS[BF_DATA.wid]);}
+if(typeof(parent.BF_NO_QS)=='undefined'){BF_W.record_pixel("http://pixel.quantserve.com/pixel/p-3aud4J6uA4Z6Y.gif?labels=Widget&busty="+Math.floor((Math.random()*10000)));}}
+var bfa_click=function(el,buzz,wid){try{if(!el.getAttribute("data-bfa")||typeof window.bfa=='undefined'||!(window.bfa instanceof Function)||typeof window.bfaBinder=='undefined'){return;}
+var bfaAttrObj=window.bfaBinder.parser.parse(el);if(bfaAttrObj[0].indexOf('-dfp')===-1){return;}
+bfaAttrObj[3].adbuzzid=buzz.bid_native;bfaAttrObj[3].adbuzzurl=buzz.url;bfaAttrObj[3].adpartner=buzz.user;bfaAttrObj[3].adtitle=buzz.name;bfaAttrObj[3].adimageurl=buzz.image;var result=["track",'click',];result=result.concat(bfaAttrObj);window.bfa.apply(this,result);}catch(e){console.error(e);}};var uw_click=function(el,buzz,wid){try{if(typeof window['BF_DFP_CLICK']!='undefined')
+{BF_W.record_pixel(BF_DFP_CLICK);}
+if(wid&&typeof window['BF_DFP_CLICKS']!='undefined'&&BF_DFP_CLICKS[wid])
+{BF_W.record_pixel(BF_DFP_CLICKS[wid]);}
+var DFP_CLICK=null;if(typeof window['BF_DFP_REDIRECT']!='undefined'){DFP_CLICK=BF_DFP_REDIRECT;}
+if(typeof window['BF_DFP_REDIRECTS']!='undefined'&&BF_DFP_REDIRECTS[wid]){DFP_CLICK=BF_DFP_REDIRECTS[wid];}
+if(DFP_CLICK)
+{el.href=DFP_CLICK+el.href;}
+var buzz_url=buzz['user_link']?buzz['user_link']:buzz['url'];bf_widget.d={type:[],buzzid:[],user:[],buzz:[],userid:[],query:[]};bf_widget.d.type.push(((typeof buzz['b']!='undefined')?bf_widget.boost_click_type:bf_widget.click_type));bf_widget.d.buzzid.push(buzz.bid);bf_widget.d.userid.push(buzz.uid);bf_widget.d.buzz.push(buzz.uri);bf_widget.d.user.push(buzz.user);bf_widget.d.query.push((bf_widget.is_dfp_on_buzzfeed&&typeof BF_DATA['position_id']!='undefined')?BF_DATA.position_id:'');if(typeof buzz['flex_pro_id']!='undefined')
+{bf_widget.d.type.push(bf_widget.flex_pro_click_type);bf_widget.d.buzzid.push(buzz.bid);bf_widget.d.userid.push(buzz.uid);bf_widget.d.buzz.push(buzz.uri);bf_widget.d.user.push(buzz.user);bf_widget.d.query.push(buzz['flex_pro_id']);}
+if(buzz['user_link'])
+{bf_widget.d.type.push(23);bf_widget.d.buzzid.push(buzz.bid);bf_widget.d.userid.push(buzz.uid);bf_widget.d.buzz.push(buzz.uri);bf_widget.d.user.push(buzz.user);bf_widget.d.query.push('');}
+var track_url="http://"+(bf_widget.servers[Math.floor(Math.random()*bf_widget.servers.length)])+"/small.gif?";track_url+="type="+bf_widget.d.type.join(",");track_url+="&c="+bf_widget.d.buzzid.join(",");track_url+="&buzz="+bf_widget.d.buzz.join(",");track_url+="&u="+bf_widget.d.userid.join(",");track_url+="&user="+bf_widget.d.user.join(",");track_url+="&query="+bf_widget.d.query.join(",");if(!bf_widget.is_dfp)
+{track_url+="&url="+escape(window.location.href);}
+BF_W.record_pixel(track_url);}catch(e){console.error(e);}};var bf_widget={};bf_widget.servers=["alleyezonme-collection.buzzfeed.com"];bf_widget.is_dfp=(typeof BF_DATA['network']!='undefined');bf_widget.is_dfp_on_buzzfeed=(typeof BF_DATA['network']!='undefined'&&BF_DATA['network']=='buzzfeed');bf_widget.impression_type=(bf_widget.is_dfp_on_buzzfeed)?30:13;bf_widget.click_type=(bf_widget.is_dfp_on_buzzfeed)?35:14;bf_widget.boost_impression_type=32;bf_widget.boost_click_type=37;bf_widget.flex_pro_impression_type=33;bf_widget.flex_pro_click_type=38;if(BF_DATA&&BF_DATA.wid&&BF_DATA.buzz&&BF_DATA.buzz.length>0){BF_W.show_widget(BF_DATA,function(el,buzz,wid){uw_click.call(this,el,buzz,wid);bfa_click.call(this,el,buzz,wid);});uw_impression();if(BF_DATA.track){BF_PARTNER.invisible=false;window['BF_SID']=BF_DATA.track;BF_PARTNER.track_page(BF_DATA.track);}}}catch(e){console.error(e);}})();
+
+/* s 13:34:00 01/21/2016 */

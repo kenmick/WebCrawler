@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="ad.size" content="width=300,height=250">
+    <title>SFR Template ADVENTORI</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/lp/enabler/ADventori-2.0.0.css">  
+    <script src="/lp/enabler/ADventori-2.0.0.js" type="text/javascript"></script>
+
+
+<!-- PRELOAD IMAGES-->
+     <script>
+
+        var images = new Array()
+        
+        function preload() {
+            for (i = 0; i < preload.arguments.length; i++) {
+                images[i] = new Image();
+                images[i].src = preload.arguments[i];
+                images[i].onerror = function (evt) {
+                    alert(this.src + " can't be loaded.");
+                }
+            }
+        }
+        preload
+        (   
+          "assets/images/Logo.png",
+          "assets/images/BG.jpg",
+          "assets/images/BoxFibre.png",
+          "assets/images/CarreBG.png",
+          "assets/images/CTA.png",
+          "assets/images/FibreGlow.png",
+          "assets/images/GlowCTA.png",
+          "assets/images/GlowPrix.png",
+          "assets/images/Mention.png",
+          "assets/images/OffreExclu.png",
+          "assets/images/OffreFibre.png",         
+          "assets/images/txt01.png",
+          "assets/images/txtFibre.png",
+          "assets/images/txtGlow01.png",
+          "assets/images/txtPrix.png",
+          "assets/images/VoirConditions.png"        
+          
+
+        )
+ 
+    </script>
+<!-- -->
+
+
+</head>
+
+
+<body>
+
+    <a style="text-decoration:none;" onclick="ADventori.click();">
+        <div class="wrapper">
+
+            <div id="banner">
+
+                    <div class="Logo"><img src="assets/images/Logo.png"></div>
+                    <div class="BG"><img src="assets/images/BG.jpg"></div>    
+                    <div class="CarreBG"><img src="assets/images/CarreBG.png"></div>                   
+                    <div class="txt01"><img class="txtScale" src="assets/images/txt01.png"></div>
+                    <div class="Glow01"><img class="txtScale" src="assets/images/txtGlow01.png"></div> 
+                    <div class="Offre01"><img src="assets/images/OffreFibre.png"></div>
+                    <div class="txtFibre"><img src="assets/images/txtFibre.png"></div>
+                    <div class="FibreGlow"><img src="assets/images/FibreGlow.png"></div>
+                    <div class="OffreExclu"><img src="assets/images/OffreExclu.png"></div>
+                    <div class="Box"><img src="assets/images/BoxFibre.png"></div>
+                    <div class="txtPrix"><img src="assets/images/txtPrix.png"></div>
+                    <div class="PrixTxt"><img src="assets/images/PrixTxt.png"></div>                    
+                    <div class="GlowPrix"><img class="GlowScale" src="assets/images/GlowPrix.png"></div>
+                    <div class="GlowCTA"><img src="assets/images/GlowCTA.png"></div>
+                    <div class="CTA"><img src="assets/images/CTA.png"></div>
+                    <div class="VoirConditions"><img src="assets/images/VoirConditions.png"></div>
+                    <div class="Mention"><img src="assets/images/Mention.png"></div>                 
+ 
+            </div>
+            
+        </div>
+    </a>
+
+
+
+
+    <!-- jquery library -->
+
+    <script src="/lp/dd/sfr/jquery-1.11.3.min.js"></script>
+	<script src="assets/js/jquery.easing.1.3.js"></script>
+    <script src="assets/js/jquery.banner.js" type="text/javascript"></script>
+     
+
+
+        <script type="text/javascript">
+            $(function() {
+
+                $('#banner').banner({
+
+                steps : [                           
+
+                            [
+                                [{"el" : "Glow01"},{"delay" : "500"}, {"effect": "fadeIn"},{"ease":"linear"},{"customValue":"0"},{"AnimTime":"500"}]
+                            ],                            
+
+                           
+                            [
+                                [{"el" : "Glow01"},{"delay" : "200"}, {"effect": "CustomfadeOut"},{"ease":"easeOutBack"},{"customValue":"0"},{"AnimTime":"500"}]
+                            ],
+
+                            [
+                                [{"el" : "Glow01"},{"delay" : "200"}, {"effect": "fadeIn"},{"ease":"easeOutBack"},{"customValue":"0"},{"AnimTime":"500"}]
+                            ],
+
+                            [
+                                [{"el" : "Glow01"},{"delay" : "200"}, {"effect": "fadeOut"},{"ease":"easeOutBack"},{"customValue":"0"},{"AnimTime":"500"}]
+                            ],                           
+
+                            [
+                                [{"el" : "txtScale"},{"delay" : "3000"}, {"effect": "scaleDown"},{"ease":"easeInQuad"},{"customValue":"0"},{"AnimTime":"500"}]
+                            ],
+
+                            [
+                                [{"el" : "Offre01"},{"delay" : "3000"}, {"effect": "fadeOut"},{"ease":"easeInQuad"},{"customValue":"0"},{"AnimTime":"500"}]
+                            ],
+
+                            [
+                                [{"el" : "txtFibre"},{"delay" : "3300"}, {"effect": "fadeIn"},{"ease":"easeInQuad"},{"customValue":"0"},{"AnimTime":"500"}]
+                            ],
+                           
+                            [
+                                [{"el" : "FibreGlow"},{"delay" : "3800"}, {"effect": "fadeIn"},{"ease":"easeInQuad"},{"customValue":"0"},{"AnimTime":"500"}]
+                            ],
+
+                            [
+                                [{"el" : "FibreGlow"},{"delay" : "200"}, {"effect": "fadeOut"},{"ease":"easeInQuad"},{"customValue":"0"},{"AnimTime":"500"}]
+                            ],                                              
+
+                            [
+                                [{"el" : "Box"},{"delay" : "3200"}, {"effect": "customLeft"},{"ease":"easeInQuad"},{"customValue":"75px"},{"AnimTime":"500"}]
+                            ],
+                            
+                            [
+                                [{"el" : "txtPrix"},{"delay" : "5000"}, {"effect": "fadeIn"},{"ease":"easeInQuad"},{"customValue":"0"},{"AnimTime":"0"}]
+                            ],
+
+                            [
+                                [{"el" : "PrixTxt"},{"delay" : "5000"}, {"effect": "fadeIn"},{"ease":"easeInQuad"},{"customValue":"0"},{"AnimTime":"0"}]
+                            ],                           
+
+                            [
+                                [{"el" : "GlowPrix"},{"delay" : "8000"}, {"effect": "fadeIn"},{"ease":"easeOutQuad"},{"customValue":"0"},{"AnimTime":"0"}]
+                            ],
+
+                            [
+                                [{"el" : "GlowPrix"},{"delay" : "500"}, {"effect": "fadeOut"},{"ease":"easeOutQuad"},{"customValue":"0"},{"AnimTime":"0"}]
+                            ],             
+                   
+                            [
+                                [{"el" : "OffreExclu"},{"delay" : "9000"}, {"effect": "customLeft"},{"ease":"easeInQuad"},{"customValue":"228"},{"AnimTime":"500"}]
+                            ],
+
+                            [
+                                [{"el" : "Box"},{"delay" : "7500"}, {"effect": "customLeft"},{"ease":"easeInQuad"},{"customValue":"350px"},{"AnimTime":"500"}]
+                            ],                            
+
+                            [
+                                [{"el" : "CTA"},{"delay" : "11500"}, {"effect": "fadeIn"},{"ease":"easeInQuad"},{"customValue":"0"},{"AnimTime":"0"}]
+                            ],
+
+                            [
+                                [{"el" : "VoirConditions"},{"delay" : "11300"}, {"effect": "SpecialCase"},{"ease":"easeInQuad"},{"customValue":"0"},{"AnimTime":"0"}]
+                            ],
+
+                            [
+                                [{"el" : "VoirConditions"},{"delay" : "0"}, {"effect": "fadeIn"},{"ease":"easeInQuad"},{"customValue":"0"},{"AnimTime":"500"}]
+                            ],
+
+                           
+                            [
+                                [{"el" : "GlowCTA"},{"delay" : "15000"}, {"effect": "fadeIn"},{"ease":"easeInQuad"},{"customValue":"0"},{"AnimTime":"500"}]
+                            ],
+
+                            [
+                                [{"el" : "GlowCTA"},{"delay" : "500"}, {"effect": "fadeOut"},{"ease":"easeInQuad"},{"customValue":"0"},{"AnimTime":"500"}]
+                            ]
+
+                            
+
+
+
+                           
+
+                            
+
+
+
+
+                        ],
+
+                    total_steps :21
+                
+                });
+            });
+
+            $(".VoirConditions").mouseenter(function(){
+                $(".Mention").animate({top:196}, 500);
+            });
+
+            $(".Mention").mouseleave(function(){
+                $(".Mention").animate({top:250},500);
+            })
+
+        </script>
+
+</body>
+
+</html>

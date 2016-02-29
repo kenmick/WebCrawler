@@ -1,0 +1,26 @@
+new (function(){this.host = "psma02.com";this.ad = {id: "17429", divId: "b2d2e10c66", width: "160", height: "600", alternateImage: "", click: "//adservone.com/ck/bn/644/17429/0/0/160x600", image: "https://cdn.onedmp.com/media/1/3/i13643134561752_49.gif"};
+this.div = document.getElementById(this.ad.divId);
+if (false == this.div) {
+    throw 'div for ad not found!';
+}
+this.div.style.display = 'block';
+this.div.style.height = this.ad.height+'px';
+this.div.style.width = this.ad.width+'px';
+this.div.style.cursor = 'pointer';
+this.div.style.position = 'relative';
+this.div.style.overflow = 'hidden';
+
+this.img = new Image();
+this.img.src = this.ad.image;
+this.img.style.maxHeight = this.ad.height+'px';
+this.img.style.maxWidth = this.ad.width+'px';
+
+var AD = this.ad;
+this.img.onclick = function() {
+    window.open(AD.click + (AD.click.indexOf('?') >= 0 ? '&' : '?') + Math.random(), '_blank');
+};
+
+this.div.appendChild(this.img);
+
+})();
+new (function(){var src = '//psma02.com/impression/Ym58MTQ1NDI2MzU4NnwxNzQyOXw2NDR8NjR8REVTS1RPUHwxMjB8MTYweDYwMHx8VVNEfDU1NTY2MTU=/?cachebuster=1433301539'; var audit_img = document.createElement('img');audit_img.src = src;})();

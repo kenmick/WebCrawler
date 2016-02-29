@@ -1,0 +1,431 @@
+/* From: production-mt-wfe-52-18-use1 : 6114 */
+huff.unit('common_paginator', function(ready) {
+	var common_paginator = this;
+	
+	common_paginator.init = function(cp, params) {
+		params = params || {};
+		// init simple pagination
+		cp.moduleName = params.moduleName || '';
+		cp.update_max_page = params.update_max_page || false;		
+		cp.url = params.url || '';
+		cp.request_method = params.request_method || 'GET';
+		cp.maxPage = params.maxPage || 0;
+		if (cp.update_max_page && cp.maxPage) {
+			Dom.get('hp_' + cp.moduleName + '_total_pages').innerHTML = cp.maxPage;
+		}
+		cp.callback = params.callback || function() {};
+		cp.render_content_after_requested = params.render_content_after_requested || null;
+		cp.dataType = params.dataType || 'html';
+		cp.recognize_cmd = params.recognize_cmd || function() { return ''; };
+		cp.is_loaded_callback = params.is_loaded_callback || function() {return 1;};
+		cp.cPages = params.cPages || function(text) { return text.match(/c_pages:(.*?)\s/)[1] };
+		cp.create_page_ajax_url = params.create_page_ajax_url || function(curPage, url) {if (url) return url + '&page=' + curPage};		
+		cp.custom_data = params.custom_data || [];
+		cp.is_circle = params.is_circle || false;
+		cp.is_custom_data = params.is_custom_data || false;
+		cp.is_ajax_update = params.is_ajax_update || false;
+		cp.is_update_current_page = ( false === params.is_update_current_page) ? false : true;
+		cp.is_whole_circle = params.is_whole_circle || false;
+		cp.is_ajax_eval = params.is_ajax_eval || false;
+		cp.update_images = params.update_images || false;
+		cp.custom_img_width = params.custom_img_width || 74;
+		cp.custom_img_height = params.custom_img_height || 54;
+		cp.custom_play_button = params.custom_play_button || false;
+		cp.currentPage = 1;
+		cp.currentCustomPage = 0;
+		cp.startPage = 1;
+		cp.to_hide = 0;
+		cp.lock = false;
+		cp.no_animation=(params.no_animation_for_ie && HPBrowser.isIEOld())||false;
+		cp.main_block_to_hide = params.main_block_to_hide || null;
+		
+		if('' == cp.moduleName) {
+			HPError.e('You should set name of module');
+			return false;
+		}
+		if(0 == cp.maxPage) {
+			HPError.e('You should set maximum of pages');
+			return false;
+		}
+		
+		E.on($('hp_'+cp.moduleName+'_previous_arrow'), 'click', cp.Previous, cp, true);
+		E.on($('hp_'+cp.moduleName+'_next_arrow'), 'click', cp.Next, cp, true);
+	};
+	
+	common_paginator.Previous = function(cp) {
+		if (cp.currentPage <= cp.startPage && !cp.is_circle)
+			return false;
+		else if ( cp.currentPage <= cp.startPage && !cp.is_whole_circle)
+			return false;
+		
+		if (cp.lock)
+			return false;
+		
+		cp.lock = true;
+		cp.to_hide = cp.currentPage;
+		
+		// are we use circle pagination
+		if (cp.is_circle && cp.currentPage <= cp.startPage)
+			cp.currentPage = cp.maxPage;
+		else
+			cp.currentPage--;
+		
+		// for paginators without digit count
+		if (cp.is_update_current_page)
+			$('hp_'+cp.moduleName+'_current_page').innerHTML = cp.currentPage;
+		
+		// downloading images
+		cp.update_images && huff.emit('content/update', '#hp_'+cp.moduleName+'_page_'+cp.currentPage);
+		
+		// hide prev page and display current page
+		HuffPoUtil.hide('hp_'+cp.moduleName+'_page_'+cp.to_hide);
+		HuffPoUtil.show('hp_'+cp.moduleName+'_page_'+cp.currentPage);
+		cp.callback(cp.currentPage);
+		cp.lock = false;
+	};
+	
+	common_paginator.Goto = function(cp, page) {
+		var self = cp;
+		var url = cp.create_page_ajax_url(page, cp.url);
+		
+		if ($('hp_'+cp.moduleName+'_page_' + page)) {
+			HuffPoUtil.hide('hp_'+cp.moduleName+'_page_'+cp.currentPage);	//hide current page
+			HuffPoUtil.show('hp_'+cp.moduleName+'_page_'+page);	//show new page
+			cp.update_images && huff.emit('content/update', '#hp_'+cp.moduleName+'_page_'+page);
+			
+			//refresh arrows
+			if (cp.is_update_current_page)
+				$('hp_'+cp.moduleName+'_current_page').innerHTML = page;
+			
+			self.callback(self.currentPage);
+			cp.currentPage = page;
+		} else  {
+			if (cp.no_animation) {
+				$('hp_'+cp.moduleName+'_all_pages').style.visibility='hidden';
+			} else {
+				SNPModule.animatePage(0, 'hp_'+cp.moduleName+'_all_pages');
+			}
+			
+			// show loading
+			$('hp_'+cp.moduleName+'_main').style.background = "transparent url('http://s.huffpost.com/images/loader.gif') no-repeat center top";
+			var max_tries = 6;
+			var cur_try = 0;
+			var load_page = function()
+			{
+				// for new pages
+				C.asyncRequest( self.request_method, url + '&forced=' + Math.random(),
+				{
+					success: function(o) {
+						
+						var _data_pass_to_callback = o.responseText;
+						
+						if ('json' === self.dataType)
+							_data_pass_to_callback = jQuery.parseJSON(o.responseText);
+							
+						if (!self.is_loaded_callback(_data_pass_to_callback) && cur_try < max_tries)
+						{
+							setTimeout(function() {load_page()}, 3000);
+							++cur_try;
+							return;
+						}
+						var _cmd = self.recognize_cmd(_data_pass_to_callback);
+						
+						if ('hide_block' === _cmd && self.main_block_to_hide)
+							$(self.main_block_to_hide).style.display = 'none';
+						
+						var html = '';
+						if ('function' === typeof self.render_content_after_requested)
+							html = self.render_content_after_requested(_data_pass_to_callback);
+						else
+							html = o.responseText;                            
+						var currentPage = self.currentPage;
+						self.currentPage = 'update_page_to_first' === _cmd ? 1 : page;
+						if (Dom.get('hp_'+self.moduleName+'_page_'+self.currentPage))
+						{
+							HuffPoUtil.hide('hp_'+self.moduleName+'_page_'+currentPage);
+							self.maxPage = self.cPages(_data_pass_to_callback);
+							Dom.get('hp_' + self.moduleName + '_total_pages').innerHTML = self.maxPage;
+							Dom.get('hp_'+self.moduleName+'_page_'+self.currentPage).innerHTML = html;
+						}
+						else
+						{
+							HuffPoUtil.hide('hp_'+self.moduleName+'_page_'+currentPage);
+							$('hp_'+self.moduleName+'_all_pages').innerHTML += html;
+						}
+						
+						if(self.is_ajax_eval)
+							HPUtil.EvalScript(html);
+						
+						HuffPoUtil.show('hp_'+self.moduleName+'_page_'+self.currentPage);
+						
+						//download images
+						self.update_images && huff.emit('content/update', '#hp_'+self.moduleName+'_page_'+self.currentPage);
+						
+						// hide loading
+						$('hp_'+self.moduleName+'_main').style.background = "";
+						
+						// remove opacity and update arrows
+						if (self.no_animation) {
+							$('hp_'+self.moduleName+'_all_pages').style.visibility='visible';
+						} else {
+							SNPModule.animatePage(1, 'hp_'+self.moduleName+'_all_pages');
+						}
+						
+						if( self.is_update_current_page )
+							$('hp_'+self.moduleName+'_current_page').innerHTML = self.currentPage;
+						self.callback(self.currentPage);
+					},
+					failure: function() {
+						$('hp_'+self.moduleName+'_main').style.background = "";
+						if (self.no_animation) {
+							$('hp_'+self.moduleName+'_all_pages').style.visibility='visible';
+						}else{
+							SNPModule.animatePage(1, 'hp_'+self.moduleName+'_all_pages');
+						}
+						HPError.e('we have problems with ajax request');
+					}
+				});
+			}
+			load_page();
+		}
+	};
+	
+	common_paginator.Next = function(cp) {
+		if(cp.currentPage >= cp.maxPage && !cp.is_circle)
+			return false;
+		
+		// check lock
+		if(cp.lock)
+			return false;
+		
+		// set lock
+		cp.lock = true;
+		cp.to_hide = cp.currentPage;
+		
+		// to get next page
+		if( cp.is_circle && cp.currentPage >= cp.maxPage )
+			cp.currentPage = cp.startPage;
+		else
+			cp.currentPage++;
+		
+		// for ajax page update
+		if( cp.is_ajax_update )  {
+			var self = cp;
+			
+			var url = cp.create_page_ajax_url(cp.currentPage, cp.url);
+			
+			if ($('hp_'+cp.moduleName+'_page_' + cp.currentPage)) {
+				HuffPoUtil.hide('hp_'+cp.moduleName+'_page_'+cp.to_hide);	//hide current page
+				HuffPoUtil.show('hp_'+cp.moduleName+'_page_'+cp.currentPage);	//show new page
+				cp.update_images && huff.emit('content/update', '#hp_'+cp.moduleName+'_page_'+cp.currentPage);
+				
+				//refresh arrows
+				if( cp.is_update_current_page )
+					$('hp_'+cp.moduleName+'_current_page').innerHTML = cp.currentPage;
+					
+				self.callback(self.currentPage);
+				cp.lock = false;
+			} else {
+				if (cp.no_animation) {
+					$('hp_'+cp.moduleName+'_all_pages').style.visibility='hidden';
+				}else{
+					SNPModule.animatePage(0, 'hp_'+cp.moduleName+'_all_pages');
+				}
+				
+				// show loading
+				$('hp_'+cp.moduleName+'_main').style.background = "transparent url('http://s.huffpost.com/images/loader.gif') no-repeat center top";
+				
+				var max_tries = 6;
+				var cur_try = 0;
+				var self = cp;
+				var load_page = function() {
+					// for new pages
+					C.asyncRequest( self.request_method, url,
+					{
+						success: function(o) {
+							var _data_pass_to_callback = o.responseText;
+							if ('json' === self.dataType)
+								_data_pass_to_callback = jQuery.parseJSON(o.responseText);
+							if (!self.is_loaded_callback(_data_pass_to_callback) && cur_try < max_tries)
+							{
+								setTimeout(function() {load_page()}, 3000);
+								++cur_try;
+								return;
+							}
+							var _cmd = self.recognize_cmd(_data_pass_to_callback);
+							if ('hide_block' === _cmd && self.main_block_to_hide)
+								$(self.main_block_to_hide).style.display = 'none';
+							var html = '';
+							if ('function' === typeof self.render_content_after_requested)
+								html = self.render_content_after_requested(_data_pass_to_callback);
+							else
+								html = o.responseText;                            
+							self.currentPage = 'update_page_to_first' === _cmd ? 1 : self.currentPage;
+							if (Dom.get('hp_'+self.moduleName+'_page_'+self.currentPage))
+							{
+								HuffPoUtil.hide('hp_'+self.moduleName+'_page_'+self.to_hide);
+								self.maxPage = self.cPages(_data_pass_to_callback);
+								Dom.get('hp_' + self.moduleName + '_total_pages').innerHTML = self.maxPage;
+								Dom.get('hp_'+self.moduleName+'_page_'+self.currentPage).innerHTML = html;
+							}
+							else
+							{
+								HuffPoUtil.hide('hp_'+self.moduleName+'_page_'+self.to_hide);
+								$('hp_'+self.moduleName+'_all_pages').innerHTML += html;
+							}
+							
+							if(self.is_ajax_eval)
+								HPUtil.EvalScript(html);
+							
+							HuffPoUtil.show('hp_'+self.moduleName+'_page_'+self.currentPage);
+							
+							//download images
+							self.update_images && huff.emit('content/update', '#hp_'+self.moduleName+'_page_'+self.currentPage);
+							
+							// hide loading
+							$('hp_'+self.moduleName+'_main').style.background = "";
+							
+							// remove opacity and update arrows
+							if (self.no_animation) {
+								$('hp_'+self.moduleName+'_all_pages').style.visibility='visible';
+							}else{
+								SNPModule.animatePage(1, 'hp_'+self.moduleName+'_all_pages');
+							}
+							
+							if( self.is_update_current_page )
+								$('hp_'+self.moduleName+'_current_page').innerHTML = self.currentPage;
+							
+							self.callback(self.currentPage);
+							self.lock = false;
+						},
+						failure: function() { 
+							$('hp_'+self.moduleName+'_main').style.background = "";
+							
+							if (self.no_animation) {
+								$('hp_'+self.moduleName+'_all_pages').style.visibility='visible';
+							}else{
+								SNPModule.animatePage(1, 'hp_'+self.moduleName+'_all_pages');
+							}
+							
+							HPError.e('we have problems with ajax request');
+							self.lock = false;
+						}
+					});
+				}
+				
+				load_page();
+			}
+			
+		} else if (cp.is_custom_data) {
+			
+			// if page is exists
+			if ($('hp_'+cp.moduleName+'_page_' + cp.currentPage))
+			{
+				HuffPoUtil.hide('hp_'+cp.moduleName+'_page_'+cp.to_hide);	//hide current page
+				HuffPoUtil.show('hp_'+cp.moduleName+'_page_'+cp.currentPage);	//show new page
+				
+				cp.update_images && huff.emit('content/update', '#hp_'+cp.moduleName+'_page_'+cp.currentPage);
+				
+				//refresh arrows
+				if( cp.is_update_current_page )
+					$('hp_'+cp.moduleName+'_current_page').innerHTML = cp.currentPage;
+				
+			} else {
+				
+				// update current custom page
+				// 0 element it's first generated page
+				cp.currentCustomPage += 1;
+				HuffPoUtil.hide('hp_'+cp.moduleName+'_page_'+cp.to_hide);
+				var page = document.createElement('div');
+				page.id = 'hp_'+cp.moduleName+'_page_'+cp.currentPage;
+				
+				var length = cp.custom_data[cp.currentCustomPage].length;
+				for (var i=0; i<length; i++)
+				{
+					var main_div = document.createElement('div');
+					main_div.className = 'snp_most_popular_entry';					
+					
+					// entry title
+					var div_entry_title = document.createElement('div');
+					div_entry_title.className = 'arial_14 bold widget_entry_title';
+					var a_entry_title = document.createElement('a');
+					a_entry_title.href = cp.custom_data[cp.currentCustomPage][i].entry_url;
+					a_entry_title.className = 'color_222222';
+					a_entry_title.target = 'partners';
+					a_entry_title.innerHTML = cp.custom_data[cp.currentCustomPage][i].title;
+					
+					if(cp.custom_data[cp.currentCustomPage][i].entry_click != null){
+						E.on(a_entry_title, 'click', cp.custom_data[cp.currentCustomPage][i].entry_click, cp, true);
+					}
+					
+					// entry img	            	
+					var div_entry_img = document.createElement('div');
+					div_entry_img.className = 'widget_entry_img';
+					
+					var a_entry_img = document.createElement('a');
+					a_entry_img.target = 'partners';
+					a_entry_img.href = cp.custom_data[cp.currentCustomPage][i].entry_url;
+					
+					if(cp.custom_data[cp.currentCustomPage][i].entry_click != null){
+						E.on(a_entry_img, 'click', cp.custom_data[cp.currentCustomPage][i].entry_click, cp, true);
+					}
+					
+					var img_entry_img = document.createElement('img');
+					img_entry_img.src = cp.custom_data[cp.currentCustomPage][i].img_url;
+					img_entry_img.width = cp.custom_img_width;
+					img_entry_img.height = cp.custom_img_height;
+					img_entry_img.className= 'img_border';
+					
+					if( cp.custom_play_button ) {
+						img_read_more = document.createElement('img');
+						img_read_more.src = 'http://s.huffpost.com/images/widgets/play_round.png';
+						img_read_more.className = 'widget_play';
+						img_read_more.setAttribute('alt','Play');
+						img_read_more.width = 16;
+						img_read_more.height = 16;
+						a_entry_img.appendChild(img_read_more);
+						
+						img_read_more_large = document.createElement('img');
+						img_read_more_large.src = 'http://s.huffpost.com/images/widgets/play_round_large.png';
+						img_read_more_large.className = 'widget_play_large';
+						img_read_more_large.setAttribute('alt','Play');
+						img_read_more_large.width = 50;
+						img_read_more_large.height = 50;
+						a_entry_img.appendChild(img_read_more_large);
+					}
+					
+					// added elements to DOM ( text )
+					div_entry_title.appendChild(a_entry_title);
+					main_div.appendChild(div_entry_title);
+					
+					// added elements to DOM (img)
+					a_entry_img.appendChild(img_entry_img);
+					div_entry_img.appendChild(a_entry_img);
+					main_div.appendChild(div_entry_img);
+					
+					// all content
+					page.appendChild(main_div);   		
+				}
+				
+				// finish
+				$('all_'+cp.moduleName+'_pages').appendChild(page);
+				HuffPoUtil.show('hp_'+cp.moduleName+'_page_'+cp.currentPage);
+				
+				if( cp.is_update_current_page )
+					$('hp_'+cp.moduleName+'_current_page').innerHTML = cp.currentPage;
+			}
+		} else {
+			HuffPoUtil.hide('hp_'+cp.moduleName+'_page_'+cp.to_hide);
+			HuffPoUtil.show('hp_'+cp.moduleName+'_page_'+cp.currentPage);
+			//refresh arrows
+			if( cp.is_update_current_page )
+				$('hp_'+cp.moduleName+'_current_page').innerHTML = cp.currentPage;		
+		}
+		if (!cp.is_ajax_update) cp.lock = false;
+	};
+	
+	/**/
+	ready(common_paginator);
+});
+
+/* From: production-mt-wfe-52-18-use1 : 6114 *//* a79ac2d2669e872d452a120f7e0829e698d12129 */

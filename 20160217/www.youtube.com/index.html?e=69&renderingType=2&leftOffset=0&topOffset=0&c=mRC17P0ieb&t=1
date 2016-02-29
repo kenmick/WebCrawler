@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        
+        <script src="/879366/Enabler_01_102.js"> </script>
+        <script src="https://www.gstatic.com/external_hosted/polymer/custom.elements.min.js"></script>
+        <script src="https://www.gstatic.com/ads/ci/ytclosebutton/1/ytclosebutton_min.js"></script>
+
+        <link href="https://fonts.googleapis.com/css?family=Oswald:400,700,300" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" type="text/css" href="style.min.css">
+        
+    </head>
+    <body>
+        <div id="main-container">
+            <div id="close-button"><ci-ytclosebutton lang="fr" theme="black" shadow="false" id="ytClose" /></div>
+            
+            <div id="navigation">
+                <ul>
+                    <li><a href="#" data-id="home" class="first active"><span><img src="text-videos.png" alt="VidÃ©os" /></span></a></li>
+                    <li><a href="#" data-id="photo"><span><img src="text-photos.png" alt="Photos" /></span></a></li>
+                    <li><a href="#" data-id="social"><span><img src="text-revue-de-presse.png" alt="Revue de presse" /></span></a></li>
+                </ul>
+            </div>
+            
+            <div id="sections">
+            
+                <div id="index" class="section active">
+                    <a class="skip" href="#"><span><img src="text-passer-lintro.png" alt="Passer l&#39;intro" /></span></a>
+                    <img class="logo" src="index-logo.png" alt="">
+                    <div class="video"></div>
+                </div>
+            
+                <div id="home" class="section">
+                    <div class="inner-section">
+                        
+                        <div class="videos"></div>
+                        
+                        <div class="info">
+                            <div class="release"><img src="text-aujourdhui-au-cinema.png" alt="Aujourd&#39;hui au cinÃ©ma" /></div>
+                            <a class="see" href="#"><span><img src="text-voir-les-seances.png" alt="Voir les sÃ©ances" /></span></a>
+                        </div>
+                        
+                        <div class="prev-next">
+                            <a href="#" class="prev"><img src="icon-arrow-left.png" alt="" /></a>
+                            <a href="#" class="next"><img src="icon-arrow-right.png" alt="" /></a>
+                        </div>
+                    </div>
+                    <div class="exit"></div>
+                </div>
+            
+                <div id="social" class="section">
+                    <div class="inner-section">
+                        
+                        <div class="tweets">
+                            <span class="tweet-number"><span class="current-tweet">0</span>/<span class="total-tweet">0</span></span>
+                            <div class="dots"></div>
+                            
+                            <div id="tweets">
+                            </div>
+                        
+                            <div class="links">
+                                <a class="facebook" href="#"><img src="fb-icon.png" alt=""></a>
+                                <a class="twitter" href="#"><img src="tw-icon.png" alt=""></a>
+                                <a class="instagram" href="#"><img src="instagram-icon.png" alt=""></a>
+                                <a class="gplus" href="#"><img src="gplus-icon.png" alt=""></a>
+                            </div>
+                        </div>
+
+                        <div class="prev-next">
+                            <a href="#" class="prev"><img src="icon-arrow-left.png" alt="" /></a>
+                            <a href="#" class="next"><img src="icon-arrow-right.png" alt="" /></a>
+                        </div>
+                        
+
+                        <div class="info">
+                            <div class="release"><img src="text-aujourdhui-au-cinema.png" alt="Aujourd&#39;hui au cinÃ©ma" /></div>
+                            <a class="see" href="#"><span><img src="text-voir-les-seances.png" alt="Voir les sÃ©ances" /></span></a>
+                        </div>
+                    </div>
+                    <div class="exit"></div>
+                </div>
+                
+                
+                <div id="photo" class="section">
+                    <div class="inner-section">
+                        
+                        <div class="prev-next">
+                            <a href="#" class="prev"><img src="icon-arrow-left.png" alt="" /></a>
+                            <a href="#" class="next"><img src="icon-arrow-right.png" alt="" /></a>
+                        </div>
+                        
+                        <div class="photo"></div>
+
+                        <div class="info">
+                            <div class="release"><img src="text-aujourdhui-au-cinema.png" alt="Aujourd&#39;hui au cinÃ©ma" /></div>
+                            <a class="see" href="#"><span><img src="text-voir-les-seances.png" alt="Voir les sÃ©ances" /></span></a>
+                        </div>
+                    </div>
+                    <div class="exit"></div>
+                </div>
+                
+            </div>
+            
+            <div id="transition"></div>
+
+
+        </div>
+
+
+
+        <script src="carbon.min.js"></script>
+        
+        <script type="text/javascript">
+        	var FORMAT_NAME = 'Masthead';
+        	var VENDORS_RESOURCES = ['https://www.youtube.com/iframe_api'];
+
+        	Carbon.run();
+        </script>
+    </body>
+</html>

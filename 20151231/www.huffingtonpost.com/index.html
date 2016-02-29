@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ban_mdm_728x90</title>
+
+<script src="https://code.createjs.com/easeljs-0.7.0.min.js"></script>
+<script src="https://code.createjs.com/tweenjs-0.5.0.min.js"></script>
+<script src="https://code.createjs.com/movieclip-0.7.0.min.js"></script>
+<script src="https://code.createjs.com/preloadjs-0.4.0.min.js"></script>
+<script src="ban_mdm_728x90.js"></script>
+
+<script>
+var canvas, stage, exportRoot;
+
+function init() {
+	canvas = document.getElementById("canvas");
+	images = images||{};
+
+	var loader = new createjs.LoadQueue(false);
+	loader.addEventListener("fileload", handleFileLoad);
+	loader.addEventListener("complete", handleComplete);
+	loader.loadManifest(lib.properties.manifest);
+}
+
+function handleFileLoad(evt) {
+	if (evt.item.type == "image") { images[evt.item.id] = evt.result; }
+}
+
+function handleComplete() {
+	exportRoot = new lib.v2_ban_mdm_fisc_728x90();
+
+	stage = new createjs.Stage(canvas);
+	stage.addChild(exportRoot);
+	stage.update();
+
+	createjs.Ticker.setFPS(lib.properties.fps);
+	createjs.Ticker.addEventListener("tick", stage);
+}
+</script>
+</head>
+
+<body onload="init();" style="background-color:#D4D4D4;margin: 0!important; overflow: hidden;width:726; height:88;">
+	<canvas id="canvas" width="728" height="90" style="background-color:#FFFFFF"></canvas>
+</body>
+</html>

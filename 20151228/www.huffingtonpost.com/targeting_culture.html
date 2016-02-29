@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+  <head><script type="text/javascript">
+    
+      (function() {
+        var relegateNavigation = '';
+        var handleClickTagMessage = function(e) {
+          try {
+            var eventData = JSON.parse(e.data);
+          } catch (err) {
+            return;
+          }
+          if (eventData.isInitClickTag) {
+            if (eventData.clickTags) {
+              for (var i = 0; i < eventData.clickTags.length; i++) {
+                var clkTag = eventData.clickTags[i];
+                window[clkTag.name] = clkTag.url;
+              }
+            } else if (eventData.clickTag) {
+              window.clickTag = eventData.clickTag;
+            }
+            relegateNavigation = eventData.relegateNavigation;
+          }
+        };
+
+        if (open.call) {
+          window.open = function(open) {
+            return function(url, name, features) {
+              if (relegateNavigation === 'parent') {
+                var message = {'clickTag': url, 'isPostClickTag': true};
+                parent.postMessage(JSON.stringify(message), '*');
+              } else {
+                var args = [url, name];
+                if (features) {
+                  args.push(features);
+                }
+                open.apply(window, args);
+              }
+            };
+          }(window.open);
+        }
+
+        if (window.addEventListener) {
+          window.addEventListener(
+              'message', handleClickTagMessage, false);
+        } else {
+          window.attachEvent('onmessage', handleClickTagMessage);
+        }
+      })();
+    
+  </script>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="chrome=1,IE=edge" />
+    <meta name="ad.size" content="width=300, height=250" />
+	<title>targeting_culture</title>
+	<style>
+		html {
+			height:100%;
+		}
+		body {
+			background-color: #FFFFFF;
+			margin:0;
+			height:100%;
+		}
+		body > div
+		{
+			cursor:pointer;
+		}
+	</style>
+
+	<!-- copy these lines to your document head: -->
+
+	<meta name="viewport" content="user-scalable=yes, width=300" />
+
+
+	<!-- end copy -->
+
+  </head>
+  <body>
+	
+	<!-- copy these lines to your document: -->
+
+	<div id="targetingculture_hype_container" style="margin:auto;position:relative;width:300px;height:250px;overflow:hidden;" aria-live="polite">
+		<script type="text/javascript" charset="utf-8" src="targetingculture_hype_generated_script.js"></script>
+	</div>
+
+	<!-- end copy -->
+
+
+	
+
+
+	<!-- text content for search engines: -->
+
+	<div style="display:none">
+
+
+	</div>
+
+	<!-- end text content: -->
+<script>
+    var clickTag = "http://google.com";
+    var element = document.getElementById('targetingculture_hype_container');
+    element.onclick = function() {
+        window.open(clickTag);
+    };
+</script>
+  </body>
+</html>

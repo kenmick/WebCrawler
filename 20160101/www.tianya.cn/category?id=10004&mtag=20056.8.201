@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>ãç¾çç©ºè°,ä¸­å¤®ç©ºè°ãå®æ¹æ¥ä»·ï¼ç¾çå®æ¹ååï¼åçç´è¥ï¼æ­£åä¿è¯</title>
+    <meta name="description" content="ç¾çä¸­å¤®ç©ºè°é¦é¡µ-ç¾çæä¸å¯ä¸æ­£åå®æ¹ååï¼æ­£åä¸­å¤®ç©ºè°å¨åºåé®ãæå¨æ¥ä»·ãå¾çãåæ°ãè¯ä»·ãç¾çï¼ä¸ºäººç±»åé ç¾å¥½çæ´»" />
+    <meta name="keywords" content="ç©ºè°,ä¸­å¤®ç©ºè°,ç¾ççµå¨,ä»·æ ¼,ä¿é,æè¡æ¦,è´¨éææ ·" />
+    <link rel="shortcut icon" href="http://st.midea.com/pc/img/common/favicon.ico">
+    <!-- å¬å±æ ·å¼ -->
+    <link combofile="common/global.html" rel="stylesheet" href="//st.midea.com/??/pc/css/common/global.css?t=1451292941" />
+    <!--åè¡¨æ ·å¼ä¸ä¸å¡æ ·å¼-->
+    <link combofile="mall/category_v2.html" rel="stylesheet" href="//st.midea.com/??/pc/css/mall/mod_search.css,/pc/css/mall/category_v2.css?t=1447068800" />
+</head>
+<body>
+
+<script>
+    pageMess ={
+        now_time : 1451672371,
+        act_end_time : 1446393599    }
+</script>
+
+<!-- S å¤´é¨ -->
+<!-- S å¤´é¨ -->
+
+<div class="header">
+    <div class="inner">
+        <a class="site_logo" href="http://www.midea.com/?mtag=40005.1.10" title="ç¾ç"></a>
+
+        <!-- S å¯¼èª -->
+        <div class="nav_wrap">
+            <ul class="nav" id="topNavWrap">
+                <!-- ç¾çåå_PCç_é¦é¡µ_é¡¶é¨ä¸»å¯¼èª -->
+                 <li class="item"><a class="item_tit" target="_blank" href="http://mall.midea.com/?mtag=40005.1.1">ç¾çåå</a></li>  <li class="item"><a class="item_tit" target="_blank" href="http://www.midea.com/cn/about_midea/Group_profile/?mtag=40005.1.2">ç¾çéå¢</a></li>  <li class="item"><a class="item_tit" target="_blank" href="http://mall.midea.com/service/index/detail/?mtag=40005.1.3">ä¸ªäººäº§å</a></li>  <li class="item"><a class="item_tit" target="_blank" href="http://mall.midea.com/service/index?mtag=40005.1.4">æå¡æ¯æ</a></li>  <li class="item"><a class="item_tit" target="_blank" href="http://bbs.midea.com/forum.php?mtag=40005.1.5">ç¾çç¤¾åº</a></li>  <li class="item"><a class="item_tit" target="_blank" href="http://www.midea.com/global/?mtag=40005.1.7">å½éç</a></li>  <li class="item"><a class="item_tit" target="_blank" href="http://mall.midea.com/company/cooperation/?mtag=40005.1.41">ä¼ä¸éè´­</a></li>  <li id="navInternal" style="display:none;" class="item"><a class="item_tit" target="_blank" href="//mall.midea.com/my/internal/?mtag=40005.1.11">ç¾çåå·¥ç¦å©é¢é</a></li>
+            </ul>
+            <script>
+                if(location.href.indexOf('nav_type=mall') != -1){
+                    document.getElementById('topNavWrap').innerHTML = '<li class="item item_on"><a class="item_tit" target="_blank" href="http://mall.midea.com/?mtag=40005.1.1">ç¾çåå</a></li>';
+                }
+            </script>
+        </div>
+        <!-- E å¯¼èª -->
+        <!-- S æä½ -->
+        <div class="opt_wrap" id="optWrap">
+            <div class="opt opt_search">
+                <!-- ç¾çåå_PCç_é¦é¡µ_æç´¢ -->
+                <div class="search_wrap">     <form action="http://mall.midea.com/search">         <input type="search" name="kw" id="" placeholder=""/>     </form>     <label for="">å¥åº·åç¾å³å¦ä½å¼å¾</label>     <input name="default_link" type="hidden" value="http://mall.midea.com/detail/index?id=7800&icid=106967"/>     <i class="icon_opt icon_search"></i> </div>
+            </div>
+            <div class="opt opt_wx">
+                <i class="icon_opt icon_wx"></i>
+            </div>
+
+            <!-- S æªç»é -->
+            <div class="opt opt_user_login_fail" id="unloginStatus">
+                <i class="icon_opt icon_user_main"></i>
+                <!--<i class="icon_atom icon_user_point_new"></i>-->
+                <span class="user_login_name">ç»å½</span>
+                <!--<i class="icon_atom icon_user_point_new" id="dot" style="display: nonex;"></i>-->
+                <i class="icon_atom icon_user_point_new js_act_dot" style="display: none;"></i>
+                <!--ä¸æç®­å¤´-->
+                <!--<i class="icon_opt icon_arrow_show"></i>-->
+                <!--ä¸é¢ä¸è§å½¢-->
+                <!--<i class="icon_opt icon_arrow_link"></i>-->
+            </div>
+            <!-- E æªç»é -->
+
+            <!-- S ç»éæå-->
+            <div class="opt opt_user_login_success">
+                <!--é»è®¤å¤´å-->
+                <i class="icon_opt icon_user_main"></i>
+                <!--å®éå¤´å-->
+                <img class="user_login_img" id="userLoginImg" width="20" height="20" src=""/>
+                <!--<i class="icon_atom icon_user_point_new" id="dot" style="display: nonex;"></i>-->
+                <i class="icon_atom icon_user_point_new js_act_dot" id="dot" style="display: none;"></i>
+                <!--ç¨æ·åï¼ä¼åæµç§°ï¼åææºï¼æåæ¯äº²ç±çç¾çç¨æ·-->
+                <span class="user_login_name" id="userLoginName"></span>
+                <!--ä¸æç®­å¤´-->
+                <!--<i class="icon_opt icon_arrow_show"></i>-->
+                <!--ä¸é¢ä¸è§å½¢-->
+                <!--<i class="icon_opt icon_arrow_link"></i>-->
+            </div>
+            <!-- E ç»éæå-->
+
+
+        </div>
+        <!-- E æä½ -->
+    </div>
+
+    <!-- S å¾®ä¿¡ -->
+    <div class="wx_wrap">
+        <img class="wx_qrcode" src="http://st.midea.com/pc/img/mall/header_qr_app.png?t=2" alt="ç¾çappä¸è½½äºç»´ç "/>
+    </div>
+    <!-- E å¾®ä¿¡ -->
+
+    <!-- S ç¨æ·å·²ç»éæ¶çhover -->
+    <div class="user_wrap JS_user_haslogin_wrap">
+        <!-- S è¿è¥æ´»å¨é¡¹ -->
+        
+        <!-- E è¿è¥æ´»å¨é¡¹ -->
+        <div class="row row_my_internal" id="rowInternal" style="display: none;">
+            <a href="//mall.midea.com/my/internal?mtag=30001.1.2" target="_blank">
+                <i class="icon_atom icon_internal"></i>
+                <span class="fn">ç¾çåå·¥ç¦å©é¢é <i class="icon_atom icon_new_function" style="display: none;"></i></span>
+            </a>
+        </div>
+        <!-- E æ´»å¨item -->
+        <div class="row row_my_order">
+            <a href="http://mall.midea.com/order/buyer/orderlist?mtag=30001.1.12" target="_blank">
+                <i class="icon_atom icon_my_order"></i>
+                <span class="fn">æçè®¢å</span>
+            </a>
+        </div>
+        <div class="row row_my_comment">
+            <a href="http://mall.midea.com/order/comment/lists?mtag=30001.1.13" target="_blank">
+                <i class="icon_atom icon_my_comment"></i>
+                <span class="fn">è¯ä»·ç®¡ç</span>
+            </a>
+        </div>
+        <div class="row row_my_midea_product">
+            <a href="http://mall.midea.com/my/product_user/midea_product?mtag=30001.1.14" target="_blank">
+                <i class="icon_atom icon_my_midea_product"></i>
+                <span class="fn">æçç¾çäº§å</span>
+            </a>
+        </div>
+        <div class="row row_my_score">
+            <a href="http://mall.midea.com/my/score?action=cur_get&mtag=30001.1.15" target="_blank" >
+                <i class="icon_atom icon_my_score"></i>
+                <span class="fn">æçç§¯å</span>
+            </a>
+        </div>
+        <div class="row row_my_collect">
+            <a href="http://mall.midea.com/my/collect/index?mtag=30001.1.16" target="_blank" >
+                <i class="icon_atom icon_my_collect"></i>
+                <span class="fn">æçæ¶è</span>
+            </a>
+        </div>
+        <div class="row row_my_coupon">
+            <a href="http://mall.midea.com/coupon/get_coupon_list?mtag=30001.1.17" target="_blank" >
+                <i class="icon_atom icon_my_coupon"></i>
+                <span class="fn">æçä¼æ å¸</span>
+                <!--<i class="icon_atom icon_new_function"></i>-->
+            </a>
+        </div>
+        <div class="row row_my_privilege">
+            <a href="http://mall.midea.com/my/vip/privilege?mtag=30001.1.18" target="_blank" >
+                <i class="icon_atom icon_my_privilege"></i>
+                <span class="fn">æçæç</span>
+                <i class="icon_atom icon_new_function row_my_act"></i>
+            </a>
+        </div>
+        <div class="row row_my_install_repair">
+            <a href="http://mall.midea.com/my/index/record?mtag=30001.1.19" target="_blank" >
+                <i class="icon icon_service"></i>
+                <span class="fn">æçæ¥è£æ¥ä¿®</span>
+            </a>
+        </div>
+        <div class="row row_account">
+            <a href="http://mall.midea.com/my/index/accountsetting?mtag=30001.1.20" target="_blank" >
+                <i class="icon icon_account"></i>
+                <span class="fn">è´¦æ·è®¾ç½®</span>
+            </a>
+        </div>
+        <div class="row row_address">
+            <a href="http://mall.midea.com/my/address/address_list?mtag=30001.1.21" target="_blank" >
+                <i class="icon_atom icon_address"></i>
+                <span class="fn">å°åç®¡ç</span>
+            </a>
+        </div>
+        <!-- æ¹éä¸å S -->
+        <div class="row row_batch_order hide">
+            <i class="icon_atom icon_my_order"></i>
+            <span class="fn">æ¹éä¸å</span>
+        </div>
+        <!-- æ¹éä¸å E -->
+        <div class="row row_login_out row_last">
+            <i class="icon icon_login_out"></i>
+            <span class="fn">éåºç»å½</span>
+        </div>
+    </div>
+    <!-- E ç¨æ·å·²ç»éæ¶çhover -->
+
+    <!-- S ç¨æ·æªç»éæ¶çhover -->
+    <div class="user_wrap user_unlogin_wrap JS_user_unlogin_wrap">
+        <!-- S è¿è¥æ´»å¨é¡¹ -->
+        
+        <!-- E è¿è¥æ´»å¨é¡¹ -->
+        <div class="row row_my_order">
+            <a href="http://mall.midea.com/order/buyer/orderlist?mtag=30001.1.22" target="_blank">
+                <i class="icon_atom icon_my_order"></i>
+                <span class="fn">æçè®¢å</span>
+            </a>
+        </div>
+        <div class="row row_my_comment">
+            <a href="http://mall.midea.com/order/comment/lists?mtag=30001.1.23" target="_blank">
+                <i class="icon_atom icon_my_comment"></i>
+                <span class="fn">è¯ä»·ç®¡ç</span>
+            </a>
+        </div>
+        <div class="row row_my_midea_product">
+            <a href="http://mall.midea.com/my/product_user/midea_product?mtag=30001.1.24" target="_blank">
+                <i class="icon_atom icon_my_midea_product"></i>
+                <span class="fn">æçç¾çäº§å</span>
+            </a>
+        </div>
+        <div class="row row_my_score">
+            <a href="http://mall.midea.com/my/score?action=cur_get&mtag=30001.1.25" target="_blank" >
+                <i class="icon_atom icon_my_score"></i>
+                <span class="fn">æçç§¯å</span>
+            </a>
+        </div>
+        <div class="row row_my_collect">
+            <a href="http://mall.midea.com/my/collect/index?mtag=30001.1.26" target="_blank" >
+                <i class="icon_atom icon_my_collect"></i>
+                <span class="fn">æçæ¶è</span>
+            </a>
+        </div>
+        <div class="row row_my_coupon">
+            <a href="http://mall.midea.com/coupon/get_coupon_list?mtag=30001.1.27" target="_blank" >
+                <i class="icon_atom icon_my_coupon"></i>
+                <span class="fn">æçä¼æ å¸</span>
+                <!--<i class="icon_atom icon_new_function"></i>-->
+            </a>
+        </div>
+        <div class="row row_my_privilege">
+            <a href="http://mall.midea.com/my/vip/privilege?mtag=30001.1.28" target="_blank" >
+                <i class="icon_atom icon_my_privilege"></i>
+                <span class="fn">æçæç</span>
+                <i class="icon_atom icon_new_function row_my_act"></i>
+            </a>
+        </div>
+        <div class="row row_my_install_repair">
+            <a href="http://mall.midea.com/my/index/record?mtag=30001.1.29" target="_blank" >
+                <i class="icon icon_service"></i>
+                <span class="fn">æçæ¥è£æ¥ä¿®</span>
+            </a>
+        </div>
+        <div class="row row_account row_last">
+            <a href="http://mall.midea.com/my/index/accountsetting?mtag=30001.1.30" target="_blank" >
+                <i class="icon icon_account"></i>
+                <span class="fn">è´¦æ·è®¾ç½®</span>
+            </a>
+        </div>
+    </div>
+    <!-- E ç¨æ·æªç»éæ¶çhover -->
+
+</div>
+<!-- å¬å±æ¨¡åå¥å£ -->
+<script>
+(function(){
+if(!window.moduleReady) window.moduleReady = [];
+moduleReady.push(function(){
+	var g = [[]], c=[], d='//st.midea.com';
+	/**
+	 * æ¨¡ååç»
+	 */
+		g["1"]=["\/js\/version\/201506\/cookie.201506301749.js","\/js\/version\/201511\/formatJson.201511251652.js","\/js\/version\/201409\/jquery.201409051736.js","\/js\/version\/201411\/loadUrl.201411270938.js","\/js\/version\/201512\/md.mall.head.201512311513.js","\/js\/version\/201511\/report.201511041129.js","\/js\/version\/201506\/xss.201506161437.js"];
+				c = [['cookie',1,0],['formatJson',1,1],['jquery',1,2],['loadUrl',1,3],['md.mall.head',1,4],['report',1,5],['xss',1,6]];
+
+	for(var i = 0; i < c.length; i++) {
+		var key = c[i][0];
+		if(!window._moduleConfig.alias[key]) {
+			window._moduleConfig.alias[key] = d + g[c[i][1]][c[i][2]];
+		}
+	}
+	modulejs('md.mall.head', function(m){
+    m.init();
+});});
+})();
+</script>
+
+
+<!-- å¨ç« banner -->
+ <a class="operation_time"  style="width: 100%;display:none; background: #DE2954;    "  data-time-start="2015/12/21 09:06:11" data-time-end="2015/12/25 23:59:59"   href="http://mall.midea.com/promote/pc/external/index/1220?mtag=40005.1.42" target="_blank" title="åæ¦ååº" >     <img style="display: block; margin:0 auto;" src="http://static.midea.com/h5/pic/201512/1a2de99be41c.jpg" alt="åæ¦ååº"/> </a>  
+
+<!-- E å¤´é¨ -->
+<!-- E å¤´é¨ -->
+
+<!-- S æ¬é¡µå®¹å¨ -->
+<div class="main_wrap">
+
+<!-- S é¢åå± -->
+<div class="crumb">
+
+    <a href="http://www.midea.com" class="home_page">é¦é¡µ</a>
+    
+            <label></label><a href="http://mall.midea.com/category?id=10001">ç©ºè°</a>
+        <label></label><a href="http://mall.midea.com/category?id=10004">ä¸­å¤®ç©ºè°</a>
+    
+    
+    
+</div>
+<!-- E é¢åå± -->
+
+<!-- S å±ä¸­åå®¹ -->
+<div class="inner_wrap">
+
+<!-- S ï¼å·¦é¨ï¼ååç­é -->
+<div class="select_wrap">
+    <!-- S ç§ç±»ç­é-->
+    <ul class="kind_wrap" id="cagegoryNavList">
+                <li class="mod_kind_item " data-strsearch="(30|63)">
+            <h2>
+                <a href="http://mall.midea.com/category?id=10001" class="mod_word title">
+                    <span class="tab">&bull;</span>å¨é¨ç©ºè°                </a>
+            </h2>
+        </li>
+                    <li class="mod_kind_item " data-strsearch="(30)&(127:364)">
+                <a href="http://mall.midea.com/category?id=10002" class="mod_word"><i class="tab">&bull;</i>å£æå¼ç©ºè°</a></a>
+            </li>
+                    <li class="mod_kind_item " data-strsearch="(30)&(127:365)">
+                <a href="http://mall.midea.com/category?id=10003" class="mod_word"><i class="tab">&bull;</i>ç«æå¼ç©ºè°</a></a>
+            </li>
+                    <li class="mod_kind_item cur" data-strsearch="(63)">
+                <a href="http://mall.midea.com/category?id=10004" class="mod_word"><i class="tab">&bull;</i>ä¸­å¤®ç©ºè°</a></a>
+            </li>
+            </ul>
+    <!-- E ç§ç±»ç­é-->
+
+    <!-- S æ¡ä»¶ç­é-->
+    <ul class="condition_wrap" id="categoryNavAttr">
+            </ul>
+    <!-- E æ¡ä»¶ç­é-->
+
+</div>
+<!-- E ï¼å·¦é¨ï¼ååç­é -->
+
+
+<!-- S é¡µé¢ä¸»ä½ -->
+<div class="content_wrap">
+
+     <a  class="operation_time" href="http://mall.midea.com/promote/pc/external/index/1220?mtag=30027.1.1" target="_blank" title="åæ¦"  data-time-start="2015/12/20 12:15:22" data-time-end="2016/01/15 23:59:59" style="display:none;">     <img src="http://static.midea.com/h5/pic/201512/PC%20sousuo950x100.jpg" alt="åæ¦"/> </a>  
+    <!--S ååç­é -->
+    <div class="filter_wrap">
+        <div class="mod_filter_item js_mod_filter_item filter_all filter_cur">ç»¼åæåº</div>
+        <div class="mod_filter_item js_mod_filter_item filter_time">ä¸å¸æ¶é´<i class="icon_atom icon_time"></i> </div>
+        <div class="mod_filter_item js_mod_filter_item filter_price">ä»·æ ¼<i class="icon_atom icon_price"></i></div>
+        <div class="mod_filter_item filter_stock"><i class="icon_atom icon_stock"></i>ä»æ¾ç¤ºæè´§</div>
+        <div class="mod_filter_item filter_empty"></div>
+        <div class="mod_filter_item filter_page">
+            <div class="status">
+                <span class="current_page" id="js_fillter_current_page">1</span>&nbsp;/&nbsp;
+                <span class="total_page" id="js_fillter_total_page">5</span>
+            </div>
+            <div class="turn_page">
+                <!--<a class="last_page" href="javascript:void(0)">&lt;</a>
+                <a class="next_page" href="javascript:void(0)">&gt;</a>-->
+            </div>
+        </div>
+    </div>
+    <!--E ååç­é -->
+
+    <!-- S ååç­éç»æ list_wrap -->
+    <ul class="search_list_wrap" id="searchListWrap">
+        <input type="hidden" id="defaultDataNum" value="5"/>
+                    <li class="hproduct">
+            <a href="http://mall.midea.com/detail/index?id=77318" target="_blank" class="cover">
+                <img src="http://static.midea.com/ImageStore/105428/pic/795d7884f459d2cbA13687/795d7884f459d2cbA13687_430*430.jpg" alt="ååå¾ç"/>
+            </a>
+            <a href="http://mall.midea.com/detail/index?id=77318" target="_blank" class="fn">
+                                ä¸­å¤®ç©ºè° 1P å®¶ç¨åé¢é£ç®¡æº å¸¦çµè¾ KFR-26T2W/BP2DN1-TR            </a>
+            <div class="ft_message">
+
+                                    <div class="status">æè´§</div>
+                
+                <div class="price_new">
+                    <span class="price">&yen;<em>4898.00</em></span>
+                </div>
+            </div>
+                    </li>
+            <li class="hproduct">
+            <a href="http://mall.midea.com/detail/index?id=77328" target="_blank" class="cover">
+                <img src="http://static.midea.com/ImageStore/105426/pic/988308f8cefe52c1A11686/988308f8cefe52c1A11686_430*430.jpg" alt="ååå¾ç"/>
+            </a>
+            <a href="http://mall.midea.com/detail/index?id=77328" target="_blank" class="fn">
+                                ä¸­å¤®ç©ºè° 2P å®¶ç¨åé¢é£ç®¡æº KFR-51T2W/BP2N1-TR            </a>
+            <div class="ft_message">
+
+                                    <div class="status">æè´§</div>
+                
+                <div class="price_new">
+                    <span class="price">&yen;<em>6888.00</em></span>
+                </div>
+            </div>
+                    </li>
+            <li class="hproduct">
+            <a href="http://mall.midea.com/detail/index?id=77321" target="_blank" class="cover">
+                <img src="http://static.midea.com/ImageStore/105427/pic/ee691d66df1ad6abA13067/ee691d66df1ad6abA13067_430*430.jpg" alt="ååå¾ç"/>
+            </a>
+            <a href="http://mall.midea.com/detail/index?id=77321" target="_blank" class="fn">
+                                ä¸­å¤®ç©ºè° 3P å®¶ç¨åé¢é£ç®¡æº KFR-72T2W/BP2N1-TR            </a>
+            <div class="ft_message">
+
+                                    <div class="status">æè´§</div>
+                
+                <div class="price_new">
+                    <span class="price">&yen;<em>8988.00</em></span>
+                </div>
+            </div>
+                    </li>
+            <li class="hproduct">
+            <a href="http://mall.midea.com/detail/index?id=77319" target="_blank" class="cover">
+                <img src="http://static.midea.com/ImageStore/105424/pic/a89cf336814bb56eA13530/a89cf336814bb56eA13530_430*430.jpg" alt="ååå¾ç"/>
+            </a>
+            <a href="http://mall.midea.com/detail/index?id=77319" target="_blank" class="fn">
+                                ä¸­å¤®ç©ºè° 1P å®¶ç¨åé¢é£ç®¡æº KFR-26T2W/BP2N1-TR            </a>
+            <div class="ft_message">
+
+                                    <div class="status">æè´§</div>
+                
+                <div class="price_new">
+                    <span class="price">&yen;<em>4798.00</em></span>
+                </div>
+            </div>
+                    </li>
+            <li class="hproduct">
+            <a href="http://mall.midea.com/detail/index?id=77320" target="_blank" class="cover">
+                <img src="http://static.midea.com/ImageStore/105425/pic/55a4bf3bd7360bc7A11598/55a4bf3bd7360bc7A11598_430*430.jpg" alt="ååå¾ç"/>
+            </a>
+            <a href="http://mall.midea.com/detail/index?id=77320" target="_blank" class="fn">
+                                ä¸­å¤®ç©ºè° 1.5P å®¶ç¨åé¢é£ç®¡æº KFR-35T2W/BP2N1-TR            </a>
+            <div class="ft_message">
+
+                                    <div class="status">æè´§</div>
+                
+                <div class="price_new">
+                    <span class="price">&yen;<em>5488.00</em></span>
+                </div>
+            </div>
+                    </li>
+        </ul>
+    <!-- E ååç­éç»æ list_wrap -->
+
+    <!--ç¿»é¡µ -->
+    <div class="pagination">
+        <div class="pagination_inner">
+        </div>
+    </div>
+
+</div>
+<!-- E é¡µé¢ä¸»ä½ -->
+
+</div>
+<!-- S å±ä¸­åå®¹ -->
+
+</div>
+<!-- E æ¬é¡µå®¹å¨ -->
+
+<!-- S åºé¨ -->
+<div class="footer">
+    <div class="footer_inner">
+        <div class="foot_links" id="footLinkWrap">
+            <!--æ·»å foot_links_on çclass æ§å¶ä¸ææ¡å¼¹åº -->
+            <div class="col">
+                <h3>æ°é»ä¸­å¿</h3>
+                <ul class="link_list">
+                    <li><a target="_blank" href="http://www.midea.com/cn/news_center/Group_News/">éå¢æ°é»</a></li>
+                    <li><a target="_blank" href="http://www.midea.com/cn/news_center/Product_News/">äº§åæ°é»</a></li>
+                </ul>
+            </div>
+            <div class="col">
+                <h3>å³äºç¾ç</h3>
+                <ul class="link_list">
+                    <li><a target="_blank" href="http://www.midea.com/cn/about_midea/Group_profile/index_pc.shtml">éå¢æ¦åµ</a></li>
+                    <li><a target="_blank" href="http://www.midea.com/cn/about_midea/history.shtml">ç¾çåå²</a></li>
+                    <!--<li><a target="_blank" href="http://www.midea.com/cn/news_center/">æ°é»ä¸­å¿</a></li>-->
+                    <li><a target="_blank" href="http://www.midea.com/cn/about_midea/midea_chronicle_of_events/index_pc.shtml">ç¾çå¤§äºè®°</a></li>
+                    <li><a target="_blank" href="http://www.midea.com/cn/about_midea/brand_strategy/intro/">åçæç¥</a></li>
+                    <li><a target="_blank" href="http://www.midea.com/cn/about_midea/midea_culture/index_pc.shtml">ç¾çæå</a></li>
+                    <li><a target="_blank" href="http://www.midea.com/cn/about_midea/Corporate_responsibility/CSR1/">ä¼ä¸è´£ä»»</a></li>
+                    <li><a target="_blank" href="http://www.midea.com/cn/about_midea/midea_glory/">ç¾çè£èª</a></li>
+                    <li><a target="_blank" href="http://www.midea.com/cn/about_midea/technological_innovation/index_pc.shtml">ç§æåæ°</a></li>
+                    <li><a target="_blank" href="http://zhaopin.midea.com.cn/mideaweb/html/index.html">äººææè</a></li>
+                    <li><a target="_blank" href="http://www.midea.com/cn/wbwx">å¾®åå¾®ä¿¡</a></li>
+                </ul>
+            </div>
+            <div class="col">
+                <h3>æèµèå³ç³»</h3>
+                <ul class="link_list">
+                    <li><a target="_blank" href="http://www.midea.com/cn/investor_relations/corporate_governance/">å¬å¸æ²»ç</a></li>
+                    <li><a target="_blank" href="http://www.midea.com/cn/investor_relations/Temporary_notice/">ä¸´æ¶å¬å</a></li>
+                    <li><a target="_blank" href="http://www.midea.com/cn/investor_relations/periodic_report/">å®ææ¥å</a></li>
+                    <li><a target="_blank" href="http://www.midea.com/cn/investor_relations/performance/">ä¸ç»©è¯´æ</a></li>
+                    <li><a target="_blank" href="http://www.midea.com/cn/investor_relations/Stock_information/">è¡ç¥¨ä¿¡æ¯</a></li>
+                    <li><a target="_blank" href="http://www.midea.com/cn/investor_relations/gpzsb/">å¬å¹³å¨èº«è¾¹</a></li>
+                    <li><a target="_blank" href="http://www.midea.com/cn/investor_relations/tzzzx/">æèµèå¨è¯¢</a></li>
+                </ul>
+            </div>
+            <div class="col">
+                <h3>æå¡æ¯æ</h3>
+                <ul class="link_list">
+                    <li><a target="_blank" href="http://www.midea.com/cn/service_support/charging_standard/index_pc.shtml">æ¶è´¹æ å</a></li>
+                    <li><a target="_blank" href="http://mall.midea.com/service/index/repair">å®è£æ¥ä¿®é¢çº¦</a></li>
+                    <li><a target="_blank" href="http://mall.midea.com/my/warranty/record">è¿åº¦æ¥è¯¢</a></li>
+                    <li><a target="_blank" href="http://mall.midea.com/service/search/nearby">æå¡ç½ç¹æ¥è¯¢</a></li>
+                    <!--<li><a target="_blank" href="http://www.midea.com/cn/service_support/download_center/">ä¸è½½ä¸­å¿</a></li>-->
+                    <!--<li><a target="_blank" href="http://www.midea.com/cn/service_support/byzn/">ä¿å»æå</a></li>-->
+                    <li><a target="_blank" href="http://mall.midea.com/service/index/detail">æå¡è¯¦æ</a></li>
+                </ul>
+            </div>
+            <div class="col">
+                <h3>ç½ç«ä¿¡æ¯</h3>
+                <ul class="link_list">
+                    <li><a target="_blank" href="http://www.midea.com/cn/infomation/contact_us/">èç³»æä»¬</a></li>
+                    <li><a target="_blank" href="http://www.midea.com/cn/infomation/terms_of_service/">æå¡æ¡æ¬¾</a></li>
+                    <li><a target="_blank" href="http://www.midea.com/cn/infomation/privacy_policy/">éç§æ¿ç­</a></li>
+                </ul>
+            </div>
+            <div class="col">
+                <h3>è§£å³æ¹æ¡</h3>
+                <ul class="link_list">
+                    <li><a target="_blank" href="http://www.midea.com/cn/solution/central_air_conditioning/">ä¸­å¤®ç©ºè°</a></li>
+                    <!--<li><a target="_blank" href="http://www.midea.com/cn/solution/central_air_conditioning_2691/">åç¨ç©ºæ°è½ç­æ°´æº</a></li>-->
+                    <li><a target="_blank" href="http://www.midea.com/cn/solution/household_air_conditioner/">å®¶ç¨ç©ºè°</a></li>
+                    <li><a target="_blank" href="http://www.midea.com/cn/solution/Water_purification_equipment/">åæ°´æº</a></li>
+                    <!--<li><a target="_blank" href="http://www.midea.com/cn/solution/Refrigerator_freezer/">å°ç®±å·æ</a></li>-->
+                    <li><a target="_blank" href="http://www.midea.com/cn/solution/kitchen/">åç¨å¨æ¿</a></li>
+                </ul>
+            </div>
+            <div class="col">
+                <h3>åæé¾æ¥</h3>
+                <ul class="link_list">
+                    <li><a target="_blank" href="http://www.cheaa.com/">ä¸­å½å®¶çµç½</a></li>
+                    <li><a target="_blank" href="http://www.abi.com.cn/">è¾è¯å®¶çµç½</a></li>
+                    <li><a target="_blank" href="http://www.homea.hc360.com/">æ§èªå®¶çµç½</a></li>
+                    <li><a target="_blank" href="http://www.hea.cn/">å®¶çµç½</a></li>
+                    <li><a target="_blank" href="http://www.4008899315.com/" >ç¾çå¶å·æå¡ç½</a></li>
+                    <li><a target="_blank" href="http://www.annto.com/" >å®å¾ç©æµ</a></li>
+                </ul>
+            </div>
+            <!--<div class="col">
+                <h3>å³é®è¯</h3>
+                <ul class="link_list">
+                    <li><a target="_blank" href="http://bbs.midea.com/bbs/forum.php">ç¾çç¤¾åº</a></li>
+                    <li><a target="_blank" href="http://www.midea.com/cn/Household_Products/Lampblack_machine/zqxyj/">è¸æ±½æ´</a></li>
+                    <li><a target="_blank" href="http://www.midea.com/cn/Household_Products/microwave_oven/zlfwbl/">è¸ç«æ¹</a></li>
+                    <li><a target="_blank" href="http://www.midea.com/cn/news_center/Group_News/201408/t20140818_122814.shtml">ç¾çE+èé»</a></li>
+                    <li><a target="_blank" href="http://www.midea.com/cn/commercial_product/sykt/qs/">ç¾çé£ç®¡æº</a></li>
+                    <li><a target="_blank" href="http://www.midea.com/cn/news_center/Product_News/201405/t20140528_91891.shtml">ä¸æä½è³ä¸åº¦çµ</a></li>
+                    <li><a target="_blank" href="http://www.midea.com/cn/news_center/Product_News/201306/t20130613_13162.shtml">1æä¸åº¦çµ</a></li>
+                    <li><a target="_blank" href="http://www.midea.com/cn/Household_Products/fridge/jg/">å¡å¸ç½éæ</a></li>
+                    <li><a target="_blank" href="http://www.midea.com/cn/news_center/Product_News/201404/t20140404_82040.shtml">ä¸æä¸åº¦çµ</a></li>
+                    <li><a target="_blank" href="http://www.midea.com/cn/Household_Products/household_air_conditioner/gskt/">ç¾çææº</a></li>
+                    <li><a target="_blank" href="http://www.midea.com/cn/search/?searchname=åµå¥å¼ç©ºè°">ç¾çåµå¥å¼ç©ºè°</a></li>
+                    <li><a target="_blank" href="http://www.midea.com/cn/news_center/Product_News/201404/t20140404_82040.shtml">ä¸æ1åº¦çµ</a></li>
+                </ul>
+            </div>-->
+
+            <i class="icon_arrow"></i>
+        </div>
+
+        <div class="foot_info">
+
+
+            <div class="info_wrap">
+                <div class="site_link">
+                    <h4 class="tit">å¶ä»è´­ä¹°å¹³å°ï¼</h4>
+
+                    <a target="_blank" class="item item_tmall" href="http://mideakt.tmall.com/" >å¤©ç«</a>
+                    <a target="_blank" class="item item_jd" href="http://mall.jd.com/index-1000006726.html" >äº¬ä¸</a>
+                    <a target="_blank" class="item item_suning" href="http://shop30000090.suning.com/" >èå®</a>
+                    <a target="_blank" class="item item_gome" href="http://www.gome.com.cn/html/prodhtml/topics/201412/gao-mdqjd.html">å½ç¾å¨çº¿</a>
+                    <i class="item_hr"></i>
+                    <a target="_blank" class="item item_video" href="http://www.midea.com/cn/video/index_pc.shtml" >è§é¢ä¸åº</a>
+                    <a target="_blank" class="item item_act" href="http://www.midea.com/cn/subject/index_pc.shtml" >äº§åä¸é¢</a>
+                    <a target="_blank" href="http://www.midea.com/cn/about_midea/Group_profile/index_pc.shtml" >å³äºæä»¬</a>
+                    <a target="_blank" href="http://www.midea.com/cn/infomation/contact_us/index_pc.shtml" >èç³»æä»¬</a>
+                    <a target="_blank" href="http://www.midea.com/cn/infomation/terms_of_service/index_pc.shtml" >æå¡æ¡æ¬¾</a>
+                    <a target="_blank" class="last" href="http://www.midea.com/cn/infomation/privacy_policy/index_pc.shtml" >éç§æ¿ç­</a>
+                </div>
+
+                <p class="copyright">
+                    Copyright &copy; 1968-2016 ç¾çéå¢è¡ä»½æéå¬å¸ ç²¤ICPå¤09215446å·
+                </p>
+            </div>
+
+            <a target="_blank" class="location" href="http://st.midea.com/pc/html/mall/country.html" id="">Select country/language<span>CN - ä¸­æ</span></a>
+            <a target="_blank" class="site_cert" href="https://search.szfw.org/cert/l/CX20120919001670001780" ><img src="http://st.midea.com/pc/img/common/icon_cx.png" width="42" height="15"></a>
+        </div>
+    </div>
+</div>
+
+<script>
+    (function(){if(window._hmt){var arr=/\bmdtag=([\d\.]+)/i.exec(location.href);if(arr&&arr.length>1){_hmt.push(['_trackEvent','md','mdtag',arr[1],1]);}}})();
+</script>
+
+<script>
+(function () {
+    var _footConfig = {
+        pagePV: false
+    };
+    if (window.footConfig) {
+        for (var key in _footConfig) {
+            if (footConfig[key]) {
+                _footConfig[key] = footConfig[key];
+            }
+        }
+    }
+
+    function JsonToStr(o) {
+        if (o == undefined) {
+            return "";
+        }
+        if (window.JSON && window.JSON.stringify) {
+            return window.JSON.stringify(o);
+        } else {
+            var r = [];
+            if (typeof o == "string") return "\"" + o.replace(/([\"\\])/g, "\\$1").replace(/(\n)/g, "\\n").replace(/(\r)/g, "\\r").replace(/(\t)/g, "\\t") + "\"";
+            if (typeof o == "object") {
+                if (!o.sort) {
+                    for (var i in o)
+                        r.push("\"" + i + "\":" + JsonToStr(o[i]));
+                    if (!!document.all && !/^\n?function\s*toString\(\)\s*\{\n?\s*\[native code\]\n?\s*\}\n?\s*$/.test(o.toString)) {
+                        r.push("toString:" + o.toString.toString());
+                    }
+                    r = "{" + r.join() + "}"
+                } else {
+                    for (var i = 0; i < o.length; i++)
+                        r.push(JsonToStr(o[i]))
+                    r = "[" + r.join() + "]";
+                }
+                return r;
+            }
+            return o.toString().replace(/\"\:/g, '":""');
+        }
+    }
+
+    function getCookie(name) {
+        var reg = new RegExp("(^| )" + name + "(?:=([^;]*))?(;|$)"),
+                val = document.cookie.match(reg);
+        return val ? (val[2] ? unescape(val[2]) : "") : null;
+    }
+
+    function setCookie(name, value, expires, path, domain, secure) {
+        var exp = new Date(),
+                expires = arguments[2] || null,
+                path = arguments[3] || "/",
+                domain = arguments[4] || null,
+                secure = arguments[5] || false;
+        expires ? exp.setMinutes(exp.getMinutes() + parseInt(expires)) : "";
+        document.cookie = name + '=' + encodeURIComponent(value) + (expires ? ';expires=' + exp.toGMTString() : '') + (path ? ';path=' + path : '') + (domain ? ';domain=' + domain : '') + (secure ? ';secure' : '');
+    }
+
+    function getUrlParam(name, url) {
+        //åæ°ï¼åéåï¼urlä¸ºç©ºåè¡¨ä»å½åé¡µé¢çurlä¸­å
+        var u = arguments[1] || window.location.search,
+                reg = new RegExp("(^|&)" + name + "=([^#&]*)(&|#|$)"),
+                r = u.substr(u.indexOf("\?") + 1).match(reg);
+        return r != null ? r[2] : "";
+    }
+
+    function $loadUrl(o) {
+        o.element = o.element || 'script';
+        var el = document.createElement(o.element);
+        el.charset = o.charset || 'utf-8';
+        o.onBeforeSend && o.onBeforeSend(el);//åè¯·æ±ä¹åè°ç¨çå½æ°
+        el.onload = el.onreadystatechange = function () {
+            if (/loaded|complete/i.test(this.readyState) || navigator.userAgent.toLowerCase().indexOf("msie") == -1) {
+                o.onload && o.onload();//
+                clear();
+            }
+        };
+        el.onerror = function () {
+            clear();
+        };
+        el.src = o.url;
+        document.getElementsByTagName('head')[0].appendChild(el);
+
+        function clear() {
+            if (!el) {
+                return;
+            }
+            el.onload = el.onreadystatechange = el.onerror = null;
+            el.parentNode && (el.parentNode.removeChild(el));
+            el = null;
+        }
+    }
+
+    function updateEnv(data) {
+        for (var envKey in data) {
+            if (envKey == 'channel') {
+                // APPç¯å¢çåºå®åºæ¯å¼ï¼ä¸éè¦åæ¹å
+                if (env[envKey] == 4 || env[envKey] == 5) {
+                    continue;
+                }
+            }
+
+            if (data[envKey]) {
+                env[envKey] = data[envKey];
+            }
+        }
+
+        setCookie('env', JsonToStr(env), 525600, '', 'midea.com');
+    }
+
+    function reportRd(opt) {
+        var pageMess = window.pageMess || {};
+        var oParams = {
+                    curl: location.href,
+                    rurl: document.referrer,
+                    serviceid: 10,
+                    mtag: '',
+                    skuid: pageMess['skuid'] || '',
+                    distributorid: pageMess['distributorid'] || '',
+                    dealid: pageMess['dealid'] || '',
+                    sellerid: pageMess['sellerid'] || '',
+                    supplierid: pageMess['supplierid'] || ''
+                },
+                arrParams = [];
+
+        if(location.href.indexOf('.midea.com/detail/index') > -1 && !oParams.skuid){
+            oParams.skuid = getUrlParam('id');
+        }
+
+        for (var key in oParams) {
+            var v = opt[key];
+            if (v) {
+                oParams[key] = v;
+            }
+
+            arrParams.push(key + '=' + encodeURIComponent(oParams[key]));
+        }
+
+        $loadUrl({
+            url: '//w.midea.com/common/log/rd?' + arrParams.join('&')
+        });
+    }
+
+    // åå§åenvå¯¹è±¡
+    var env = getCookie('env');
+    try {
+        if (!env) {
+            env = {};
+        } else {
+            if (window.JSON && window.JSON.parse) {
+                  env = window.JSON.parse(env);
+            } else {
+                env = eval('(' + env + ')');
+            }
+        }
+    } catch (e) {
+        env = {};
+    }
+
+    // æ¶éåºæ¯ä¿¡æ¯
+    var ua = navigator.userAgent.toLowerCase(),
+        channel = 3,   //  channel 1 å¾®ä¿¡ï¼2 ç§»å¨webï¼3 PCï¼4 ç¾çååAPPï¼5 ç¾å®¶APP
+        regsrc = getUrlParam('regsrc') || '';
+
+    // mtagç»è®¡
+    var mtag = getUrlParam('mtag') || '',
+            allTags = getCookie('mtag') || '';
+    if (mtag && (/^[1-4]\d{4}\.\d+\.\d+$/.test(mtag))) {
+        var cvs = allTags.split(';'),
+                isChange = false;
+        for (var i = 0; i < cvs.length; i++) {
+            var v = cvs[i];
+            if (v.split('.')[0].split('')[0] == mtag.split('.')[0].split('')[0]) {
+                cvs[i] = mtag;
+                isChange = true;
+                break;
+            }
+        }
+
+        if (!isChange) {
+            cvs[cvs.length] = mtag;
+        }
+        reportRd({mtag: mtag});
+        allTags = cvs.join(';');
+        setCookie('mtag', allTags, 10080, '', 'midea.com');
+    } else {
+        reportRd({mtag: ''});
+    }
+
+    updateEnv({
+        channel: channel,
+        regsrc: regsrc
+    });
+
+    // è®¾ç½®MachineKey
+    var mk = getCookie('midea_mk');
+    if(!mk || mk.length != 32){
+        $loadUrl({url: '//w.midea.com/common/log/mk'});
+    }
+
+    //ç¾åº¦ç»è®¡
+    var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+    document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F94d2fcdc25bf11213329895f51da83d0' type='text/javascript'%3E%3C/script%3E"));
+})();
+</script>
+<!-- E åºé¨ -->
+
+<!--Sååå±ç¤ºæ¨¡æ¿-->
+<script type="text/html" id="searchListTemplate">
+    <%for(var i = 0; i < data.length; i++){
+        var item = data[i];
+    %>
+        <li class="hproduct">
+            <a href="http://mall.midea.com/detail/index?id=<%=item.lDistributorSkuId%>&icid=<%=item.lSkuId%>" target="_blank" class="cover"><img src="<%=item.strPicUrl%>" alt="ååå¾ç"/></a>
+            <a href="http://mall.midea.com/detail/index?id=<%=item.lDistributorSkuId%>&icid=<%=item.lSkuId%>" target="_blank" class="fn"><%=item.strTitle%></a>
+            <div class="ft_message">
+                <div class="status"><% if(item.nInStock == 1) {%>æè´§<% } %></div>
+                <div class="price_new">
+                    <span class="price">&yen;<em><%=(item.nSalePrice/100).toFixed(2)%></em></span>
+                    <% if(((item.lDisProperty & 0x2) || (item.lDisProperty & 0x4)) && item.strActiveTag){%><div class="onsale_tag"><%=item.strActiveTag%></div><%}%>
+                </div>
+            </div>
+            <% if(item.strActiveTag && pageMess.now_time < pageMess.act_end_time){%><div class="act_11_11_tab">å11éæ </div><%}%>
+        </li>
+    <%}%>
+</script>
+<!--Eååå±ç¤ºæ¨¡æ¿-->
+
+<script type="text/javascript">
+(function(global){
+var g=[[]],d='//st.midea.com',m={},blankjs="",grays={},mdebug = location.href.indexOf("mdebug=1")!=-1;
+m.alias = {};
+var a={},p={},c=[];
+g["0"]=["\/js\/version\/201511\/formatJson.201511251652.js","\/js\/version\/201409\/jquery.201409051736.js","\/js\/version\/201512\/md.category.v2.201512281657.js","\/js\/version\/201506\/page.201506161317.js"];
+c = [['formatJson',0,0],['jquery',0,1],['md.category.v2',0,2],['page',0,3]];
+if(typeof(JSON)!="undefined" && window.localStorage){
+	for(var key in localStorage){
+		if(/^_m_/.test(key)){
+			var store = JSON.parse(localStorage.getItem(key));
+        	var i = key.substr(3);
+        	if((new Date()).getTime()>store.cacheTime){
+	    		continue;
+	    	}
+	    	var _m=getModuleMap(i);
+	    	if(!_m || _m.group==0){continue;}
+	    	var curPath=g[_m.group][_m.groupid];
+	    	if((d+curPath)==store.path){
+				g[0].push(curPath);
+				g[_m.group][_m.groupid]=blankjs;
+				c[_m.index]=[_m.id,0,g[0].length-1];
+			}
+		}
+	}
+	}
+function getModuleMap(id){
+	for(var i=0;i<c.length;i++){
+		if(c[i][0]==id){
+			return {"id":id,"index":i,"group":c[i][1],"groupid":c[i][2]};
+		}
+	}
+	return "";
+}
+function getCombUrl(list){
+	var a=[];
+	for(var i=0;i<list.length;i++){
+		if(list[i]){
+			a.push(list[i]);
+		}
+	}
+	return a.length>1?(d+"/??"+a.join(",")):(d+a[0]);
+}
+
+for(var i=0;i<c.length;i++){
+	var surl=d+g[c[i][1]][c[i][2]];
+	var furl=getCombUrl(g[c[i][1]]);//åå¹¶åå°å
+		a[c[i][0]]=surl;
+		p[c[i][0]]=(c[i][1]==0)?surl:furl;
+}
+
+m.alias=mdebug?a:p;
+m.moduleURI=a;
+
+
+global._moduleConfig = m;
+
+function gray(m){
+	}
+
+})(this);
+
+</script>
+<script type="text/javascript">if(typeof JSON!=="object"){JSON={};}
+(function(){function f(n){return n<10?"0"+n:n;}
+if(typeof Date.prototype.toJSON!=="function"){Date.prototype.toJSON=function(key){return isFinite(this.valueOf())?this.getUTCFullYear()+"-"+f(this.getUTCMonth()+1)+"-"+f(this.getUTCDate())+"T"+f(this.getUTCHours())+":"+f(this.getUTCMinutes())+":"+f(this.getUTCSeconds())+"Z":null;};String.prototype.toJSON=Number.prototype.toJSON=Boolean.prototype.toJSON=function(key){return this.valueOf();};}
+var cx=/[\u0000\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g,escapable=/[\\\"\x00-\x1f\x7f-\x9f\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g,gap,indent,meta={"\b":"\\b","\t":"\\t","\n":"\\n","\f":"\\f","\r":"\\r",'"':'\\"',"\\":"\\\\"},rep;function quote(string){escapable.lastIndex=0;return escapable.test(string)?'"'+string.replace(escapable,function(a){var c=meta[a];return typeof c==="string"?c:"\\u"+("0000"+a.charCodeAt(0).toString(16)).slice(-4);})+'"':'"'+string+'"';}
+function str(key,holder){var i,k,v,length,mind=gap,partial,value=holder[key];if(value&&typeof value==="object"&&typeof value.toJSON==="function"){value=value.toJSON(key);}
+if(typeof rep==="function"){value=rep.call(holder,key,value);}
+switch(typeof value){case"string":return quote(value);case"number":return isFinite(value)?String(value):"null";case"boolean":case"null":return String(value);case"object":if(!value){return"null";}
+gap+=indent;partial=[];if(Object.prototype.toString.apply(value)==="[object Array]"){length=value.length;for(i=0;i<length;i+=1){partial[i]=str(i,value)||"null";}
+v=partial.length===0?"[]":gap?"[\n"+gap+partial.join(",\n"+gap)+"\n"+mind+"]":"["+partial.join(",")+"]";gap=mind;return v;}
+if(rep&&typeof rep==="object"){length=rep.length;for(i=0;i<length;i+=1){if(typeof rep[i]==="string"){k=rep[i];v=str(k,value);if(v){partial.push(quote(k)+(gap?": ":":")+v);}}}}else{for(k in value){if(Object.prototype.hasOwnProperty.call(value,k)){v=str(k,value);if(v){partial.push(quote(k)+(gap?": ":":")+v);}}}}
+v=partial.length===0?"{}":gap?"{\n"+gap+partial.join(",\n"+gap)+"\n"+mind+"}":"{"+partial.join(",")+"}";gap=mind;return v;}}
+if(typeof JSON.stringify!=="function"){JSON.stringify=function(value,replacer,space){var i;gap="";indent="";if(typeof space==="number"){for(i=0;i<space;i+=1){indent+=" ";}}else{if(typeof space==="string"){indent=space;}}
+rep=replacer;if(replacer&&typeof replacer!=="function"&&(typeof replacer!=="object"||typeof replacer.length!=="number")){throw new Error("JSON.stringify");}
+return str("",{"":value});};}
+if(typeof JSON.parse!=="function"){JSON.parse=function(text,reviver){var j;function walk(holder,key){var k,v,value=holder[key];if(value&&typeof value==="object"){for(k in value){if(Object.prototype.hasOwnProperty.call(value,k)){v=walk(value,k);if(v!==undefined){value[k]=v;}else{delete value[k];}}}}
+return reviver.call(holder,key,value);}
+text=String(text);cx.lastIndex=0;if(cx.test(text)){text=text.replace(cx,function(a){return"\\u"+("0000"+a.charCodeAt(0).toString(16)).slice(-4);});}
+if(/^[\],:{}\s]*$/.test(text.replace(/\\(?:["\\\/bfnrt]|u[0-9a-fA-F]{4})/g,"@").replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g,"]").replace(/(?:^|:|,)(?:\s*\[)+/g,""))){j=eval("("+text+")");return typeof reviver==="function"?walk({"":j},""):j;}
+throw new SyntaxError("JSON.parse");};}}());var modulejs,require,define;(function(global){var mod,cfg,_modulejs,_define,_require;var version="1.0.2";var isCache=true;var cacheTime=60*60*24*30*1000;cfg={debug:location.href.indexOf("mdebug=1")!=-1?true:false,alias:{},cssAlias:{},moduleURI:{},vars:{},uris:{},modules:{},callback:[],actModules:{},cacheLoad:{},cacheDel:{},deps:{},events:{},timing:{}};_modulejs.config=config;config(global["_moduleConfig"]?global._moduleConfig:cfg);global["_moduleConfig"]=cfg;require=_require;define=_define;modulejs=_modulejs;on("module_ready",function(id,fromeCache){cfg.callback=cleanArray(cfg.callback);var init=cfg.callback,l=init.length;for(var i=0;i<l;i++){if(init[i]&&checkDeps(init[i].dependencies)){var cb=init[i].factory;var deps=init[i].dependencies;var mods=[];var allDeps=[];var m;for(var j=0;j<deps.length;j++){var m=_require(deps[j]);allDeps.push(m.dependencies);mods.push(m);}
+debug("callback_is_run=start",cb.toString(),cfg.callback);init[i]=null;cb.apply(null,mods);cfg.debug&&emit("callback_is_run",cb.toString().replace(/[\r\n]/g,""));if(window.moduleReady&&moduleReady.length>0){moduleReady.shift()();}}}});on("module_require",function(id){cfg.actModules[id]=cfg.actModules[id]?(cfg.actModules[id]+1):1;});on("module_cacheDel",function(id){cfg.cacheDel[id]=1;});on("cache_load",function(m){});on("module_loss_alias",function(id){console.error("module_loss_alias:"+id);});var cacheNow=new Date();_loadCache();cfg.timing['loadcache']=new Date()-cacheNow;function _loadCache(){if(!_useCache()){return false;}
+localStorage.removeItem("_modules");for(var key in localStorage){if(/^_m_/.test(key)){var store=JSON.parse(localStorage.getItem(key));var i=key.substr(3);var now=(new Date()).getTime();var oneDay=24*3600*1000;if(cfg.alias[i]){if(_getModuleURI(i)!=store.path||store.deps.join(",").indexOf("{")>-1){emit("module_cacheDel",i);localStorage.removeItem(key);continue;}}else{if(now>store.cacheTime){emit("module_cacheDel",i);localStorage.removeItem(key);continue;}}
+if(store.cacheTime-now<oneDay){store.cacheTime=(new Date()).getTime()+cacheTime;try{localStorage.removeItem(key);localStorage.setItem(key,JSON.stringify(store));}catch(e){}}
+cfg.cacheLoad[store.id]=store;emit("cache_load",store);}}}
+function _getModuleURI(id){return cfg.moduleURI[id]?cfg.moduleURI[id]:cfg.alias[id];}
+function _useCache(id,deps,factory){if(typeof(JSON)=="undefined"){return false;}
+if(!isCache){return false;}
+if(!(JSON&&window.localStorage)){return false;}
+if(cfg.debug){return false;}
+var agent=navigator.userAgent.toLowerCase();if(agent.indexOf("msie")>0){var m=agent.match(/msie\s([\d\.]+);/i);if(m&&m.length>=2&&parseInt(m[1])<=6){return false;}}
+if(id&&id.indexOf("_")==0){return false;}
+if(factory&&factory.toString().indexOf("_cacheThisModule_")<0){return false;}
+return true;}
+function _cacheModule(id,deps,factory){var key="_m_"+id;var _t=localStorage.getItem(key);var ms=_t?JSON.parse(_t):{};ms={"id":id,"deps":deps,"factory":factory.toString(),"path":_getModuleURI(id),"cacheTime":(new Date()).getTime()+cacheTime};try{localStorage.removeItem(key);localStorage.setItem(key,JSON.stringify(ms));emit("module_cached",id);}catch(e){}}
+function _define(id,deps,factory){if(arguments.length===2){factory=deps;deps=null;}
+deps=isType("Array",deps)?deps:(deps?[deps]:[]);if(isType("Function",factory)){var _deps=parseDependencies(factory.toString());}
+_useCache(id,deps,factory)&&_cacheModule(id,deps,factory);deps=mergeArray(deps,_deps);var mod=new Module(id);mod.dependencies=deps||[];mod.factory=factory;if(id=="_init"){cfg.callback.push(mod);}else{cfg.modules[id]=mod;}
+emit("module_ready",id);}
+function _require(id){id=parseVars(id);var module=cfg.modules[id];emit("module_require",id);if(!module){emit("module_error",id);return null}
+if(module.exports){return module.exports;}
+var now=new Date();var factory=module.factory;var exports=isType("Function",factory)?factory(require,module.exports={},module):factory;module.exports=exports===undefined?module.exports:exports;cfg.timing[id]=new Date()-now;return module.exports;}
+_require.async=_modulejs;_require.css=function(path){path=cfg.cssAlias&&cfg.cssAlias[path]?cfg.cssAlias[path]:path;if(!path){return;}
+var l;if(!window["_loadCss"]||window["_loadCss"].indexOf(path)<0){l=document.createElement('link');l.setAttribute('type','text/css');l.setAttribute('rel','stylesheet');l.setAttribute('href',path);l.setAttribute("id","loadCss"+Math.random());document.getElementsByTagName("head")[0].appendChild(l);window["_loadCss"]?(window["_loadCss"]+="|"+path):(window["_loadCss"]="|"+path);}
+l&&(typeof callback=="function")&&(l.onload=callback);return true;}
+function _modulejs(deps,factory){_define("_init",deps,factory);}
+function checkDeps(deps){var list={},flag=true;for(var i=0;i<deps.length;i++)list[deps[i]]=1;getDesps(deps,list);for(var i in list){if(!cfg.modules[i]){loadModule(i);flag=false;}}
+return flag;function getDesps(deps,list){for(var i=0;i<deps.length;i++){if(!list[deps[i]]){list[deps[i]]=1;}
+if(cfg.modules[deps[i]]&&list[deps[i]]!=2){list[deps[i]]=2;getDesps(cfg.modules[deps[i]].dependencies,list);}}}}
+function parseVars(id){var VARS_RE=/{([^{]+)}/g
+var vars=cfg.vars
+if(vars&&id.indexOf("{")>-1){id=id.replace(VARS_RE,function(m,key){return isType("String",vars[key])?vars[key]:key})}
+return id}
+function mergeObject(a,b){for(var i in b){if(!b.hasOwnProperty(i)){continue;}
+if(!a[i]){a[i]=b[i];}else if(Object.prototype.toString.call(b[i])=="[object Object]"){mergeObject(a[i],b[i]);}else{a[i]=b[i];}}
+return a;}
+function config(obj){return cfg=mergeObject(cfg,obj);}
+function Module(id){this.id=id;this.dependencies=[];this.exports=null;this.uri="";}
+function loadModule(id){var m;if(m=cfg.cacheLoad[id]){return _define(m.id,m.deps,eval("a = "+m.factory));}
+if(cfg.modules[id]){emit("module_ready",id);return;}
+var url=cfg.alias[id]?cfg.alias[id]:"";if(!url){emit("module_loss_alias",id);return;}
+if(cfg.uris[url]){return;}
+cfg.uris[url]=1;var head=document.getElementsByTagName("head")[0]||document.documentElement;var baseElement=head.getElementsByTagName("base")[0];var node=document.createElement("script");node.charset="utf-8";node.async=true;node.src=url;var handler=function(){var callee=arguments.callee
+cfg.timing[callee.uri]=new Date()-callee.time;};handler.time=new Date();handler.uri=url;node.onload=handler;baseElement?head.insertBefore(node,baseElement):head.appendChild(node);cfg.debug&&emit("file_loading",url);}
+function on(name,cb){var cbs=cfg.events[name];if(!cbs){cbs=cfg.events[name]=[];}
+cbs.push(cb);}
+function emit(name,evt){debug(name,evt);if(!cfg.events[name]||cfg.events[name].length==0){return;}
+for(var i=0,l=cfg.events[name].length;i<l;i++){cfg.events[name][i](evt);}
+if(name==='error'){delete cfg.events[name];}}
+function cleanArray(a){var n=[];for(var i=0;i<a.length;i++){a[i]&&n.push(a[i]);}
+return n;}
+function mergeArray(a,b){for(var i=0;i<b.length;i++){((","+a+",").indexOf(","+b[i]+",")<0)&&a.push(b[i]);}
+return a;}
+function isType(type,obj){return Object.prototype.toString.call(obj)==="[object "+type+"]"}
+function parseDependencies(code){var commentRegExp=/(\/\*([\s\S]*?)\*\/|([^:]|^)\/\/(.*)$)/mg;var cjsRequireRegExp=/[^.]\s*require\s*\(\s*["']([^'"\s]+)["']\s*\)/g;var ret=[];code.replace(commentRegExp,"").replace(cjsRequireRegExp,function(match,dep){dep&&ret.push(parseVars(dep));})
+return ret;}
+function debug(){if(!cfg.debug){return true;}
+var a=[],l=arguments.length;for(var i=0;i<l;i++){a.push(arguments[i]);}
+try{console.log.apply(console,a);}catch(e){}}}(this));</script>
+<script type="text/javascript">
+var _speedMarkModule = new Date();
+modulejs('md.category.v2', function(m){
+    m.init();
+});</script>
+
+
+</body>
+</html>

@@ -1,0 +1,77 @@
+<html><body><script type="text/javascript">
+
+/**/
+
+
+
+var sync_4815162342 = function()
+{
+this.urls = [
+[0, "http://pixel.mathtag.com/misc/img?mop_seq=0:2&mt_cb=396474&mop_top="],
+[16, "http://ad.360yield.com/match?publisher_dsp_id=5&external_user_id=623e56ab-abc5-4500-8500-9617ab55aea7"],
+[0, "http://pixel.mathtag.com/misc/img?mop_seq=1:2&mt_cb=378692&mop_top=16:1454091240|"],
+[45, "http://cs.gssprt.jp/yie/ld/cs?dspid=tone&uid=623e56ab-abc5-4500-8500-9617ab55aea7"],
+[0, "http://pixel.mathtag.com/misc/img?mop_seq=2:2&mt_cb=141635&check=623e56ab-abc5-4500-8500-9617ab55aea7&mop_top=16:1454091240|45:1454091240|"]
+]
+
+   this.progress = 0;
+
+   var self = this;
+
+   var tims = "";
+   var errs = "";
+
+   this.sync = function(i)
+   {
+       var e = document.createElement("img");
+
+       var now = new Date();
+
+       if (e.addEventListener)
+       {
+	   e.addEventListener('load', function() {
+	       var temp = new Date().getTime() - now.getTime(); tims += self.urls[i][0]+':'+temp+"|";
+	   });
+
+	   e.addEventListener('error', function() {
+	       var temp = new Date().getTime() - now.getTime(); errs += self.urls[i][0]+':'+temp+"|";
+	   });
+       }
+
+       e.src = self.urls[i][1];
+   }
+
+   this.batch = function()
+   {
+      for (var i = self.progress; i < self.urls.length; ++i)
+      {
+	 self.sync(i);
+      }
+   }
+
+   this.final = function()
+   {
+      var e = document.createElement("img");
+      e.src = self.urls[self.urls.length-1][1]+"&final&timings="+tims+"&errors="+errs;
+   }
+
+   this.some = function(howmany)
+   {
+      var count = 0;
+      for (var i = self.progress; i < self.urls.length && count < howmany; ++i)
+      {
+         self.sync(i);
+	 self.progress++;
+         count++;
+      }
+   }
+}
+
+
+var s_4815162342 = new sync_4815162342();
+s_4815162342.some(1);
+setTimeout('s_4815162342.some(2)', 1000);
+setTimeout(s_4815162342.batch, 3000);
+setTimeout(s_4815162342.final, 10000);
+
+</script></body></html>

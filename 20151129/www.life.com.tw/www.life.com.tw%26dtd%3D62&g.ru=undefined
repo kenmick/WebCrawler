@@ -1,0 +1,56 @@
+/*
+(c) Copyright Weborama SA - France. All rights reserved.
+It is illegal to modify, disassemble, sell, copy or publish this software
+or any part thereof. The use of this software is only permitted with the
+prior and express written permission of Weborama SA - France.
+More information: http://www.weborama.com/contacts/
+*/
+function x17() {
+    var x1cl, x1ey = x1bb.x1cj();
+    x1ey.x1ie = x1bb.x1nn(x1ey.x1ie,'wuid=&retargeting=&');
+    x1ey.x1fN = 'https://cstatic.weborama.fr/advertiser/2373/1/4/4/';
+    x1ey.x1lp = '13';
+
+
+
+    x1ey.conf_oba = false;
+    adperfobj.zindex = adperfobj.zindex || 0 || 214748360;
+
+    adperfobj.clicks = new Array();
+    adperfobj.clicks[0] = 'http://adclick.g.doubleclick.net/aclk?sa=L&ai=CMiwkPEdbVvSYFpHDWrCOvMAJjY6L-wXlmv7HyAHAjbcBEAEgAGD7gYCA6AmCARdjYS1wdWItNTY3NzMxODA2MTY3MTczMMgBCagDAaoEfk_QY5aViYY9kerMBzXd4cveeu6gHSNgYL5tdKjTuyQqJpCidtErZScxyRg1IobnPPtxau7J74alrEVoiwK4zFIwXy6g5i68oAwQp85m-WLI2kEIuLhAfxlfY8_twKECUiOgNVou3Ck2tkttYzJU7pnvhywUPEOmMKQviG8CCoAGi6ausKHhz724AaAGIdgHAA&num=1&sig=AOD64_2Y3Qr2oREquRW_dMBym7xFQ8a3NQ&client=ca-pub-5677318061671730&adurl=https://bid.g.doubleclick.net/xbbe/creative/click%3Fd%3DAPEucNWos6dXs4d9HkOXA7Riu0t9BAhdBR3NMEtAhbg2Boqk0vVIEHCFNdoCK7i2ppBvt4YhaqF3U11ZmFmaO_7WIkc6tuDNesUbwqLEFXdSl80llkymP_g%26r1%3Dhttps%3A%2F%2Flescitadinesfr.solution.weborama.fr%2Ffcgi-bin%2Fdispatch.fcgi%3Fa.A%3Dcl%26a.si%3D2373%26a.te%3D22%26a.aap%3D13%26a.agi%3D207%26g.lu%3D' + (adperfobj.landing_urls[0] || '');
+
+
+    try{
+        adperfobj.imptrackers = new Array(
+                
+        );
+
+        adperfobj.clicktrackers = (new Array(
+                
+        ).concat(adperfobj.clicktrackers));
+
+        adperfobj.eventtrackers = (new Array(
+                
+        ).concat(adperfobj.eventtrackers));
+    }catch(scr_e){}
+
+
+
+    x1ey.addTrackers(adperfobj);
+    x1ey.addClicks(adperfobj);
+
+    x1cl = new x1bb.x1ig();
+x1cl.x1c(x1ey, 94, 'index.html', adperfobj.width, adperfobj.height, '', '', '');
+x1ey.x1gG(x1cl, '', 2, '');
+x1cl = new x1bb.x1hW();
+x1cl.x1c(x1ey, 85, 'bg.jpg', adperfobj.width, adperfobj.height, '', '', '');
+x1ey.x1gG(x1cl, '', 2, '');
+
+
+
+
+    x1ey.x1gQ();
+
+
+}
+x1L('adperf_core_' + adperf_version + '_scrambled.js');

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head><script type="text/javascript">
+    
+      (function() {
+        var relegateNavigation = '';
+        var handleClickTagMessage = function(e) {
+          try {
+            var eventData = JSON.parse(e.data);
+          } catch (err) {
+            return;
+          }
+          if (eventData.isInitClickTag) {
+            if (eventData.clickTags) {
+              for (var i = 0; i < eventData.clickTags.length; i++) {
+                var clkTag = eventData.clickTags[i];
+                window[clkTag.name] = clkTag.url;
+              }
+            } else if (eventData.clickTag) {
+              window.clickTag = eventData.clickTag;
+            }
+            relegateNavigation = eventData.relegateNavigation;
+          }
+        };
+
+        if (open.call) {
+          window.open = function(open) {
+            return function(url, name, features) {
+              if (relegateNavigation === 'parent') {
+                var message = {'clickTag': url, 'isPostClickTag': true};
+                parent.postMessage(JSON.stringify(message), '*');
+              } else {
+                var args = [url, name];
+                if (features) {
+                  args.push(features);
+                }
+                open.apply(window, args);
+              }
+            };
+          }(window.open);
+        }
+
+        if (window.addEventListener) {
+          window.addEventListener(
+              'message', handleClickTagMessage, false);
+        } else {
+          window.attachEvent('onmessage', handleClickTagMessage);
+        }
+      })();
+    
+  </script>
+<meta name="ad.size" content="width=300,height=250">			<!--define size of banner, width and height-->
+<meta charset="UTF-8">
+<title>index</title>
+
+<script src="https://s0.2mdn.net/ads/studio/cached_libs/easeljs_0.8.1_58add2e69ca7fbe25e8f82a2b5f6a510_min.js"></script>
+<script src="https://s0.2mdn.net/ads/studio/cached_libs/tweenjs_0.6.1_40840f08e9fb382ae9e4a337da542ed5_min.js"></script>
+<script src="https://s0.2mdn.net/ads/studio/cached_libs/movieclip_0.8.1_927f07f1635e6a2a1aa76e79f9decf86_min.js"></script>
+<script src="https://s0.2mdn.net/ads/studio/cached_libs/preloadjs_0.6.1_ab03d7dc94f6d4fae428f99662cd5819_min.js"></script>
+<script src="https://s0.2mdn.net/ads/studio/cached_libs/tweenmax_1.18.0_499ba64a23378545748ff12d372e59e9_min.js"></script>
+<script src="index.js"></script>
+
+<script>
+var canvas, stage, exportRoot;
+var clickTag = "";						//define blank clicktag
+
+function init() {
+	canvas = document.getElementById("canvas");
+	images = images||{};
+
+	var loader = new createjs.LoadQueue(false);
+	loader.addEventListener("fileload", handleFileLoad);
+	loader.addEventListener("complete", handleComplete);
+	loader.loadManifest(lib.properties.manifest);
+}
+
+function handleFileLoad(evt) {
+	if (evt.item.type == "image") { images[evt.item.id] = evt.result; }
+}
+
+function handleComplete() {
+	exportRoot = new lib.index();
+
+	stage = new createjs.Stage(canvas);
+	stage.addChild(exportRoot);
+	stage.update();
+	stage.enableMouseOver();
+
+	createjs.Ticker.setFPS(lib.properties.fps);
+	createjs.Ticker.addEventListener("tick", stage);
+
+	exportRoot.clickBtn.addEventListener("click", onClickAreaClick); //add click event to clickable object in banner
+}
+
+function onClickAreaClick() {
+	javascript:window.open(window.clickTag, "_blank");
+}
+</script>
+</head>
+
+<body onload="init();" style="background-color:#D4D4D4; position: absolute; top:0; left:0; padding:0; margin:0;">
+	<canvas id="canvas" width="300" height="250" style="background-color:#F1F0F0"></canvas>
+</body>
+</html>

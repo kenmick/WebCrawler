@@ -1,0 +1,57 @@
+<html>
+<head>
+ <meta name="robots" content="noindex, nofollow">
+</head>
+<body>
+<script  type="text/javascript">
+
+var idSite = getParameterByName('idSite');  
+var isPremium = getCookie('isPremium');
+var referer= getParentUrl();
+
+if (isPremium == 'true' && idSite != ''){
+		document.write('<img src="http'+('https:'==document.location.protocol?'s':'')+'://premium.solution.weborama.fr/fcgi-bin/dispatch.fcgi?a.A=im&a.si=2124&a.te='+idSite+'&a.he=1&a.wi=1&a.hr=p&a.ra='+Math.floor(Math.random()*10000001)+'" width="1" height="1" style="border:0px">');
+
+		if (referer!=''){
+			document.write('<img src="http'+('https:'==document.location.protocol?'s':'')+'://www.etude-premium.fr/check/?a.te='+idSite+'&a.href='+referer+'&a.ra='+Math.floor(Math.random()*10000001)+'" width="1" height="1" style="border:0px">');
+		}
+}
+
+function getParentUrl() {
+    var isInIframe = (parent !== window),
+        parentUrl = null;
+
+    if (isInIframe) {
+        parentUrl = document.referrer;
+    }
+
+    return parentUrl;
+}
+
+
+function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+        results = regex.exec(location.search);
+    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+
+function getCookie(name){
+     if(document.cookie.length == 0)
+       return null;
+
+     var regSepCookie = new RegExp('(; )', 'g');
+     var cookies = document.cookie.split(regSepCookie);
+
+     for(var i = 0; i < cookies.length; i++){
+       var regInfo = new RegExp('=', 'g');
+       var infos = cookies[i].split(regInfo);
+       if(infos[0] == name){
+         return unescape(infos[1]);
+       }
+     }
+     return null;
+   }
+</script>
+</body>
+</html>

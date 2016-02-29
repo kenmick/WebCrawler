@@ -1,0 +1,194 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-kr" />
+<title>NAVER</title>
+<link rel="stylesheet" type="text/css" href="http://nv2.adcreative.naver.net/ad3/css/min/common.min.css?120328" />
+<style type="text/css">
+/* DA Alternative - Contents Style */
+#addiv{position:relative}
+#addiv embed,#addiv object{z-index:20}
+#addiv #da_alt{position:absolute;top:0;left:0;width:100%;height:100%;z-index:-1}
+#addiv #da_alt.on{z-index:30}
+#addiv #da_alt a{display:block;overflow:hidden;position:absolute;bottom:0;left:0;width:100%;height:100%}
+#addiv #da_alt .guide{visibility:hidden;position:absolute;top:50%;left:50%;width:154px;height:58px;margin:-29px 0 0 -77px;background:url(http://img.naver.net/static/common/da/da_access.png)}
+#addiv #da_alt.on .guide{visibility:visible}
+#addiv #da_alt .blind{visibility:hidden;overflow:hidden;position:absolute;top:0;left:0;width:0;height:0;font-size:0;line-height:0}
+</style>
+<script type="text/javascript">var sibodomain = "http://nv2.adcreative.naver.net/ad3";</script>
+<script type="text/javascript">var currenttime = "03:21:03:000";</script>
+<script type="text/javascript">var local_cookie = "LX";</script>
+<script type="text/javascript">var sibolog = "&lg=N&lc=&pf=&camp=1102672&ad=2926972";</script>
+<script type="text/javascript">var siboinfo = {};</script>	
+<script type="text/javascript">
+//<![CDATA[
+document.domain = "naver.com";
+var sF1 = "http://nv2.adcreative.naver.net/ad3/1102/1102672/20151111044249-mcH5Jk01.swf";
+var sF2 = "http://nv2.adcreative.naver.net/ad3/1102/1102672/20151111044250-Fmzqar7x.swf";
+var sC1, aC, oNimp;
+var $$da_brand, $$da_stake;
+var bExpanded;
+var oAdDiv;
+
+function lazyLoading() {
+	setTimeout(function() {
+		loadScript("http://nv2.adcreative.naver.net/ad3/js/min/da.min.js?141226", function(){
+			loadScript("http://nv2.adcreative.naver.net/ad3/js/min/da.sibo.min.js?141208", initAd);
+		});
+
+		function loadScript(url, callback) {
+			var script = document.createElement("script");
+			script.type = "text/javascript";
+			script.src = url;
+			if(script.readyState) { // IE
+				(function(script){
+					script.onreadystatechange = function() {
+						if(script.readyState == "loaded" || script.readyState == "complete") {
+							script.onreadystatechange = null;	
+							callback();
+						}
+					};
+				})(script);
+			} else { // IE ??
+				(function(script){
+					script.onload = function() {
+						callback();
+					};
+				})(script);
+			}
+			document.getElementsByTagName("head")[0].appendChild(script);
+		}
+	}, 0);
+}
+
+function setVariable() {
+	sC1 = Da.EF("http://nv.ad.naver.com/adclick?unit=002AP&ac=6682857&src=2699617&br=2156134&rk=VkoejwpizTYAABDOnoIAAAVd&eltts=12NsPJKrUv1rGTQ8jVXLPA%3D%3D&:::cl:::");
+	aC = [Da.EF("http://nv.ad.naver.com/adclick?unit=002AP&ac=6682857&src=2699618&br=2156136&rk=VkoejwpizTYAABDOnoIAAAVd&eltts=12NsPJKrUv1rGTQ8jVXLPA%3D%3D&:::cl:::"),
+		Da.EF("http://nv.ad.naver.com/adclick?unit=002AP&ac=6682857&src=2699618&br=2156137&rk=VkoejwpizTYAABDOnoIAAAVd&eltts=12NsPJKrUv1rGTQ8jVXLPA%3D%3D&:::cl:::"),
+		Da.EF("http://nv.ad.naver.com/adclick?unit=002AP&ac=6682857&src=2699618&br=2156138&rk=VkoejwpizTYAABDOnoIAAAVd&eltts=12NsPJKrUv1rGTQ8jVXLPA%3D%3D&:::cl:::"),
+		Da.EF("http://nv.ad.naver.com/adclick?unit=002AP&ac=6682857&src=2699618&br=2156139&rk=VkoejwpizTYAABDOnoIAAAVd&eltts=12NsPJKrUv1rGTQ8jVXLPA%3D%3D&:::cl:::"),
+		Da.EF("http://nv.ad.naver.com/adclick?unit=002AP&ac=6682857&src=2699618&br=2156140&rk=VkoejwpizTYAABDOnoIAAAVd&eltts=12NsPJKrUv1rGTQ8jVXLPA%3D%3D&:::cl:::")];
+	oNimp = new Nimp(["http://nv.ad.naver.com/adclick?unit=002AP&ac=6682857&src=2699617&br=2156135&rk=VkoejwpizTYAABDOnoIAAAVd&eltts=12NsPJKrUv1rGTQ8jVXLPA%3D%3D&:::cl:::",
+					"http://nv.ad.naver.com/adshow?unit=002AP&ac=6682857&src=2699618&rk=VkoejwpizTYAABDOnoIAAAVd&eltts=12NsPJKrUv1rGTQ8jVXLPA%3D%3D&t=i",
+					"http://nv.ad.naver.com/adshow?unit=002AP&ac=6682857&src=2699619&rk=VkoejwpizTYAABDOnoIAAAVd&eltts=12NsPJKrUv1rGTQ8jVXLPA%3D%3D&t=i"]);
+}
+
+function showAd() {
+	if(!bExpanded) {
+		bExpanded = true;
+		Da.FE(parent.document, "click");
+		var oF2 = new Flash(sF2, 940, 410, "transparent");
+		oF2.setAtt("id", "f940410");
+		oF2.setValByArray(["click1", "click2", "click3", "click4", "click5"], aC);
+		if(parent.LoginCheck) parent.LoginCheck.nvLoginCheck("ad", 1);
+		Da.CE(Da.$$("da_stake"), "DIV", {id:"da_drag"}, "position:absolute;left:0px;top:197px", oF2.getHTML());
+		oNimp.log(1);
+		oNimp.log(2);
+	}
+}
+
+function hideAd() {
+	Da.$$("f940410").style.cssText = "width:0px;height:0px";
+	Da.RE(Da.$$("da_drag"));
+	if(parent.LoginCheck) parent.LoginCheck.nvLoginCheck("ad", 0);
+	bExpanded = false;
+	Da.$$("f355150").initIcon();
+}
+
+function initAd() {
+	setVariable();
+
+	var oUA = new Agent();
+	if (oUA.hasFP() && !(oUA.isMac && oUA.isSF) && parent.da_iframe_rolling && !oUA.isCR) {
+		$$da_brand = Da.$$("da_brand");
+		$$da_brand.style.cssText = "position:relative;margin:0px auto;width:940px;height:0px;font-size:0px;line-height:0;z-index:11;left:0px;top:197px";
+		$$da_stake = Da.$$("da_stake");
+		$$da_stake.style.cssText  = "z-index:20;position:absolute;top:0;left:50%;line-height:0;margin:0 0 0 -470px;width: 940px;height:0px;font-size:0px;";
+
+		var oF1 = new Flash(sF1, 355, 150, "opaque");
+		oF1.setAtt("id", "f355150");
+		oF1.setAtt("name", "f355150");
+		oF1.setAtt("tabindex", "-1");
+		oF1.setVal("click", sC1);
+		oF1.setVal("nfreq", 0);
+		
+		Da.CE($$da_brand, "DIV", {id: "da_rollingboard"}, "position:absolute; width:355px; height:150px; left:640px; top:260px");
+		oAdDiv = Da.$$("da_rollingboard");
+		
+		Da.SH(oAdDiv, oF1.getHTML());
+		
+		initAltForExpansion();
+	} else {
+		var imgTag = "";
+		if( "K1"=="K1" ) {
+			imgTag += '<a id="ac_banner_a" href="http://nv.ad.naver.com/adclick?unit=002AP&ac=6682857&src=2699619&br=2156141&rk=VkoejwpizTYAABDOnoIAAAVd&eltts=12NsPJKrUv1rGTQ8jVXLPA%3D%3D&:::cl:::" target=\"_blank\">';
+		}
+		imgTag += '<img src=\"http://nv2.adcreative.naver.net/ad3/1102/1102672/20151111044254-xcvsDyKV.jpg\" width=\"300\" height=\"150\" title=\"\" alt=\"ì¸ì ê°ì¥ ë°ë»í ìì ì¼ë¡ ë³´ë¼!\" border=\"0\">';
+		if( "K1"=="K1" ) {
+			imgTag += '</a>';
+		}
+		
+		Da.SH(Da.$("addiv"), imgTag);
+		oNimp.log(3);
+		
+		initAltForImage();
+	}
+}
+
+function initAltForExpansion() {
+	// DA Alternative - Create Access Layer
+	var accessLayer = parent.document.createElement('div');
+	accessLayer.setAttribute('id','da_access');
+	accessLayer.style.cssText = 'position:absolute;top:50%;left:50%;width:154px;height:58px;margin:-29px 0 0 -77px;background:url(http://img.naver.net/static/common/da/da_access.png)';
+	accessLayer.style.display = "none";
+	oAdDiv.appendChild(accessLayer);
+	
+	// DA Alternative - Create Alternative Contents
+	var altObj = document.createElement('div');
+	altObj.setAttribute('id','da_alt');
+	altObj.innerHTML = '<a href="http://nv.ad.naver.com/adclick?unit=002AP&ac=6682857&src=2699617&br=2156134&rk=VkoejwpizTYAABDOnoIAAAVd&eltts=12NsPJKrUv1rGTQ8jVXLPA%3D%3D&:::cl:::" id="da_altlink" target="_blank"><span class="blind">ì¸ì ê°ì¥ ë°ë»í ìì ì¼ë¡ ë³´ë¼!</span> <span class="guide"></span></a>';
+	var pObj = Da.$('addiv');
+	pObj.style.height = '100px';
+	pObj.appendChild(altObj);
+
+	// DA Alternative - Focus Action
+	var altLink = Da.$("da_altlink");
+	altLink.onfocus = function() {
+		accessLayer.style.display = "block";
+	};
+	altLink.onblur = function() {
+		accessLayer.style.display = "none";
+	};
+}
+
+function initAltForImage() {
+	// DA Alternative - Create Access Layer
+	var accessLayer = document.createElement('div');
+	accessLayer.setAttribute('id','da_access');
+	accessLayer.style.cssText = 'position:absolute;top:50%;left:50%;width:154px;height:58px;margin:-29px 0 0 -77px;background:url(http://img.naver.net/static/common/da/da_access.png)';
+	accessLayer.style.display = "none";
+	var oAdDiv = document.getElementById("ac_banner_a");
+	oAdDiv.appendChild(accessLayer);
+	
+	// DA Alternative - Focus Action
+	var altLink = document.getElementById("ac_banner_a");
+	var bMousedown = false;
+	altLink.onmousedown = function() {
+		bMousedown = true;
+	};
+	altLink.onfocus = function() {
+		if(!bMousedown){accessLayer.style.display = "block";}
+	};
+	altLink.onblur = function() {
+		accessLayer.style.display = "none";
+	};
+}
+//]]>
+</script>
+</head>
+<body onload="lazyLoading()">
+<div id="addiv"></div>
+<a id="link" name="link" href="javascript:void(0)"></a>
+
+</body>
+</html>

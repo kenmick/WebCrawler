@@ -1,0 +1,208 @@
+body {
+    margin:0;
+    padding:0;
+}
+canvas {
+    display: block;
+    
+}
+
+#wrapper{
+    position:absolute;
+    left:0;
+    top:0;
+    width: 300px;
+    height: 250px;
+    overflow:hidden;
+    cursor:pointer;
+    /*border:1px solid black;*/
+}
+
+#AnimBG{
+    position:absolute;
+    top:0;
+    left:0;
+}
+
+#bokeh{
+    position:absolute;
+    top:0;
+    left:0;
+}
+/*~~~~~~~~ecran01~~~~~~~~~~~~~*/
+#ecran01{
+    position: absolute;
+    top:0;
+    left:0;
+}
+
+
+#BG{
+    position:absolute;
+    top:0px;
+    left:0px;
+
+}
+
+#txt01{
+    position: absolute;
+    top: 18px;
+    left: 42px;
+    opacity: 0;
+    z-index:3;
+}
+#txt02{
+    position: absolute;
+    top: 161px;
+    left: 207px;
+    opacity: 0;
+    z-index:3;
+}
+
+
+
+/*~~~~~~~~ecran02~~~~~~~~~~~~~*/
+#ecran02{
+    position:absolute;
+    top:0;
+    left:0;
+}
+
+
+#txt03{
+    position: absolute;
+    top: -100px;
+    left: 76px;
+    opacity: 0;
+    
+}
+
+#box{
+    position: absolute;
+    top:200px;
+    left: 82px;
+    opacity: 0;
+}
+
+#jaune{
+     position: absolute;
+    top:173px;
+    left:243px;
+    opacity: 0;
+    
+}
+
+#txt04{
+    position: absolute;
+    top:29px;
+    left:65px;
+    opacity: 0;
+}
+#txt05{
+    position: absolute;
+    top: 16px;
+    left:65px;
+    opacity: 0;
+}
+
+
+
+#cta{
+    position: absolute;
+    top: 202px;
+    left: 83px;
+    opacity:0;
+}
+
+/*Mention Legal*/
+#ml
+{
+    z-index: 59;
+    position: relative;
+    opacity: 0;
+    /*bottom:-20px;*/
+    top: 225px;
+    left: 123px;
+    animation: mlanim 0.3s linear 7s forwards;
+    -webkit-animation-name: mlanim;
+    -webkit-animation-duration: 0.3s;
+    -webkit-animation-delay: 7s;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-fill-mode: forwards;
+}
+#ml img
+{
+    margin: 10px 0px;
+    display: block;
+    cursor: pointer;
+}
+
+#ml:hover > #mention
+{
+    bottom: -53px;
+}
+
+#mention
+{
+    left: -123px;
+    position: absolute;
+    bottom: -90px;
+    width: 300px;
+    height: 77px;
+    z-index: 1;
+}
+
+.mention-anim
+{
+    bottom: 0px;
+    transition: all 0.2s linear;
+    -webkit-transition: all 0.2s linear;
+
+}
+
+.mention-anim2-out
+{
+    bottom: 0px
+
+}
+
+
+
+@keyframes mlanim {
+
+    0%{
+        bottom:0px;
+    }
+
+    100%{
+        bottom:22px;
+
+    }
+}
+
+
+
+
+
+
+
+#ml_partout{
+    z-index: 2;
+    position: absolute;
+    width: 100%;
+    top: 225px;
+    left: 5px;
+    opacity: 0;
+
+}
+
+#ml_web{
+    z-index: 2;
+    position: absolute;
+    width: 100%;
+    top: 215px;
+    left: 13px;
+    opacity: 0;
+
+}

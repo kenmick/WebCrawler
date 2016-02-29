@@ -1,0 +1,80 @@
+var op = {
+	imgLists : '.m-goodsList-6 a',
+	indicatorLists : '.dots a',
+	curIndex : 0,
+	auto : true,
+	interval : 3000,
+	animate : true,
+	mouseoverChange : true,
+	indicatorCss : 'current'
+}
+
+var curIndex = op.curIndex, imgs = $(op.imgLists), indicators = $(op.indicatorLists);
+indicators
+		.each(function(index, element) {
+			var index = index;
+			if (op.mouseoverChange) {
+				$(element).mouseover(function() {
+					doChange(index);
+					if (!!timer)
+						clearTimeout(timer);
+				});
+				$(element)
+						.mouseout(
+								function() {
+									if (!!op.auto) {
+										if (!!timer)
+											clearTimeout(timer);
+
+										timer = setTimeout(
+												function() {
+													var toIndex = (curIndex == (indicators.length - 1) ? 0
+															: (curIndex + 1));
+													doChange(toIndex);
+												}, op.interval);
+									}
+								});
+			} else {
+				$(element).click(function() {
+					doChange(index);
+				})
+			}
+		})
+
+if (!!op.auto) {
+	timer = setTimeout(
+			function() {
+				var toIndex = (curIndex == (indicators.length - 1) ? 0
+						: (curIndex + 1));
+				doChange(toIndex);
+			}, op.interval);
+}
+
+doChange = function(to) {
+	if (curIndex == to) {
+		return;
+	}
+
+	if (!!op.animate) {
+		$(imgs[curIndex]).fadeOut();
+		$(imgs[to]).fadeIn();
+	} else {
+		$(imgs[curIndex]).hide();
+		$(imgs[to]).show();
+	}
+	$(indicators[curIndex]).removeClass(op.indicatorCss);
+	$(indicators[to]).addClass(op.indicatorCss);
+
+	curIndex = to;
+
+	if (!!op.auto) {
+		if (!!timer)
+			clearTimeout(timer);
+
+		timer = setTimeout(function() {
+			var toIndex = (curIndex == (indicators.length - 1) ? 0
+					: (curIndex + 1));
+			doChange(toIndex);
+		}, op.interval);
+	}
+}

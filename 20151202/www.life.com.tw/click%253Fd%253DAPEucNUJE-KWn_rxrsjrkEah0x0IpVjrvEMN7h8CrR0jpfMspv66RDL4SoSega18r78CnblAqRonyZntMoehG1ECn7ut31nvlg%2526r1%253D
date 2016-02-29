@@ -1,0 +1,154 @@
+(function () {
+    _(
+        {"status":{"code":"OK"},"jsVersion":"15.48.148","id":"565809b2e4b0325deee264f2","wlcid":"5474a5f9e4b05cf9e13a804f","bid":{"id":"561f9beee4b076695d9e40c7","videos":[{"videoId":"561f615ee4b0a107e7543655","name":"Akamai: London","videoUrls":["https://azdownloads-a.akamaihd.net/videos/London-300x168.mp4"],"thumbnailId":"561f615ee4b08178a0ce833f","thumbnail":"https://azdownloads-a.akamaihd.net/videos/London-300x168.jpg","fullsizeThumbnail":"https://azdownloads-a.akamaihd.net/videos/London-300x168.jpg","subtitles":[],"captions":{},"metadata":{"duration":112640,"clickurl":"http://t2vnews.com/","clickableTimeInSeconds":0,"keywords":["Tourism","Travel","Grade I listed buildings in London","The Blitz","City of London","London","Population","Buckingham Palace","River Thames","Sightseeing","Metropolitan area"],"commonRating":{"value":"G","descriptors":[],"minAge":0}},"videoSourceType":"FILE","rssVideoId":"A00001","studioName":"T2TV","cs":{"p":false}}]},"playerTemplate":{"initialization":"autoplay","sound":"muted","initialVolume":1.0,"videosToPlay":20,"videosToRequest":1,"shuffleVideos":false,"prerollFrequency":0,"backgroundSkinLocation":{"x":0,"y":0,"w":0,"h":0},"controlsSkin":"https://cdn-ssl.vidible.tv/prod/player/swf/15.48.144/Controls16_2.swf","controlsSkinLocation":{"x":0,"y":213,"w":250,"h":0},"videoLocation":{"x":0,"y":0,"w":250,"h":250},"afterVideosUI":"next","scrubBarSkin":"https://cdn-ssl.vidible.tv/prod/2013-03/10/511e8160e4b0bf40bd0340a7_v2.swf","coveringsSkin":"https://cdn-ssl.vidible.tv/prod/player/swf/15.48.144/Coverings.swf","coveringsSkinLocation":{"x":0,"y":0,"w":250,"h":250},"surroundSkinLocation":{"x":0,"y":0,"w":0,"h":0},"playerWidth":250,"playerHeight":250,"controlsAutoPosition":true,"controlsChromeless":true,"controlsBackgroundAlpha":"1.0","controlsConfig":{"colorSchema":{"mainColor":{"backgroundAlpha":1.0}}},"nielsenSiteCampaign":"cmp185074","nielsenChannelCampaign":"cmp185270","backgroundFill":true,"backgroundColor":0,"surround3DBevelShadowColor":16777215,"surround3DBevelHighlightColor":16777215,"surroundInnerRadius":0,"surroundCornerRadius":0,"surroundHole":false,"surround3D":false,"surround3DBevelSize":0,"surround3DBevelStrength":0.0,"extras":[{"config":{"url":"http://t2vnews.com","ignorePrerollUrl":"true"},"region":{"x":0,"y":0,"w":0,"h":0},"blocking":true,"urls":{"FLASH":"https://cdn-ssl.vidible.tv/prod/player/swf/15.48.144/click-throughs.swf"}}],"publisherPayout":"None","publisherAmount":0.0,"metaData":{},"showLogo":false,"HLSExtra":"https://cdn-ssl.vidible.tv/prod/player/swf/15.48.144/hls-plugin.swf","IMAExtra":"https://cdn-ssl.vidible.tv/prod/player/swf/15.48.144/ima-ad-module.swf","YuMeExtra":"https://cdn-ssl.vidible.tv/prod/player/swf/15.48.144/yume-ad-module.swf","FreeWheelExtra":"https://cdn-ssl.vidible.tv/prod/player/swf/15.48.144/free-wheel-module.swf","VASTExtra":"https://cdn-ssl.vidible.tv/prod/player/swf/15.48.144/vast-ad-engine.swf","PlayerAdSystem":"https://cdn-ssl.vidible.tv/prod/player/swf/15.48.144/vidible-ad-server.swf","UIExtra":"https://cdn-ssl.vidible.tv/prod/player/swf/15.48.144/controls-sticky.swf","AgeGateExtra":"https://cdn-ssl.vidible.tv/prod/player/swf/15.48.144/age-gate.swf","SubtitlesExtra":"https://cdn-ssl.vidible.tv/prod/player/swf/15.48.144/subtitles.swf","ClickExtra":"https://cdn-ssl.vidible.tv/prod/player/swf/15.48.144/click-throughs.swf"},"adSettings":{"maxLinearShowTime":35,"podSize":4,"prerollInterleave":1,"midrollTiming":"5%;15%;30%;45%;60%;75%;90%","softTimeout":0.4,"hardTimeout":3.2,"startTimeout":19.200000000000003,"domainOptimisation":true,"adStrategy":"ADSET_BASED","companions":[],"aeg":[],"asids":["565476f3e4b07d7e1ff482da"]},"playerWidget":{"playerType":"SMART","url":"https://cdn-ssl.vidible.tv/prod/player/swf/15.48.144/player-vast.swf","adOnly":false,"isAol":false},"geo":{"country":"fra","region":"b","zipCode":"33000","areaCode":"0","connSpeed":"broadband"},"brandedContent":false}
+    );
+    function _(json) {
+                    /*
+     Developed by Robert Nyman, http://www.robertnyman.com
+     Code/licensing: http://code.google.com/p/getelementsbyclassname/
+     */
+            var getElementsByClassName = function (className, tag, elm) {
+                if (document.getElementsByClassName) {
+                    getElementsByClassName = function (className, tag, elm) {
+                        elm = elm || document;
+                        var elements = elm.getElementsByClassName(className),
+                            nodeName = (tag) ? new RegExp("\\b" + tag + "\\b", "i") : null,
+                            returnElements = [],
+                            current;
+                        for (var i = 0, il = elements.length; i < il; i += 1) {
+                            current = elements[i];
+                            if (!nodeName || nodeName.test(current.nodeName)) {
+                                returnElements.push(current);
+                            }
+                        }
+                        return returnElements;
+                    };
+                }
+                else if (document.evaluate) {
+                    getElementsByClassName = function (className, tag, elm) {
+                        tag = tag || "*";
+                        elm = elm || document;
+                        var classes = className.split(" "),
+                            classesToCheck = "",
+                            xhtmlNamespace = "http://www.w3.org/1999/xhtml",
+                            namespaceResolver = (document.documentElement.namespaceURI === xhtmlNamespace) ? xhtmlNamespace : null,
+                            returnElements = [],
+                            elements,
+                            node;
+                        for (var j = 0, jl = classes.length; j < jl; j += 1) {
+                            classesToCheck += "[contains(concat(' ', @class, ' '), ' " + classes[j] + " ')]";
+                        }
+                        try {
+                            elements = document.evaluate(".//" + tag + classesToCheck, elm, namespaceResolver, 0, null);
+                        }
+                        catch (e) {
+                            elements = document.evaluate(".//" + tag + classesToCheck, elm, null, 0, null);
+                        }
+                        while ((node = elements.iterateNext())) {
+                            returnElements.push(node);
+                        }
+                        return returnElements;
+                    };
+                }
+                else {
+                    getElementsByClassName = function (className, tag, elm) {
+                        tag = tag || "*";
+                        elm = elm || document;
+                        var classes = className.split(" "),
+                            classesToCheck = [],
+                            elements = (tag === "*" && elm.all) ? elm.all : elm.getElementsByTagName(tag),
+                            current,
+                            returnElements = [],
+                            match;
+                        for (var k = 0, kl = classes.length; k < kl; k += 1) {
+                            classesToCheck.push(new RegExp("(^|\\s)" + classes[k] + "(\\s|$)"));
+                        }
+                        for (var l = 0, ll = elements.length; l < ll; l += 1) {
+                            current = elements[l];
+                            match = false;
+                            for (var m = 0, ml = classesToCheck.length; m < ml; m += 1) {
+                                match = classesToCheck[m].test(current.className);
+                                if (!match) {
+                                    break;
+                                }
+                            }
+                            if (match) {
+                                returnElements.push(current);
+                            }
+                        }
+                        return returnElements;
+                    };
+                }
+                return getElementsByClassName(className, tag, elm);
+            };
+            var cl = "vdb_565809b2e4b0325deee264f25474a5f9e4b05cf9e13a804f";
+            var c = getElementsByClassName(cl, null, document.body)[0];
+            c.className = c.className.replace(new RegExp("(\\s*)" + cl + "\\s*", "g"), "$1");
+                var p = (c.getAttribute("vdb_params") || "") + "";
+
+        var cb = /(?:[\?&]|^)m\.cb=(.*?)(&m\..*?=|$)/g.exec(p);
+        cb = cb && cb[1] || Math.random();
+        var ur = /(?:[\?&]|^)m\.url=(.*?)(&m\..*?=|$)/g.exec(p);
+        ur = ur && ur[1];
+        function ee(pn, v, dv) {
+            var ve = dv && dv(v) || v;
+            if (ve == v) {
+                try {
+                    ve = decodeURIComponent(v);
+                    ve = encodeURIComponent(ve);
+                } catch (e) {
+                    ve = encodeURIComponent(v);
+                }
+            }
+            p = p.replace("m." + pn + "=" + v, "m." + pn + "=" + ve);
+            v = ve;
+            return v;
+        }
+
+        ee("url", ur);
+        p += p && "&";
+        var ifr = window != top;
+        var r = encodeURIComponent(ifr ? document.referrer : location.href);
+        var i = document.createElement("img");
+        var it = new Date().getTime();
+                                    var si = c.getElementsByTagName('img');
+                var srcSubstr = 'https://trk.vidible.tv/trk/impression.gif';
+                var isImpressionExist = false;
+                for (var ik = 0; ik < si.length; ik++) {
+                    if (si[ik].src.indexOf(srcSubstr) !== -1) {
+                        isImpressionExist = true;
+                        break;
+                    }
+                }
+                if (!isImpressionExist) {
+                    i.src = "https://trk.vidible.tv/trk/impression.gif?pid=565809b2e4b0325deee264f2&bcid=5474a5f9e4b05cf9e13a804f&s=true&" + p + "ifr=" + ifr + "&cb=" + cb + "&r=" + r + "&recover=true";
+                    i = document.createElement("img");
+                    var et = encodeURIComponent('player error');
+                    var st = encodeURIComponent('workflow error');
+                    var dt = encodeURIComponent('Static impression was removed');
+                    i.src = "https://trk.vidible.tv/trk/error.gif?pid=565809b2e4b0325deee264f2&bcid=5474a5f9e4b05cf9e13a804f&s=true&" + p + "ifr=" + ifr + "&cb=" + cb + "&r=" + r + "&et=" + et + "&st=" + st + "&dt=" + dt;
+                    i = document.createElement("img");
+                }
+                            i.src = "https://trk.vidible.tv/trk/js-loaded.gif?pid=565809b2e4b0325deee264f2&bcid=5474a5f9e4b05cf9e13a804f&s=true&" + p + "ifr=" + ifr + "&cb=" + cb + "&r=" + r;
+                var s = document.createElement("script");
+        s.type = "text/javascript";
+                    s.src = "https://cdn-ssl.vidible.tv/prod/player/js/15.48.148/vidible-min.js?pid=565809b2e4b0325deee264f2&bcid=5474a5f9e4b05cf9e13a804f&s=true&" + p + "ifr=" + ifr + "&cb=" + cb + "&r=" + r;
+                s.onload = function () {
+                            var pl = vidible.createPlayer({apid: "", pid: "565809b2e4b0325deee264f2", bcid: "5474a5f9e4b05cf9e13a804f",  params: p, content: c, it: it, site: r}, json, {"cdn":"https://cdn-ssl.vidible.tv/prod/","trk":"https://trk.vidible.tv/trk/","ds":"https://delivery.vidible.tv/","ads":"https://ads.vidible.tv/","adt":"https://ads.vidible.tv/","ptv":"https://portal.vidible.tv/"});
+                                        var i = document.createElement("img");
+                i.src = "https://trk.vidible.tv/trk/js-started.gif?pid=565809b2e4b0325deee264f2&bcid=5474a5f9e4b05cf9e13a804f&s=true&" + p + "ifr=" + ifr + "&cb=" + cb + "&r=" + r;
+                        var clb =  window['vidibleInitialize'];
+            if (clb) {
+                clb(pl);
+            }
+            s.onload = s.onreadystatechanged = function () {
+            };
+        };
+        s.onreadystatechange = function () {
+            if (s.readyState == 'complete' || s.readyState == 'loaded') {
+                s.onload();
+            }
+        };
+        c.appendChild(s);
+    }
+})();

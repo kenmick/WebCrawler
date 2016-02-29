@@ -1,0 +1,210 @@
+body {
+    margin:0;
+    padding:0;
+}
+canvas {
+    display: block;
+    
+}
+#canvas{
+    position:absolute;
+    z-index:1;
+    opacity: 0;
+}
+#wrapper{
+    position:absolute;
+    left:0;
+    top:0;
+    width: 300px;
+    height: 250px;
+    overflow:hidden;
+    /*border:1px solid black;*/
+}
+
+#AnimBG{
+    position:absolute;
+    top:0;
+    left:0;
+}
+
+/*~~~~~~~~ecran01~~~~~~~~~~~~~*/
+#ecran01{
+    position: absolute;
+    top:0;
+    left:0;
+}
+
+
+#BG{
+    position:absolute;
+    top:0px;
+    left:0px;
+
+}
+
+
+#carre{
+    position: absolute;
+    top: -200px;
+    left: 56px;
+    opacity: 0;
+    z-index:3;
+}
+#txt01{
+    position: absolute;
+    top: 38px;
+    left: 73px;
+    opacity: 0;
+    z-index:3;
+}
+#txt02{
+    position: absolute;
+    top: 165px;
+    left: 215px;
+    opacity: 0;
+    z-index:3;
+}
+
+#txt03{
+    position: absolute;
+    top: 47px;
+    left: 83px;
+    opacity: 0;
+    z-index:3;
+}
+
+
+#BG_2{
+    position:absolute;
+    top:0px;
+    left:0px;
+    opacity: 0;
+}
+/*~~~~~~~~ecran02~~~~~~~~~~~~~*/
+#ecran02{
+    position:absolute;
+    top:0;
+    left:0;
+}
+
+#txt04{
+    position: absolute;
+    top:29px;
+    left: 65px;
+    opacity: 0;
+}
+
+/*#txt_condition{
+    position: absolute;
+    top: 212px;
+    left:131px;
+    opacity: 0;
+    z-index:70;
+
+} */
+
+#cta{
+    position: absolute;
+    top: 174px;
+    left: 104px;
+    opacity:0;
+}
+
+#ml1{
+    position: absolute;
+    top: 197px;
+    left: 99px;
+    opacity:0;
+}
+/*Mention Legal*/
+#ml
+{
+    z-index: 59;
+    position: relative;
+    opacity: 0;
+    /*bottom:-20px;*/
+    top: 221px;
+    left:131px;
+    animation: mlanim 0.3s linear 7s forwards;
+    -webkit-animation-name: mlanim;
+    -webkit-animation-duration: 0.3s;
+    -webkit-animation-delay: 7s;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-fill-mode: forwards;
+}
+#ml img
+{
+    margin: 10px 0px;
+    display: block;
+    cursor: pointer;
+}
+
+#ml:hover > #mention
+{
+    bottom: -57px;
+}
+
+#mention
+{
+    left: -131px;
+    position: absolute;
+    bottom: -77px;
+    width: 300px;
+    height: 77px;
+    z-index: 1;
+}
+
+.mention-anim
+{
+    bottom: 0px;
+    transition: all 0.2s linear;
+    -webkit-transition: all 0.2s linear;
+
+}
+
+.mention-anim2-out
+{
+    bottom: 0px
+
+}
+
+
+
+@keyframes mlanim {
+
+    0%{
+        bottom:0px;
+    }
+
+    100%{
+        bottom:22px;
+
+    }
+}
+
+
+
+
+
+
+
+#ml_partout{
+    z-index: 2;
+    position: absolute;
+    width: 100%;
+    top: 225px;
+    left: 5px;
+    opacity: 0;
+
+}
+
+#ml_web{
+    z-index: 2;
+    position: absolute;
+    width: 100%;
+    top: 215px;
+    left: 13px;
+    opacity: 0;
+
+}

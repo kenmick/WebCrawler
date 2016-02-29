@@ -1,0 +1,106 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta data-template-name="Template_H5T_mhexpanding-970x250-video">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <script type="text/javascript" src="/879366/Enabler_01_102.js"></script>
+        <script type="text/javascript" src="https://www.gstatic.com/external_hosted/polymer/custom.elements.min.js"></script>
+        <script type="text/javascript" src="https://www.gstatic.com/ads/ci/ytclosebutton/1/ytclosebutton_min.js"></script>
+        
+        <!-- DoubleClick hosted URL -->
+        <script src="https://s0.2mdn.net/ads/studio/cached_libs/tweenmax_1.18.0_499ba64a23378545748ff12d372e59e9_min.js" type="text/javascript"></script>
+        
+    </head>
+    <body>
+        <div id="main-container">
+            <!-- Collapsed Conent -->
+            <div id="collapsed-content">
+                <img id="bg_image" src="bg_image.jpg">
+                <div>
+                    <img class="blockElement" id="logo_c" src="logo_c.png">
+                    
+                    <div id="logo_line01">
+                        <img id="logo_line01_img" src="logo_line01.png">
+                    </div>
+                    
+                    <div id="logo_line02">
+                        <img id="logo_line02_img" src="logo_line02.png">
+                    </div>
+                    
+                    
+                    <div id="logo_topbar">
+                        <img id="logo_topbar_img" src="logo_topbar.png">
+                    </div>
+                    
+                    <div id="logo_bottombar">
+                        <img id="logo_bottombar_img" src="logo_bottombar.png">
+                    </div>
+                    
+                    <img id="logo_heartLeft" src="logo_heartLeft.png">
+                    <img id="logo_heartTop" src="logo_heartTop.png">
+                    <img id="logo_heartRight" src="logo_heartRight.png">
+                    <img id="logo_heartBottom" src="logo_heartBottom.png">
+                    
+                </div>
+                
+                <img id="copy01" src="copy01.png">
+                <img id="copy02" src="copy02.png">
+                <img id="copy03" src="copy03.png">                
+                <img id="copy04" src="copy04.png">                
+                
+                <div id="glowholder">
+                    <img id="glow" src="glow.png">
+                </div>
+                <div id="glowOverlay"></div>
+                
+                <video id="videoCollapsed" width="354" height="184" controls muted autoplay>
+                    <source src="//gcdn.2mdn.net/videoplayback/id/74baf6f6cb816516/itag/15/source/doubleclick/ratebypass/yes/mime/video%2Fmp4/acao/yes/ip/0.0.0.0/ipbits/0/expire/3599545130/sparams/id,itag,source,ratebypass,mime,acao,ip,ipbits,expire/signature/A9470D5F42BAF213DBF017F3B7DFD971EC1823A9.99E70881AA990CC0C867C8A33D2EE2A4ED0F0DC/key/ck2/file/file.mp4" type="video/mp4">
+                    <source src="//gcdn.2mdn.net/videoplayback/id/ff25e0b5b9a2686f/itag/15/source/doubleclick/ratebypass/yes/mime/video%2Fwebm/acao/yes/ip/0.0.0.0/ipbits/0/expire/3599545130/sparams/id,itag,source,ratebypass,mime,acao,ip,ipbits,expire/signature/9C3A2EFF0C0DDE9F4054065CF96A4085ECD8DE26.28CFB05B1E9F2CC1741B35AC5C9F37A9AB53C5C1/key/ck2/file/file.webm" type="video/webm">
+
+                </video>
+
+                
+                <div id="collapsed-exit"></div>
+                <div id="expand-button" class="button">
+                    <img src="fullscreen_button.jpg" id="fullscreen_button">
+                </div>
+                <div class="feature-collapsed" id="feature-collapsed">
+                </div>
+            </div>
+
+            <!-- Expand Content -->
+            <div id="expanded-content">
+                <div id="expanded-exit"></div>
+                
+                <div id="collapse-button">
+                    <img src="closeFullscreen_button.png">
+                </div>
+                
+                
+                
+                
+<!--                <div id="yt-close_back"></div>-->
+<!--                <div class="feature-expanded" id="feature-expanded">-->
+                <div id="video-container-1">
+                    <video id="video-1" controls>
+                    <!-- Sources will be added via JS using Enabler.getUrl calls. -->
+                    </video>
+                    <button id="play-btn-1" class="video-controls"></button>
+                    <button id="pause-btn-1" class="video-controls"></button>
+                    <button id="stop-btn-1" class="video-controls"></button>
+                    <button id="replay-btn-1" class="video-controls"></button>
+                    <button id="unmute-btn-1" class="video-controls"></button>
+                    <button id="mute-btn-1" class="video-controls"></button>
+                    <div id="progress-bar-1"></div>
+                </div>
+                
+            </div>
+            <ci-ytclosebutton id="yt-close"></ci-ytclosebutton>
+        </div>
+            
+
+        <script src="logic.js"></script>
+    </body>
+</html>

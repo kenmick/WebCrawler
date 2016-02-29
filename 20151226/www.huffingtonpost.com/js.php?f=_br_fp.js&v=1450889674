@@ -1,0 +1,55 @@
+/* From: production-mt-wfe-58-160-use1 : 12355 */
+huff.unit('br_fp', function(ready){
+
+	huff.use('jquery', 'cookies', function($, cookies){
+
+		huff.js('sha1.js', $.browser.msie ? 'PluginDetect.js' : '', function(){
+
+			var d = new Date();
+			var brfp = d.getTimezoneOffset() + ';' + screen.width + 'x' + screen.height + 'x' + screen.colorDepth;
+
+			brfp += '|sessionStorage=' + (window.sessionStorage ? 'Yes' : 'No');
+			brfp += '|localStorage=' + (window.localStorage || window.globalStorage ? 'Yes' : 'No');
+
+			var storage_el = document.createElement("DIV");
+			brfp += '|userData=' + (storage_el.addBehavior ? 'Yes' : 'No');
+
+			var aPlugins = [];
+			if ($.browser.msie){
+				var aPluginNames = ['QuickTime', 'DevalVR', 'Shockwave', 'Flash', 'Windows Media Player', 'Silverlight', 'VLC Player', 'Adobe PDF Reader', 'RealPlayer'];
+				for (var i = 0; i < aPluginNames.length; i++) {
+					var version = PluginDetect.getVersion(aPluginNames[i]);
+					version && aPlugins.push(aPluginNames[i] + ';' + version);
+				}
+			} else {
+				for (var i = 0; i < navigator.plugins.length; i++){
+					var oPlugin = navigator.plugins[i];
+					var sPluginText = oPlugin.name + ';' + oPlugin.filename + ';' + oPlugin.description;
+
+					for (var j = 0; j < oPlugin.length; j++){
+						var oMime = oPlugin[j];
+						sPluginText += ';' + oMime.type + ';' + oMime.description + ';' + oMime.suffixes;
+						sPluginText += ';' + ((oMime.enabledPlugin && (oMime.enabledPlugin.name == oPlugin.name)) ? 'Enabled' : 'Disabled');
+					}
+
+					aPlugins.push(sPluginText);
+				}
+			}
+
+			aPlugins.sort();
+			for (i = 0; i < aPlugins.length; i++)
+				brfp += '|' + aPlugins[i];
+
+			cookies.set('br_fp', hex_sha1(brfp), {
+				path: '/',
+				domain: window.location.hostname.replace(/www\./, '')
+			});
+
+		});
+
+	});
+
+});
+
+
+/* From: production-mt-wfe-58-160-use1 : 12355 *//* d46470a66384aab51872df9ebc089fc9cd6a886a */

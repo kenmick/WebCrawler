@@ -1,0 +1,175 @@
+if (typeof(jQuery) == 'undefined' || typeof(adsGlobal) == 'undefined') {
+	jQuery = null;
+	adsGlobal = null;
+}
+(function ($, ads) {
+	// ´«Ñú²ÎÊý
+	var typicurl = "http://801.tianya.cn/dolphin/tianya/2016/01/0_793.jpg";
+	var typicwdh = "560";
+	var typichgt = "410";
+	var tyagtsw = "0";
+	var tylocsw = "0";
+	var tyadlogo = "1";
+	var typicdif = "0";
+	var third_imp = "";
+    var usetrack = "1";
+    
+	var tyclickUrl = usetrack == "0" ? decodeURIComponent("http%3A%2F%2Fpage.tianya.cn%2Fpalace-international%2Fnews%2F13888") : "http://dol.tianya.cn/c?z=tianya&la=0&si=382&cg=617&c=3111301&ci=612&or=862&l=13064&bg=13064&b=13173&u=http%3A%2F%2Fpage.tianya.cn%2Fpalace-international%2Fnews%2F13888";
+	var tyswfclickUrl = tourl("http://dol.tianya.cn/c?z=tianya&la=0&si=382&cg=617&c=3111301&ci=612&or=862&l=13064&bg=13064&b=13173&u=http%3A%2F%2Fpage.tianya.cn%2Fpalace-international%2Fnews%2F13888");
+	
+	var typiccode = function (imgurl, link, tlink, imgwidth, imgheight, flashsw) {
+		var imgobj = "";
+		var tyframewdh = imgwidth;
+		var tyframehgt = imgheight;
+		if (imgurl.toLowerCase().indexOf('.swf') > 0) {
+			imgobj = '<object style="vertical-align:middle;" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,19,0" width="' + imgwidth + '" height="' + imgheight + '"><param name="movie" value="' + imgurl + '?clickTAG=' + tlink + '" /><param name="quality" value="high" /><param name="wmode" value="opaque" /><embed src="' + imgurl + '?clickTAG=' + tlink + '" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" width="' + imgwidth + '" height="' + imgheight + '" swliveconnect="true" name="" wmode=opaque></embed></object>';
+			if (flashsw == 0) {
+				imgobj += '<a style="cursor:pointer;display:block;" href="' + link + '" target="_blank"><div style="width:' + imgwidth + 'px;height:' + imgheight + 'px;position:relative;margin-top:-' + imgheight + 'px;left:0px;z-index:100;background-color:black;filter:alpha(opacity=0);-moz-opacity:0;opacity:0;cursor:pointer;border:none;padding:0px;overflow:hidden;"></div></a>';
+			}
+		} else if (imgurl.toLowerCase().indexOf('.jpg') > 0 || imgurl.toLowerCase().indexOf('.jpeg') > 0 || imgurl.toLowerCase().indexOf('.gif') > 0 || imgurl.toLowerCase().indexOf('.png') > 0) {
+			imgobj = '<a href="' + link + '" target="_blank"><img src="' + imgurl + '" ';
+			if (imgwidth != "0" && imgwidth != "") {
+				imgobj += 'width="' + imgwidth + '" ';
+			}
+			if (imgheight != "0" && imgheight != "") {
+				imgobj += 'height="' + imgheight + '" ';
+			}
+			imgobj += 'border="0" style="vertical-align:middle;" data-baiduimageplus-ignore /></a>';
+		} else {
+			imgobj = '<div style="border:none;"><iframe style="vertical-align:middle;" frameborder="0" width="' + tyframewdh + '" height="' + tyframehgt + '" scrolling="no" src="' + imgurl + '"></iframe></div>';
+		}
+		return imgobj;
+	};
+	function tourl (str) {
+		return escape(str);
+	}
+	var result = typiccode(typicurl, tyclickUrl, tyswfclickUrl, typicwdh, typichgt, tyagtsw),
+		picposcss = "",
+		adLogo = "";
+	
+	if (tylocsw == 1) {
+		picposcss = 'border:none;margin:' + typicdif + 'px auto;text-align:center;position:relative;*zoom:1;';
+	} else if (tylocsw == 2) {
+		picposcss = 'border:none;margin:' + typicdif + 'px 0;position:relative;*zoom:1;';
+	} else {
+		picposcss = "position:relative;*zoom:1;";
+	}
+	
+	if (tyadlogo == 1) {
+		adLogo = '<img src="http://801.tianya.cn/2015/leftbottom.png" style="width:29px;height:16px;position:absolute;left:50%;bottom:65px;margin-left:-14px;">';
+	}
+	if (ads == null) {
+		document.write('<div class="adsame-box" style="' + picposcss + '">' + result + adLogo + '</div><img src="' + third_imp + '" style="width:0px;height:0px;border:none;display:none;" border="0" />');
+	} else {
+		var node = ads.qNode('3111301');
+		node.innerHTML = '<div class="adsame-box" style="' + picposcss + '">' + result + adLogo + '</div><img src="' + third_imp + '" style="width:0px;height:0px;border:none;display:none;" border="0" />';
+		node.style.display = "block";
+	}
+})(jQuery, adsGlobal);
+  (function ($) {
+	var data = {
+		resource: "http://801.tianya.cn/dolphin/tianya/2016/02/0_156.jpg",// ×ÊÔ´£¬ÐèÊµÊ©ÌîÐ´£¬²»¿ÉÎª¿Õ
+		link: "http://dol.tianya.cn/c?z=tianya&la=0&si=382&cg=617&c=3111304&ci=753&or=1122&l=16048&bg=16048&b=15948&u=http%253A%252F%252Fwww.tianya.cn",// Á´½Ó£¬ÐèÊµÊ©ÌîÐ´£¬²»¿ÉÎª¿Õ
+		paddingTop: "100",// ¶¥²¿Á´½Ó¸ß¶È£¬¿ÉÑ¡Ïî£¬ÈôÊµÊ©²»ÌîÐ´ÔòÎª¿Õ
+		contentWidth: "1000",// ÄÚÈÝ¿í¶È£¬¿ÉÑ¡Ïî£¬ÈôÊµÊ©²»ÌîÐ´ÔòÎª¿Õ
+		zIndex: "99"// ±³¾°Á´½Ó²ã¼¶£¬¿ÉÑ¡Ïî£¬ÈôÊµÊ©²»ÌîÐ´ÔòÎª¿Õ
+	};
+	
+	var template = {
+        bgAdLink: '<a class="bgAdLink" target="_blank" href="#link#" style="display:block; position:absolute; z-index:#zIndex#; top:0; left:0;"></a>',
+        bgAdCloseBtn: '<a class="bgAdCloseBtn" href="javascript:void(0);" style="position:absolute; right:10px; top:10px; font-size:20px; color:#f60; z-index:#zIndex#; text-decoration:none;" title="¹Ø±Õ">&times;</a>'
+	};
+	
+	/**
+     * @description ½áºÏÌæ»»Êý¾ÝºÍhtmlÄ£°å£¬´´½¨ÐÂµÄhtmlÎÄ±¾´®
+     * @param {String} template Ä£°å
+     * @param {Object} data Ìæ»»htmlÄ£°åÖÐÕ¼Î»·ûµÄÊý¾Ý
+     * @return {String} ¸ù¾ÝÊý¾ÝºÍhtmlÄ£°åÉú³ÉµÄhtmlÎÄ±¾´®
+     * @example
+     */
+    function createHtml (template, data) {
+    	if (template && data) {
+            template = template.replace(/#([\d\w]+)#/g, function (match, submatch, pos, oText) {
+                return (data[submatch] !== "undefined") ? data[submatch] : submatch;
+            });
+        }
+        return template;
+    };
+	
+    /**
+     * @description Ö÷´¦Àíº¯Êý
+     */
+    function proc (args) {
+    	var resource = args.resource,// ×ÊÔ´
+    		link = args.link,// Á´½Ó
+    		paddingTop = args.paddingTop || 60,// ¶¥²¿Á´½Ó¸ß¶È
+    		contentWidth = args.contentWidth || 1000,// ÄÚÈÝ¿í¶È
+    		zIndex = args.zIndex || 100,// ±³¾°Á´½Ó²ã¼¶
+    		
+    		$body = $("body"),// bodyÔªËØjQuery¶ÔÏó
+    		$base,// »ù±¾½Úµã£¬ÓÃÓÚ¿ËÂ¡
+    		$tmp,// ÁÙÊ±½Úµã
+    		bodyWidth = $body.width(),// Ò³Ãæ¿í¶È
+    		sideWidth,// ²à±ß¿í¶È
+    		pic;// Í¼Æ¬¶ÔÏó
+    	
+    	pic = new Image();
+    	pic.onload = function () {
+    		sideWidth = (Math.min(bodyWidth, pic.width) - contentWidth) / 2;
+    		init();
+    	};
+    	pic.src = resource;
+    	
+    	function init () {
+    		// ÐÞ¸Äbody±³¾°Í¼Æ¬
+			$body.css("background", "url('" + resource + "') no-repeat scroll center top transparent");
+			// ÐÞ¸ÄbodyµÄÄÚ±ß¾à
+			$body.animate({
+				"paddingTop": paddingTop
+			}, 300);
+			
+			$base = $(createHtml(template.bgAdLink, {"link": link, "zIndex": zIndex}));
+			
+			// ¶¥²¿Á´½Ó
+			$tmp = $base.clone();
+			$tmp.height(paddingTop);
+			$tmp.width(contentWidth);
+			$tmp.css("left", "50%");
+			$tmp.css("margin-left", (-1) * (contentWidth / 2) + "px");
+			$body.append($tmp);
+			
+			if (sideWidth > 0) {
+				// ×ó±ßÁ´½Ó
+				$tmp = $base.clone();
+				$tmp.height(pic.height);
+				$tmp.width(sideWidth);
+				$tmp.css("left", "50%");
+				$tmp.css("margin-left", (-1) * ((contentWidth / 2) + sideWidth) + "px");
+				$body.append($tmp);
+				
+				// ÓÒ±ßÁ´½Ó
+				$tmp = $base.clone();
+				$tmp.height(pic.height);
+				$tmp.width(sideWidth);
+				$tmp.css("left", "50%");
+				$tmp.css("margin-left", (contentWidth / 2) + "px");
+				$body.append($tmp);
+			}
+			
+			// ¹Ø±Õ¹ã¸æ°´Å¥
+			$body.append(createHtml(template.bgAdCloseBtn, {"zIndex": zIndex + 5}));
+			$(".bgAdCloseBtn").bind("click", function () {
+				$body.animate({
+					"paddingTop": 0
+				}, 300);
+				$body.css("background", "none");
+				$(".bgAdLink").remove();
+				$(this).remove();
+			});
+    	}
+    }
+    
+	proc(data);
+	
+})(jQuery);
+ 
