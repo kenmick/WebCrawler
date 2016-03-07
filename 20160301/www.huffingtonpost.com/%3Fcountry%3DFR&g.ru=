@@ -1,0 +1,56 @@
+/*
+(c) Copyright Weborama SA - France. All rights reserved.
+It is illegal to modify, disassemble, sell, copy or publish this software
+or any part thereof. The use of this software is only permitted with the
+prior and express written permission of Weborama SA - France.
+More information: http://www.weborama.com/contacts/
+*/
+function x17() {
+    var x1cl, x1ey = x1bb.x1cj();
+    x1ey.x1ie = x1bb.x1nn(x1ey.x1ie,'wuid=&retargeting=&');
+    x1ey.x1fN = 'http://cstatic.weborama.fr/advertiser/1215/70/861/1315/';
+    x1ey.x1lp = '7582';
+
+
+
+    x1ey.conf_oba = false;
+    adperfobj.zindex = adperfobj.zindex || 0 || 214748360;
+
+    adperfobj.clicks = new Array();
+    adperfobj.clicks[0] = 'http://ams1.ib.adnxs.com/click?IQesAIhj0D_92deau1HOP7pJDAIrBx1A_dnXmrtRzj8hB6wAiGPQP77ZE1T6mtQ2c_OUsJpLVSPg4NVWAAAAAKjCEgBIBgAAHwUAAAIAAADHNFQB8cYCAAAAAQBVU0QARVVSACwB-gCNSAAAC-0AAgUAAQAAAIoA4yceugAAAAA./cnd=%21DwlqbAjbh6IFEMfp0AoY8Y0LIAAoioTQmgI./referrer=http%3A%2F%2Fwww.huffingtonpost.fr%2F%3Fcountry%3DFR/clickenc=http%3A%2F%2Fbouyguestelecomfr.solution.weborama.fr%2Ffcgi-bin%2Fdispatch.fcgi%3Fa.A%3Dcl%26a.si%3D1215%26a.te%3D215%26a.aap%3D7582%26a.agi%3D54%26a.ycp%3D11043803%26g.lu%3D' + (adperfobj.landing_urls[0] || '');
+
+
+    try{
+        adperfobj.imptrackers = new Array(
+                
+        );
+
+        adperfobj.clicktrackers = (new Array(
+                
+        ).concat(adperfobj.clicktrackers));
+
+        adperfobj.eventtrackers = (new Array(
+                
+        ).concat(adperfobj.eventtrackers));
+    }catch(scr_e){}
+
+
+
+    x1ey.addTrackers(adperfobj);
+    x1ey.addClicks(adperfobj);
+
+    x1cl = new x1bb.x1ig();
+x1cl.x1c(x1ey, 11857, 'banner_300x250.html', adperfobj.width, adperfobj.height, '', '', '');
+x1ey.x1gG(x1cl, '', 2, '');
+x1cl = new x1bb.x1hW();
+x1cl.x1c(x1ey, 11858, 'Backup.gif', adperfobj.width, adperfobj.height, '', '', '');
+x1ey.x1gG(x1cl, '', 2, '');
+
+
+
+
+    x1ey.x1gQ();
+
+
+}
+x1L('adperf_core_' + adperf_version + '_scrambled.js');

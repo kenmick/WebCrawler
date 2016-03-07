@@ -1,0 +1,72 @@
+if (screen.width && screen.height) {var jsinfocall=new Image;jsinfocall.src='http://ww690.smartadserver.com/track/jsinfo.asp?sw='+screen.width+'&sh='+screen.height;}
+var sasLib3856923Elt = document.createElement('script');
+sasLib3856923Elt.Type = "text/html";
+sasLib3856923Elt.src = 'http://cdn1.smartadserver.com/diff/templates/js/agency-redirect/sas-agency-redirect-1.1.js';
+
+adapt_appendToContainer = function (formatid, item) {
+        var c = document.getElementById('sas_' + formatid);
+        if (!c) { return; }
+        if (typeof (item) === "string") {
+            var d = document.createElement('div');
+            d.innerHTML = item;
+            item = d;
+        }
+        c.appendChild(item);
+    };
+
+
+adapt_appendToContainer(21484, sasLib3856923Elt);
+	
+        if (typeof(sas_ajax) != 'undefined' && sas_ajax) {
+		var getDomElem = function(id) {
+			return document.getElementById(id).contentDocument || document.frames[id].document;
+		}
+
+		var i = document.createElement('iframe');
+		i.id = 'sas_3856923_iframe';
+		i.scrolling = 'no';
+		i.frameBorder = 0;
+		i.width = 1;
+		i.height = 1;
+		i.style.margin = 0;
+		i.style.padding = 0;
+		i.style.width = '1px';
+		i.style.height = '1px';
+		sas_appendToContainer(21484, i);
+
+		i.doc = getDomElem(i.id);
+		i.doc.write(
+			'<!doctype html><html><head><title></title></head><body style="margin:0;padding:0">'+
+			'<scr'+'ipt type="text/javascript">var inDapIF=inDapMgrIf=true;</scr'+'ipt>'+
+			'<!-- BEGIN JS TAG - huffingtonpost.fr firstlook_news mtf - HP Pave2 MTF < - DO NOT MODIFY --><center><scr'+'ipt type="text/javascript">document.write(\'<scr'+'ipt src="http://ib.adnxs.com/ttj?id=3675602&size=300x250&promo_alignment=center&referrer=huffingtonpost.fr&cb=\' + Math.floor(Math.random()*9999999999) + \'&pt1=http://ww690.smartadserver.com/call/pubj/50684/365931/21484/S/3569738027/origine%3Dasqfirst?" type="text/javascript"><\'+\'/script>\');</scr'+'ipt></center><!-- END TAG -->\r\n'+'\r\n'+
+			'<div id="sas_21484_readyDiv" style="display:none;"></div></body></html>'
+		);
+
+		if (navigator.userAgent.indexOf('MSIE') == -1 && navigator.userAgent.indexOf('Opera') == -1) i.doc.close();
+	} else {
+		document.write('<!-- BEGIN JS TAG - huffingtonpost.fr firstlook_news mtf - HP Pave2 MTF < - DO NOT MODIFY --><center><scr'+'ipt type="text/javascript">document.write(\'<scr'+'ipt src="http://ib.adnxs.com/ttj?id=3675602&size=300x250&promo_alignment=center&referrer=huffingtonpost.fr&cb=\' + Math.floor(Math.random()*9999999999) + \'&pt1=http://ww690.smartadserver.com/call/pubj/50684/365931/21484/S/3569738027/origine%3Dasqfirst?" type="text/javascript"><\'+\'/script>\');</scr'+'ipt></center><!-- END TAG -->\r\n'+'\r\n');
+	}
+
+var iframeConfig_3856923 = {
+	formatId: 21484,
+	insertionId: 3856923,
+	iFrame: i,
+	acceptedWidth: "1,300".split(","),
+	acceptedHeight: "1,250".split(","), 
+	defaultWidth: "1",
+	defaultHeight: "1",
+        status: "0"		
+}
+if (typeof(resizableIframeConfig11) != 'undefined')
+{
+	resizableIframeConfig11.push(iframeConfig_3856923);
+}
+else
+{
+	var resizableIframeConfig11 = new Array();
+	resizableIframeConfig11.push(iframeConfig_3856923);
+}
+
+
+
+

@@ -1,0 +1,139 @@
+
+body, body * {
+  vertical-align: baseline;
+  border: 0 none;
+  outline: 0;
+  padding: 0;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  font-size: 9pt;
+  color: #333;
+}
+
+#main-container {
+  position: absolute;
+  width: 970px;
+  height: 250px;
+  top: 0px;
+  left: 0px;
+  background: #ffffff;
+  background-image: url(fond.jpg);
+}
+
+#exit {
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  border: 1px solid black;
+  box-sizing: border-box;
+}
+#yt-close {
+  z-index: 999;
+}
+
+.feature {
+  top: 0px;
+  left: 263px;
+  width: 444px;
+  height: 250px;
+  position: absolute;
+}
+#video-container-0 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: none;
+  z-index: 500;
+  border: none;
+  visibility: hidden;
+}
+
+#video-0 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  box-sizing: border-box;
+}
+
+.video-controls {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  bottom: -1px;
+  cursor: pointer;
+  background-color: #FFF;
+}
+
+/* Video button hiding an positioning */
+.video-controls:hover {
+  border-bottom: 1px solid #666;
+}
+
+#play-btn-0 {
+  background-image:url(play.svg);
+  background-repeat:no-repeat;
+  background-size:cover;
+  left: -260px;
+  bottom: 4px;
+}
+
+#progress-bar-0 {
+  position: absolute;
+  background-color: #339933;
+  bottom: 0px;
+  height: 4px;
+}
+
+#pause-btn-0 {
+  background-image:url(pause.svg);
+  background-repeat:no-repeat;
+  background-size:cover;
+  left: -260px;
+  visibility: hidden;
+  bottom: 4px;
+
+}
+
+#stop-btn-0 {
+  background-image:url(stop.svg);
+  background-size:cover;
+  background-repeat:no-repeat;
+  left: -240px;
+  bottom: 4px;
+}
+
+#unmute-btn-0 {
+  background-image:url(unmute.svg);
+  background-size:cover;
+  background-repeat:no-repeat;
+  right: -260px;
+  bottom: 4px;
+}
+
+#mute-btn-0 {
+  background-image:url(mute.svg);
+  background-size:cover;
+  background-repeat:no-repeat;
+  right: -260px;
+  visibility: hidden;
+  bottom: 4px;
+}
+
+#replay-btn-0 {
+  background-image:url(replay.svg);
+  background-size:cover;
+  background-repeat:no-repeat;
+  left: -220px;
+  bottom: 4px;
+}
+
+:focus {
+  outline:none;
+}
+::-moz-focus-inner {
+  border:0;
+}

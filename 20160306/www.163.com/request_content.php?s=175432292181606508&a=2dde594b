@@ -1,0 +1,55 @@
+<html>
+	<head>
+		<meta name="robots" content="noindex,nofollow"> 
+	</head>
+	<body style="margin:0px;">
+
+		<script>
+
+			var currentTime = new Date();	
+
+			function handleMouseOver(id) {
+				if ( ! interactions[id].awaiting ) {
+					interactions[id].awaiting = true;
+					currentTime = new Date();	
+					interactions[id].awaitingSince = currentTime.getTime() / 1000;
+				} else {
+					currentTime = new Date();	
+					var timeNow = currentTime.getTime() / 1000;
+					if ( ( ( timeNow - interactions[id].awaitingSince ) > 1 ) && ( ! interactions[id].interacted ) ) {
+						interactions[id].interacted = true;
+						document.getElementById('mouseinteraction').src='//hal9000.redintelligence.net/interaction.php?c='+interactions[id].c+'&h='+interactions[id].h;
+					}
+				}
+			}
+			
+			var interactions = new Array();
+			interactions.push({awaiting:false,awaitingSince:0,interacted:false,c:'292193',h:'6d7a78fd43a5'});
+
+		</script>
+
+		<table cellspacing="0" cellpadding="0" border="0" width="300" height="250">
+			
+				<tr>
+					<td width="300" height="250" align="center" onMouseMove="handleMouseOver(0)"><a target="_blank" href="https://n8.hal9000.redintelligence.net/c/p3sfag8fre4rb73"><img src="https://action.metaffiliation.com/trk.php?maff=P4847B51F57B134&argsite=175432292181606508" border="0"></a></td>
+				</tr>
+			
+		</table>
+		
+		<img style="position:absolute;visibility:hidden" id="mouseinteraction" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" />
+<script>
+if ( '' == '1' ) {
+	document.write('<sc'+'ript src="//cdn.contentspread.net/24i/tools/js/addDoubleBorder.js"></sc'+'ript>');
+}
+</script>
+<script>
+if ( '' == '1' ) {
+	addDoubleBorder(300,250,"#666666 ","transparent");
+}
+</script>
+	</body>
+
+
+
+
+</html>

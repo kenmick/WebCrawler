@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<style type="text/css">
+		body, body * {
+			vertical-align: baseline;
+			border: 0;
+			outline: 0;
+			padding: 0;
+			margin: 0;
+
+		}
+		/* Div layer for the entire banner. */
+		#container {
+			position: absolute;
+			width: 298px;
+			height: 248px;
+			border:1px solid #666666;
+			display:none;
+			overflow: hidden;
+
+		}
+		#content {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			top: 0px;
+			left: 0px;
+			background-color: #f7f094;
+			z-index: 100;
+			background-repeat:no-repeat;
+		}
+		/* Invisible button for background clickthrough. */
+		#exit {
+			cursor: pointer;
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			top: 0px;background-color: #f7f094;
+			left: 0px;
+			cursor: pointer;
+			opacity: 0;
+			z-index: 400;
+		}
+
+		#logo {
+			position: absolute;
+			z-index: 400;
+			top: 10px;
+			left: 10px;
+			z-index: 1000;
+		}
+		.step{
+			position: absolute;
+			width: 100%;
+			margin: auto;
+			top: 0; left: 0; bottom: 0; right: 0;
+		}
+		#step1{height: 250px;}
+		#step2{height: 250px;}
+		#step3{height: 95px;}
+		#step2 .content{
+			position: absolute;
+			bottom: 12px;
+			/* width: 140%; */
+			left: 9px;
+
+		}
+		#step1 img{
+			width: 300px;
+			height: auto;
+			position: absolute;
+			left: 0px;
+			top: 16px;
+		}
+		#step2 p {
+
+			text-align: left;
+			font-size: 22px;
+			font-family: Arial;
+			color: #f8e42e;
+			font-weight: bold;
+			text-transform: uppercase;
+		}
+		#step3 p {
+
+			text-align: center;
+			font-size: 28px;
+			font-family: Arial;
+			color: #fff;
+			font-weight: bold;
+			text-transform: uppercase;
+		}
+		#step3 p {
+
+			color: #5d408f;
+
+		}
+
+		#step3 li {
+			text-align: center;
+			font-size: 40px;
+			font-family: Arial;
+			color: #175fa9;
+			font-weight: bold;
+			text-transform: uppercase;
+			text-decoration: none;
+			list-style: none;
+
+		}
+		#step3 li.hop {
+
+			font-size: 40px;
+			color: #fff;
+		}
+		#step3 li.villes span {
+			position: absolute;
+			left:0;
+			right: 0;
+		}
+		#step4 .offre{
+			position: absolute;
+		    top: 50px;
+    		left: 140px;
+			z-index: 20;
+			z-index: 1000;
+		}
+		#step4 p.dest {
+			position: absolute;
+			top: 144px;
+			left: 6px;
+			text-align: center;
+			font-size: 18px;
+			font-family: Arial;
+			color: #fff;
+			font-weight: bold;
+			text-transform: uppercase;
+
+		}
+
+		.offre-top{
+			position: absolute;
+			height:80px;
+			overflow: hidden;
+		}
+		.offre-bottom{
+			position: absolute;
+			height:80px;
+			overflow: hidden;
+			top:80px;
+			width: 160px;
+		}
+		.offre-bottom img{
+			position: absolute;
+			top: -80px;
+		}
+		#step4 .promo{
+			position: absolute;
+			top: 7px;
+		    right: 7px;
+			z-index: 21;
+			z-index: 1000;
+
+		}
+		#step4 .cta {
+			position: absolute;
+			width: 90%;
+			left: 5%;
+			text-align: center;
+			bottom:20px;
+			z-index: 1000;
+		}
+		#step4 .cta span{
+			display: inline-block;
+			width: 160px;
+			line-height: 14px;
+			padding: 10px 10px;
+			text-align: center;
+			font-size: 12px;
+			font-family: Arial;
+			color: #fff;
+			font-weight: bold;
+			text-transform: uppercase;
+			background-color: #ef0f07;
+		}
+		#step4 .cta span.arrow{
+			display: inline-block;
+			width: 20px;
+			padding: 10px 5px;
+			background-color: #ff6f6f;
+			line-height: 14px;
+
+		}
+		#step4 .cta span.arrow img{
+			position: absolute;
+
+		}
+		#step4 .ml {
+			font-family: arial;
+			font-size: 10px;
+			position: absolute;
+			width: 100%;
+			text-align: center;
+			bottom:5px;
+			color: #ffffff;
+		}
+		#step4 img.background{
+			position: absolute;
+		    bottom: -10px;
+		    width: 350px;
+		    height: auto;
+		    left: -105px;
+		}
+		.avion {position:absolute;}
+		:focus {outline:none;}
+		::-moz-focus-inner {border:0;}
+	</style>
+	<script language="javascript">
+		TimelineLite.prototype.addDelay = function (delay, position) {
+			var delayAttr;
+			if(typeof delay === 'undefined' || isNaN(delay)){
+				return this;//skip if invalid parameters
+			}
+			if (typeof position === 'undefined') {
+				delayAttr = '+=' + delay; //add delay at the end of the timeline
+			} else if (typeof position === 'string') {
+				delayAttr = position + '+=' + delay; //add delay after label
+			} else if(!isNaN(position)) {
+				delayAttr = delay + position; //if they're both numbers, assume absolute position
+			} else {
+				return this; //nothing done
+			}
+
+			return this.set({}, {}, delayAttr);
+		};
+
+		var exit, tl, container;
+		init = function(){
+			container = document.getElementById('container');
+			exit = document.getElementById('exit');
+			container.style.display = "block";
+			exit.addEventListener('click', onExitClick, false);
+			createTimeline();
+		}
+		onExitClick = function(e) {
+			console.log("click")
+		}
+		createTimeline = function(){
+			tl = new TimelineMax({repeat:1,onComplete:showPackshot});
+			tl.set('#step4 .background', {scale: .4});
+			tl.to("#step4 .offre", 0, {scale:.7});
+			tl.from("#step1", .5, {x:-100,alpha:0, ease:Power2.easeOut});
+
+			tl.addDelay(2);
+			tl.to("#step1", .05, {alpha:0});
+			tl.staggerFrom("#step3 p", .5, {x:300, ease:Power2.easeOut}, 0.1);
+			tl.addDelay(2);
+			tl.staggerTo("#step3 p", .5, {alpha:0,x:-300},0.1,"+=1");
+
+			tl.from("#step4", .2, {alpha:0, ease:Power2.easeOut});
+			tl.from("#step4 .background", .3, {x:-50,alpha:0, ease:Power2.easeIn});
+			tl.from("#step4 .offre", 1, {alpha:0},"open");
+			tl.from("#step4 .offre-top", 1, {alpha:0, ease:Power2.easeOut},"open");
+			tl.from("#step4 .offre-bottom", 1, {rotationX:-180,transformOrigin:"left top",  ease:Power2.easeOut },"open");
+			tl.to(".blur", .3, {alpha:0,delay:.2},"open");
+			tl.from("#step4 .promo", .6, {alpha:0,scale:2, ease:Back.easeOut},"-=.5");
+			tl.from("#step4 .dest", .5, {alpha:0});
+			tl.from("#step4 .cta", .5, {alpha:0,scale:.5, ease:Back.easeOut},"-=.2");
+			tl.to("#step4 .cta", .3, {scale:1.1,delay:1});
+			tl.to("#step4 .cta", .5, {scale:1});
+			tl.addLabel("packshot");
+			tl.to("#step4", .5, {alpha:0,delay:2});
+			tl.play();
+		}
+		showPackshot=function(){
+			tl.pause("packshot");
+		}
+	</script>
+	</head>
+	<body onload="init()">
+		<div id="container">
+
+			<div id="content">
+				<div class="step" id="step1"><img src="300x250.jpg"/></div>
+				<div class="step" id="step3">
+					<div class="content">
+						<p>ne laissez pas</p>
+						<p class='hop'>votre budget</p>
+						<p class="light">vacances</p>
+						<p>s'envoler.</p>
+					</div>
+				</div>
+				<div class="step" id="step4">					
+					<img class="background" src="300x250.jpg" />
+					<div class="offre"><div class="offre-top"><img src="offre.png" /></div><div class="offre-bottom"><img src="offre.png"/><img src="offreblur.png" class="blur"/></div></div>
+					<div class="promo"><img src="promo.png"/></div>
+					<div class="cta"><span>RÃ©servez votre billet</span><span class="arrow"><img src="arrow.png" />&nbsp;</span></div>
+					<span class="ml">*Voir conditions sur le site.</span>
+				</div>
+			</div>
+			<img id="logo" src="logo.png"/>
+			<button id="exit"></button>
+		</div>
+	</body>
+</html>

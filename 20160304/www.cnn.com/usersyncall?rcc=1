@@ -1,0 +1,22 @@
+/**
+ **/
+
+var pixelLoad = function() {
+
+    this.urls = ["http://usermatch.burstnet.com/user/2/bidder_id=83403&bidder_user_id=RZ-2819fb7ef0e34dff8b6d19383d031452?randcb=3838392519","http://ads.altitude-arena.com/match?bidder_id=V8N4GGRTST2E9DOSUFV65IOIM8&external_user_id=RZ-2819fb7ef0e34dff8b6d19383d031452&randcb=5373602977","http://sync.adaptv.advertising.com/sync?type=gif&key=rhythmone&uid=RZ-2819fb7ef0e34dff8b6d19383d031452&randcb=1169923120","http://delivery.clickonometrics.pl/rhythmxchange/set-cookie?uid=RZ-2819fb7ef0e34dff8b6d19383d031452&randcb=7894649683","http://ad.afy11.net/ad?mode=7&publisher_dsp_id=49&external_user_id=RZ-2819fb7ef0e34dff8b6d19383d031452&randcb=5646090789","http://ebdr3.com/serve?rbg=1&dsp_id=414&dsp_uid=RZ-2819fb7ef0e34dff8b6d19383d031452&randcb=756628005","http://www.epmads.com/multi-cookie.gif?cf=img&ep=0&rtb_uid_centro=RZ-2819fb7ef0e34dff8b6d19383d031452|30d&randcb=7078192356","http://x.fidelity-media.com/match.php?dsp=rhtm&uid=RZ-2819fb7ef0e34dff8b6d19383d031452&randcb=6976544811","http://rtb.gumgum.com/usersync?b=rhy&i=RZ-2819fb7ef0e34dff8b6d19383d031452&randcb=3443292968","http://cs.gssprt.jp/yie/ld/cs?dspid=rhythmone&uid=RZ-2819fb7ef0e34dff8b6d19383d031452&randcb=1763083765","http://idsync.rlcdn.com/402846.gif?partner_uid=RZ-2819fb7ef0e34dff8b6d19383d031452&randcb=396349705","http://cs.lkqd.net/cs?partnerId=7&partnerUserId=RZ-2819fb7ef0e34dff8b6d19383d031452&randcb=347285302","http://us-u.openx.net/w/1.0/sd?id=537113070&val=RZ-2819fb7ef0e34dff8b6d19383d031452&randcb=4547572264","http://delivery.optimatic.com/4.5/webservice/cc.ashx?advertiser_id=r53y89m47m&uid=RZ-2819fb7ef0e34dff8b6d19383d031452&randcb=1806586817","http://image2.pubmatic.com/AdServer/Pug?vcode=bz0yJnR5cGU9MSZjb2RlPTMyMDMmdGw9NDMyMDA=&piggybackCookie=RZ-2819fb7ef0e34dff8b6d19383d031452&randcb=2606041087","http://bh.contextweb.com/bh/rtset?do=add&pid=558189&ev=RZ-2819fb7ef0e34dff8b6d19383d031452&randcb=5902394186","http://rtb.1rx.io/cookiesync/1.0/html?dspName=1rx&userid=RZ-2819fb7ef0e34dff8b6d19383d031452&randcb=2599106570","http://pixel.rubiconproject.com/tap.php?v=186028&nid=4112&put=RZ-2819fb7ef0e34dff8b6d19383d031452&expires=30&randcb=226910584","http://sync.go.sonobi.com/us.gif?nw=rhythmxchange&nuid=RZ-2819fb7ef0e34dff8b6d19383d031452&randcb=5139292496","http://ce.lijit.com/merge?pid=56&3pid=RZ-2819fb7ef0e34dff8b6d19383d031452&randcb=6045863300","http://uat-net.technoratimedia.com:80/services?srv=cs&pid=25&uid=RZ-2819fb7ef0e34dff8b6d19383d031452&randcb=7761764959","http://rtb.xapads.com/rtb/getusermatch.php?dataid=2&external_user_id=RZ-2819fb7ef0e34dff8b6d19383d031452&randcb=4177239563","http://ads.deliverimp.com/csm?b=R_RYTM&bid=RZ-2819fb7ef0e34dff8b6d19383d031452&randcb=3956715921","http://sync.rx.us-east.zenoviaexchange.com/usersync/rx/RZ-2819fb7ef0e34dff8b6d19383d031452?randcb=4444290648","http://d1.zedo.com/rs/us/fcm.html?pid=19&usr=RZ-2819fb7ef0e34dff8b6d19383d031452&randcb=3814833550","http://ib.adnxs.com/getuid?http%3A%2F%2Fsync.1rx.io%2Fusersync3%2Fappnexus%2F%2F%24UID%3Fzcc%3D%26sspret%3D1&randcb=2764665953","http://x.bidswitch.net/sync?ssp=adconductor&randcb=4285239329","http://x.bidswitch.net/sync?ssp=adconductor&randcb=7228281583","http://match.basebanner.com/match?excid=35&cijs=0&randcb=5263094826","http://pm.w55c.net/ping_match.gif?st=RHYTHMONE&rurl=http%3A%2F%2Fsync.1rx.io%2Fusersync3%2Fdataxu%2F%2F_wfivefivec_%3Fzcc%3D%26sspret%3D1&randcb=6887369938","http://ad.afy11.net/ad?mode=10&sspid=1185&randcb=6991645750","http://rtb.gumgum.com/getuid/f850a142?r=http%3A%2F%2Fsync.1rx.io%2Fusersync%2Fgumgum%2F&randcb=5755673679","http://px.owneriq.net/ero?redir=http%3A%2F%2Fsync.1rx.io%2Fusersync3%2Fowneriq%2F%2F%28OIQ_id%29%3Fzcc%3D%26sspret%3D1&randcb=5391061275","http://bh.contextweb.com/bh/rtset?pid=558623&ev=1&rurl=http%3A%2F%2Fsync.1rx.io%2Fusersync3%2Fpulsepoint%2F%2F%25%25VGUID%25%25%3Fzcc%3D%26sspret%3D1&randcb=1155023300","http://pixel-a.sitescout.com?randcb=8010683268","http://match.adsrvr.org/track/cmf/generic?ttd_pid=adconductor&ttd_tpi=1&randcb=898831965","http://sync.1rx.io/csync/RZ-2819fb7ef0e34dff8b6d19383d031452/pixel?randcb=7909959920"];
+
+    var self = this;
+
+    function makeImage(i)
+    {
+        "use strict";
+        var img = new Image();
+        img.src = self.urls[i];
+    }
+
+    for (var i = 0; i < this.urls.length; i++) {
+        window.addEventListener("load", makeImage(i), false);
+    }
+};
+
+pixelLoad();

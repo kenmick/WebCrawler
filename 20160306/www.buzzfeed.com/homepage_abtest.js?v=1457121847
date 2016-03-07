@@ -1,0 +1,159 @@
+/*
+* File and methods to handle weird tracking updates needed for homepage variation a/b tests where the test is
+* driven by the Publisher not the abtest framework. This is temporary until the new feeds driven HP is launched. 
+* questions ask Patrick C.
+*
+* You should create an ab_config entry like you would any other test
+*
+* 1.Set conditions based on the pages you are using (hp_alpha,hp_beta,hp_three,hp_four)
+* 2. set a localStorage variable that follows the naming convention'add-ab--NAME-OF-AB-TEST
+* 3. based on the page set either the control or test variant in the localStorage item
+* 4. add the test name and variant to a gtrack.postEvents.push()
+*
+*/
+
+
+var BFHomePageTest = function(){
+
+  this.init = function() {
+    if(BF_STATIC.country == 'us' && BF_STATIC.hp_type == 'index'){
+      bfjs.createScript({ url: BF_STATIC.static_root + "/js/mustache/compiled/lede.homepage.js" })
+      bfjs.createScript({ url: BF_STATIC.static_root + "/js/mustache/compiled/ad-default.js" });
+      
+      /*
+      * DARWIN HP TEST
+      *
+      */
+      if(BF_STATIC.hp_beta || BF_STATIC.hp_alpha){
+          // REMOVE THE OTHER TESTS
+           if(localStorage.getItem('add-abtest--homepage-simple-homepage')){
+              localStorage.removeItem('add-abtest--homepage-simple-homepage')
+            }
+           if(localStorage.getItem('add-abtest--homepage-finch-tortoise')){
+              localStorage.removeItem('add-abtest--homepage-finch-tortoise')
+            }
+
+        if(BF_STATIC.hp_beta){
+          
+
+          if(!localStorage.getItem('add-abtest--homepage-darwin') 
+          || (localStorage.getItem('add-abtest--homepage-darwin') && localStorage.getItem('add-abtest--homepage-darwin') != 'homepage-darwin--test')){
+
+            localStorage.setItem('add-abtest--homepage-darwin','homepage-darwin--test');
+          }
+          gtrack.postEvents.push('homepage-darwin:homepage-darwin--test');
+
+
+        }
+        
+        //omitting an else if{} to make this an explicit condtion and avoid including incorrect events/users/etc - PC
+        if(BF_STATIC.hp_alpha){
+          if(!localStorage.getItem('add-abtest--homepage-darwin')
+          || (localStorage.getItem('add-abtest--homepage-darwin') && localStorage.getItem('add-abtest--homepage-darwin') != 'homepage-darwin--control')){
+
+            localStorage.setItem('add-abtest--homepage-darwin','homepage-darwin--control');
+
+          }
+          gtrack.postEvents.push('homepage-darwin:homepage-darwin--control');
+
+
+        }
+    }    
+    /*
+    * SIMPLE HOMEPAGE AB TEST
+    *
+    */
+
+    if(BF_STATIC.hp_four || BF_STATIC.hp_three){
+      // REMOVE THE OTHER TESTS
+         if(localStorage.getItem('add-abtest--homepage-darwin')){
+            localStorage.removeItem('add-abtest--homepage-darwin')
+          }
+         if(localStorage.getItem('add-abtest--homepage-finch-tortoise')){
+            localStorage.removeItem('add-abtest--homepage-finch-tortoise')
+          }
+       if(BF_STATIC.hp_four){
+
+         
+
+          if(!localStorage.getItem('add-abtest--homepage-simple-homepage') 
+          || (localStorage.getItem('add-abtest--homepage-simple-homepage') && localStorage.getItem('add-abtest--homepage-simple-homepage') != 'simple-homepage--test')){
+
+            localStorage.setItem('add-abtest--homepage-simple-homepage','simple-homepage--test');
+          }
+          gtrack.postEvents.push('homepage-simple-homepage:simple-homepage--test');
+
+
+        }
+        
+        //omitting an else if{} to make this an explicit condtion and avoid including incorrect events/users/etc - PC
+        if(BF_STATIC.hp_three){
+          if(!localStorage.getItem('add-abtest--homepage-simple-homepage')
+          || (localStorage.getItem('add-abtest--homepage-simple-homepage') && localStorage.getItem('add-abtest--homepage-simple-homepage') != 'simple-homepage--control')){
+
+            localStorage.setItem('add-abtest--homepage-simple-homepage','simple-homepage--control');
+
+          }
+          gtrack.postEvents.push('homepage-simple-homepage:simple-homepage--control');
+
+
+        }
+      }
+    }
+
+    /*
+    * FINCH AND TORTOISE AB TEST
+    *
+    */
+    if(BF_STATIC.hp_five || BF_STATIC.hp_six){
+
+      // REMOVE THE OTHER TESTS
+       if(localStorage.getItem('add-abtest--homepage-darwin')){
+          localStorage.removeItem('add-abtest--homepage-darwin')
+        }
+       if(localStorage.getItem('add-abtest--homepage-simple-homepage')){
+          localStorage.removeItem('add-abtest--homepage-simple-homepage')
+        }
+       
+       if(BF_STATIC.hp_five){
+
+          if(!localStorage.getItem('add-abtest--homepage-finch-tortoise')
+          || (localStorage.getItem('add-abtest--homepage-finch-tortoise') && localStorage.getItem('add-abtest--homepage-finch-tortoise') != 'homepage-finch-tortoise--finch')){
+
+            localStorage.setItem('add-abtest--homepage-finch-tortoise','homepage-finch-tortoise--finch');
+          }
+          gtrack.postEvents.push('homepage-finch-tortoise:homepage-finch-tortoise--finch');
+
+
+        }
+        
+        //omitting an else if{} to make this an explicit condtion and avoid including incorrect events/users/etc - PC
+        if(BF_STATIC.hp_six){
+          if(!localStorage.getItem('add-abtest--homepage-finch-tortoise')
+          || (localStorage.getItem('add-abtest--homepage-finch-tortoise') && localStorage.getItem('add-abtest--homepage-finch-tortoise') != 'homepage-finch-tortoise--tortoise')){
+
+            localStorage.setItem('add-abtest--homepage-finch-tortoise','homepage-finch-tortoise--tortoise');
+          }
+          gtrack.postEvents.push('homepage-finch-tortoise:homepage-finch-tortoise--tortoise');
+
+
+
+        }
+      }
+    }
+
+    if(BF_STATIC.country != 'us' && BF_STATIC.hp_type == 'index'){
+        if(localStorage.getItem('add-abtest--homepage-darwin')){
+          localStorage.removeItem('add-abtest--homepage-darwin')
+        }
+
+    }
+  }
+
+
+
+
+var homepagetest = new BFHomePageTest();
+
+BuzzLoader.register(homepagetest.init, 1);
+    
