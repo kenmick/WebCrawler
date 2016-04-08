@@ -1,0 +1,60 @@
+/* define any animations if using them */
+@-webkit-keyframes bgAnimate { 0% { background-position: 0% 0%; }
+  100% { background-position: 0% 100%; } }
+@-moz-keyframes bgAnimate { 0% { background-position: 0% 0%; }
+  100% { background-position: 0% 100%; } }
+@keyframes bgAnimate { 0% { background-position: 0% 0%; }
+  100% { background-position: 0% 100%; } }
+body { color: #000000; font-size: 100%; font-family: Arial, sans-serif; line-height: 1.48; border: 0; margin: 0; }
+
+*, :before, :after { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
+
+a, img { border: 0; outline: none; }
+
+img.trans { opacity: .75; position: absolute; top: 0; left: 0; width: 300px; height: 250px; }
+
+.display-ad-size, #wrapper, #wrapper #stage { display: block; margin: 0; padding: 0; width: 300px; height: 250px; overflow: hidden; -webkit-backface-visibility: hidden; background: #ffffff; cursor: pointer; }
+
+.display-abs-pos { position: absolute; display: block; opacity: 1; filter: alpha(opacity=1); }
+
+.hide-abs-pos { position: absolute; display: block; opacity: 0; filter: alpha(opacity=0); }
+
+#wrapper { position: absolute; width: 300px; height: 250px; }
+#wrapper #backup { display: none; cursor: pointer; position: absolute; left: 0px; top: 0px; width: 300px; height: 250px; }
+#wrapper #stage {position: absolute; background-color: #000000; display: none; /* added in to hide all content until DOM loaded. JS sets display to block */}
+#border {position: absolute; border: 1px solid #8c8c8c; top: 0px; left: 0px; width: 300px; height: 250px; overflow: hidden; z-index: 100;}
+.lt-ie9 #wrapper #stage { /* IE8 specific styling */ }
+
+#logo { position: absolute; z-index: 6; opacity: 0}
+
+#outerGlow { position: absolute; z-index: 5}
+
+#cta { position: absolute; z-index: 7}
+
+.text { position: absolute; z-index: 8}
+
+#overlay{ position:absolute; top: 0; left: 0; width: 300px; height: 250px; opacity: 0; background-color: #000000; z-index: 6}
+
+
+#hero { position: absolute; top: 97px; left: 100px; width: 100px; height: 67px}
+
+#tileContainer { position: absolute; top: 0px; left: 0px; width: 300px; height: 250px}
+#tile1_1 { position: absolute; top: 0px; left: 0px; }
+#tile1_2 { position: absolute; top: 0px; left: 100px; }
+#tile1_3 { position: absolute; top: 0px; left: 200px; }
+
+#tile2_1 { position: absolute; top: 40px; left: 0px; }
+#tile2_2 { position: absolute; top: 40px; left: 100px; }
+#tile2_3 { position: absolute; top: 40px; left: 200px; }
+
+#tile3_1 { position: absolute; top: 97px; left: 0px; }
+#tile3_3 { position: absolute; top: 97px; left: 200px; }
+
+#tile4_1 { position: absolute; top: 154px; left: 0px; }
+#tile4_2 { position: absolute; top: 154px; left: 100px; }
+#tile4_3 { position: absolute; top: 154px; left: 200px; }
+
+#tile5_1 { position: absolute; top: 211px; left: 0px; }
+#tile5_2 { position: absolute; top: 211px; left: 100px; }
+#tile5_3 { position: absolute; top: 211px; left: 200px; }
+

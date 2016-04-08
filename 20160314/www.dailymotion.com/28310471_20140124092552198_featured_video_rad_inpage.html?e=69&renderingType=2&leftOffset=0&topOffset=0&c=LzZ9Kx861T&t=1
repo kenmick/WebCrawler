@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Featured Video Layout (RAD) - InPage</title>
+  <link rel="stylesheet" href="/ads/richmedia/studio/10000006/__version__/15/28310471_20140124092555597_style.css" />
+  <script src="/879366/Enabler_01_107.js"></script>
+  <script>
+    var url = '//www.gstatic.com/doubleclick/studio/innovation/h5/layouts/' +
+        'featuredvideo_rad/1/featured_video_rad_binary.js';
+
+    studio.utils.EnablerAccessor.loadModuleWhenReady(
+          studio.module.ModuleId.LAYOUTS, loadModuleHandler);
+
+    function loadModuleHandler() {
+      var context = studio.sdk.layouts.getFillerContext();
+      var runtime = studio.sdk.layouts.getRuntimeMode();
+      var enabler = studio.Enabler.getInstance();
+      // Load local asset when testing.
+      // b/12722496
+      /*
+      if (context == studio.sdk.layouts.FILLER_CONTEXT.MANAGEMENT ||
+          runtime == studio.sdk.layouts.RUNTIME_MODE.DEVELOPMENT) {
+        url = enabler.getUrl('featured_video_rad_binary.js');
+      }
+      */
+      enabler.loadScript(url, function() {
+        new studioinnovation.layouts.featuredvideorad.FeaturedVideo();
+      });
+    }
+  </script>
+</head>
+<body>
+</body>
+</html>

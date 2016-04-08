@@ -1,0 +1,56 @@
+/*
+(c) Copyright Weborama SA - France. All rights reserved.
+It is illegal to modify, disassemble, sell, copy or publish this software
+or any part thereof. The use of this software is only permitted with the
+prior and express written permission of Weborama SA - France.
+More information: http://www.weborama.com/contacts/
+*/
+function x17() {
+    var x1cl, x1ey = x1bb.x1cj();
+    x1ey.x1ie = x1bb.x1nn(x1ey.x1ie,'wuid=&retargeting=&');
+    x1ey.x1fN = 'http://cstatic.weborama.fr/advertiser/356/91/835/1075/';
+    x1ey.x1lp = '3497';
+
+
+
+    x1ey.conf_oba = false;
+    adperfobj.zindex = adperfobj.zindex || 0 || 214748360;
+
+    adperfobj.clicks = new Array();
+    adperfobj.clicks[0] = 'http://ww690.smartadserver.com/clic/countgo.asp?5260740;365932;8511281097587205127;2408682341;s;systemtarget=%24qc%3d1309908405%3b%24ql%3dhigh%3b%24qpc%3d33000%3b%24qpp%3d0%3b%24qt%3d184_1788_22057t%3b%24dma%3d0%3b%24b%3d9999%3b%24o%3d99999;15558807;URL=http%3A%2F%2Fgdf.solution.weborama.fr%2Ffcgi-bin%2Fdispatch.fcgi%3Fa.A%3Dcl%26a.si%3D356%26a.te%3D4127%26a.aap%3D3497%26a.agi%3D63%26g.lu%3D' + (adperfobj.landing_urls[0] || '');
+
+
+    try{
+        adperfobj.imptrackers = new Array(
+                
+        );
+
+        adperfobj.clicktrackers = (new Array(
+                
+        ).concat(adperfobj.clicktrackers));
+
+        adperfobj.eventtrackers = (new Array(
+                
+        ).concat(adperfobj.eventtrackers));
+    }catch(scr_e){}
+
+
+
+    x1ey.addTrackers(adperfobj);
+    x1ey.addClicks(adperfobj);
+
+    x1cl = new x1bb.x1hW();
+x1cl.x1c(x1ey, 5773, '1x1_Emptybanner.gif', adperfobj.width, adperfobj.height, '', '', '');
+x1ey.x1gG(x1cl, '', 2, '');
+x1cl = new x1bb.x1jr();
+x1cl.x1c(x1ey, 5741, 'floorad_desktoptablet_html', adperfobj.zindex, false, 0, 0, 'default_scene', 'floorad_desktoptablet.html', 480, 80, '', '', '');
+x1ey.x1gM(x1cl, '', '', 2, '');
+
+
+
+
+    x1ey.x1gQ();
+
+
+}
+x1L('adperf_core_' + adperf_version + '_scrambled.js');

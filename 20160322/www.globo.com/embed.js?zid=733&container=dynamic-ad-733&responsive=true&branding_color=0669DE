@@ -1,0 +1,120 @@
+(function(){
+  function rmpLoadJsFile(src, callback){
+    var s = document.createElement('script');
+    s.type = 'text/' + (src.type || 'javascript');
+    s.src = src.src || src;
+    s.async = false;
+
+    s.onreadystatechange = s.onload = function () {
+
+        var state = s.readyState;
+
+        if (!callback.done && (!state || /loaded|complete/.test(state))) {
+            callback.done = true;
+            callback();
+        }
+    };
+
+    var head = document.head || document.getElementsByTagName("head")[0];
+
+    // use body if available. more safe in IE
+    (document.body || head).appendChild(s);
+  }
+  rmpLoadJsFile('//rat.vitrines.in/essentials/ocp/ocp-container-manager-1.0.min.js', function(){
+  //rmpLoadJsFile('http://localhost:4299/rmp_container_manager.js', function(){
+    var container = {
+    	zn_id: "99966733",
+    	clicktag: "",
+    	link: "http://rmpclk.vitrines.in/clk?cid=1059796&zid=99966733&dvrtsrd=1000066&r=http%253A%252F%252Fwww.globo.com%252F",
+    	width: 940,
+    	height: 375,
+    	creatives : [{ 
+id: "712153",
+swf: "http://rat.vitrines.in/rmp_banners/712153/html_absolute_encoded.html",
+fallback: "http://rthmx.reamp.com.br/simple_creatives_assets/712153/blank.gif",
+creative_width: "938",
+creative_height: "232",
+creative_dco_url: "http://rat.vitrines.in/simple_creatives/file_assets/1059796/products.js",
+custom_html: ""
+}],
+    	sku_list: [''],
+    	user_location: "FR-33-TALENCE",
+      asset_url: "http://rat.vitrines.in/rmp_banners/245557/html_absolute_encoded.html",
+      creative_dco_url: "http://rat.vitrines.in/simple_creatives/file_assets/1059796/products.js",
+      rmpRemoteIds: "132-2e90cbe41567e17c14fdeb94d3e99386,132-9c0ac4663293eda8ffea6a8e60cec884,132-5c541f64ba3193e627cc85039be45d44,132-434f02aa2d847221998dc4dde927cd83,132-be9577d27013ef40cce4fc9790461b89",
+      creative_id: "1059796",
+      ocp_zone_type: "container",
+      item_quantity: "5",
+      adv_id: "1000066",
+      branding_color: "0669DE",
+      responsive: "true"
+    };
+    var placementsStr = "99966736,99966737,99966738,99966735,99966734";
+    var placement_container_id = "dynamic-ad-733";
+    rmp_ct_manager.load_ad(container, placementsStr, placement_container_id);
+  });
+
+})();
+
+(function() {
+    var waitUntilFramesAreReady = function keepWaiting(doWhenItsTime) {
+    var iframes = document.getElementsByTagName('iframe');
+    if (iframes.length > 0) {
+        setTimeout(doWhenItsTime, 3000);
+    } else {
+        setTimeout(keepWaiting, 500, doWhenItsTime);
+    }
+}
+var doit = function() {
+    var docFromIframe = function(iframe) {
+        var innerDoc = (iframe.contentDocument) ? iframe.contentDocument : iframe.contentWindow.document;
+        return innerDoc;
+    }
+    var scavenge = function(dd) {
+        var iframes = dd.getElementsByTagName('iframe');
+        var totalProds = [];
+        findProductDiv(iframes, totalProds, 0, 10);
+        fixProds(totalProds);
+        return totalProds;
+    }
+    var findProductDiv = function iframeScraper(iframes, totalProds, currentLevel, levelLimit) {
+        if (currentLevel > levelLimit) return null;
+        for (i = 0; i < iframes.length; ++i) {
+            var iframe = iframes[i];
+            var innerDoc = docFromIframe(iframe);
+            if (innerDoc.getElementsByClassName('product').length > 0) {
+                var prods = innerDoc.getElementsByClassName('product');
+                for (p = 0; p < prods.length; ++p) {
+                    totalProds.push(prods[p]);
+                }
+                continue;
+            }
+            innerFrames = innerDoc.getElementsByTagName('iframe');
+            if (innerFrames.length > 0) iframeScraper(innerFrames, totalProds, ++currentLevel, levelLimit);
+        }
+    }
+    var fixProds = function(prods) {
+        for (index = 0; index < prods.length; ++index) {
+            try {
+                var prod = prods[index];
+                var price = prod.getElementsByClassName('product-price')[0];
+
+                var pt = price.innerHTML;
+                var fixed = pt.replace('R$ R$', 'R$')
+                price.innerHTML = fixed;
+
+                var title = prod.getElementsByClassName('product-title')[0];
+                var titleContent = title.innerHTML;
+
+                total++;
+
+            } catch (err) {
+                continue;
+            }
+        }
+    }
+    var totalScavenged = scavenge(document)
+}
+waitUntilFramesAreReady(doit);
+setTimeout(6000, doit);
+})();

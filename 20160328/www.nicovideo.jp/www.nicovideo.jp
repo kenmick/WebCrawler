@@ -1,0 +1,828 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en-us">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta name="copyright" content="&copy; DWANGO Co., Ltd.">
+<meta name="msapplication-task" content="name=Niconico Video ; action-uri=http://www.nicovideo.jp/; icon-uri=http://uni.res.nimg.jp/img/favicon.ico">
+<meta property="fb:app_id" content="378853695459932">
+<title>niconico</title><base href="http://www.nicovideo.jp/">
+<link rel="alternate" media="handheld" href="http://nicomoba.jp/" />
+<link rel="alternate" media="only screen and (max-width: 640px)" href="http://sp.nicovideo.jp/" />
+<link rel="shortcut icon" href="http://uni.res.nimg.jp/img/favicon.ico">
+
+<link rel="stylesheet" type="text/css" charset="utf-8" media="all" href="http://uni.res.nimg.jp/css/ini.css?121017">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="all" href="http://uni.res.nimg.jp/css/zero_common.css?151212">
+
+
+
+<link rel="stylesheet" type="text/css" charset="utf-8" media="all" href="http://uni.res.nimg.jp/css/zero_index.css?160121">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="all" href="http://uni.res.nimg.jp/css/timeshift.css?120401">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="all" href="http://uni.res.nimg.jp/css/theme/zero_default.css?131206">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="all" href="http://uni.res.nimg.jp/css/index_overseas.css?150226">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--[if lt IE 8]>
+<link rel="stylesheet" type="text/css" media="all" href="http://uni.res.nimg.jp/css/ie.css?110215">
+<![endif]-->
+
+<!--[if lt IE 7]>
+<link rel="stylesheet" type="text/css" media="all" href="http://uni.res.nimg.jp/css/ie6.css?110215">
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="http://uni.res.nimg.jp/css/setcountry.css?121017" media="all">
+<script type="text/javascript">
+
+if (typeof Nico === 'undefined') Nico = {};
+if (typeof Nico.messages === 'undefined') Nico.messages = {};
+
+</script><script type="text/javascript" charset="utf-8" src="http://uni.res.nimg.jp/js/lib/prototype.js?1.5.1.1_2"></script>
+<script type="text/javascript" charset="utf-8" src="http://uni.res.nimg.jp/js/common.js?110215"></script>
+<script type="text/javascript" charset="utf-8" src="http://uni.res.nimg.jp/js/swfobject.js?5"></script>
+<script type="text/javascript" charset="utf-8" src="http://uni.res.nimg.jp/js/nicolib.js?150128"></script>
+<script type="text/javascript" charset="utf-8" src="http://uni.res.nimg.jp/js/ads.js?110531"></script>
+<script type="text/javascript" charset="utf-8" src="http://ads.nicovideo.jp/assets/js/ads-2.15.0.min.js?160218"></script>
+
+
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['__video._setAccount', 'UA-1089346-35']);
+  _gaq.push(['__video._setDomainName', 'nicovideo.jp']);
+  _gaq.push(['__video._trackPageview']);
+  _gaq.push(['__global._setAccount', 'UA-1089346-34']);
+  _gaq.push(['__global._setDomainName', 'nicovideo.jp']);
+  _gaq.push(['__global._trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+<script type="text/javascript" src="http://uni.res.nimg.jp/js/__utm.js?110928"></script>
+<script src="//cdn.optimizely.com/js/1252970284.js" defer></script><script type="text/javascript" charset="utf-8" src="http://uni.res.nimg.jp/js/base.js?120501"></script>
+<script type="text/javascript" charset="utf-8" src="http://uni.res.nimg.jp/js/lib/jquery/jquery-1.6.1.min.js?110705"></script>
+<script type="text/javascript">jQuery.noConflict();</script>
+<script type="text/javascript" charset="utf-8" src="http://uni.res.nimg.jp/js/daily_topics/contentslide.js?120822"></script>
+<script type="text/javascript" charset="utf-8" src="http://uni.res.nimg.jp/js/index_overseas.js?121101"></script>
+
+
+<script type="text/javascript" charset="utf-8" src="http://uni.res.nimg.jp/js/nicolib/SuggestSearch/nicolib-SuggestSearch.js?150205"></script>
+
+<script type="text/javascript"><!--
+
+var User = { id: false, age: false, isPremium: false, isOver18: !!document.cookie.match(/nicoadult\s*=\s*1/), isMan: null };
+var q = "";
+var country = "";
+
+
+Nico.SuggestSearch.IS_ENABLED = false;
+
+Nico.SuggestSearch.IS_LOGIN = false;
+--></script>
+
+<script type="text/javascript">
+(function(we, ico) {
+	try {
+		we.msSiteModeCreateJumplist('niconico(Q)');
+		we.msSiteModeAddJumpListItem('Help',         'http://qa.nicovideo.jp/',              ico);
+		we.msSiteModeAddJumpListItem('Account Settings', 'https://account.nicovideo.jp/my/account', ico);
+		we.msSiteModeAddJumpListItem('Watch History',       'http://www.nicovideo.jp/my/history',                 ico);
+		we.msSiteModeAddJumpListItem('Upload Video',       'http://www.nicovideo.jp/my/video',                   ico);
+		we.msSiteModeAddJumpListItem('My Favorites',     'http://www.nicovideo.jp/my/watchlist',               ico);
+		we.msSiteModeAddJumpListItem('My List',     'http://www.nicovideo.jp/my/mylist',                  ico);
+		we.msSiteModeAddJumpListItem('Ranking', 'http://www.nicovideo.jp/uni_ranking',                ico);
+		we.msSiteModeAddJumpListItem('Upload',     'http://www.upload.nicovideo.jp/upload',        ico);
+		we.msSiteModeAddJumpListItem('My Page',     'http://www.nicovideo.jp/my/top',                     ico);
+		we.msSiteModeAddJumpListItem('Login',       'https://account.nicovideo.jp/login',      ico);
+	} catch(e) {}
+})(window.external, 'http://uni.res.nimg.jp/img/favicon.ico');
+</script>
+<script type="text/javascript" src="http://uni.res.nimg.jp/js/setcountry.js?121121"></script>
+
+<script type="text/javascript" charset="utf-8"><!--
+
+Ads.get_segment_object = function(){
+	var segment = {};
+
+	return segment;
+
+};
+
+// -->
+</script>
+</head>
+
+<body class="en-us">
+
+
+<link rel="stylesheet" type="text/css" charset="utf-8" href="http://uni.res.nimg.jp/js/nicoheader/resources/siteHeader.css?150323">
+<link rel="stylesheet" type="text/css" charset="utf-8" href="http://uni.res.nimg.jp/css/base/site_header_extension.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" href="http://uni.res.nimg.jp/js/nicoheader/resources/nicolib-CommonNotificationHeader.css?141023">
+<script type="text/javascript" charset="utf-8" src="http://uni.res.nimg.jp/js/nicoheader/siteHeader.js?150728"></script>
+<script type="text/javascript" charset="utf-8" src="http://uni.res.nimg.jp/js/nicoheader/nicolib-CommonNotificationHeader.js?150618"></script>
+<div id="siteHeader">
+	<div id="siteHeaderInner">
+		<ul class="siteHeaderGlovalNavigation">
+			<li><a href="http://www.nicovideo.jp/?header"><span>Niconico</span></a></li>
+			<li><a href="http://www.nicovideo.jp/video_top/?header"><span>Videos </span></a></li>
+			<li><a href="http://live.nicovideo.jp/?header"><span>Live </span></a></li>
+			<li><a href="http://com.nicovideo.jp/?header"><span>Community</span></a></li>
+			<li class="siteHeaderOther" id="siteHeaderLeftMenu" style="display: none;">
+				<ul id="siteHeaderLeftMenuContainer" style="display: none;">
+				</ul>
+			</li>
+		</ul>
+
+		<ul class="siteHeaderMenuList">
+			<li id="siteHeaderNotification" class="siteHeaderLogin">
+				<a href="http://www.nicovideo.jp/login"><span>Login</span></a>
+			</li>
+			<li class="siteHeaderHorizon"><a href="https://account.nicovideo.jp/register?sec=common_header&mode=landing" style="color:#F1B700;" data-site="niconico" class="siteHeaderRegister"><span>Sign Up</span></a></li>
+<!-- end notification header -->
+			<li class="siteHeaderHorizon"><a href="http://www.upload.nicovideo.jp/upload"><span>Upload Video</span></a></li>
+			<li><a href="local_ranking"><span>Ranking</span></a></li>
+			<li class="siteHeaderOther" id="siteHeaderRightMenu">
+				<a href="javascript:void(0);"><span>Menuâ¼</span></a>
+				<ul style="display: none;" id="siteHeaderRightMenuContainer">
+					<li><a href="/my/mylist">My List</a></li>
+					<li><a href="/my/fav/user">My Favorites</a></li>
+					<li><a href="/my/video">My Uploads</a></li>
+					<li><a href="/my/history">Watch History</a></li>
+					<li><a href="https://account.nicovideo.jp/my/account">Account Settings</a></li>
+										<li id="siteHeaderRightMenuUnfix"><a href="javascript:void(0);">Header<span class="siteHeaderScroll">Pin</span></a></li>
+					<li id="siteHeaderRightMenuFix"><a href="javascript:void(0);">Header<span class="siteHeaderFix">Unpin</span></a></li>
+					<li><a href="http://ex.nicovideo.jp/help">Help</a></li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+</div>
+
+<div id="main_container" style="margin: 0 auto;padding: 0 10px;position: relative;width: 976px;">
+
+
+
+<div id="header" class="clearfix">
+
+        <h1 id="logo_zero"><a href="http://www.nicovideo.jp/">niconico</a></h1>
+  
+  
+          </div>
+<!-- /#header -->
+
+<div id="searchFormWrap" class="clarfix">
+	<div id="searchFormInner">
+		<ul>
+			<li class="active"><a href="http://www.nicovideo.jp/search/" class="sVideo">Videos </a></li>
+			<li><a href="http://www.nicovideo.jp/mylist_search/" class="sMylist">My List</a></li>
+			<li><a href="http://live.nicovideo.jp/search/" class="sLive">Live </a></li>
+		</ul>
+
+		<form id="searchForm" action="http://www.nicovideo.jp/search/" method="get" class="sVideo">
+			<div id="searchform_container">
+				<input id="searchWord" type="text" value="">
+			</div>
+			<input id="searchSubmit" type="submit" value="">
+		</form>
+	</div><!-- /#searchFormInner -->
+</div><!-- /#searchFormWrap -->
+<div id="contentsWrap">
+						
+						
+	<div id="contents" class="clearfix">
+		<div id="sideNav">
+						    <div id="userStats">
+        <a href="https://account.nicovideo.jp/register?from=top" class="sprite registerBtn" title="Sign Up"><img src="http://uni.res.nimg.jp/img/zero_index/to_member_en-us.png?130702" alt="Sign Up"></a>
+        <p><a href="https://account.nicovideo.jp/login" class="loginBtn">Login</a></p>
+    </div><!-- /#userInfo -->
+
+						<div id="NewServiceList">
+<div id="menuContents">
+<div id="menuService">
+<h5>Services</h5>
+<ul class="service_main">
+<li class="top"><a href="http://www.nicovideo.jp/video_top/" class="icon_svc douga" title="Videos ">Videos </a></li>
+</ul>
+<ul class="service_sub">
+<li class="top"><a href="http://www.nicovideo.jp/video_top/g_ent2" class="icon_svc child" title="Entertainment & Music" style="letter-spacing: -0.1px;">Entertainment & Music</a></li>
+<li><a href="http://www.nicovideo.jp/video_top/g_life2" class="icon_svc child" title="Life/General/Sports">Life/General/Sports</a></li>
+<li><a href="http://www.nicovideo.jp/video_top/g_politics" class="icon_svc child" title="Politics">Politics</a></li>
+<li><a href="http://www.nicovideo.jp/video_top/g_tech" class="icon_svc child" title="Science & Tech">Science & Tech</a></li>
+<li><a href="http://www.nicovideo.jp/video_top/g_culture2" class="icon_svc child" title="Anime/Art/Games">Anime/Art/Games</a></li>
+<li><a href="http://www.nicovideo.jp/video_top/g_other" class="icon_svc child" title="Other">Other</a></li>
+<li><a href="http://ex.nicovideo.jp/vocaloid" class="icon_svc child" title="VOCALOID">VOCALOID <img src="http://uni.res.nimg.jp/img/zero_index/icon_new.png" alt="NEW!" title="NEW!"></a></li>
+</ul>
+<ul class="service_main">
+<li><a href="http://live.nicovideo.jp/" class="icon_svc live" title="Live ">Live </a></li>
+</ul>
+<ul class="service_sub">
+<li class="top"><a href="http://live.nicovideo.jp/timetable/" class="icon_svc child" title="Program Guide">Program Guide</a></li>
+<li><a href="http://live.nicovideo.jp/recent?tab=common" class="icon_svc child" title="Free">General<!-- for Nico Live category name --> </a></li>
+<li><a href="http://live.nicovideo.jp/recent?tab=try" class="icon_svc child" title="Tried it">Tried it</a></li>
+<li><a href="http://live.nicovideo.jp/recent?tab=live" class="icon_svc child" title="Games">Games</a></li>
+<li><a href="http://live.nicovideo.jp/recent?tab=req" class="icon_svc child" title="Check it out">Check it out</a></li>
+<li><a href="http://live.nicovideo.jp/recent?tab=face" class="icon_svc child" title="Video broadcast">Video broadcast</a></li>
+<li><a href="http://live.nicovideo.jp/recent?tab=totu" class="icon_svc child" title="Call me">Call me</a></li>
+<li><a href="http://live.nicovideo.jp/nsen/" class="icon_svc child" title="Nsen">Nsen</a></li>
+</ul>
+</div>
+</div>
+</div>
+
+						
+						<div id="trendyTags">
+<h3 class="title_light">Popular Tags</h3>
+<ul>
+        <li><a href="http://rd.nicovideo.jp/cc/ustop/pop_tag?cc_id=%E8%89%A6%E3%81%93%E3%82%8C" title="è¦ãã">è¦ãã</a></li>
+        <li><a href="http://rd.nicovideo.jp/cc/ustop/pop_tag?cc_id=Fate%2FEXTRA" title="Fate/EXTRA">Fate/EXTRA</a></li>
+        <li><a href="http://rd.nicovideo.jp/cc/ustop/pop_tag?cc_id=%E3%83%AA%E3%82%B9%E3%82%AD%E3%83%BC%E3%82%B2%E3%83%BC%E3%83%A0" title="ãªã¹ã­ã¼ã²ã¼ã ">ãªã¹ã­ã¼ã²ã¼ã </a></li>
+        <li><a href="http://rd.nicovideo.jp/cc/ustop/pop_tag?cc_id=MAD" title="MAD">MAD</a></li>
+        <li><a href="http://rd.nicovideo.jp/cc/ustop/pop_tag?cc_id=%E3%81%8A%E3%81%9D%E6%9D%BE%E3%81%95%E3%82%93" title="ããæ¾ãã">ããæ¾ãã</a></li>
+        <li><a href="http://rd.nicovideo.jp/cc/ustop/pop_tag?cc_id=MMD%E5%88%80%E5%89%A3%E4%B9%B1%E8%88%9E" title="MMDåå£ä¹±è">MMDåå£ä¹±è</a></li>
+        <li><a href="http://rd.nicovideo.jp/cc/ustop/pop_tag?cc_id=OtoMAD" title="OtoMAD">OtoMAD</a></li>
+        <li><a href="http://rd.nicovideo.jp/cc/ustop/pop_tag?cc_id=%E3%83%81%E3%82%A7%E3%83%83%E3%82%AB%E3%83%BC%E3%82%BA" title="ãã§ãã«ã¼ãº">ãã§ãã«ã¼ãº</a></li>
+        <li><a href="http://rd.nicovideo.jp/cc/ustop/pop_tag?cc_id=Vocaloid_Hall_of_Legends" title="Vocaloid_Hall_of_Legends">Vocaloid_Hall_o...</a></li>
+        <li><a href="http://rd.nicovideo.jp/cc/ustop/pop_tag?cc_id=osomatsu-san" title="osomatsu-san">osomatsu-san</a></li>
+    </ul>
+</div>
+
+	  	  <p><a href="http://rd.nicovideo.jp/cc/app/smavitaus"><img src="http://uni.res.nimg.jp//img/index_overseas/bnr/bnr_psvita_us.jpg" alt="Watch Nico Live on your PS Vita!" /></a></p>
+
+
+		</div><!-- /#sideNav -->
+
+		<div id="entame_global" class="clearfix">
+				</div>
+
+		<div id="mainContents">
+						
+						<div id="newarrival">
+				<div class="title_index">
+						<h4>Recently Uploaded Videos</h4>
+				</div>
+
+<div class="videolist clearfix">
+<ul>
+
+	
+	
+
+	<li>
+	
+				<p class="newarrival_date"><span>5</span> minutes ago</p>
+		
+		<div class="mov_thumb original_language">
+			<div class="mov_box"><a href="http://rd.nicovideo.jp/cc/ustop/new?cc_id=sm28522389"><img src="http://tn-skr2.smilevideo.jp/smile?i=28522389" alt=""></a><span class="mov_length"></span></div>
+		</div>
+		<h5><a href="http://rd.nicovideo.jp/cc/ustop/new?cc_id=sm28522389" class="watch" title="ã·ã§ã³ã©èªå·±ç´¹ä»ã§åé¡çºè¨ï¼ï¼">ã·ã§ã³ã©èªå·±ç´¹ä»ã§åé¡çºè¨ï¼ï¼</a></h5>
+	</li>
+	
+
+	
+	
+
+	<li>
+	
+				<p class="newarrival_date"><span>52</span> minutes ago</p>
+		
+		<div class="mov_thumb original_language">
+			<div class="mov_box"><a href="http://rd.nicovideo.jp/cc/ustop/new?cc_id=sm28522235"><img src="http://tn-skr4.smilevideo.jp/smile?i=28522235" alt=""></a><span class="mov_length"></span></div>
+		</div>
+		<h5><a href="http://rd.nicovideo.jp/cc/ustop/new?cc_id=sm28522235" class="watch" title="ãMETAL SLUG DEFENSEãWi-Fi VERSUS on Score 2832">ãMETAL SLUG DEFENSEãWi-Fi VERSUS on Score 2832</a></h5>
+	</li>
+	
+
+	
+	
+
+	<li>
+	
+				<p class="newarrival_date">Added <span class="date_new">3 hours ago</span></p>
+		
+		<div class="mov_thumb original_language">
+			<div class="mov_box"><a href="http://rd.nicovideo.jp/cc/ustop/new?cc_id=sm28521176"><img src="http://tn-skr1.smilevideo.jp/smile?i=28521176" alt=""></a><span class="mov_length"></span></div>
+		</div>
+		<h5><a href="http://rd.nicovideo.jp/cc/ustop/new?cc_id=sm28521176" class="watch" title="Dangerous Woman by Ariana Grande - åé³ãã¯ English Cover [Seo-P] (Original Instrumental)">Dangerous Woman by Ariana Grande - åé³ãã¯ English Co...</a></h5>
+	</li>
+	
+
+	
+	
+
+	<li>
+	
+				<p class="newarrival_date">Added <span class="date_new">3 hours ago</span></p>
+		
+		<div class="mov_thumb original_language">
+			<div class="mov_box"><a href="http://rd.nicovideo.jp/cc/ustop/new?cc_id=sm28520762"><img src="http://tn-skr3.smilevideo.jp/smile?i=28520762" alt=""></a><span class="mov_length"></span></div>
+		</div>
+		<h5><a href="http://rd.nicovideo.jp/cc/ustop/new?cc_id=sm28520762" class="watch" title="ãMETAL SLUG DEFENSEãWi-Fi VERSUS on Score 2242">ãMETAL SLUG DEFENSEãWi-Fi VERSUS on Score 2242</a></h5>
+	</li>
+	
+</ul>
+</div>
+</div>
+
+						<div id="translated_videos">
+				<div class="title_index">
+						<h4>Latest Translated Videos</h4>
+				</div>
+<div class="videolist clearfix">
+<ul>
+<li class="listItem clearfix">
+    <div class="mov_thumb">
+				<a href="http://rd.nicovideo.jp/cc/ustop/translator?cc_id=sm28518883" title="ãGUMIã Acerola / TOKOTOKOï¼NishizawasanPï¼"><img src="http://tn-skr4.smilevideo.jp/smile?i=28518883" alt="ãGUMIã Acerola / TOKOTOKOï¼NishizawasanPï¼"></a>
+			</div>
+			<div class="listItemContent">
+			<h5 class="itemTitle"><a href="http://rd.nicovideo.jp/cc/ustop/translator?cc_id=sm28518883">ãGUMIã Acerola / TOKOTOKOï¼NishizawasanPï¼</a></h5>
+			<p class="itemDescription">-</p>
+		</div>
+</li>
+<li class="listItem clearfix">
+    <div class="mov_thumb">
+				<a href="http://rd.nicovideo.jp/cc/ustop/translator?cc_id=sm8840567" title="ãTouhou StyleãDawn Moon And Double Cherry BlossomsãSelf-Composedã"><img src="http://tn-skr4.smilevideo.jp/smile?i=8840567" alt="ãTouhou StyleãDawn Moon And Double Cherry BlossomsãSelf-Composedã"></a>
+			</div>
+			<div class="listItemContent">
+			<h5 class="itemTitle"><a href="http://rd.nicovideo.jp/cc/ustop/translator?cc_id=sm8840567">ãTouhou StyleãDawn Moon And Double Cherry BlossomsãSelf-Composedã</a></h5>
+			<p class="itemDescription">done~</p>
+		</div>
+</li>
+<li class="listItem clearfix">
+    <div class="mov_thumb">
+				<a href="http://rd.nicovideo.jp/cc/ustop/translator?cc_id=sm8338191" title="ãTouhou StyleãWe Composed 4 Original Songs+Bonus PieceãSelf-Composedã"><img src="http://tn-skr4.smilevideo.jp/smile?i=8338191" alt="ãTouhou StyleãWe Composed 4 Original Songs+Bonus PieceãSelf-Composedã"></a>
+			</div>
+			<div class="listItemContent">
+			<h5 class="itemTitle"><a href="http://rd.nicovideo.jp/cc/ustop/translator?cc_id=sm8338191">ãTouhou StyleãWe Composed 4 Original Songs+Bonus PieceãSelf-Composedã</a></h5>
+			<p class="itemDescription">Done~</p>
+		</div>
+</li>
+<li class="listItem clearfix">
+    <div class="mov_thumb">
+				<a href="http://rd.nicovideo.jp/cc/ustop/translator?cc_id=nm8731122" title="ãTouhou StyleãFairies Who PlayãSelf-Composedã"><img src="http://tn-skr3.smilevideo.jp/smile?i=8731122" alt="ãTouhou StyleãFairies Who PlayãSelf-Composedã"></a>
+			</div>
+			<div class="listItemContent">
+			<h5 class="itemTitle"><a href="http://rd.nicovideo.jp/cc/ustop/translator?cc_id=nm8731122">ãTouhou StyleãFairies Who PlayãSelf-Composedã</a></h5>
+			<p class="itemDescription">Done~</p>
+		</div>
+</li>
+</ul>
+    <p class="link_right"><a href="http://ex.nicovideo.jp/translator_info" class="icon_cur">Learn more about translating videos!</a></p>
+</div>
+</div>
+
+						  <div id="feature">
+				<h3 class="title_light">User Recommended Videos</h3>
+				
+				<div id="uneiOsusume" class="clearfix">
+										<div class="oversea_feature clearfix">
+					<div class="thumb_box">
+				<a href="http://rd.nicovideo.jp/cc/ustop_tokushu/ae3aeb5e5994d161" class="thumb"><img src="http://tn-skr4.smilevideo.jp/smile?i=15248975" alt=""></a>
+								</div>
+						<div>
+								<h3>								<a href="http://rd.nicovideo.jp/cc/ustop_tokushu/ae3aeb5e5994d161">ãKarakuri PierrotãSang itãWotamin Ver.ã</a></h3>
+								<p>Simply Beautiful. </p>
+								
+						</div>
+												</div>
+
+						<div class="oversea_feature clearfix">
+					<div class="thumb_box">
+				<a href="http://rd.nicovideo.jp/cc/ustop_tokushu/07fcb0d52ddfca6b" class="thumb"><img src="http://tn-skr3.smilevideo.jp/smile?i=11088594" alt=""></a>
+								</div>
+						<div>
+								<h3>								<a href="http://rd.nicovideo.jp/cc/ustop_tokushu/07fcb0d52ddfca6b">SangãEhï¼Ah, sou. ã@Yamai</a></h3>
+								<p>Luv this song! :D</p>
+								
+						</div>
+												</div>
+
+						<div class="oversea_feature clearfix">
+					<div class="thumb_box translation">
+				<a href="http://rd.nicovideo.jp/cc/ustop_tokushu/919af16ae78bd78e" class="thumb"><img src="http://tn-skr4.smilevideo.jp/smile?i=13932155" alt=""></a>
+								</div>
+						<div>
+								<h3>									<span class="label_translation">Translated</span>
+																<a href="http://rd.nicovideo.jp/cc/ustop_tokushu/919af16ae78bd78e">ãHatsune MikuãlifeworksãOriginalã</a></h3>
+								<p>this deserves to be more popular</p>
+								
+						</div>
+												</div>
+
+					</div>
+				</div>
+ 
+						<div id="pickup_global">
+<div class="title_index">
+						<h4>Niconico Video Selections</h4>
+				</div>
+<div class="videolist clearfix">
+        <div class="videolist">
+        <ul>
+                        				<li class="listItem clearfix">
+					<div class="mov_thumb translated">
+						<a href="http://rd.nicovideo.jp/cc/ustop_osusume/6d4209e8a0ca4ad2" title="Slow down speedy!!"><img src="http://tn-skr1.smilevideo.jp/smile?i=25877748" alt="Slow down speedy!!"></a>
+					</div>
+					<h5 class="itemTitle"><span class="label_translation">Translated</span>
+                    <a href="http://rd.nicovideo.jp/cc/ustop_osusume/6d4209e8a0ca4ad2">Slow down speedy!!</a></h5>
+                    				</li>
+                                    				<li class="listItem clearfix">
+					<div class="mov_thumb translated">
+						<a href="http://rd.nicovideo.jp/cc/ustop_osusume/0f3aae8d17a43c9a" title="A good pick me up when having a bad day!"><img src="http://tn-skr1.smilevideo.jp/smile?i=26497444" alt="A good pick me up when having a bad day!"></a>
+					</div>
+					<h5 class="itemTitle"><span class="label_translation">Translated</span>
+                    <a href="http://rd.nicovideo.jp/cc/ustop_osusume/0f3aae8d17a43c9a">A good pick me up when having a bad day!</a></h5>
+                    				</li>
+                                    				<li class="listItem clearfix">
+					<div class="mov_thumb">
+						<a href="http://rd.nicovideo.jp/cc/ustop_osusume/ea16ead50cd85ce2" title="A beautiful voice within a beautiful symphony."><img src="http://tn-skr3.smilevideo.jp/smile?i=25537418" alt="A beautiful voice within a beautiful symphony."></a>
+					</div>
+					<h5 class="itemTitle">
+                    <a href="http://rd.nicovideo.jp/cc/ustop_osusume/ea16ead50cd85ce2">A beautiful voice within a beautiful symphony.</a></h5>
+                    				</li>
+                                    				<li class="listItem clearfix">
+					<div class="mov_thumb">
+						<a href="http://rd.nicovideo.jp/cc/ustop_osusume/30695736dd8ebebc" title="A nice blend of modern and traditional music."><img src="http://tn-skr3.smilevideo.jp/smile?i=19231822" alt="A nice blend of modern and traditional music."></a>
+					</div>
+					<h5 class="itemTitle">
+                    <a href="http://rd.nicovideo.jp/cc/ustop_osusume/30695736dd8ebebc">A nice blend of modern and traditional music.</a></h5>
+                    				</li>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                				</ul>
+        </div>
+	</div>
+</div>
+
+						<div id="index_user_live">
+		<div class="contents_box">
+				<div class="title_live">
+						<h4>Live User Broadcasts</h4>
+				</div>
+	<div class="index_live_item clearfix">
+		<a href="http://rd.nicovideo.jp/cc/ustop/user_live?cc_id=lv257738993" class="index_live_thumb"><img src="http://icon.nimg.jp/community/286/co2864548.jpg?1458840575"></a>
+		<div class="index_live_summary">
+		<p class="live_schedule"><span class="label_community">Community</span> 03/28, 09:47- </p>
+		<h5><span class="label_onair">Live Now! </span><a href="http://rd.nicovideo.jp/cc/ustop/user_live?cc_id=lv257738993">ã¢ã¡ãªã«ããå¥³æ§(ï½¡â â âï½¡)ã¹ãã©ãã¥ã¼ã³</a></h5>
+		<p class="live_description"> ã¢ãã¾ã³ã¦ã£ãã·ã¥ãªã¹ãã¼ãhttp://amzn.com/w/14HY3VQLEKX80 
+
+ï¼1æ­³ã«ãªãã©ã«ãã¢å·ã®å¤§å­¦çé«...</p>
+		</div>
+	</div>
+	<div class="index_live_item clearfix">
+		<a href="http://rd.nicovideo.jp/cc/ustop/user_live?cc_id=lv257738759" class="index_live_thumb"><img src="http://icon.nimg.jp/community/260/co2605218.jpg?1458641941"></a>
+		<div class="index_live_summary">
+		<p class="live_schedule"><span class="label_community">Community</span> 03/28, 09:45- </p>
+		<h5><span class="label_onair">Live Now! </span><a href="http://rd.nicovideo.jp/cc/ustop/user_live?cc_id=lv257738759">ãï½¶ï¾ï½ãããæ¡éUSA 99å¹´ã22å¹´ç®ï½ã</a></h5>
+		<p class="live_description">ï¼Â´âà±ªâï¼COMç¡ã1vs1ã§ãã¬ã¤ï¼è² ããæ¹ãç½°ã²ã¼ã ã¨ããã®ãèãã¦ãã¾ãï¼ï¼ï¼å¹´ã«ãªã£ããç½°ã²ã¼ã å...</p>
+		</div>
+	</div>
+				<p class="link_right"><a href="http://rd.nicovideo.jp/cc/ustop/live" class="icon_cur">Nico Live</a></p>
+				</div>
+</div>
+
+
+
+						
+
+		</div><!-- /#mainContents -->
+
+		<div id="sideContents">
+
+				<div id="nicoNews">
+		<div class="contents_box">
+				<div class="title_index">
+						<h4>Nico Blog</h4>
+				</div>
+				<ul class="link_list">
+												<li><a href="http://blog.nicovideo.jp/en_info/2016/03/post-059882.html" title="Mar 17 18">Nico Live Maintenance: 6 am ï½ 8:30 am (JST...</a></li>
+												<li><a href="http://blog.nicovideo.jp/en_info/2016/03/post-059569.html" title="Mar 03 17">Nico Live Maintenance: 6 am ï½ 8:30 am (JST...</a></li>
+												<li><a href="http://blog.nicovideo.jp/en_info/2016/02/post-059292.html" title="Feb 18 17">Nico Live Maintenance: 6 am ï½ 8:30 am (JST...</a></li>
+												<li><a href="http://blog.nicovideo.jp/en_info/2016/02/post-058971.html" title="Feb 02 17">Nico Live Maintenance: 6 am ï½ 8:30 am (JST...</a></li>
+										</ul>
+				<p class="link_right"><a href="http://blog.nicovideo.jp/en_info/" class="icon_cur" target="_blank">List</a></p>
+		</div>
+</div>
+<!-- /#nicoNews -->
+				<div id="sns_widget" class="clarfix">
+<!-- facebook -->
+<div id="facebookWidget">
+<iframe src="//www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fniconicocom&amp;width=350&amp;height=427&amp;show_faces=false&amp;colorscheme=light&amp;stream=true&amp;border_color=ccc&amp;header=true" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:350px; height:427px;" allowTransparency="true"></iframe>
+</div>
+
+<div id="twitterWidget">
+<a href="https://twitter.com/niconicoen" class="twitter-follow-button" data-width="180px" data-show-count="false" data-lang="en" data-size="large">Follow @ niconicoen</a>
+</div>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+</div>
+
+				<div id="ranking_area">
+				<div class="title_index">
+											<h4>Ranking</h4>
+									</div>
+
+<div class="sub_movlist">
+<ul>
+<li>
+<div class="sub_movcontainer clearfix">
+	<div class="sub_thumb">
+	<a href="/watch/sm23256582"><img src="http://tn-skr3.smilevideo.jp/smile?i=23256582" alt=""></a>
+	</div>
+	<div class="sub_summary">
+	<h5><span class="rank rank1">1:</span> <a href="http://rd.nicovideo.jp/cc/ustop/localrank?cc_id=sm23256582" class="watch">ãAMUãA Thousand Cherry Blossoms Dance itãin a slopeã</a></h5>
+	<p>AMUãThe belt bow came looseã»ã»ã»ã»...</p>
+	<p class="sub_date"><span>Apr 04, 02:08 PM</span></p>
+	</div>
+</div>
+</li>
+<li>
+<div class="sub_movcontainer clearfix">
+	<div class="sub_thumb">
+	<a href="/watch/sm28519750"><img src="http://tn-skr3.smilevideo.jp/smile?i=28519750" alt=""></a>
+	</div>
+	<div class="sub_summary">
+	<h5><span class="rank rank2">2:</span> <a href="http://rd.nicovideo.jp/cc/ustop/localrank?cc_id=sm28519750" class="watch">ãããæ¾ãããã·ã§ã¼ããã£ã«ã ã·ãªã¼ãº #03ãã«ã©ï¼ãã ãªãºã ã</a></h5>
+	<p>.</p>
+	<p class="sub_date"><span>Mar 28, 04:38 AM</span></p>
+	</div>
+</div>
+</li>
+<li>
+<div class="sub_movcontainer clearfix">
+	<div class="sub_thumb">
+	<a href="/watch/sm28496031"><img src="http://tn-skr4.smilevideo.jp/smile?i=28496031" alt=""></a>
+	</div>
+	<div class="sub_summary">
+	<h5><span class="rank rank3">3:</span> <a href="http://rd.nicovideo.jp/cc/ustop/localrank?cc_id=sm28496031" class="watch">Blooming Into the Colour of Loveï¼ CHiCO with HoneyWorks</a></h5>
+	<p>VideoãI've like you for a long time....</p>
+	<p class="sub_date"><span>Mar 25, 02:00 AM</span></p>
+	</div>
+</div>
+</li>
+<li>
+<div class="sub_movcontainer clearfix">
+	<div class="sub_thumb">
+	<a href="/watch/so28482114"><img src="http://tn-skr3.smilevideo.jp/smile?i=28482114" alt=""></a>
+	</div>
+	<div class="sub_summary">
+	<h5><span class="rank rank4">4:</span> <a href="http://rd.nicovideo.jp/cc/ustop/localrank?cc_id=so28482114" class="watch">ããæ¾ãããç¬¬24è©±ããããå­å¤§ããã¦ããã»ãã</a></h5>
+	<p>ãããå­å¤§ããã¦ããã¤ãçã«ãã¤ãã¤...</p>
+	<p class="sub_date"><span>Mar 27, 08:30 AM</span></p>
+	</div>
+</div>
+</li>
+<li>
+<div class="sub_movcontainer clearfix">
+	<div class="sub_thumb">
+	<a href="/watch/sm28509879"><img src="http://tn-skr4.smilevideo.jp/smile?i=28509879" alt=""></a>
+	</div>
+	<div class="sub_summary">
+	<h5><span class="rank rank5">5:</span> <a href="http://rd.nicovideo.jp/cc/ustop/localrank?cc_id=sm28509879" class="watch">3/27å¬éãåå ´çãFate stay nightãHeavenâs Feel ï¼ PVãæé«ç»è³ªã</a></h5>
+	<p>åå ´çãFate/stay nightãHeavenâs Fee...</p>
+	<p class="sub_date"><span>Mar 26, 10:20 PM</span></p>
+	</div>
+</div>
+</li>
+<li>
+<div class="sub_movcontainer clearfix">
+	<div class="sub_thumb">
+	<a href="/watch/sm23793623"><img src="http://tn-skr4.smilevideo.jp/smile?i=23793623" alt=""></a>
+	</div>
+	<div class="sub_summary">
+	<h5><span class="rank rank6">6:</span> <a href="http://rd.nicovideo.jp/cc/ustop/localrank?cc_id=sm23793623" class="watch">ãMADãLOOP WORLDãã·ã¥ã¿ã²/ã¾ã©ãã®/ã²ããã/ãªããã¹ã</a></h5>
+	<p>æéé¡è¡ããããã©ãããããããã§ã...</p>
+	<p class="sub_date"><span>Jun 16, 03:30 AM</span></p>
+	</div>
+</div>
+</li>
+<li>
+<div class="sub_movcontainer clearfix">
+	<div class="sub_thumb">
+	<a href="/watch/sm28225487"><img src="http://tn-skr4.smilevideo.jp/smile?i=28225487" alt=""></a>
+	</div>
+	<div class="sub_summary">
+	<h5><span class="rank rank7">7:</span> <a href="http://rd.nicovideo.jp/cc/ustop/localrank?cc_id=sm28225487" class="watch">IKISUGI TRAP</a></h5>
+	<p>æ·«å¤¢è¦ç´ ãç¡ãã¨ãããªãã</p>
+	<p class="sub_date"><span>Feb 14, 11:12 AM</span></p>
+	</div>
+</div>
+</li>
+<li>
+<div class="sub_movcontainer clearfix">
+	<div class="sub_thumb">
+	<a href="/watch/sm28506947"><img src="http://tn-skr4.smilevideo.jp/smile?i=28506947" alt=""></a>
+	</div>
+	<div class="sub_summary">
+	<h5><span class="rank rank8">8:</span> <a href="http://rd.nicovideo.jp/cc/ustop/localrank?cc_id=sm28506947" class="watch">ãã¦ã©ã«ãã¹ç¤¾ããªã³ããæ­ã£ã¦ã¿ã¾ãããæä¾ã</a></h5>
+	<p>é»ãå±±ç¾ã¯åããããããããã£ãã®æ...</p>
+	<p class="sub_date"><span>Mar 27, 03:30 AM</span></p>
+	</div>
+</div>
+</li>
+<li>
+<div class="sub_movcontainer clearfix">
+	<div class="sub_thumb">
+	<a href="/watch/sm2044059"><img src="http://tn-skr4.smilevideo.jp/smile?i=2044059" alt=""></a>
+	</div>
+	<div class="sub_summary">
+	<h5><span class="rank rank9">9:</span> <a href="http://rd.nicovideo.jp/cc/ustop/localrank?cc_id=sm2044059" class="watch">ææ¥æã®ããã </a></h5>
+	<p>Physical Aspects of Puberty, 1953.  S...</p>
+	<p class="sub_date"><span>Jan 14, 10:30 PM</span></p>
+	</div>
+</div>
+</li>
+<li>
+<div class="sub_movcontainer clearfix">
+	<div class="sub_thumb">
+	<a href="/watch/sm28505542"><img src="http://tn-skr3.smilevideo.jp/smile?i=28505542" alt=""></a>
+	</div>
+	<div class="sub_summary">
+	<h5><span class="rank rank10">10:</span> <a href="http://rd.nicovideo.jp/cc/ustop/localrank?cc_id=sm28505542" class="watch">1BitHeart / é¡é³ãªã³</a></h5>
+	<p> ----æãåã ç¬ãã°ãããã ã  ãã...</p>
+	<p class="sub_date"><span>Mar 26, 06:30 AM</span></p>
+	</div>
+</div>
+</li>
+</ul>
+
+<p class="link_right"><a href="http://rd.nicovideo.jp/cc/ustop/localrank_page" class="icon_cur">Ranking</a></p>
+</div>
+
+</div>
+
+				<div id="ranking_global">
+				<div class="title_index">
+						<h4>Global Ranking</h4>
+				</div>
+
+<div class="sub_movlist">
+<ul>
+<li>
+<div class="sub_movcontainer clearfix">
+	<div class="sub_summary">
+	<h5><span class="rank rank1">1:</span> <a href="http://rd.nicovideo.jp/cc/ustop/globalrank?cc_id=so28482114" class="watch">ããæ¾ãããç¬¬24è©±ããããå­å¤§ããã¦ããã»ãã</a></h5>
+	</div>
+</div>
+</li>
+<li>
+<div class="sub_movcontainer clearfix">
+	<div class="sub_summary">
+	<h5><span class="rank rank2">2:</span> <a href="http://rd.nicovideo.jp/cc/ustop/globalrank?cc_id=sm28517682" class="watch">ã4äººå®æ³ã æ´èµ°ãããã®ã¨ã­ãµã¤ããã¤ã¯64</a></h5>
+	</div>
+</div>
+</li>
+<li>
+<div class="sub_movcontainer clearfix">
+	<div class="sub_summary">
+	<h5><span class="rank rank3">3:</span> <a href="http://rd.nicovideo.jp/cc/ustop/globalrank?cc_id=sm28509879" class="watch">3/27å¬éãåå ´çãFate stay nightãHeavenâs Feel ï¼ PVãæé«ç»è³ªã</a></h5>
+	</div>
+</div>
+</li>
+<li>
+<div class="sub_movcontainer clearfix">
+	<div class="sub_summary">
+	<h5><span class="rank rank4">4:</span> <a href="http://rd.nicovideo.jp/cc/ustop/globalrank?cc_id=sm28511630" class="watch">ãã«ããã¹VSã°ã¬ã¤ãºã¢ã¤ã³ãæ±ºæ¦ï¼ãã¾ã</a></h5>
+	</div>
+</div>
+</li>
+<li>
+<div class="sub_movcontainer clearfix">
+	<div class="sub_summary">
+	<h5><span class="rank rank5">5:</span> <a href="http://rd.nicovideo.jp/cc/ustop/globalrank?cc_id=sm27863361" class="watch">ã¤</a></h5>
+	</div>
+</div>
+</li>
+</ul>
+
+<p class="link_right"><a href="http://rd.nicovideo.jp/cc/ustop/globalrank_page" class="icon_cur">Ranking</a></p>
+</div>
+
+</div>
+		</div><!-- /#sideContents -->
+	</div><!-- /#contents -->
+</div><!-- /#contentsWrap -->
+
+
+
+<div id="web_pc_sidewall_left" class="sidewallAd"></div>
+<div id="web_pc_sidewall_right" class="sidewallAd"></div>
+<script type="text/javascript"><!--
+	(function(){
+		var segment = Ads.get_segment_object();
+		Ads.Sidewall.setParameters({
+			zoneIds: [724, 725],
+			locations: ['web_pc_sidewall_left', 'web_pc_sidewall_right'],
+			segments: segment,
+			contentsWidth: 996
+		});
+		Ads.Sidewall.invoke();
+	})();
+	//-->
+</script>
+</div>
+
+<div class="toPageTopWrap">
+	<div class="inner">
+		<a href="#" class="toPageTopBtn"><span></span>Back to Top</a>
+			</div>
+</div><!-- /.toPageTop -->
+
+<div id="footerWrap">
+
+	<div id="footerNav">
+		<div class="outer">
+
+			<h3>About Niconico</h3>
+			<ul class="footerNavList">
+				<li><a href="http://www.nicovideo.jp/top_service/">Niconico Services</a></li>
+				<li><a href="http://www.nicovideo.jp/rss">RSS Updates</a></li>
+				<li><a href="http://license-search.nicovideo.jp/">Audio Search (Japanese only)</a></li>
+				<li><a href="http://ex.nicovideo.jp/base/declaration">Announcements</a></li>
+								<li><a href="http://dwango.co.jp/" target="_blank">Operating Company </a></li>
+							</ul>
+		</div>
+
+		<div class="outer">
+			<h3>Notices</h3>
+			<ul class="footerNavList">
+				<li><a href="http://blog.nicovideo.jp/en_info/">Nico Blog</a></li>
+																			</ul>
+		</div>
+		<div class="outer">
+			<h3>Inquire</h3>
+			<ul class="footerNavList">
+				<li><a href="http://ex.nicovideo.jp/help">Help Home Page</a></li>
+				<li><a href="https://secure.nicovideo.jp/secure/support_form_os">Send Feedback</a></li>
+				<li><a href="http://rcp-smile.nicovideo.jp/static/rule/">Copyright Holders (Japanese only)</a></li>
+				<li><a href="https://secure.ch.nicovideo.jp/application/info/top">Corporate (Japanese only)</a></li>
+				<li><a href="http://sales.ads.nicovideo.jp/">Advertise</a></li>
+				<li><a href="https://secure.nicovideo.jp/form/press">Press</a></li>
+				<li><a href="http://info.dwango.co.jp/recruit/">Work with us! (Japanese only)</a></li>
+							</ul>
+		</div>
+	</div>
+
+	<div id="copyright">
+					<div class="setCountryOuter">
+    <ul class="setCountry">
+        <li class="selector" id="area">
+            <p>Region: </p>
+            <div class="outer">
+                <p class="trigger" id="areaTrigger">
+                    <span class="currentType US">United States</span>
+                    <span class="arrow"></span>
+                </p>
+                <div class="expandContainer" id="areaExpandContainer">
+                                                        <a href="#" class="selectType JP" onclick="document.site_footer_setcountry.area.value='JP';return Nico.CommonFooter.setCountry();">Japan</a>
+                                                                                                                <a href="#" class="selectType TW" onclick="document.site_footer_setcountry.area.value='TW';return Nico.CommonFooter.setCountry();">Taiwan</a>
+                                                    </div>
+            </div>
+        </li>
+        <li class="selector" id="lang">
+            <p>Language: </p>
+            <div class="outer">
+                <p class="trigger" id="langTrigger">
+                    <span class="currentType">English (US)</span>
+                    <span class="arrow"></span>
+                </p>
+                <div class="expandContainer" id="langExpandContainer">
+                                                        <a href="#" class="selectType ja-jp" onclick="document.site_footer_setcountry.language.value='ja-jp';return Nico.CommonFooter.setCountry();">æ¥æ¬èª</a>
+                                                                                                                <a href="#" class="selectType zh-tw" onclick="document.site_footer_setcountry.language.value='zh-tw';return Nico.CommonFooter.setCountry();">ä¸­æ (ç¹é«)</a>
+                                                    </div>
+            </div>
+        </li>
+    </ul>
+    <form method="post" action="http://www.nicovideo.jp/api/setcountry" id="site_footer_setcountry" name="site_footer_setcountry">
+            <input type="hidden" name="area" value="">
+        <input type="hidden" name="language" value="">
+    </form>
+</div>				<p class="figureWrap">
+			<img src="http://uni.res.nimg.jp/img/base/foot/logo_jasrac.png" alt="Licensed by JASRAC" /><span>JASRAC License Number: 9013388001Y45123<br>9013388004Y30005 </span>
+						<small>&copy;DWANGO Co., Ltd.</small>
+		</p>
+	</div>
+</div><!-- /#footerWrap -->
+<script type="text/javascript" charset="utf-8" src="http://notification.nicovideo.jp/res/notify.js?140901" async defer></script>
+<script type="text/javascript" charset="utf-8" src="http://enquete.nicovideo.jp/static/js/enquete.js?141028" async defer></script>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <script type="text/javascript">
+        var LS_KEY = "obsync";
+        var EXPIRATION = 30; // in days
+        var DAY = 86400000;
+
+
+        /**
+         * Get params from url
+         */
+        var getQueryParam = function (key, defaultVal) {
+            key = key.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+            var regexS, regex, results;
+            try {
+                regexS = "[\\?#&]" + key + "=([^&#]*)";
+                regex = new RegExp(regexS, "i");
+                results = regex.exec(window.location.href);
+                if (results === null) {
+                    return defaultVal;
+                }
+                return results[1];
+            } catch (ex) {
+                return defaultVal;
+            }
+        };
+
+        /**
+         * The difference of 2 dates (in milliseconds). result is difference in days.
+         * @param date1_ms - date in mili
+         * @param date2_ms - date in mili
+         * @returns {number} represent the difference in days
+         */
+        var compareTime = function (date1_ms, date2_ms) {
+            var difference_ms = date2_ms - date1_ms;
+            return Math.round(difference_ms / DAY); // divide by one day
+        };
+
+        /**
+         * Set timestamp in local storage
+         */
+        var setLocalStorageTimeStamp = function () {
+            localStorage.setItem(LS_KEY, new Date().getTime().toString());
+        };
+
+        /**
+         * Injects 2 pixels (images) to the document body.
+         */
+        var sendPixels = function () {
+            var d = getQueryParam("d", "");
+            var pixels = ["http://idsync.rlcdn.com/420046.gif?partner_uid=$d", "http://tags.bluekai.com/site/29859?id=$d"];
+
+            if (d.length === 0) return false;
+
+            for (var i = 0; i < pixels.length; i++) {
+                var pixelSrc = pixels[i];
+                var pixel = document.createElement("img");
+                pixel.setAttribute("src", pixelSrc.replace("$d", d));
+                pixel.setAttribute("height", "1");
+                pixel.setAttribute("width", "1");
+                document.body.appendChild(pixel);
+            }
+            return true;
+        };
+
+        /**
+         * Comscore init function
+         */
+        var comScoreinit = function () {
+            if (getQueryParam("csenabled", "") === "false") {
+                return;
+            }
+
+            var pid = getQueryParam("pid", "");
+            window._comscore = window._comscore || [];
+            _comscore.push({c1: "7", c2: "14320224", c3: ((pid.length > 0) ? pid : "000")});
+            (function () {
+
+                var s = document.createElement("script"),
+                        el = document.getElementsByTagName("script")[0];
+                s.async = true;
+                s.src = (document.location.protocol == "https:" ? "https://sb" : "http://b") + ".scorecardresearch.com/beacon.js";
+                el.parentNode.insertBefore(s, el);
+            })();
+        };
+
+        /**
+         * DMP init function
+         */
+        var dmpInit = function () {
+            if (getQueryParam("dmpenabled", "") === "false") {
+                return;
+            }
+
+            var timeStamp, useCookie = false;
+
+            if (typeof(Storage) !== "undefined" && window.localStorage) {
+                timeStamp = window.localStorage.getItem(LS_KEY);
+            } else {
+                useCookie = true;
+                timeStamp = readCookie(LS_KEY);
+            }
+
+            var now = new Date().getTime(),
+                    isSendPixels = true;
+
+            if (timeStamp) { // if there is timestamp in local storage / cookie
+                if (!useCookie) { // LC
+                    var diff = compareTime(timeStamp, now);
+                    if (diff < EXPIRATION) {
+                        isSendPixels = false;
+                    }
+                }
+                else { // cookie exist
+                    isSendPixels = false;
+                }
+            }
+
+            if (isSendPixels && sendPixels()) {
+                if (useCookie) {
+                    setCookie(now);
+                }
+                else {
+                    setLocalStorageTimeStamp(); // creates new timestamp
+                }
+            }
+        };
+
+
+        /**
+         * Cookie setter
+         * @param now
+         */
+        var setCookie = function(now) {
+            var date = new Date();
+            date.setTime(date.getTime() + (EXPIRATION * DAY));
+            var expires = "; expires=" + date.toGMTString();
+            document.cookie = LS_KEY + "=" + now + expires + "; path=/";
+        };
+
+        /**
+         * Cookie getter
+         * @param name
+         * @returns {*}
+         */
+        var readCookie = function(name) {
+            var nameEQ = name + "=";
+            var ca = document.cookie.split(';');
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+            }
+            return null;
+        };
+    </script>
+</head>
+<body onload="comScoreinit();dmpInit();">
+<noscript><img src="http://b.scorecardresearch.com/p?c1=7&c2=14320224&c3=000&c4=&c5=&c6=&c15=&cv=2.0&cj=1"/></noscript>
+</body>
+</html>

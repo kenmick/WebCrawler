@@ -1,0 +1,130 @@
+/*************************************************************************/
+//Contenu dans le JS de la page aha
+/*************************************************************************/
+
+function getAllNodesContent ( nodeElement, kw_list, message )
+{
+	var childsArray = nodeElement.childNodes;
+	var pass = 1;
+	var returnValue = "unlocked";
+
+	for(var i = 0; i < childsArray.length; i++){
+		if ( childsArray[i].nodeName != "SCRIPT" && childsArray[i].nodeName != "IFRAME" && childsArray[i].nodeName != "IMG" && childsArray[i].nodeName != "A" ) {
+			/*if ( childsArray[i].nodeName == "A" )
+			{
+				pass = 0;
+				if ( window.location.host == childsArray[i].host ){
+					pass = 1;
+				}
+			}*/
+			if ( pass == 1 ){
+				if(childsArray[i].hasChildNodes()){
+					returnValue = getAllNodesContent ( childsArray[i], kw_list, message );
+					if ( returnValue == "locked" ){
+						return "locked";
+					}
+				}else {
+					if ( childsArray[i].nodeName == "#text" ) {
+						returnValue = getAllWordsFromText ( childsArray[i].textContent, kw_list, message , "content");
+						if ( returnValue == "locked" ){
+							return "locked";
+						}
+					}
+				}
+			}
+		}	
+	}
+	if ( document.body == nodeElement )
+	{
+	    var url_words = new Array();
+            var str = document.location.href;
+            var res1 = str.split("-");
+            for(var i= 0; i < res1.length; i++)
+            {
+                var res2 = res1[i].split("_");
+                for(var j= 0; j < res2.length; j++)
+                {
+                    var res3 = res2[j].split(".");
+                    for(var k= 0; k < res3.length; k++)
+                    {
+                        var res4 = res3[k].split("/");
+                        for(var l= 0; l < res4.length; l++)
+                        {
+                            var res5 = res4[l].split("&");
+                            for(var m= 0; m < res5.length; m++)
+                            {
+                                var res6 = res5[m].split("=");
+                                for(var n= 0; n < res6.length; n++)
+                                {
+                                    if ( typeof(res6[n]) != "undefined" && res6[n] != "" && res6[n] != "\n" ) {
+                                        url_words.push(res6[n].replace("%20", " ").toLowerCase());
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+	    returnValue = getAllWordsFromText (url_words, kw_list, message, "url");
+	    if ( returnValue == "unlocked" ){
+		var pageTitle = document.title;
+                returnValue = getAllWordsFromText ( pageTitle, kw_list, message, "title");
+		if ( returnValue == "locked" ) return "locked";
+	    }
+	    else return "locked";	
+	}
+	return "unlocked";
+}
+
+// sample mode Array contient les mots de l'url. sample en string est un bloc de test
+function getAllWordsFromText (sample, array_words, message, type) 
+{
+	// remplacement de tous les signes de ponctuation (suite de signes ou signe isolÃ©) par un whitespace
+	if(typeof sample == "object") contenu = sample;
+	else contenu = (sample.toLowerCase()).replace(/[\.,-\/#!$%\^&\*;:{}=\-_`~()]+/g, ' ');
+	
+	var blocking_keyword = "";
+	var blocking_keywords_nb = array_words.length;
+
+	for ( var i = 0; i < blocking_keywords_nb; i ++ ) {
+
+                var word = array_words[i];
+                var word_splitted = word.split("+");
+		//tous les mots de la combinaison doivent etre dans le texte
+                if( word_splitted.length > 1 ){
+
+                    var nb_occ   = 0;
+                    for ( var j = 0; j < word_splitted.length; j ++ ) {
+			final_word = (typeof sample !== "object") ? " "+word_splitted[j].toLowerCase()+" " : word_splitted[j].toLowerCase();
+                        nb_occ += contenu.indexOf(final_word) > 0 ? 1 : 0;
+                    }
+                    if(nb_occ  == word_splitted.length) blocking_keyword = word;
+                }
+		//mot simple
+		else{
+		    final_word = ( typeof sample !== "object") ? " "+word.toLowerCase()+" " : word.toLowerCase();
+                    if( contenu.indexOf(final_word) >= 0 ) blocking_keyword = word;
+                }
+
+		if(blocking_keyword){
+			//bloquer les publicitÃ©s
+			message += "&alerte_desc="+type+":"+word;
+                        useFirewallForcedBlock(message);
+                        return "locked";
+		}
+        }	
+  	return "unlocked";
+}	
+
+function useFirewallForcedBlock( message ){
+    var adloox_img_fw=message;
+    scriptFw=document.createElement("script");
+    scriptFw.src=adloox_img_fw;
+    document.body.appendChild(scriptFw);
+}
+/*************************************************************************/
+var firstNode = document.body;
+var contentTab = ["33m lotto gran","4u 9525","4u9525","619","911","911 abduct abortion abuse afghanistan ah5017 air algerie al-quaeda alcohol abuse alcohol addict alcohol addiction alcohol dependence alcoholic alcoholism amara culture centre anal animal welfare anjem","Ã  la recherche de marquer","aaa wrestling","abartig","abdeslam","abdominal injury","abduct","abgeknallt","abgeschossen","abortion","abschaum","absturz","absturzgebiet","absturzregion","abuse","abusive","adidas beschwerde","adidas camisetas retiradas","adidas complaint","adidas de quejas","adidas maglie ritirati","adidas plainte","adidas retiran las camisetas","adidas retirent des t-shirts","adidas ritirano maglie","adidas si lamenta","adidas t-shirts retirÃ©s","adidas t-shirts withdrawn","adidas t-shirts zurÃ¼ckgezogen","adidas withdraw t-shirts","adidas zurÃ¼ckzutreten t-shirts","afghanistan","agus supriatna","ah5017","air algerie","air products","airbus","airbus a320","airbus a321-200","al-quaeda","al-sawabe","alan giese","alcohol abuse","alcohol addict","alcohol addiction","alcohol dependence","alcoholic","alcoholism","allenatore razzista","alps plane crash","alter wichser","am strich","amara culture centre","anal","andrew tosh","angegriffen","angriff","animaccion racista","animal welfare","anjem choudary","ankara","anorexia","anti semitic","anti-asian","anti-asiatico","anti-asiatiques","anti-asiatisch","anulingus","anus","anwar al-awlaki","apartheid","arsch","arschfotze","arschgesicht","arschloch","arse","arsehole","ash cloud","asphyxiation","ass","ass bag","ass bandit","ass banger","ass face","ass fuck","ass fucker","ass goblin","ass hat","ass head","ass hole","ass hopper","ass jacker","ass lick","ass licker","ass monkey","ass munch","ass muncher","ass nigger","ass pirate","ass shit","ass shole","ass sucker","ass wad","ass wipe","assad","assault","assbite","assclown","asscock","asscracker","asses","atelier clandestin","atom","atombombe","atomrakete","atomunfall","atouchement","atr-72","atr42-300","attack","attacke","attentat","attouchement","aufgeilen","baby car seatÂ ","baggage delay","baggage handling","bahrun naim","baise","bambang soelistyo","bampot","bande dessinÃ©e raciste","bangkok","bangkok bomb","barcelona to duesseldorf","barcelona to dÃ¼sseldorf","barry mcgee","basanÃ©","bashar","baskets de manille","baskets esclaves","bastard","bataclan concert hall","bataclan theatre","battery chickens","battery farming","bdsm","beaner","beastiality","behead","beheaded","beheading","belÃ¤stigen","belÃ¤stigung","bellevue","bernard cazeneuve","beschiss","beurette","bewaffnet","bewaffnete","bfm tv","bi tches","bifle","bilal hadfi","binge drink","binge drinking","bintang","bisexualitÃ©","bisexuel","bitch","bitchass","bitches","bitchtits","bitchy","bite","bjs","black box","black boxes","blackbox","blackbox black box black boxes","blackbox black box blackboxes","blasen","blow job","blowjob","blue mosque","bob patterson","bobby shepherd","boing","boko haram","bollocks","bollox","bomb","bombe","bomber","bombing","bombs","bondage","boner","boob","bougnoule","boulevard beaumarchais","boulevard voltaire","bout","brahim abdeslam","branle","branlette","brasilien wm-t-shirts","brazil world cup t-shirts","brÃ©sil la coupe du monde t-shirts","brother fucker","broutteminou","bruselas","brussel","brussels","brutal","bruxelles","bukkake","bulgaria","bulimia","bulle","bullshit","bullying","bumble fuck","bumsen","bumslokal","burgas","burn","buscando el balÃ³n en busca de anotar","busen","butt","butt plug","buttfucka","buttfucker","cabu","caca","calci grillo schiavo","callgirl","camel toe","camisetas da copa del mundo en brasil","car seatÂ ","carbon monoxide","carnage","carpet muncher","cartoonists","cash cow","catholic","cencando di segnare","cercando di segnare","charb","charlie hebdo","chasse Ã  lhomme","cheadle","cherif hebdo","cherif kouachi","chidlom district","child labor","child labour","childline","chinc","chink","choad","chode","choking","cholera","christain","christi shepherd","christianne shepherd","christopher tehrani","christos louvros","citizens informer","citizens of the crusader coalition","clit","clit face","clit fuck","clitoris","cluster fuck","cocain","cocaine","cock","cock ass","cock bite","cock burger","cock face","cock fucker","cock head","cock jockey","cock knoker","cock master","cock mongler","cock mongruel","cock monkey","cock muncher","cock nose","cock nugget","cock shit","cock smith","cock smoker","cock sucker","cockring","cocks","cofcc","coit","cokin","cokine","columbine","compensation","condom","condoms","conservative citizens foundation","contamination","coochie","coochy","coon","cooter","copulation","coquine","costa concordia","couille","council of conservative citizens","coups de pied de manille esclave","cracker","crash","crash testing","crimea","crimestoppers","cruise liner sank","cruise ship sank","cul","cum","cum bubble","cum dumpster","cum guz zler","cum guzzler","cum jockey","cum slut","cum tart","cuni","cunnie","cunnilingus","cunnillingus","cunt","cunt face","cunt hole","cunt licker","cunt rag","cunt slut","cybersexe","dago","damian grammaticas","damn","dangerous fittings","david hinchliff","dead","death","death row","death threats","deaths","decapitate","decapitation","deep throat","deepthroat","defloration","deggo","denis dekovic","desnudas","destroy","dewani","dewsbury factory","dick","dick bag","dick beaters","dick face","dick fuck","dick fucker","dick head","dick hole","dick juice","dick milk","dick monger","dick slap","dick sucker","dick wad","dick weasel","dick weed","dick wod","dicks","die sklaverei","dieb","diebstahl","died","dike","dildo","dildos","dimitrios xidias","dipshit","disaster","disasters","disease","disruptive passenger","diverted","djakarta theater","djihad","dogging","dominatrix","doochbag","dookie","douche","douche bag","douche waffle","dragged","drecksack","drecksau","drogen","drowned","drug abuse","drug addict","drug addiction","drugged","drugs","drummer lee rigby","drunk","drunk female","drunken","dum shit","dumass","dumb ass","dumb fuck","dumb shit","dyke","e coli","eagles of death metal","earthquake","ebola","echangisme","Ã©changiste","ecstasy","edl","edward snowden","eier","eierlutscher","einbrecher","einbruch","einen runterholen","eingebrochen","eingestuerzt","eingestÃ¼rzt","einsturz","embraer phenom 300","emergency","emergency landing","enculÃ©","enflure","enfoirÃ©","english defence league","entfÃ¼hren","entfÃ¼hrung","entkÃ¶pfung","entrenador racista","erawan shrine","erdrunken","Ã©rection","eric van der sypt","erogene","erotic","erotica","erotika","Ã©rotique","erschlagen","esclavitud","escort service","etchells road","ethan mcken","execut ions","execution","executions","exhibitionist","exhibitionists","existenzsichernden lohn","explosion","extrem","extremer","extremisim","extremism","extremist","extremiste","extremists","fabbrica di sudore","facesitting","fag","fag bag","fag fucker","fag tard","faggit","faggot","faggot cock","failed customer service","fanny","fantasme","fat ass","fatwa","faules miststueck","felation","fellatio","fellation","feltch","female cabin crew","femdom","ferenc illes","fesseln","fÃ©tichisme","fetichiste","fetisch","fetish","fick dich","fick mich","ficken","fils2pute","filsdepute","fist","fisted","fisting","fkk","flagellation","flamer","flig ht crash","flight crash","flight crashed","flight delay","flight disappeared","flight missing","flight vanished","flood","floods","flugabsturz","flugzeugkatastrophe","flugzeugunglÃ¼ck","flugzeugunglueck","fly kick","flying kick","food poisoning","food standards","foot fetish","foreign tourists","formateur raciste","forniquer","fotze","fouf","foufoune","foutre","france plane crash","fraud","free sex","free trade zones","freihandelszonen","french factory","frigide","fritzl","fuad basya","fucck","fuck","fuck ass","fuck bag","fuck boy","fuck brain","fuck butt","fuck face","fuck head","fuck hole","fuck in","fuck me","fuck nut","fuck nutt","fuck off","fuck stick","fuck tard","fuck up","fuck wad","fuck wit","fuck witt","fuck you","fucked","fucker","fucker sucker","fuckin","fuckin bitch","fucking","fucking bitch","fucks","fudge packer","fuk me","fuk you","fukin bitch","fullisade","fummeln","fuuck","g ay wad","gadaffi","gaddafi","gaggers","gang bang","gangbang","garce","gary glitter","gate j","gay","gay ass","gay bob","gay bois","gay boys","gay fuckist","gay lord","gay tard","gay wad","gaydo gay fuck","gaza","gbh","geil","geiler bock","geiles luder","gekÃ¶pft","gelbe serie y1 huf","geneva convention","genital warts","genocide","georgios chrysikopoulos","germanwings","gerontophobe","gescheitert kundenservice","geschlechtsverkehr","gewehr","giese","gilf","gloryhole","gmp","god damn","god damnit","godemichet","gooch","gook","gordon lee baum","gorgeprofonde","gouine","gouvia","gringo","group sex","guantanamo bay","gudalajara","gun","hack","hacken","hacking","haltern","hamas","handjob","hÃ¤ngetitte","hard core","hard on","hardcore","hardcore sex","harriet green","head impact","hebdo","heeb","heisse","heiÎ²","heiÎ²e","hell","hentai","hercules","heroin","high risk","hijack","hijo del perro aguayo","hinunterholen","hit and run","hiv","hiv aids","hoe","holocaust","homicide","homo","homo dumbshit","homofuerst","homophobe","homophobia","homophobic","homophobique","hong kong protest","honkey","honte","hooker","hornochse","horny","hospital","hostage","hotel apologised","hotel apology","hotel bellevue","hotel food poisoning","hotel illness","hotel infestation","hotel palm marina","huhrensohn","humping","hungarian slaves","hure","hurenficker","hurengesicht","hurensohn","ian watkins","illness","illuminati","imam sadiq mosque","imperial mahaba","incest","inceste","indonesian plane","infestation","infidel","injured","interrogation","investigators","ira","iraq","isis","islam","islamic state","islamist militants","israel","istanbul governors office","jabulani","jackass","jakarta","jalan thamrin","james foley","janos orsos","jap","jayapura","jeremy scott","jerk off","jew","jewish","jigaboo","jihad","jihadi john","jihadist","jimmy savile","jizz","john doe","john lewis car park","joko widodo","jouir","jude","judenvernichtung","julian assange","jungle bunny","junglebunny","junkie","kackbratze","kama sutra","kamasutra","kanone","kantaoui beach","katastrophe","keller","ketamine","keywords 911","kfc","kidnap","kike","kill","killing","kills 27","kinderarbeit","kinky","knarre","kobane","kogalymavia","kokain","kollision","kondom","kooch","kootch","kÃ¶pfen","kouachi","kozee sleep","krankheit","krebs","kunt","kuwait","kyke","la belle equipe","la casa nostra","la fÃ¡brica de sudor","la schiavitÃ¹","la serie amarilla y1 huf","landslide","landslides","las lagunas","lavoro minorile","lawsuit","layzee sleep","le carillon","le carillon bar","le petit cambodge","le travail des enfants","leck mich","les deux alpes","les halles","les zones de libre-Ã©change","lesbian","lesbo","lesclavage","lewd acts","lewes crown court","lezzie","libya","life boats","life-show","lifeboats","linkstraeger","linkstrÃ¤ger","lisle-dabeau","listeria","living wage","lms","lolita","lolitas","lolittas","lookin to score","looking to score","louis corcyra beach hotel","lucha libre","lude","luder","lufthansa","lust the ticket","lyon attack","madeleine mccann","maelbeek","maglie mondiale in brasile","major bob patterson","malaria","malaysia airlines","man decapitated","mange-merde","mangemerde","manslaughter","marauding terrorist firearms attack","marc dolce","marc-jean ghyssels","mark miner","masochisme","massacre","massaker","massenvernichtung","masturbateur","masturbation","masturber","mated","mating","max clifford","mccain","mcfagget","mdma","medan","menace","mÃ©olans-revel","message for america","mh17","mh370","michael adebolajo","mick","miefen","mieser stricher","mijas golf resort","mile high club","milf","milfs","minge","misile","missbrauch","missgeburt","missonarstellung","miststÃ¼ck","miÎ²brauch","moerder","mohamed abrini","mohammed","mohammed abdeslam","mohammed rafiq","molenbeek","molest","money-mad","mord","mÃ¶rder","mothafucka","mother fucker","mother fuker","motherfucker","motherfucking","muff","muff diver","mugging","muhammad","munging","murder","murderer","murders","muschi","muschi lecker","muslim","mutterficker","naked","national defence league","naturism","naturist","nazi","ndl","necrophilia","neger","negozio di sudore","nÃ¨gre","nÃ©gro","neil shepherd","netanyahu","newcastle evening chronicle","news of the world","niakouÃ©","nicola gibson","nigga","nigger","niggers","niglet","nike demanda a ex diseÃ±adores","nike fa causa ex designer","nike klagt ehemalige designer","nike poursuit ses anciens designers","nike sues former designers","niquer","no survivors","north korea","north west ambulance service","notfall","nspcc","nuclear","nuclear war","nuclear weapons","nude","nudes","nudist","nudity","nuklear","nuklearwaffen","nut sack","nutsack","nympho","oasch","oben ohne","obese","obesity","obscÃ©ne","oksibil","omar ismail mostefai","onanieren","onanisme","operation yew tree","operation yewtree","opfer","opfern","oral sex","orgasme","orgie","orgy","orsch","osama bin laden","oscar gutierrez","oscar pistorius","overdose","oxfam","p aedo","p0rn","paederast","paedo","paedo and incest websites","paedophile","paki","panarub","panooch","panty","papua","paris attacks","paris shooting","passengers killed","patadas grillete esclavo","peaches geldof","pecker","peckerhead","pederast","pederasty","pÃ©dophile","pÃ©dophilie","pedro aguayo ramirez","peep shows","peep-show","penis","penis fucker","penis puffer","pent house","perro aguayo jr","persian kitty","perversions","petros stoyiannos","pevers","peverser","pflaume","phallus","phone hacking","piracy","piss","piss flaps","pissed","pissed off","pisser","pissing","pissnelke","pistole","pkk kurdish militants","plague","plane crash","plane disappeared","plane missing","plane vanished","play boy","play mates","playboy","plunges+balcony","poisoned","poisoning","poisons","pole smoker","polizei","polizeieinsatz","pollock","poon","poonani","poonany","poontang","por no","porch monkey","porchmonkey","porn","porn star","porn stars","porn tube","porno","porno star","pornographic putin","pornographie","pornography","pornos","pornoszene","porteouverte","pr0n","prawit wongsuwong","prayuth chan-ocha","prÃ©puce","president joko widodo","prick","prise dotages forcenÃ©s","procreate","procreated","procreates","procreating","prophet mohammed","prostituÃ©e","prostitute","pubien","pubis","punanny","punta","pussies","pussy","pussy licking","putain","pute","puto","queef","queer","queer bait","queer hole","queutard","racism","racisme","racist","racist cartoon","racist trainer","radical preacher","rakete","rampage","rant","rape","raped","raper","rapes","raping","rapist","rassismus","rassist","rassistisch","rassistische karikatur","rassistische trainer","ratchaprasong","rebel","red tube","redtube","renob","rettung","rettungseinsatz","rey mysterio jr","richard carson","rim","rim job","rim jobs","rimjob","riot","road rage","robbery","robert shepherd","roger alan giese","roger giese","rolf harri s","rolf harris","rotlicht","royal kenz hotel","rue de charonne","rue de la station","runterholen","ruski","russian investigators","ruth beatson","sack","sadist","sado","sadomaso","sadomasochisme","saeufer","saint-quentin-fallavier","salah abdeslam","salario di sussistenza","salario digno","salaud","salle de salaire","salmonella","salopard","salope","saloperie","sand nigger","sandnigger","sandor sziros","sanne from worcester","sarinah","sau","saufen","sÃ¤ufer","saunauntersitzer","scam","scandal","scandals","scarpe da ginnastica di schiavi","scarpe da ginnastica grillo","scat","scatophile","schÃ¤kel turnschuhe","scharf","scharfe","scheide","scheise","scheisse","scheissegal","scheissen","scheisser","scheissfreundlich","scheissgesicht","scheisskerl","scheisskopf","scheiÎ²e","schiesserei","schieÎ²erei","schlampe","schlong","schnepfe","schockiert","schrecklich","schrullig","schuetze","schÃ¼tze","schwanz","schwanz lecker","schwanz lutschen","schwanzlutscher","schweinepriest","schweiÃ-fabrik","schwuchtel","schwul","schwuler","scrote","seedy","segregationist","segregationist citizens councils of america","seifeddine rezgui","selbstbefriedigung","sentani","sentani airport","september 11","serials","serialz","serie gialla y1 huf","sÃ©rie jaune y1 huf","service Ã  la clientÃ¨le Ã©chouÃ©","servicio al cliente fallo","servizio al cliente fallito","severely injured","sex","sex chat","sex club","sex dvd","sex shop","sex shops","sex sites","sex toys","sex video","sex videos","sex-shop","sexaktiv","sexism","sexismus","sexist","sexshop","sexstellung","sexual","sexualitÃ¤t","sexually transmitted","sexuellementtransmissible","sexvideo","sexxx","sexy","sgdf","shackle sneakers","sharon wood","she male","shelling","shia","shishkoff","shit","shit ass","shit bag","shit bagger","shit brains","shit breath","shit cunt","shit dick","shit face","shit faced","shit head","shit hole","shit house","shit spitter","shit stain","shitter","shittiest","shitting","shitty","shiz","shiznit","shooting","sickness","sinai crash","sinai desert","sinai peninsula","sinking","sitzpinkler","skank","skeet","sku ll fuck","skull fuck","slave schÃ¤kel tritte","slave shackle kicks","slave sneakers","slave-turnschuhe","slavery","slaves","sleaze blunder","slut","slutbag","sluts","smeg","smut","snatch","snuff","sodomie","sodomisÃ©","sodomisÃ©e","sodomist","sodomists","sodomite","sodomites","sodomitic","sodomitical","sodomy","softcore","soldiers of the caliphate","soumission","sousse","sousse beach","sperme","spermizid","spic","spick","spital","splooge","st marys sexual assault referral centre","stade de france","stÃ¤nder","starb","starben","sterben","sti","stirbt","stockport","stomach pump","strap on","strapon","strich","stricherin","strichjunge","strichmÃ¤dchen","strippen","stripping","striptease","suicidal","suicide","suicide bomber","sultanahmet","sunny beach resort","supremacists","suruc","suruÃ§massacre","suruÃ§takat liamva","suruÃ§takatliamva","susanne hinte","sweat factory","sweat shop","sweatshop","swift air","swinger","swinger club","swingers","syria","taliban","talmud","tard","tease","teensex","terror","terror attack","terrorism","terrorisme","terrorist","terroriste","terrorists","testicle","testicule","teub","teuch","teucha","thamrin","thamrin street","the federation of socialist youth associations","the political cesspool","the sun","theft","thomas cook compensation","threesomes","thundercunt","tienda de sudor","tignous","tijuana","tit","tit anime","tit fuck","titfuck","tito karnavian","tits","titte","titten","titties","tittyfuck","tod","todesopfer","todesschuetze","topless","torrent","torture","tot","tote","trabajo infantil","tragedy","train crash","tranny","transasia airways","transgender","transport research laboratory","transsexual","traque","trauern","travail des enfants","trigana","trigana air","truckahev","trÃ¼mmer","tsunami","tunis","tunisia","tunisia attack","tunisian resort town","tussi","twat","twat waffle","twatlips","twats","twink","Ã¼berdosis","Ã¼berfall","Ã¼berfallen","ueberfall","ueberfallen","ukraine","uncle fucker","unconscious","underage girls","unfall","unglÃ¼ck","unglueck","untergegangen","upskirt","upskirts","usine Ã  sueur","vagin","vagina","verdÃ¤chtige","verdammt","verfickt","vergammelt","vergammeltes","verge","vergewaltiger","vergewaltigte","vergewaltigung","verhurt","verhurtes","vermisste","vernichtung","verpiss dich","verseuchen","verseuchung","versunken","vibrator","victims","vignetta razzista","viol","vjayjay","voegeln","vÃ¶geln","volcanic eruption","vÃ¶lkermord","von hinten","vorwÃ¤rtseinparker","voyer web","voyeurism","voyeurisme","voyeurweb","vulve","waffen","wank","wanking","war","wares","warez","warmduscher","watchdogÂ ","wetback","white citizens council","white nationalism","white separatism","whore","whorebag","whoreface","wichser","wilmslow road","wilmslow-handforth","wixer","wolinski","woolwich","wop","wrestler dies","wythenshawe hospital","x rated","xrated","xxx","xxxrated","yacine sali","yellow series y1 huf","youpin","zapatillas de deporte de esclavos","zapatillas de deporte grillete","zaventem","zerstoerung","zerstÃ¶rung","zeub","zgueg","zguÃ¨gue","zicke","zonas de libre comercio","zone di libero scambio","zoosex","zu punkten schauen","zu punkten suchen","zusammensturz"];
+var message = "//data47.adlooxtracking.com/ads/ic2.php?fw=1&iframe=3&version=2&client=infectious&banniere=banoneinf&id_editeur=Vv1fr3sQJQaY8jBa_ADLOOX_ID_29939_ADLOOX_ID_728x90_ADLOOX_ID_2_ADLOOX_ID_22162_ADLOOX_ID_107399_ADLOOX_ID_4642_ADLOOX_ID_5271%2F24194_ADLOOX_ID_462656&campagne=infectiousg&methode=%3B&fai=&url_referrer=http%3A%2F%2Fwww.indiatimes.com%2F&ads_forceblock=1&log=1&visite_id=56781065042";
+getAllNodesContent ( firstNode, contentTab, message );
+var adloox_impression=1;

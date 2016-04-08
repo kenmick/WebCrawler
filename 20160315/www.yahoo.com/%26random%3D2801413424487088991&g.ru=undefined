@@ -1,0 +1,56 @@
+/*
+(c) Copyright Weborama SA - France. All rights reserved.
+It is illegal to modify, disassemble, sell, copy or publish this software
+or any part thereof. The use of this software is only permitted with the
+prior and express written permission of Weborama SA - France.
+More information: http://www.weborama.com/contacts/
+*/
+function x17() {
+    var x1cl, x1ey = x1bb.x1cj();
+    x1ey.x1ie = x1bb.x1nn(x1ey.x1ie,'wuid=&retargeting=&');
+    x1ey.x1fN = 'https://cstatic.weborama.fr/advertiser/600/4/280/332/';
+    x1ey.x1lp = '4201';
+
+
+
+    x1ey.conf_oba = false;
+    adperfobj.zindex = adperfobj.zindex || 0 || 214748360;
+
+    adperfobj.clicks = new Array();
+    adperfobj.clicks[0] = 'https://na.ads.yahoo.com/yax/clk?sn=5cce001d78256d7c60f0ec01549e700518f6e5e1&es=YZ7XL_vRVINZktl0bWieIYLF3_HQ2LOEbvdUoo48vwN9iPWU.V0utbmRNXyeGH0jk865ZDKoDZvlIRIlq_OmNtGuL9kbagjCofTDvLjRWpkOdIUdd6iRzOUj5VmvHp5CmEOS.Vpkof8N1QwluN3edyI.TB8fNamHlcCSSvztSDKuuA4mQn2DUeC2YP1iqIxFPVPPeeGp7s1sKpFFWZxoG1JnR9a2uzgsbbHeUQqIURLRqrdriND2esyu9kxwnxb0Rn9c3MDwmIxSqTMTMrZDmkDeQhrMD4B0hParlrYkl0Og7NuBGllXZjoxDKD.fwL7JxuMOrZwEX_tdzAGhFozfoKwC1gGsU0-&ve=2&ty=0&url=http://pr.ybp.yahoo.com/cj/cd/RWxYmHB9VcbX8vnED-c8U01VyLGP1cX91coUtCwqsRselc5D50dH_oJDeFhsaydkYowyXzkcgmzXtGzIAM64Pxx8oyhJKGA1kusi0bZA9dy3dQZMwmJ5CgS51ABRRmvTjL2DPvB-9fg/rurl/https://virginmobilefr.solution.weborama.fr/fcgi-bin/dispatch.fcgi?a.A=cl&a.si=600&a.te=509&a.aap=4201&a.agi=237&g.lu=' + (adperfobj.landing_urls[0] || '');
+
+
+    try{
+        adperfobj.imptrackers = new Array(
+                
+        );
+
+        adperfobj.clicktrackers = (new Array(
+                
+        ).concat(adperfobj.clicktrackers));
+
+        adperfobj.eventtrackers = (new Array(
+                
+        ).concat(adperfobj.eventtrackers));
+    }catch(scr_e){}
+
+
+
+    x1ey.addTrackers(adperfobj);
+    x1ey.addClicks(adperfobj);
+
+    x1cl = new x1bb.x1ig();
+x1cl.x1c(x1ey, 4831, 'index.html', adperfobj.width, adperfobj.height, '', '', '');
+x1ey.x1gG(x1cl, '', 2, '');
+x1cl = new x1bb.x1hW();
+x1cl.x1c(x1ey, 4846, 'VirginPrixCasses5e99_300_250.gif', adperfobj.width, adperfobj.height, '', '', '');
+x1ey.x1gG(x1cl, '', 2, '');
+
+
+
+
+    x1ey.x1gQ();
+
+
+}
+x1L('adperf_core_' + adperf_version + '_scrambled.js');

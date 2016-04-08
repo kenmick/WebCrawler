@@ -1,0 +1,54 @@
+/**
+ * Force showing a scroll bar on Mac, overriding the native OS settings.
+ * Having a hidden scrollbar can make the scrollbar overlay the right side
+ * of a div.
+ */
+/**
+* A circle with centered text
+* Supported by all browsers that support the border-radius mixin
+**/
+/**
+* A triangle pointing up of given height, width filled with given color
+**/
+.animator {
+  margin: 0 auto;
+  display: block;
+  position: relative;
+  overflow: hidden;
+}
+
+.animator .animator-frame {
+  margin: 0;
+  padding: 0;
+  width: auto;
+  height: auto;
+  display: inline-block;
+  position: relative;
+  border: none !important;
+  outline: none !important;
+}
+
+.animator .animator-poster {
+  top: 0;
+  left: 0;
+  position: absolute;
+  z-index: 0;
+  border: none;
+  outline: none;
+}
+
+.animator .animator-strip {
+  display: block;
+  font-size: 0;
+  overflow: hidden;
+  position: relative;
+  opacity: 0;
+  text-align: left;
+  height: inherit;
+}
+
+.animator .loaded {
+  opacity: 1;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}

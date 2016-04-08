@@ -1,0 +1,421 @@
+body {
+  margin: 0;
+}
+
+a {
+  cursor: pointer;
+  position: absolute;
+}
+
+.ml-txt
+{
+  color:#000;
+}
+
+.wrapper {
+  width: 728px;
+  height: 90px;
+  overflow: hidden;
+  background: #FFF;
+  border: 1px solid #000;
+  position: relative;
+  box-sizing: border-box;
+}
+.wrapper #banner {
+  width: 100%;
+  height: 100%;
+  /*background: url("../images/bg.jpg") no-repeat center center;*/
+}
+
+
+/*SLIDE 1*/
+
+.box_container{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 125px;
+}
+
+.bg{
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
+
+.logo{
+  position: absolute;
+  top: 0px;
+  left: -3px;
+  padding: 15px;
+}
+
+.ecran-fin
+{
+  position: absolute;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+/*  z-index: 10*/
+}
+
+
+.degel{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.degel img
+{
+  position: absolute;
+  display: block;
+  margin:auto;
+  left: 67px;
+  right: 0;
+  top: -12px;
+  bottom: 0;
+}
+
+.glace-wrap
+{
+/*  position: relative;*/
+}
+
+
+.fissure-1
+{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity:0;
+}
+
+.fissure-1 img
+{
+  display: block;
+  margin: auto;
+  position: absolute;
+  left:0;
+  right:0;
+  bottom:0;
+}
+
+
+.fissure-2
+{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity:0;
+}
+
+.fissure-2 img
+{
+  display: block;
+  margin: auto;
+  position: absolute;
+  left: -1px;
+  right:0;
+  bottom: -1px;
+}
+
+.fissure-3
+{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity:0;
+}
+
+.fissure-3 img
+{
+  display: block;
+  margin: auto;
+  position: absolute;
+  left:0;
+  right:0;
+  bottom:0;
+}
+
+
+.fissure-wrap
+{
+  position: absolute;
+      width: 100%;
+    height: 100%;
+}
+
+.fissure-anim
+{
+  position: absolute;
+  opacity: 0;
+}
+.glace-wrap
+{
+  position: relative;
+  opacity: 0;
+  width:100%;
+  height: 100%
+}
+
+.glace-left
+{
+  position: absolute;
+  left: -1px;
+  top: -1px;
+}
+
+.glace-right
+{
+  position: absolute;
+  left: 363px;
+  top: -1px;
+}
+
+.left
+{
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  left:0;
+  background: #FFF
+}
+
+.right
+{
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  right:0;
+  background: #FFF
+}
+
+.box
+{
+  position: absolute;
+  width: 100%;
+  height: 100%
+}
+
+.box img
+{
+  bottom: 0;
+  position: absolute;
+  display: block;
+  /* left:0; */
+  /* right:0; */
+  margin: auto 100px;
+  top: 0;
+}
+
+.prix-glow
+{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+
+.prix-glow img
+{
+  position: absolute;
+  left: 92px;
+  top: 5px;
+}
+
+.cta{
+  position: absolute;
+  left: 517px;
+  top: 23px;
+  opacity: 0;
+}
+
+.cta-img
+{
+    transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
+}
+
+.txt-ml
+{
+  position: absolute;
+  top: 56px;
+  left: 455px;
+  opacity: 0;
+}
+.txt-condition{
+  position:absolute;
+  top:229px;
+  left:212px;
+}
+
+
+
+
+.VoirConditions {
+  position: absolute;
+  top: 74px;
+  opacity: 0;
+  width:100%;
+  height:100%;
+}
+
+.VoirConditions img
+{
+  display: block;
+  position: absolute;
+  right: 0;
+  padding: 0px 3px;
+}
+
+
+.ml_btn
+{
+  display: block;
+  position: absolute;
+  margin: auto;
+  left:0;
+  right:0;
+/*  z-index: 100;*/
+}
+
+.ml-txt
+{
+    position: absolute;
+    width: 100%;
+    height: auto;
+    top: 30px;
+    background: #ffffff;
+    font-family: arial;
+    font-size: 10px;
+    text-align: center;
+    padding: 11px 10px;
+    box-sizing: border-box;
+
+     transition: all 0.2s linear;
+    -webkit-transition: all 0.2s linear;
+
+}
+
+.ml_btn:hover > .ml-txt
+{
+  top:-17px;
+
+}
+
+
+
+
+
+
+@keyframes scaleAnimD {
+  
+    0%{transform:scale(1);}
+  
+/*    20%{transform:scale(1.15)}
+
+    40%{transform:scale(1);}
+
+    75%{transform:scale(1);}*/
+
+    100%{transform:scale(0.76);}
+  
+    
+}
+
+
+@-webkit-keyframes scaleAnimD {
+  
+    0%{-webkit-transform:scale(1);}
+  
+    20%{-webkit-transform:scale(1.15)}
+
+    40%{-webkit-transform:scale(1);}
+
+    75%{-webkit-transform:scale(1);}
+
+    100%{-webkit-transform:scale(0.76);}
+  
+    
+}
+
+
+@-moz-keyframes scaleAnimD {
+  
+    0%{-moz-transform:scale(1);}
+  
+    20%{-moz-transform:scale(1.15)}
+
+    40%{-moz-transform:scale(1);}
+
+    75%{-moz-transform:scale(1);}
+
+    100%{-moz-transform:scale(0.76);}
+  
+    
+}
+
+
+@-ms-keyframes scaleAnimD {
+  
+    0%{transform:scale(1);}
+  
+    20%{transform:scale(1.15)}
+
+    40%{transform:scale(1);}
+
+    75%{transform:scale(1);}
+
+    100%{transform:scale(0.76);}
+    
+}
+
+
+/**** SCALE TXT 2 ***/
+
+@keyframes scaleAnimTxt2 {
+  
+    0%{transform:scale(1);}
+  
+    50%{transform:scale(1.1)}
+
+    100%{transform:scale(1); 
+}
+
+
+@-webkit-keyframes scaleAnimTxt2 {
+  
+    0%{-webkit-transform:scale(1);}
+  
+    50%{-webkit-transform:scale(1.1)}
+
+    100%{-webkit-transform:scale(1); 
+  
+    
+}
+
+
+@-moz-keyframes scaleAnimTxt2 {
+  
+    0%{-moz-transform:scale(1);}
+  
+    50%{-moz-transform:scale(1.1)}
+
+    100%{-moz-transform:scale(1); 
+  
+    
+}
+
+
+@-ms-keyframes scaleAnimTxt2 {
+  
+    0%{transform:scale(1);}
+  
+    50%{transform:scale(1.1)}
+
+    100%{transform:scale(1); 
+    
+}

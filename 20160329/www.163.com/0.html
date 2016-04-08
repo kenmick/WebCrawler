@@ -1,0 +1,87 @@
+<script>
+var behe_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");
+document.write('<scri'+'pt src="'+behe_protocol+'v.behe.com/js/jquery-1.9.1.js" type="text/javascript"></s'+'cript>');
+</script>
+<script>
+    (function () {
+        function getCookie(name) {
+            var start = document.cookie.indexOf(name + "=");
+            var len = start + name.length + 1;
+            if ((!start) && (name != document.cookie.substring(0, name.length))) {
+                return null;
+            }
+            if (start == -1) {
+                return null;
+            }
+            var end = document.cookie.indexOf(";", len);
+            if (end == -1) {
+                end = document.cookie.length;
+            }
+            return unescape(document.cookie.substring(len, end));
+        }
+        function setCookie(name, value, expires, path, domain, secure) {
+            var str = name + "=" + escape(value);
+            if (expires > 0) {
+                var date = new Date();
+                date.setTime(date.getTime() + expires * 24 * 3600 * 1000);
+                str += ";expires=" + date.toGMTString();
+            }
+            if (path) {
+                str += ";path=" + path;
+            }
+
+            if (domain) {
+                str += ";domain=" + domain;
+            }
+
+            if (secure) {
+                str += ";secure=" + secure;
+            }
+            document.cookie = str;
+        }
+        function showCookiesMapping() {
+			var sign = 0;
+            $.ajax({
+				async:false,
+				url:"https://rtb.behe.com/bhex",
+				type:"GET",
+				data:{s:sign},
+				dataType:'jsonp',
+				jsonpCallback:"mappingCallbak",
+				success:function(data){
+					if(data.length > 0){
+						$.each(data,function(j,n){
+							if(n != ""){
+								var d = new Image(1, 1);
+								d.src = n;
+								d.onload = function () {
+									d.onload = null;
+								}
+							}
+						});
+						if(getCookie("behe_cookiesmapping_count") == null){
+							setCookie("behe_cookiesmapping_count", 1, 7, "/", ".behe.com");
+						}else{
+							var count = (getCookie("behe_cookiesmapping_count")*1)+1;
+						    setCookie("behe_cookiesmapping_count", count, 7, "/", ".behe.com");
+						}
+					}else{
+					    setCookie("behe_cookiesmapping_st", "1", 7, "/", ".behe.com");
+					}
+				},
+				error:function(XmlHttpRequest,textStatus, errorThrown){
+					
+				}
+			});
+        }
+        if(getCookie("bhuid") != null) {
+            if (getCookie("behe_cookiesmapping_st") == null) {
+				if(getCookie("behe_cookiesmapping_count") == null || getCookie("behe_cookiesmapping_count")*1 <= 2){
+					setTimeout(function () {
+						showCookiesMapping();
+					}, 3000);
+				}
+            }
+        }
+    })();
+</script>

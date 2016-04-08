@@ -1,0 +1,232 @@
+/* === MAIN ELEMENTS === */ 
+body, body * {
+	vertical-align:baseline;
+	border:0 none;
+	outline:0;
+	padding:0;
+	margin:0;
+}
+
+#container{
+	position:absolute;
+	width:970px;
+	height:250px;
+	top:0px;
+	left:0px;
+	margin:auto;
+	background: #000;
+	overflow:hidden;
+}
+
+#ytClose {
+  	z-index: 19999;
+}
+
+#btn_exit {
+	position:absolute;
+	width:968px;
+	height:248px;
+	border:1px solid #000;
+	top:0px;
+	left:0px;
+	z-index: 700;
+	cursor:pointer;
+}
+
+/* === RESOVLE === */ 
+
+#resolve {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 970px;
+	height: 250px;
+	opacity:0;
+}
+
+#video_player {
+	position: absolute;
+	top: 25px;
+	left: 623px;
+	width: 320px;
+	height: 180px;
+	border: 1px solid #000;
+	background:#000;
+	z-index:800;
+    opacity:0;
+}
+
+
+#btn_menu_tickets {
+	position: absolute;
+	top: 210px;
+	left: 623px;
+	width: 322px;  
+	height: 25px;
+	background: url('btn_menu_tickets.png');
+	background-position: top;
+	z-index:805;
+	cursor:pointer;
+    opacity: 0;
+}
+
+#btn_social_fb {
+	position: absolute;
+	width: 14px;
+	height: 14px;
+	top: 30px;
+	left:600px;
+	background: url('img_social_fb.png');
+	background-position: top;
+	z-index: 1000;
+	cursor: pointer;
+    opacity: 0;
+}
+#btn_social_tw {
+	position: absolute;
+	width: 14px;
+	height: 14px;
+	top: 54px;
+	left:600px;
+	background: url('img_social_tw.png');
+	background-position: top;
+	z-index: 1000;
+	cursor: pointer;
+    opacity: 0;
+}
+#btn_social_insta {
+	position: absolute;
+	width: 14px;
+	height: 14px;
+	top: 78px;
+	left:600px;
+	background: url('img_social_insta.png');
+	background-position: top;
+	z-index: 1000;
+	cursor: pointer;
+    opacity: 0;
+}
+
+#btn_social_fb:hover, #btn_social_tw:hover, #btn_social_insta:hover, #btn_menu_game:hover, #btn_menu_tickets:hover, #btn_menu_site:hover {
+	background-position: bottom !important;
+}
+
+/* === BACKGROUND, LOCKUP & ANIMATION === */
+
+
+#resolve_legals {
+	position: absolute;
+	bottom: 1px;
+	right: 1px;
+	width: 280px;
+	height: 7px;
+	background: url('img_resolve_legals.png');
+	background-repeat:no-repeat;
+	z-index: 150;
+	opacity:0.4;
+}
+
+#resolve_glyph {
+	position: absolute;
+	top: 57px;
+	left: 111px;
+	width: 364px;
+	height: 176px;
+	background: url('img_resolve_glyph.png');
+	background-repeat:no-repeat;
+	z-index: 149;
+	opacity: 0;
+}
+
+#resolve_date {
+	position: absolute;
+	top: 128px;
+	left: 218px;
+	width: 145px;
+	height: 40px;
+	z-index: 150;
+	background: url('img_resolve_date.png');
+	background-repeat:no-repeat;
+	opacity:0;
+}
+
+#resolve_hashtag_btn {
+	position: absolute;
+	bottom: 2px;
+	left:-27px;
+	width: 162px;
+	height: 16px;
+	z-index: 1000;
+	background: url('img_resolve_hashtag.png') top;
+	opacity:0;
+    cursor: pointer;
+}
+#resolve_hashtag_btn:hover, #resolve_btn_explore:hover{
+    background-position: bottom;
+}
+
+#resolve_chars{
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	width: 601px;
+	height: 250px;
+	z-index: 150;
+	background: url('img_resolve_chars.png');
+	background-repeat:no-repeat;
+    opacity:0;
+}
+
+#resolve_white_overlay{
+    position: absolute;
+	top: -125px;
+	left: 0px;
+    width:970px;
+    height:500px;
+	z-index: 150;
+	background: radial-gradient(ellipse at center, rgba(236,244,251,1) 30%,rgba(236,244,251,0) 100%); 
+    opacity:0;
+}
+
+#resolve_flare{
+    position: absolute;
+	top: 20px;
+	left: 0px;
+	width: 970px;
+	height: 250px;
+	z-index: 151;
+	background: url('img_resolve_flare.png');
+    opacity:0;
+}
+
+#resolve_debris{
+    position: absolute;
+	top: -250px;
+	left: 0px;
+	width: 970px;
+	height: 250px;
+	z-index: 148;
+	background: url('img_resolve_debris.png');
+    opacity:0;
+}
+
+#resolve_bg_TT{
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 970px;
+	height: 250px;
+	z-index: 147;
+	background: url('img_resolve_bg_TT.jpg');
+    opacity:0;
+}
+
+#resolve_bg{
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 970px;
+	height: 250px;
+	z-index: 146;
+	background: url('img_resolve_bg.jpg');
+}

@@ -1,0 +1,296 @@
+body {
+  margin: 0;
+}
+
+a {
+  cursor: pointer;
+  position: absolute;
+}
+
+.ml-txt
+{
+  color:#000;
+}
+
+.wrapper {
+  width: 728px;
+  height: 90px;
+  overflow: hidden;
+  background: #d9dada;
+  border: 1px solid #000;
+  position: relative;
+  box-sizing: border-box;
+}
+.wrapper #banner {
+  width: 100%;
+  height: 100%;
+  /*background: url("../images/bg.jpg") no-repeat center center;*/
+}
+
+
+/*SLIDE 1*/
+
+.bg{
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
+
+.logo{
+  position: absolute;
+  top: 17px;
+  left: 14px;
+  /*padding: 7px;*/
+
+}
+
+.box_container{
+  position: absolute;
+  top:-150px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+}
+
+
+.degel{
+  position: absolute;
+  top: 25px;
+  left: 164px;
+ /* width: 100%;
+  height: 100%;*/
+}
+
+.offre{
+  position: absolute;
+  top: 13px;
+  left: 95px;
+ /* width: 133px;
+  height: 54px;*/
+  opacity: 0;
+transform-origin:center center;
+
+transition: all 0.2s linear;
+-webkit-transition: all 0.2s linear;
+}
+
+.prix{
+  position: absolute;
+  top: 15px;
+  left: 300px;
+ /* width: 100%;
+  height: 100%;*/
+  opacity: 0;
+}
+
+.prixglow{
+  position: absolute;
+  top: 6px;
+  left: 291px;
+  opacity: 0;
+}
+
+.cta{
+  position: absolute;
+  top: 34px;
+  left: 483px;
+  opacity: 0;
+   transition: all 0.2s linear;
+  -webkit-transition: all 0.2s linear;
+}
+
+
+.mention{
+  position: absolute;
+  top: 61px;
+  left: 473px;
+  /*width: 100%;
+  height: 100%;*/
+  opacity: 0;
+}
+
+.box_container img, .cta img, .mention img{
+  display: block;
+  position: relative;
+  margin: 0 auto;
+}
+
+
+
+
+
+.wrapper #banner .VoirConditions {
+  position: absolute;
+  top: 61px;
+  opacity: 0;
+  width:100%;
+  height:100%;
+}
+
+.VoirConditions img
+{
+  display: block;
+  position: absolute;
+  right: 0;
+  padding: 0px 12px;
+}
+
+
+.ml_btn
+{
+  display: block;
+  position: absolute;
+  margin: auto;
+  left:0;
+  right:0;
+  height: 20px;
+  width: 100%;
+}
+
+.ml-txt
+{
+    position: absolute;
+    width: 100%;
+    height: auto;
+    top: 30px;
+    background: #ffffff;
+    font-family: arial;
+    font-size: 10px;
+    text-align: center;
+    padding: 12px 10px;
+    box-sizing: border-box;
+
+     transition: all 0.2s linear;
+    -webkit-transition: all 0.2s linear;
+
+}
+
+.ml_btn:hover > .ml-txt
+{
+  top:-10px;
+
+}
+
+@-moz-document url-prefix() { 
+  .ml_btn:hover > .ml-txt
+{
+  top:-40px;
+
+}
+}
+
+
+
+
+
+
+
+@keyframes scaleAnimD {
+  
+    0%{transform:scale(1);}
+  
+/*    20%{transform:scale(1.15)}
+
+    40%{transform:scale(1);}
+
+    75%{transform:scale(1);}*/
+
+    100%{transform:scale(0.76);}
+  
+    
+}
+
+
+@-webkit-keyframes scaleAnimD {
+  
+    0%{-webkit-transform:scale(1);}
+  
+    20%{-webkit-transform:scale(1.15)}
+
+    40%{-webkit-transform:scale(1);}
+
+    75%{-webkit-transform:scale(1);}
+
+    100%{-webkit-transform:scale(0.76);}
+  
+    
+}
+
+
+@-moz-keyframes scaleAnimD {
+  
+    0%{-moz-transform:scale(1);}
+  
+    20%{-moz-transform:scale(1.15)}
+
+    40%{-moz-transform:scale(1);}
+
+    75%{-moz-transform:scale(1);}
+
+    100%{-moz-transform:scale(0.76);}
+  
+    
+}
+
+
+@-ms-keyframes scaleAnimD {
+  
+    0%{transform:scale(1);}
+  
+    20%{transform:scale(1.15)}
+
+    40%{transform:scale(1);}
+
+    75%{transform:scale(1);}
+
+    100%{transform:scale(0.76);}
+    
+}
+
+
+/**** SCALE TXT 2 ***/
+
+@keyframes scaleAnimTxt2 {
+  
+    0%{transform:scale(1);}
+  
+    50%{transform:scale(1.1)}
+
+    100%{transform:scale(1); 
+}
+
+
+@-webkit-keyframes scaleAnimTxt2 {
+  
+    0%{-webkit-transform:scale(1);}
+  
+    50%{-webkit-transform:scale(1.1)}
+
+    100%{-webkit-transform:scale(1); 
+  
+    
+}
+
+
+@-moz-keyframes scaleAnimTxt2 {
+  
+    0%{-moz-transform:scale(1);}
+  
+    50%{-moz-transform:scale(1.1)}
+
+    100%{-moz-transform:scale(1); 
+  
+    
+}
+
+
+@-ms-keyframes scaleAnimTxt2 {
+  
+    0%{transform:scale(1);}
+  
+    50%{transform:scale(1.1)}
+
+    100%{transform:scale(1); 
+    
+}

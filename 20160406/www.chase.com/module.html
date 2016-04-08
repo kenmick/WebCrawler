@@ -1,0 +1,83 @@
+<div class="mosaic mosaic-version-a row feature-container">
+	<div class="mosaic--tile col-lg-4 col-med-4 col-sm-4 col-xs-12">
+		<div class="content-slot"><div id="trip1"></div>
+    <script type="text/javascript">
+          require([ "main", "adservice" ], function() {
+            require([ "amd/speedbump", "slotplacement/placement", "platform" ], function(SpeedBump, Slot, Platform) {
+              var loadingView = "placement-spinner";
+              if (Platform.name === "IE" && parseFloat(Platform.version) < 10) {
+                loadingView = "none";
+              }
+
+              var data = {
+                pid : "trip1",
+                failoverTreatment : "hide",
+                failoverAdId : "homepage/left/failover",
+                failoverAdUrl : "/content/Creatives/Public/Triplets/2016/CorpShared/44599_default_homebuyingtrip350150.dynamic.html",
+                loadingView : loadingView,
+                responsive : true,
+                weblinkClickHandler : function(e) {
+                  SpeedBump.execute(e, $(this));
+                }
+              };
+              var adslot = new Slot(data);
+            });
+          });
+        </script>
+  </div>
+</div>
+	<div class="mosaic--tile col-lg-4 col-med-4 col-sm-4 col-xs-12">
+		<div class="content-slot"><div id="trip2"></div>
+    <script type="text/javascript">
+          require([ "main", "adservice" ], function() {
+            require([ "amd/speedbump", "slotplacement/placement", "platform" ], function(SpeedBump, Slot, Platform) {
+              var loadingView = "placement-spinner";
+              if (Platform.name === "IE" && parseFloat(Platform.version) < 10) {
+                loadingView = "none";
+              }
+
+              var data = {
+                pid : "trip2",
+                failoverTreatment : "hide",
+                failoverAdId : "homepage/center/failover",
+                failoverAdUrl : "/content/Creatives/Public/Triplets/2016/CorpShared/44600_default_savingstrip350150.dynamic.html",
+                loadingView : loadingView,
+                responsive : true,
+                weblinkClickHandler : function(e) {
+                  SpeedBump.execute(e, $(this));
+                }
+              };
+              var adslot = new Slot(data);
+            });
+          });
+        </script>
+  </div>
+</div>
+	<div class="mosaic--tile col-lg-4 col-med-4 col-sm-4 col-xs-12">
+		<div class="content-slot"><div id="trip3"></div>
+    <script type="text/javascript">
+          require([ "main", "adservice" ], function() {
+            require([ "amd/speedbump", "slotplacement/placement", "platform" ], function(SpeedBump, Slot, Platform) {
+              var loadingView = "placement-spinner";
+              if (Platform.name === "IE" && parseFloat(Platform.version) < 10) {
+                loadingView = "none";
+              }
+
+              var data = {
+                pid : "trip3",
+                failoverTreatment : "hide",
+                failoverAdId : "homepage/right/failover",
+                failoverAdUrl : "/content/Creatives/Public/Triplets/2016/CorpShared/44601_default_sketchedtrip350150.dynamic.html",
+                loadingView : loadingView,
+                responsive : true,
+                weblinkClickHandler : function(e) {
+                  SpeedBump.execute(e, $(this));
+                }
+              };
+              var adslot = new Slot(data);
+            });
+          });
+        </script>
+  </div>
+</div>
+</div>

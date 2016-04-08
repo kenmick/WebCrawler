@@ -1,0 +1,285 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-kr" />
+<title>NAVER</title>
+<link rel="stylesheet" type="text/css" href="http://nv2.tveta.naver.net/libs/css/min/common.min.css?111110" />
+<style type="text/css">
+/* DA Alternative - Contents Style */
+#addiv{position:relative}
+#addiv embed,#addiv object{z-index:20}
+#addiv #da_alt{position:absolute;top:0;left:0;width:100%;height:100%;z-index:-1}
+#addiv #da_alt.on{z-index:30}
+#addiv #da_alt a{display:block;overflow:hidden;position:absolute;bottom:0;left:0;width:100%;height:100%}
+#addiv #da_alt .guide{visibility:hidden;position:absolute;top:50%;left:50%;width:154px;height:58px;margin:-29px 0 0 -77px;background:url(http://img.naver.net/static/common/da/da_access.png)}
+#addiv #da_alt.on .guide{visibility:visible}
+#addiv #da_alt .blind{visibility:hidden;overflow:hidden;position:absolute;top:0;left:0;width:0;height:0;font-size:0;line-height:0}
+</style>
+<script type="text/javascript">var sibodomain = "http://nv2.tveta.naver.net/libs";</script>
+<script type="text/javascript">var currenttime = "02:20:15:000";</script>
+<script type="text/javascript">var local_cookie = "LX";</script>
+<script type="text/javascript">var sibolog = "&lg=N&lc=&pf=&camp=1126626&ad=2950995";</script>
+<script type="text/javascript">var siboinfo = {"##_SIBOINFO_##":""};</script>	
+<script type="text/javascript">
+//<![CDATA[
+document.domain = "naver.com";
+var sFUIT = "http://nv2.tveta.naver.net/libs/res/www/rollingboard/movieAutoPlay/movieAutoPlay_player_300x150.swf?20150422";
+var sExFUIT = "http://nv2.tveta.naver.net/libs/res/www/rollingboard/movieAutoPlay/movieAutoPlay_player_940x410.swf?20150422";
+
+var sF1 = "http://damovie.dn.naver.com/ad3/1126/1126626/20160325185330-1kATcud0.mp4";
+var sF2 = "http://nv2.tveta.naver.net/libs/1126/1126626/20160325185312-s6yJqeTu.jpg";
+var sF3 = "http://damovie.dn.naver.com/ad3/1126/1126626/20160325185330-mJi5vSRl.mp4";
+var sF4 = "http://nv2.tveta.naver.net/libs/1126/1126626/20160325185315-cIhrtu9U.jpg";
+
+var sC1, sC2;
+var pauseUrl, playUrl, stopUrl, replayUrl, soundOnUrl, soundOffUrl;
+var pauseExUrl, playExUrl, stopExUrl, replayExUrl, soundOnExUrl, soundOffExUrl;
+var report1s, report2s, report3s, report4s, report5s;
+var report25, report50, report75, report100;
+var reportEx25, reportEx50, reportEx75, reportEx100;
+var masterkey1, masterkey2, fileviewcountapi1, fileviewcountapi2;
+
+var balloonAdText1 = "ëìë¦¬ìë ";
+var balloonAdText2 = "4ì7ì¼ê°ë´ ";
+
+var oNimp;
+var $$da_brand, $$da_stake;
+var bExpanded;
+var oAdDiv;
+
+function lazyLoading() {
+	setTimeout(function() {
+		loadScript("http://nv2.tveta.naver.net/libs/assets/js/min/it.min.js?20160113", function(){
+			loadScript("http://nv2.tveta.naver.net/libs/js/min/da.sibo.min.js?141208", initAd);
+		});
+		
+		function loadScript(url, callback) {
+			var script = document.createElement("script");
+			script.type = "text/javascript";
+			script.src = url;
+			if(script.readyState) { // IE
+				(function(script){
+					script.onreadystatechange = function() {
+						if(script.readyState == "loaded" || script.readyState == "complete") {
+							script.onreadystatechange = null;	
+							callback();
+						}
+					};
+				})(script);
+			} else { // IE ??
+				(function(script){
+					script.onload = function() {
+						callback();
+					};
+				})(script);
+			}
+			document.getElementsByTagName("head")[0].appendChild(script);
+		}
+	}, 0);
+}
+
+function setVariable() {
+	sC1 = Da.EF("http://nv.veta.naver.com/dc?unit=002AP&ac=6907886&src=2805398&br=2233458&rk=VvgWTwpizS0AAGkqO9YAAAFg&eltts=5yBSOtUfcb94XeXVkkL15g%3D%3D&:::cl:::");
+	sC2 = Da.EF("http://nv.veta.naver.com/dc?unit=002AP&ac=6907886&src=2805399&br=2233466&rk=VvgWTwpizS0AAGkqO9YAAAFg&eltts=5yBSOtUfcb94XeXVkkL15g%3D%3D&:::cl:::");
+	
+	pauseUrl = Da.EF("http://nv.veta.naver.com/dc?unit=002AP&ac=6907886&src=2805398&br=2233460&rk=VvgWTwpizS0AAGkqO9YAAAFg&eltts=5yBSOtUfcb94XeXVkkL15g%3D%3D&:::cl:::");
+	playUrl = Da.EF("http://nv.veta.naver.com/dc?unit=002AP&ac=6907886&src=2805398&br=2233461&rk=VvgWTwpizS0AAGkqO9YAAAFg&eltts=5yBSOtUfcb94XeXVkkL15g%3D%3D&:::cl:::");
+	stopUrl = Da.EF("http://nv.veta.naver.com/dc?unit=002AP&ac=6907886&src=2805398&br=2233462&rk=VvgWTwpizS0AAGkqO9YAAAFg&eltts=5yBSOtUfcb94XeXVkkL15g%3D%3D&:::cl:::");
+	replayUrl = Da.EF("http://nv.veta.naver.com/dc?unit=002AP&ac=6907886&src=2805398&br=2233463&rk=VvgWTwpizS0AAGkqO9YAAAFg&eltts=5yBSOtUfcb94XeXVkkL15g%3D%3D&:::cl:::");
+	soundOnUrl = Da.EF("http://nv.veta.naver.com/dc?unit=002AP&ac=6907886&src=2805398&br=2233464&rk=VvgWTwpizS0AAGkqO9YAAAFg&eltts=5yBSOtUfcb94XeXVkkL15g%3D%3D&:::cl:::");
+	soundOffUrl = Da.EF("http://nv.veta.naver.com/dc?unit=002AP&ac=6907886&src=2805398&br=2233465&rk=VvgWTwpizS0AAGkqO9YAAAFg&eltts=5yBSOtUfcb94XeXVkkL15g%3D%3D&:::cl:::");
+	
+	pauseExUrl = Da.EF("http://nv.veta.naver.com/dc?unit=002AP&ac=6907886&src=2805399&br=2233467&rk=VvgWTwpizS0AAGkqO9YAAAFg&eltts=5yBSOtUfcb94XeXVkkL15g%3D%3D&:::cl:::");
+	playExUrl = Da.EF("http://nv.veta.naver.com/dc?unit=002AP&ac=6907886&src=2805399&br=2233468&rk=VvgWTwpizS0AAGkqO9YAAAFg&eltts=5yBSOtUfcb94XeXVkkL15g%3D%3D&:::cl:::");
+	stopExUrl = Da.EF("http://nv.veta.naver.com/dc?unit=002AP&ac=6907886&src=2805399&br=2233469&rk=VvgWTwpizS0AAGkqO9YAAAFg&eltts=5yBSOtUfcb94XeXVkkL15g%3D%3D&:::cl:::");
+	replayExUrl = Da.EF("http://nv.veta.naver.com/dc?unit=002AP&ac=6907886&src=2805399&br=2233470&rk=VvgWTwpizS0AAGkqO9YAAAFg&eltts=5yBSOtUfcb94XeXVkkL15g%3D%3D&:::cl:::");
+	soundOnExUrl = Da.EF("http://nv.veta.naver.com/dc?unit=002AP&ac=6907886&src=2805399&br=2233471&rk=VvgWTwpizS0AAGkqO9YAAAFg&eltts=5yBSOtUfcb94XeXVkkL15g%3D%3D&:::cl:::");
+	soundOffExUrl = Da.EF("http://nv.veta.naver.com/dc?unit=002AP&ac=6907886&src=2805399&br=2233472&rk=VvgWTwpizS0AAGkqO9YAAAFg&eltts=5yBSOtUfcb94XeXVkkL15g%3D%3D&:::cl:::");
+	
+	report1s = Da.EF("http://nv.veta.naver.com/dr?unit=002AP&ac=6907886&src=2805400&rk=VvgWTwpizS0AAGkqO9YAAAFg&eltts=5yBSOtUfcb94XeXVkkL15g%3D%3D&t=i");
+	report2s = Da.EF("http://nv.veta.naver.com/dr?unit=002AP&ac=6907886&src=2805401&rk=VvgWTwpizS0AAGkqO9YAAAFg&eltts=5yBSOtUfcb94XeXVkkL15g%3D%3D&t=i");
+	report3s = Da.EF("http://nv.veta.naver.com/dr?unit=002AP&ac=6907886&src=2805402&rk=VvgWTwpizS0AAGkqO9YAAAFg&eltts=5yBSOtUfcb94XeXVkkL15g%3D%3D&t=i");
+	report4s = Da.EF("http://nv.veta.naver.com/dr?unit=002AP&ac=6907886&src=2805403&rk=VvgWTwpizS0AAGkqO9YAAAFg&eltts=5yBSOtUfcb94XeXVkkL15g%3D%3D&t=i");
+	report5s = Da.EF("http://nv.veta.naver.com/dr?unit=002AP&ac=6907886&src=2805404&rk=VvgWTwpizS0AAGkqO9YAAAFg&eltts=5yBSOtUfcb94XeXVkkL15g%3D%3D&t=i");
+	
+	report25 = Da.EF("http://nv.veta.naver.com/dr?unit=002AP&ac=6907886&src=2805405&rk=VvgWTwpizS0AAGkqO9YAAAFg&eltts=5yBSOtUfcb94XeXVkkL15g%3D%3D&t=i");
+	report50 = Da.EF("http://nv.veta.naver.com/dr?unit=002AP&ac=6907886&src=2805406&rk=VvgWTwpizS0AAGkqO9YAAAFg&eltts=5yBSOtUfcb94XeXVkkL15g%3D%3D&t=i");
+	report75 = Da.EF("http://nv.veta.naver.com/dr?unit=002AP&ac=6907886&src=2805407&rk=VvgWTwpizS0AAGkqO9YAAAFg&eltts=5yBSOtUfcb94XeXVkkL15g%3D%3D&t=i");
+	report100 = Da.EF("http://nv.veta.naver.com/dr?unit=002AP&ac=6907886&src=2805408&rk=VvgWTwpizS0AAGkqO9YAAAFg&eltts=5yBSOtUfcb94XeXVkkL15g%3D%3D&t=i");
+	
+	reportEx25 = Da.EF("http://nv.veta.naver.com/dr?unit=002AP&ac=6907886&src=2805409&rk=VvgWTwpizS0AAGkqO9YAAAFg&eltts=5yBSOtUfcb94XeXVkkL15g%3D%3D&t=i");
+	reportEx50 = Da.EF("http://nv.veta.naver.com/dr?unit=002AP&ac=6907886&src=2805410&rk=VvgWTwpizS0AAGkqO9YAAAFg&eltts=5yBSOtUfcb94XeXVkkL15g%3D%3D&t=i");
+	reportEx75 = Da.EF("http://nv.veta.naver.com/dr?unit=002AP&ac=6907886&src=2805411&rk=VvgWTwpizS0AAGkqO9YAAAFg&eltts=5yBSOtUfcb94XeXVkkL15g%3D%3D&t=i");
+	reportEx100 = Da.EF("http://nv.veta.naver.com/dr?unit=002AP&ac=6907886&src=2805412&rk=VvgWTwpizS0AAGkqO9YAAAFg&eltts=5yBSOtUfcb94XeXVkkL15g%3D%3D&t=i");
+	oNimp = new Nimp(["http://nv.veta.naver.com/dc?unit=002AP&ac=6907886&src=2805398&br=2233459&rk=VvgWTwpizS0AAGkqO9YAAAFg&eltts=5yBSOtUfcb94XeXVkkL15g%3D%3D&:::cl:::",
+					"http://nv.veta.naver.com/dr?unit=002AP&ac=6907886&src=2805399&rk=VvgWTwpizS0AAGkqO9YAAAFg&eltts=5yBSOtUfcb94XeXVkkL15g%3D%3D&t=i",
+					"http://nv.veta.naver.com/dr?unit=002AP&ac=6907886&src=2805413&rk=VvgWTwpizS0AAGkqO9YAAAFg&eltts=5yBSOtUfcb94XeXVkkL15g%3D%3D&t=i"]);
+	
+	masterkey1 = "";
+	masterkey2 = "";
+	fileviewcountapi1 = (masterkey1 != "")? "" : "";
+	fileviewcountapi2 = (masterkey2 != "")? "" : "";
+}
+
+function initAd() {
+	setVariable();
+
+	var oUA = new Agent();
+	if(oUA.hasFP() && parent.da_iframe_rolling && !(oUA.isMac && oUA.isSF) && !oUA.isCR) {
+		$$da_brand = Da.$$("da_brand");
+		$$da_brand.style.cssText = "position:relative;margin:0px auto;width:940px;height:0px;font-size:0px;line-height:0;z-index:11;left:0px;top:197px";
+		$$da_stake = Da.$$("da_stake");
+		$$da_stake.style.cssText = "position:relative;margin:0px auto;width:940px;height:0px;font-size:0px;line-height:0;z-index:11;left:0px;top:0px";
+		
+		var oF1 = new Flash(sFUIT, 355, 150, "opaque");
+		oF1.setAtt("id", "f355150");
+		oF1.setAtt("tabindex", "-1");
+		oF1.setVal("movieUrl", sF1);
+		oF1.setVal("stillUrl", sF2);
+		oF1.setVal("clickUrl", sC1);
+		
+		oF1.setVal("pauseUrl", pauseUrl);
+		oF1.setVal("playUrl", playUrl);
+		oF1.setVal("stopUrl", stopUrl);
+		oF1.setVal("replayUrl", replayUrl);
+		oF1.setVal("soundOnUrl", soundOnUrl);
+		oF1.setVal("soundOffUrl", soundOffUrl);
+		
+		oF1.setVal("report1s", report1s);
+		oF1.setVal("report2s", report2s);
+		oF1.setVal("report3s", report3s);
+		oF1.setVal("report4s", report4s);
+		oF1.setVal("report5s", report5s);
+		
+		oF1.setVal("report25", report25);
+		oF1.setVal("report50", report50);
+		oF1.setVal("report75", report75);
+		oF1.setVal("report100", report100);
+		
+		oF1.setVal("balloonAdText1", balloonAdText1);
+		oF1.setVal("balloonAdText2", balloonAdText2);
+		oF1.setVal("fileviewcountapi", fileviewcountapi1);
+		
+		Da.CE($$da_brand, "DIV", {id: "ad_autoplay"}, "position:absolute; width:300px; height:150px; left:640px; top:260px");
+		oAdDiv = Da.$$("ad_autoplay");
+		Da.SH(oAdDiv, oF1.getHTML());
+		
+		initAltForExpansion();
+	} else {
+		var imgTag = "";
+		if( "K1"=="K1" ) {
+			imgTag += '<a id="ac_banner_a" href="http://nv.veta.naver.com/dc?unit=002AP&ac=6907886&src=2805413&br=2233473&rk=VvgWTwpizS0AAGkqO9YAAAFg&eltts=5yBSOtUfcb94XeXVkkL15g%3D%3D&:::cl:::" target=\"_blank\">';
+		}
+		imgTag += '<img src=\"http://nv2.tveta.naver.net/libs/1126/1126626/20160325185310-sVJzVKoE.jpg\" width=\"300\" height=\"150\" title=\"\" alt=\"ëìë¦¬ ìë 4ì 7ì¼ ëê°ë´\" border=\"0\">';
+		if( "K1"=="K1" ) {
+			imgTag += '</a>';
+		}
+		Da.SH(Da.$("addiv"), imgTag);
+		oNimp.log(3);
+		
+		initAltForImage();
+	}
+}
+
+function showAd() {
+	if(!bExpanded) {
+		Da.FE(parent.document, "click");
+		bExpanded = true;
+		
+		var oF2 = new Flash(sExFUIT, 940, 410, "transparent");
+		oF2.setAtt("id", "f940410");
+		oF2.setVal("movieExUrl", sF3);
+		oF2.setVal("stillExUrl", sF4);
+		oF2.setVal("clickExUrl", sC2);
+		
+		oF2.setVal("pauseExUrl", pauseExUrl);
+		oF2.setVal("playExUrl", playExUrl);
+		oF2.setVal("stopExUrl", stopExUrl);
+		oF2.setVal("replayExUrl", replayExUrl);
+		oF2.setVal("soundOnExUrl", soundOnExUrl);
+		oF2.setVal("soundOffExUrl", soundOffExUrl);
+		
+		oF2.setVal("reportEx25", reportEx25);
+		oF2.setVal("reportEx50", reportEx50);
+		oF2.setVal("reportEx75", reportEx75);
+		oF2.setVal("reportEx100", reportEx100);
+		
+		oF2.setVal("closeJSFuncName", "this.da_iframe_rolling.closeAd");
+		oF2.setVal("fileviewcountapi", fileviewcountapi2);
+		
+		if(parent.LoginCheck) parent.LoginCheck.nvLoginCheck("ad", 1);
+		Da.CE(Da.$$("da_stake"), "DIV", {id:"da_autoplay"}, "position:absolute;left:0px;top:197px", oF2.getHTML());
+		
+		oNimp.log(2);
+	}
+}
+
+function clickOrMouseOverExpandButton(){
+	oNimp.log(1);
+}
+
+function closeAd() {
+	Da.$$("f940410").style.cssText = "width:0px;height:0px";
+	Da.RE(Da.$$("da_autoplay"));
+	if(parent.LoginCheck) parent.LoginCheck.nvLoginCheck("ad", 0);
+	bExpanded = false;
+	Da.$$("f355150").initIcon();
+}
+
+function initAltForExpansion() {
+	// DA Alternative - Create Access Layer
+	var accessLayer = parent.document.createElement('div');
+	accessLayer.setAttribute('id','da_access');
+	accessLayer.style.cssText = 'position:absolute;top:50%;left:50%;width:154px;height:58px;margin:-29px 0 0 -77px;background:url(http://img.naver.net/static/common/da/da_access.png)';
+	accessLayer.style.display = "none";
+	oAdDiv.appendChild(accessLayer);
+	
+	// DA Alternative - Create Alternative Contents
+	var altObj = document.createElement('div');
+	altObj.setAttribute('id','da_alt');
+	altObj.innerHTML = '<a href="http://nv.veta.naver.com/dc?unit=002AP&ac=6907886&src=2805398&br=2233458&rk=VvgWTwpizS0AAGkqO9YAAAFg&eltts=5yBSOtUfcb94XeXVkkL15g%3D%3D&:::cl:::" id="da_altlink" target="_blank"><span class="blind">ëìë¦¬ ìë 4ì 7ì¼ ëê°ë´</span> <span class="guide"></span></a>';
+	var pObj = Da.$('addiv');
+	pObj.style.height = '100px';
+	pObj.appendChild(altObj);
+
+	// DA Alternative - Focus Action
+	var altLink = Da.$("da_altlink");
+	altLink.onfocus = function() {
+		accessLayer.style.display = "block";
+	};
+	altLink.onblur = function() {
+		accessLayer.style.display = "none";
+	};
+}
+
+function initAltForImage() {
+	// DA Alternative - Create Access Layer
+	var accessLayer = document.createElement('div');
+	accessLayer.setAttribute('id','da_access');
+	accessLayer.style.cssText = 'position:absolute;top:50%;left:50%;width:154px;height:58px;margin:-29px 0 0 -77px;background:url(http://img.naver.net/static/common/da/da_access.png)';
+	accessLayer.style.display = "none";
+	var oAdDiv = document.getElementById("ac_banner_a");
+	oAdDiv.appendChild(accessLayer);
+	
+	// DA Alternative - Focus Action
+	var altLink = document.getElementById("ac_banner_a");
+	var bMousedown = false;
+	altLink.onmousedown = function() {
+		bMousedown = true;
+	};
+	altLink.onfocus = function() {
+		if(!bMousedown){accessLayer.style.display = "block";}
+	};
+	altLink.onblur = function() {
+		accessLayer.style.display = "none";
+	};
+}
+//]]>
+</script>
+</head>
+<body onload="lazyLoading()">
+<div id="addiv"></div>
+<a id="link" name="link" href="javascript:void(0)"></a>
+
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<body>
+<script type="text/javascript">(function(win){var url='https:\/\/ad.doubleclick.net\/adi\/linkedin.ss\/home;tile=2;sz=300x250;s=1?li_ads_3p=$LI_ADS_3P;adsense=t;dc_ref=http:\/\/www.slideshare.net\/;$DCOPT;ord=$ORD',key='5'+'df',fCap=parseInt('0',10)*1000,ord='dart_ord',isLoaded='dtag_loaded',ordParam=/\$ORD/,dcopt='dcopt=ist',dcoptParam=/;\$DCOPT/,tileParam=/tile\=([^;]+)/,topTileParam=/tile=1/,tileId=null,adsuiteParam=/;\$ADSUITE/,adsuite=/;adsuite/,retry=true;tileId=(url.match(tileParam)||[])[1]||null;function go(){url=url.replace(ordParam,win[ord]).replace(dcoptParam,(topTileParam.test(url)?';dcopt=ist':'')).replace(adsuiteParam,getAdSuiteParams());win.location.replace(url);}
+function getAdSuiteParams(){var params='';return params;}
+function syncOrd(){var frames,frame,len,parent=win.parent;try{if(!parent[isLoaded]){parent[isLoaded]={};}
+if(parent[ord]){win[ord]=parent[ord];}
+else{frames=parent.frames;len=frames.length;while(len--){frame=frames[len].self;if(frame&&frame[ord]){win[ord]=frame[ord];break;}}}}
+catch(e){}
+if(!win[ord]){if(retry){win.setTimeout(syncOrd,Math.random()*10);retry=false;return;}
+else{generateOrd();try{parent[ord]=win[ord];}
+catch(e){}}}
+try{if(tileId){parent[isLoaded][tileId]=true;}}
+catch(e){}
+go();}
+function generateOrd(){win[ord]=Math.floor(Math.random()*10e12);}
+function isFrequencyCapped(){var LS='localStorage',timestamp,lastRun;if(fCap>0){if(LS in win&&win[LS]!==null){timestamp=new Date().getTime(),lastRun=win[LS][key];if(lastRun&&((timestamp-lastRun)<fCap)){return true;}
+win[LS][key]=timestamp;}}
+return false;}
+function start(){if(tileId){try{if(parent[isLoaded]&&parent[isLoaded][tileId]){generateOrd();go();return;}}
+catch(e){}}
+if(!isFrequencyCapped()){ordParam.test(url)?syncOrd():go();}};start();}(window));</script>
+</body>

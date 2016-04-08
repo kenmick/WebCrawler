@@ -1,0 +1,187 @@
+@charset "utf-8";
+/*--------------------------------------------------
+for static amebabar
+$Id: amebabar_static.css,v 1.8 2009/08/25 08:54:01 shinma_emi Exp $
+--------------------------------------------------*/
+/*TOC===============================================
+set
+common
+==================================================*/
+
+/* set
+--------------------------------------------*/
+ul#amebaBar {
+height:21px;
+margin:0;
+padding:1px 0;
+border-bottom:1px solid #ccc;
+background:#fff;
+color:#333;
+}
+	#amebaBar ul,
+	#amebaBar li{
+	margin:0;
+	padding:0;
+	list-style-type:none;
+	}
+		#amebaBar a{
+		margin:0;
+		padding:0;
+		color:#333 !important;
+		text-decoration:none !important;
+		font-family: "ï¼­ï¼³ ï¼°ã´ã·ãã¯", Arial, Helvetica;
+		white-space:nowrap;
+		}
+		#amebaBar a:hover{
+		color:#333 !important;
+		text-decoration:underline !important;
+		}
+			#amebaBar a img{
+			border:0;
+			}
+
+/* common
+--------------------------------------------*/
+/* logo
+-------------------------*/
+#amebaBar li#barLogo{
+float:left;
+width:120px;
+height:21px;
+}
+#amebaBar #barLogo img{
+padding:2px 0 2px 4px;
+vertical-align:top;
+}
+#amebaBar li#barLogoTop{
+float:left;
+width:500px;
+display: inline-block; 
+min-height: 1%;
+}
+#amebaBar li#barLogoTop:after{
+content: "."; 
+display:block; 
+height:0; 
+clear:both; 
+visibility:hidden;
+}
+/* Hide from mac IE5 \*/
+* html #amebaBar li#barLogoTop { height: 1%; }
+#amebaBar li#barLogoTop { display:block; }
+/* End Hide from mac IE5 */
+
+#amebaBar li#barLogoTop ul,
+#amebaBar li#barLogoTop li{
+float:left;
+}
+#amebaBar #barLogoTop img{
+padding:3px 0 2px 5px;
+vertical-align:top;
+float:left;
+}
+#amebaBar #barLogoTop ul{
+padding:6px 0 0;
+}
+#amebaBar #barLogoTop li{
+padding:0 7px;
+font-size:10px;
+line-height:1;
+border-right:1px solid #333333 !important;
+}
+
+#amebaBar #barLogoTop li.last{
+border:none !important;
+}
+
+/* menu text
+-------------------------*/
+#amebaBar li.barMenu{
+float:right;
+height:19px;
+padding:2px 0 0 8px;
+font-size:11px;
+line-height:1;
+}
+#amebaBar li.barMenu a{
+font-size:10px;
+line-height:17px;
+padding-right:5px;
+}
+/*help*/
+#amebaBar li a.menuHelp {
+background:url(/common_style/img/common/icon/help.gif) no-repeat 0 -1px;
+padding:2px 4px 2px 13px;
+}
+/*pr*/
+#amebaBar li a.menuPr{
+background:url(/p_skin/cmn/img/icon_ad.gif) no-repeat 0 2px;
+padding-left:37px;
+}
+/*login*/
+#amebaBar li a.headLogin {
+border-right:1px solid #333333;
+}
+/*prLine*/
+#amebaBar li.prLine{
+padding-right:10px;
+}
+#amebaBar li.prLine span{
+font-size:10px;
+}
+#amebaBar li.prLine a{
+padding:0 5px;
+}
+#amebaBar li.barItem{
+float:right;
+height:19px;
+padding:2px 15px 0 0;
+font-size:11px;
+line-height:1;
+}
+#amebaBar li.barItem a{
+font-size:10px;
+line-height:17px;
+padding-top:2px;
+padding-bottom:2px;
+}
+
+/* menu img swf
+-------------------------*/
+#amebaBar li.barImg {
+float:right;
+height:21px;
+padding:0 15px 0 0;
+}
+#amebaBar li.barImg embed,
+#amebaBar li.barImg img {
+vertical-align:top;
+}
+
+/*regist
+-------------------------*/
+li#barRegist {	
+float:right;
+height:19px;
+padding:2px 4px 0 0;
+font-size:11px;
+overflow:hidden;
+}
+li#barRegist a{
+padding-left:14px;
+padding-right:4px;
+background:url(/common_style/img/common/icon/ico_boy.gif) no-repeat 0 1px;
+font-size:10px;
+line-height:17px;
+}
+#amebaBar li a.barRegist{
+padding-left:14px;
+background:url(/common_style/img/common/icon/ico_boy.gif) no-repeat 0 1px;
+}
+
+/*ranking
+-------------------------*/
+#amebaBar li a.menuRank{
+background:url(/common_style/img/common/icon/crown1.gif) no-repeat 0 0;
+padding-left:17px;
+}

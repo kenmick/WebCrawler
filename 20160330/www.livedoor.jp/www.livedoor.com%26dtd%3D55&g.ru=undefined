@@ -1,0 +1,53 @@
+/*
+(c) Copyright Weborama SA - France. All rights reserved.
+It is illegal to modify, disassemble, sell, copy or publish this software
+or any part thereof. The use of this software is only permitted with the
+prior and express written permission of Weborama SA - France.
+More information: http://www.weborama.com/contacts/
+*/
+function x17() {
+    var x1cl, x1ey = x1bb.x1cj();
+    x1ey.x1ie = x1bb.x1nn(x1ey.x1ie,'wuid=&retargeting=&');
+    x1ey.x1fN = 'https://cstatic.weborama.fr/advertiser/1215/78/920/1380/';
+    x1ey.x1lp = '8921';
+
+
+
+    x1ey.conf_oba = false;
+    adperfobj.zindex = adperfobj.zindex || 0 || 214748360;
+
+    adperfobj.clicks = new Array();
+    adperfobj.clicks[0] = 'https://adclick.g.doubleclick.net/aclk?sa=L&ai=ChYnvqw78VuqmN8GGzAac4YKYA42Oi_sF5Zr-x8gBwI23ARABIABg-4GAgOgJggEXY2EtcHViLTY5ODg2NzY0MzExNTY4MjXIAQmoAwGqBHBP0Mzbqk9ZitrEkdPfiFQWpvB451Aky45YP8IFRErKiWBWYC9JU9Prb7lycp3qQUzpp8P5smkphkYe8l4cwr8GQeMrjYMxWzPgk0JoKS9VPW2u7Iwd-_ktvigmwBnOX3GKM46cYXEvwzI3ngDfn2SpgAbtoZLFqOXb0YoBoAYh2AcA&num=1&sig=AOD64_0g2PphX078iS660fzcmPcElXaRpw&client=ca-pub-6988676431156825&adurl=https://bid.g.doubleclick.net/xbbe/creative/click%3Fd%3DAPEucNUZqYKogyTYdsfsLO4nj_5XsDZHWz6fO1FGVNFwTFLlMeeQQGiuI6r6FrG8FjjLudQxjAFb5uoP_kxtF6LrdgK9G43OrA%26r1%3Dhttps%3A%2F%2Fbouyguestelecomfr.solution.weborama.fr%2Ffcgi-bin%2Fdispatch.fcgi%3Fa.A%3Dcl%26a.si%3D1215%26a.te%3D1382%26a.aap%3D8921%26a.agi%3D21%26g.lu%3D' + (adperfobj.landing_urls[0] || '');
+
+
+    try{
+        adperfobj.imptrackers = new Array(
+                
+        );
+
+        adperfobj.clicktrackers = (new Array(
+                
+        ).concat(adperfobj.clicktrackers));
+
+        adperfobj.eventtrackers = (new Array(
+                
+        ).concat(adperfobj.eventtrackers));
+    }catch(scr_e){}
+
+
+
+    x1ey.addTrackers(adperfobj);
+    x1ey.addClicks(adperfobj);
+
+    x1cl = new x1bb.x1ig();
+x1cl.x1c(x1ey, 12696, '300x250.html', adperfobj.width, adperfobj.height, '', '', '');
+x1ey.x1gG(x1cl, '', 2, '');
+
+
+
+
+    x1ey.x1gQ();
+
+
+}
+x1L('adperf_core_' + adperf_version + '_scrambled.js');

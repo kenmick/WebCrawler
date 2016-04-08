@@ -1,0 +1,37 @@
+<!DOCTYPE html><html><head>
+<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion_async.js" charset="utf-8"></script>
+<script>
+
+function sendStats(params) {
+    window.google_trackConversion({
+        google_conversion_id: 1014923426,
+        google_custom_params: params,
+        google_remarketing_only: true
+    });
+}
+
+function sendLabel(label) {
+    window.google_trackConversion({
+        google_conversion_id: 1014923426,
+        google_conversion_label: label,
+        google_remarketing_only: true
+    });
+}
+
+if (window.addEventListener) {
+    window.addEventListener('message', function(event) {
+        var data = event ? event.data : null;
+
+        if (data && data.type === 'params') {
+            if (data.params) {
+                sendStats(data.params);
+            } else if (data.labels && data.labels.length > 0) {
+                for (var i = 0, l = data.labels.length; i < l; i++) {
+                    sendLabel(data.labels[i]);
+                }
+            }
+        }
+    }, false);
+}
+
+</script></head><body></body></html>

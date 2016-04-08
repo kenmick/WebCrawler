@@ -1,0 +1,368 @@
+<html>
+	
+	<head>
+	
+		<meta name="robots" content="noindex,nofollow"> 
+	
+		<style type="text/css">
+	
+			* {
+				margin:0px;
+				margin-left: auto;
+				margin-right: auto;
+				padding:0px;
+			}
+	
+			img {
+				border:0px;
+			}
+	
+			body {
+				width:728px;
+				height:90px;
+			}
+	
+			#container {
+				position:absolute;
+				z-index:2;
+			}
+	
+			#bgLink {
+			
+				position:absolute;
+				z-index:1;
+				
+				top:23px;
+				width:728px;
+				
+				text-align:center;
+				-moz-align:center;
+	
+				filter:alpha(opacity=25);
+				-moz-opacity:0.25;
+				-khtml-opacity: 0.25;
+				opacity: 0.25;
+
+			}
+	
+			#bgLink a {
+			
+				font-size:17px;
+				font-family:arial;
+				color:#ffffff;
+				font-weight:bold;
+				
+				line-height:26px;
+				
+				text-decoration:none;
+				letter-spacing:-1px;
+	
+				text-shadow: 2px 2px 2px rgba(0,0,0,.8);
+				
+			}
+	
+			#bgLink a:hover {
+				position:relative;
+				top:-1px;
+				text-shadow: 3px 3px 2px #000;
+			}
+	
+			#bgLink a span.big {
+				font-size:33px;
+				letter-spacing:-2px;
+			}
+	
+			#bBig {
+				left:2px;
+				top:3px;
+			}
+
+			#bSmall {
+				left:482px;
+				top:3px;
+			}
+					
+			div.b {
+			
+				position:absolute;
+
+				-moz-border-radius: 3px; 
+				-webkit-border-radius: 3px; 
+				-khtml-border-radius: 3px; 
+				border-radius: 3px;
+		
+				cursor:pointer;
+
+			}
+	
+			div.link {
+				text-align:center;
+				border-top:1px dotted #ffffff;
+	
+				margin-left:2px;
+				margin-right:2px;
+	
+				width:100%;
+				height:19px;
+	
+				overflow:hidden;
+	
+			}
+	
+			div.link a {
+				color:#ffffff;
+				font-size:14px;
+				font-weight:bold;
+				font-family:arial;
+				letter-spacing:-1px;
+				line-height:19px;
+				text-decoration:none;
+				text-shadow: 1px 1px 1px rgba(0,0,0,.3);
+			}
+	
+			div.bgLink a span.big {
+				font-size:33px;
+				letter-spacing:-2px;
+			}
+	
+			
+			div.c1 {
+				background-color:#AB8100;
+				filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#E4AD00', endColorstr='#AB8100');
+				background: -webkit-gradient(linear, left top, left bottom, from(#E4AD00), to(#AB8100));
+				background: -moz-linear-gradient(top, #E4AD00, #AB8100);
+			}
+			div.c1:hover {
+				filter:none;
+				background:none;
+				background-color:#E4AD00;
+			}
+			
+			div.c2 {
+				background-color:#7F7F7F;
+				filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#AAAAAA', endColorstr='#7F7F7F');
+				background: -webkit-gradient(linear, left top, left bottom, from(#AAAAAA), to(#7F7F7F));
+				background: -moz-linear-gradient(top, #AAAAAA, #7F7F7F);
+			}
+			div.c2:hover {
+				filter:none;
+				background:none;
+				background-color:#AAAAAA;
+			}
+			
+	
+			#tmix {
+				width:242px;
+				height:64px;
+			}
+
+			#tbig {
+				width:242px;
+				height:64px;
+			}
+
+			#tverybig {
+				width:476px;
+				height:64px;
+			}
+	
+	
+			td.img {
+				width:124px;
+				text-align:center;
+				-moz-align:center;
+			}
+	
+			td.img div.bounding {
+				width:120px;
+				max-height:60px;
+				overflow:hidden;
+			}
+	
+			td.imgbig {
+				width:242px;
+				text-align:center;
+				-moz-align:center;
+			}
+	
+			td.imgbig div.bounding {
+				width:234px;
+				max-height:60px;
+				overflow:hidden;
+			}
+	
+			td.imgverybig {
+				width:476px;
+				text-align:center;
+				-moz-align:center;
+			}
+	
+			td.imgverybig div.bounding {
+				width:468px;
+				max-height:60px;
+				overflow:hidden;
+			}
+	
+			td.text div {
+				margin:0px;
+				margin-left:5px;
+				width:105px;
+				height:60px;
+				overflow:hidden;
+			}
+	
+			td.text div table {
+				width:105px;
+				height:60px;
+			}
+	
+			a.link {
+				color:#ffffff;
+				font-family:arial;
+				font-size:11px;
+				text-decoration:none;
+				line-height:12px;
+				text-shadow: 1px 1px 1px rgba(0,0,0,.3);
+			}
+	
+		</style>
+		
+	</head>
+	
+	<body>
+
+		<script>			
+			function disabledEventPropagation(event) {
+				if ( event.stopPropagation ) {
+					event.stopPropagation();
+				} else if ( window.event ) {
+					window.event.cancelBubble = true;
+				}
+			}
+			var currentTime = new Date();	
+
+			function handleMouseOver(id) {
+				if ( ! interactions[id].awaiting ) {
+					interactions[id].awaiting = true;
+					currentTime = new Date();	
+					interactions[id].awaitingSince = currentTime.getTime() / 1000;
+				} else {
+					currentTime = new Date();	
+					var timeNow = currentTime.getTime() / 1000;
+					if ( ( ( timeNow - interactions[id].awaitingSince ) > 1 ) && ( ! interactions[id].interacted ) ) {
+						interactions[id].interacted = true;
+						document.getElementById('mouseinteraction').src='https://ad.ad-srv.net/interaction.php?c='+interactions[id].c+'&h='+interactions[id].h;
+					}
+				}
+			}
+
+			var nonBranded = false;
+			
+				if (317==2) {
+					nonBranded = true;
+				}
+			
+				if (27717==2) {
+					nonBranded = true;
+				}
+			
+
+		</script>
+
+		<div id="bgLink">
+			<script>
+				if ( ! nonBranded ) document.write('<a href="http://www.targetperformance.de" target="_blank"><span class="big">TARGET</span><br>PERFORMANCE</a>');
+			</script>
+		</div>
+
+		<div id="container">
+	
+			
+
+				
+
+				
+					<div id="bSmall" class="b c1" onClick="window.open('https://n21.ad.ad-srv.net/c/puixy7fbv9yno5b')" onMouseMove="handleMouseOver(0)">
+						<table id="tbig" cellspacing="0" cellpadding="0" border="0">
+							<tr>
+								<td class="imgbig"><div class="bounding" onClick="disabledEventPropagation(event)"><a onClick="disabledEventPropagation(event)" href="https://n21.ad.ad-srv.net/c/puixy7fbv9yno5b" target="_blank"><img src="https://ad.zanox.com/ppv/?36914008C915268644&zpar0=119092373843607121"></a></div></td>
+							</tr>
+						</table>
+
+						<div class="link"><a onClick="disabledEventPropagation(event)" href="https://n21.ad.ad-srv.net/c/puixy7fbv9yno5b" target="_blank">boutique.laposte.fr</a></div>
+
+					</div>
+				
+
+				
+
+
+			
+
+				
+
+				
+
+				
+					<div id="bBig" class="b c2" onClick="window.open('https://n21.ad.ad-srv.net/c/pbahzixxzp0i2hg')" onMouseMove="handleMouseOver(1)">
+						<table id="tverybig" cellspacing="0" cellpadding="0" border="0">
+							<tr>
+								<td class="imgverybig"><div class="bounding" onClick="disabledEventPropagation(event)"><a onClick="disabledEventPropagation(event)" href="https://n21.ad.ad-srv.net/c/pbahzixxzp0i2hg" target="_blank"><img src="https://tracking.publicidees.com/banner.php?partid=25607&progid=4066&promoid=117145&cb=119092373843607121"></a></div></td>
+							</tr>
+						</table>
+
+						<div class="link"><a onClick="disabledEventPropagation(event)" href="https://n21.ad.ad-srv.net/c/pbahzixxzp0i2hg" target="_blank">thalys.com</a></div>
+
+					</div>
+				
+
+
+			
+
+		</div>
+
+		<img style="position:absolute;visibility:hidden" id="mouseinteraction" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" />
+			
+		<script>
+			
+			var interactions = new Array();
+			interactions.push({awaiting:false,awaitingSince:0,interacted:false,c:'420513',h:'2bfba501c4ee'});interactions.push({awaiting:false,awaitingSince:0,interacted:false,c:'406713',h:'c53cd657560c'});
+			
+			if ( nonBranded ) {
+				
+					var eDS = document.getElementById('bSmall').style;
+					eDS.background = 'transparent';
+					eDS.backgroundColor = '#b0b0b3';
+					eDS.border= '1px dotted #888890';
+					var eDS = document.getElementById('bBig').style;
+					eDS.background = 'transparent';
+					eDS.backgroundColor = '#b0b0b3';
+					eDS.border= '1px dotted #888890';
+				
+					var eDS = document.getElementById('bSmall').style;
+					eDS.background = 'transparent';
+					eDS.backgroundColor = '#b0b0b3';
+					eDS.border= '1px dotted #888890';
+					var eDS = document.getElementById('bBig').style;
+					eDS.background = 'transparent';
+					eDS.backgroundColor = '#b0b0b3';
+					eDS.border= '1px dotted #888890';
+				
+			}
+	
+		</script>
+
+		<script>
+			if ( '' == '1' ) {
+				document.write('<sc'+'ript src="https://cdn.contentspread.net/tp/tools/js/addDoubleBorder.js"></sc'+'ript>');
+			}
+		</script>
+		<script>
+			if ( '' == '1') {
+				addDoubleBorder(728,90,"#000000","#ffffff");
+			}
+		</script>
+	
+	</body>
+
+</html>

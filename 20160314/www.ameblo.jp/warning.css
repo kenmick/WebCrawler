@@ -1,0 +1,126 @@
+@charset "UTF-8";
+/*--------------------------------------------------
+for common warning(error)
+$Id: warning.css,v 1.10 2011/10/21 09:34:11 iwata_naoki_gn Exp $
+--------------------------------------------------*/
+/*TOC===============================================
+global reset
+common
+maintenance
+footer
+footer large
+thanks
+amebaSearch
+==================================================*/
+
+/*global reset
+--------------------------------------------*/
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,p,blockquote { margin:0; padding:0; text-align:center; }
+fieldset,img { border:0; }
+address,caption,cite,code,dfn,em,th,var { font-style:normal; font-weight:normal; }
+ol,ul { list-style:none; }
+table{ border-collapse: collapse; font-size:inherit; }
+h1,h2,h3,h4,h5{ font-size:100%; line-height:1; }
+
+/*toolbar
+--------------------------------------------*/
+#toolbar { text-align:left; color:#CCCCCC;}
+#toolbar img{ margin:4px 0 4px 5px; text-align:left;}
+
+/*common
+--------------------------------------------*/
+.logo { margin:30px auto 0 auto; padding:0 0 35px 0; width:900px; text-align:center;}
+#contents { margin:0 auto; padding:0 0 20px 0; width:540px; text-align:left; }
+p { margin:0 0 30px 0;  font-size:1.2em; line-height:1.6; }
+h1 { margin:0 0 30px 0; font-size:1.4em; line-height:1.6; font-weight:normal; }
+
+#title { margin:15px auto 0 auto; padding:0 0 15px 0; width:380px; text-align:center;}
+p { margin:0 0 30px 0;  font-size:1.2em; line-height:1.6; }
+h1 { margin:0 0 30px 0; font-size:1.4em; line-height:1.6; font-weight:normal; }
+
+#otherService { margin:20px auto 0 auto; padding:0 0 20px 0; width:260px; }
+#otherService a { padding:0; }
+#otherService p {  margin:0 0 20px 0; font-size:12px; text-align:left; }
+#otherService ul { line-height:2em; }
+#otherService li { background:url("/common_style/img/common/icon_list.png") no-repeat scroll 0 -1490px transparent;
+margin:0 0 1px; padding:0 0 0 8px; text-align:left;}
+
+/*maintenance
+--------------------------------------------*/
+#emphasis { margin:0 auto; padding:17px 0; width:450px; background:#FFFFCC; }
+#emphasis h2 { margin:0 0 15px 0; font-size:1.0em; }
+#emphasis li { font-size:1em; color:#FF0000; }
+#emphasis p { margin:0 0 15px 0; font-size:1.0em; }
+#emphasis .explain { padding:0 45px; }
+#emphasis strong { font-size:1.4em; line-height:1.6; color:#ff0000; }
+#emphasis p span { color:#ff0000; font-weight:bold; background:url(/common_style/img/common/icon/attention_l.gif) no-repeat 0 0; padding:2px 0 0 17px; }
+
+#msg {  }
+#msg p { margin:20px 0; font-size:1.0em; }
+
+/*please
+--------------------------------------------*/
+ .please #contents { margin:0 auto; width:670px; padding-top:45px; background: url(/common_style/img/common/img_please.gif) no-repeat right 85px; }
+
+/*sorry
+--------------------------------------------*/
+.sorry .logo, .please .logo { background: url(/common_style/img/common/line_dot.gif) repeat-x center bottom; }
+.sorry #contents { margin:0 auto; width:670px; padding-top:30px; background: url(/common_style/img/common/img_sorry.gif) no-repeat right 35px; }
+.sorry #contentsArea { width:520px; }
+.sorry #contentTxt, .please #contentTxt { margin:0 auto 150px; width:670px; padding-top:30px; }
+.sorry h1, .please h1 { margin:0 auto; text-align:left; background:url(/common_style/img/common/icon/attention3.gif) no-repeat 0 0; padding-left:31px; font-size:1.6em; line-height:1.4; }
+.sorry #contentTxt h1, .please #contentTxt h1 { margin:0 auto 35px; text-align:left; background:none; font-size:1.6em; line-height:1.4; }
+.sorry p.msg, .please p.msg { margin:0 auto; text-align:left; background:url(/common_style/img/common/icon/attention3.gif) no-repeat 0 0; padding-left:31px; padding-right:160px; font-size:1.6em; line-height:1.4; }
+
+.explanation{width:430px;margin-bottom:25px;padding:15px 0 0 30px;text-align:left;line-height:1.4;}
+.service_title{font-weight:bold;margin-bottom:0px;padding-left:30px;text-align:left;line-height:1.1;}
+.service_link{margin-bottom:8px;padding-left:30px;text-align:left;font-size:1.5em;line-height:1.1;}
+
+/*footer
+--------------------------------------------*/
+#footer { margin:0 auto; padding:30px 0 0 0; width:900px; text-align:center; background: url(/common_style/img/common/line_dot.gif) repeat-x left top; }
+#footer #pr { margin:7px 0; font-size:0.85em; line-height:1.5; }
+#footer li { display: inline; padding:0 0.4em; border-right:1px solid #000000; line-height: 1.3em; }
+#footer li.lastItem { border-right:none; }
+#footer p{ margin:1em; font-size: 0.85em; font-family: Arial, Helvetica, sans-serif; text-align:center; }
+#footer img { margin-left: 5px; vertical-align: middle; }
+#footer #serviceList { padding-top:10px; font-size: 0.85em; }
+
+
+
+/*footer large
+--------------------------------------------*/
+#footer{width:914px;margin:10px auto 0;padding:0;color:#999999;border-top:#E1E1E1 solid 1px;background:none;font-size:0.94em;}
+
+#footer dt{margin:0;padding:4px 0 2px;border-bottom:#E1E1E1 solid 1px;font-weight:bold;text-align:left;}
+#footer dd{padding:4px 0 0 0;}
+#footer dl dd ul li{margin:0;padding:0;text-align:left;border:none;}
+#footer #trouble{float:left;padding:0 7px;width:140px;}
+#footer #rules{float:left;padding:0 7px;width:152px;}
+#footer #ameba{float:left;padding:0 7px;width:259px;}
+#footer #ameba ul.left{float:left;width:139px;}
+#footer #ameba ul.right{float:left;width:119px;}
+#footer #other{float:left;padding:0 7px;width:305px;}
+#footer #other ul{float:left;width:152px;}
+
+#footer dl dl{padding:2px 0 5px;line-height:1.2;}
+#footer dl dd dt{margin:0;padding:0;border:none;font-weight:normal;}
+#footer dl dd dd{margin:0;padding:0;text-align:left;}
+
+#footer #copyright{padding-top:3px;color:#000000;}
+
+/*thanks
+--------------------------------------------*/
+.thanks{background: url(/common_style/img/common/img_thanks.gif) no-repeat right 35px !important; }
+.thanks h1{padding-left:25px;background-image:none;}
+
+/*amebaSearch
+--------------------------------------------*/
+#amebaSearch{ margin:0 0 25px 30px; text-align:left; }
+#amebaSearch p{ margin:0; text-align:left; }
+#amebaSearch #searchBox{ width:400px; padding:1px; border:1px solid #aaaaaa; overflow:hidden; }
+#amebaSearch #searchMain{ padding:15px 0; background: url(http://stat100.ameba.jp/search/img/screen/common/bg_stripe_gray.gif) repeat 0 0; }
+#amebaSearch #searchMain img{ margin-bottom:4px; }
+#amebaSearch #searchMain input{ width:240px; height:16px; margin:0; padding:3px 2px 0; border:1px solid #7b9ebd; overflow:hidden; background:#ffffcb; font-size:12px; font-family: "ï¼­ï¼³ ï¼°ã´ã·ãã¯", Arial, Helvetica; color:#777777; line-height:14px; text-align:left; }
+#amebaSearch #searchMain button{ margin:0 0 0 4px; }
+

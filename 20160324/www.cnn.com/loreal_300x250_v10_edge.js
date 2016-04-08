@@ -1,0 +1,77 @@
+
+(function(compId){var _=null,y=true,n=false,x23='break-word',x84='19px',x76='rgb(76, 76, 76)',x69='arrow',x94='rgb(0, 0, 0)',e38='${readmore_3}',x87='55px',e42='${ednframe_ladies}',e61='${andrea_text}',e46='${page4}',e37='${arrow2}',e62='${prof_quarraisha}',e43='${prof_emanuallle}',i='none',x31='rgba(192,192,192,1)',e51='${arrowend_static}',x3='6.0.0.400',x85='Rectangle4',lf='left',x93='90px',x90='hus',zy='scaleY',x92='66px',zx='scaleX',x88='24px',e60='${hualan_text}',x83='27px',e54='${quarisha_text}',b='block',x68='auto',x81='-10px',x80='-1',x79='arrowCopy',x89='rgba(255,255,255,1)',tp='top',x72='-6px',x22='400',x75='Rectangle3',xc='rgba(0,0,0,1)',x20='12',x74='23px',x1='6.0.0',x73='20px',x32='rgba(255,255,255,0.00)',x2='5.0.0',c='color',x6='rgba(0,0,0,0)',x77='rgba(255,255,255,0)',g='image',x4='both',e39='${fade_end}',x71='-7px',x67='12px',e52='${arrow_start_static}',e40='${keyline_clicktagCopy}',x70='1',e86='${arrowCopy}',x5='rgba(221,221,221,1.00)',x66='7px',e59='${emanuelle_text}',x='text',e64='${prof_andrea}',x24='3px',x33='solid',m='rect',x65='0px',e63='${prof_jennifer}',h='height',e58='${Text}',e53='${page5}',e57='${keyline_clicktag}',e56='${jennifer_text}',e47='${page3}',p='px',o='opacity',e48='${prof_text}',e50='${page1}',e78='${arrow}',e49='${logo}',d='display',x21='Arial, Helvetica, sans-serif',l='normal',e55='${prof_huran}',e41='${page2}',w='width',x82='-3px',e45='${arrow_left}',e44='${timer_forendframe}',x36='rgba(199,199,199,1.00)';var g13='emanuelle_text2.png',g14='jennifer_text2.png',g16='quarisha_text2.png',g8='jennifer_img.jpg',g9='hualan_img.jpg',g35='readmore_3.png',g15='hualan_text2.png',g11='andrea_img.jpg',g34='arrow2.png',g17='andrea_text2.png',g10='quarisha_img.jpg',g12='logo.png',g30='endframe_2.jpg',g18='prof_title.png',g7='emanuelle_img.jpg';var s28="<p style=\"margin: 0px;\">â5</p>",s26="<p style=\"margin: 0px;\">3</p>",s29="<p style=\"margin: 0px;\">â/ 5</p>",s27="<p style=\"margin: 0px;\">â4</p>",s25="<p style=\"margin: 0px;\">2</p>",s19="<p style=\"margin: 0px;\">â1</p>",s91="<p style=\"margin: 0px;\">âheuy</p>";var im='images/',aud='media/',vid='media/',js='js/',fonts={},opts={'gAudioPreloadPreference':'auto','gVideoPreloadPreference':'auto'},resources=[],scripts=[],symbols={"stage":{v:x1,mv:x2,b:x3,stf:i,cg:x4,rI:n,cn:{dom:[{id:'Rectangle',t:m,r:['10px','78px','150px','1px','auto','auto'],overflow:'visible',o:'0',f:[x5],s:[0,"rgb(0, 0, 0)",i]},{id:'RectangleCopy',t:m,r:['10px','225px','110px','1px','auto','auto'],overflow:'visible',o:'0',f:[x5],s:[0,xc,i]},{id:'prof_emanuallle',t:g,r:['0px','0px','300px','250px','auto','auto'],overflow:'visible',o:'0',f:[x6,im+g7,'0px','0px']},{id:'prof_jennifer',t:g,r:['0px','0px','300px','250px','auto','auto'],f:[x6,im+g8,'0px','0px']},{id:'prof_huran',t:g,r:['0px','0px','300px','250px','auto','auto'],f:[x6,im+g9,'0px','0px']},{id:'prof_quarraisha',t:g,r:['0px','0px','300px','250px','auto','auto'],f:[x6,im+g10,'0px','0px']},{id:'prof_andrea',t:g,r:['0px','0px','300px','250px','auto','auto'],f:[x6,im+g11,'0px','0px']},{id:'logo',t:g,r:['22px','10px','63px','63px','auto','auto'],o:'0',f:[x6,im+g12,'0px','0px']},{id:'emanuelle_text',t:g,r:['0px','0px','300px','250px','auto','auto'],o:'0',f:[x6,im+g13,'0px','0px']},{id:'jennifer_text',t:g,r:['0px','0px','300px','250px','auto','auto'],f:[x6,im+g14,'0px','0px']},{id:'hualan_text',t:g,r:['0px','0px','300px','250px','auto','auto'],f:[x6,im+g15,'0px','0px']},{id:'quarisha_text',t:g,r:['0px','0px','300px','250px','auto','auto'],f:[x6,im+g16,'0px','0px']},{id:'andrea_text',t:g,r:['0px','0px','300px','250px','auto','auto'],f:[x6,im+g17,'0px','0px']},{id:'prof_text',t:g,r:['23px','87px','67px','13px','auto','auto'],f:[x6,im+g18,'0px','0px']},{id:'page1',t:x,r:['33px','224px','47px','24px','auto','auto'],o:'0',text:s19,align:"left",n:[x21,[x20,p],"rgba(94,94,94,1.00)",x22,i,l,x23,l],ts:[x24,"","","",i]},{id:'page2',t:x,r:['33px','224px','47px','24px','auto','auto'],o:'0',text:s25,align:"left",n:[x21,[x20,p],"rgba(94,94,94,1.00)",x22,i,l,x23,l],ts:[x24,"","","",i]},{id:'page3',t:x,r:['33px','224px','47px','24px','auto','auto'],o:'0',text:s26,align:"left",n:[x21,[x20,p],"rgba(94,94,94,1.00)",x22,i,l,x23,l],ts:[x24,"","","",i]},{id:'page4',t:x,r:['33px','224px','47px','24px','auto','auto'],o:'0',text:s27,align:"left",n:[x21,[x20,p],"rgba(94,94,94,1.00)",x22,i,l,x23,l],ts:[x24,"","","",i]},{id:'page5',t:x,r:['33px','224px','47px','24px','auto','auto'],o:'0',text:s28,align:"left",n:[x21,[x20,p],"rgba(94,94,94,1.00)",x22,i,l,x23,l],ts:[x24,"","","",i]},{id:'Text',t:x,r:['42px','224px','63px','52px','auto','auto'],text:s29,align:"left",n:[x21,[x20,p],"rgba(94,94,94,1)",x22,i,l,x23,l],ts:["","","","",i]},{id:'ednframe_ladies',v:i,t:g,r:['-1px','0px','300px','250px','auto','auto'],o:'1',f:[x6,im+g30,'0px','0px']},{id:'fade_end',v:i,t:m,r:['0px','0px','300px','250px','auto','auto'],cu:'pointer',o:'0',f:[x31],s:[0,xc,i]},{id:'keyline_clicktag',v:b,t:m,r:['0px','0px','298px','248px','auto','auto'],f:[x32],s:[1,"rgba(76,76,76,1.00)",x33]},{id:'keyline_clicktagCopy',v:i,t:m,r:['0px','0px','298px','248px','auto','auto'],cu:'pointer',f:[x32],s:[1,"rgba(76,76,76,1.00)",x33]},{id:'timer_forendframe',symbolName:'timer_forendframe',t:m,r:['388px','-42px','66','90','auto','auto'],tf:[[],[],[],['0.10606','0.14444']]},{id:'arrowend_static',v:i,t:g,r:['61px','225px','7px','12px','auto','auto'],o:'1',f:[x6,im+g34,'0px','0px']},{id:'arrow2',symbolName:'arrow',v:b,t:m,r:['61px','225px','7','12','auto','auto'],cu:'pointer',o:'0'},{id:'arrow_start_static',v:b,t:g,r:['20px','225px','7px','12px','auto','auto'],f:[x6,im+g34,'0px','0px'],tf:[[],[],[],['-1','-1']]},{id:'arrow_left',symbolName:'arrow_left',v:i,t:m,r:['20px','225px','7','12','auto','auto'],cu:'pointer',o:'1'},{id:'readmore_3',t:g,r:['193px','169px','106px','80px','auto','auto'],cu:'pointer',f:[x6,im+g35,'0px','0px']}],style:{'${Stage}':{isStage:true,r:['null','null','300px','250px','auto','auto'],overflow:'hidden',f:[x36]}}},tt:{d:7842,a:y,l:{"play_endframe":5827},data:[["eid420",tp,1400,0,"easeOutQuad",e37,'225px','225px'],["eid461",o,0,500,"linear",e38,'0','1'],["eid472",o,6250,276,"linear",e38,'1','0'],["eid300",d,5827,0,"linear",e39,i,b],["eid474",d,5827,0,"linear",e40,i,b],["eid223",o,1400,1043,"easeInQuad",e41,'0.000000','1'],["eid226",o,2443,1107,"easeOutQuad",e41,'1','0'],["eid326",zy,6474,0,"linear",e42,'1','1'],["eid327",zy,7842,0,"linear",e42,'1','1'],["eid252",o,0,1017,"easeInQuad",e43,'0','1'],["eid314",zy,5840,0,"easeOutQuint",e44,'0.14444','0.14444'],["eid433",o,5827,647,"linear",e45,'1','0'],["eid230",o,3550,1143,"easeInQuad",e46,'0.000000','1'],["eid235",o,4693,1134,"easeOutQuad",e46,'1','0'],["eid441",c,2443,0,"easeOutQuad",e41,'rgba(94,94,94,1.00)','rgba(94,94,94,1.00)'],["eid225",o,2443,1107,"easeInQuad",e47,'0.000000','1'],["eid231",o,3550,1143,"easeOutQuad",e47,'1','0'],["eid470",w,1017,233,"linear",e48,'67px','66px'],["eid365",tp,1017,0,"easeInOutSine",e48,'87px','87px'],["eid371",lf,1017,0,"easeInOutExpo",e49,'22px','22px'],["eid324",zx,6474,0,"linear",e42,'1','1'],["eid325",zx,7842,0,"linear",e42,'1','1'],["eid476",tp,5485,0,"linear",e38,'169px','169px'],["eid276",o,0,1017,"easeOutQuad",e50,'0','1'],["eid214",o,1400,1043,"easeOutQuad",e50,'1','0'],["eid477",lf,5485,0,"linear",e38,'193px','193px'],["eid432",o,5827,647,"linear",e51,'1','0'],["eid246",o,0,1017,"easeOutQuad",e49,'0.000000','1'],["eid469",d,0,0,"linear",e52,b,b],["eid468",d,1650,0,"easeOutQuad",e52,b,i],["eid429",tp,6000,0,"easeInOutExpo",e51,'225px','225px'],["eid282",d,6474,0,"linear",e42,i,b],["eid460",o,0,1400,"easeOutQuad",e52,'0','1'],["eid233",o,4693,1134,"easeOutQuad",e53,'0.000000','1'],["eid173",o,4150,543,"easeInOutSine",e54,'0','1'],["eid175",o,5168,317,"easeInOutCirc",e54,'1','0'],["eid473",d,6526,0,"linear",e38,b,i],["eid317",lf,5840,0,"easeOutQuint",e44,'388px','388px'],["eid191",d,1650,0,"easeInOutSine",e45,i,b],["eid434",d,6474,0,"linear",e45,b,i],["eid253",o,0,1017,"easeOutQuad",e48,'0.000000','1'],["eid194",d,5827,0,"easeInOutSine",e37,b,i],["eid193",d,5827,0,"easeInOutSine",e51,i,b],["eid435",d,6474,0,"linear",e51,b,i],["eid12",lf,2507,1043,"easeInOutCirc",e55,'302px','0px'],["eid27",lf,3650,1043,"easeInOutBack",e55,'0px','-304px'],["eid169",o,1900,543,"easeInOutSine",e56,'0','1'],["eid170",o,2778,317,"easeInOutCirc",e56,'1','0'],["eid423",lf,1400,0,"easeInOutExpo",e37,'61px','61px'],["eid428",lf,6000,0,"easeInOutExpo",e51,'61px','61px'],["eid475",d,5827,0,"linear",e57,b,i],["eid414",tp,1400,0,"easeOutQuad",e52,'225px','225px'],["eid372",tp,1017,0,"easeInOutExpo",e49,'10px','10px'],["eid450",o,0,1017,"easeOutQuad",e58,'0','1'],["eid243",o,0,1650,"easeOutQuad",e59,'0','1'],["eid168",o,1650,330,"easeOutQuad",e59,'1','0'],["eid171",o,3007,543,"easeInOutSine",e60,'0','1'],["eid172",o,3983,317,"easeInOutCirc",e60,'1','0'],["eid174",o,5284,543,"easeInOutSine",e61,'0','1'],["eid16",lf,3650,1043,"easeInOutCirc",e62,'312px','0px'],["eid33",lf,4784,1043,"easeInOutBack",e62,'0px','-304px'],["eid457",lf,5827,0,"easeOutQuad",e58,'42px','42px'],["eid456",tp,5827,0,"easeOutQuad",e58,'224px','224px'],["eid366",lf,1017,0,"easeInOutSine",e48,'23px','23px'],["eid6",lf,1400,1043,"easeInOutCirc",e63,'302px','0px'],["eid11",lf,2507,1043,"easeInOutBack",e63,'0px','-304px'],["eid459",o,0,1400,"easeOutQuad",e37,'0','1'],["eid277",lf,0,0,"easeOutQuad",e43,'0px','0px'],["eid278",lf,1017,0,"easeOutQuad",e43,'0px','0px'],["eid5",lf,1400,1043,"easeInOutBack",e43,'0px','-304px'],["eid28",lf,4784,1043,"easeInOutExpo",e64,'302px','0px'],["eid364",h,1017,0,"easeInOutSine",e48,'13px','13px'],["eid281",o,5827,647,"linear",e39,'0.000000','1'],["eid286",o,6474,526,"linear",e39,'1','0'],["eid315",tp,5840,0,"easeOutQuint",e44,'-42px','-42px'],["eid316",zx,5840,0,"easeOutQuint",e44,'0.10606','0.10606'],["eid415",lf,1400,0,"easeOutQuad",e52,'20px','20px']]}},"arrow":{v:x1,mv:x2,b:x3,stf:i,cg:i,rI:n,cn:{dom:[{r:[x65,x65,x66,x67,x68,x68],id:x69,o:x70,t:g,f:[x6,im+g34,x65,x65]},{r:[x71,x72,x73,x74,x68,x68],id:x75,s:[0,x76,i],t:m,f:[x77]}],style:{'${symbolSelector}':{r:[_,_,x66,x67]}}},tt:{d:923,a:y,data:[["eid238",o,0,500,"linear",e78,'1','0.35893016463415'],["eid239",o,500,423,"linear",e78,'0.35893016463415','1']]}},"arrow_left":{v:x1,mv:x2,b:x3,stf:i,cg:i,rI:n,cn:{dom:[{t:g,id:x79,r:[x65,x65,x66,x67,x68,x68],tf:[[],[],[],[x80,x80]],f:[x6,im+g34,x65,x65]},{r:[x81,x82,x83,x84,x68,x68],id:x85,s:[0,x76,i],t:m,f:[x77]}],style:{'${symbolSelector}':{r:[_,_,x66,x67]}}},tt:{d:923,a:y,data:[["eid240",o,0,500,"easeInOutExpo",e86,'1','0.35893016463415'],["eid241",o,500,423,"easeInOutExpo",e86,'0.35893016463415','1']]}},"hus":{v:x1,mv:x2,b:x3,stf:i,cg:i,rI:n,cn:{dom:[{r:[x65,x65,x87,x88,x68,x68],n:[x21,[12,p],x89,x22,i,l,x23,l],align:lf,id:x90,text:s91,ts:['','','','',i],t:x}],style:{'${symbolSelector}':{r:[_,_,x87,x88]}}},tt:{d:0,a:y,data:[]}},"timer_forendframe":{v:x1,mv:x2,b:x3,stf:i,cg:i,rI:n,cn:{dom:[{r:[x65,x65,x92,x93,x68,x68],id:x75,s:[0,x94,i],t:m,f:[x31]}],style:{'${symbolSelector}':{r:[_,_,x92,x93]}}},tt:{d:4000,a:y,data:[]}}};AdobeEdge.registerCompositionDefn(compId,symbols,fonts,scripts,resources,opts);})("EDGE-339691153");
+(function($,Edge,compId){var Composition=Edge.Composition,Symbol=Edge.Symbol;Edge.registerEventBinding(compId,function($){
+//Edge symbol: 'stage'
+(function(symbolName){Symbol.bindTriggerAction(compId,symbolName,"Default Timeline",1400,function(sym,e){sym.delay()});
+//Edge binding end
+Symbol.bindTriggerAction(compId,symbolName,"Default Timeline",2443,function(sym,e){sym.delay()});
+//Edge binding end
+Symbol.bindTriggerAction(compId,symbolName,"Default Timeline",3550,function(sym,e){sym.delay()});
+//Edge binding end
+Symbol.bindTriggerAction(compId,symbolName,"Default Timeline",4693,function(sym,e){sym.delay()});
+//Edge binding end
+Symbol.bindTriggerAction(compId,symbolName,"Default Timeline",5827,function(sym,e){sym.stop();sym.flag_hasinteracted=true;sym.getSymbol("timer_forendframe").play(2);sym.delay()});
+//Edge binding end
+Symbol.bindElementAction(compId,symbolName,"document","compositionReady",function(sym,e){sym.flag_hasinteracted=false;sym.timeout_interaction=false;sym.delay=function(){sym.stop();if(!sym.flag_hasinteracted){sym.timeout_interaction=setTimeout(function(){sym.play()},2000);}}});
+//Edge binding end
+Symbol.bindElementAction(compId,symbolName,"${arrow2}","mouseenter",function(sym,e){sym.flag_hasinteracted=true;console.log(sym.flag_hasinteracted)});
+//Edge binding end
+Symbol.bindElementAction(compId,symbolName,"${Stage}","mouseover",function(sym,e){sym.flag_hasinteracted=true;clearTimeout(sym.timeout_interaction);console.log('flag set')});
+//Edge binding end
+Symbol.bindTriggerAction(compId,symbolName,"Default Timeline",7000,function(sym,e){sym.stop();sym.getSymbol("timer_forendframe").stop(1);});
+//Edge binding end
+Symbol.bindElementAction(compId,symbolName,"${readmore_3}","click",function(sym,e){Enabler.exit('clickTAG');});
+//Edge binding end
+Symbol.bindElementAction(compId,symbolName,"${keyline_clicktagCopy}","click",function(sym,e){Enabler.exit('clickTAG');});
+//Edge binding end
+})("stage");
+//Edge symbol end:'stage'
+
+//=========================================================
+
+//Edge symbol: 'arrow'
+(function(symbolName){Symbol.bindTriggerAction(compId,symbolName,"Default Timeline",923,function(sym,e){sym.play(2);});
+//Edge binding end
+Symbol.bindTriggerAction(compId,symbolName,"Default Timeline",0,function(sym,e){sym.stop();});
+//Edge binding end
+Symbol.bindElementAction(compId,symbolName,"${Rectangle3}","click",function(sym,e){sym.getComposition().getStage().play();});
+//Edge binding end
+Symbol.bindElementAction(compId,symbolName,"${Rectangle3}","mouseenter",function(sym,e){sym.play(2);});
+//Edge binding end
+Symbol.bindElementAction(compId,symbolName,"${Rectangle3}","mouseleave",function(sym,e){sym.stop(1);});
+//Edge binding end
+})("arrow");
+//Edge symbol end:'arrow'
+
+//=========================================================
+
+//Edge symbol: 'arrow_left'
+(function(symbolName){Symbol.bindElementAction(compId,symbolName,"${Rectangle4}","mousedown",function(sym,e){sym.getComposition().getStage().getSymbol("timer_forendframe").stop(1);sym.getComposition().getStage().playReverse();});
+//Edge binding end
+Symbol.bindTriggerAction(compId,symbolName,"Default Timeline",923,function(sym,e){sym.play(1);});
+//Edge binding end
+Symbol.bindTriggerAction(compId,symbolName,"Default Timeline",0,function(sym,e){sym.stop();});
+//Edge binding end
+Symbol.bindElementAction(compId,symbolName,"${Rectangle4}","mouseleave",function(sym,e){sym.stop(1);});
+//Edge binding end
+Symbol.bindElementAction(compId,symbolName,"${Rectangle4}","mouseenter",function(sym,e){sym.play(2);});
+//Edge binding end
+})("arrow_left");
+//Edge symbol end:'arrow_left'
+
+//=========================================================
+
+//Edge symbol: 'hus'
+(function(symbolName){})("hus");
+//Edge symbol end:'hus'
+
+//=========================================================
+
+//Edge symbol: 'timer_forendframe'
+(function(symbolName){Symbol.bindTriggerAction(compId,symbolName,"Default Timeline",4000,function(sym,e){sym.stop();sym.getComposition().getStage().play("play_endframe");});
+//Edge binding end
+Symbol.bindTriggerAction(compId,symbolName,"Default Timeline",0,function(sym,e){sym.stop();});
+//Edge binding end
+})("timer_forendframe");
+//Edge symbol end:'timer_forendframe'
+})})(AdobeEdge.$,AdobeEdge,"EDGE-339691153");

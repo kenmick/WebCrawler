@@ -1,0 +1,57 @@
+ï»¿@charset "UTF-8";
+/* xinhuaRadio.homepage.mobile @St. 2015-07-22-11.17 */
+/*æ­æ¾åè¡¨*/
+#xinhuaRadioMobileMod img { background: none; }
+#xinhuaRadioMobileMod .playList { clear: both; }
+#xinhuaRadioMobileMod .playList li .jp-playlist-item-remove { display: none }
+
+#xinhuaRadioMobileMod .playList li,
+#xinhuaRadioMobileMod .playList li.jp-playlist-current a,
+#xinhuaRadioMobileMod .playList li.jp-playlist-current div { color: #00b4ff !important; }
+#xinhuaRadioMobileMod .playList li {  border-bottom:rgba(255,255,255,0.15) 1px solid; }
+#xinhuaRadioMobileMod .playList li a { color:#FFFFFF; text-decoration: none; }
+#xinhuaRadioMobileMod .playList li .jp-playlist-item .listNum,
+#xinhuaRadioMobileMod .playList li .jp-playlist-item .audioItemTitle { padding-left: 0.8em; }
+#xinhuaRadioMobileMod .playList li { font-size: 1.2em; height: 50px; line-height: 50px; list-style: none; overflow: hidden; }
+#xinhuaRadioMobileMod .playList li .jp-playlist-item .listNum { font-weight: bold; }
+#xinhuaRadioMobileMod .playList li .jp-playlist-item .audioItemTitle .jp-artist { float: right; text-align: right; padding-right: 1em; }
+#xinhuaRadioMobileMod .playList li.jp-playlist-current div { background-color:rgba(0,0,0,0.4); }
+/*æ­æ¾å¨*/
+#xinhuaRadioMobileMod .shareBox { display: none; }
+#xinhuaRadioMobileMod .playercoverBox { width: 100%; background-color: rgba(0, 0, 0, 0.8); position: fixed; bottom: 0; left: 0; z-index: 99999; }
+#xinhuaRadioMobileMod .playercoverBox .logo { position: absolute; width: 6em; top: 50%; margin-top: -0.8em; left: 0.6em; z-index: 999; }
+/*æ­æ¾æé®*/
+#xinhuaRadioMobileMod .playercoverBox .audioBtnBox { height: auto; margin: 0 auto; position: relative; padding: 0.6em 0 0.4em 0; }
+#xinhuaRadioMobileMod .playercoverBox .audioBtnBox .btn:focus,
+#xinhuaRadioMobileMod .playercoverBox .audioBtnBox button:focus,
+#xinhuaRadioMobileMod .playercoverBox .audioBtnBox .btn:active,
+#xinhuaRadioMobileMod .playercoverBox .audioBtnBox button:active { outline: none; }
+#xinhuaRadioMobileMod .playercoverBox .audioBtnBox .btn,
+#xinhuaRadioMobileMod .playercoverBox .audioBtnBox button { cursor: pointer; display: block; height: 2.5em; width: 2.5em; overflow: hidden; padding: 0; text-indent: -9999px; background-color: transparent; background-position: center center; background-repeat: no-repeat; background-size: 60%; margin-right: 0.8em; float: right; border: none; }
+#xinhuaRadioMobileMod .playercoverBox .audioBtnBox .btn:hover { filter: alpha(opacity=70); -moz-opacity: .7; opacity: .7; }
+#xinhuaRadioMobileMod .playercoverBox .audioBtnBox .iconPlay { background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='49.4%200%20401.2%20500'%3E%3Cpath%20style='fill:#FFFFFF;'%20d='M450.6,250L49.4,500V0L450.6,250z'/%3E%3C/svg%3E%0A"); background-position: 60% center; background-size: 40%; -moz-border-radius: 50%; -webkit-border-radius: 50%; border-radius: 50%; border: 1px #FFFFFF solid; }
+#xinhuaRadioMobileMod .playercoverBox .audioBtnBox .iconList { background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20398%20308'%3E%0A%3Cpath%20style='fill:#ffffff;'%20d='M373.6,254.3H24.4C10.9,254.3,0,264.9,0,278.1v5.7c0,13.2,10.9,23.8,24.4,23.8h349.3%0A%09c13.5,0,24.4-10.7,24.4-23.8v-5.7C398,264.9,387.1,254.3,373.6,254.3z%20M373.6,0H24.4C10.9,0,0,10.7,0,23.8v5.7%0A%09c0,13.2,10.9,23.8,24.4,23.8h349.3c13.5,0,24.4-10.7,24.4-23.8v-5.7C398,10.7,387.1,0,373.6,0z%20M373.6,127.1H24.4%0A%09C10.9,127.1,0,137.8,0,151v5.8c0,13.2,10.9,23.8,24.4,23.8h349.3c13.5,0,24.4-10.7,24.4-23.8V151%0A%09C398,137.8,387.1,127.1,373.6,127.1z'/%3E%0A%3C/svg%3E"); background-size: 60%; margin-right: 0.8em; -moz-border-radius: 50%; -webkit-border-radius: 50%; border-radius: 50%; border: 1px #FFFFFF solid; }
+#xinhuaRadioMobileMod .playercoverBox .audioBtnBox .iconClose { display: none; }
+#xinhuaRadioMobileMod.jp-state-playing .playercoverBox .audioBtnBox .iconPlay { background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2055.4%2081.4'%3E%3Cpath%20fill-rule='evenodd'%20clip-rule='evenodd'%20fill='#FFFFFF'%20d='M0,81.4h11.1V0H0V81.4z%20M44.3,0v81.4h11.1V0H44.3z'/%3E%3C/svg%3E%0A"); background-position: 53% center; }
+#xinhuaRadioMobileMod .playercoverBox .audioBtnBox .iconPre { background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='49.4%200%20501.2%20319.8'%3E%3Cpolygon%20fill='#FFFFFF'%20points='550.6,0%20312.3,145.7%20312.3,0%2049.4,159.9%20312.3,319.8%20312.3,174.7%20550.6,319.8'/%3E%3C/svg%3E%0A"); }
+#xinhuaRadioMobileMod .playercoverBox .audioBtnBox .iconNext { background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2081.2%2051.8'%3E%3Cpolygon%20style='fill:#FFFFFF;'%20points='81.2,25.9%2038.7,0%2038.7,23.6%200,0%200,51.8%2038.7,28.3%2038.7,51.8'/%3E%3C/svg%3E%0A"); margin-right: 0.6em; }
+#xinhuaRadioMobileMod .jp-details { display: block; color: #FFFFFF !important; position: absolute; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; top: 50%; margin-top: -0.8em; z-index: 1; line-height: 1.6em; font-size: 14px; left: 7em; width: 10em; }
+#xinhuaRadioMobileMod .audioListBox { width: 100%; top: 0; height: 90%; z-index: 9999; overflow: auto; position: fixed; display: none; background-color: #FFFFFF; padding-bottom: 8em; background: -webkit-linear-gradient(bottom, #1d2545, #896171); /*Safari 5.1-6*/ background: -o-linear-gradient(top, #896171, #1d2545); /*Opera 11.1-12*/ background: -moz-linear-gradient(top, #896171, #1d2545); /*Fx 3.6-15*/ background: linear-gradient(to top, #896171, #1d2545); /*Standard*/ }
+
+@media screen and (min-width:375px) and (max-width:413px) {
+#xinhuaRadioMobileMod .playercoverBox .audioBtnBox { padding: 0.6em 0 0.8em 0; }
+#xinhuaRadioMobileMod .playercoverBox .audioBtnBox .btn,
+#xinhuaRadioMobileMod .playercoverBox .audioBtnBox button { height: 3em; width: 3em; }
+#xinhuaRadioMobileMod .jp-details { width: 13em; }
+}
+
+@media screen and (min-width:414px) and (max-width:736px) {
+#xinhuaRadioMobileMod .playercoverBox .audioBtnBox { padding: 0.6em 0 0.8em 0; }
+#xinhuaRadioMobileMod .playercoverBox .audioBtnBox .btn,
+#xinhuaRadioMobileMod .playercoverBox .audioBtnBox button { height: 3em; width: 3em; margin-right: 1.2em; }
+#xinhuaRadioMobileMod .jp-details { width: 14em; }
+#xinhuaRadioMobileMod .jp-details,
+#xinhuaRadioMobileMod .playercoverBox .logo { margin-top: -1em; }
+}
+
+

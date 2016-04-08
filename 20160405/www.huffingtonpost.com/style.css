@@ -1,0 +1,362 @@
+/**************************/
+/* DEV TOOLS              */
+/**************************/
+#devTools div {
+  clear: both;
+}
+#devTools button {
+  padding: 0;
+  margin: 0;
+  float: left;
+  background-color: #00a01e;
+  border: 1px solid #003a0b;
+  cursor: pointer;
+}
+#devTools button.current {
+  background-color: #00692c;
+  border: 1px solid #000301;
+  color: #ffffff;
+}
+/**************************/
+/* COMMON                 */
+/**************************/
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+* {
+  -moz-osx-font-smoothing: grayscale;
+  -moz-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+}
+html,
+body {
+  font-family: Verdana, sans-serif;
+  font-size: 13px;
+  padding: 0;
+  margin: 0;
+}
+a {
+  color: inherit;
+}
+.hidden {
+  visibility: hidden;
+}
+#container button,
+#container img,
+#container p,
+#container div {
+  position: absolute;
+}
+.bordered {
+  background-color: #00a01e;
+  overflow: hidden;
+}
+.bordered .inner {
+  top: 3px;
+  right: 3px;
+  bottom: 3px;
+  left: 3px;
+  background-color: #ffffff;
+}
+/**************************/
+/* SPECIFIC               */
+/**************************/
+#stage {
+  width: 300px;
+  height: 250px;
+}
+#container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  visibility: hidden;
+}
+#btInv {
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  border: 0;
+  -webkit-border-radius: 0;
+  border-radius: 0;
+  background-clip: padding-box;
+  cursor: pointer;
+  background-color: rgba(0, 255, 255, 0);
+}
+.RTB #btInv {
+  border: 1px solid #000000;
+}
+#bgcolor {
+  width: 100%;
+  height: 100%;
+  /*background: url("step4.gif") left top no-repeat transparent;*/
+  background-color: #ED6EA7;
+}
+#arjel {
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 30px;
+  color: #eeeeee;
+  background-color: #000000;
+  font-size: .6em;
+  font-weight: bold;
+  letter-spacing: -0.02em;
+}
+#arjel .arjel1 {
+  top: 4px;
+  width: 53%;
+  text-align: right;
+}
+#arjel .arjel2 {
+  top: 4px;
+  left: 53%;
+  width: 47%;
+  text-align: left;
+}
+#arjel .arjel3 {
+  top: 15px;
+  width: 100%;
+  text-align: center;
+}
+#btArjel {
+  position: absolute;
+  display: block;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 30px;
+  background-color: rgba(255, 0, 255, 0);
+}
+#logo {
+  left: 15px;
+  top: 15px;
+}
+#intro {
+  width: 100%;
+  height: 100%;
+}
+#intro .titre {
+  left: 41px;
+  bottom: 45px;
+  width: 233px;
+  padding: 10px 5px;
+  border: 3px solid #00a01e;
+  background-color: #ffffff;
+  color: #00692c;
+  line-height: 1.1em;
+  font-size: 21px;
+  font-weight: bold;
+  text-align: center;
+  letter-spacing: -0.05em;
+}
+#details {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+#details .date {
+  text-align: left;
+  right: 15px;
+  top: 30px;
+  width: 160px;
+  height: 38px;
+  background-color: #00a01e;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 0 3px;
+  line-height: 38px;
+}
+#details .montant {
+  background-color: #00a01e;
+  overflow: hidden;
+  width: 270px;
+  height: 90px;
+  left: 15px;
+  top: 68px;
+  clip: rect(0px, 270px, 90px, 0px);
+  color: #00692c;
+  font-size: 40px;
+  line-height: 78px;
+  font-weight: bold;
+  letter-spacing: -0.05em;
+}
+#details .montant .inner {
+  top: 3px;
+  right: 3px;
+  bottom: 3px;
+  left: 3px;
+  background-color: #ffffff;
+}
+#details .description {
+  background-color: #00a01e;
+  overflow: hidden;
+  width: 112px;
+  height: 50px;
+  left: 15px;
+  top: 155px;
+  color: #00692c;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 38px;
+  letter-spacing: -0.05em;
+}
+#details .description .inner {
+  top: 3px;
+  right: 3px;
+  bottom: 3px;
+  left: 3px;
+  background-color: #ffffff;
+}
+#details .description .eTirelire {
+  display: none;
+}
+#details .description img {
+  position: relative;
+  vertical-align: middle;
+}
+#details .description.large {
+  width: 220px;
+}
+#details .description.large .eTirelire {
+  display: inline;
+}
+#nodata .accroche {
+  background-color: #00a01e;
+  overflow: hidden;
+  width: 270px;
+  height: 70px;
+  left: 15px;
+  top: 88px;
+  clip: rect(0px, 270px, 70px, 0px);
+  color: #00692c;
+  font-size: 18px;
+  font-weight: bold;
+  letter-spacing: -0.05em;
+}
+#nodata .accroche .inner {
+  top: 3px;
+  right: 3px;
+  bottom: 3px;
+  left: 3px;
+  background-color: #ffffff;
+}
+#nodata .accroche .inner {
+  padding: 5px 8px;
+}
+#nodata .description {
+  background-color: #00a01e;
+  overflow: hidden;
+  text-align: center;
+  width: 112px;
+  height: 50px;
+  left: 15px;
+  top: 155px;
+  color: #00692c;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 38px;
+  letter-spacing: -0.05em;
+}
+#nodata .description .inner {
+  top: 3px;
+  right: 3px;
+  bottom: 3px;
+  left: 3px;
+  background-color: #ffffff;
+}
+#nodata .description .eTirelire {
+  display: none;
+}
+#nodata .description img {
+  position: relative;
+  vertical-align: middle;
+}
+#nodata .description.large {
+  width: 220px;
+}
+#nodata .description.large .eTirelire {
+  display: inline;
+}
+#outro {
+  width: 100%;
+  height: 100%;
+}
+#outro .cta {
+  background-color: #00a01e;
+  overflow: hidden;
+  left: 15px;
+  top: 74px;
+  width: 182px;
+  height: 118px;
+  clip: rect(0px, 182px, 118px, 0px);
+  color: #00692c;
+}
+#outro .cta .inner {
+  top: 3px;
+  right: 3px;
+  bottom: 3px;
+  left: 3px;
+  background-color: #ffffff;
+}
+#outro .cta .textCta {
+  width: 100%;
+  height: 100%;
+  padding: 5px 8px;
+  font-size: 17px;
+  font-weight: bold;
+  line-height: 1.2em;
+  text-align: left;
+  letter-spacing: -0.05em;
+}
+#outro .cta .btCta {
+  right: 10px;
+  bottom: 10px;
+  color: #ffffff;
+  font-size: 9px;
+  font-weight: bold;
+  text-align: left;
+  background: url('arrow.png') right center no-repeat #00a01e;
+  background-size: auto 10px;
+  padding: 6px 18px 6px 8px;
+}
+#outro .offre {
+  left: 197px;
+  top: 74px;
+  width: 91px;
+  height: 74px;
+  color: #ffffff;
+  background-color: #00a01e;
+  text-align: center;
+}
+#outro .offre .offreBefore,
+#outro .offre .offreAfter {
+  top: 10px;
+  font-size: 10px;
+  font-weight: normal;
+  width: 100%;
+  text-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+}
+#outro .offre .offreAfter {
+  top: 52px;
+}
+#outro .offre .offreMontant {
+  text-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+  top: 22px;
+  font-size: 25px;
+  font-weight: bold;
+  width: 100%;
+  font-kerning: normal;
+  -webkit-font-kerning: normal;
+}
+#outro .mentions {
+  font-size: 8px;
+  color: #ffffff;
+  font-weight: normal;
+  right: 15px;
+  top: 198px;
+}

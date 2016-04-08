@@ -1,0 +1,640 @@
+/* CURRENTLY ADDS TO AND OVERRIDES voicebox.css */
+
+
+.nytint-vb-container {
+  /* clear floats within */
+  overflow: hidden;
+}
+
+.nytint-vb-container a {
+  color: #004276;
+  text-decoration: none;
+}
+
+.nytint-vb-container a:hover {
+  text-decoration: underline;
+}
+
+.nytint-vb-title {
+  margin: 0 0 5px 0;
+  font-size: 11px;
+  font-weight: normal;
+  line-height: 1.4em;
+  text-transform: uppercase;
+  color: black;
+  font-family: arial,helvetica,sans-serif;
+  float: left;  
+}
+
+.nytint-vb-slides {
+  clear: both;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.nytint-vb-effect-slide .nytint-vb-slide {
+  float: left;
+}
+
+.nytint-vb-effect-slide .nytint-vb-slides-inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.nytint-vb-effect-fade .nytint-vb-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.nytint-vb-controls {
+  float: right;
+  width: 53px;
+  height: 16px;
+  /* margin-top: -15px; */
+}
+
+.nytint-vb-prev,
+.nytint-vb-next {
+  width: 25px;
+  height: 16px;
+  float: left;
+  display: block;
+}
+
+.nytint-vb-prev {
+  background-image: url(http://graphics8.nytimes.com/projects/assets/voicebox/stepper-left-off.png);
+  border-right: 1px #e2e2e2 solid;
+}
+
+.nytint-vb-prev:hover {
+  background-image: url(http://graphics8.nytimes.com/projects/assets/voicebox/stepper-left-on.png);
+}
+
+.nytint-vb-next {
+  background-image: url(http://graphics8.nytimes.com/projects/assets/voicebox/stepper-right-off.png);
+}
+
+.nytint-vb-next:hover {
+  background-image: url(http://graphics8.nytimes.com/projects/assets/voicebox/stepper-right-on.png);
+}
+
+/* --------------------------------------------------------------------------- */
+/* COMMENTS */
+/* --------------------------------------------------------------------------- */
+
+.nytint-vb-comment {
+  color: #333;
+}
+
+.nytint-vb-commenter {
+  line-height: 14px;
+  margin: 0;
+  font-size: 11px;  
+}
+
+.nytint-vb-commenter-name {
+  font-weight: bold;
+}
+
+.nytint-vb-comment-text {
+  font-style: italic;
+  font-size: 12px;
+  line-height: 17px;
+  font-family: Georgia, "Times New Roman";
+  margin: 5px 0 6px;
+}
+
+.nytint-vb-comment-share {
+  font-weight: normal;
+  line-height: 1.182em;
+  background-position: 0 0;
+  text-transform: capitalize;
+  background: transparent url(http://graphics8.nytimes.com/images/icons/multimedia/comment_icon.gif) no-repeat 0 0;
+  padding: 0 0 0 14px;
+  font-size: 11px;
+  font-family: arial, helvetica, sans-serif;
+}
+
+.nytint-vb-comment-hp-337 {
+  width: 337px;
+}
+
+.nytint-vb-comment-hp-337 .nytint-vb-comment-text {
+  width: 302px;
+}
+
+.nytint-vb-comment-hp-163 {
+  width: 163px;
+}
+
+.nytint-vb-comment-inline-190 {
+  width: 190px;
+}
+
+.nytint-vb-comment-front-290 {
+  width: 290px;
+}
+
+.nytint-vb-comment-inline-190 .nytint-vb-title {
+  font-weight: bold;
+  margin: 2px 0 5px;
+  color: #333;
+}
+
+.nytint-vb-comment-inline-190 .nytint-vb-prev,
+.nytint-vb-comment-inline-190 .nytint-vb-next {
+  width: 19px;
+}
+
+.nytint-vb-comment-inline-190 .nytint-vb-next {
+  background-position: -7px 0
+}
+
+.nytint-vb-comment-inline-190 .nytint-vb-controls {
+  width: 39px;
+}
+
+.nytint-vb-comment-inline-190 .nytint-vb-tweet {
+  padding: 0;
+}
+
+.nytint-vb-comment-iphone {
+  width: 300px;
+}
+
+.nytint-vb-comment-ipad-strip {
+  width: 235px;
+}
+
+.nytint-vb-comment-ipad-strip .nytint-vb-title {
+  padding-right: 23px;
+  padding-bottom: 12px;
+  font-family: 'NYTFranklinBold-Regular',arial,helvetica,sans-serif;
+  font-size: 15px;
+  line-height: 18px;
+  font-weight: normal;
+  text-transform: none;
+}
+
+/* --------------------------------------------------------------------------- */
+/* TWEETS */
+/* --------------------------------------------------------------------------- */
+
+.nytint-vb-tweet {
+  position: relative;
+  padding: 0 0 0 35px;
+  font-family: arial, helvetica, sans-serif;
+}
+
+.nytint-vb-tweet-avatar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 30px;
+  height: 30px;
+}
+
+.nytint-vb-tweet-avatar a {
+  display: block;
+  padding: 0;
+  margin: 0;
+}
+
+.nytint-vb-tweet-person {
+  font-size: 11px;
+  line-height: 13px;
+}
+
+.nytint-vb-tweet-name {
+  font-weight: bold;
+  color: #333;
+}
+
+.nytint-vb-tweet-handle {
+  color: #909090;
+}
+
+.nytint-vb-tweet-text {
+  font-family: Georgia, "Times New Roman";
+  color: #333;
+  font-size: 14px;
+  line-height: 19px;
+  padding: 3px 0 1px;
+  margin: 0;
+}
+
+.nytint-vb-tweet-metadata {
+  overflow: hidden;
+}
+
+.nytint-vb-tweet-metadata span {
+  display: block;
+  float: left;
+  font-size: 10px;
+  line-height: 16px;
+  color: #909090;
+  text-transform: none;
+  margin-right: 5px;
+}
+
+.nytint-vb-twitter-intent {
+  display: block;
+  height: 16px;
+  width: 16px;
+  margin: -2px 5px 0 0;
+  overflow: hidden;
+  text-indent: -3000em;
+  background: transparent url(http://graphics8.nytimes.com/projects/assets/voicebox/everything-spritev3.png) no-repeat 0 0;
+  float: left;
+}
+
+.nytint-vb-twitter-reply:hover {
+  background-position: -16px 0px;
+}
+
+.nytint-vb-twitter-retweet {
+  background-position: -80px 0px;
+}
+
+.nytint-vb-twitter-retweet:hover {
+  background-position: -96px 0px;
+}
+
+.nytint-vb-twitter-favorite {
+  background-position: -32px 0px;
+}
+
+.nytint-vb-twitter-favorite:hover {
+  background-position: -48px 0px;
+}
+
+/* NYT5 */
+.nytint-vb-tweet-nyt5 a {
+  color: #326891
+}
+
+.nytint-vb-tweet-nyt5 .nytint-vb-title {
+  margin: 0 0 3px 0;
+  font-size: 10px;
+  font-weight: normal;
+  line-height: 11px;
+  text-transform: uppercase;
+  color: #4d4d4d;
+  font-family: nyt-franklin, arial, helvetica, sans-serif;
+  float: left;  
+}
+
+.nytint-vb-tweet-nyt5 .nytint-vb-tweet-text {
+  font-size: 13px;
+  line-height: 18px;
+  color: #000;
+}
+
+.nytint-vb-tweet-nyt5 .nytint-vb-tweet-metadata span {
+  color: #808080;
+}
+
+.nytint-vb-tweet-nyt5 .nytint-vb-twitter-intent {
+  margin-top: 0;
+}
+
+/*respond to HP cols? */
+.aColumn .nytint-vb-tweet-nyt5 .nytint-vb-tweet,
+.layout-xsmall .nytint-vb-tweet-nyt5 .nytint-vb-tweet {
+  padding: 0;
+  margin-bottom: 15px;
+}
+
+/* HP 163 and NYT5 aCol HP*/
+
+.nytint-vb-tweet-hp-163 {
+  width: 163px;
+}
+
+.aColumn .nytint-vb-tweet-nyt5 .nytint-vb-title,
+.layout-xsmall .nytint-vb-tweet-nyt5 .nytint-vb-title {
+  margin: 3px 0 7px;
+}
+
+.nytint-vb-tweet-hp-163 .nytint-vb-tweet,
+.aColumn .nytint-vb-tweet-nyt5 .nytint-vb-tweet,
+.layout-xsmall .nytint-vb-tweet-nyt5 .nytint-vb-tweet {
+  padding: 0;
+  margin-bottom: 15px;
+}
+
+.nytint-vb-tweet-hp-163 .nytint-vb-slides {
+  clear: both;
+  margin-top: 30px;
+}
+
+.aColumn .nytint-vb-tweet-nyt5 .nytint-vb-slides,
+.layout-xsmall .nytint-vb-tweet-nyt5 .nytint-vb-slides {
+  clear: both;
+  margin-top: 15px;
+}
+
+.nytint-vb-tweet-hp-163 .nytint-vb-tweet-avatar,
+.nytint-vb-tweet-hp-163 .nytint-vb-tweet-person,
+.aColumn .nytint-vb-tweet-nyt5 .nytint-vb-tweet-avatar,
+.aColumn .nytint-vb-tweet-nyt5 .nytint-vb-tweet-person,
+.layout-xsmall .nytint-vb-tweet-nyt5 .nytint-vb-tweet-avatar,
+.layout-xsmall .nytint-vb-tweet-nyt5 .nytint-vb-tweet-person {
+  position: relative;
+  float: left;
+  display: block;
+}
+
+.nytint-vb-tweet-hp-163 .nytint-vb-tweet-person,
+.aColumn .nytint-vb-tweet-nyt5 .nytint-vb-tweet-person,
+.layout-xsmall .nytint-vb-tweet-nyt5 .nytint-vb-tweet-person {
+  width: 120px;
+  margin-left: 5px;
+}
+
+.nytint-vb-tweet-hp-163 .nytint-vb-tweet-person span,
+.aColumn .nytint-vb-tweet-nyt5  .nytint-vb-tweet-person span,
+.layout-xsmall .nytint-vb-tweet-nyt5  .nytint-vb-tweet-person span {
+  display: block;
+}
+
+.nytint-vb-tweet-hp-163 .nytint-vb-tweet-person .nytint-vb-tweet-separator,
+.aColumn .nytint-vb-tweet-nyt5 .nytint-vb-tweet-person .nytint-vb-tweet-separator,
+.layout-xsmall .nytint-vb-tweet-nyt5 .nytint-vb-tweet-person .nytint-vb-tweet-separator {
+  display: none;
+}
+
+.nytint-vb-tweet-hp-163 .nytint-vb-tweet-text,
+.aColumn .nytint-vb-tweet-nyt5 .nytint-vb-tweet-text,
+.layout-xsmall .nytint-vb-tweet-nyt5 .nytint-vb-tweet-text {
+  clear: left;
+  font-size: 12px;
+  line-height: 16px;
+}
+
+/* HP 337*/
+
+.nytint-vb-tweet-hp-337 {
+  width: 337px;
+}
+
+.nytint-vb-tweet-hp-337 .nytint-vb-tweet-text {
+  width: 302px;
+}
+
+/* INLINE 190 */
+/* Based on Biz Day jobs reports VBs */
+/* http://www.nytimes.com/2013/06/08/business/economy/us-added-175000-jobs-in-may-jobless-rate-rises-to-7-6.html?pagewanted=all */
+
+.nytint-vb-tweet-inline-190 {
+  width: 190px;
+}
+
+.nytint-vb-tweet-inline-190 .nytint-vb-title {
+  font-weight: bold;
+  margin: 2px 0 5px;
+  color: #333;
+}
+
+.nytint-vb-tweet-inline-190 .nytint-vb-prev,
+.nytint-vb-tweet-inline-190 .nytint-vb-next {
+  width: 19px;
+}
+
+.nytint-vb-tweet-inline-190 .nytint-vb-next {
+  background-position: -7px 0
+}
+
+.nytint-vb-tweet-inline-190 .nytint-vb-controls {
+  width: 39px;
+}
+
+.nytint-vb-tweet-inline-190 .nytint-vb-tweet {
+  padding: 0;
+}
+
+.nytint-vb-tweet-inline-190 .nytint-vb-tweet-separator {
+  display: none;
+}
+
+.nytint-vb-tweet-inline-190 .nytint-vb-tweet-name,
+.nytint-vb-tweet-inline-190 .nytint-vb-tweet-handle {
+  display: block;
+  padding-left: 35px;
+  margin-bottom: 3px;
+}
+
+.nytint-vb-tweet-inline-190 .nytint-vb-tweet-text {
+  line-height: 17px;
+}
+
+.nytint-vb-tweet-inline-190 .nytint-vb-twitter-intent {
+  margin: -1px 5px 0 0;
+}
+
+/* SECTION FRONT 290 */
+/* Based on Biz Day jobs reports VBs */
+
+.nytint-vb-tweet-front-290 {
+  width: 290px;
+}
+
+.nytint-vb-tweet-front-290 .nytint-vb-title {
+  padding-right: 23px;
+  line-height: 16px;
+  background: transparent url('http://graphics8.nytimes.com/images/icons/sharetools/classic/twitter.gif') no-repeat right top;
+  font-weight: bold;
+}
+
+/* iPad Strip */
+/* Based on http://www.stg.nytimes.com/packages/html/mobile/2013/misc/ipad_rail.html */
+
+.nytint-vb-tweet-ipad-strip {
+  width: 235px;
+}
+
+.nytint-vb-tweet-ipad-strip .nytint-vb-title {
+  padding-right: 23px;
+  padding-bottom: 12px;
+  font-family: 'NYTFranklinBold-Regular',arial,helvetica,sans-serif;
+  font-size: 15px;
+  line-height: 18px;
+  background: transparent url('http://graphics8.nytimes.com/images/icons/sharetools/classic/twitter.gif') no-repeat right top;
+  font-weight: normal;
+  text-transform: none;
+}
+
+.nytint-vb-tweet-ipad-strip .nytint-vb-tweet {
+  padding: 0;
+}
+
+.nytint-vb-tweet-ipad-strip .nytint-vb-tweet-separator {
+  display: none;
+}
+
+.nytint-vb-tweet-ipad-strip .nytint-vb-tweet-name,
+.nytint-vb-tweet-ipad-strip .nytint-vb-tweet-handle {
+  display: block;
+  padding-left: 35px;
+  margin-bottom: 3px;
+}
+
+.nytint-vb-tweet-ipad-strip .nytint-vb-tweet-text {
+  line-height: 17px;
+}
+
+.nytint-vb-tweet-ipad-strip .nytint-vb-twitter-intent {
+  margin: -1px 5px 0 0;
+}
+
+/* iPhone */
+/* Based on http://www.stg.nytimes.com/packages/html/mobile/2013/us/pope_twitter_iphone.html */
+
+.nytint-vb-tweet-iphone {
+  width: 300px;
+}
+
+.nytint-vb-tweet-iphone .nytint-vb-tweet-person {
+  padding-left: 20px;
+  line-height: 16px;
+  height: 16px;
+  font-family: 'NYTFranklinBold-Regular',arial,helvetica,sans-serif;
+  background: transparent url('http://graphics8.nytimes.com/images/icons/sharetools/classic/twitter.gif') no-repeat left top;
+  font-weight: normal;
+  text-transform: none;
+  display: block;
+}
+
+.nytint-vb-tweet-iphone .nytint-vb-tweet-name,
+.nytint-vb-tweet-iphone .nytint-vb-tweet-handle {
+  font-weight: normal;
+  font-family: 'NYTFranklinBold-Regular', 'times new roman', serif;
+  font-size: 12px;
+}
+
+.nytint-vb-tweet-iphone .nytint-vb-tweet-separator {
+  visibility: hidden;
+}
+
+.nytint-vb-tweet-iphone .nytint-vb-tweet-text {
+  line-height: 17px;
+  font-family: 'NYTFranklinMedium-Regular', arial, helvetica, sans-serif;
+  font-size: 12px;
+}
+
+/* --------------------------------------------------------------------------- */
+/* INSTAGRAM */
+/* --------------------------------------------------------------------------- */
+
+.nytint-vb-instagram-hp-337 {
+  width: 337px;
+}
+
+.nytint-vb-instagram-hp-337 .nytint-vb-slides-inner {
+  width: 100%;
+  overflow: hidden;
+}
+
+.nytint-vb-instagram-hp-337 .nytint-vb-slide {
+  float: left;
+}
+
+.nytint-vb-instagram-hp-337 .nytint-vb-slide img,
+.nytint-vb-instagram-hp-337 .nytint-vb-slide a {
+  height: 50px;
+  width: 50px;
+  display: block;
+  padding: 0;
+  margin: 0;
+}
+
+.nytint-vb-instagram-hp-337 .nytint-vb-slide a {
+  margin: 0 6px 6px 0;
+}
+
+.nytint-vb-instagram-gallery-refer {
+  font-family: arial, helvetica, sans-serif;
+  font-size: 11px;
+  background: transparent url(http://graphics8.nytimes.com/projects/assets/voicebox/instagram.png) no-repeat 0 0;
+  padding-left: 21px;
+  line-height: 16px;
+  min-height: 16px;
+}
+
+.nytint-vb-instagram-iphone {
+  width: 300px;
+}
+
+.nytint-vb-quote-ipad-strip {
+  width: 235px;
+}
+
+.nytint-vb-instagram-ipad-strip .nytint-vb-title {
+  padding-right: 23px;
+  padding-bottom: 12px;
+  font-family: 'NYTFranklinBold-Regular',arial,helvetica,sans-serif;
+  font-size: 15px;
+  line-height: 18px;
+  font-weight: normal;
+  text-transform: none;
+}
+
+/* --------------------------------------------------------------------------- */
+/* QUOTES */
+/* --------------------------------------------------------------------------- */
+
+.nytint-vb-quote .nytint-vb-author {
+  text-align: right;
+  font-family: Georgia, "Times New Roman";
+  font-size: 12px;
+  padding-right: 10px;
+}
+
+.nytint-vb-quote .nytint-vb-author-name {
+  font-weight: bold;
+  padding-left: 4px;
+}
+
+.nytint-vb-quote-hp-337 {
+  width: 337px;
+}
+
+.nytint-vb-quote-hp-337 .nytint-vb-quote-text {
+  width: 302px;
+}
+
+.nytint-vb-quote-refer {
+  margin-top: 5px;
+}
+
+/* iPhone */
+/* Based on http://www.nytimes.com/packages/html/mobile/2013/us/26scotus_comments_iphone.html */
+
+.nytint-vb-quote-iphone {
+  width: 300px;
+}
+
+.nytint-vb-container.nytint-vb-quote-iphone a {
+  color: #000;
+}
+
+.nytint-vb-quote-ipad-strip {
+  width: 235px;
+}
+
+.nytint-vb-quote-ipad-strip .nytint-vb-title {
+  padding-right: 23px;
+  padding-bottom: 12px;
+  font-family: 'NYTFranklinBold-Regular',arial,helvetica,sans-serif;
+  font-size: 15px;
+  line-height: 18px;
+  font-weight: normal;
+  text-transform: none;
+}
+/*
+
+*/

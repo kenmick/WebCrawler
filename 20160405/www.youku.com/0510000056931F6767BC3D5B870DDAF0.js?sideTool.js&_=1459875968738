@@ -1,0 +1,1183 @@
+/**
+ * ä¾§è¾¹æ 
+ * @author fuwenqing@youku.comfff
+ *
+ */
+(function () {
+
+    UC_DOMAIN = window.UC_DOMAIN || "i.youku.com";
+
+    var SideTool = {
+        tool: 'sideTool',
+        token: '',
+        curpanel: '',
+        loginUID: 0,
+        tmpUID: 0,
+        isfirstcome: true,
+        shoppingisshow: true,
+        gotopisshow: true,
+        appQrcodeisshow: true,
+        isgoldactivity: false,
+        classOpen: 'yk-toolbar-group-open',
+        classHover: 'yk-toolbar-group-hover',
+        $curOpenGroup: null,
+        scrollBarWidth: null,
+
+        modleicon: {
+            appQrcode: {modlename: 'appQrcode', modleitemid: 'iconitemqrcode', modlegroupid: 'icongroupqrcode', callback: 'SideTool.showAppQrcode', isshow: true},
+            eshop: {modlename: 'eshop', modleitemid: 'iconitemshopping', modlegroupid: 'icongroupshopping', callback: 'SideTool.showShoppingList', isshow: true},
+            gotop: {modlename: 'gotop', modleitemid: 'iconitemgotop', modlegroupid: 'icongroupgotop', callback: '', isshow: true},
+            lightoff: {modlename: 'lightoff', modleitemid: 'iconitemlighton', modlegroupid: 'lightoff', callback: '', isshow: true},
+            feedback: {modlename: 'feedback', modleitemid: 'iconitemfeedback', modlegroupid: 'icongroupfeedback', callback: '', isshow: true}
+        },
+        panel: {
+            shopping: 'panelshopping',
+            shoppinginfo: 'panelshoppinginfo',
+            shoppinglist: 'panelshoppinglist'
+        },
+        toolbar: {
+            service: 'toolbarservice'
+        },
+        light: {
+            isshow: false,
+            lstatus: 'on',
+            mask: 'playshow_mask',
+            dark: 'sideToolDark',
+            on: 'lighton',
+            cookie: { name: 'light', value: { on: 'on', off: 'off' }, expires: 3600 }
+        },
+        tips: {
+            eshop: {showmodle: 'icongroupshopping', modleotherid: 'cart', text: '', cookietime: 365, isshow: false}
+        },
+
+        logoutshopping: '<div class="yk-toolbar-subscript-nologin"><span>ç»å½åï¼è´­ç©è½¦ä¸­çååå°æ°¸ä¹ä¿å­~</span><a class="yk-toolbar-link-block yk-toolbar-link-block-blue" href="javascript:;" onclick="login({type:\'toolbar\',callBack:\'SideTool.showModleEvent\'},SideTool.modleicon.eshop);return false;">ç«å³ç»å½</a></div>',
+        shoppingfooter: '<div class="yk-toolbar-mod-ft"><img src="http://static.youku.com/index/img/toolbar/scroll_cover_ft.png" class="yk-toolbar-scover yk-toolbar-scover-ft"><div class="yk-toolbar-mod-links "><a href="http://' + UC_DOMAIN + '/i/">æ¥çå¨é¨</a></div></div>',
+        noshoppingfooter: '<div class="yk-toolbar-mod-ft"><img src="http://static.youku.com/index/img/toolbar/scroll_cover_ft.png" class="yk-toolbar-scover yk-toolbar-scover-ft"><div class="yk-toolbar-mod-links "><a href="http://' + UC_DOMAIN + '/i/">æ¥çå¨é¨</a></div></div>',
+        shoppingheader: '<div class="yk-toolbar-mod-hd"><img src="http://static.youku.com/index/img/toolbar/scroll_cover_hd.png" class="yk-toolbar-scover yk-toolbar-scover-hd"><div class="yk-toolbar-mod-title"><a class="mod-title-link mod-title-link-extend"><span class="yk-toolbar-group-item-icon yk-toolbar-group-item-icon-extend icon-cart-hd"></span><span class="yk-toolbar-mod-title-txt">è´­ç©è½¦</span></a></div><!--<span class="hd-cart-num" id="goodsnum"></span>--><a id="newhot" onclick="SideTool._eshopStatisticsClothCoad(\'click\',\'cart_link \',\'\',\'\',\'\',\'\',\'' + encodeURIComponent('http://wanhuo.tudou.com/') + '\',\'\');" href="http://wanhuo.tudou.com/" target="_blank" class="hd-cart-activity"><i class="yk-toolbar-ico icon-flame"></i>æ°åç­å<span class="yk-toolbar-notice-aim" id="iconnewhot"></span></a></div>',
+        shoppingnull: '<div class="yk-toolbar-mod-bd"><div class="yk-toolbar-cart-11ad"><a onclick="SideTool._eshopStatisticsClothCoad(\'click\',\'cart_banner \',\'\',\'\',\'\',\'\',\'' + encodeURIComponent('http://c.youku.com/bkbm/index') + '\',\'\');" href="http://c.youku.com/bkbm/index.html" target="_blank"></a></div><div class="yk-toolbar-subscript-nologin"><span>æ¨è¿æ²¡æéè´­ååå¢~</span></div><img class="cart-tips" src="http://static.youku.com/index/img/toolbar/toolbar_tips_04.png"></div>',
+
+        loading: '<div class="yk-toolbar-loading-wrap" style="display:;"><div class="yk-toolbar-loading"><span class="ico__loading_64"></span></div></div>',
+
+        appQrcodeInfo: '<div class="qrcode-arrow"></div><p>ä¸è½½ææºå®¢æ·ç«¯</p><img src="http://static.youku.com/index/img/header/app-code.jpg" width="100"><span>å¾®ä¿¡æ«ä¸æ«</span><span>è§é¢éæ¶ç</span>',
+        init: function () {
+
+            var _this = this;
+            var isHide = _this.isHideSideTool();
+            if (isHide) {
+                return;
+            }
+            _this.initSideToolFrame();
+            setTimeout(function () {
+                _this.initSideTool();
+                _this.getOperaData();
+            }, 100);
+        },
+        isHideSideTool: function () {
+            if ($(this.light.mask) && $(this.light.dark)) {
+                this.light.isshow = true;
+            }
+            if (typeof(window.isshoweshop) != "undefined" && window.isshoweshop == "false") {
+                this.shoppingisshow = false; //é¦é¡µå±è½è´­ç©è½¦
+            }
+            if (typeof(window.isshowtop) != "undefined" && window.isshowtop == "false") {
+                this.gotopisshow = false;
+                window.lottery_open_sidetool = false; //è®¢éé¡µä¸éè¦è¿è¥ä½ååå°é¡¶é¨å¾æ 
+            }
+            if (typeof(window.yk_toolbar_close) != "undefined") {
+                return true;
+            }
+            var ua = navigator.userAgent.toLowerCase();
+            if (ua.match(/iphone|ipod|itouch|android|windows phone|ipad/i) && $('padsideTool')) {
+                return true;
+            }
+        },
+        initSideToolFrame: function () {
+            this.sideT = document.getElementById(this.tool);
+            if (!this.sideT) {
+                return false;
+            } else {
+                this.sideT.style.display = 'block';
+            }
+
+        },
+        bind: function () {
+            var _this = this;
+
+            //äºç»´ç 
+            _this.showModleEventBind(_this.modleicon.appQrcode);
+
+            //è´­ç©è½¦
+            _this.showModleEventBind(_this.modleicon.eshop);
+
+            //ç¹å»åå°é¡¶é¨æé®
+            if ($(_this.modleicon.gotop.modleitemid)) {
+                _this.showModleEventBind(_this.modleicon.gotop);
+
+                this.sideToolGoTop();
+                this._addEvent(window, 'scroll', function () {
+                    _this.sideToolGoTop();
+                });
+            }
+
+            //å¼ç¯å³ç¯
+            if (_this.light.isshow == true) {
+                _this.showModleEventBind(_this.modleicon.lightoff);
+
+                var lightOff = $(_this.modleicon.lightoff.modleitemid);
+                var lightOn = $(_this.light.on);
+
+                if (lightOff) {
+                    lightOff.onclick = function () {
+                        _this.curpanel = '';
+                        if (Light) Light.off();
+                    };
+                }
+                if (lightOn) {
+                    lightOn.onclick = function () {
+                        if (Light) Light.on();
+                    };
+                }
+                var stat = window.location.href.indexOf("_l_off");
+                if (stat !== -1) {
+                    if (Light) Light.off();
+                }
+            }
+
+            //åé¦
+            _this.showModleEventBind(_this.modleicon.feedback);
+
+            //çªå£ç¹å»å³é­å³ä¾§å·¥å·æ æµ®å±
+            if (this.sideT) {
+                this.sideT.onclick = function (event) {
+                    var e = event || window.event;
+                    if (e.stopPropagation) {
+                        e.stopPropagation();
+                    } else {
+                        e.cancelBubble = true;
+                    }
+                }
+            }
+            if ($('qheader_userlog')) {
+                $('qheader_userlog').onclick = function (event) {
+                    var e = event || window.event;
+                    if (e.stopPropagation) {
+                        e.stopPropagation();
+                    } else {
+                        e.cancelBubble = true;
+                    }
+                }
+            }
+            _this._addEvent(document, 'click', function () {
+                if ($(_this.modleicon.eshop.modlegroupid) && $(_this.modleicon.eshop.modlegroupid).className.indexOf(_this.classOpen) != -1) {
+                    _this.showModleEvent(SideTool.modleicon.eshop, 2);
+                }
+                if ($(_this.modleicon.appQrcode.modlegroupid) && $(_this.modleicon.appQrcode.modlegroupid).className.indexOf(_this.classOpen) != -1) {
+                    _this.showModleEvent(SideTool.modleicon.appQrcode, 2);
+                }
+                _this.curpanel = '';
+            });
+
+            //æ´»å¨
+//			_this.lottery();
+
+            //é£å¨ææ
+            _this.flyInit();
+
+        },
+
+        showModleEventBind: function (modleobj) {
+            if (!modleobj.modlename || !modleobj.modleitemid || !modleobj.modlegroupid || !modleobj.isshow) {
+                return false;
+            }
+            var modlename = modleobj.modlename;
+            var modleitemid = modleobj.modleitemid;
+            var modlegroupid = modleobj.modlegroupid;
+            var callback = '';
+            if (modleobj.callback) {
+                callback = eval(modleobj.callback);
+            }
+            if ($(modleitemid)) {
+                SideTool._addEvent($(modleitemid), 'mouseenter', function () {
+                    if ($(modlegroupid).className.indexOf(SideTool.classOpen) == -1) {
+                        SideTool._addHover($(modlegroupid), SideTool.classHover);
+                    }
+                });
+                SideTool._addEvent($(modleitemid), 'mouseleave', function () {
+                    SideTool._removeHover($(modlegroupid), SideTool.classHover);
+                });
+                if (SideTool.isgoldactivity) {
+
+                    if ($('showQrcode')) {
+                        $('showQrcode').remove();
+                    }
+
+                    if ($('goldgif')) {
+                        $('goldgif').style.display = "block";
+                    }
+                } else {
+
+                    if ($('showAppQrcode')) {
+                        $('showAppQrcode').remove();
+                    }
+
+                }
+
+                if (modlename != 'gotop' && modlename != 'lightoff' && modlename != 'feedback') {
+                    if (modlename == 'appQrcode' && window.screen.width >= 1600 && SideTool.appQrcodeisshow === true) {
+                        if (callback) {
+                            callback();
+                            $('icongroupqrcode').childNodes[1].className += ' yk-toolbar-group-open';
+                            //$('qrcodemask').style.display = 'block';
+                            document.getElementsByClassName("qrcode-popup")[0].style.display = "block"
+
+                        }
+
+                        //éå¸æ´»å¨
+                        if ($('goldgif')) {
+                            $('goldgif').style.display = 'none';
+                            Log.log(1, 'tp=1&cp=4010726&cpp=1000978');
+                        }
+                    }
+                    if (modlename == 'appQrcode') { //éå¸æ´»å¨
+                        if ($('goldgif')) {
+                            callback();
+                            $('goldgif').onclick = function () {
+                                $('goldgif').style.display = 'none';
+                                SideTool.slideToggle.call($(modleitemid), SideTool);
+                                Log.log(1, 'tp=1&cp=4010726&cpp=1000978');
+                            }
+                        }
+                    }
+                    $(modleitemid).onclick = function () {
+                        if (SideTool.isgoldactivity && $('goldgif')) {
+                            if (modlename == "appQrcode") {
+                                if ($('showAppQrcode').style.display == 'block') {
+                                    $('goldgif').style.display = 'block';
+                                } else {
+                                    $('goldgif').style.display = 'none';
+                                    Log.log(1, 'tp=1&cp=4010726&cpp=1000978');
+                                }
+                            } else {
+                                if ($('panelshoppinginfo').style.display == 'block') {
+                                    $('goldgif').style.display = 'block';
+                                } else {
+                                    $('goldgif').style.display = 'none';
+
+                                }
+                            }
+                        }
+                        if (modlename != 'setting') {
+                            SideTool.slideToggle.call(this, SideTool);
+                        }
+                        setTimeout(function () {
+                            if ($(modlegroupid).className.indexOf(SideTool.classOpen) != -1) {
+                                SideTool.curpanel = modlename;
+                                if (callback) {
+                                    callback();
+                                }
+                            } else {
+                                SideTool.curpanel = '';
+                                if (modlename == 'setting' && callback) {
+                                    callback();
+                                }
+                            }
+                        }, 50);
+                        //è´­ç©è½¦ç»è®¡å¸ç¹
+                        if (modlename == 'eshop') {
+                            SideTool._eshopStatisticsClothCoad('click', 'cart_icon', '', '', '', '', '', '');
+                        }
+                    };
+                }
+            }
+        },
+        showModleEvent: function (modleobj, type) {
+            if (!modleobj.modlename || !modleobj.modleitemid || !modleobj.modlegroupid || !modleobj.isshow) {
+                return false;
+            }
+            var modlename = modleobj.modlename;
+            var modleitemid = modleobj.modleitemid;
+            var modlegroupid = modleobj.modlegroupid;
+            if (typeof(type) == 'undefined') {
+                type = 1;
+            }
+            var callback = '';
+            if (modleobj.callback) {
+                callback = eval(modleobj.callback);
+            }
+            if ($(modleitemid)) {
+                if (modlename != 'gotop' && modlename != 'lightoff' && modlename != 'feedback' && modlename != 'setting') {
+                    if (type == 1) {//1 å±å¼é¢æ¿
+                        if (SideTool.isgoldactivity) {
+                            if ($('goldgif')) {
+                                $('goldgif').style.display = "none";
+                            }
+                        }
+                        SideTool.curpanel = modlename;
+                        if ($(modlegroupid).className.indexOf(SideTool.classOpen) == -1) {
+                            SideTool.slideToggle.call($(modleitemid), SideTool);
+                        }
+                        setTimeout(function () {
+                            if (callback) {
+                                callback();
+                            }
+                        }, 50);
+                    } else if (type == 2) {//2 å³é­é¢æ¿
+                        if (SideTool.isgoldactivity) {
+                            if ($('goldgif')) {
+                                $('goldgif').style.display = "block";
+                            }
+                        }
+                        SideTool.curpanel = '';
+                        if ($(modlegroupid).className.indexOf(SideTool.classOpen) != -1) {
+                            SideTool.slideToggle.call($(modleitemid), SideTool);
+                        }
+                    }
+                }
+            }
+        },
+
+        initSideTool: function () {
+
+            if (SideTool.isfirstcome && islogin()) {
+
+                //è´­ç©è½¦ç»éåèªå¨å¯¼å¥
+                if (SideTool.shoppingisshow) {
+                    var img = new Image();
+                    img.src = 'http://hudong.pl.youku.com/interact/eshop/do/importgoods';
+                }
+            }
+
+            //è´­ç©è½¦æªè¯»æ°æ·»å 
+            var curUid = SideTool.getUID();
+            if (!islogin()) {
+                curUid = Nova.Cookie.get('__ysuid');
+            }
+            var unreadNum = Nova.Cookie.get('st_n_s' + curUid) || 0;
+            if ($('newnoticeiconshopping') && (unreadNum > 0 || !Nova.Cookie.get('newpro'))) {
+                //$('newnoticeiconshopping').innerHTML = unreadNum;
+                $('newnoticeiconshopping').style.display = 'block';
+            }
+        },
+        //äºç»´ç 
+        showAppQrcode: function () {
+            var appQrcodeObj = $('showAppQrcode');
+            var QrcodeObj = $('showQrcode');
+            if (!appQrcodeObj) {
+                return false;
+            }
+            if (SideTool.isgoldactivity) {
+                //appQrcodeObj.style.display="block";
+                //appQrcodeObj.innerHTML = SideTool.appAwardQrcodeInfo;
+                if ($('closeBkbz')) {
+                    $('closeBkbz').onclick = function () {
+                        SideTool.slideToggle.call($('iconitemqrcode'), SideTool);
+                        $('goldgif').style.display = 'block';
+                    }
+                }
+            } else {
+                // QrcodeObj.style.display="block";
+                //appQrcodeObj.innerHTML = SideTool.appQrcodeInfo;
+            }
+        },
+        showShoppingList: function () {
+            var shoppingListObj = $(SideTool.panel.shoppinglist);
+            if (!shoppingListObj) {
+                return false;
+            }
+            shoppingListObj.innerHTML = SideTool.loading;
+            Nova.addScript('http://nc.youku.com/index_QSideToolJSONP?function[]=getGoodsList&callback[]=SideTool.showShoppingListCallback');
+        },
+
+        showShoppingListCallback: function (data) {
+            var shoppingListObj = $(SideTool.panel.shoppinglist);
+            var shoppingList = "";
+            var shoppingDiv = document.createElement("div");
+            if (data && data['goodslist']) {
+                var listlen = data['goodslist'].length;
+                for (var i = 0; i < listlen; i++) {
+                    shoppingList += '<div class="yk-toolbar-cart-items" name="shoppinglist" rim_source="' + data['goodslist'][i]['rim_source'] + '" is_viewed="' + data['goodslist'][i]['is_viewed'] + '" id="goods_hover_' + data['goodslist'][i]['id'] +
+                        '" gid="' + data['goodslist'][i]['id'] + '" mid="' + data['goodslist'][i]['mid'] + '" vid="' + data['goodslist'][i]['video_id_encode'] + '">';
+                    if (data['goodslist'][i]['m_status'] == 1) {
+                        shoppingList += '<a target="_blank" href="http://nc.youku.com/index_shoppingCartToBuy?vid=' + data['goodslist'][i]['video_id_encode'] + '&mid=' + data['goodslist'][i]['mid'] + '&murl=' +
+                            encodeURIComponent(data['goodslist'][i]['m_url']) + '" onclick="SideTool._eshopStatisticsClothCoad(\'click\',\'buy\',\'\',\'' +
+                            data['goodslist'][i]['video_id_encode'] + '\',\'' + data['goodslist'][i]['mid'] + '\',\'\',\'' + encodeURIComponent(data['goodslist'][i]['m_url']) +
+                            '\',\'' + data['goodslist'][i]['rim_source'] + '\');">';
+                    }
+                    shoppingList += '<div class="yk-toolbar-cart-icon"><img class="product-from" src="' + data['goodslist'][i]['m_source_icon'] + '" alt=""><img src="' +
+                        data['goodslist'][i]['m_image'] + '" alt="' + data['goodslist'][i]['m_title'] + '"></div><div class="yk-toolbar-cart-title" title="' +
+                        data['goodslist'][i]['m_title'] + '">' + data['goodslist'][i]['m_title'] + '</div><div class="yk-toolbar-cart-price">' +
+                        '<span class="yk-toolbar-cart-curren-price">Â¥ ' + data['goodslist'][i]['m_cprice'] + '</span><span class="yk-toolbar-cart-old-price"><del>Â¥ ' +
+                        data['goodslist'][i]['m_price'] + '</del></span></div>';
+                    if (data['goodslist'][i]['m_status'] == 1) {
+                        shoppingList += '</a>';
+                    }
+                    shoppingList += '<div class="yk-toolbar-cart-link"><div class="yk-toolbar-cart-link-icon"></div><a onclick="SideTool._eshopStatisticsClothCoad(\'click\',\'cart_video\',\'\',\'' +
+                        data['goodslist'][i]['video_id_encode'] + '\',\'' + data['goodslist'][i]['mid'] + '\',\'\',\'http://v.youku.com/v_show/id_' + data['goodslist'][i]['video_id_encode'] +
+                        '.html?firsttime=' + data['goodslist'][i]['video_time'] + '\',\'' + data['goodslist'][i]['rim_source'] + '\');" href="http://v.youku.com/v_show/id_' + data['goodslist'][i]['video_id_encode'] + '.html?firsttime=' +
+                        data['goodslist'][i]['video_time'] + '" title="' + data['goodslist'][i]['video_title'] + '" target="_blank">' + SideTool._cutStr(data['goodslist'][i]['video_title'], 18, '...') + '</a></div>';
+                    if (data['goodslist'][i]['m_status'] == 1) {
+                        shoppingList += '<div class="yk-toolbar-cart-goshoping"><a target="_blank" href="http://nc.youku.com/index_shoppingCartToBuy?vid=' +
+                            data['goodslist'][i]['video_id_encode'] + '&mid=' + data['goodslist'][i]['mid'] + '&murl=' + encodeURIComponent(data['goodslist'][i]['m_url']) +
+                            '" onclick="SideTool._eshopStatisticsClothCoad(\'click\',\'buy\',\'\',\'' + data['goodslist'][i]['video_id_encode'] + '\',\'' +
+                            data['goodslist'][i]['mid'] + '\',\'\',\'' + encodeURIComponent(data['goodslist'][i]['m_url']) + '\',\'' + data['goodslist'][i]['rim_source'] + '\');">å»è´­ä¹°&gt;</a></div>';
+                    } else if (data['goodslist'][i]['m_status'] == -4) {
+                        shoppingList += '<div class="yk-toolbar-cart-unshoping">å·²ä¸æ¶</div>';
+                    }
+                    shoppingList += '<div class="yk-toolbar-item-closeicon" id="goods_del_' + data['goodslist'][i]['id'] + '"></div></div>';
+                }
+            }
+
+            if (shoppingList) {
+                if (!islogin()) {
+                    shoppingList = SideTool.logoutshopping + shoppingList;
+                }
+                shoppingDiv.innerHTML = SideTool.shoppingheader + '<div class="yk-toolbar-mod-bd" id="shoppinglists"><div class="yk-toolbar-cart-11ad">' +
+                    '<a onclick="SideTool._eshopStatisticsClothCoad(\'click\',\'cart_banner\',\'\',\'\',\'\',\'\',\'' +
+                    encodeURIComponent('http://c.youku.com/bkbm/index') + '\',\'\');" href="http://c.youku.com/bkbm/index.html" target="_blank"></a></div>' +
+                    shoppingList + '</div>';
+                shoppingListObj.appendChild(shoppingDiv);
+                setTimeout(function () {
+                    SideTool.shoppingShowHover();
+                }, 300);
+            } else {
+                shoppingDiv.innerHTML = SideTool.shoppingheader + SideTool.shoppingnull;
+                shoppingListObj.appendChild(shoppingDiv);
+            }
+
+
+            var max_total = 20;
+            if (islogin()) {
+                max_total = 100;
+            }
+            if ($('goodsnum') && data['total']) {
+                $('goodsnum').innerHTML = '<span id="realgoodsnum">' + data['total'] + '</span>/<span>' + max_total + '</span>';
+            }
+
+            //å°"newpro"åå¥cookie
+            if (Nova.Cookie.get('newpro') == null) {
+                Nova.Cookie.set('newpro', 'had seen', 365)
+            }
+            ;
+
+            //æ¸é¤è´­ç©è½¦çº¢ç¹æç¤º
+            if ($('newnoticeiconshopping')) {
+                $('newnoticeiconshopping').style.display = "none";
+                $('newnoticeiconshopping').innerHTML = "";
+            }
+
+            //è´­ç©è½¦ç»è®¡å¸ç¹
+            SideTool._eshopStatisticsClothCoad('show', 'cart_list', data['total'], '', '', '', '', '');
+
+            //"newhot"çº¢ç¹é»è¾
+            if ($('newhot')) {
+                if (Nova.Cookie.get('newhot') != null) {
+                    $('iconnewhot').style.display = "none";
+                } else {
+                    $('newhot').onclick = function (event) {
+                        //é»æ­¢åæ³¡
+                        var e = event || window.event;
+                        if (e.stopPropagation) {
+                            e.stopPropagation();
+                        } else {
+                            e.cancelBubble = true;
+                        }
+                        Nova.Cookie.set('newhot', 'had clicked', 365);
+                        $('iconnewhot').style.display = "none";
+                    };
+                }
+            }
+        },
+
+        shoppingShowHover: function () {
+            var shoppingDivList = SideTool._getElementsByName('div', 'shoppinglist');
+            if (shoppingDivList) {
+                var not_viewed_id = '';
+                var listLen = shoppingDivList.length;
+                for (var i = 0; i < listLen; i++) {
+                    var gid = shoppingDivList[i].getAttribute('gid');
+                    var is_viewed = shoppingDivList[i].getAttribute('is_viewed');
+                    var mid = shoppingDivList[i].getAttribute('mid');
+                    var vid = shoppingDivList[i].getAttribute('vid');
+                    var rim_source = shoppingDivList[i].getAttribute('rim_source');
+                    if (parseInt(is_viewed) === 0) {
+                        not_viewed_id += gid + ',';
+                    }
+                    (function (gid, mid, vid) {
+                        if ($('goods_hover_' + gid)) {
+                            SideTool._addEvent($('goods_hover_' + gid), 'mouseenter', function () {
+                                this.className = "yk-toolbar-cart-items yk-toolbar-cart-items-mouseover";
+                            });
+                            SideTool._addEvent($('goods_hover_' + gid), 'mouseleave', function () {
+                                this.className = "yk-toolbar-cart-items";
+                            });
+                        }
+                        if ($('goods_del_' + gid)) {
+                            $('goods_del_' + gid).onclick = function () {
+                                Nova.addScript('http://nc.youku.com/index_QSideToolJSONP?function[]=shoppingCartDelGoods&callback[]=SideTool.shoppingCartDelGoodsCallback&gid=' + gid);
+
+                                //ç»è®¡å¸ç¹
+                                SideTool._eshopStatisticsClothCoad('click', 'delete', '', vid, mid, '', '', rim_source);
+                            };
+                        }
+                    })(gid, mid, vid);
+                }
+
+                //æ¸é¤æªè¯»æ°
+                not_viewed_id = not_viewed_id.substr(0, not_viewed_id.length - 1);
+                if (not_viewed_id) {
+                    var img = new Image();
+                    img.src = 'http://hudong.pl.youku.com/interact/eshop/do/updatestatus?data={"ids":"' + not_viewed_id + '"}';
+                }
+                var curUid = SideTool.getUID();
+                if (!islogin()) {
+                    curUid = Nova.Cookie.get('__ysuid');
+                }
+                if (Nova.Cookie.get('st_n_s' + curUid)) {
+                    Nova.Cookie.set('st_n_s' + curUid, '', -1);
+                }
+            }
+        },
+
+        shoppingCartDelGoodsCallback: function (data) {
+            if (data && data['ret'] === true && data['gid']) {
+                if ($('goods_hover_' + data['gid'])) {
+                    $('goods_hover_' + data['gid']).parentNode.removeChild($('goods_hover_' + data['gid']));
+                }
+                if ($('realgoodsnum')) {
+                    var realgoodsnum = parseInt($('realgoodsnum').innerHTML) - 1;
+                    if (realgoodsnum <= 0) {
+                        realgoodsnum = 0;
+                    }
+                    $('realgoodsnum').innerHTML = realgoodsnum;
+                    if (realgoodsnum === 0) {
+                        $(SideTool.panel.shoppinglist).innerHTML = SideTool.shoppingheader + SideTool.shoppingnull;
+                    }
+                }
+            }
+        },
+        playerDoAction: function (obj) {
+            if (!obj || !obj.type) {
+                return false;
+            }
+            if (!obj.unread) {
+                obj.unread = 1;
+            }
+            var curUid = SideTool.loginUID;
+            if (!SideTool.isLogin) {
+                curUid = SideTool.tmpUID;
+            }
+            var unreadNumKey = 'st_n_s' + curUid;
+            var isShowLayerKey = 'st_e_g_l';
+            if (obj.type == 1) {
+                if (!Nova.Cookie.get(isShowLayerKey)) {
+                    var shoppingGuidLayer = document.createElement('div');
+                    shoppingGuidLayer.className = 'yk-cart-cover';
+                    shoppingGuidLayer.setAttribute("id", "sidetoolshoppingguidlayer");
+                    shoppingGuidLayer.innerHTML = '<div class="yk-cart-cover-left"></div><div class="yk-cart-cover-right"></div><div class="yk-cart-cover-tips">' +
+                        '<span class="yk-cart-cover-tips-title">æ¨éçå®è´å¨è¿éå</span><span class="yk-cart-cover-tips-btn"><a>æç¥éäº</a></span></div>';
+                    document.body.appendChild(shoppingGuidLayer);
+                    setTimeout(function () {
+                        if ($('sidetoolshoppingguidlayer')) {
+                            $('sidetoolshoppingguidlayer').onclick = function (event) {
+                                //é»æ­¢åæ³¡
+                                var e = event || window.event;
+                                if (e.stopPropagation) {
+                                    e.stopPropagation();
+                                } else {
+                                    e.cancelBubble = true;
+                                }
+                                $('sidetoolshoppingguidlayer').parentNode.removeChild($('sidetoolshoppingguidlayer'));
+                                SideTool.showModleEvent(SideTool.modleicon.eshop);
+                            }
+                        }
+                    }, 100);
+                    Nova.Cookie.set(isShowLayerKey, 1, 365);
+                    //è´­ç©è½¦ç»è®¡å¸ç¹
+                    SideTool._eshopStatisticsClothCoad('show', 'cart_cover', '', '', '', '', '', '');
+                }
+                if ($('newnoticeiconshopping')) {
+                    //$('newnoticeiconshopping').innerHTML = obj.unread;
+                    $('newnoticeiconshopping').style.display = 'block';
+                }
+                Nova.Cookie.set(unreadNumKey, obj.unread, 30);
+            } else if (obj.type == 2) {
+                if ($('sidetoolshoppingguidlayer')) {
+                    $('sidetoolshoppingguidlayer').parentNode.removeChild($('sidetoolshoppingguidlayer'));
+                }
+                if (Nova.Cookie.get(isShowLayerKey)) {
+                    Nova.Cookie.set(isShowLayerKey, '', -1);
+                }
+                SideTool.showModleEvent(SideTool.modleicon.eshop);
+            } else if (obj.type == 3) {
+                SideTool.showModleEvent(SideTool.modleicon.eshop, 2);
+                SideTool.checkPositionOfCart(obj.xcoor, obj.ycoor, 'cart', SideTool);
+                setTimeout(function () {
+                    if ($('newnoticeiconshopping')) {
+                        if (!$('newnoticeiconshopping').innerHTML) {
+                            //$('newnoticeiconshopping').innerHTML = obj.unread;
+                            $('newnoticeiconshopping').style.display = 'block';
+                            Nova.Cookie.set(unreadNumKey, obj.unread, 30);
+                        } else {
+                            var oldNum = parseInt($('newnoticeiconshopping').innerHTML);
+                            //$('newnoticeiconshopping').innerHTML = oldNum + 1;
+                            $('newnoticeiconshopping').style.display = 'block';
+                            Nova.Cookie.set(unreadNumKey, oldNum + 1, 30);
+                        }
+                    }
+                }, 1000);
+            }
+        },
+        sideToolGoTop: function () {
+            var _this = this;
+            var sideT = this.sideT;
+            var goTop = document.getElementById(_this.modleicon.gotop.modlegroupid);
+            var clientHeight = this.getWindowHeight();
+            var scrollTop = this.getScrollTop();
+            if (parseInt(navigator.userAgent.substring(navigator.userAgent.indexOf("MSIE") + 5)) == 6) {//IE6
+                var h = sideT.offsetHeight;
+                var top = scrollTop + clientHeight - h - 20;
+                sideT.style.top = top + 'px';
+                var t = scrollTop + clientHeight - 58 - 20;
+                lightopen.style.top = t + 'px';
+            }
+            if (!scrollTop || !clientHeight || scrollTop < clientHeight / 2) {
+                $('icongroupgotop').style.display = 'none';
+            } else {
+                $('icongroupgotop').style.display = 'block';
+                goTop.onclick = function () {
+                    document.body.scrollTop = 0;
+                    document.documentElement.scrollTop = 0;
+                };
+            }
+        },
+        //é£å¨åå§å
+        flyInit: function () {
+            var _this = this;
+            if (window.jQuery == undefined) {
+                var jqueryUrl = [location.protocol, '//', 'static.youku.com', '/js/jquery.js'].join('');
+                _this._sidetoolLoadJS(jqueryUrl, function () {
+                    jQuery.noConflict();
+                    _this.fly();
+                });
+            } else {
+                _this.fly();
+            }
+        },
+        //é£å¨ææ
+        fly: function () {
+            var _this = this;
+            var baseEasings = {};
+            var $ = jQuery;
+            $.each([ "Quad", "Cubic", "Quart", "Quint", "Expo" ], function (i, name) {
+                baseEasings[ name ] = function (p) {
+                    return Math.pow(p, i + 2);
+                };
+            });
+            $.extend(baseEasings, {
+                Sine: function (p) {
+                    return 1 - Math.cos(p * Math.PI / 2);
+                },
+                Circ: function (p) {
+                    return 1 - Math.sqrt(1 - p * p);
+                },
+                Elastic: function (p) {
+                    return p === 0 || p === 1 ? p :
+                        -Math.pow(2, 8 * (p - 1)) * Math.sin(( (p - 1) * 80 - 7.5 ) * Math.PI / 15);
+                },
+                Back: function (p) {
+                    return p * p * ( 3 * p - 2 );
+                },
+                Bounce: function (p) {
+                    var pow2,
+                        bounce = 4;
+
+                    while (p < ( ( pow2 = Math.pow(2, --bounce) ) - 1 ) / 11) {
+                    }
+                    return 1 / Math.pow(4, 3 - bounce) - 7.5625 * Math.pow(( pow2 * 3 - 2 ) / 22 - p, 2);
+                }
+            });
+            $.each(baseEasings, function (name, easeIn) {
+                $.easing[ "easeIn" + name ] = easeIn;
+                $.easing[ "easeOut" + name ] = function (p) {
+                    return 1 - easeIn(1 - p);
+                };
+                $.easing[ "easeInOut" + name ] = function (p) {
+                    return p < 0.5 ?
+                        easeIn(p * 2) / 2 :
+                        1 - easeIn(p * -2 + 2) / 2;
+                };
+            });
+        },
+
+        //æ­æ¾å¨é£å¨åå§å
+        checkPositionOfCart: function (offsetX, offsetY, modle, self) {
+            var $ = jQuery;
+            var _this = self;
+            var playBox = document.getElementById('playerBox'),
+                offset_x = offsetX + 'px',
+                offset_y = offsetY + 'px',
+                cartDiv = $('<div data-dest = "' + modle + '"></div>')
+                    .appendTo(playBox)
+                    .css('position', 'absolute')
+                    .css('top', offset_y)
+                    .css('left', offset_x);
+            _this.flyShowInfo(cartDiv);
+            cartDiv.remove();
+        },
+        //é£å¨ææ
+        flyShowInfo: function ($el) {
+            var $ = jQuery,
+                _this = this;
+            var $this = $($el),
+                type = $this.data('dest'),
+                $dest = $(_this.sideT).find('.js-dest-' + type),
+                $sprite = $('<div class="yk-toolbar-sprite"><span style="margin-top: 0" class="yk-toolbar-group-item-icon sprite-icon-' + type + '"></span></div>').appendTo($dest),
+                OffsetThis = $this.offset(),
+                OffsetSprite = $sprite.offset();
+            var $thisGroup = $dest.parent();
+            var flyDistance = 1000,
+                timeFly = 1000,
+                breatheDelay = 1000,
+                delay = 0;
+            var cloneItem = null;
+
+            var w = 22, h = 22;
+            if (type == 'cart') {
+                w = 32;
+                h = 32;
+            }
+            $sprite.css({
+                top: 12 + OffsetThis.top - OffsetSprite.top,
+                left: 12 + OffsetThis.left - OffsetSprite.left
+            }).animate({
+                    top: 0,
+                    left: 10,
+                    width: w,
+                    height: h
+                }, timeFly, function () {
+                    $dest.parent().find('.yk-toolbar-group-item-clone') && $dest.parent().find('.yk-toolbar-group-item-clone').remove();
+                    cloneItem = $dest.clone().addClass('yk-toolbar-group-item-clone');
+                    $(cloneItem).appendTo($dest.parent());
+                    $sprite.animate({
+                        opacity: 0
+                    }, breatheDelay, function () {
+                        $sprite.remove();
+                    });
+                    $(cloneItem).animate({opacity: 0}, breatheDelay, function () {
+                        $(cloneItem).remove();
+                    });
+                    //å¼¹åºæ°æ³¡
+                    if (type == 'subscription') {
+                        setTimeout(function () {
+                            _this.showTips(type);
+                        }, 600);
+                    }
+                }
+            );
+        },
+        //ä¸çº§é¢æ¿å±ç¤ºåéè
+        slideToggle: function (self) {
+            var $ = jQuery;
+            var _this = self;
+            var ClassOpen = _this.classOpen,
+                ClassHover = _this.classHover,
+                YkToolbarPanel = 'qrcode-popup';
+            var $thisGroup = $(this).parent();
+            var $thisPanel = $thisGroup.find("." + YkToolbarPanel);
+            var $groups = $(".yk-toolbar-group");
+            var $groupItems = $(".right-sideBar .yk-toolbar-group-item");
+            var $mask = $thisGroup.find("iframe.mask");
+            var $qrcodemask = $thisGroup.find("iframe.qrcodemask");
+            var $hint;
+
+            if ($thisGroup.hasClass(ClassOpen)) {
+                $thisGroup.removeClass(ClassOpen);
+                _this.$curOpenGroup = null;
+                $hint = $(".hint-tmp");
+
+                if (navigator.appName == "Microsoft Internet Explorer" && navigator.appVersion.split(";")[1].replace(/[ ]/g, "") == "MSIE6.0") {
+                    $thisPanel.css("display", "none");
+                    $mask.css("display", "none").css("right", "-330px");
+                    $qrcodemask.css("display", "none").css("right", "-1px");
+                    if ($hint.length != 0) {
+                        $hint.removeClass("hint-tmp").show();
+                    }
+                } else {
+                    $thisPanel.animate({
+                        right: 0,
+                        opacity: 0
+                    }, {
+                        duration: +200,
+                        specialEasing: {
+                            top: "easeOutCubic",
+                            left: "linear"
+                        },
+                        done: function () {
+                            $groupItems.css("position", "");
+                            $thisPanel.css("z-index", 10);
+                            $thisPanel.css("display", "none");
+                            if (navigator.userAgent.indexOf("MSIE") > 0) {
+                                $groups.css("z-index", "20");
+                            }
+                        }
+                    });
+                    $mask.animate({
+                        right: -330
+                    }, 200, function () {
+                        $mask.css("display", "none");
+                    });
+                    $qrcodemask.animate({
+                        right: -1
+                    }, 200, function () {
+                        $qrcodemask.css("display", "none");
+                    });
+                    if ($hint.length != 0) {
+                        $hint.removeClass("hint-tmp").show();
+                    }
+                }
+            } else {
+                $hint = $(".yk-toolbar-group-hint:visible");
+                if (_this.$curOpenGroup) {
+                    $(_this.$curOpenGroup).removeClass(ClassOpen);
+                }
+
+                $thisGroup.addClass(ClassOpen);
+                $thisGroup.removeClass(ClassHover);
+
+                if (navigator.appName == "Microsoft Internet Explorer" && navigator.appVersion.split(";")[1].replace(/[ ]/g, "") == "MSIE6.0") {
+                    $thisPanel.css("display", "block");
+                    $thisPanel.css("height", window.screen.availHeight + "px");
+                    $(_this.$curOpenGroup).find("." + YkToolbarPanel).css("display", "none");
+                    $(_this.$curOpenGroup).find("iframe.mask").css("display", "none").css("right", "-330px");
+                    $mask.css("display", "block").css("right", "50px");
+                    $qrcodemask.css("display", "block");
+                    _this.$curOpenGroup = $thisGroup;
+                    if ($hint.length != 0) {
+                        $hint.addClass("hint-tmp").hide();
+                    }
+                } else {
+                    $groupItems.css("position", "relative");
+
+                    $(_this.$curOpenGroup).find("." + YkToolbarPanel).css("display", "none");
+                    $(_this.$curOpenGroup).find("iframe.mask").css("display", "none").css("right", "-330px");
+                    if (navigator.userAgent.indexOf("MSIE") > 0) {
+                        $groups.css("z-index", "50");
+                        $thisGroup.css("z-index", "20");
+                    }
+                    if (_this.$curOpenGroup) {
+                        _this.$curOpenGroup = $thisGroup;
+                        $thisPanel.css({"display": "block", "right": "50px", "opacity": 1});
+                        $mask.css("display", "block").css("right", "50px");
+                        $qrcodemask.css("display", "block");
+                    } else {
+                        _this.$curOpenGroup = $thisGroup;
+                        $thisPanel.css({
+                            right: 0,
+                            opacity: 0,
+                            display: "block"
+                        }).animate({
+                            right: 50,
+                            opacity: 1
+                        }, {
+                            duration: +200,
+                            specialEasing: {
+                                top: "easeOutCubic",
+                                right: "linear"
+                            },
+                            done: function () {
+                                if ($hint.length != 0) {
+                                    $hint.addClass("hint-tmp").hide();
+                                }
+                            }
+                        });
+                        $mask.css({
+                            display: "block"
+                        }).animate({
+                            right: 50
+                        }, 200);
+                        $qrcodemask.css({
+                            display: "block"
+                        }).animate({
+                            right: 50
+                        }, 200);
+                    }
+                }
+            }
+        },
+
+        //äºçº§é¢æ¿å±å¼æ¶èµ·å¨ç»
+        slideToggleTwoPanels: function (onepanelid, twopanelid, action) {
+            if (action == 'go') {
+                if (jQuery("#" + onepanelid)) {
+                    jQuery("#" + onepanelid).animate({
+                        right: 330
+                    }, {
+                        duration: +200,
+                        specialEasing: {
+                            top: "easeOutCubic",
+                            right: "linear"
+                        },
+                        done: function () {
+                            jQuery(this).css("display", "none");
+                        }
+                    });
+                }
+                if (jQuery('#' + twopanelid)) {
+                    jQuery('#' + twopanelid).css({
+                        display: "block"
+                    }).animate({
+                        right: 0
+                    }, {
+                        duration: +200,
+                        specialEasing: {
+                            top: "easeOutCubic",
+                            right: "linear"
+                        },
+                        done: function () {
+
+                        }
+                    });
+                }
+            } else if (action == 'goback') {
+                if (jQuery("#" + onepanelid)) {
+                    jQuery("#" + onepanelid).css({
+                        display: "block"
+                    }).animate({
+                        right: 0
+                    }, {
+                        duration: +200,
+                        specialEasing: {
+                            top: "easeOutCubic",
+                            right: "linear"
+                        },
+                        done: function () {
+                        }
+                    });
+                }
+                if (jQuery('#' + twopanelid)) {
+                    jQuery('#' + twopanelid).animate({
+                        right: -330
+                    }, {
+                        duration: +200,
+                        specialEasing: {
+                            top: "easeOutCubic",
+                            right: "linear"
+                        },
+                        done: function () {
+                            jQuery(this).css("display", "none");
+                        }
+                    });
+                }
+            }
+        },
+        getOperaData: function () {
+            var cookieYsuid, cookieUid;
+            if (typeof Nova.Cookie.get == "function") cookieYsuid = Nova.Cookie.get('__ysuid') || "";
+            if (typeof get_username == "function") cookieUid = get_username('all').userid || "";
+            if (cookieYsuid) {
+                Nova.addScript("http://ykatr.youku.com/atr/related/packed_list.json?site=1&uid=" + cookieUid + "&guid=" + cookieYsuid + "&apptype=1&pg=30&module=16&pl=1&callback=SideTool.getOperaDataCallback&oc=ykqz_toolbar");
+//                Nova.addScript("http://10.100.23.36:82/atr/related/packed_list.json?site=1&uid=" + cookieUid + "&guid=" + cookieYsuid + "&apptype=1&pg=30&module=16&vid=64953727&cate=96&pl=1&callback=SideTool.getOperaDataCallback&oc=ykqz_toolbar");
+            }
+        },
+        getOperaDataCallback: function (el) {
+            var jQuery = window.jQuery;
+            var resdata = el;
+            if (resdata.e == 0 && resdata.data.length != 0 ) {
+                var data = resdata.data;
+                if (resdata.data[0].picUrl) {
+                    //æ¿æ¢å¾ç
+                    var TBB = jQuery('#lotteryToolbarBig');
+                    var TB = jQuery('#lotteryToolbar');
+                    var closeBtn = jQuery(".ykDraw-p-itemykDraw-p-item-close");
+                    var TBBLink = jQuery('#lotteryToolbarBig a'), TBLink = jQuery('#lotteryToolbar a');
+                    jQuery(TBBLink).attr('href', data[0].playLink).attr('SDclickLog', data[0].clickLogUrl + "&optype=6").css("background-image", "url(" + data[0].picUrl + ")");
+                    jQuery(TBLink).attr('href', data[0].playLink).attr('SDclickLog', data[0].clickLogUrl + "&optype=8").css("background-image", "url(" + data[0].picUrl + ")");
+                    jQuery(closeBtn).attr('SDclickLog', data[0].clickLogUrl + "&optype=9");
+
+                    jQuery('[SDclickLog]').bind("click", function () {
+                        (new Image()).src = jQuery(this).attr("SDclickLog");
+                    });
+                    jQuery('#lotteryToolbarBig span').css("background-image", "url(" + data[0].picUrl + ")");
+                    jQuery(TB).css("display", "block");
+                    //ç¨æ·å³é­å¤§å¾æ¶ä¸åæ¾ç¤º
+                    var nowDate = new Date();
+                    var nowDay = nowDate.getDate().toString();
+                    var nowMonth = nowDate.getMonth().toString();
+                    var nowYear = nowDate.getFullYear().toString();
+                    var clolseCookieValueNow = nowYear + nowMonth + nowDay;
+                    if (clolseCookieValueNow == Nova.Cookie.get('lottery_day')||window.screen.width<1600) {
+                        jQuery(TBB).css("display", "none");
+                    } else {
+                        jQuery(TBB).css("display", "block");
+                        SideTool.appQrcodeisshow = false;
+                    }
+
+                    jQuery('#lotteryToolbarBig').delegate('.ykDraw-p-itemykDraw-p-item-close', 'click', function () {
+                        jQuery(TBB).css("display", "none");
+                        if (typeof Log != "undefined") {
+                            //åéç¹å»æ¥å¿
+                            Log.log(1, "tp=1&cp=4009622&cpp=1000217");
+                        }
+                        var myDate = new Date();
+                        var myDay = myDate.getDate().toString();
+                        var myMonth = myDate.getMonth().toString();
+                        var myYear = myDate.getFullYear().toString();
+                        var clolseCookieValueMy = myYear + myMonth + myDay;
+                        Nova.Cookie.set('lottery_day', clolseCookieValueMy, 1);
+                        //é»æ­¢åæ³¡
+                        var e = event || window.event;
+                        if (e.stopPropagation) e.stopPropagation();
+                        return false;
+                    });
+
+                }
+            }
+            SideTool.bind();
+        },
+        onResizeEvent: function () {
+            //æ¨ªåä½ç½®
+            var windowWidth = this.getWindowWidth();
+            var toolbarRight = 0;
+            if (windowWidth < 1255) {
+                if (windowWidth > 1110) {
+                    toolbarRight = (windowWidth - 970) / 2 - 65;
+                } else {
+                    toolbarRight = 15;
+                }
+            } else {
+                if (windowWidth > 1330) {
+                    toolbarRight = (windowWidth - 1190) / 2 - 65;
+                } else {
+                    toolbarRight = 15;
+                }
+            }
+            $(this.toolbar.service).style.right = toolbarRight + 'px';
+            $(this.toolbar.util).style.right = toolbarRight + 'px';
+
+            if (this.light.isshow == true) {
+                $(this.light.dark).style.right = toolbarRight + 'px';
+            }
+        },
+
+        getUID: function () {
+            if (!islogin()) {
+                return 0;
+            }
+            var ckie = Nova.Cookie.get('yktk');
+            var uid = 0;
+            if (ckie) {
+                try {
+                    var u_info = decode64(decodeURIComponent(ckie).split('|')[3]);
+                    if (u_info.indexOf(',') > -1 && u_info.indexOf('nn:') > -1 && u_info.indexOf('id:') > -1) {
+                        uid = u_info.split(',')[0].split(':')[1];
+                    }
+                } catch (e) {
+                }
+            }
+
+            return parseInt(uid);
+        },
+
+        //è·åæ»å¨æ¡å®½åº¦
+        getScrollWidth: function () {
+            var __scrollBarWidth;
+            var scrollBarHelper = document.createElement("div");
+
+            scrollBarHelper.style.cssText = "overflow:scroll;width:100px;height:100px;";
+            document.body.appendChild(scrollBarHelper);
+            if (scrollBarHelper) {
+                __scrollBarWidth = scrollBarHelper.offsetWidth - scrollBarHelper.clientWidth
+            }
+            document.body.removeChild(scrollBarHelper);
+            return __scrollBarWidth;
+
+        },
+
+        //è·åå¯è§å®½åº¦
+        getWindowWidth: function () {
+            return document.documentElement.clientWidth || document.body.clientWidth;//ä¸åå«æ»å¨æ¡
+        },
+        //è·åå¯è§é«åº¦
+        getWindowHeight: function () {
+            return document.documentElement.clientHeight || document.body.clientHeight;
+        },
+        //è·åæ»å¨Top
+        getScrollTop: function () {
+            return document.documentElement.scrollTop || document.body.scrollTop;
+        },
+
+        _addHover: function (obj, cname) {
+            if (!obj.className) {
+                obj.className = cname;
+            } else if (obj.className.indexOf(cname) == -1) {
+                obj.className += ' ' + cname;
+            }
+            return this;
+        },
+        _removeHover: function (obj, cname) {
+            if (obj.className && obj.className.indexOf(' ' + cname) != -1) {
+                obj.className = obj.className.replace(' ' + cname, '');
+            } else if (obj.className && obj.className.indexOf(cname) != -1) {
+                obj.className = obj.className.replace(cname, '');
+            }
+            return this;
+        },
+        _addExpand: function (idname) {
+            if ($(idname).className.indexOf(this.classOpen) == -1) {
+                $(idname).className += ' yk-toolbar-group-open';
+            }
+            return this;
+        },
+        _removeExpand: function (idname) {
+            if ($(idname).className.indexOf(this.classOpen) != -1) {
+                $(idname).className = $(idname).className.replace(/ yk-toolbar-group-open/, '');
+            }
+            return this;
+        },
+        _addEvent: function (dom, eventname, func) {
+            if (window.addEventListener) {
+                if (eventname == 'mouseenter' || eventname == 'mouseleave') {
+                    function fn(e) {
+                        var a = e.currentTarget, b = e.relatedTarget;
+                        if (!elContains(a, b) && a != b) {
+                            func.call(e.currentTarget, e);
+                        }
+                    }
+
+                    function elContains(a, b) {
+                        try {
+                            return a.contains ? a != b && a.contains(b) : !!(a.compareDocumentPosition(b) & 16);
+                        } catch (e) {
+                        }
+                    }
+
+                    if (eventname == 'mouseenter') {
+                        dom.addEventListener('mouseover', fn, false);
+                    } else {
+                        dom.addEventListener('mouseout', fn, false);
+                    }
+                } else {
+                    dom.addEventListener(eventname, func, false);
+                }
+            } else if (window.attachEvent) {
+                dom.attachEvent('on' + eventname, func);
+            }
+        },
+        _delEvent: function (dom, eventname, func) {
+            if (window.addEventListener) {
+                dom.removeEventListener(eventname, func, true);
+            } else if (window.attachEvent) {
+                dom.detachEvent("on" + eventname, func);
+            }
+        },
+
+        _getWatchLevelIcon: function (watchlevel) {
+            var watchLevelIcon = 0;
+            if (watchlevel > 40) {
+                watchLevelIcon = 4;
+            } else if (watchlevel > 30 && watchlevel <= 40) {
+                watchLevelIcon = 3;
+            } else if (watchlevel > 20 && watchlevel <= 30) {
+                watchLevelIcon = 2;
+            } else if (watchlevel > 10 && watchlevel <= 20) {
+         

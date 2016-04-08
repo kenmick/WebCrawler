@@ -1,0 +1,36 @@
+(function(w, d){
+var getDomElem = function(id)
+{ return d.getElementById(id).contentDocument || d.frames[id].document; }
+
+var i = d.createElement('iframe');
+i.id = 'sas_4179578_iframe';
+i.scrolling = 'no';
+i.frameBorder = 0;
+i.width = 300; 
+i.height = 250; 
+i.style.margin = 0;
+i.style.padding = 0;
+i.style.width = '300px';
+i.style.height = '250px';
+if (typeof(sas_ajax) != 'undefined' && sas_ajax) {
+    sas_appendToContainer(21484, i); // sas_formatId 
+} 
+else
+{ 
+    d.write('<div id="sas_rtb_4179578"></div>');
+    var sas_rtb_div = d.getElementById("sas_rtb_4179578");    
+    if((typeof (sas_rtb_div) != 'undefined') && (sas_rtb_div != null))
+    {
+        sas_rtb_div.appendChild(i);
+    }
+}
+i.doc = getDomElem(i.id);
+i.doc.write(
+'<!doctype html><html><head><title></title></head><body style="margin:0;padding:0">'+
+'<scr'+'ipt type="text/javascript">var inDapIF=inDapMgrIf=true;</scr'+'ipt>'+
+"\x3Cimg src=\'http://ww690.smartadserver.com:80/h/aip?visit=s&amp;pubid=7&amp;statid=7&amp;ckid=8511281097587205127&amp;tmstp=2408682341&amp;usrtgt=&amp;tgt=origine%3dasqfirst%3b%24dt%3d1t%3b%24hc&amp;systgt=%24qc%3d1309908405%3b%24ql%3dhigh%3b%24qpc%3d33000%3b%24qpp%3d0%3b%24qt%3d184_1788_22057t%3b%24dma%3d0%3b%24b%3d9999%3b%24o%3d99999%3b%24sh%3d1080%3b%24sw%3d1920&amp;rfr=http%3a%2f%2fwww.huffingtonpost.fr%2f%3fcountry%3dFR&amp;capp=0&amp;mcrdbt=1&amp;insid=4179578&amp;imgid=0&amp;pgid=365931&amp;fmtid=21484&amp;loguid=308310683676191166&amp;logdate=1458498810259&amp;rtb=1&amp;rtbnid=690&amp;rtbbid=308310683676191167&amp;rtbh=78649715a407d95c21cc5de75aef568e27c43e85&amp;rtblt=635940956102593101&amp;rtbet=0\' border=\'0\' width=\'0\' height=\'0\' style=\'display:none\'/>\x3Ciframe src=\'http://ak-ns.sascdn.com:80/diff/rtb/handler/st.min.html?%7b%22bid%22%3a%22308310683676191167%22%2c%22adomain%22%3a%22pg.com%22%2c%22page%22%3a%22365931%22%2c%22format%22%3a%2221484%22%2c%22crid%22%3a%22cr150027358%22%2c%22dsp%22%3a%2265%22%2c%22buyer%22%3a%223956%22%2c%22cid%22%3a%22%22%2c%22adid%22%3a%22%22%7d\' width=\'0\' scrolling=\'no\' height=\'0\' frameborder=\'0\' style=\'display: none;\'>\x3C/iframe>\x3Cimg src=\'http://bidder-eu-1.ffbtas.com/newbidder/smril.gif?subid=23855aCfTYF1488QhTkkoUAgA4NTExMjgxMDk3NTg3MjA1MTI3ICAgICAgICAgICA7348%5FZvNVAQEAAAAAANjV%5FkwABQAAAAAAAAABAAAABAAAAAAAAAAAAAAAAAAAAPrs7lYgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAAAAAAAAAAAAAAAAAF0BQAAAAAAF5YtlNlbjk3AQA%7E&cost=0.5633803&subid2=cd6baHR0cDovL25ld3Muc21hcnRhZHNlcnZlci5jb20v\' width=\'1\' height=\'1\'/>\x3Cdiv id=\"video57382663605559\" style=\"width:300px;height:250px;\">\r\n\x3Cscript src=\"//p.algovid.com/player/tlvplayer.js?p=57382663&sid=22410086&cb=605559&d=lemonde.fr&se=8511281097587205127\" type=\"text/javascript\">\x3C/script>\r\n\x3Cnoscript>\x3Cimg src=\"//p.algovid.com/ppx/error?en=1&em=nojs&p=57382663&sid=22410086&cb=605559&domain=lemonde.fr&se=8511281097587205127\" width=\"1\" height=\"1\" />\x3C/noscript>\r\n\x3C/div>" + 
+'</body></html>'
+);
+
+if (navigator.userAgent.indexOf('MSIE') == -1 && navigator.userAgent.indexOf('Opera') == -1) i.doc.close();
+})(window, document);

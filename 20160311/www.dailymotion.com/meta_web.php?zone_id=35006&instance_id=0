@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <script src="/adserver/sat.js?v=2"></script>
+    <script type="text/javascript">
+        function sendMeta() {
+            if (typeof window.postMessage == 'undefined' || window.postMessage == null) {
+                //no support for ie 6-7 currently - meta blocking does not happen...
+            }else{
+                parent.postMessage(
+                    JSON.stringify({switchconcepts: {type: 'meta', content: {"id":"6543","zones":[{"zone_id":"15774","enabled":[],"queueJumping":1,"width":"300","height":"250","allowFirstPartyCookies":0},{"zone_id":"15775","enabled":[],"queueJumping":1,"width":"728","height":"90","allowFirstPartyCookies":0},{"zone_id":"20078","enabled":[],"queueJumping":1,"width":"160","height":"600","allowFirstPartyCookies":0},{"zone_id":"20079","enabled":[],"queueJumping":1,"width":"160","height":"600","allowFirstPartyCookies":0},{"zone_id":"20080","enabled":[],"queueJumping":1,"width":"300","height":"250","allowFirstPartyCookies":0},{"zone_id":"20081","enabled":[],"queueJumping":1,"width":"728","height":"90","allowFirstPartyCookies":0},{"zone_id":"20082","enabled":[],"queueJumping":1,"width":"300","height":"250","allowFirstPartyCookies":0},{"zone_id":"20083","enabled":[],"queueJumping":1,"width":"728","height":"90","allowFirstPartyCookies":0},{"zone_id":"20084","enabled":[],"queueJumping":1,"width":"160","height":"600","allowFirstPartyCookies":0},{"zone_id":"20085","enabled":[],"queueJumping":1,"width":"300","height":"250","allowFirstPartyCookies":0},{"zone_id":"20086","enabled":[],"queueJumping":1,"width":"728","height":"90","allowFirstPartyCookies":0},{"zone_id":"20087","enabled":[],"queueJumping":1,"width":"300","height":"250","allowFirstPartyCookies":0},{"zone_id":"20088","enabled":[],"queueJumping":1,"width":"728","height":"90","allowFirstPartyCookies":0},{"zone_id":"20089","enabled":[],"queueJumping":1,"width":"160","height":"600","allowFirstPartyCookies":0},{"zone_id":"20090","enabled":[],"queueJumping":1,"width":"300","height":"250","allowFirstPartyCookies":0},{"zone_id":"20091","enabled":[],"queueJumping":1,"width":"728","height":"90","allowFirstPartyCookies":0},{"zone_id":"22748","enabled":[],"queueJumping":1,"width":"160","height":"600","allowFirstPartyCookies":0},{"zone_id":"22749","enabled":[],"queueJumping":1,"width":"300","height":"250","allowFirstPartyCookies":0},{"zone_id":"22750","enabled":[],"queueJumping":1,"width":"728","height":"90","allowFirstPartyCookies":0},{"zone_id":"22751","enabled":[],"queueJumping":1,"width":"160","height":"600","allowFirstPartyCookies":0},{"zone_id":"22752","enabled":[],"queueJumping":1,"width":"300","height":"250","allowFirstPartyCookies":0},{"zone_id":"22753","enabled":[],"queueJumping":1,"width":"728","height":"90","allowFirstPartyCookies":0},{"zone_id":"22843","enabled":[],"queueJumping":1,"width":"160","height":"600","allowFirstPartyCookies":0},{"zone_id":"22844","enabled":[],"queueJumping":1,"width":"300","height":"250","allowFirstPartyCookies":0},{"zone_id":"22845","enabled":[],"queueJumping":1,"width":"728","height":"90","allowFirstPartyCookies":0},{"zone_id":"22846","enabled":[],"queueJumping":1,"width":"160","height":"600","allowFirstPartyCookies":0},{"zone_id":"22848","enabled":[],"queueJumping":1,"width":"300","height":"250","allowFirstPartyCookies":0},{"zone_id":"22849","enabled":[],"queueJumping":1,"width":"728","height":"90","allowFirstPartyCookies":0},{"zone_id":"31935","enabled":[],"queueJumping":1,"width":"300","height":"600","allowFirstPartyCookies":0},{"zone_id":"31936","enabled":[],"queueJumping":1,"width":"300","height":"600","allowFirstPartyCookies":0},{"zone_id":"35006","enabled":[],"queueJumping":1,"width":"300","height":"250","allowFirstPartyCookies":0},{"zone_id":"35164","enabled":[],"queueJumping":1,"width":"160","height":"600","allowFirstPartyCookies":0},{"zone_id":"35165","enabled":[],"queueJumping":1,"width":"300","height":"250","allowFirstPartyCookies":0},{"zone_id":"35166","enabled":[],"queueJumping":1,"width":"728","height":"90","allowFirstPartyCookies":0},{"zone_id":"35293","enabled":[],"queueJumping":1,"width":"728","height":"90","allowFirstPartyCookies":0},{"zone_id":"35294","enabled":[],"queueJumping":1,"width":"300","height":"250","allowFirstPartyCookies":0},{"zone_id":"35295","enabled":[],"queueJumping":1,"width":"160","height":"600","allowFirstPartyCookies":0}],"errors":[],"instance_id":0}}}),
+                    '*'
+                );
+            }
+        }
+
+        if (document.readyState == "complete"){
+            sendMeta();
+        }else if (window.addEventListener) {
+            window.addEventListener("load", sendMeta, false);
+        } else if (window.attachEvent) {
+            window.attachEvent("onload", sendMeta);
+        } else {
+            window.onload = sendMeta;
+        }
+    </script>
+</head>
+<body></body>
+</html>

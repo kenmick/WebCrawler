@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+	<title>House of Cards S4</title>
+	
+	<!-- CSS -->
+	<link rel="stylesheet" href="styles/styles.css">	
+	
+	<!-- Enabler should always come first. -->
+	<script src="/879366/Enabler_01_104.js"></script>
+	
+	<!-- Polymer should come before custom elements, like the close button. -->
+	<script src="https://www.gstatic.com/external_hosted/polymer/custom.elements.min.js"></script>
+	
+	<!-- YouTube close button -->
+	<script src="https://www.gstatic.com/ads/ci/ytclosebutton/1/ytclosebutton_min.js"></script>
+	
+	<!--Adobe Edge Runtime-->
+    <script type="text/javascript" charset="utf-8" src="edge_includes/edge.6.0.0.min.js"></script>
+
+</head>
+<body style="margin:0;padding:0;">
+
+	<div id="ytclose-btn-container">
+			<!-- YOUTUBE CLOSE BUTTON -->
+			<ci-ytclosebutton lang="fr" theme="white" shadow="false" id="ytClose" />
+	</div>
+
+	<div id="main-panel">
+	
+		<div id="top-border" class="borders"></div>
+		<div id="right-border" class="borders"></div>
+		<div id="bottom-border" class="borders"></div>
+		<div id="left-border" class="borders"></div>
+		
+		<div id="video-player-container">
+			<div id="close-btn"></div>
+			<div id="video-player"></div>
+		</div>
+				
+			<!-- EDGE COMPOSITION -->
+			<div id="Stage" class="hoc-s4-970x250-fr"></div>
+			<!-- END EDGE COMPOSITION -->
+
+	</div>
+	<!-- END MAIN AD CONTAINER -->
+	
+	<script src="js/main.js"></script>
+</body>
+</html>
