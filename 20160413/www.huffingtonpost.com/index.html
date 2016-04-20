@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head><script type="text/javascript">
+    
+      (function() {
+        var relegateNavigation = '';
+        var handleClickTagMessage = function(e) {
+          try {
+            var eventData = JSON.parse(e.data);
+          } catch (err) {
+            return;
+          }
+          if (eventData.isInitClickTag) {
+            if (eventData.clickTags) {
+              for (var i = 0; i < eventData.clickTags.length; i++) {
+                var clkTag = eventData.clickTags[i];
+                window[clkTag.name] = clkTag.url;
+              }
+            } else if (eventData.clickTag) {
+              window.clickTag = eventData.clickTag;
+            }
+            relegateNavigation = eventData.relegateNavigation;
+          }
+        };
+
+        if (open.call) {
+          window.open = function(open) {
+            return function(url, name, features) {
+              if (relegateNavigation === 'parent') {
+                var message = {'clickTag': url, 'isPostClickTag': true};
+                parent.postMessage(JSON.stringify(message), '*');
+              } else {
+                var args = [url, name];
+                if (features) {
+                  args.push(features);
+                }
+                open.apply(window, args);
+              }
+            };
+          }(window.open);
+        }
+
+        if (window.addEventListener) {
+          window.addEventListener(
+              'message', handleClickTagMessage, false);
+        } else {
+          window.attachEvent('onmessage', handleClickTagMessage);
+        }
+      })();
+    
+  </script>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="ad.size" content="width=300,height=250">
+
+	<script type="text/javascript">
+		if (!window.console) window.console = {};
+		if (!window.console.log) window.console.log = function () { };
+
+		//specs 'ADPERF' ou 'RTB' ou 'DCM'
+		var adserverSpecs = 'DCM';
+
+		//chemin
+		var path = "https://www.eficiens-serving.com/pmu/";
+
+		//variables *** COMMUNES A TOUS LES FORMATS ***
+		var sport = "hippique";
+
+		// variables *** A MODIFIER EN FONCTION DU FORMAT ***
+		var adFormat = "300x250";
+
+		// globals
+		var tlArjel;
+		var tl;
+
+		/**
+		 * setup the main Timeline
+		 */
+		function createMainTimeline() {
+			tl = new TimelineLite({onComplete: onTlComplete});
+
+			tl.set(['#step1', '.yesss', '#step2', '#step3', '#nodata'], {opacity: 0});
+
+			if (!noData) {
+				tl.set('#step1', {opacity: 1}, '+=.1')
+						.from('#bgimg', .5, {opacity: 0}, '+=0.2')
+				;
+				if (modeEvent) {
+					tl.set('#step1', {opacity: 0}, '+=1.5')
+					;
+
+				} else {
+					tl.set('.yesss', {opacity: 1})
+							.from('.yesss', .2, {left: '-=300', top: '+=80'})
+							.to('#step1', .6, {opacity: 0}, '+=2.5')
+					;
+				}
+				/* */
+
+				tl.set('#step2', {opacity: 1})
+						.from('#step2 .eQuinte', .3, {left: '+=72', clip: "rect(0px,0px,0px,0px)"})
+						.from('#step2 .accroche', .3, {clip: "rect(0px,0px,0px,0px)"}, '+=.1')
+						.to('#step2', .3, {opacity: 0}, '+=4.2')
+				;
+				/* */
+
+				tl.to('#bgimg', 0.5, {opacity: 0});
+
+				tl.set('#step3', {opacity: 1})
+						.from('#step3 .eTirelire', .3, {left: '-=300'})
+						.from('#step3 .detail', .3, {left: '+=184', clip: 'rect(0px,0px,0px,0px)'})
+						.from('#step3 .offre', .3, {clip: 'rect(0px,0px,0px,0px)'})
+						.from('#step3 .mentions', .3, {opacity: 0})
+
+				;
+				/* */
+
+				if (adserverSpecs == 'ADPERF') {
+					tl.to('#step3', .3, {opacity: 0}, '+=4.2')
+				}
+				/* */
+			} else {
+				tl.set('#nodata', {opacity: 1})
+						.from('#nodata .eTirelire', .3, {left: '-=300'})
+						.from('#nodata .detail', .3, {left: '+=184', clip: 'rect(0px,0px,0px,0px)'})
+						.from('#nodata .offre', .3, {clip: 'rect(0px,0px,0px,0px)'})
+						.from('#nodata .mentions', .3, {opacity: 0})
+
+				;
+				 /* */
+			}
+
+			/*tl.set(['#outro'], {opacity: 1}, '+=0.2')
+			 .from('#outro .cta', .3, {clip: "rect(0px,0px,0px,0px)"})
+			 .set('#outro .offre', {opacity: 1}, '+=.5')
+			 .from('#outro .offre', .3, {left: '-=100'})
+			 .from('#outro .mentions', .3, {opacity: 0}, '-=.3')
+			 ;
+			 /* */
+
+		}
+
+		/**
+		 * setup the ARJEL Timeline
+		 */
+		function createArjelTimeline() {
+			var arjelp = selAll('#arjel .risque');
+			tlArjel = new TimelineLite({onComplete: onTlArjelComplete});
+			tlArjel.set([arjelp[1], arjelp[2]], {opacity: 0});
+			tlArjel.to(arjelp[0], .3, {opacity: 0}, '+=1.25')
+					.to(arjelp[1], .3, {opacity: 1})
+					.to(arjelp[1], .3, {opacity: 0}, '+=1.25')
+					.to(arjelp[2], .3, {opacity: 1})
+					.to(arjelp[2], .3, {opacity: 0}, '+=1.25')
+					.to(arjelp[0], .3, {opacity: 1});
+		}
+	</script>
+
+	<!-- AdServer init script -->
+	<script type="text/javascript">
+		var clickTag = "http://www.pmu.fr";
+		function clicktrough() {
+			window.open(window.clickTag);
+		}
+	</script>
+
+	<!-- Animation engine -->
+	<script type="text/javascript" src="greensock.js"></script>
+
+	<!-- PMU data feeds -->
+	<script type="text/javascript">
+		var feedPath = 'https://www.eficiens-serving.com/pmu/FLUXTIRELIRE/js/e-tirelire-multigain-v2.js';
+
+		var feedPathParam = new RegExp('[\\?&]feed=([^&#]*)').exec(location.search);
+		if (feedPathParam) {
+			feedPath = decodeURIComponent(feedPathParam[1].replace(/\+/g, " "));
+		}
+
+		var idbanniereParam = new RegExp('[\\?&]idbanniere=([^&#]*)').exec(location.search);
+		if (idbanniereParam) {
+			var idbanniere = decodeURIComponent(idbanniereParam[1].replace(/\+/g, " "));
+			feedPath = 'https://www.eficiens-serving.com/pmu/FLUXTIRELIRE/e-tirelire-multigain-v2-js.php?idbanniere=' + idbanniere;
+		}
+		document.write('<script src="' + feedPath + '"><\/script>');
+	</script>
+
+	<!-- PMU offer feed -->
+	<script type="text/javascript" src="https://s3-eu-west-1.amazonaws.com/pmucta/offre-hippique.js"></script>
+
+	<!-- CSS -->
+	<link rel="stylesheet" href="style.css" />
+
+</head>
+
+<body>
+<div id="stage">
+	<div id="container">
+		<div id="bgcolor"></div>
+		<div id="bgimg"></div>
+
+		<!-- step 1 -->
+		<div id="step1" class="step">
+			<img class="yesss" src="yesss.png" alt="">
+		</div>
+
+		<!-- step 2 -->
+		<div id="step2" class="step">
+			<div class="eQuinte">
+				<div class="inner"><img src="eQuinte.png" alt=""></div>
+			</div>
+			<div class="accroche">
+				<div class="inner">
+					<div class="titre">
+						Chaque jour tenez de remporter la e-tirelire
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- step 3 -->
+		<div id="step3" class="step">
+			<div class="eTirelire">e-Tirelire</div>
+			<div class="detail">
+				<div class="inner">
+					<div class="txt">
+						<span class="jour">Aujourd&#39;hui</span><br>
+						<span class="montant">50 000â¬</span><br>
+						<span class="aGagner">Ã  gagner</span>
+					</div>
+					<div class="btCta">JE PARIE</div>
+				</div>
+			</div>
+			<div class="offre">
+				<div class="offreBefore">JUSQU&#39;Ã</div>
+				<div class="offreMontant">170â¬</div>
+				<div class="offreAfter">OFFERTS*</div>
+			</div>
+			<div class="mentions">*conditions sur PMU.fr</div>
+		</div>
+
+		<!-- no data -->
+		<div id="nodata" class="step">
+			<div class="eTirelire">e-Tirelire</div>
+			<div class="detail">
+				<div class="inner">
+					<div class="txt">
+						<span class="aGagner">Chaque jour, 50Â 000â¬ minimum Ã  gagner</span>
+					</div>
+					<div class="btCta">JE PARIE</div>
+				</div>
+			</div>
+			<div class="offre">
+				<div class="offreBefore">JUSQU&#39;Ã</div>
+				<div class="offreMontant">170â¬</div>
+				<div class="offreAfter">OFFERTS*</div>
+			</div>
+			<div class="mentions">*conditions sur PMU.fr</div>
+		</div>
+
+		<!-- logo -->
+		<img id="logo" src="logo.png" />
+
+		<!-- ARJEL -->
+		<div id="arjel">
+			<div id="arjel1">JOUER COMPORTE DES RISQUES :Â </div>
+			<div id="arjel2">
+				<div class="risque">ENDETTEMENT, ISOLEMENT...</div>
+				<div class="risque">ISOLEMENT, DÃPENDANCE...</div>
+				<div class="risque">DÃPENDANCE, ENDETTEMENT...</div>
+			</div>
+			<div id="arjel3">APPELEZ LE 09 74 75 13 13 (APPEL NON SURTAXÃ)</div>
+		</div>
+
+		<!-- invisible buttons -->
+		<button id="btInv" onclick="clicktrough();"></button>
+		<a id="btArjel" href="http://www.joueurs-info-service.fr/" target="_blank"></a>
+	</div>
+</div>
+
+<div id="devTools" style="display: none;">
+	<div>
+		<button class="progress" data-value="0">0</button>
+		<button class="progress" data-value="5">5</button>
+		<button class="progress" data-value="10">10</button>
+		<button class="progress" data-value="15">15</button>
+		<button class="progress" data-value="20">20</button>
+		<button class="progress" data-value="25">25</button>
+		<button class="progress" data-value="30">30</button>
+		<button class="progress" data-value="35">35</button>
+		<button class="progress" data-value="40">40</button>
+		<button class="progress" data-value="45">45</button>
+		<button class="progress" data-value="50">50</button>
+		<button class="progress" data-value="55">55</button>
+		<button class="progress" data-value="60">60</button>
+		<button class="progress" data-value="65">65</button>
+		<button class="progress" data-value="70">70</button>
+		<button class="progress" data-value="75">75</button>
+		<button class="progress" data-value="80">80</button>
+		<button class="progress" data-value="85">85</button>
+		<button class="progress" data-value="90">90</button>
+		<button class="progress" data-value="95">95</button>
+		<button class="progress" data-value="100">100</button>
+	</div>
+	<div>
+		<button class="play">Play</button>
+		<button class="pause">Pause</button>
+	</div>
+</div>
+
+<script src="scripts.js"></script>
+</body>
+
+</html>

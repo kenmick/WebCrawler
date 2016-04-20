@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style type="text/css">
+body { padding: 0; margin: 0}
+a {border: none}
+</style>
+</head>
+<body>
+
+<script>
+var images = [
+    'http://cds.x4i6u4n6.hwcdn.net/banners/950x250_fr/gif/07.gif',
+    'http://cds.x4i6u4n6.hwcdn.net/banners/950x250_fr/gif/08.gif',
+    'http://cds.x4i6u4n6.hwcdn.net/banners/950x250_fr/gif/09.gif',
+    'http://cds.x4i6u4n6.hwcdn.net/banners/950x250_fr/gif/10.gif',
+    'http://cds.x4i6u4n6.hwcdn.net/banners/950x250_fr/gif/11.gif',
+    'http://cds.x4i6u4n6.hwcdn.net/banners/950x250_fr/gif/12.gif',
+    'http://cds.x4i6u4n6.hwcdn.net/banners/950x250_fr/gif/13.gif',
+    'http://cds.x4i6u4n6.hwcdn.net/banners/950x250_fr/gif/14.gif'
+
+];
+
+var paramsMapping = {
+    'custom1': 'CampaignID',
+    'custom2': 'SiteName',
+    'custom3': 'Location',
+    'custom4': 'BanID',
+    'custom5': 'SpotID',
+    'custom6': 'BidID',
+    'custom7': 'BidValue'
+};
+
+var baseLink = "http://www.playthisgame.click/1aada6d0-384c-4945-8772-71725b7a5c62?CampaignID=%%CUSTOM1%%&SiteName=%%CUSTOM2%%&Location=%%CUSTOM3%%&BanID=%%CUSTOM4%%&SpotID=%%CUSTOM5%%&BidID=%%CUSTOM6%%&BidValue=%%CUSTOM7%%";
+var basePostback = "http://www.playthisgame.click/impression/1aada6d0-384c-4945-8772-71725b7a5c62?CampaignID=%%CUSTOM1%%&SiteName=%%CUSTOM2%%&Location=%%CUSTOM3%%&BanID=%%CUSTOM4%%&SpotID=%%CUSTOM5%%&BidID=%%CUSTOM6%%&BidValue=%%CUSTOM7%%";
+
+// Choose a random image
+var image = images[Math.floor(Math.random() * images.length)];
+
+function getJsonFromUrl() {
+
+    var result = {};
+    var query = location.search.substr(1);
+
+    if (query.length == 0) {
+        return result;
+    }
+
+    query.split("&").forEach(function(part) {
+        var item = part.split("=");
+        result[item[0]] = decodeURIComponent(item[1]);
+    });
+    return result;
+}
+
+function buildUrl(baseUrl, mapping) {
+
+    var urlParams = getJsonFromUrl();
+
+    for (var key in mapping) {
+
+        if (!mapping.hasOwnProperty(key)) {
+            continue;
+        }
+
+        if (urlParams[key] != undefined) {
+
+            if (baseUrl.indexOf('?') == -1) {
+                baseUrl += '?';
+            } else {
+                baseUrl += '&';
+            }
+
+            baseUrl += encodeURI(mapping[key]) + "=" + encodeURI(urlParams[key]);
+        }
+    }
+
+    return baseUrl;
+}
+
+function baseName(str) {
+    var base = str.substring(str.lastIndexOf('/') + 1);
+    if (base.lastIndexOf(".") != -1) {
+        base = base.substring(0, base.lastIndexOf("."));
+    }
+    return base;
+}
+
+var link = buildUrl(baseLink, paramsMapping);
+link += "&BanID" + "=" + baseName(image);
+
+var postback = buildUrl(basePostback, paramsMapping);
+postback += "&BanID" + "=" + baseName(image);
+
+document.write('<a href="'+link+'" target="_blank">');
+document.write('<img src="'+image+'" />');
+document.write('</a>');
+document.write('<img src="'+postback+'" style="width: 0; height: 0; border: none; position: absolute;" />');
+</script>
+
+</body>
+
+</html>

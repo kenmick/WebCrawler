@@ -1,0 +1,112 @@
+<!doctype html>
+        <html>
+        <head>
+        <title>Netflix</title>
+
+        <meta name="viewport" content="initial-scale=1, width=device-width">
+        <meta http-equiv="Pragma" content="no-cache">
+        <meta name="description" content="Netflix">
+        <link rel="shortcut icon" href="https://assets.nflxext.com/en_US/icons/nficon2014.4.ico">
+
+        <style>
+            html, body {
+                background-color: #2f2f2f;
+                font-family: Arial, sans-serif;
+                font-size: 16px;
+            }
+
+            .headerBar {
+                background-color: rgb(0,0,0);
+                background-color: rgba(0, 0, 0, 0.97);
+                padding: 0 45px;
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                z-index: 20;
+                height: 90px;
+            }
+
+           .logo {
+                position: absolute;
+                left: 45px;
+                top: 25px;
+            }
+
+            .signout-link{
+                font-size: .8em;
+                line-height: 90px;
+                color: #E50914;
+                text-decoration: none;
+                position: absolute;
+                margin-right: 45px;
+                right: 0px;
+            }
+
+            .logo >a {
+                background-image: url(https://assets.nflxext.com/en_us/home/logo_v7.png);
+                background-repeat: no-repeat;
+                display: block;
+                width: 146px;
+                height: 40px;
+                /* make the text invisible (but still screen readable) */
+                font-size: 0;
+                line-height: 0;
+                outline: none;
+                overflow: hidden;
+                text-indent: -9999px;
+            }
+
+            .errorBox {
+                color: #f7f7f7;
+                margin: 8.5em auto 0 auto;
+                width: 50%;
+            }
+
+            @media only screen and (max-width: 768px) {
+                .errorBox {
+                    width: 90%;
+                }
+            }
+
+            .errorBox > h1 {
+                font-weight: bold;
+                font-size: 1.8em;
+                margin-bottom: 1em;
+            }
+            .errorBox .i {
+                color:#2f2f2f;
+            }
+            .errorBox > .nflxButton {
+                border: 1px solid #b2b2b2;
+                font-weight: bold;
+                margin-top: 1.4em;
+                min-width: 80px;
+                display: inline-block;
+                padding: 5px 10px;
+                text-align: center;
+            }
+            .errorBox > .nflxButton > a {
+                text-decoration: none;
+                color: #b2b2b2;
+            }
+        </style>
+        </head>
+
+        <body>
+        <div class="headerBar">
+            <div class="logo">
+                <a href="/">Netflix</a>
+            </div>
+        </div>
+
+        <div class="errorBox">
+            <h1>Netflix Site Error</h1>
+            <p>We were unable to process your request.</p>
+            <p>Please go to the Netflix home page by clicking the button below.</p>
+            <div class="nflxButton">
+                <a href="/">Netflix Home</a>
+            </div>
+        </div>
+        </body>
+        </html>

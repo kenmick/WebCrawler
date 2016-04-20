@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    
+    <head></head>
+    
+    <body>
+        <script type="text/javascript">
+            var sendByIframe = function (b) {
+                    var c = document.createElement("iframe");
+                    c.style.display = "none";
+                    c.setAttribute("src", b);
+                    document.body.insertBefore(c, document.body.firstChild)
+                },
+                getCookie = function (b, c) {
+                    var a;
+                    c = c || window;
+                    var d = RegExp("(^| )" + b + "=([^;]*)(;|$)").exec(c.document.cookie);
+                    d && (a = d[2]);
+                    return a
+                },
+                setCookie = function (b, c, a) {
+                    a = a || {};
+                    var d = a.expires;
+                    "number" == typeof a.expires && (d = new Date, d.setTime(d.getTime() + a.expires));
+                    document.cookie = b + "=" + c + (a.path ? "; path=" + a.path : "") + (d ? "; expires=" + d.toGMTString() : "") + (a.domain ? "; domain=" + a.domain : "") + (a.secure ? "; secure" : "")
+                },
+                getUrlParam = function (b) {
+                    b = RegExp("(^|&)" + b + "=([^&]*)(&|$)", "i");
+                    b = window.location.search.substr(1).match(b);
+                    return null != b ? decodeURIComponent(b[2]) : null
+                },
+                currentDomain = document.domain.toLowerCase(),
+                referDomain = (document.referrer ? document.referrer.match(/.*\:\/\/([^\/]*).*/i)[1] : "").toLowerCase(),
+                urlCproId = getUrlParam("CPROID"),
+                cookieCproId = getCookie("CPROID"),
+                targetCproId;
+            
+            var referDomainRegEx=/(^|\.)pos\.baidu\.com$/gi;
+            urlCproId 
+                && ("release.baidu.com" === currentDomain && referDomainRegEx.test(referDomain) ) 
+                && setCookie("CPROID", urlCproId, {expires: (new Date).setFullYear(2042)});
+        </script>
+    </body>
+
+</html>

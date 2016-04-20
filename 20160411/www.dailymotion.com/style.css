@@ -1,0 +1,307 @@
+body {
+    font-family: Arial, sans-serif;
+}
+#billboard {
+  background: #f6f7f8 url(../images/logo.png);
+  background-position: 10px 10px;
+  background-repeat:no-repeat;
+  height: 250px;
+  min-height: 250px;
+  max-height: 600px;
+  position: absolute;
+  width: 970px;
+
+}
+
+.label {
+  color: #0D2A4D;
+  position: absolute;
+  
+  top: 35px;
+}
+
+#close-button {
+  
+  position: absolute;
+  right: 6px;
+  top: 3px;
+  width:80px;
+  height:20px;
+  background: transparent url(../images/close.png) no-repeat;
+  color:#000000;
+  z-index:999;
+  cursor:pointer;
+
+}
+.buttons {
+  position: absolute;
+  height: 26px;
+  
+}
+
+#expand-button {
+  height: 100%;
+  position: absolute;
+  width: 100%;
+}
+
+button {
+    background-color: transparent;
+    border: none;
+    color: #FFF;
+    cursor: pointer;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    outline: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+button:hover,
+button:active {
+    color: #FAF000;
+}
+button:active {
+    font-size: 11px;
+}
+.label {
+    color: #0D2A4D;
+    position: absolute;
+    margin-left: 10px;
+    top: 35px;
+}
+body {
+    margin: 0px;
+}
+
+#ad {
+    display: block;
+    border: rgb(145, 153, 153) 1px solid;
+    overflow: hidden;
+    width: 968px;
+    height: 248px;
+    -moz-user-select: -moz-none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+	background:#f6f7f8;
+    /* box-sizing: border-box; */
+}
+#banner {
+    position: relative;
+    display: block;
+    width: inherit;
+    height: inherit;
+    background:#f6f7f8;
+    overflow: hidden;
+}
+#bgImg{
+	position:absolute;
+	left:0px;
+	top:15px;
+	width:365px;
+	height:229px;
+}
+#angry{
+	position:absolute;
+	top:20px;
+	left:10px;
+	width:101px;
+	height:34px;
+}
+#logo{
+	position:absolute;
+	top:5px;
+	right:10px;
+	width:69px;
+	height:48px;
+	opacity:0;
+	animation: logoAnim 2s linear 1s 1 normal forwards;
+}
+#videoContainer{
+	position:absolute;
+	top:18px;
+	left:365px;
+	width:346px;
+	height:214px;
+	border:1px solid #cdcdcd;
+}
+#logo1{
+	position:absolute;
+	top:30px;
+	left:722px;
+	width:114px;
+	height:41px;
+	opacity:0;
+	animation: logo1Anim 8s linear 2s 1 normal forwards;
+}
+#logo2{
+	position:absolute;
+	top:30px;
+	left:722px;
+	width:148px;
+	height:50px;
+	opacity:0;
+	animation: logo2Anim 2s linear 10s 1 normal forwards;
+}
+#txt31{
+	position:absolute;
+	top:113px;
+	left:780px;
+	width:119px;
+	height:21px;
+	opacity:0;
+	animation: txt31Anim 7s linear 3s 1 normal forwards;
+}
+#txt32{
+	position:absolute;
+	top:138px;
+	left:740px;
+	width:214px;
+	height:24px;
+	opacity:0;
+	animation: txt32Anim 7s linear 3s 1 normal forwards;
+}
+#txt33{
+	position:absolute;
+	top:165px;
+	left:750px;
+	width:183px;
+	height:24px;
+	opacity:0;
+	animation: txt33Anim 7s linear 3s 1 normal forwards;
+}
+#txt1{
+	position:absolute;
+	top:155px;
+	left:750px;
+	width:183px;
+	height:24px;
+	opacity:0;
+	animation: txt1Anim 2s linear 10s 1 normal forwards;
+}
+#terms1{
+	position:absolute;
+	bottom:1px;
+	right:2px;
+	width:71px;
+	height:15px;
+	opacity:0;
+	animation: terms1Anim 6s linear 4s 1 normal forwards;
+	
+}
+#terms2{
+	position:absolute;
+	bottom:1px;
+	right:2px;
+	width:109px;
+	height:17px;
+	opacity:0;
+	animation: terms2Anim 2s linear 10s 1 normal forwards;
+}
+#txt1{
+	position:absolute;
+	top:100px;
+	left:722px;
+	width:191px;
+	height:79px;
+	opacity:0;
+}
+.ml{
+	position:absolute;
+	bottom:3px;
+	left:295px;
+	font-size:8px;
+	font-family:arial;
+	color:#9c9c9c;
+	opacity:1;
+}
+#cta{
+	position:absolute;
+	top:192px;
+	left:722px;
+	width:240px;
+	height:37px;
+	opacity:0;
+	animation: animcta 5s linear 12s 1 normal forwards;
+}
+#ctaArrow{
+	position:absolute;
+	top:200px;
+	left:742px;
+	width:12px;
+	height:19px;
+	opacity:0;
+	animation: animCtaArrow 8s linear 13s 1 normal forwards;
+	
+}
+
+@keyframes logoAnim{0%{opacity:0}100%{opacity:1}}
+@keyframes logo1Anim{0%{opacity:0}10%{opacity:1}92%{opacity:1}100%{opacity:0}}
+@keyframes logo2Anim{0%{opacity:0}100%{opacity:1}}
+
+@keyframes txt31Anim {
+	0% {opacity:1; transform:translateY(250px);}
+    10% {opacity:1; transform:translateY(0px);}
+	90% {opacity:1; transform:translateY(0px);}
+	100% {opacity:0; transform:translateY(0px);}
+}
+@keyframes txt32Anim {
+	0% {opacity:1; transform:translateY(250px);}
+	3% {opacity:1; transform:translateY(250px);}
+    13% {opacity:1; transform:translateY(0px);}
+	90% {opacity:1; transform:translateY(0px);}
+	100% {opacity:0; transform:translateY(0px);}
+}
+@keyframes txt33Anim {
+	0% {opacity:1; transform:translateY(250px);}
+	6% {opacity:1; transform:translateY(250px);}
+    16% {opacity:1; transform:translateY(0px);}
+	90% {opacity:1; transform:translateY(0px);}
+	100% {opacity:0; transform:translateY(0px);}
+}
+
+@keyframes txt1Anim{0%{opacity:0}100%{opacity:1}}
+@keyframes terms1Anim{0%{opacity:0}10%{opacity:1}92%{opacity:1}96%{opacity:0}}
+@keyframes terms2Anim{0%{opacity:0}100%{opacity:1}}
+
+@keyframes animcta {
+    0% {opacity:1; transform:translateY(250px);}
+    10% {opacity:1; transform:translateY(0px);}
+	90% {opacity:1; transform:translateY(0px);}
+	100% {opacity:1; transform:translateY(0px);}
+}
+
+@keyframes animCtaArrow {
+    0% {opacity:1; transform:translateX(0px);}
+    4% {opacity:1; transform:translateX(3px);}
+    8% {opacity:1; transform:translateX(0px);}
+	12% {opacity:1; transform:translateX(3px);}
+    16% {opacity:1; transform:translateX(0px);}
+	20% {opacity:1; transform:translateX(3px);}
+    24% {opacity:1; transform:translateX(0px);}
+	28% {opacity:1; transform:translateX(3px);}
+    32% {opacity:1; transform:translateX(0px);}
+	36% {opacity:1; transform:translateX(3px);}
+    40% {opacity:1; transform:translateX(0px);}
+	44% {opacity:1; transform:translateX(3px);}
+    48% {opacity:1; transform:translateX(0px);}
+	52 {opacity:1; transform:translateX(3px);}
+    56% {opacity:1; transform:translateX(0px);}
+	60% {opacity:1; transform:translateX(3px);}
+    64% {opacity:1; transform:translateX(0px);}
+	68% {opacity:1; transform:translateX(3px);}
+    72% {opacity:1; transform:translateX(0px);}
+	76% {opacity:1; transform:translateX(3px);}
+    80% {opacity:1; transform:translateX(0px);}
+	84% {opacity:1; transform:translateX(3px);}
+    88% {opacity:1; transform:translateX(0px);}
+	92 {opacity:1; transform:translateX(3px);}
+    96% {opacity:1; transform:translateX(0px);}
+	100% {opacity:1; transform:translateX(0px);}
+}
+
+
+

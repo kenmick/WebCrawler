@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>
+            // *********************
+            // SETUP - DO NOT REMOVE
+            // *********************
+
+            /**
+             * This runs at load time and sets up your globals for the data passed in and the
+             * method to call once everything is done.
+             * Under normal circumstances you shouldn't have to change this code.
+             * - All of the data passed from the parent window will be available via `window.data`
+             * - The method to call when everything is done will be `window.complete()`
+             */
+            (function(){
+                var pairs = window.location.search.slice(1).split('&');
+                var keyVal, i;
+                window.data = {};
+                for(i = 0; i<pairs.length; i++){
+                    keyVal = pairs[i].split('=');
+                    if(keyVal && keyVal[0] && keyVal[0] === 'data' && keyVal[1]){
+                        window.data = JSON.parse(decodeURIComponent(keyVal[1])) || {};
+                    }
+                }
+
+                window.complete = function(){
+                    if(window.parent && window !== window.parent && window.parent.postMessage){
+                        window.parent.postMessage({sender: window.name}, '*');
+                    }
+                };
+            })();
+            // The referrer page is added to this to make a fully qualified target for bright tag.
+            var REFERRER_BASE = 'netflix.com/bt/';
+            window.data.referrer = window.data.referrer ? REFERRER_BASE + window.data.referrer : 'not_set';
+
+            // Build up additional params, excluding referrer.
+            var additionalParams = '';
+            for(var key in window.data){
+                if(window.data.hasOwnProperty(key)){
+                    additionalParams = additionalParams + '&' + key + '=' + encodeURIComponent(window.data[key]);
+                }
+            }
+            var brightTagUrl = '//s.thebrighttag.com/tag?site=voKfK9l&mode=iframe' +  additionalParams;
+            iframe = '<iframe src="' + brightTagUrl + '" width="1" height="1" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>';
+            document.write(iframe);
+        </script>
+    </head>
+    <body>
+    </body>
+</html>

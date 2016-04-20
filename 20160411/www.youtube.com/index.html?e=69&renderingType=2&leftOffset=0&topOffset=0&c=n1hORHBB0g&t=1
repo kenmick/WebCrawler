@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Masthead</title>
+
+	<link rel="stylesheet" href="./general.css" />
+	<link rel="stylesheet" href="./masthead.css" />
+</head>
+
+<body id="container" onclick="exitHandler()">
+	<div id="bg-exit"></div>
+	<div id="ad-container" class="ad-container">
+		<ci-ytclosebutton lang="fr" theme="white" shadow="false" id="ytClose_dc">
+		</ci-ytclosebutton>
+
+		<div class="manual-exit-1"></div>
+		<div class="manual-exit-2"></div>
+
+		<div id="src-container" class="hidden"></div>
+	</div>
+
+
+	<script src="/879366/Enabler_01_111.js"></script>
+
+
+	<!--<script src="./animations.js"></script>-->
+
+
+	<script src="./main.js"></script>
+	<script src="https://www.gstatic.com/external_hosted/polymer/custom.elements.min.js"></script>
+	<script src="https://www.gstatic.com/ads/ci/ytclosebutton/1/ytclosebutton_min.js"></script>
+	<!--<script type='text/javascript' src='scripts.js'></script>-->
+	<img src="" width="1" height="1" id="trackingpixel" />
+	<img src="" width="1" height="1" id="trackingpixel2" />
+	<script>
+		document.getElementById("trackingpixel").src = "https://googleads.g.doubleclick.net/pagead/viewthroughconversion/928728699/?value=1.00&currency_code=EUR&label=RwaJCP26k2UQ-4ztugM&guid=ON&script=0";
+
+		function exitHandler() {
+			document.getElementById("trackingpixel2").src = "https://googleads.g.doubleclick.net/pagead/viewthroughconversion/928728699/?value=1.00&currency_code=EUR&label=u6mnCNvZgWUQ-4ztugM&guid=ON&script=0";
+
+		}
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,114 @@
+<!doctype html>
+<!--[if lt IE 7 ]> <html class="ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html class="ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html class="ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html class="ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html class="">
+<!--<![endif]-->
+<head>
+	<title>Flipkart.com: 502</title>
+	<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+	<meta name="Keywords" content="" />
+	<meta name="Description" content="" />
+	<link rel='shortcut icon' href="http://img5a.flixcart.com/www/promos/new/20150528-140547-favicon-retina.ico" />
+    <link rel="stylesheet" type="text/css" href="/css/build_css.php?group=basic" />
+    <link rel="stylesheet" type="text/css" href="/css/build_css.php?group=error_pages" />
+    <style>
+        body {
+            font-family: Arial;
+            padding:  0;
+            margin:  0;
+        }
+        .errorContent {
+            width: 978px;
+            margin: 0 auto;
+            height: inherit;
+            background-color: #FFFFFF;
+        }
+
+        .logo {
+            text-align: center;
+        }
+
+        .msg {
+        	font-size: 16px;
+        }
+
+        .failed {
+            color: red;
+        }
+
+        canvas {
+            margin:  0;
+            padding:  0;
+            opacity: 0.4;
+        }
+    </style>
+    <script type="text/javascript">
+        function checkStatus() {
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function () {
+                if (xmlhttp.readyState < 4) {
+                    document.getElementById('failed_msg').innerHTML = "";
+                    document.getElementById('check_msg').innerHTML = "Checking website ... ";
+                } else if (xmlhttp.readyState == 4) {
+                    if (xmlhttp.status < 400) {
+                        if (xmlhttp.status == 200) {
+                            document.open("text/html");
+                            document.write(xmlhttp.responseText);
+                            document.close();
+                        } else {
+                            document.getElementById('failed_msg').innerHTML = "";
+                            document.getElementById('success_msg').innerHTML = "Success! Reloading the page.";
+                            window.location.reload();
+                        }
+                    } else {
+                        document.getElementById('failed_msg').innerHTML = "Still busy!";
+                        startTimer(10);
+                    }
+                }
+            }
+            xmlhttp.open("GET", window.location.pathname + window.location.search, true);
+            xmlhttp.send();
+        }
+        function startTimer(seconds) {
+            document.getElementById('check_msg').innerHTML = "Please check back in <span id='timer'>" + seconds + "</span> seconds.";
+            setTimeout(function () {
+                var remaining = document.getElementById('timer').innerHTML;
+                if (remaining > 1) {
+                    remaining--;
+                    startTimer(remaining);
+                } else {
+                    checkStatus();
+                }
+            }, 1000);
+        }
+    </script>
+</head>
+<body>
+    <div class="errorContent">
+        <div class="logo">
+            <img src="http://img6a.flixcart.com/www/promos/new/20150715-125000-new-flipkart-logo.png">
+        </div>
+        <div class="gd-row">
+            <div class="gd-col gu8">
+                <div class="errorImage">
+                    <img src="http://img5a.flixcart.com/www/promos/new/20141009-165151-traffic-jam-3.jpg"/>
+                </div>
+            </div>
+            <div class="gd-col gu8">
+                <div class="errorHeading">
+                    <h1 style="font-size: 400%">Uh oh!</h1>
+                    <p style="font-size: 22px">We have a lot of traffic now.</p>
+                    <span class="msg failed" id="failed_msg"></span>
+                    <span class="msg" id="check_msg"></span>
+                    <script type="text/javascript">
+                        startTimer(120);
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

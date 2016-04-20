@@ -1,0 +1,9 @@
+window.hjSiteSettings = {"testers_widgets":[],"surveys":[],"heatmaps":[],"recording_capture_keystrokes":true,"polls":[{"persist_condition":"response","targeting":[{"negate":false,"pattern":"get-your-content-discovered-3","match_operation":"contains","component":"url"},{"negate":false,"pattern":"desktop","match_operation":"exact","component":"device"}],"language":"en","targeting_percentage":80,"created_epoch_time":1460551506,"display_condition":"delay","content":{"thankyou":"Thank you for answering this Poll. Your feedback is highly appreciated!","questions":[{"text":"Do you understand how Outbrain works?","labels":null,"type":"single-close-ended","randomize_answer_order":false,"answers":[{"text":"Yes","comments":false},{"text":"No, I would like you to explain:","comments":true}]}]},"effective_show_branding":true,"background":"#EAEAEA","skin":"light","position":"right","display_delay":30,"id":37807}],"site_id":17612,"record_targeting_rules":[{"negate":false,"pattern":"http:\/\/www.outbrain.com\/mobile-promote-your-content-2","match_operation":"simple","component":"url"}],"forms":[],"record":true,"r":0.4153560926,"deferred_page_contents":[]};
+
+window.hjBootstrap = function (scriptUrl) {
+    var s = document.createElement('script');
+    s.src = scriptUrl;
+    document.getElementsByTagName('head')[0].appendChild(s);
+};
+
+hjBootstrap('https://script.hotjar.com/modules-c7882aceb69fdd0fd25af3deeab24791.js');

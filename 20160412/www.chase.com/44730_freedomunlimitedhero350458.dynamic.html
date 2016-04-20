@@ -1,0 +1,110 @@
+
+<div id="DA_265810429476">
+  <div id="geoPrimary" class="geo-module__img"></div>
+  <div class="geo-module__container">
+    <div class="geo-module__container--inner">
+    </div>
+  </div>
+</div>
+
+<script>
+  require(
+      [ 'slotplacement/topic', 'jquery' ],
+      function(Topic, $) {
+        var link, title, altText, buttonColorCls, adVariantContext, ctaType;
+        var imagePaths = {};
+        var $ad = $("#DA_265810429476");
+        var adParentId = $ad.parent().attr('id');
+        
+        Topic.subscribe('adUpdate', function(pageId, data) {
+          injectAd(data);
+        });
+        
+        Topic.subscribe('adError', function () { 
+          injectAd({});
+        });
+
+        function injectAd(data) {
+          var _a = data._a ? data._a.split(',') : [];
+          function hA(a) {
+            if ($.inArray(a, _a) > -1) {
+              return true;
+            }
+            return false;
+          }
+          
+          var rules = {};
+          
+          
+          
+          
+            link = "https://creditcards.chase.com/a1/freedom-unlimited?CELL=62XP";
+            
+              imagePaths["retina"] = "/content/services/structured-image/image.retina.jpg/XCRT/Full-Width-Images/2016/Card/Freedom/IC1086_CFU_retina_2560x1440_FNL.jpg";
+            
+              imagePaths["desktop"] = "/content/services/structured-image/image.desktop.jpg/XCRT/Full-Width-Images/2016/Card/Freedom/IC1086_CFU_retina_2560x1440_FNL.jpg";
+            
+              imagePaths["tablet"] = "/content/services/structured-image/image.tablet.jpg/XCRT/Full-Width-Images/2016/Card/Freedom/IC1086_CFU_retina_2560x1440_FNL.jpg";
+            
+              imagePaths["mobile"] = "/content/services/structured-image/image.mobile.jpg/XCRT/Full-Width-Images/2016/Card/Freedom/IC1086_CFU_retina_2560x1440_FNL.jpg";
+            
+            title = "<p>Learn more &gt;</p>";
+            altText = "The Freedom Unlimited credit card with lawn in the background.";
+            buttonColorCls = "";
+            adVariantContext="heroLinkId:default;heroImageId:default;heroTitleId:default";
+            ctaType =  "Text";
+          
+          
+          
+          
+          
+          $ad.append(primaryBackgroundImage(imagePaths));
+          
+          if (altText){
+            var $accessibleText = $('<span/>').addClass("accessible-text").text(altText);
+            $ad.find(".geo-module__img").append($accessibleText);
+          }
+          
+          if(ctaType === 'Text'){
+            $ad.find(".geo-module__img").addClass("applyGradient");
+            var $title  = $('<div/>').addClass("geo-module--title");
+            if (link){
+              var $anchor = $('<a/>').addClass("geo-module--link").attr("href", link);
+              $ad.find(".geo-module__container--inner").append($anchor);         
+              $ad.find('.geo-module--link').append($title);
+            }else{
+                $ad.find(".geo-module__container--inner").append($title);
+            }
+            $ad.find(".geo-module--title").html(title);
+           }
+            
+          if(ctaType === 'Button'){
+            var $ctaContainerDiv = $('<div class="geo-module--cta-container"></div>');
+            var $ctaDiv  = $('<div class="geo-module--cta cta cta--large"></div>');
+            var $anchor = $('<a/>').addClass("geo-module--link").attr("href", link);
+              $ad.find(".geo-module__container--inner").append($anchor);         
+              $ad.find('.geo-module--link').addClass("geo-module--link__clickable");
+              $ad.find('.geo-module--link').append($ctaContainerDiv);
+              $ad.find(".geo-module--cta-container").append($ctaDiv);
+              $ad.find(".geo-module--cta").addClass(buttonColorCls);
+              $ad.find(".geo-module--cta").html(title);
+              
+          }
+          Topic('placementComplete').publish(adParentId,adVariantContext);
+        }
+        
+        function primaryBackgroundImage(imagePaths) {
+          var background = "background-image:url(", selector = ".geo-module__img", media = "@media only screen and ", ie8AlphaImageLoader = "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='", ie8SizingMethod = "', sizingMethod='scale');";
+          var style = "<style>";
+          style += selector + "{" + background + imagePaths["mobile"] + ");}";
+          style += media + "(min-width: 768px){" + selector + "{" + background + imagePaths["tablet"] + ");}}";
+          style += media + "(min-width: 1200px){" + selector + "{" + background + imagePaths["desktop"] + ");}}";
+          style += media + "(min-width: 2000px){" + selector + "{" + background + imagePaths["retina"] + ");}}";
+          style += ".lt-ie9 " + selector + "{ filter: " + ie8AlphaImageLoader + imagePaths["desktop"]
+              + ie8SizingMethod + "}";
+          style += "</style>";
+          return style;
+        }
+
+      });
+</script>

@@ -1,0 +1,50 @@
+(function(){
+    /* tokens */
+    var ppcs="%3Cdiv%20id%3D%27dv_pp_IyabJ3qSP2EI%27%3E%3Cscript%20language%3D%22javascript%22%20type%3D%22text%2Fjavascript%22%3E%20%20var%20dkcb%20%3D%20Math.random%28%29%3B%20%20document.write%28%27%3Cscript%20type%3D%22text%2Fjavascript%22%20language%3D%22javascript%22%20src%3D%22http%3A%2F%2Foptimized-by.rubiconproject.com%2Fa%2Fdk.js%3Fdefaulting_ad%3Dx3889cc.js%26account_id%3D8769%26site_id%3D14389%26size_id%3D15%26size%3D300x250%26cb%3D%27%20%2B%20dkcb%20%2B%27%22%3E%3C%5C%2Fscr%27%20%2B%20%27ipt%3E%27%29%3B%3C%2Fscript%3E%3C%2Fdiv%3E",
+        ppps="%3Cdiv%20style%3D%22display%3Anone%3Bwidth%3A0%3Bheight%3A0%22%3E%3CIFRAME%20SRC%3D%22http%3A%2F%2Fpixel.quantserve.com%2Fpixel%2Fp-01-0VIaSjnOLg.gif%3Ftags%3DCONTEXTWEB.UNCONTEXTUALIZED%2CPUBLISHER.558633%2C%2CCAMPAIGN.0.0%2C%2CADSIZE.300X250%2CZIPCODE.33000%2CPUBLISHERDOMAIN.dailymotion.com%22%20HEIGHT%3D%220%22%20WIDTH%3D%220%22%20MARGINWIDTH%3D%220%22%20MARGINHEIGHT%3D%220%22%20ALLOWTRANSPARENCY%3D%22true%22%20FRAMEBORDER%3D%220%22%20SCROLLING%3D%22NO%22%3E%3C%2FIFRAME%3E%3C%2Fdiv%3E%3Cdiv%20style%3D%22display%3Anone%22%3E%3Ciframe%20src%3D%22%2F%2Fbh.contextweb.com%2Fbh%2Fvisitormatch%3Ftag%3D336652%26pid%3D558633%22%3E%3C%2Fiframe%3E%3C%2Fdiv%3E",
+        pp_exp="0",
+        ppContainerId = "pp_ad_container_0",
+        maOpts = {"enabled":false,"maxSeqNum":0,"periodMax":0,"periodMin":0,"rotatingPassback":false,"skipRotation":false},
+        /* selecting parent.parent.pp in case this is in multiple iframes */
+        pp = window.pp || parent.pp || parent.parent.pp,
+        runSafe = function(func){
+            try{
+                return func();
+            }catch(ignore){}
+        },
+        thisAd = runSafe(function(){
+            if (typeof pp === 'object' && typeof pp.updateMaOpts === 'function') {
+                return pp.updateMaOpts(ppContainerId, maOpts);
+            }
+        }),
+        docWrite = function(str){
+            document.write(decodeURIComponent(str)); // jshint ignore:line
+        };
+    /* right before rendering the creative, the previous one will be rotated if necessary */
+    runSafe(function(){
+        if (typeof pp === 'object' && typeof pp.beforeRenderAd === 'function') {
+            pp.beforeRenderAd(ppContainerId);
+        }
+    });
+    /* only render ad if necessary according to MA config */
+    if (typeof thisAd !== 'object' || typeof thisAd.maOpts !== 'object' || !thisAd.maOpts.skipRotation) {
+        //inline rendering using document.write
+        if(pp_exp=='1'){
+            try{
+                /* used in async javascript [1.0], where the ad itself is rendered in an iframe */
+                parent.pp.AdManager.displayExpandable(window.frameElement,decodeURIComponent(ppcs));
+                docWrite(ppps);
+            }catch(e){
+                docWrite(ppcs+ppps);
+            }
+        } else {
+            docWrite(ppcs+ppps);
+        }
+    }
+    /* after rendering or skipping the creative the next rotation must be scheduled (according to 'maOpts') */
+    runSafe(function(){
+        if (typeof pp === 'object' && typeof pp.afterRenderAd === 'function') {
+            pp.afterRenderAd(ppContainerId);
+        }
+    });
+})();

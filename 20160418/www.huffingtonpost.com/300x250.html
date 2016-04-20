@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>BanniÃ¨re html 5</title>
+<script src="/lp/enabler/ADventori-2.0.0.js" type="text/javascript"></script>
+<link rel=stylesheet type="text/css" href="/lp/enabler/ADventori-2.0.0.css">
+
+<style>
+@font-face {
+	font-family:'VistaSansOT';
+	src: url('VistaSansLight_gdi.eot');
+	src: url('VistaSansLight_gdi.eot?#iefix') format('embedded-opentype'),
+		url('VistaSansLight_gdi.ttf') format('truetype'),
+		url('VistaSansLight_gdi.otf') format('opentype');
+	font-weight: 500;
+	font-style: normal;
+	font-stretch: normal;
+	unicode-range: U+0020-25CA;
+}
+
+@font-face {
+	font-family: 'Arial Black';
+	src: url('arial-black.ttf');
+	src: url('arial-black.ttf') format('truetype'),
+		url('arial-black.woff') format('woff'),
+	font-weight: 400;
+	font-style: normal;
+	font-stretch: normal;
+	unicode-range: U+0020-25CA;
+}
+</style>
+
+<script src="//b.corsair.fr/ftp/html5/price.php?desti=PAR-REU"></script>
+<script src="animation.js"></script>
+<script src="300x250_Reunion_15sec.js"></script>
+
+
+</head>
+
+<body onload="init();" style="background-color:#D4D4D4">
+<canvas id="canvas" width="300" height="250" style="background-color:#ffffff" onclick="ADventori.click();"></canvas>
+
+<script>
+var QueryString = function () {
+  // This function is anonymous, is executed immediately and 
+  // the return value is assigned to QueryString!
+  var query_string = {};
+  var query = window.location.search.substring(1);
+  var vars = query.split("&");
+  for (var i=0;i<vars.length;i++) {
+    var pair = vars[i].split("=");
+        // If first entry with this name
+    if (typeof query_string[pair[0]] === "undefined") {
+      query_string[pair[0]] = decodeURIComponent(pair[1]);
+        // If second entry with this name
+    } else if (typeof query_string[pair[0]] === "string") {
+      var arr = [ query_string[pair[0]],decodeURIComponent(pair[1])];
+      query_string[pair[0]] = arr;
+        // If third or later entry with this name
+    } else {
+      query_string[pair[0]].push(decodeURIComponent(pair[1]));
+    }
+  } 
+    return query_string;
+}();
+
+var canvas, stage, exportRoot,mainMovie;
+var replay = true;
+
+function init() {
+	canvas = document.getElementById("canvas");
+	var images = images||{};
+
+	var manifest = [
+		{src:"images/Group.png", id:"Group"},
+		{src:"images/Group_1.png", id:"Group_1"},
+		{src:"images/Path_6.png", id:"Path_6"},
+		{src:"images/Path_6_1.png", id:"Path_6_1"},
+		{src:"images/reunion_300x250.jpg", id:"fond_plage01"}
+	];
+
+	var loader = new createjs.LoadQueue(false);
+	loader.addEventListener("fileload", handleFileLoad);
+	loader.addEventListener("complete", handleComplete);
+	loader.loadManifest(manifest);
+}
+
+function handleFileLoad(evt) {
+	if (evt.item.type == "image") { images[evt.item.id] = evt.result; }
+}
+
+function handleComplete() {
+	exportRoot = new lib._300x250_Reunion_15sec();
+
+	stage = new createjs.Stage(canvas);
+	stage.addChild(exportRoot);
+	stage.update();
+	stage.enableMouseOver();
+
+	createjs.Ticker.setFPS(24);
+	createjs.Ticker.addEventListener("tick", stage);
+	if (replay) {
+		replay = false;
+		window.setTimeout(function(){handleComplete();},8500);
+	}
+}
+
+function redirectMe() {
+	if( typeof(QueryString['clickTAG']) != 'undefined') {			
+		window.open(QueryString['clickTAG']);
+	}
+}
+</script>
+
+</body>
+</html>
